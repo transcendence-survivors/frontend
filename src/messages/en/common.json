@@ -1,0 +1,13 @@
+{
+	"nav": {
+		"home": "Home",
+		"game": "Game",
+		"leaderboard": "Leaderboard",
+		"profile": "Profile",
+		"settings": "Settings",
+		"logout": "Logout"
+	},
+	"home": {
+		"welcome": "Welcome to Transcendence Survivor!"
+	}
+}

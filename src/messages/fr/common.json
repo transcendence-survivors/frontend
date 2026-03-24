@@ -1,0 +1,13 @@
+{
+	"nav": {
+		"home": "Accueil",
+		"game": "Jeu",
+		"leaderboard": "Classement",
+		"profile": "Profil",
+		"settings": "Paramètres",
+		"logout": "Se déconnecter"
+	},
+	"home": {
+		"welcome": "Bienvenue sur Transcendence Survivor !"
+	}
+}

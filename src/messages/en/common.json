@@ -8,6 +8,13 @@
 		"logout": "Logout"
 	},
 	"home": {
-		"welcome": "Welcome to Transcendence Survivor!"
+		"welcome": "Welcome to Transcendence Survivor !"
+	},
+	"locale": {
+		"en": "English",
+		"fr": "Français",
+		"de": "Deutsch",
+		"zh": "中文",
+		"da": "Dansk"
 	}
 }

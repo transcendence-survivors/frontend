@@ -9,5 +9,12 @@
 	},
 	"home": {
 		"welcome": "Bienvenue sur Transcendence Survivor !"
+	},
+	"locale": {
+		"en": "English",
+		"fr": "Français",
+		"de": "Deutsch",
+		"zh": "中文",
+		"da": "Dansk"
 	}
 }

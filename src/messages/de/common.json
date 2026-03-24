@@ -1,0 +1,20 @@
+{
+	"nav": {
+		"home": "Startseite",
+		"game": "Spiel",
+		"leaderboard": "Bestenliste",
+		"profile": "Profil",
+		"settings": "Einstellungen",
+		"logout": "Abmelden"
+	},
+	"home": {
+		"welcome": "Willkommen bei Transcendence Survivor!"
+	},
+	"locale": {
+		"en": "English",
+		"fr": "Français",
+		"de": "Deutsch",
+		"zh": "中文",
+		"da": "Dansk"
+	}
+}

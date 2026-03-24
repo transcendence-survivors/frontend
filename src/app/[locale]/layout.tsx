@@ -31,27 +31,18 @@ export default async function RootLayout({
   params
 }: RootLayoutProps) {
   const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  let messages;
-  try {
-    messages = (await import(`@/messages/${locale}/common.json`)).default;
-  } catch {
-    notFound();
-  }
-
+  
   return (
     <html
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+		<div>
+			<NextIntlClientProvider locale={locale}>
+				{children}
+			</NextIntlClientProvider>
+		</div>
       </body>
     </html>
   );

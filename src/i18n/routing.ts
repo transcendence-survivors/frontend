@@ -32,19 +32,19 @@ export const routeMap = {
 		en: '/settings',
 		de: '/einstellungen',
 		fr: '/parametres',
-	}
+	},
 } satisfies Record<string, RouteMap>;
 
 export type RouteKey = keyof typeof routeMap;
-export type CanonicalHref = typeof routeMap[RouteKey]['en'];
+export type CanonicalHref = (typeof routeMap)[RouteKey]['en'];
 
 export const getRoute = <
 	K extends RouteKey,
-	L extends Locale = typeof defaultLocale
+	L extends Locale = typeof defaultLocale,
 >(
 	key: K,
-	locale: L = defaultLocale as L
-): typeof routeMap[K][L] => {
+	locale: L = defaultLocale as L,
+): (typeof routeMap)[K][L] => {
 	return routeMap[key][locale];
 };
 
@@ -52,13 +52,8 @@ export const getPath = (key: RouteKey): CanonicalHref => {
 	return routeMap[key].en;
 };
 
-
-
 const pathnames: Record<string, RouteMap> = Object.fromEntries(
-	Object.values(routeMap).map((value) => [
-		value.en,
-		value,
-	])
+	Object.values(routeMap).map((value) => [value.en, value]),
 );
 
 export const routing = defineRouting({
@@ -66,5 +61,5 @@ export const routing = defineRouting({
 	defaultLocale,
 	pathnames: {
 		...pathnames,
-	}
+	},
 });

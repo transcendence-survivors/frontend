@@ -1,0 +1,6 @@
+export const THEMES = ['light', 'dark', 'system'] as const;
+
+export type ResolvedTheme = Exclude<Theme, 'system'> | null;
+export type Theme = (typeof THEMES)[number];
+
+export const DEFAULT_THEME: Theme = 'system';

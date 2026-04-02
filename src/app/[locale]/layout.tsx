@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+
 import '@/app/globals.css';
-
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { QuerryProvider } from '@/components/providers/QuerryProvider';
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -31,21 +31,18 @@ export default async function RootLayout({
 }: RootLayoutProps) {
 	const { locale } = await params;
 
-	const queryClient = new QueryClient();
-
 	return (
 		<html
+			suppressHydrationWarning
 			lang={locale}
 			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
 		>
 			<body className="min-h-full flex flex-col">
-				<div>
-					<QueryClientProvider client={queryClient}>
-						<NextIntlClientProvider locale={locale}>
-							{children}
-						</NextIntlClientProvider>
-					</QueryClientProvider>
-				</div>
+				<NextIntlClientProvider locale={locale}>
+					<ThemeProvider>
+						<QuerryProvider>{children}</QuerryProvider>
+					</ThemeProvider>
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	);

@@ -11,13 +11,20 @@
 		"format:check": "prettier --check \"src/**/*.ts\" \"src/**/*.tsx\" \"src/**/*.css\""
 	},
 	"dependencies": {
+		"@base-ui/react": "^1.3.0",
 		"@hookform/resolvers": "^5.2.2",
 		"@tanstack/react-query": "^5.95.2",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^1.7.0",
 		"next": "16.2.1",
 		"next-intl": "^4.8.3",
 		"react": "19.2.4",
 		"react-dom": "19.2.4",
 		"react-hook-form": "^7.72.0",
+		"shadcn": "^4.1.2",
+		"tailwind-merge": "^3.5.0",
+		"tw-animate-css": "^1.4.0",
 		"zod": "link:@hookform/resolvers/zod"
 	},
 	"devDependencies": {
@@ -27,8 +34,8 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "16.2.1",
+		"prettier": "^3.8.1",
 		"tailwindcss": "^4",
-		"typescript": "^5",
-		"prettier": "^3.8.1"
+		"typescript": "^5"
 	}
 }

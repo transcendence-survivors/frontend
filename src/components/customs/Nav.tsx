@@ -1,6 +1,6 @@
-import { Link } from "@/i18n/navigation";
-import { getRoute, RouteKey } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { Link } from '@/i18n/navigation';
+import { getRoute, RouteKey } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 interface NavLink {
 	key: RouteKey;
@@ -20,19 +20,21 @@ interface NavProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const Nav = ({ ...props }: NavProps) => {
-	const t = useTranslations("nav");
+	const t = useTranslations('nav');
 
 	return (
 		<nav {...props}>
 			<ul>
 				{navLinks.map((link) => (
 					<li key={link.key}>
-						<Link href={getRoute(link.key)}>{t(`${link.labelKey}`)}</Link>
+						<Link href={getRoute(link.key)}>
+							{t(`${link.labelKey}`)}
+						</Link>
 					</li>
 				))}
 			</ul>
 		</nav>
 	);
-}
+};
 
 export default Nav;

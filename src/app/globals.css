@@ -3,6 +3,7 @@
 @import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant neon (&:is(.neon *));
 
 @theme inline {
 	--color-background: var(--background);
@@ -115,6 +116,40 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+}
+
+.neon {
+	--background: oklch(10.159% 0.04671 328.352 / 0.885);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 1.5% 50%);
+	--input: oklch(1 1.5% 50% / 15%);
+	--ring: oklch(1 1.5% 50%);
+	--chart-1: oklch(1 1.5% 50%);
+	--chart-2: oklch(1 1.5% 50%);
+	--chart-3: oklch(1 1.5% 50%);
+	--chart-4: oklch(1 1.5% 50%);
+	--chart-5: oklch(1 1.5% 50%);
+	--sidebar: oklch(1 1.5% 50%);
+	--sidebar-foreground: oklch(1 1.5% 50%);
+	--sidebar-primary: oklch(1 1.5% 50%);
+	--sidebar-primary-foreground: oklch(1 1.5% 50%);
+	--sidebar-accent: oklch(1 1.5% 50%);
+	--sidebar-accent-foreground: oklch(1 1.5% 50%);
+	--sidebar-border: oklch(1 1.5% 50%);
+	--sidebar-ring: oklch(1 1.5% 50%);
 }
 
 @layer base {

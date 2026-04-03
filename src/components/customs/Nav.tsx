@@ -13,6 +13,7 @@ const navLinks: NavLink[] = [
 	{ key: 'leaderboard', labelKey: 'leaderboard' },
 	{ key: 'profile', labelKey: 'profile' },
 	{ key: 'settings', labelKey: 'settings' },
+	{ key: 'posts', labelKey: 'posts' },
 ];
 
 interface NavProps extends React.HTMLAttributes<HTMLElement> {
@@ -27,9 +28,7 @@ const Nav = ({ ...props }: NavProps) => {
 			<ul>
 				{navLinks.map((link) => (
 					<li key={link.key}>
-						<Link href={getRoute(link.key)}>
-							{t(`${link.labelKey}`)}
-						</Link>
+						<Link href={getRoute(link.key)}>{t(`${link.labelKey}`)}</Link>
 					</li>
 				))}
 			</ul>

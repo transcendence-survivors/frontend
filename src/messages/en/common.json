@@ -5,7 +5,8 @@
 		"leaderboard": "Leaderboard",
 		"profile": "Profile",
 		"settings": "Settings",
-		"logout": "Logout"
+		"logout": "Logout",
+		"posts": "Posts"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"

@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect } from 'react';
-import { useTheme } from 'next-themes';
+import useTypedTheme from './useTypedTheme';
+import { THEME_LENGTH, THEMES } from '@/libs/theme';
 
 const isTypingTarget = (target: EventTarget | null) => {
 	if (!(target instanceof HTMLElement)) return false;
@@ -15,7 +16,7 @@ const isTypingTarget = (target: EventTarget | null) => {
 };
 
 const useThemeHotkey = () => {
-	const { theme, resolvedTheme, setTheme } = useTheme();
+	const { theme, resolvedTheme, setTheme } = useTypedTheme();
 
 	const onKeyDown = useCallback(
 		(event: KeyboardEvent) => {
@@ -33,9 +34,16 @@ const useThemeHotkey = () => {
 
 			const current = resolvedTheme ?? theme;
 
-			console.log('theme:', theme, 'resolved:', resolvedTheme);
 			if (!current) return;
-			setTheme(current === 'dark' ? 'light' : 'dark');
+			const currentThemeIndex = THEMES.indexOf(current);
+
+			const nextTheme = THEMES[(currentThemeIndex + 1) % THEME_LENGTH];
+
+			setTheme(
+				nextTheme !== 'system'
+					? nextTheme
+					: THEMES[(currentThemeIndex + 2) % THEME_LENGTH],
+			);
 		},
 		[theme, resolvedTheme, setTheme],
 	);

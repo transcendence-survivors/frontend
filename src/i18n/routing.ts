@@ -1,13 +1,20 @@
 import { defineRouting } from 'next-intl/routing';
 
-export const locales = ['en', 'de', 'fr'] as const;
+export const defaultLocale = 'fr';
+export const locales = [defaultLocale, 'en', 'de'] as const;
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = 'fr';
+type StrictRouteMap<T extends Record<string, Record<Locale, `/${string}`>>> = T & {
+	[K in keyof T]: {
+		[L in keyof T[K]]: L extends Locale ? T[K][L] : never;
+	};
+};
 
-export type RouteMap = Record<Locale, string>;
+const defineRouteMap = <T extends Record<string, Record<Locale, `/${string}`>>>(
+	map: StrictRouteMap<T>,
+): T => map as T;
 
-export const routeMap = {
+export const routeMap = defineRouteMap({
 	home: {
 		en: '/',
 		de: '/',
@@ -33,33 +40,38 @@ export const routeMap = {
 		de: '/einstellungen',
 		fr: '/parametres',
 	},
-} satisfies Record<string, RouteMap>;
+	posts: {
+		en: '/posts',
+		de: '/beitraege',
+		fr: '/articles',
+	},
+	postId: {
+		en: '/posts/:id',
+		de: '/beitraege/:id',
+		fr: '/articles/:id',
+	},
+	postIdMediaId: {
+		en: '/posts/:id/media/:mediaId',
+		de: '/beitraege/:id/medien/:mediaId',
+		fr: '/articles/:id/media/:mediaId',
+	},
+} as const);
 
-export type RouteKey = keyof typeof routeMap;
-export type CanonicalHref = (typeof routeMap)[RouteKey]['en'];
+export type RouteMap = typeof routeMap;
+export type RouteKey = keyof RouteMap;
+export type CanonicalHref = RouteMap[RouteKey]['en'];
 
-export const getRoute = <
-	K extends RouteKey,
-	L extends Locale = typeof defaultLocale,
->(
+export const getRoute = <K extends RouteKey, L extends Locale = typeof defaultLocale>(
 	key: K,
 	locale: L = defaultLocale as L,
-): (typeof routeMap)[K][L] => {
-	return routeMap[key][locale];
-};
+): RouteMap[K][L] => routeMap[key][locale];
 
-export const getPath = (key: RouteKey): CanonicalHref => {
-	return routeMap[key].en;
-};
-
-const pathnames: Record<string, RouteMap> = Object.fromEntries(
-	Object.values(routeMap).map((value) => [value.en, value]),
-);
+export const getPath = (key: RouteKey): CanonicalHref => routeMap[key].en;
 
 export const routing = defineRouting({
 	locales,
 	defaultLocale,
-	pathnames: {
-		...pathnames,
-	},
+	pathnames: Object.fromEntries(
+		Object.values(routeMap).map((value) => [value.en, value]),
+	) as Record<string, Record<Locale, string>>,
 });

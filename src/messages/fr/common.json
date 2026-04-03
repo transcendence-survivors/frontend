@@ -5,7 +5,8 @@
 		"leaderboard": "Classement",
 		"profile": "Profil",
 		"settings": "Paramètres",
-		"logout": "Se déconnecter"
+		"logout": "Se déconnecter",
+		"posts": "Articles"
 	},
 	"home": {
 		"welcome": "Bienvenue sur Transcendence Survivor !"

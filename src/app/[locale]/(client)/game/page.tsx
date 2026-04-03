@@ -9,7 +9,7 @@ export default async function Page() {
 			<br />
 			<Nav />
 
-			<LocaleSwitcher path="game" />
+			<LocaleSwitcher path='game' />
 		</main>
 	);
 }

@@ -5,6 +5,8 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 import '@/app/globals.css';
 import { QuerryProvider } from '@/components/providers/QuerryProvider';
+import siteMetadata from '@/i18n/metadata';
+import { defaultLocale, Locale } from '@/i18n/routing';
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -15,29 +17,33 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-	title: 'Transcendence Survivor',
-	description: 'Frontend for Transcendence Survivor, a 42 project',
-};
+type Params = Promise<{
+	locale: Locale;
+}>;
 
 interface RootLayoutProps {
 	children: React.ReactNode;
-	params: Promise<{ locale: string }>;
+	params: Params;
 }
 
-export default async function RootLayout({
-	children,
+export async function generateMetadata({
 	params,
-}: RootLayoutProps) {
+}: {
+	params: Params;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	return siteMetadata[locale] || siteMetadata[defaultLocale];
+}
+
+export default async function RootLayout({ children, params }: RootLayoutProps) {
 	const { locale } = await params;
 
 	return (
 		<html
 			suppressHydrationWarning
 			lang={locale}
-			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-		>
-			<body className="min-h-full flex flex-col">
+			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+			<body className='min-h-full flex flex-col'>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
 						<QuerryProvider>{children}</QuerryProvider>

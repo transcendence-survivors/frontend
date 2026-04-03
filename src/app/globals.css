@@ -82,6 +82,8 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+
+	--nav-height: 4rem;
 }
 
 .dark {
@@ -161,5 +163,31 @@
 	}
 	html {
 		@apply font-sans;
+	}
+
+	.layout {
+		--_padding-y: 0px;
+		@apply min-h-screen grid grid-cols-1 
+    		md:grid-cols-[200px_1fr] p-[var(--_padding-y)] 
+    		lg:grid-cols-[1fr_min(70%,80ch)_1fr];
+
+		.sticky-bar {
+			--_py: 1rem;
+			--_top: calc(var(--_padding-y) + var(--nav-height) + var(--_py));
+
+			@apply sticky top-[var(--_top)] z-10 self-start w-full max-w-xs;
+			padding: 1rem;
+		}
+
+		.scrollableContainer {
+			--_max-height: calc(
+				100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem
+			);
+			@apply max-h-[var(--_max-height)] overflow-y-auto overflow-x-clip;
+			scrollbar-gutter: stable both-edges;
+			scrollbar-gutter: stable both-edges;
+
+			scrollbar-color: var(--muted-foreground) transparent;
+		}
 	}
 }

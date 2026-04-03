@@ -1,3 +1,4 @@
+import { cn } from '@/libs/utils';
 import Trend from './Trend';
 
 const trends = [
@@ -7,9 +8,11 @@ const trends = [
 	{ tag: 'ReactJS', posts: 9300 },
 ];
 
-const TrendingWidget = () => {
+interface TrendingWidgetProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const TrendingWidget = ({ className, ...props }: TrendingWidgetProps) => {
 	return (
-		<div className='rounded-2xl bg-muted py-4'>
+		<div className={cn('rounded-2xl bg-muted py-4', className)} {...props}>
 			<h2 className='mb-3 text-lg font-bold px-4'>Trends for you</h2>
 			<ul>
 				{trends.map((t) => (

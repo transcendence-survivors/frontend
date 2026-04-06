@@ -24,10 +24,9 @@ const verifyToken = async (token: string): Promise<JWTPayload> => {
 
 export const publicRoutes = new Set<CanonicalHref>([
 	routeMap.register.en,
+	routeMap.login.en,
 	routeMap.home.en,
 ]);
-
-export const redirectAuthRoute: CanonicalHref = routeMap.home.en;
 
 export const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {
 	// [routeMap.admin.en]: [UserRole.ADMIN, UserRole.SUPER_ADMIN],

@@ -27,6 +27,11 @@ export const routeMap = defineRouteMap({
 		de: '/registrieren',
 		fr: '/inscription',
 	},
+	login: {
+		en: '/login',
+		de: '/anmelden',
+		fr: '/connexion',
+	},
 	game: {
 		en: '/game',
 		de: '/spiel',
@@ -67,6 +72,7 @@ export const routeMap = defineRouteMap({
 export type RouteMap = typeof routeMap;
 export type RouteKey = keyof RouteMap;
 export type CanonicalHref = RouteMap[RouteKey]['en'];
+export const authRedirectRoute: CanonicalHref = routeMap.home.en;
 
 export const getRoute = <K extends RouteKey, L extends Locale = typeof defaultLocale>(
 	key: K,
@@ -86,3 +92,4 @@ export const routing = defineRouting({
 		Object.values(routeMap).map((value) => [value.en, value]),
 	) as Record<string, Record<Locale, string>>,
 });
+

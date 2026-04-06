@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { loginRequest } from '@/libs/api/auth';
 import { useSessionActions } from '@/libs/stores/session';
 import { isApiError } from '@/libs/api';
-import { redirectAuthRoute } from '@/libs/proxy/auth';
+import { authRedirectRoute } from '@/i18n/routing';
 
 export function useLogin() {
 	const router = useRouter();
@@ -12,7 +12,6 @@ export function useLogin() {
 
 	return useMutation({
 		mutationFn: loginRequest,
-
 		onSuccess: (res) => {
 			if (isApiError(res)) {
 				console.error('Login error:', res.message);
@@ -20,7 +19,7 @@ export function useLogin() {
 			}
 			const { data: user } = res;
 			setSession({ user: user, accessToken: '' });
-			router.replace(redirectAuthRoute);
+			router.replace(authRedirectRoute);
 		},
 
 		onError: (error) => {

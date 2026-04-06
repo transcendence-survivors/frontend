@@ -1,9 +1,12 @@
 'use client';
 
 import useUser from '@/hooks/useUser';
+import { useSessionActions } from '@/libs/stores/session';
+import { User } from '@/libs/zod/user.schema';
 
 const RegisterPage = () => {
-	const { data: user, isLoading, isError } = useUser();
+	const { data, isLoading, isError } = useUser();
+	const { setSession } = useSessionActions();
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -11,6 +14,12 @@ const RegisterPage = () => {
 	if (isError) {
 		return <div>Error loading user data.</div>;
 	}
+
+	const user = data;
+	setSession({
+		user: user as User,
+		accessToken: '',
+	});
 
 	return (
 		<div className='container mx-auto py-10'>

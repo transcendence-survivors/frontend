@@ -1,8 +1,6 @@
 'use client';
 
-import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
-
 import { cn } from '@/libs/utils';
 import { Slot } from '../Slot';
 
@@ -42,7 +40,10 @@ const buttonVariants = cva(
 	},
 );
 
-interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {
+interface ButtonProps
+	extends
+		React.ButtonHTMLAttributes<HTMLButtonElement>,
+		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 }
 
@@ -55,7 +56,7 @@ const Button = ({
 	...props
 }: ButtonProps) => {
 	const mergedClassName = cn(buttonVariants({ variant, size, className }));
-	const Component = asChild ? Slot : ButtonPrimitive;
+	const Component = asChild ? Slot : 'button';
 
 	return (
 		<Component data-slot='button' className={mergedClassName} {...props}>

@@ -1,3 +1,5 @@
+import { log } from 'console';
+import { register } from 'module';
 import { defineRouting } from 'next-intl/routing';
 
 export const defaultLocale = 'fr';
@@ -19,6 +21,11 @@ export const routeMap = defineRouteMap({
 		en: '/',
 		de: '/',
 		fr: '/',
+	},
+	register: {
+		en: '/register',
+		de: '/registrieren',
+		fr: '/inscription',
 	},
 	game: {
 		en: '/game',
@@ -67,6 +74,10 @@ export const getRoute = <K extends RouteKey, L extends Locale = typeof defaultLo
 ): RouteMap[K][L] => routeMap[key][locale];
 
 export const getPath = (key: RouteKey): CanonicalHref => routeMap[key].en;
+
+export const resolveRoute = (key: RouteKey, locale: Locale) => {
+	return getRoute(key, locale);
+};
 
 export const routing = defineRouting({
 	locales,

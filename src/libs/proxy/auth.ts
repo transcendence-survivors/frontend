@@ -2,9 +2,14 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 import { UserRole } from '@/libs/zod/user.schema';
 import { CanonicalHref, routeMap } from '@/i18n/routing';
-import { COOKIE_ACCESS_TOKEN, COOKIE_AUTHORIZATION } from '@/libs/constants';
+import {
+	COOKIE_ACCESS_TOKEN,
+	COOKIE_AUTHORIZATION,
+	TOKEN_PREFIX,
+} from '@/libs/constants';
+import { env } from '../zod/env';
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
+const secret = new TextEncoder().encode(env.JWT_SECRET);
 
 type JWTPayload = {
 	sub: string;
@@ -40,7 +45,7 @@ export const hasRequiredRole = (userRole: UserRole, required: UserRole[]): boole
 export const getUserFromRequest = async (req: NextRequest) => {
 	const token =
 		req.cookies.get(COOKIE_ACCESS_TOKEN)?.value ||
-		req.headers.get(COOKIE_AUTHORIZATION)?.replace('Bearer ', '');
+		req.headers.get(COOKIE_AUTHORIZATION)?.replace(TOKEN_PREFIX, '');
 
 	if (!token) return null;
 

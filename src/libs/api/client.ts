@@ -1,8 +1,10 @@
 import { useSessionStore } from '@/libs/stores/session';
 import { refreshAccessToken } from '@/libs/api/auth';
 import { ApiResponse } from '@/libs/api';
+import { TOKEN_PREFIX } from '../constants';
+import { env } from '@/libs/zod/env';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = env.NEXT_PUBLIC_API_URL;
 
 type FetchOptions = RequestInit & {
 	_retry?: boolean;
@@ -12,13 +14,13 @@ const buildUrl = (path: string) =>
 	`${API_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 const baseFetch = (path: string, init: FetchOptions = {}) => {
-	const store = useSessionStore.getState();
+	const accessToken = useSessionStore.getState().accessToken;
 
 	return fetch(buildUrl(path), {
 		...init,
 		headers: {
 			...init.headers,
-			Authorization: store.accessToken ? `Bearer ${store.accessToken}` : '',
+			Authorization: accessToken ? `${TOKEN_PREFIX}${accessToken}` : '',
 		},
 		credentials: 'include',
 	});
@@ -43,7 +45,7 @@ export const request = async <T>(
 				_retry: true,
 				headers: {
 					...init.headers,
-					Authorization: `Bearer ${rotated.accessToken}`,
+					Authorization: `${TOKEN_PREFIX}${rotated.accessToken}`,
 				},
 			});
 		} catch {
@@ -52,7 +54,5 @@ export const request = async <T>(
 		}
 	}
 
-	const json = (await res.json()) as ApiResponse<T>;
-
-	return json;
+	return (await res.json()) as ApiResponse<T>;
 };

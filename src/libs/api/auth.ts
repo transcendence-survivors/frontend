@@ -5,6 +5,11 @@ interface RefreshResponse {
 	accessToken: string;
 }
 
+interface LoginRequestBody {
+	email: string;
+	password: string;
+}
+
 export const refreshAccessToken = async (): Promise<RefreshResponse> => {
 	const res = await api.post<RefreshResponse>('/auth/refresh');
 	if (!isApiSuccess(res)) throw new Error(res.message);
@@ -20,11 +25,6 @@ export const getMe = async (): Promise<User> => {
 export const logoutRequest = async (): Promise<void> => {
 	await api.post<void>('/auth/logout');
 };
-
-export interface LoginRequestBody {
-	email: string;
-	password: string;
-}
 
 export const loginRequest = async (
 	body: LoginRequestBody,

@@ -6,7 +6,6 @@ interface PageProps {
 
 export default async function PostPage({ params }: PageProps) {
 	const { id } = await params;
-	console.log('Rendering PostPage with id:', id);
 	return (
 		<div>
 			<h1>Post {id}</h1>

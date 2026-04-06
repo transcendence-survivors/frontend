@@ -7,6 +7,7 @@ import '@/app/globals.css';
 import { QuerryProvider } from '@/components/providers/QuerryProvider';
 import siteMetadata from '@/i18n/metadata';
 import { defaultLocale, Locale } from '@/i18n/routing';
+import { Toaster } from 'sonner';
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -49,6 +50,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 						<QuerryProvider>{children}</QuerryProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>
+				<Toaster />
 			</body>
 		</html>
 	);

@@ -1,9 +1,28 @@
-import Login from './_component';
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card';
+import { BugReportForm } from './_test';
 
 export default function LoginPage() {
 	return (
 		<main>
-			<Login />
+			<Card className='w-full sm:max-w-md mx-auto mt-10'>
+				<CardHeader>
+					<CardTitle>
+						<h3>Bug Report</h3>
+					</CardTitle>
+					<CardDescription>
+						Help us improve by reporting bugs you encounter.
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<BugReportForm />
+				</CardContent>
+			</Card>
 		</main>
 	);
 }

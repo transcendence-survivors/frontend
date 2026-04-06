@@ -1,6 +1,6 @@
 import { routeMap } from '@/i18n/routing';
 
-export const LOGIN_PATH = routeMap.register.en;
+export const LOGIN_PATH = routeMap.login.en;
 
 // COOKIE
 export const COOKIE_REFRESH_TOKEN = 'refreshToken';

@@ -17,5 +17,26 @@
 		"de": "Deutsch",
 		"zh": "中文",
 		"da": "Dansk"
+	},
+
+	"forms": {
+		"test": {
+			"name": "Name",
+			"namePlaceholder": "Enter your name",
+			"email": "E-Mail",
+			"emailPlaceholder": "john.doe@example.com",
+			"role": "Role",
+			"rolePlaceholder": "Choose your role",
+			"userRoles": "User Roles",
+			"admin": "Administrator",
+			"user": "User",
+			"bio": "Biography",
+			"bioPlaceholder": "Tell us a bit about yourself",
+			"acceptTerms": "I accept the Terms and Conditions",
+			"submit": "Submit",
+			"submitted": "Submitted",
+			"disabled": "Disabled",
+			"reset": "Reset"
+		}
 	}
 }

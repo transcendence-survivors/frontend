@@ -6,6 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { BugReportForm } from './_test';
+import MyForm from './_test2';
 
 export default function LoginPage() {
 	return (
@@ -21,6 +22,7 @@ export default function LoginPage() {
 				</CardHeader>
 				<CardContent>
 					<BugReportForm />
+					<MyForm />
 				</CardContent>
 			</Card>
 		</main>

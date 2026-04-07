@@ -20,6 +20,7 @@ const useThemeHotkey = () => {
 
 	const onKeyDown = useCallback(
 		(event: KeyboardEvent) => {
+			if (!event?.key) return;
 			if (
 				event.defaultPrevented ||
 				event.repeat ||

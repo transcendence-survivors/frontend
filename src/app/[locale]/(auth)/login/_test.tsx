@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-import { Field, FieldGroup } from '@/components/ui/field';
+import { Field, FieldError, FieldGroup } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import {
 	InputGroup,
@@ -31,8 +31,6 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export function BugReportForm() {
-	const { mutate, isPending, isError } = useLogin();
-
 	const {
 		handleSubmit,
 		control,
@@ -46,23 +44,28 @@ export function BugReportForm() {
 		},
 	});
 
+	const { mutate, isPending, isError } = useLogin();
 	const onSubmit = (data: FormSchema) => {
 		mutate(data, {
 			onSuccess: () => reset(),
 		});
 	};
 
+	const isFieldDisabled = isPending || isError;
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='space-y-4' noValidate>
 			<FieldGroup>
 				<ControlledField name='title' control={control} label='Bug Title'>
 					{({ field, fieldState }) => (
-						<Input
-							{...field}
-							disabled={isPending                                                                                         }
-							aria-invalid={fieldState.invalid}
-							placeholder='Login button not working on mobile'
-						/>
+						<InputGroup>
+							<Input
+								{...field}
+								disabled={isFieldDisabled}
+								aria-invalid={fieldState.invalid}
+								placeholder='Login button not working on mobile'
+							/>
+						</InputGroup>
 					)}
 				</ControlledField>
 				<ControlledField name='description' control={control} label='Description'>
@@ -71,13 +74,13 @@ export function BugReportForm() {
 							<InputGroup>
 								<InputGroupTextarea
 									{...field}
-									disabled={isPending || isError}
+									disabled={isFieldDisabled}
 									placeholder="I'm having an issue with the login button on mobile."
 									className='max-h-24 resize-none'
 									aria-invalid={fieldState.invalid}
 								/>
 								<InputGroupAddon align='block-end'>
-									<InputGroupText className='tabular-nums'>
+									<InputGroupText>
 										{field.value.length}/100 characters
 									</InputGroupText>
 								</InputGroupAddon>
@@ -91,16 +94,22 @@ export function BugReportForm() {
 					type='button'
 					variant='outline'
 					onClick={() => reset()}
-					disabled={!isDirty || isPending}>
+					disabled={!isDirty || isFieldDisabled}>
 					Reset
 				</Button>
-				<Button type='submit' disabled={!isDirty || isPending}>
+				<Button type='submit' disabled={!isDirty || isFieldDisabled}>
 					{isPending ? <Spinner className='size-4' /> : 'Submit'}
 				</Button>
 				{isError && (
-					<p className='text-sm text-destructive mt-2'>
-						Failed to submit bug report.
-					</p>
+					<FieldError
+						className='text-center'
+						errors={[
+							{
+								message:
+									'Unexpected error occurred, please try again later.',
+							},
+						]}
+					/>
 				)}
 			</Field>
 		</form>

@@ -1,5 +1,3 @@
-import { log } from 'console';
-import { register } from 'module';
 import { defineRouting } from 'next-intl/routing';
 
 export const defaultLocale = 'fr';
@@ -92,4 +90,3 @@ export const routing = defineRouting({
 		Object.values(routeMap).map((value) => [value.en, value]),
 	) as Record<string, Record<Locale, string>>,
 });
-

@@ -17,5 +17,26 @@
 		"de": "Deutsch",
 		"zh": "中文",
 		"da": "Dansk"
+	},
+
+	"forms": {
+		"test": {
+			"name": "Nom",
+			"namePlaceholder": "Entrez votre nom",
+			"email": "E-Mail",
+			"emailPlaceholder": "john.doe@example.com",
+			"role": "Rôle",
+			"rolePlaceholder": "Choisissez votre rôle",
+			"userRoles": "Rôles d'utilisateur",
+			"admin": "Administrator",
+			"user": "Utilisateur",
+			"bio": "Biographie",
+			"bioPlaceholder": "Dites-nous un peu à propos de vous",
+			"acceptTerms": "J'accepte les termes et conditions",
+			"submit": "Soumettre",
+			"submitted": "Soumis",
+			"disabled": "Désactivé",
+			"reset": "Réinitialiser"
+		}
 	}
 }

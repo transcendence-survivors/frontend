@@ -11,7 +11,7 @@ const fakeFetch = (data: { title: string; description: string }) => {
 	return new Promise<{ data: { id: number; title: string; description: string } }>(
 		(resolve, reject) => {
 			setTimeout(() => {
-				reject({ message: 'Failed to submit bug report. Please try again.' });
+				// reject({ message: 'Failed to submit bug report. Please try again.' });
 				resolve({
 					data: {
 						id: Math.floor(Math.random() * 1000),

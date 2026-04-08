@@ -21,11 +21,14 @@ type RouteParams<K extends RouteKey> = ExtractParams<RouteMap[K]['en']>;
 type Params<K extends RouteKey> =
 	RouteParams<K> extends never ? undefined : Record<RouteParams<K>, string | number>;
 
+
+
 type I18nLinkProps<K extends RouteKey> = Omit<LinkProps, 'href'> & {
 	href: K;
 	locale?: Locale;
 	params?: Params<K>;
 	children: Readonly<ReactNode>;
+	
 };
 
 const resolveHref = (path: string, params?: Record<string, string | number>): string =>

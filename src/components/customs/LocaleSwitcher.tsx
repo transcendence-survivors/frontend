@@ -1,11 +1,10 @@
-import I18nLink from '@components/customs/I18nLink';
-import { Locale, RouteKey } from '@i18n/routing';
-import { Button } from '@ui/button';
-import Link from 'next/link';
+'use client';
 
-interface Props extends React.HTMLAttributes<HTMLUListElement> {
-	path: RouteKey;
-}
+import { Link, usePathname } from '@i18n/navigation';
+import { Locale } from '@i18n/routing';
+import { Button } from '@ui/button';
+
+interface Props extends React.HTMLAttributes<HTMLUListElement> {}
 
 type LinkMap = Record<Locale, string>;
 const linkMap: LinkMap = {
@@ -14,18 +13,17 @@ const linkMap: LinkMap = {
 	fr: 'Français',
 };
 
-const LocaleSwitcher = ({ path, ...props }: Props) => {
+const LocaleSwitcher = ({ ...props }: Props) => {
+	const pathname = usePathname();
+
 	return (
 		<ul className='flex gap-x-4' {...props}>
 			{Object.entries(linkMap).map(([locale, label]) => (
 				<li key={locale}>
 					<Button asChild>
-						<I18nLink
-							href={path}
-							locale={locale as Locale}
-							className='text-sm font-medium text-gray-500 hover:text-gray-700'>
+						<Link href={pathname} locale={locale}>
 							{label}
-						</I18nLink>{' '}
+						</Link>
 					</Button>
 				</li>
 			))}

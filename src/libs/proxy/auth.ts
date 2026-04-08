@@ -26,6 +26,7 @@ export const publicRoutes = new Set<CanonicalHref>([
 	routeMap.register.en,
 	routeMap.login.en,
 	routeMap.home.en,
+	routeMap.posts.en,
 ]);
 
 export const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {

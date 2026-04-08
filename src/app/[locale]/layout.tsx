@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-
 import { ThemeProvider } from '@components/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
-
-import '@/app/globals.css';
 import siteMetadata from '@i18n/metadata';
 import { defaultLocale, Locale } from '@i18n/routing';
 import { Toaster } from 'sonner';
+
+import '@/app/globals.css';
+
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],

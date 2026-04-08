@@ -1,12 +1,13 @@
 import I18nLink from './I18nLink';
-import { RouteKey } from '@i18n/routing';
 import { useTranslations } from 'next-intl';
 import { Button } from '@ui/button';
 import { cn } from '@libs/utils';
+import { RouteKey } from '@i18n/routing';
+import type { AppMessages } from '@i18n/types';
 
 interface NavLink {
 	key: RouteKey;
-	labelKey: string;
+	labelKey: keyof AppMessages['nav'];
 }
 
 const navLinks: NavLink[] = [
@@ -19,7 +20,6 @@ const navLinks: NavLink[] = [
 ];
 
 interface NavProps extends React.HTMLAttributes<HTMLElement> {
-	className?: string;
 	align?: 'left' | 'center' | 'right';
 	linkWidth?: 'fit' | 'full';
 }

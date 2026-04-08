@@ -36,7 +36,18 @@
 			"submit": "Soumettre",
 			"submitted": "Soumis",
 			"disabled": "Désactivé",
-			"reset": "Réinitialiser"
+			"reset": "Réinitialiser",
+			"emptyFieldsBtn": "Remplissez les champs"
+		},
+		"error": {
+			"required": "Ce champ est requis",
+			"invalidType": "Type invalide",
+			"invalidEmail": "Veuillez entrer une adresse e-mail valide",
+			"minLength": "La longueur minimale est de {min} caractères",
+			"maxLength": "La longueur maximale est de {max} caractères",
+			"pattern": "Format invalide",
+			"select": "Veuillez sélectionner une option",
+			"mustAcceptTerms": "Vous devez accepter les termes et conditions"
 		}
 	}
 }

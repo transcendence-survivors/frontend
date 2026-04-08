@@ -27,11 +27,11 @@ interface RootLayoutProps {
 	params: Params;
 }
 
-export async function generateMetadata({
-	params,
-}: {
+interface MetadataProps {
 	params: Params;
-}): Promise<Metadata> {
+}
+
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
 	const { locale } = await params;
 	return siteMetadata[locale] || siteMetadata[defaultLocale];
 }

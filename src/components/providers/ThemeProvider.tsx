@@ -5,7 +5,7 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { THEMES, DEFAULT_THEME } from '@/libs/theme';
 import useThemeHotkey from '@/hooks/themes/useThemeHotkey';
 
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+if (typeof window !== 'undefined' && process.env?.NODE_ENV === 'development') {
 	const orig = console.error;
 	console.error = (...args: unknown[]) => {
 		if (typeof args[0] === 'string' && args[0].includes('Encountered a script tag'))

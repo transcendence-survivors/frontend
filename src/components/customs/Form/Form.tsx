@@ -15,7 +15,7 @@ import ResetButton, { ResetButtonProps } from './ResetBtn';
 
 type Schema<TOut extends FieldValues> = z.ZodType<TOut, FieldValues>;
 
-interface TruethyFormResetButtonProps extends ResetButtonProps {
+interface TruethyFormResetButtonProps extends Omit<ResetButtonProps, 'isDisabled'> {
 	show: true;
 }
 interface FalsyFormResetButtonProps {
@@ -72,6 +72,18 @@ export default function Form<TOut extends FieldValues>({
 		if (wasSubmitted) reset();
 	}, [wasSubmitted, reset]);
 
+	const renderResetBtn = () => {
+		if (!resetBtn.show) return null;
+		const { show, ...resetBtnProps } = resetBtn;
+		return show ? (
+			<ResetButton
+				{...resetBtnProps}
+				isDisabled={isFieldDisabled || !isDirty}
+				onClick={() => reset()}
+			/>
+		) : null;
+	};
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='space-y-4' noValidate>
 			{fields.map((field, index) => (
@@ -83,18 +95,13 @@ export default function Form<TOut extends FieldValues>({
 				/>
 			))}
 			<Field>
-				{resetBtn.show && (
-					<ResetButton
-						{...resetBtn}
-						isDisabled={isFieldDisabled || !isDirty}
-						onClick={() => reset()}
-					/>
-				)}
+				{renderResetBtn()}
 				<SubmitBtn
 					{...submitBtn}
 					isLoading={isPending}
 					wasSubmitted={wasSubmitted}
 					isDisabled={isFieldDisabled}
+					isEmptyFields={!isDirty}
 				/>
 				{isError && (
 					<FieldError

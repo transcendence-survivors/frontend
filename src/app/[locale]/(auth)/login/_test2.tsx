@@ -8,16 +8,27 @@ import { toast } from 'sonner';
 import { useMemo } from 'react';
 import { translateFields } from '@/i18n/utils';
 import { useTranslations } from 'next-intl';
+import { FORM_ERRORS } from '@constants/errors';
+import { i18nError } from '@/i18n/utils';
 
 const schema = z.object({
-	name: z.string().min(1).max(50),
-	email: z.email(),
-	role: z.enum(['admin', 'user'], {
-		message: 'Choose a valid role',
+	name: z
+		.string({ message: FORM_ERRORS.type })
+		.min(5, { message: i18nError(FORM_ERRORS.minLength, { min: 5 }) })
+		.max(50, {
+			message: i18nError(FORM_ERRORS.maxLength, { max: 50 }),
+		}),
+
+	email: z.email({ message: FORM_ERRORS.invalidEmail }),
+
+	role: z.enum(['admin', 'user'], { message: FORM_ERRORS.select }),
+
+	bio: z.string({ message: FORM_ERRORS.type }).max(100, {
+		message: i18nError(FORM_ERRORS.maxLength, { max: 100 }),
 	}),
-	bio: z.string().max(100, 'Bio must be at most 100 characters.'),
-	acceptTerms: z.boolean().refine((val) => val === true, {
-		message: 'You must accept the terms and conditions',
+
+	acceptTerms: z.boolean({ message: FORM_ERRORS.type }).refine((val) => val === true, {
+		message: FORM_ERRORS.mustAcceptTerms,
 	}),
 });
 
@@ -101,12 +112,14 @@ export default function MyForm() {
 			defaultValues={defaultValues}
 			onSubmit={onSubmit}
 			resetBtn={{
-				show: false,
+				show: true,
+				text: t('reset'),
 			}}
 			submitBtn={{
 				text: t('submit'),
 				onDisabledText: t('disabled'),
 				onSubmitedText: t('submitted'),
+				onEmptyFieldsText: t('emptyFieldsBtn'),
 			}}
 			states={{
 				isPending,

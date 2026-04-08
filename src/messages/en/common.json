@@ -36,7 +36,18 @@
 			"submit": "Submit",
 			"submitted": "Submitted",
 			"disabled": "Disabled",
-			"reset": "Reset"
+			"reset": "Reset",
+			"emptyFieldsBtn": "Fill in the fields"
+		},
+		"error": {
+			"required": "This field is required",
+			"invalidType": "Invalid type",
+			"invalidEmail": "Please enter a valid email address",
+			"minLength": "Minimum length is {min} characters",
+			"maxLength": "Maximum length is {max} characters",
+			"pattern": "Invalid format",
+			"select": "Please select an option",
+			"mustAcceptTerms": "You must accept the terms and conditions"
 		}
 	}
 }

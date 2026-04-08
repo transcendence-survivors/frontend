@@ -1,7 +1,7 @@
 import { useSessionStore } from '@/libs/stores/session';
 import { refreshAccessToken } from '@/libs/api/auth';
 import { ApiResponse } from '@/libs/api';
-import { TOKEN_PREFIX } from '../constants';
+import { TOKEN_PREFIX } from '../constants/cookies';
 import { env } from '@/libs/zod/env';
 
 const API_URL = env.NEXT_PUBLIC_API_URL;

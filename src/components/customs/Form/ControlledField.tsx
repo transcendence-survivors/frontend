@@ -10,7 +10,9 @@ import {
 	ControllerFieldState,
 	UseFormStateReturn,
 } from 'react-hook-form';
-import { Field, FieldLabel, FieldError } from '@/components/ui/field';
+import { Field, FieldLabel, FieldError as FieldErrorComp } from '@/components/ui/field';
+import { useTranslations } from 'next-intl';
+import { translateError } from '@i18n/utils';
 
 interface ControlledFieldProps<T extends FieldValues> {
 	name: Path<T>;
@@ -29,17 +31,21 @@ const ControlledField = <T extends FieldValues>({
 	label,
 	children,
 }: ControlledFieldProps<T>) => {
+	const t = useTranslations();
+
 	return (
 		<Controller
 			name={name}
 			control={control}
 			render={({ field, fieldState, formState }) => (
-				<Field data-invalid={fieldState.invalid}>
+				<Field data-invalid={fieldState.invalid} className='gap-1'>
 					<FieldLabel className='grid gap-2'>
 						<span>{label}</span>
 						{children({ field, fieldState, formState })}
-						{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 					</FieldLabel>
+					{fieldState.invalid && (
+						<FieldErrorComp errors={[translateError(t, fieldState.error)]} />
+					)}
 				</Field>
 			)}
 		/>

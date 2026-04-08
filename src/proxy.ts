@@ -9,8 +9,12 @@ import {
 	isPublicRoute,
 	roleRoutes,
 } from '@/libs/proxy/auth';
-import { LOGIN_PATH } from '@/libs/constants';
-import { CanonicalHref } from './i18n/routing';
+import { CanonicalHref, routeMap } from './i18n/routing';
+
+const REDIRECTED_URLS = {
+	403: routeMap.login.en,
+	loggin: routeMap.login.en,
+} satisfies Record<string, CanonicalHref>;
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -26,7 +30,7 @@ export default async function middleware(req: NextRequest) {
 
 	const user = await getUserFromRequest(req);
 	if (!user) {
-		const url = new URL(LOGIN_PATH, req.url);
+		const url = new URL(REDIRECTED_URLS.loggin, req.url);
 		url.searchParams.set('callbackUrl', pathname);
 		return NextResponse.redirect(url);
 	}
@@ -34,7 +38,7 @@ export default async function middleware(req: NextRequest) {
 	const routeKey = canonical as CanonicalHref;
 	const requiredRoles = roleRoutes[routeKey];
 	if (requiredRoles && !hasRequiredRole(user.role, requiredRoles)) {
-		return NextResponse.redirect(new URL('/403', req.url));
+		return NextResponse.redirect(new URL(REDIRECTED_URLS['403'], req.url));
 	}
 
 	return intlResponse ?? NextResponse.next();

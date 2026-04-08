@@ -208,13 +208,13 @@ function FieldError({
 	}
 
 	return (
-		<div
+		<small
 			role='alert'
 			data-slot='field-error'
 			className={cn('text-sm font-normal text-destructive', className)}
 			{...props}>
 			{content}
-		</div>
+		</small>
 	);
 }
 

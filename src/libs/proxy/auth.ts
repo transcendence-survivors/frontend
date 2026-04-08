@@ -6,7 +6,7 @@ import {
 	COOKIE_ACCESS_TOKEN,
 	COOKIE_AUTHORIZATION,
 	TOKEN_PREFIX,
-} from '@/libs/constants';
+} from '@/libs/constants/cookies';
 import { env } from '../zod/env';
 
 const secret = new TextEncoder().encode(env.JWT_SECRET);

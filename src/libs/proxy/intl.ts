@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing, locales } from '@/i18n/routing';
+import { routing, locales } from '@i18n/routing';
 
 export const intlMiddleware = createMiddleware(routing);
 

@@ -1,4 +1,4 @@
-import { cn } from '@/libs/utils';
+import { cn } from '@libs/utils';
 import Link from 'next/link';
 
 interface Trend extends React.HTMLAttributes<HTMLAnchorElement> {

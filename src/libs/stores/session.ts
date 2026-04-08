@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { useShallow } from 'zustand/react/shallow';
-import { User } from '@/libs/zod/user.schema';
+import { User } from '@libs/zod/user.schema';
 
 interface SessionState {
 	user: User | null;

@@ -10,7 +10,7 @@ import {
 	ControllerFieldState,
 	UseFormStateReturn,
 } from 'react-hook-form';
-import { Field, FieldLabel, FieldError as FieldErrorComp } from '@/components/ui/field';
+import { Field, FieldLabel, FieldError as FieldErrorComp } from '@ui/field';
 import { useTranslations } from 'next-intl';
 import { translateError } from '@i18n/utils';
 

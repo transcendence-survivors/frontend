@@ -1,5 +1,5 @@
-import { api, ApiResponse, isApiSuccess } from '@/libs/api';
-import { User } from '@/libs/zod/user.schema';
+import { api, ApiResponse, isApiSuccess } from '@libs/api';
+import { User } from '@libs/zod/user.schema';
 
 interface RefreshResponse {
 	accessToken: string;

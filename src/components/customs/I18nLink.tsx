@@ -1,6 +1,6 @@
 import type { ReactNode, ComponentProps } from 'react';
-import { Link } from '@/i18n/navigation';
-import { getPath, type RouteMap, type RouteKey, type Locale } from '@/i18n/routing';
+import { Link } from '@i18n/navigation';
+import { getPath, type RouteMap, type RouteKey, type Locale } from '@i18n/routing';
 
 type LinkProps = ComponentProps<typeof Link>;
 

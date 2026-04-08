@@ -1,4 +1,4 @@
-import type { MessageKeys } from '@/i18n/types';
+import type { MessageKeys } from '@i18n/types';
 
 const PREFIX_KEY = 'forms.error' as const;
 

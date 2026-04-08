@@ -1,8 +1,8 @@
 'use client';
 
-import useUser from '@/hooks/useUser';
-import { useSessionActions } from '@/libs/stores/session';
-import { User } from '@/libs/zod/user.schema';
+import useUser from '@hooks/useUser';
+import { useSessionActions } from '@libs/stores/session';
+import { User } from '@libs/zod/user.schema';
 
 const RegisterPage = () => {
 	const { data, isLoading, isError } = useUser();

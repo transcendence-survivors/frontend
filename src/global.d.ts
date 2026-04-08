@@ -2,7 +2,7 @@
 
 import 'next-intl';
 
-import messages from '@messages/en/common.json';
+import messages from '@/messages/en/common.json';
 
 type Messages = typeof messages;
 

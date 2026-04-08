@@ -1,7 +1,7 @@
 import type { FieldValues } from 'react-hook-form';
 import type { useTranslations } from 'next-intl';
 import type { FieldError } from 'react-hook-form';
-import type { FormField } from '@/components/customs/Form/FormField';
+import type { FormField } from '@components/customs/Form/FormField';
 import type { MessageKeys } from './types';
 
 export type TFunction = ReturnType<typeof useTranslations<never>>;

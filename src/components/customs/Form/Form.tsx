@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { FormField as FormFieldComponent } from './FormField';
 import type { FormField } from './FormField';
-import { Field, FieldError } from '@/components/ui/field';
+import { Field, FieldError } from '@ui/field';
 
 import type { FieldValues, Resolver, DefaultValues } from 'react-hook-form';
 import { useEffect } from 'react';

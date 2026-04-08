@@ -1,5 +1,5 @@
-import Nav from '@/components/customs/Nav';
-import LocaleSwitcher from '@/components/customs/LocaleSwitcher';
+import Nav from '@components/customs/Nav';
+import LocaleSwitcher from '@components/customs/LocaleSwitcher';
 
 export default async function Page() {
 	return (

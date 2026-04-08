@@ -1,8 +1,8 @@
 import I18nLink from './I18nLink';
-import { RouteKey } from '@/i18n/routing';
+import { RouteKey } from '@i18n/routing';
 import { useTranslations } from 'next-intl';
-import { Button } from '../ui/button';
-import { cn } from '@/libs/utils';
+import { Button } from '@ui/button';
+import { cn } from '@libs/utils';
 
 interface NavLink {
 	key: RouteKey;

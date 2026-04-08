@@ -1,4 +1,4 @@
-import { routing } from '@/i18n/routing';
+import { routing } from '@i18n/routing';
 
 const buildDynamicRouteRegex = (path: string): RegExp =>
 	new RegExp(

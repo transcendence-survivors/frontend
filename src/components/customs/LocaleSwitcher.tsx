@@ -1,6 +1,6 @@
-import I18nLink from '@/components/customs/I18nLink';
-import { Locale, RouteKey } from '@/i18n/routing';
-import { Button } from '../ui/button';
+import I18nLink from '@components/customs/I18nLink';
+import { Locale, RouteKey } from '@i18n/routing';
+import { Button } from '@ui/button';
 import Link from 'next/link';
 
 interface Props extends React.HTMLAttributes<HTMLUListElement> {

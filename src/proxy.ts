@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { intlMiddleware, stripLocale } from '@/libs/proxy/intl';
-import { resolveCanonicalPath } from '@/libs/proxy/route';
+import { intlMiddleware, stripLocale } from '@proxy/intl';
+import { resolveCanonicalPath } from '@proxy/route';
 import {
 	getUserFromRequest,
 	hasRequiredRole,
 	isPublicRoute,
 	roleRoutes,
-} from '@/libs/proxy/auth';
-import { CanonicalHref, routeMap } from './i18n/routing';
+} from '@proxy/auth';
+import { CanonicalHref, routeMap } from '@i18n/routing';
 
 const REDIRECTED_URLS = {
 	403: routeMap.login.en,

@@ -1,12 +1,12 @@
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
-import { UserRole } from '@/libs/zod/user.schema';
-import { CanonicalHref, routeMap } from '@/i18n/routing';
+import { UserRole } from '@libs/zod/user.schema';
+import { CanonicalHref, routeMap } from '@i18n/routing';
 import {
 	COOKIE_ACCESS_TOKEN,
 	COOKIE_AUTHORIZATION,
 	TOKEN_PREFIX,
-} from '@/libs/constants/cookies';
+} from '@libs/constants/cookies';
 import { env } from '../zod/env';
 
 const secret = new TextEncoder().encode(env.JWT_SECRET);

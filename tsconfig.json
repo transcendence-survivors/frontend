@@ -18,6 +18,7 @@
 				"name": "next"
 			}
 		],
+		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
 			"@libs/*": ["./src/libs/*"],
@@ -26,7 +27,8 @@
 			"@hooks/*": ["./src/hooks/*"],
 			"@constants/*": ["./src/libs/constants/*"],
 			"@proxy/*": ["./src/libs/proxy/*"],
-			"@messages/*": ["./src/messages/*"]
+			"@stores/*": ["./src/stores/*"],
+			"@ui/*": ["./src/components/ui/*"]
 		}
 	},
 	"include": [

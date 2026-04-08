@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Theme } from '@/libs/theme';
+import { Theme } from '@libs/theme';
 
 const useTypedTheme = () => {
 	const { theme, resolvedTheme, setTheme } = useTheme();

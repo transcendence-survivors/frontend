@@ -1,4 +1,4 @@
-import I18nLink from '@/components/customs/I18nLink';
+import I18nLink from '@components/customs/I18nLink';
 
 interface PageProps {
 	params: Promise<{ id: string }>;

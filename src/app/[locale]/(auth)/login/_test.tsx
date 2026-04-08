@@ -4,18 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
-import { Field, FieldError, FieldGroup } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
+import { Button } from '@ui/button';
+import { Field, FieldError, FieldGroup } from '@ui/field';
+import { Input } from '@ui/input';
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupText,
 	InputGroupTextarea,
-} from '@/components/ui/input-group';
-import ControlledField from '@/components/customs/Form/ControlledField';
-import { useLogin } from '@/hooks/useLogin';
-import { Spinner } from '@/components/ui/spinner';
+} from '@ui/input-group';
+import ControlledField from '@components/customs/Form/ControlledField';
+import { useLogin } from '@hooks/useLogin';
+import { Spinner } from '@ui/spinner';
 
 const formSchema = z.object({
 	title: z

@@ -4,8 +4,8 @@ import {
 	InputGroupAddon,
 	InputGroupText,
 	InputGroupTextarea,
-} from '@/components/ui/input-group';
-import { Input } from '@/components/ui/input';
+} from '@ui/input-group';
+import { Input } from '@ui/input';
 import {
 	Select,
 	SelectContent,
@@ -14,7 +14,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 	SelectLabel,
-} from '@/components/ui/select';
+} from '@ui/select';
 import type {
 	Control,
 	ControllerFieldState,
@@ -22,7 +22,7 @@ import type {
 	FieldValues,
 	Path,
 } from 'react-hook-form';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from '@ui/checkbox';
 
 interface FormFieldLengthAddon {
 	type: 'length';

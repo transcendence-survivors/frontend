@@ -1,15 +1,15 @@
 'use client';
 
 import { z } from 'zod';
-import Form from '@/components/customs/Form/Form';
-import type { FormField } from '@/components/customs/Form/FormField';
-import { useLogin } from '@/hooks/useLogin';
+import Form from '@components/customs/Form/Form';
+import type { FormField } from '@components/customs/Form/FormField';
+import { useLogin } from '@hooks/useLogin';
 import { toast } from 'sonner';
 import { useMemo } from 'react';
-import { translateFields } from '@/i18n/utils';
+import { translateFields } from '@i18n/utils';
 import { useTranslations } from 'next-intl';
 import { FORM_ERRORS } from '@constants/errors';
-import { i18nError } from '@/i18n/utils';
+import { i18nError } from '@i18n/utils';
 
 const schema = z.object({
 	name: z

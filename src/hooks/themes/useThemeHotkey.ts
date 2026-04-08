@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect } from 'react';
 import useTypedTheme from './useTypedTheme';
-import { THEME_LENGTH, THEMES } from '@/libs/theme';
+import { THEME_LENGTH, THEMES } from '@libs/theme';
 
 const isTypingTarget = (target: EventTarget | null) => {
 	if (!(target instanceof HTMLElement)) return false;

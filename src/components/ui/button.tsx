@@ -1,7 +1,7 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/libs/utils';
+import { cn } from '@libs/utils';
 import { Slot } from '../Slot';
 
 const buttonVariants = cva(

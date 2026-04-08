@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { loginRequest } from '@/libs/api/auth';
-import { useSessionActions } from '@/libs/stores/session';
-import { isApiError } from '@/libs/api';
-import { authRedirectRoute } from '@/i18n/routing';
+import { loginRequest } from '@libs/api/auth';
+import { useSessionActions } from '@libs/stores/session';
+import { isApiError } from '@libs/api';
+import { authRedirectRoute } from '@i18n/routing';
 import { toast } from 'sonner';
 
 const fakeFetch = (data: { title: string; description: string }) => {

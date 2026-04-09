@@ -9,7 +9,6 @@ export type ApiSuccess<T> = {
 export type ApiError = {
 	status: 'error';
 	message: string;
-	3;
 	code: number;
 	errors?: unknown;
 	timestamp: string;

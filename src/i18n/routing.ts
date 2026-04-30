@@ -2,6 +2,7 @@ import { defineRouting } from 'next-intl/routing';
 
 export const defaultLocale = 'fr';
 export const locales = [defaultLocale, 'en', 'de'] as const;
+
 export type Locale = (typeof locales)[number];
 
 type StrictRouteMap<T extends Record<string, Record<Locale, `/${string}`>>> = T & {

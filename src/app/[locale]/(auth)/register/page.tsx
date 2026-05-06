@@ -26,7 +26,7 @@ const RegisterPage = () => {
 			<h1 className='text-2xl font-bold mb-6'>Register</h1>
 			{user ? (
 				<div>
-					<p>Welcome back, {user.name}!</p>
+					<p>Welcome back, {user.displayName}!</p>
 					<p>Your email: {user.email}</p>
 				</div>
 			) : (

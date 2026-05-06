@@ -91,18 +91,18 @@ const defaultValues = {
 } satisfies FormValues;
 
 export default function MyForm() {
-	const { mutate, isPending, isError, isSuccess } = useLogin();
+	const { isPending, isError, isSuccess } = useLogin();
 	const t = useTranslations('forms.test');
 	const translatedFields = useMemo(() => translateFields(fields, t), [t]);
 
 	const onSubmit = (data: FormValues) => {
 		console.log('Form submitted:', data);
 
-		mutate(data, {
-			onSuccess: () => {
-				toast.success('Form submitted successfully!');
-			},
-		});
+		// mutate(data, {
+		// 	onSuccess: () => {
+		// 		toast.success('Form submitted successfully!');
+		// 	},
+		// });
 	};
 
 	return (

@@ -10,11 +10,7 @@ enum ERROR_KEYS {
 	ERR_UNDEFINED = 'ERR_UNDEFINED',
 }
 
-export enum UserRole {
-	USER = 'USER',
-	ADMIN = 'ADMIN',
-	SUPER_ADMIN = 'SUPER_ADMIN',
-}
+export type UserRole = 'USER' | 'ADMIN' | 'SUPER_ADMIN';
 
 const userIdSchema = z.uuid({ message: ERROR_KEYS.ERR_IS_STRING });
 
@@ -43,8 +39,6 @@ const userPasswordSchema = z
 	.string({ message: ERROR_KEYS.ERR_IS_STRING })
 	.min(6, { message: ERROR_KEYS.ERR_MIN_LENGTH })
 	.max(100, { message: ERROR_KEYS.ERR_MAX_LENGTH });
-
-const userRole = z.enum(UserRole, { message: ERROR_KEYS.ERR_IS_STRING });
 
 const userBirthdaySchema = z.date({ message: ERROR_KEYS.ERR_IS_DATE });
 
@@ -75,7 +69,11 @@ export const userUpdateSchema = z.object({
 	lastName: userLastNameSchema.optional(),
 });
 
-export type User = z.infer<typeof userSchema>;
+export type User = z.infer<typeof userSchema> & {
+	role: UserRole;
+	createdAt: Date;
+	updatedAt: Date;
+};
 export const userSchema = z.object({
 	id: userIdSchema,
 	email: userEmailSchema,
@@ -84,7 +82,4 @@ export const userSchema = z.object({
 	firstName: userFirstNameSchema,
 	lastName: userLastNameSchema,
 	birthday: userBirthdaySchema,
-	role: userRole,
-	createdAt: z.date({ message: ERROR_KEYS.ERR_IS_DATE }),
-	updatedAt: z.date({ message: ERROR_KEYS.ERR_IS_DATE }),
 });

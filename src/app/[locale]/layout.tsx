@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 type Params = Promise<{
-	locale: Locale;
+	locale: string;
 }>;
 
 interface RootLayoutProps {
@@ -33,12 +33,12 @@ interface MetadataProps {
 }
 
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-	const { locale } = await params;
+	const locale = (await params).locale as Locale;
 	return siteMetadata[locale] || siteMetadata[defaultLocale];
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-	const { locale } = await params;
+	const locale = (await params).locale as Locale;
 
 	return (
 		<html

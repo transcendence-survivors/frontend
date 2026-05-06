@@ -34,9 +34,9 @@ export const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {
 };
 
 const hierarchy: Record<UserRole, number> = {
-	[UserRole.USER]: 1,
-	[UserRole.ADMIN]: 2,
-	[UserRole.SUPER_ADMIN]: 3,
+	USER: 1,
+	ADMIN: 2,
+	SUPER_ADMIN: 3,
 };
 
 export const hasRequiredRole = (userRole: UserRole, required: UserRole[]): boolean =>

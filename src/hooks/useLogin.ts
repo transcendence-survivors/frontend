@@ -42,8 +42,8 @@ export function useLogin() {
 			// router.replace(authRedirectRoute);
 		},
 
-		onError: (error: unknown) => {
-			if (error.message) {
+		onError: (error: { message?: string } | null) => {
+			if (error?.message) {
 				toast.error(error.message);
 			} else {
 				toast.error('An unexpected error occurred. Please try again.');

@@ -1,14 +1,8 @@
 import Layout from '@components/layouts/Layout';
 import LocaleSwitcher from '@components/customs/LocaleSwitcher';
-import { type Locale } from '@i18n/routing';
-
-type Params = Promise<{
-	locale: Locale;
-}>;
 
 interface RootLayoutProps {
 	children: React.ReactNode;
-	params: Params;
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {

@@ -5,8 +5,7 @@ import type { FormField } from '@components/customs/Form/FormField';
 import type { MessageKeys } from './types';
 
 export type TFunction = ReturnType<typeof useTranslations<never>>;
-
-type TranslationValues = Parameters<TFunction>[1];
+export type RootTFunction = ReturnType<typeof useTranslations>;
 
 export type I18nErrorPayload = {
 	key: MessageKeys;
@@ -21,10 +20,12 @@ export const i18nError = (
 };
 
 export const translateError = (
-	t: TFunction,
+	t: RootTFunction,
 	error?: FieldError,
 ): FieldError | undefined => {
 	if (!error?.message) return undefined;
+
+	const translate = t as LooseTFunction;
 
 	try {
 		const parsed = JSON.parse(error.message) as Partial<I18nErrorPayload>;
@@ -32,28 +33,33 @@ export const translateError = (
 		if (parsed?.key) {
 			return {
 				...error,
-				message: t(parsed.key, parsed.values as TranslationValues),
+				message: translate(parsed.key, parsed.values),
 			};
 		}
 	} catch {}
 
 	return {
 		...error,
-		message: t(error.message as MessageKeys),
+		message: translate(error.message),
 	};
 };
 
+type LooseTFunction = (
+	key: string,
+	values?: Record<string, string | number | Date>,
+) => string;
+
 export function translateFields<T extends FieldValues>(
 	fields: FormField<T>[],
-	t: TFunction,
+	t: RootTFunction,
 ): FormField<T>[] {
+	const translate = t as unknown as LooseTFunction;
+
 	return fields.map((field) => {
 		const base = {
 			...field,
-			label: t(field.label as MessageKeys),
-			placeholder: field.placeholder
-				? t(field.placeholder as MessageKeys)
-				: undefined,
+			label: translate(field.label),
+			placeholder: field.placeholder ? translate(field.placeholder) : undefined,
 		};
 
 		switch (field.component) {
@@ -63,14 +69,13 @@ export function translateFields<T extends FieldValues>(
 					component: 'select',
 					optionsGroups: field.optionsGroups.map((group) => ({
 						...group,
-						label: group.label ? t(group.label as MessageKeys) : undefined,
+						label: group.label ? translate(group.label) : undefined,
 						options: group.options.map((opt) => ({
 							...opt,
-							label: t(opt.label as MessageKeys),
+							label: translate(opt.label),
 						})),
 					})),
 				};
-
 			case 'textarea':
 				return { ...base, component: 'textarea', addon: field.addon };
 			case 'input':

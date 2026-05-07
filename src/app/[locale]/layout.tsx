@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { ThemeProvider } from '@components/providers/ThemeProvider';
+import { ThemeProvider } from '@themes';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
-import siteMetadata from '@i18n/metadata';
-import { defaultLocale, Locale } from '@i18n/routing';
+import { type Locale, DEFAULT_LOCALE, METADATA } from '@/modules/i18n';
 import { Toaster } from 'sonner';
 
 import '@/app/globals.css';
@@ -34,7 +33,7 @@ interface MetadataProps {
 
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
 	const locale = (await params).locale as Locale;
-	return siteMetadata[locale] || siteMetadata[defaultLocale];
+	return METADATA[locale] || METADATA[DEFAULT_LOCALE];
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {

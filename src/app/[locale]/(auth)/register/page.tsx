@@ -1,8 +1,6 @@
 'use client';
 
-import useUser from '@hooks/useUser';
-import { useSessionActions } from '@libs/stores/session';
-import { User } from '@libs/zod/user.schema';
+import { useUser, useSessionActions } from '@auth';
 
 const RegisterPage = () => {
 	const { data, isLoading, isError } = useUser();
@@ -11,13 +9,13 @@ const RegisterPage = () => {
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
-	if (isError) {
+	if (isError || !data) {
 		return <div>Error loading user data.</div>;
 	}
 
 	const user = data;
 	setSession({
-		user: user as User,
+		user: user,
 		accessToken: '',
 	});
 

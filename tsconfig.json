@@ -21,12 +21,19 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@libs/*": ["./src/libs/*"],
-			"@i18n/*": ["./src/i18n/*"],
+
+			"@env": ["./src/libs/env"],
+			"@api": ["./src/libs/api"],
+
+			"@features/*": ["./src/features/*"],
+			"@auth": ["./src/features/auth/"],
+
+			"@modules/*": ["./src/modules/*"],
+			"@themes": ["./src/modules/themes/"],
+			"@i18n": ["./src/modules/i18n/"],
+			"@forms": ["./src/forms/"],
+
 			"@components/*": ["./src/components/*"],
-			"@hooks/*": ["./src/hooks/*"],
-			"@constants/*": ["./src/libs/constants/*"],
-			"@proxy/*": ["./src/libs/proxy/*"],
-			"@stores/*": ["./src/stores/*"],
 			"@ui/*": ["./src/components/ui/*"]
 		}
 	},
@@ -37,7 +44,8 @@
 		"**/*.d.ts",
 		".next/types/**/*.ts",
 		".next/dev/types/**/*.ts",
-		"**/*.mts"
+		"**/*.mts",
+		"src/i18n/index.ts."
 	],
 	"exclude": ["node_modules"]
 }

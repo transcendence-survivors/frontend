@@ -1,8 +1,6 @@
-import { useSessionStore } from '@libs/stores/session';
-import { refreshAccessToken } from '@libs/api/auth';
-import { ApiResponse } from '@libs/api';
-import { TOKEN_PREFIX } from '@constants/cookies';
-import { env } from '@libs/zod/env';
+import { TOKEN_PREFIX, refreshAccessToken, useSessionStore } from '@auth';
+import { env } from '@env';
+import { ApiResponse } from './types';
 
 const API_URL = env.NEXT_PUBLIC_API_URL;
 

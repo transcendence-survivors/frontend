@@ -1,7 +1,7 @@
-import Nav from '../customs/Nav';
-import UserCard from '../customs/Users/Card';
-import TrendingWidget from '../customs/Trends/Widget';
-import FooterLinks from '../customs/FooterLinks';
+import Nav from './Nav';
+import UserCard from './Trends/Users/Card';
+import TrendingWidget from './Trends/Widget';
+import FooterLinks from './FooterLinks';
 
 interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;

@@ -1,8 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
-import { BugReportForm } from './_test';
-import MyForm from './_test2';
-import Nav from '@/components/customs/Nav';
-import LocaleSwitcher from '@/components/customs/LocaleSwitcher';
+import { TestForm, TestForm2 } from '@auth';
+import { LocaleSwitcher } from '@i18n';
 
 export default function LoginPage() {
 	return (
@@ -21,7 +19,7 @@ export default function LoginPage() {
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<MyForm />
+						<TestForm2 />
 					</CardContent>
 				</Card>
 				<Card className='w-full h-fit mt-10 max-w-96'>
@@ -34,7 +32,7 @@ export default function LoginPage() {
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<BugReportForm />
+						<TestForm />
 					</CardContent>
 				</Card>
 			</main>

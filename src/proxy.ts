@@ -1,20 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { intlMiddleware, stripLocale } from '@proxy/intl';
-import { resolveCanonicalPath } from '@proxy/route';
+import { getUserFromRequest, hasRequiredRole, isPublicRoute, roleRoutes } from '@auth';
 import {
-	getUserFromRequest,
-	hasRequiredRole,
-	isPublicRoute,
-	roleRoutes,
-} from '@proxy/auth';
-import { CanonicalHref, routeMap } from '@i18n/routing';
-
-const REDIRECTED_URLS = {
-	403: routeMap.login.en,
-	loggin: routeMap.login.en,
-} satisfies Record<string, CanonicalHref>;
+	REDIRECTED_URLS,
+	intlMiddleware,
+	stripLocale,
+	resolveCanonicalPath,
+	type CanonicalHref,
+} from '@i18n';
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;

@@ -1,7 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
-import { CanonicalHref, APP_ROUTES } from '@i18n';
 import { UserRole } from './schemas/user.schema';
 import {
 	COOKIE_ACCESS_TOKEN,
@@ -9,6 +8,7 @@ import {
 	TOKEN_PREFIX,
 } from './constants/cookies';
 import { env } from '@env';
+import { APP_ROUTES, CanonicalHref } from '@/modules/i18n/constants/routes';
 
 type JWTPayload = {
 	sub: string;

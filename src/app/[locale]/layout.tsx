@@ -1,12 +1,13 @@
+import '@/app/globals.css';
+
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { ThemeProvider } from '@themes';
+import ThemeProvider from '@themes/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
-import { type Locale, DEFAULT_LOCALE, METADATA } from '@/modules/i18n';
 import { Toaster } from 'sonner';
-
-import '@/app/globals.css';
+import { DEFAULT_LOCALE, Locale } from '@i18n/constants/locales';
+import METADATA from '@i18n/constants/metadata';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',

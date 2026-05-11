@@ -25,13 +25,11 @@
 			"@env": ["./src/libs/env"],
 			"@api": ["./src/libs/api"],
 
-			"@features/*": ["./src/features/*"],
-			"@auth": ["./src/features/auth/"],
+			"@auth/*": ["./src/features/auth/*"],
 
-			"@modules/*": ["./src/modules/*"],
-			"@themes": ["./src/modules/themes/"],
-			"@i18n": ["./src/modules/i18n/"],
-			"@forms": ["./src/forms/"],
+			"@themes/*": ["./src/modules/themes/*"],
+			"@i18n/*": ["./src/modules/i18n/*"],
+			"@forms/*": ["./src/modules/forms/*"],
 
 			"@components/*": ["./src/components/*"],
 			"@ui/*": ["./src/components/ui/*"]

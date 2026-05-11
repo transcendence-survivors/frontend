@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
-import { TestForm, TestForm2 } from '@auth';
-import { LocaleSwitcher } from '@i18n';
+import TestForm from '@auth/components/TestForm';
+import TestForm2 from '@auth/components/TestForm2';
+import LocaleSwitcher from '@i18n/components/LocaleSwitcher';
 
 export default function LoginPage() {
 	return (

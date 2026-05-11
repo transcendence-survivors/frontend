@@ -1,6 +1,7 @@
 'use client';
 
-import { useUser, useSessionActions } from '@auth';
+import useUser from '@auth/hooks/useUser';
+import { useSessionActions } from '@auth/stores/session';
 
 const RegisterPage = () => {
 	const { data, isLoading, isError } = useUser();

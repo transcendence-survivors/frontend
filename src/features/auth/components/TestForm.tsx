@@ -12,10 +12,10 @@ import {
 	InputGroupText,
 	InputGroupTextarea,
 } from '@ui/input-group';
-import { ControlledField } from '@/modules/forms/';
 import { Field, FieldError, FieldGroup } from '@ui/field';
 import { useLogin } from '../hooks/useLogin';
 import { Spinner } from '@ui/spinner';
+import ControlledField from '@forms/components/ControlledField';
 
 type FormSchema = z.infer<typeof formSchema>;
 const formSchema = z.object({

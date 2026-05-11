@@ -2,10 +2,12 @@
 
 import { useMemo } from 'react';
 import { z } from 'zod';
-import { FormFieldG, FORM_ERRORS, Form } from '@/modules/forms/';
 import { useLogin } from '../hooks/useLogin';
 import { useTranslations } from 'next-intl';
-import { i18nError, translateFields } from '@/modules/i18n';
+import { FORM_ERRORS } from '@forms/constants/error';
+import { FormFieldG } from '@/modules/forms/components/FormField';
+import Form from '@forms/components/Form';
+import { i18nError, translateFields } from '@i18n/utils/utils';
 
 const schema = z.object({
 	name: z

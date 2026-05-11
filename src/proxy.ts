@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-import { getUserFromRequest, hasRequiredRole, isPublicRoute, roleRoutes } from '@auth';
+import { intlMiddleware, resolveCanonicalPath, stripLocale } from '@i18n/middleware';
+import { CanonicalHref, REDIRECTED_URLS } from '@i18n/constants/routes';
 import {
-	REDIRECTED_URLS,
-	intlMiddleware,
-	stripLocale,
-	resolveCanonicalPath,
-	type CanonicalHref,
-} from '@i18n';
+	getUserFromRequest,
+	hasRequiredRole,
+	isPublicRoute,
+	roleRoutes,
+} from '@auth/middleware';
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;

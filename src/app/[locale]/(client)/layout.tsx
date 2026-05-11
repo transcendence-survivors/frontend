@@ -1,5 +1,5 @@
 import Layout from '@components/layouts/Layout';
-import { LocaleSwitcher } from '@i18n';
+import LocaleSwitcher from '@i18n/components/LocaleSwitcher';
 
 interface RootLayoutProps {
 	children: React.ReactNode;

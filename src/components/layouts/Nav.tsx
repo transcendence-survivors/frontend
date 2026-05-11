@@ -1,7 +1,9 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@ui/button';
 import { cn } from '@libs/utils';
-import { type AppMessages, type RouteKey, I18nLink } from '@i18n';
+import { AppMessages } from '@i18n/messages/types';
+import { RouteKey } from '@i18n/constants/routes';
+import I18nLink from '@i18n/components/I18nLink';
 
 interface NavLink {
 	key: RouteKey;

@@ -1,4 +1,4 @@
-import { I18nLink } from '@i18n';
+import I18nLink from '@i18n/components/I18nLink';
 
 const Page = () => {
 	return (

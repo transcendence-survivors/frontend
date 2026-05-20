@@ -1,4 +1,4 @@
-export const COOKIE_REFRESH_TOKEN = 'refreshToken';
-export const COOKIE_ACCESS_TOKEN = 'accessToken';
-export const COOKIE_AUTHORIZATION = 'authorization';
-export const TOKEN_PREFIX = 'Bearer ';
+export const COOKIE_REFRESH_TOKEN = 'refreshToken' as const;
+export const COOKIE_ACCESS_TOKEN = 'accessToken' as const;
+export const COOKIE_AUTHORIZATION = 'authorization' as const;
+export const TOKEN_PREFIX = 'Bearer ' as const;

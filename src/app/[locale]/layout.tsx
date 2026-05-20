@@ -1,7 +1,7 @@
 import '@/app/globals.css';
 
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import ThemeProvider from '@themes/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
@@ -16,6 +16,10 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
 	variable: '--font-geist-mono',
+	subsets: ['latin'],
+});
+const inter = Inter({
+	variable: '--font-inter',
 	subsets: ['latin'],
 });
 

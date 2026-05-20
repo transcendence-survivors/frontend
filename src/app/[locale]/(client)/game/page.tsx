@@ -1,5 +1,5 @@
 import Nav from '@/components/layouts/Nav';
-import { LocaleSwitcher } from '@i18n';
+import LocaleSwitcher from '@i18n/components/LocaleSwitcher';
 
 export default async function Page() {
 	return (

@@ -1,6 +1,8 @@
-import { TOKEN_PREFIX, refreshAccessToken, useSessionStore } from '@auth';
 import { env } from '@env';
 import { ApiResponse } from './types';
+import { useSessionStore } from '@auth/stores/session';
+import { TOKEN_PREFIX } from '@auth/constants/cookies';
+import { refreshAccessToken } from '@auth/api/auth';
 
 const API_URL = env.NEXT_PUBLIC_API_URL;
 

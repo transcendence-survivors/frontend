@@ -47,7 +47,12 @@ const linkWidthClass = {
 	full: 'w-full',
 } satisfies LinkWidthClass;
 
-const Nav = ({ className, align = 'left', linkWidth = 'full', ...props }: NavProps) => {
+const SideNav = ({
+	className,
+	align = 'left',
+	linkWidth = 'full',
+	...props
+}: NavProps) => {
 	const t = useTranslations('nav');
 
 	return (
@@ -68,4 +73,4 @@ const Nav = ({ className, align = 'left', linkWidth = 'full', ...props }: NavPro
 	);
 };
 
-export default Nav;
+export default SideNav;

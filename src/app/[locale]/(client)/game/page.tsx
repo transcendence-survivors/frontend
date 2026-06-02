@@ -1,4 +1,4 @@
-import Nav from '@/components/layouts/Nav';
+import SideNav from '@/components/layouts/SideNav';
 import LocaleSwitcher from '@i18n/components/LocaleSwitcher';
 
 export default async function Page() {
@@ -7,7 +7,7 @@ export default async function Page() {
 			<h1>Game</h1>
 			<br />
 			<br />
-			<Nav />
+			<SideNav />
 			<LocaleSwitcher />
 		</main>
 	);

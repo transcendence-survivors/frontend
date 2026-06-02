@@ -4,7 +4,7 @@ import type { RouteKey, RouteMap } from '../constants/routes';
 import type { Locale } from '../constants/locales';
 import { getPath } from '../utils/routing';
 
-type LinkProps = ComponentProps<typeof Link>;
+export type LinkProps = ComponentProps<typeof Link>;
 
 type HasMoreSegments<T extends string> =
 	T extends `${string}:${infer Param}/${infer Rest}`

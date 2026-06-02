@@ -83,7 +83,7 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 
-	--nav-height: 4rem;
+	--header-height: 4rem;
 }
 
 .dark {
@@ -165,25 +165,31 @@
 		@apply font-sans;
 	}
 
+	.header {
+		height: var(--header-height);
+		@apply sticky top-0 z-10 w-full;
+	}
+
 	.layout {
 		--_padding-y: 0px;
-		@apply min-h-screen grid grid-cols-1 
-    		md:grid-cols-[200px_1fr] p-[var(--_padding-y)] 
-    		lg:grid-cols-[1fr_min(70%,80ch)_1fr];
+		@apply min-h-screen grid grid-cols-1  gap-6
+    		lg:grid-cols-[1fr_max(70%,80ch)];
 
-		.sticky-bar {
+		.sticky-sidebar {
 			--_py: 1rem;
-			--_top: calc(var(--_padding-y) + var(--nav-height) + var(--_py));
-
-			@apply sticky top-[var(--_top)] z-10 self-start w-full max-w-xs;
+			--_top: calc(var(--_padding-y) + var(--header-height) + var(--_py));
+			top: var(--_top);
 			padding: 1rem;
+			@apply sticky z-10 self-start w-full max-w-xs;
 		}
 
 		.scrollableContainer {
 			--_max-height: calc(
 				100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem
 			);
-			@apply max-h-[var(--_max-height)] overflow-y-auto overflow-x-clip;
+
+			@apply overflow-y-auto overflow-x-clip;
+			max-height: var(--_max-height);
 			scrollbar-gutter: stable both-edges;
 			scrollbar-gutter: stable both-edges;
 

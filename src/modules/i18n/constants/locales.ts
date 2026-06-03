@@ -9,5 +9,11 @@ const LOCALE_LABELS = {
 	fr: 'Français',
 } as const satisfies Record<Locale, string>;
 
-export { DEFAULT_LOCALE, LOCALES, LOCALE_LABELS };
+const LOCALE_ICONS = {
+	en: '🇬🇧',
+	de: '🇩🇪',
+	fr: '🇫🇷',
+} as const satisfies Record<Locale, string>;
+
+export { DEFAULT_LOCALE, LOCALES, LOCALE_LABELS, LOCALE_ICONS };
 export type { Locale };

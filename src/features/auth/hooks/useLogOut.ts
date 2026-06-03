@@ -2,15 +2,20 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { useRouter } from '@/modules/i18n/utils/navigation';
 import { logoutRequest } from '../api/auth';
+import { useRouter } from '@i18n/utils/navigation';
 
-const useLogOut = (router: ReturnType<typeof useRouter>) => {
+const useLogOut = () => {
+	const router = useRouter();
+
 	return useMutation({
 		mutationFn: logoutRequest,
 		onSuccess: () => {
-			router.push('/login');
 			toast.success('Logged out successfully');
+			router.push('/login');
+		},
+		onError: (error) => {
+			toast.error('Failed to log out');
 		},
 	});
 };

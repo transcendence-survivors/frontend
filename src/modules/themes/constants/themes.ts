@@ -1,3 +1,5 @@
+import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
+
 const SYSTEM_THEME_KEY = 'system' as const;
 type SystemThemeKey = typeof SYSTEM_THEME_KEY;
 
@@ -10,5 +12,19 @@ type Theme = (typeof THEMES)[number];
 
 const DEFAULT_THEME = 'system' as const satisfies Theme;
 
-export { THEMES, THEME_LENGTH, THEME_COUNTS, DEFAULT_THEME, SYSTEM_THEME_KEY };
+const THEME_ICONS: Record<Theme, React.ComponentType> = {
+	light: SunIcon,
+	dark: MoonIcon,
+	neon: MonitorIcon,
+	system: MonitorIcon,
+};
+
+export {
+	THEMES,
+	THEME_LENGTH,
+	THEME_COUNTS,
+	DEFAULT_THEME,
+	SYSTEM_THEME_KEY,
+	THEME_ICONS,
+};
 export type { Theme, ResolvedTheme, SystemThemeKey };

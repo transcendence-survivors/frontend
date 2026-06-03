@@ -6,25 +6,16 @@ import {
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuPortal,
-	DropdownMenuRadioGroup,
-	DropdownMenuRadioItem,
 	DropdownMenuSeparator,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import AvatarProfile, { AvatarProfileProps } from './AvatarProfile';
 import { NavLink, useRouter } from '@/modules/i18n/utils/navigation';
-import { useLocale, useTranslations } from 'next-intl';
-import { Spinner } from '@/components/ui/spinner';
-import useLogOut from '@/features/auth/hooks/useLogOut';
-import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon, SettingsIcon } from 'lucide-react';
-import useTypedTheme from '@/modules/themes/hooks/useTypedTheme';
-import { THEMES } from '@/modules/themes/constants/themes';
-import useLocaleParams from '@/modules/i18n/hooks/useLocale';
+import { useTranslations } from 'next-intl';
+import { SettingsIcon } from 'lucide-react';
+import LocaleDropdownSubMenu from '@i18n/components/LocaleDropdownSubMenu';
+import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
+import ThemeDropdownSubMenu from '@themes/components/ThemeDropdownSubMenu';
 
 interface AvatarDropdownProps {
 	avatar: AvatarProfileProps;
@@ -40,16 +31,8 @@ const links: DropDownLink[] = [
 ];
 
 export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
-	const { theme, setTheme } = useTypedTheme();
-	const { localesIcon, locales, setLocale, currentLocale } = useLocaleParams();
 	const t = useTranslations('nav');
 	const router = useRouter();
-
-	const { isPending, mutate } = useLogOut(router);
-
-	const handleLogout = async () => {
-		mutate();
-	};
 
 	const redirectTo = (url: string) => {
 		router.push(url);
@@ -64,7 +47,7 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 					</Button>
 				}
 			/>
-			<DropdownMenuContent className='w-32'>
+			<DropdownMenuContent>
 				<DropdownMenuGroup>
 					{links.map((link) => (
 						<DropdownMenuItem
@@ -76,73 +59,14 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 					))}
 				</DropdownMenuGroup>
 				<DropdownMenu>
-					<DropdownMenuSub>
-						<DropdownMenuSubTrigger>
-							<PaletteIcon />
-							Theme
-						</DropdownMenuSubTrigger>
-						<DropdownMenuPortal>
-							<DropdownMenuSubContent>
-								<DropdownMenuGroup>
-									<DropdownMenuLabel>Appearance</DropdownMenuLabel>
-									<DropdownMenuRadioGroup
-										value={theme}
-										onValueChange={setTheme}>
-										{THEMES.map((themeOption) => (
-											<DropdownMenuRadioItem
-												key={themeOption}
-												value={themeOption}>
-												{themeOption === 'light' && <SunIcon />}
-												{themeOption === 'dark' && <MoonIcon />}
-												{themeOption === 'system' && (
-													<MonitorIcon />
-												)}
-												{themeOption.charAt(0).toUpperCase() +
-													themeOption.slice(1)}
-											</DropdownMenuRadioItem>
-										))}
-									</DropdownMenuRadioGroup>
-								</DropdownMenuGroup>
-							</DropdownMenuSubContent>
-						</DropdownMenuPortal>
-					</DropdownMenuSub>
+					<ThemeDropdownSubMenu />
 				</DropdownMenu>
 				<DropdownMenu>
-					<DropdownMenuSub>
-						<DropdownMenuSubTrigger>
-							<PaletteIcon />
-							Theme
-						</DropdownMenuSubTrigger>
-						<DropdownMenuPortal>
-							<DropdownMenuSubContent>
-								<DropdownMenuGroup>
-									<DropdownMenuLabel>Appearance</DropdownMenuLabel>
-									<DropdownMenuRadioGroup
-										value={currentLocale}
-										onValueChange={setLocale}>
-										{locales.map((locale) => (
-											<DropdownMenuRadioItem
-												key={locale}
-												value={locale}>
-												{localesIcon[locale]}
-												{locale.charAt(0).toUpperCase() +
-													locale.slice(1)}
-											</DropdownMenuRadioItem>
-										))}
-									</DropdownMenuRadioGroup>
-								</DropdownMenuGroup>
-							</DropdownMenuSubContent>
-						</DropdownMenuPortal>
-					</DropdownMenuSub>
+					<LocaleDropdownSubMenu />
 				</DropdownMenu>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
-					<DropdownMenuItem
-						variant='destructive'
-						onClick={handleLogout}
-						disabled={isPending}>
-						{isPending ? <Spinner /> : t('logout')}
-					</DropdownMenuItem>
+					<LogoutDropDownItem />
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>

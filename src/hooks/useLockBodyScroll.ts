@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
+import { is } from 'zod/v4/locales';
 
-const useLockBodyScroll = (isOpen: boolean) => {
+const useLockBodyScroll = (isLocked: boolean) => {
 	useEffect(() => {
-		if (isOpen) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = '';
-		}
+		document.body.style.overflow = isLocked ? 'hidden' : '';
 
 		return () => {
 			document.body.style.overflow = '';
 		};
-	}, [isOpen]);
+	}, [isLocked]);
 };
 
 export default useLockBodyScroll;

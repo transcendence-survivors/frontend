@@ -16,7 +16,7 @@ const isTypingTarget = (target: EventTarget | null) => {
 };
 
 const useThemeHotkey = () => {
-	const { theme, resolvedTheme, setTheme } = useTypedTheme();
+	const { current: theme, resolved: resolvedTheme, setTheme } = useTypedTheme();
 
 	const onKeyDown = useCallback(
 		(event: KeyboardEvent) => {

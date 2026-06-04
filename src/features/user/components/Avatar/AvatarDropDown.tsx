@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import AvatarProfile, { AvatarProfileProps } from './AvatarProfile';
 import { NavLink, useRouter } from '@/modules/i18n/utils/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Spinner } from '@/components/ui/spinner';
 import useLogOut from '@/features/auth/hooks/useLogOut';
 import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon, SettingsIcon } from 'lucide-react';

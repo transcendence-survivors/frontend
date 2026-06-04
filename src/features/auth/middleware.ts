@@ -27,6 +27,7 @@ const publicRoutes = new Set<CanonicalHref>([
 	APP_ROUTES.login.en,
 	APP_ROUTES.home.en,
 	APP_ROUTES.posts.en,
+	APP_ROUTES.profile.en,
 ]);
 
 const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {

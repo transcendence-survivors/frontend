@@ -2,7 +2,7 @@ import type { FieldValues } from 'react-hook-form';
 import type { useTranslations } from 'next-intl';
 import type { FieldError } from 'react-hook-form';
 import type { MessageKeys } from '../messages/types';
-import { FormFieldG } from '@/modules/forms';
+import { FormFieldG } from '@/modules/forms/components/FormField';
 
 type RootTFunction = ReturnType<typeof useTranslations>;
 

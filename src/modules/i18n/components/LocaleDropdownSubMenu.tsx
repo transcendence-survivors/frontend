@@ -10,9 +10,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import useLocaleParams from '@/modules/i18n/hooks/useLocale';
 import { PaletteIcon } from 'lucide-react';
+import { Locale } from '../constants/locales';
 
 const LocaleDropdownSubMenu = () => {
 	const { localesIcon, locales, setLocale, currentLocale } = useLocaleParams();
+
+	const onValueChange = (value: string) => {
+		setLocale(value as Locale);
+	};
 
 	return (
 		<DropdownMenuSub>
@@ -26,7 +31,7 @@ const LocaleDropdownSubMenu = () => {
 						<DropdownMenuLabel>Locale</DropdownMenuLabel>
 						<DropdownMenuRadioGroup
 							value={currentLocale}
-							onValueChange={setLocale}>
+							onValueChange={onValueChange}>
 							{locales.map((locale) => (
 								<DropdownMenuRadioItem key={locale} value={locale}>
 									{localesIcon[locale]}

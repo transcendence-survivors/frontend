@@ -83,6 +83,9 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 
+	--font-sans: var(--font-inter);
+	--font-geist-mono: var(--font-geist-mono);
+
 	--header-height: 4rem;
 }
 
@@ -172,8 +175,7 @@
 
 	.layout {
 		--_padding-y: 0px;
-		@apply min-h-screen grid grid-cols-1  gap-6
-    		lg:grid-cols-[1fr_max(70%,80ch)];
+		@apply min-h-screen grid sm:grid-cols-[30px_1fr] md:grid-cols-[200px_1fr] px-4;
 
 		.sticky-sidebar {
 			--_py: 1rem;

@@ -9,10 +9,10 @@ interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 const Layout = ({ children, ...props }: LayoutProps) => {
 	return (
 		<>
-			<Header />
+			<Header className='header' />
 			<div className='max-w-4xl mx-auto w-full'>
 				<div className='layout' {...props}>
-					<div className='bg-sidebar text-sidebar-foreground px-4 flex justify-end'>
+					<div className='bg-sidebar text-sidebar-foreground px-4 sm:flex justify-end hidden'>
 						<SideNav
 							className='sticky-sidebar scrollableContainer'
 							align='right'

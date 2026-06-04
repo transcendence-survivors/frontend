@@ -37,39 +37,39 @@ interface FormState {
 	wasSubmitted?: boolean;
 }
 
-export interface FormProps<TOut extends FieldValues> {
-	fields: FormFieldG<TOut>[];
-	schema: Schema<TOut>;
-	defaultValues: DefaultValues<TOut>;
-	onSubmit: (data: TOut) => void;
+export interface FormProps<T extends FieldValues> {
+	fields: FormFieldG<T>[];
+	schema: Schema<T>;
+	defaultValues: DefaultValues<T>;
+	onSubmit: (data: T) => void;
 	states: FormState;
 	allowMultipleSubmissions?: boolean;
-	resetBtn: FormResetButtonProps;
+	resetBtn?: FormResetButtonProps;
 	submitBtn: FormSubmitButtonProps;
 }
 
-export default function Form<TOut extends FieldValues>({
+export default function Form<T extends FieldValues>({
 	fields,
 	schema,
 	defaultValues,
 	onSubmit,
-	states: { isPending = false, isError = false, wasSubmitted = false },
+	states: { wasSubmitted = false },
 	allowMultipleSubmissions = false,
 	resetBtn = { show: false },
 	submitBtn,
-}: FormProps<TOut>) {
+}: FormProps<T>) {
 	const {
 		control,
 		handleSubmit,
 		reset,
-		formState: { isDirty },
-	} = useForm<TOut>({
-		resolver: zodResolver(schema) as Resolver<TOut>,
+		formState: { isDirty, isSubmitting },
+	} = useForm<T>({
+		resolver: zodResolver(schema) as Resolver<T>,
 		defaultValues,
 	});
 
-	const isFieldDisabled =
-		isPending || isError || (wasSubmitted && !allowMultipleSubmissions);
+	console.log({ isSubmitting, wasSubmitted });
+	const isFieldDisabled = isSubmitting || (wasSubmitted && !allowMultipleSubmissions);
 
 	useEffect(() => {
 		if (wasSubmitted) reset();
@@ -101,22 +101,11 @@ export default function Form<TOut extends FieldValues>({
 				{renderResetBtn()}
 				<SubmitButton
 					{...submitBtn}
-					isLoading={isPending}
+					isLoading={isSubmitting}
 					wasSubmitted={wasSubmitted}
 					isDisabled={isFieldDisabled}
 					isEmptyFields={!isDirty}
 				/>
-				{isError && (
-					<FieldError
-						className='text-center'
-						errors={[
-							{
-								message:
-									'Unexpected error occurred, please try again later.',
-							},
-						]}
-					/>
-				)}
 			</Field>
 		</form>
 	);

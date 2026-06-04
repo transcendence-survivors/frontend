@@ -14,13 +14,10 @@ const buildUrl = (path: string) =>
 	`${API_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 const baseFetch = (path: string, init: FetchOptions = {}) => {
-	const accessToken = useSessionStore.getState().accessToken;
-
 	return fetch(buildUrl(path), {
 		...init,
 		headers: {
 			...init.headers,
-			Authorization: accessToken ? `${TOKEN_PREFIX}${accessToken}` : '',
 		},
 		credentials: 'include',
 	});
@@ -36,16 +33,13 @@ export const request = async <T>(
 
 	if (res.status === 401 && !init._retry) {
 		try {
-			const rotated = await refreshAccessToken();
-
-			store.setAccessToken(rotated.accessToken);
+			await refreshAccessToken();
 
 			res = await baseFetch(path, {
 				...init,
 				_retry: true,
 				headers: {
 					...init.headers,
-					Authorization: `${TOKEN_PREFIX}${rotated.accessToken}`,
 				},
 			});
 		} catch {

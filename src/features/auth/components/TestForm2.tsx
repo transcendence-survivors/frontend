@@ -8,6 +8,7 @@ import { FORM_ERRORS } from '@forms/constants/error';
 import { FormFieldG } from '@/modules/forms/components/FormField';
 import Form from '@forms/components/Form';
 import { i18nError, translateFields } from '@i18n/utils/utils';
+import useTranslateFormFields from '../hooks/useTranslateFormFields';
 
 const schema = z.object({
 	name: z
@@ -17,7 +18,7 @@ const schema = z.object({
 			message: i18nError(FORM_ERRORS.maxLength, { max: 50 }),
 		}),
 
-	email: z.email({ message: FORM_ERRORS.invalidEmail }),
+	email: z.email({ message: FORM_ERRORS.email }),
 
 	role: z.enum(['admin', 'user'], { message: FORM_ERRORS.select }),
 
@@ -90,8 +91,10 @@ const defaultValues = {
 
 const TestForm2 = () => {
 	const { isPending, isError, isSuccess } = useLogin();
-	const t = useTranslations('forms.test');
-	const translatedFields = useMemo(() => translateFields(fields, t), [t]);
+	const { t, translatedFields } = useTranslateFormFields<FormValues>(
+		'forms.test',
+		fields,
+	);
 
 	const onSubmit = (data: FormValues) => {
 		console.log('Form submitted:', data);
@@ -105,8 +108,8 @@ const TestForm2 = () => {
 
 	return (
 		<Form
-			schema={schema}
 			fields={translatedFields}
+			schema={schema}
 			defaultValues={defaultValues}
 			onSubmit={onSubmit}
 			resetBtn={{

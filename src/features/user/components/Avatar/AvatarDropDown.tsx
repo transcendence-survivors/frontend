@@ -40,13 +40,11 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger
-				render={
-					<Button variant='ghost' size='icon' className='rounded-full'>
-						<AvatarProfile {...avatar} />
-					</Button>
-				}
-			/>
+			<DropdownMenuTrigger asChild>
+				<Button variant='ghost' size='icon' className='rounded-full'>
+					<AvatarProfile {...avatar} />
+				</Button>
+			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuGroup>
 					{links.map((link) => (

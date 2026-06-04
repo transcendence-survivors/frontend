@@ -7,7 +7,8 @@ export const FORM_ERRORS = {
 	type: `${PREFIX_KEY}.invalidType`,
 	minLength: `${PREFIX_KEY}.minLength`,
 	maxLength: `${PREFIX_KEY}.maxLength`,
-	invalidEmail: `${PREFIX_KEY}.invalidEmail`,
+	email: `${PREFIX_KEY}.email`,
 	select: `${PREFIX_KEY}.select`,
 	mustAcceptTerms: `${PREFIX_KEY}.mustAcceptTerms`,
+	passwordsMustMatch: `${PREFIX_KEY}.passwordsMustMatch`,
 } as const satisfies Record<string, MessageKeys>;

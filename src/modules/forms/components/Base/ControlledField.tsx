@@ -12,7 +12,7 @@ import {
 } from 'react-hook-form';
 import { Field, FieldLabel, FieldError as FieldErrorComp } from '@ui/field';
 import { useTranslations } from 'next-intl';
-import { translateError } from '@/modules/i18n/utils/utils';
+import { translateError } from '../../utils/translate/errors';
 
 interface ControlledFieldProps<T extends FieldValues> {
 	name: Path<T>;

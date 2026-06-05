@@ -1,6 +1,6 @@
 'use client';
 
-import { default as FormFieldComponent, type FormFieldG } from './FormField';
+import { default as FormFieldComponent, type FormFieldG } from './Base/FormField';
 import { Field, FieldError } from '@ui/field';
 
 import {
@@ -13,8 +13,8 @@ import {
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
-import { default as SubmitButton, type SubmitButtonProps } from './SubmitButton';
-import { default as ResetButton, type ResetButtonProps } from './ResetButton';
+import { default as SubmitButton, type SubmitButtonProps } from './Base/SubmitButton';
+import { default as ResetButton, type ResetButtonProps } from './Base/ResetButton';
 
 type Schema<TOut extends FieldValues> = z.ZodType<TOut, FieldValues>;
 
@@ -68,7 +68,6 @@ export default function Form<T extends FieldValues>({
 		defaultValues,
 	});
 
-	console.log({ isSubmitting, wasSubmitted });
 	const isFieldDisabled = isSubmitting || (wasSubmitted && !allowMultipleSubmissions);
 
 	useEffect(() => {

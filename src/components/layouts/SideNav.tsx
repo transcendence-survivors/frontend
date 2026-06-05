@@ -50,7 +50,7 @@ const linkWidthClass = {
 const SideNav = ({
 	className,
 	align = 'left',
-	linkWidth = 'full',
+	linkWidth = 'fit',
 	...props
 }: NavProps) => {
 	const t = useTranslations('nav');

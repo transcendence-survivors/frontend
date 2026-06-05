@@ -42,18 +42,31 @@
 		"auth": {
 			"signup": {
 				"title": "Sign Up",
+				"account": "Account",
 				"email": "Email",
 				"emailPlaceholder": "john.doe@example.com",
 				"username": "Username",
-				"usernamePlaceholder": "Choose a username",
+				"usernamePlaceholder": "john_doe",
+
+				"profile": "Profile",
+				"displayName": "Display Name",
+				"displayNamePlaceholder": "John Doe",
+				"bio": "Biography",
+				"bioPlaceholder": "Tell us a bit about yourself",
 				"firstName": "First Name",
 				"firstNamePlaceholder": "John",
 				"lastName": "Last Name",
 				"lastNamePlaceholder": "Doe",
+
+				"security": "Security",
 				"password": "Password",
 				"passwordPlaceholder": "Choose a password",
 				"confirmPassword": "Confirm Password",
 				"confirmPasswordPlaceholder": "Re-enter your password",
+
+				"terms": "Terms and Conditions",
+				"acceptTerms": "I accept the Terms and Conditions",
+
 				"submit": "Sign Up",
 				"submitting": "Signing Up...",
 				"submitted": "Signed Up",
@@ -81,7 +94,9 @@
 			"pattern": "Invalid format",
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
-			"passwordsMustMatch": "passwords must match"
+			"passwordsMustMatch": "passwords must match",
+			"emailTaken": "This email is already taken",
+			"usernameTaken": "This username is already taken"
 		}
 	}
 }

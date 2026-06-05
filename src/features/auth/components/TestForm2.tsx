@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { useLogin } from '../hooks/useLogin';
 import { useTranslations } from 'next-intl';
 import { FORM_ERRORS } from '@forms/constants/error';
-import { FormFieldG } from '@/modules/forms/components/FormField';
+import { FormFieldG } from '@/modules/forms/components/Base/FormField';
 import Form from '@forms/components/Form';
 import { i18nError, translateFields } from '@i18n/utils/utils';
 import useTranslateFormFields from '../hooks/useTranslateFormFields';

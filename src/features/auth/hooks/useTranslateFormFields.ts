@@ -1,6 +1,6 @@
-import { FormFieldG } from '@/modules/forms/components/FormField';
+import { FormFieldG } from '@/modules/forms/components/Base/FormField';
+import { translateFields } from '@forms/utils/translate/fields';
 import { NestedMessageKeys } from '@/modules/i18n/messages/types';
-import { translateFields } from '@/modules/i18n/utils/utils';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import { FieldValues } from 'react-hook-form';

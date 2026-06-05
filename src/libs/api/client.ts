@@ -1,10 +1,11 @@
 import { env } from '@env';
 import { ApiResponse } from './types';
 import { useSessionStore } from '@auth/stores/session';
-import { TOKEN_PREFIX } from '@auth/constants/cookies';
 import { refreshAccessToken } from '@auth/api/auth';
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = env.NEXT_PUBLIC_API_URL.endsWith('/')
+	? env.NEXT_PUBLIC_API_URL.slice(0, -1)
+	: env.NEXT_PUBLIC_API_URL;
 
 type FetchOptions = RequestInit & {
 	_retry?: boolean;
@@ -14,7 +15,8 @@ const buildUrl = (path: string) =>
 	`${API_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 const baseFetch = (path: string, init: FetchOptions = {}) => {
-	return fetch(buildUrl(path), {
+	const url = buildUrl(path);
+	return fetch(url, {
 		...init,
 		headers: {
 			...init.headers,
@@ -34,7 +36,6 @@ export const request = async <T>(
 	if (res.status === 401 && !init._retry) {
 		try {
 			await refreshAccessToken();
-
 			res = await baseFetch(path, {
 				...init,
 				_retry: true,

@@ -12,13 +12,13 @@ const Layout = ({ children, ...props }: LayoutProps) => {
 			<Header className='header' />
 			<div className='max-w-4xl mx-auto w-full'>
 				<div className='layout' {...props}>
-					<div className='bg-sidebar text-sidebar-foreground px-4 sm:flex justify-end hidden'>
+					<div className='hidden sm:flex justify-end'>
 						<SideNav
 							className='sticky-sidebar scrollableContainer'
 							align='right'
 						/>
 					</div>
-					{children}
+					<div className='border-x w-full'>{children}</div>
 				</div>
 			</div>
 			<PhoneNav />

@@ -15,7 +15,7 @@ import {
 import { Field, FieldError, FieldGroup } from '@ui/field';
 import { useLogin } from '../hooks/useLogin';
 import { Spinner } from '@ui/spinner';
-import ControlledField from '@forms/components/ControlledField';
+import ControlledField from '@/modules/forms/components/Base/ControlledField';
 
 type FormSchema = z.infer<typeof formSchema>;
 const formSchema = z.object({

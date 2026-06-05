@@ -161,21 +161,23 @@
 	* {
 		@apply border-border outline-ring/50;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 	}
+
 	html {
 		@apply font-sans;
 	}
 
 	.header {
 		height: var(--header-height);
-		@apply sticky top-0 z-10 w-full;
+		@apply sticky top-0 z-10 left-0 right-0;
 	}
 
 	.layout {
 		--_padding-y: 0px;
-		@apply min-h-screen grid sm:grid-cols-[30px_1fr] md:grid-cols-[200px_1fr] px-4;
+		@apply min-h-screen grid sm:grid-cols-[40px_1fr] md:grid-cols-[200px_1fr];
 
 		.sticky-sidebar {
 			--_py: 1rem;
@@ -186,9 +188,7 @@
 		}
 
 		.scrollableContainer {
-			--_max-height: calc(
-				100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem
-			);
+			--_max-height: calc(100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem);
 
 			@apply overflow-y-auto overflow-x-clip;
 			max-height: var(--_max-height);

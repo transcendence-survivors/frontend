@@ -42,34 +42,48 @@
 		"auth": {
 			"signup": {
 				"title": "Sign Up",
-				"account": "Account",
-				"email": "Email",
-				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
-				"usernamePlaceholder": "john_doe",
-
-				"profile": "Profile",
-				"displayName": "Display Name",
-				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself",
-				"firstName": "First Name",
-				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
-				"lastNamePlaceholder": "Doe",
-
-				"security": "Security",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password",
-
-				"terms": "Terms and Conditions",
-				"acceptTerms": "I accept the Terms and Conditions",
-
-				"submit": "Sign Up",
-				"submitting": "Signing Up...",
-				"submitted": "Signed Up",
+				"account": {
+					"title": "Account Information",
+					"account_desc": "Create your account by filling in the information below.",
+					"email": "Email",
+					"emailPlaceholder": "john.doe@example.com",
+					"username": "Username",
+					"usernamePlaceholder": "john_doe"
+				},
+				"profile": {
+					"title": "Profile",
+					"desc": "Tell us more about you to personalize your experience.",
+					"displayName": "Display Name",
+					"displayNamePlaceholder": "John Doe",
+					"bio": "Biography",
+					"bioPlaceholder": "Tell us a bit about yourself",
+					"firstName": "First Name",
+					"firstNamePlaceholder": "John",
+					"lastName": "Last Name",
+					"lastNamePlaceholder": "Doe"
+				},
+				"security": {
+					"title": "Security",
+					"desc": "Choose a strong password to protect your account.",
+					"password": "Password",
+					"passwordPlaceholder": "Choose a password",
+					"confirmPassword": "Confirm Password",
+					"confirmPasswordPlaceholder": "Re-enter your password"
+				},
+				"terms": {
+					"title": "Terms and Conditions",
+					"desc": "Please read and accept our Terms and Conditions to proceed.",
+					"acceptTerms": "I have read and accept the Terms and Conditions"
+				},
+				"buttons": {
+					"back": "Go Back",
+					"continue": "Continue",
+					"submit": "Submit",
+					"submitting": "Submitting",
+					"submitted": "Submitted",
+					"validating": "Validating"
+				},
+				"recap_title": "Review Your Information",
 				"success": "Account created successfully!",
 				"error": "Failed to create account. Please try again.",
 				"alreadyHaveAccount": "Already have an account? Sign In"
@@ -95,8 +109,9 @@
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
 			"passwordsMustMatch": "passwords must match",
-			"emailTaken": "This email is already taken",
-			"usernameTaken": "This username is already taken"
+
+			"email_already_in_use": "This email is already taken",
+			"username_already_in_use": "This username is already taken"
 		}
 	}
 }

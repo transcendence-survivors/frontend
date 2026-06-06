@@ -1,10 +1,15 @@
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
-import { MultiStepFormStep } from '@/modules/forms/utils/mutliStep/types';
+import {
+	MultiStepFormStep,
+	StepValidationFieldError,
+	StepValidationFn,
+} from '@/modules/forms/utils/mutliStep/types';
 import { i18nError } from '@forms/utils/translate/errors';
 import { z } from 'zod';
+import { checkEmailUsername } from '../api/signUp';
+import { isApiError } from '@/libs/api';
 
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
-
 const signUpSchema = z
 	.object({
 		email: z.email({ message: FORM_ERRORS.email }),
@@ -44,63 +49,78 @@ const signUpSchema = z
 		message: FORM_ERRORS.passwordsMustMatch,
 	});
 
+const accountValidator: StepValidationFn<SignUpFormValues> = async ({ values }) => {
+	const res = await checkEmailUsername(values.email, values.username);
+	if (isApiError(res)) {
+		const errors: StepValidationFieldError<SignUpFormValues>[] = [];
+		if (res.messageKey === 'email_already_in_use') {
+			errors.push({
+				field: 'email',
+				message: FORM_ERRORS.email_already_in_use,
+			});
+		}
+		if (res.messageKey === 'username_already_in_use') {
+			errors.push({
+				field: 'username',
+				message: FORM_ERRORS.username_already_in_use,
+			});
+		}
+		return {
+			ok: false,
+			errors,
+		};
+	}
+	return { ok: true };
+};
+
 const signUpSteps = [
 	{
-		title: 'account',
+		title: 'account.title',
+		description: 'account.account_desc',
 		fields: [
 			{
 				name: 'email',
-				label: 'email',
+				label: 'account.email',
 				component: 'input',
 				type: 'email',
-				placeholder: 'emailPlaceholder',
+				placeholder: 'account.emailPlaceholder',
 			},
 			{
 				name: 'username',
-				label: 'username',
+				label: 'account.username',
 				component: 'input',
-				placeholder: 'usernamePlaceholder',
+				placeholder: 'account.usernamePlaceholder',
 			},
 		],
-		validators: [
-			async ({ values }) => {
-				// if (values.email !== 'benoit.cabocel.335@gmail.com') {
-				// 	return {
-				// 		ok: false,
-				// 		message: FORM_ERRORS.emailTaken,
-				// 		field: 'email',
-				// 	};
-				// }
-				return { ok: true };
-			},
-		],
+		validators: [accountValidator],
 	},
 	{
-		title: 'profile',
+		title: 'profile.title',
+		description: 'profile.desc',
 		fields: [
 			{
 				name: 'firstName',
-				label: 'firstName',
+				label: 'profile.firstName',
 				component: 'input',
-				placeholder: 'firstNamePlaceholder',
+				placeholder: 'profile.firstNamePlaceholder',
 			},
 			{
 				name: 'lastName',
-				label: 'lastName',
+				label: 'profile.lastName',
 				component: 'input',
-				placeholder: 'lastNamePlaceholder',
+				placeholder: 'profile.lastNamePlaceholder',
 			},
 			{
 				name: 'displayName',
-				label: 'displayName',
+				label: 'profile.displayName',
 				component: 'input',
-				placeholder: 'displayNamePlaceholder',
+				placeholder: 'profile.displayNamePlaceholder',
 			},
 			{
 				name: 'bio',
-				label: 'bio',
+				label: 'profile.bio',
 				component: 'textarea',
-				placeholder: 'bioPlaceholder',
+				placeholder: 'profile.bioPlaceholder',
 				addon: {
 					type: 'length',
 					maxLength: 160,
@@ -110,30 +130,32 @@ const signUpSteps = [
 		],
 	},
 	{
-		title: 'security',
+		title: 'security.title',
+		description: 'security.desc',
 		fields: [
 			{
 				name: 'password',
-				label: 'password',
+				label: 'security.password',
 				component: 'input',
 				type: 'password',
-				placeholder: 'passwordPlaceholder',
+				placeholder: 'security.passwordPlaceholder',
 			},
 			{
 				name: 'confirmPassword',
-				label: 'confirmPassword',
+				label: 'security.confirmPassword',
 				component: 'input',
 				type: 'password',
-				placeholder: 'confirmPasswordPlaceholder',
+				placeholder: 'security.confirmPasswordPlaceholder',
 			},
 		],
 	},
 	{
-		title: 'terms',
+		title: 'terms.title',
+		description: 'terms.desc',
 		fields: [
 			{
 				name: 'acceptTerms',
-				label: 'acceptTerms',
+				label: 'terms.acceptTerms',
 				component: 'checkbox',
 			},
 		],

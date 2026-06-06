@@ -5,10 +5,14 @@ interface StepValidationSuccess {
 	ok: true;
 }
 
+export interface StepValidationFieldError<T> {
+	field: keyof T;
+	message: string;
+}
+
 interface StepValidationFailure<T> {
 	ok: false;
-	message: string;
-	field: keyof T;
+	errors: StepValidationFieldError<T>[];
 }
 
 export type StepValidationResult<T> = StepValidationSuccess | StepValidationFailure<T>;

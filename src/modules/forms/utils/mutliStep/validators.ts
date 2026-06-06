@@ -1,9 +1,9 @@
-import { StepValidationFn } from './types';
+import { StepValidationFn, StepValidationResult } from './types';
 
 export const runValidators = async <T>(
 	validators: StepValidationFn<T>[] | undefined,
 	values: T,
-) => {
+): Promise<StepValidationResult<T>> => {
 	if (!validators?.length) {
 		return { ok: true as const };
 	}

@@ -1,10 +1,12 @@
 import { request } from './client';
 
+export type ApiRequestInit = RequestInit;
+
 export const api = {
-	get: <T>(path: string, init?: RequestInit) =>
+	get: <T>(path: string, init?: ApiRequestInit) =>
 		request<T>(path, { ...init, method: 'GET' }),
 
-	post: <T>(path: string, body?: unknown, init?: RequestInit) =>
+	post: <T>(path: string, body?: unknown, init?: ApiRequestInit) =>
 		request<T>(path, {
 			...init,
 			method: 'POST',
@@ -15,7 +17,7 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
-	put: <T>(path: string, body?: unknown, init?: RequestInit) =>
+	put: <T>(path: string, body?: unknown, init?: ApiRequestInit) =>
 		request<T>(path, {
 			...init,
 			method: 'PUT',
@@ -26,6 +28,6 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
-	delete: <T>(path: string, init?: RequestInit) =>
+	delete: <T>(path: string, init?: ApiRequestInit) =>
 		request<T>(path, { ...init, method: 'DELETE' }),
 };

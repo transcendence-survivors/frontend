@@ -1,15 +1,19 @@
 export interface RecapFieldPayload {
 	label: string;
+	asPassword?: boolean;
 	value: unknown;
 }
 
 interface RecapFieldProps
 	extends RecapFieldPayload, React.HTMLAttributes<HTMLDivElement> {}
 
-const RecapField = ({ label, value, ...props }: RecapFieldProps) => {
+const RecapField = ({ label, value, asPassword = false, ...props }: RecapFieldProps) => {
 	const displayValue = () => {
 		if (typeof value === 'boolean') {
 			return value ? '✓' : '✗';
+		}
+		if (asPassword) {
+			return '•'.repeat(String(value).length);
 		}
 		return String(value);
 	};

@@ -10,6 +10,7 @@ interface FormProgressProps {
 	visitedSteps: ReadonlySet<number>;
 	goTo: (index: number) => void;
 	stepTitles: string[];
+	showStepIndicator?: boolean;
 }
 
 export const FormProgress = ({
@@ -19,20 +20,23 @@ export const FormProgress = ({
 	visitedSteps,
 	goTo,
 	stepTitles,
+	showStepIndicator = false,
 }: FormProgressProps) => (
 	<div className='space-y-2'>
-		<div className='flex items-center justify-between'>
-			<StepIndicator
-				totalSteps={totalSteps}
-				currentStep={currentStep}
-				visitedSteps={visitedSteps}
-				goTo={goTo}
-				stepTitles={stepTitles}
-			/>
-			<span className='text-xs tabular-nums text-muted-foreground'>
-				{currentStep + 1} / {totalSteps}
-			</span>
-		</div>
+		{showStepIndicator && (
+			<nav className='flex items-center justify-between'>
+				<StepIndicator
+					totalSteps={totalSteps}
+					currentStep={currentStep}
+					visitedSteps={visitedSteps}
+					goTo={goTo}
+					stepTitles={stepTitles}
+				/>
+				<span className='text-xs tabular-nums text-muted-foreground'>
+					{currentStep + 1} / {totalSteps}
+				</span>
+			</nav>
+		)}
 		<ProgressBar progress={progress} />
 	</div>
 );

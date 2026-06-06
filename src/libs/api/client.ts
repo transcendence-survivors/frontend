@@ -1,13 +1,14 @@
 import { env } from '@env';
 import { ApiResponse } from './types';
 import { useSessionStore } from '@auth/stores/session';
-import { refreshAccessToken } from '@auth/api/auth';
+import { refreshAccessToken } from '@/features/auth/api/refresh';
+import { ApiRequestInit } from './api';
 
 const API_URL = env.NEXT_PUBLIC_API_URL.endsWith('/')
 	? env.NEXT_PUBLIC_API_URL.slice(0, -1)
 	: env.NEXT_PUBLIC_API_URL;
 
-type FetchOptions = RequestInit & {
+type FetchOptions = ApiRequestInit & {
 	_retry?: boolean;
 };
 
@@ -48,6 +49,8 @@ export const request = async <T>(
 			throw new Error('unauthorized');
 		}
 	}
-
+	if (res.status === 204) {
+		return { status: 'success' } as ApiResponse<T>;
+	}
 	return (await res.json()) as ApiResponse<T>;
 };

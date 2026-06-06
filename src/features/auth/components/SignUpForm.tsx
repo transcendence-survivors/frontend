@@ -11,6 +11,7 @@ import { useMemo } from 'react';
 import useSignUp from '../hooks/useSignUp';
 
 const SignupForm = () => {
+	const { mutate } = useSignUp();
 	const form = useForm<SignUpFormValues>({
 		resolver: zodResolver(signUpSchema),
 		defaultValues: signUpValues,
@@ -24,17 +25,9 @@ const SignupForm = () => {
 		() => translateMultiStep<SignUpFormValues>(signUpSteps, t),
 		[t],
 	);
-	const { mutate } = useSignUp();
 
-	async function onSubmit({
-		displayName,
-		email,
-		firstName,
-		lastName,
-		password,
-		username,
-	}: SignUpFormValues) {
-		mutate({ displayName, email, firstName, lastName, password, username });
+	async function onSubmit(data: SignUpFormValues) {
+		mutate(data);
 	}
 
 	return (
@@ -44,13 +37,15 @@ const SignupForm = () => {
 				steps={translatedSteps}
 				onSubmit={onSubmit}
 				buttons={{
-					backText: 'Go Back',
-					continueText: 'Continue',
-					submitText: 'Submit',
-					submittingText: 'Submitting',
+					backText: t('buttons.back'),
+					continueText: t('buttons.continue'),
+					validatingText: t('buttons.validating'),
+					submitText: t('buttons.submit'),
+					submittingText: t('buttons.submitting'),
+					submittedText: t('buttons.submitted'),
 				}}
-				progressBar={{ on: true }}
-				recap={{ on: true, recapTitle: 'Recap' }}
+				progressBar={{ on: true, stepIndicator: true }}
+				recap={{ on: true, recapTitle: t('recap_title') }}
 				className='w-lg'
 			/>
 		</>

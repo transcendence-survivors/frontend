@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { loginRequest } from '../api/auth';
+import { loginRequest } from '../api/refresh';
 import { isApiError } from '@api';
 import { useSessionActions } from '../stores/session';
 import { toast } from 'sonner';

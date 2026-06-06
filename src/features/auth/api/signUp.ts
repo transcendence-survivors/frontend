@@ -20,4 +20,14 @@ const signUp = async (body: SignUpRequestBody): Promise<ApiResponse<User>> => {
 	return res;
 };
 
-export default signUp;
+const checkEmailUsername = async (
+	email: string,
+	username: string,
+): Promise<ApiResponse<void>> => {
+	await new Promise((resolve) => setTimeout(resolve, 5000));
+	return api.get<void>(
+		`${AUTH_ENDPOINTS.checkEmailUsername}?email=${email}&username=${username}`,
+	);
+};
+
+export { signUp, checkEmailUsername };

@@ -12,4 +12,4 @@ const signIn = async (body: LoginRequestBody): Promise<ApiResponse<User>> => {
 	return res;
 };
 
-export default signIn;
+export { signIn };

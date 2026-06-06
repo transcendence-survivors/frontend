@@ -51,7 +51,11 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 						<QuerryProvider>{children}</QuerryProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>
-				<Toaster />
+				<Toaster
+					closeButton={true}
+					containerAriaLabel='Notification container'
+					duration={3000}
+				/>
 			</body>
 		</html>
 	);

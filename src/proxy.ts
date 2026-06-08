@@ -2,12 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { intlMiddleware, resolveCanonicalPath, stripLocale } from '@i18n/middleware';
 import { CanonicalHref, REDIRECTED_URLS } from '@i18n/constants/routes';
-import {
-	getUserFromRequest,
-	hasRequiredRole,
-	isPublicRoute,
-	roleRoutes,
-} from '@auth/middleware';
+import { hasRequiredRole, isPublicRoute, roleRoutes } from '@auth/middlewares/role';
+import { getUserFromRequest } from '@auth/middlewares/token';
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -21,12 +17,13 @@ export default async function middleware(req: NextRequest) {
 		return intlResponse ?? NextResponse.next();
 	}
 
-	const user = await getUserFromRequest(req);
-	if (!user) {
+	const res = await getUserFromRequest(req);
+	if (!res) {
 		const url = new URL(REDIRECTED_URLS.loggin, req.url);
 		url.searchParams.set('callbackUrl', pathname);
 		return NextResponse.redirect(url);
 	}
+	const { user, setCookieHeaders } = res;
 
 	const routeKey = canonical as CanonicalHref;
 	const requiredRoles = roleRoutes[routeKey];
@@ -34,7 +31,13 @@ export default async function middleware(req: NextRequest) {
 		return NextResponse.redirect(new URL(REDIRECTED_URLS['403'], req.url));
 	}
 
-	return intlResponse ?? NextResponse.next();
+	const response = intlResponse ?? NextResponse.next();
+	if (setCookieHeaders.length > 0) {
+		setCookieHeaders.forEach((cookie) => {
+			response.headers.append('Set-Cookie', cookie);
+		});
+	}
+	return response;
 }
 
 export const config = {

@@ -20,14 +20,12 @@ const signUp = async (body: SignUpRequestBody): Promise<ApiResponse<User>> => {
 	return res;
 };
 
-const checkEmailUsername = async (
-	email: string,
-	username: string,
-): Promise<ApiResponse<void>> => {
-	await new Promise((resolve) => setTimeout(resolve, 5000));
-	return api.get<void>(
-		`${AUTH_ENDPOINTS.checkEmailUsername}?email=${email}&username=${username}`,
-	);
+const checkEmail = async (email: string): Promise<ApiResponse<void>> => {
+	return api.get<void>(`${AUTH_ENDPOINTS.checkEmail}/${email}`);
 };
 
-export { signUp, checkEmailUsername };
+const checkUsername = async (username: string): Promise<ApiResponse<void>> => {
+	return api.get<void>(`${AUTH_ENDPOINTS.checkUsername}/${username}`);
+};
+
+export { signUp, checkEmail, checkUsername };

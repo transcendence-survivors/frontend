@@ -5,16 +5,17 @@ export const runValidators = async <T>(
 	values: T,
 ): Promise<StepValidationResult<T>> => {
 	if (!validators?.length) {
-		return { ok: true as const };
+		return { ok: true };
 	}
 
-	for (const validator of validators) {
-		const result = await validator({ values });
-
-		if (!result.ok) {
-			return result;
-		}
+	const results = await Promise.all(
+		validators.map((validator) => validator({ values })),
+	);
+	const failedResults = results.filter((result) => !result.ok);
+	if (!failedResults.length) {
+		return { ok: true };
 	}
 
-	return { ok: true as const };
+	const errors = failedResults.flatMap((result) => result.errors);
+	return { ok: false, errors };
 };

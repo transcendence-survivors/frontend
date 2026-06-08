@@ -1,12 +1,9 @@
-import { env } from '@env';
 import { ApiResponse } from './types';
 import { useSessionStore } from '@auth/stores/session';
 import { refreshAccessToken } from '@/features/auth/api/refresh';
 import { ApiRequestInit } from './api';
 
-const API_URL = env.NEXT_PUBLIC_API_URL.endsWith('/')
-	? env.NEXT_PUBLIC_API_URL.slice(0, -1)
-	: env.NEXT_PUBLIC_API_URL;
+const API_URL = '/api';
 
 type FetchOptions = ApiRequestInit & {
 	_retry?: boolean;

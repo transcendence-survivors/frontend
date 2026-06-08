@@ -22,7 +22,9 @@ export function useMultiStep(totalSteps: number): UseMultiStepReturn {
 
 	const markVisited = useCallback((index: number) => {
 		setVisitedSteps((prev) => {
-			if (prev.has(index)) return prev;
+			if (prev.has(index)) {
+				return prev;
+			}
 			const next = new Set(prev);
 			next.add(index);
 			return next;

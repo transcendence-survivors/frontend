@@ -1,13 +1,52 @@
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import {
 	MultiStepFormStep,
-	StepValidationFieldError,
 	StepValidationFn,
 } from '@/modules/forms/utils/mutliStep/types';
 import { i18nError } from '@forms/utils/translate/errors';
 import { z } from 'zod';
-import { checkEmailUsername } from '../api/signUp';
 import { isApiError } from '@/libs/api';
+import { checkEmail, checkUsername } from '../api/signUp';
+
+const emailValidator: StepValidationFn<SignUpFormValues> = async ({
+	values: { email },
+}) => {
+	const res = await checkEmail(email);
+	if (isApiError(res)) {
+		if (res.code === 409) {
+			return {
+				ok: false,
+				errors: [
+					{
+						field: 'email',
+						message: FORM_ERRORS.email_already_in_use,
+					},
+				],
+			};
+		}
+	}
+	return { ok: true };
+};
+
+const userNameValidator: StepValidationFn<SignUpFormValues> = async ({
+	values: { username },
+}) => {
+	const res = await checkUsername(username);
+	if (isApiError(res)) {
+		if (res.code === 409) {
+			return {
+				ok: false,
+				errors: [
+					{
+						field: 'username',
+						message: FORM_ERRORS.username_already_in_use,
+					},
+				],
+			};
+		}
+	}
+	return { ok: true };
+};
 
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 const signUpSchema = z
@@ -49,30 +88,6 @@ const signUpSchema = z
 		message: FORM_ERRORS.passwordsMustMatch,
 	});
 
-const accountValidator: StepValidationFn<SignUpFormValues> = async ({ values }) => {
-	const res = await checkEmailUsername(values.email, values.username);
-	if (isApiError(res)) {
-		const errors: StepValidationFieldError<SignUpFormValues>[] = [];
-		if (res.messageKey === 'email_already_in_use') {
-			errors.push({
-				field: 'email',
-				message: FORM_ERRORS.email_already_in_use,
-			});
-		}
-		if (res.messageKey === 'username_already_in_use') {
-			errors.push({
-				field: 'username',
-				message: FORM_ERRORS.username_already_in_use,
-			});
-		}
-		return {
-			ok: false,
-			errors,
-		};
-	}
-	return { ok: true };
-};
-
 const signUpSteps = [
 	{
 		title: 'account.title',
@@ -92,7 +107,7 @@ const signUpSteps = [
 				placeholder: 'account.usernamePlaceholder',
 			},
 		],
-		validators: [accountValidator],
+		validators: [emailValidator, userNameValidator],
 	},
 	{
 		title: 'profile.title',

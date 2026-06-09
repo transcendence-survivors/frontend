@@ -15,4 +15,5 @@ export const FORM_ERRORS = {
 	passwordsMustMatch: `${PREFIX_KEY}.passwordsMustMatch`,
 	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
 	phone: `${PREFIX_KEY}.phone`,
+	age_restriction: `${PREFIX_KEY}.age_restriction`,
 } as const satisfies Record<string, MessageKeys>;

@@ -7,6 +7,7 @@ import { i18nError } from '@forms/utils/translate/errors';
 import { z } from 'zod';
 import { isApiError } from '@/libs/api';
 import { checkEmail, checkUsername } from '../api/signUp';
+import { isOlderThan13 } from '@/libs/date';
 
 const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 	values: { email },
@@ -63,7 +64,6 @@ const userNameValidator: StepValidationFn<SignUpFormValues> = async ({
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 const signUpSchema = z
 	.object({
-		phone: z.e164({ message: FORM_ERRORS.phone }),
 		email: z.email({ message: FORM_ERRORS.email }),
 		username: z
 			.string({ message: FORM_ERRORS.type })
@@ -78,6 +78,11 @@ const signUpSchema = z
 		displayName: z
 			.string({ message: FORM_ERRORS.type })
 			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
+		birthdate: z
+			.date({ message: FORM_ERRORS.type })
+			.refine((val) => isOlderThan13(val), {
+				message: FORM_ERRORS.age_restriction,
+			}),
 		bio: z
 			.string({ message: FORM_ERRORS.type })
 			.max(160, { message: i18nError(FORM_ERRORS.maxLength, { max: 160 }) })
@@ -107,12 +112,10 @@ const signUpSteps = [
 		description: 'account.account_desc',
 		fields: [
 			{
-				name: 'phone',
+				name: 'birthdate',
 				label: 'account.phone',
-				placeholder: 'account.phonePlaceholder',
 				component: 'input',
-				variant: 'phone',
-				format: '+33 6 12 34 56 78',
+				variant: 'date',
 			},
 			{
 				name: 'email',
@@ -209,7 +212,7 @@ const signUpValues: SignUpFormValues = {
 	password: '',
 	confirmPassword: '',
 	acceptTerms: false,
-	phone: '',
+	birthdate: new Date(),
 };
 
 export { signUpValues, signUpSchema, signUpSteps };

@@ -117,7 +117,8 @@
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
 
-			"internal_server_error": "An unexpected error occurred. Please try again later."
+			"internal_server_error": "An unexpected error occurred. Please try again later.",
+			"age_restriction": "You must be at least 13 years old to register"
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

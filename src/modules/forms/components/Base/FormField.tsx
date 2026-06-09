@@ -22,6 +22,7 @@ import { FormFieldParams } from '../../types/FormFieldParams';
 import InputPassword from '@/components/ui/input-password';
 import FormLengthAddon from './Addons/FormLengthAddon';
 import InputPhone from '@/components/ui/input-phone';
+import DatePicker from '@/components/ui/date-picker';
 
 interface FormFieldProps<T extends FieldValues> {
 	field: FormFieldParams<T>;
@@ -76,11 +77,12 @@ const FormField = <T extends FieldValues>({
 						);
 					case 'date':
 						return (
-							<Input
+							<DatePicker
 								{...communProps}
-								value={rhfField.value ?? ''}
-								type='date'
-								placeholder={field.placeholder}
+								setSelectedDate={rhfField.onChange}
+								selectedDate={rhfField.value}
+								// other props can be passed like
+								// disabledBefore or disabledAfter
 							/>
 						);
 					default:

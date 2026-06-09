@@ -1,4 +1,4 @@
-import { ApiResponse } from './types';
+import { ApiResponse, ApiError, ApiSuccess } from './types';
 import { useSessionStore } from '@auth/stores/session';
 import { refreshAccessToken } from '@/features/auth/api/refresh';
 import { ApiRequestInit } from './api';
@@ -47,7 +47,18 @@ export const request = async <T>(
 		}
 	}
 	if (res.status === 204) {
-		return { status: 'success' } as ApiResponse<T>;
+		return {
+			status: 'success',
+			message: 'No Content',
+			data: null as unknown as T,
+		} satisfies ApiSuccess<T>;
+	}
+	if (!res.ok) {
+		return {
+			status: 'error',
+			code: res.status,
+			message: res.statusText,
+		} satisfies ApiError;
 	}
 	return (await res.json()) as ApiResponse<T>;
 };

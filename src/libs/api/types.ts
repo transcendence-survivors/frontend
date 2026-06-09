@@ -10,8 +10,6 @@ export type ApiError = {
 	messageKey?: string;
 	code: number;
 	errors?: unknown;
-	timestamp: string;
-	path: string;
 };
 
 export type ApiResponse<T> = ApiSuccess<T> | ApiError;

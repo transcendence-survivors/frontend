@@ -18,6 +18,7 @@ interface ControlledFieldProps<T extends FieldValues> {
 	name: Path<T>;
 	control: Control<T>;
 	label: string;
+	isRequired?: boolean;
 	children: (props: {
 		field: ControllerRenderProps<T, Path<T>>;
 		fieldState: ControllerFieldState;
@@ -29,6 +30,7 @@ const ControlledField = <T extends FieldValues>({
 	name,
 	control,
 	label,
+	isRequired = true,
 	children,
 }: ControlledFieldProps<T>) => {
 	const t = useTranslations();
@@ -40,7 +42,15 @@ const ControlledField = <T extends FieldValues>({
 			render={({ field, fieldState, formState }) => (
 				<Field data-invalid={fieldState.invalid} className='gap-1'>
 					<FieldLabel className='grid gap-2'>
-						<span>{label}</span>
+						<span>
+							{label}
+							{isRequired && (
+								<>
+									{' '}
+									<span className='text-destructive'>*</span>
+								</>
+							)}
+						</span>
 						{children({ field, fieldState, formState })}
 					</FieldLabel>
 					{fieldState.invalid && (

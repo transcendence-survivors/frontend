@@ -1,12 +1,12 @@
 import { FieldValues } from 'react-hook-form';
-import { FormFieldG } from '../../components/Base/FormField';
+import { FormFieldParams } from '../../types/FormFieldParams';
 
 interface StepValidationSuccess {
 	ok: true;
 }
 
 export interface StepValidationFieldError<T> {
-	field: keyof T;
+	field: keyof T | 'form';
 	message: string;
 }
 
@@ -28,6 +28,6 @@ export type StepValidationFn<T> = (
 export interface MultiStepFormStep<T extends FieldValues> {
 	title: string;
 	description?: string;
-	fields: FormFieldG<T>[];
+	fields: FormFieldParams<T>[];
 	validators?: StepValidationFn<T>[];
 }

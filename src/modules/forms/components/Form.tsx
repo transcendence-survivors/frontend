@@ -1,7 +1,11 @@
 'use client';
 
-import { default as FormFieldComponent, type FormFieldG } from './Base/FormField';
-import { Field, FieldError } from '@ui/field';
+import { type ZodType } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
+
+import FormField from './Base/FormField';
+import { Field } from '@ui/field';
 
 import {
 	useForm,
@@ -10,13 +14,11 @@ import {
 	type DefaultValues,
 } from 'react-hook-form';
 
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-import { default as SubmitButton, type SubmitButtonProps } from './Base/SubmitButton';
-import { default as ResetButton, type ResetButtonProps } from './Base/ResetButton';
+import SubmitButton, { type SubmitButtonProps } from './Base/SubmitButton';
+import ResetButton, { type ResetButtonProps } from './Base/ResetButton';
+import { FormFieldParams } from '../types/FormFieldParams';
 
-type Schema<TOut extends FieldValues> = z.ZodType<TOut, FieldValues>;
+type Schema<TOut extends FieldValues> = ZodType<TOut, FieldValues>;
 
 interface TruethyFormResetButtonProps extends Omit<ResetButtonProps, 'isDisabled'> {
 	show: true;
@@ -38,7 +40,7 @@ interface FormState {
 }
 
 export interface FormProps<T extends FieldValues> {
-	fields: FormFieldG<T>[];
+	fields: FormFieldParams<T>[];
 	schema: Schema<T>;
 	defaultValues: DefaultValues<T>;
 	onSubmit: (data: T) => void;
@@ -89,7 +91,7 @@ export default function Form<T extends FieldValues>({
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='space-y-4' noValidate>
 			{fields.map((field, index) => (
-				<FormFieldComponent
+				<FormField
 					key={index}
 					field={field}
 					control={control}

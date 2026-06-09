@@ -1,10 +1,5 @@
 import ControlledField from './ControlledField';
-import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupText,
-	InputGroupTextarea,
-} from '@ui/input-group';
+import { InputGroup, InputGroupTextarea } from '@ui/input-group';
 import { Input } from '@ui/input';
 import {
 	Select,
@@ -23,54 +18,13 @@ import type {
 	Path,
 } from 'react-hook-form';
 import { Checkbox } from '@ui/checkbox';
-
-interface FormFieldLengthAddon {
-	type: 'length';
-	align?: 'block-end' | 'block-start';
-	maxLength: number;
-}
-
-type FormFieldAddon = FormFieldLengthAddon;
-
-interface FormInput {
-	component: 'input';
-	type?: string;
-}
-
-interface FormTextarea {
-	component: 'textarea';
-	addon?: FormFieldAddon;
-}
-
-interface FormOption {
-	value: string;
-	label: string;
-}
-
-interface FormGroup {
-	label?: string;
-	options: FormOption[];
-}
-
-interface FormSelect {
-	component: 'select';
-	optionsGroups: FormGroup[];
-}
-
-interface FormCheckBox {
-	component: 'checkbox';
-}
-
-export interface FormFieldBase<T extends FieldValues> {
-	name: Path<T>;
-	label: string;
-	placeholder?: string;
-}
-export type FormFieldG<T extends FieldValues> = FormFieldBase<T> &
-	(FormInput | FormTextarea | FormSelect | FormCheckBox);
+import { FormFieldParams } from '../../types/FormFieldParams';
+import InputPassword from '@/components/ui/input-password';
+import FormLengthAddon from './Addons/FormLengthAddon';
+import InputPhone from '@/components/ui/input-phone';
 
 interface FormFieldProps<T extends FieldValues> {
-	field: FormFieldG<T>;
+	field: FormFieldParams<T>;
 	control: Control<T>;
 	disabled?: boolean;
 }
@@ -86,47 +40,86 @@ const FormField = <T extends FieldValues>({
 		rhfField: ControllerRenderProps<T, Path<T>>,
 		fieldState: ControllerFieldState,
 	) => {
+		const communProps = {
+			...rhfField,
+			'aria-invalid': fieldState.invalid,
+			'disabled': disabled,
+			'name': field.name,
+		};
 		switch (componentType) {
 			case 'input':
-				return (
-					<Input
-						{...rhfField}
-						value={rhfField.value ?? ''}
-						placeholder={field.placeholder}
-						aria-invalid={fieldState.invalid}
-						disabled={disabled}
-						type={field.type ?? 'text'}
-					/>
-				);
-
+				switch (field.variant) {
+					case 'password':
+						return (
+							<InputPassword
+								{...communProps}
+								value={rhfField.value ?? ''}
+								placeholder={field.placeholder}
+							/>
+						);
+					case 'email':
+						return (
+							<Input
+								{...communProps}
+								value={rhfField.value ?? ''}
+								type='email'
+								placeholder={field.placeholder}
+							/>
+						);
+					case 'phone':
+						return (
+							<InputPhone
+								{...communProps}
+								placeholder={field.placeholder}
+								value={rhfField.value ?? ''}
+							/>
+						);
+					case 'date':
+						return (
+							<Input
+								{...communProps}
+								value={rhfField.value ?? ''}
+								type='date'
+								placeholder={field.placeholder}
+							/>
+						);
+					default:
+						return (
+							<Input
+								{...communProps}
+								value={rhfField.value ?? ''}
+								type={field?.type ?? 'text'}
+								placeholder={field.placeholder}
+							/>
+						);
+				}
 			case 'textarea':
 				return (
 					<InputGroupTextarea
-						{...rhfField}
+						{...communProps}
 						value={rhfField.value ?? ''}
 						placeholder={field.placeholder}
-						aria-invalid={fieldState.invalid}
-						disabled={disabled}
 					/>
 				);
-
+			case 'checkbox':
+				return (
+					<Checkbox
+						{...communProps}
+						checked={!!rhfField.value}
+						onCheckedChange={(checked) => rhfField.onChange(checked)}
+					/>
+				);
 			case 'select':
 				return (
-					<Select
-						{...rhfField}
-						onValueChange={rhfField.onChange}
-						aria-invalid={fieldState.invalid}
-						disabled={disabled}>
+					<Select {...communProps}>
 						<SelectTrigger className='w-full'>
 							<SelectValue placeholder={field.placeholder} />
 						</SelectTrigger>
 						<SelectContent>
-							{field.optionsGroups.map((group, groupIndex) => (
+							{field.optionsGroups.map(({ label, options }, groupIndex) => (
 								<SelectGroup key={groupIndex}>
-									{group.label && (
-										<SelectLabel>{group.label}</SelectLabel>
-									)}
-									{group.options.map((option) => (
+									{label && <SelectLabel>{label}</SelectLabel>}
+									{options.map((option) => (
 										<SelectItem
 											key={option.value}
 											value={option.value}>
@@ -138,34 +131,32 @@ const FormField = <T extends FieldValues>({
 						</SelectContent>
 					</Select>
 				);
-			case 'checkbox':
-				return (
-					<Checkbox
-						{...rhfField}
-						checked={!!rhfField.value}
-						onCheckedChange={(checked) => rhfField.onChange(checked)}
-						aria-invalid={fieldState.invalid}
-						disabled={disabled}
-					/>
-				);
 		}
 	};
 
 	const renderAddon = (rhfField: ControllerRenderProps<T, Path<T>>) => {
 		if ('addon' in field && field.addon) {
-			return (
-				<InputGroupAddon align={field.addon.align}>
-					<InputGroupText>
-						{field.addon.type === 'length' &&
-							`${rhfField.value?.toString().length || 0} / ${field.addon.maxLength} characters max`}
-					</InputGroupText>
-				</InputGroupAddon>
-			);
+			const { type, ...rest } = field.addon;
+			switch (type) {
+				case 'length':
+					return (
+						<FormLengthAddon
+							{...rest}
+							currentLength={rhfField.value?.toString().length || 0}
+						/>
+					);
+				default:
+					return null;
+			}
 		}
 	};
 
 	return (
-		<ControlledField name={field.name} control={control} label={field.label}>
+		<ControlledField
+			name={field.name}
+			control={control}
+			label={field.label}
+			isRequired={field.required}>
 			{({ field: rhfField, fieldState }) => (
 				<>
 					{componentType === 'checkbox' ? (

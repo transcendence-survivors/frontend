@@ -32,11 +32,9 @@ export default async function middleware(req: NextRequest) {
 	}
 
 	const response = intlResponse ?? NextResponse.next();
-	if (setCookieHeaders.length > 0) {
-		setCookieHeaders.forEach((cookie) => {
-			response.headers.append('Set-Cookie', cookie);
-		});
-	}
+	setCookieHeaders.forEach((cookie) => {
+		response.headers.append('Set-Cookie', cookie);
+	});
 	return response;
 }
 

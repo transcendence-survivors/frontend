@@ -2,7 +2,7 @@ import { AvatarDropdown } from '@/features/user/components/Avatar/AvatarDropDown
 import { cn } from '@/libs/utils';
 import Logo from '../icons/Logo';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import NavSheet from './NavSheet';
+import NavDrawer from './NavDrawer';
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {}
 
@@ -36,7 +36,7 @@ const PhoneHeader = ({ className, ...props }: HeaderProps) => {
 				className,
 			)}
 			{...props}>
-			<NavSheet />
+			<NavDrawer />
 		</header>
 	);
 };

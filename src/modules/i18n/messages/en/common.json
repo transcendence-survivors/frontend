@@ -48,7 +48,10 @@
 					"email": "Email",
 					"emailPlaceholder": "john.doe@example.com",
 					"username": "Username",
-					"usernamePlaceholder": "john_doe"
+					"usernamePlaceholder": "john_doe",
+
+					"phone": "Phone Number",
+					"phonePlaceholder": "+33 6 12 34 56 78"
 				},
 				"profile": {
 					"title": "Profile",
@@ -109,9 +112,15 @@
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
 			"passwordsMustMatch": "passwords must match",
+			"phone": "Please enter a valid phone number in E.164 format",
 
 			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken"
+			"username_already_in_use": "This username is already taken",
+
+			"internal_server_error": "An unexpected error occurred. Please try again later."
+		},
+		"addons": {
+			"length": "{current} / {max} characters max"
 		}
 	}
 }

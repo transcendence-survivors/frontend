@@ -12,6 +12,7 @@ const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 	values: { email },
 }) => {
 	const res = await checkEmail(email);
+	console.log(res);
 	if (isApiError(res)) {
 		if (res.code === 409) {
 			return {
@@ -20,6 +21,17 @@ const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 					{
 						field: 'email',
 						message: FORM_ERRORS.email_already_in_use,
+					},
+				],
+			};
+		}
+		if (res.code === 500) {
+			return {
+				ok: false,
+				errors: [
+					{
+						field: 'form',
+						message: FORM_ERRORS.internal_server_error,
 					},
 				],
 			};
@@ -51,6 +63,7 @@ const userNameValidator: StepValidationFn<SignUpFormValues> = async ({
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 const signUpSchema = z
 	.object({
+		phone: z.e164({ message: FORM_ERRORS.phone }),
 		email: z.email({ message: FORM_ERRORS.email }),
 		username: z
 			.string({ message: FORM_ERRORS.type })
@@ -94,6 +107,14 @@ const signUpSteps = [
 		description: 'account.account_desc',
 		fields: [
 			{
+				name: 'phone',
+				label: 'account.phone',
+				placeholder: 'account.phonePlaceholder',
+				component: 'input',
+				variant: 'phone',
+				format: '+33 6 12 34 56 78',
+			},
+			{
 				name: 'email',
 				label: 'account.email',
 				component: 'input',
@@ -136,6 +157,7 @@ const signUpSteps = [
 				label: 'profile.bio',
 				component: 'textarea',
 				placeholder: 'profile.bioPlaceholder',
+				required: false,
 				addon: {
 					type: 'length',
 					maxLength: 160,
@@ -152,14 +174,14 @@ const signUpSteps = [
 				name: 'password',
 				label: 'security.password',
 				component: 'input',
-				type: 'password',
 				placeholder: 'security.passwordPlaceholder',
+				variant: 'password',
 			},
 			{
 				name: 'confirmPassword',
 				label: 'security.confirmPassword',
 				component: 'input',
-				type: 'password',
+				variant: 'password',
 				placeholder: 'security.confirmPasswordPlaceholder',
 			},
 		],
@@ -187,6 +209,7 @@ const signUpValues: SignUpFormValues = {
 	password: '',
 	confirmPassword: '',
 	acceptTerms: false,
+	phone: '',
 };
 
 export { signUpValues, signUpSchema, signUpSteps };

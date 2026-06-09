@@ -34,10 +34,11 @@ export interface UseMultiStepFormReturn<T extends FieldValues> {
 
 	isSubmitting: boolean;
 	isValidating: boolean;
+	isGlobalError: boolean;
 
 	getRecap: () => RecapGroupPayload[];
 	handleGoTo: (index: number) => Promise<void>;
-	handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+	handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => Promise<void>;
 }
 
 export const useMultiStepForm = <T extends FieldValues>(
@@ -138,7 +139,7 @@ export const useMultiStepForm = <T extends FieldValues>(
 	);
 
 	const handleSubmit = useCallback(
-		async (e: React.FormEvent<HTMLFormElement>) => {
+		async (e: React.SubmitEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			if (isLastStep) {
 				if (!(await form.trigger())) {
@@ -159,7 +160,7 @@ export const useMultiStepForm = <T extends FieldValues>(
 			title: s.title,
 			fields: s.fields.map((field) => ({
 				label: String(field.label),
-				asPassword: field.component === 'input' && field.type === 'password',
+				asPassword: field.component === 'input' && field.variant === 'password',
 				value: allValues[field.name],
 			})),
 		}));
@@ -182,6 +183,7 @@ export const useMultiStepForm = <T extends FieldValues>(
 
 		isValidating,
 		isSubmitting: form.formState.isSubmitting,
+		isGlobalError: !!form.formState.errors.form,
 
 		getRecap,
 		handleGoTo,

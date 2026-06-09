@@ -13,4 +13,6 @@ export const FORM_ERRORS = {
 	select: `${PREFIX_KEY}.select`,
 	mustAcceptTerms: `${PREFIX_KEY}.mustAcceptTerms`,
 	passwordsMustMatch: `${PREFIX_KEY}.passwordsMustMatch`,
+	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
+	phone: `${PREFIX_KEY}.phone`,
 } as const satisfies Record<string, MessageKeys>;

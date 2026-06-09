@@ -16,6 +16,9 @@ import MultiStepButtons, { MutliStepButtonsPayload } from './MultiStepButtons';
 import { useMultiStepForm, RecapConfig } from '../hooks/useMultiStepForm';
 import { MultiStepFormStep } from '../utils/mutliStep/types';
 import { cn } from '@/libs/utils';
+import { toast } from 'sonner';
+import Form from './Form';
+import FormToast from './FormToast';
 
 interface WithProgressBar {
 	on: true;
@@ -62,6 +65,7 @@ export function MultiStepForm<T extends FieldValues>({
 		isCurrentStepError,
 		isValidating,
 		isSubmitting,
+		isGlobalError,
 		getRecap,
 		handleGoTo,
 		handleSubmit,
@@ -113,7 +117,8 @@ export function MultiStepForm<T extends FieldValues>({
 				isLastStep={isLastStep}
 				back={back}
 				state={{
-					disableSubmit: isCurrentStepError || !form.formState.isDirty,
+					disableSubmit:
+						isCurrentStepError || !form.formState.isDirty || isGlobalError,
 					isSubmitting,
 					isValidating,
 					isSubmitted: form.formState.isSubmitSuccessful,
@@ -121,9 +126,7 @@ export function MultiStepForm<T extends FieldValues>({
 				payload={buttons}
 			/>
 			{form.formState.errors.form && (
-				<p className='mt-2 text-sm text-red-500'>
-					{form.formState.errors.form.message}
-				</p>
+				<FormToast error={form.formState.errors.form} />
 			)}
 		</form>
 	);

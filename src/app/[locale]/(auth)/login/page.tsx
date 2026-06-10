@@ -1,12 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import SignUpForm from '@/features/auth/components/SignUpForm';
 
 export default function LoginPage() {
 	return (
-		<>
-			<main className='flex min-h-screen items-center justify-center'>
-				<SignUpForm />
-			</main>
-		</>
+		<main className='flex min-h-screen items-center justify-center'>
+			<SignUpForm />
+		</main>
 	);
 }

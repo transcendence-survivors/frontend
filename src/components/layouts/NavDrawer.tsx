@@ -15,6 +15,7 @@ import {
 	DrawerTrigger,
 } from '../ui/drawer';
 import { useState } from 'react';
+import LogoutDrawerClose from '@/features/auth/components/LogoutDrawerClose';
 
 const NavDrawer = () => {
 	const [open, setOpen] = useState(false);
@@ -26,7 +27,7 @@ const NavDrawer = () => {
 						<AvatarProfile img={{ src: '/avatar.png', alt: 'User Avatar' }} />
 					</Button>
 				</DrawerTrigger>
-				<DrawerContent>
+				<DrawerContent aria-describedby='nav-drawer-description'>
 					<DrawerHeader>
 						<DrawerClose asChild>
 							<AvatarProfileLink
@@ -73,7 +74,9 @@ const NavDrawer = () => {
 									</DrawerClose>
 								</Button>
 							</li>
+							<li></li>
 						</ul>
+						<LogoutDrawerClose />
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>

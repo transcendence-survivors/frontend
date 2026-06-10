@@ -1,11 +1,11 @@
-import { FieldValues } from 'react-hook-form';
-import { FormFieldG } from '../../components/Base/FormField';
-import { LooseTFunction, RootTFunction } from './types';
+import { type FieldValues } from 'react-hook-form';
+import { type LooseTFunction, type RootTFunction } from './types';
+import { type FormFieldParams } from '../../types/FormFieldParams';
 
 export function translateField<T extends FieldValues>(
-	field: FormFieldG<T>,
+	field: FormFieldParams<T>,
 	t: RootTFunction,
-): FormFieldG<T> {
+): FormFieldParams<T> {
 	const translate = t as LooseTFunction;
 
 	const base = {
@@ -33,8 +33,8 @@ export function translateField<T extends FieldValues>(
 }
 
 export function translateFields<T extends FieldValues>(
-	fields: FormFieldG<T>[],
+	fields: FormFieldParams<T>[],
 	t: RootTFunction,
-): FormFieldG<T>[] {
+): FormFieldParams<T>[] {
 	return fields.map((field) => translateField(field, t));
 }

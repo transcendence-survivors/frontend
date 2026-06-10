@@ -1,12 +1,12 @@
 'use client';
 
-import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Spinner } from '@/components/ui/spinner';
 import { useTranslations } from 'next-intl';
 import useSignOut from '../hooks/useSignOut';
+import { DrawerClose } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 
-const LogoutDropDownItem = () => {
+const LogoutDrawerClose = () => {
 	const t = useTranslations('auth.signout');
 	const { isPending, mutate, isError } = useSignOut({
 		successMessage: t('success'),
@@ -18,13 +18,12 @@ const LogoutDropDownItem = () => {
 	};
 
 	return (
-		<DropdownMenuItem
-			variant='destructive'
-			onClick={handleLogout}
-			disabled={isPending || isError}>
-			{isPending ? <Spinner /> : t('label')}
-		</DropdownMenuItem>
+		<DrawerClose onClick={handleLogout} disabled={isPending || isError} asChild>
+			<Button variant='destructive' size='sm' className='w-full'>
+				{isPending ? <Spinner /> : t('label')}
+			</Button>
+		</DrawerClose>
 	);
 };
 
-export default LogoutDropDownItem;
+export default LogoutDrawerClose;

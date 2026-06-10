@@ -3,27 +3,25 @@ import { signUp } from '../api/signUp';
 import { toast } from 'sonner';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { getRoute } from '@/modules/i18n/utils/routing';
-import ApiException from '@/libs/api/ApiException';
+import { REDIRECTED_URLS } from '@/modules/i18n/constants/routes';
 
-const useSignUp = () => {
+interface useSignUpProps {
+	successMessage: string;
+	errorMessage: string;
+}
+
+const useSignUp = ({ successMessage, errorMessage }: useSignUpProps) => {
 	const router = useRouter();
 	return useMutation({
 		mutationFn: signUp,
 		onSuccess: () => {
-			toast.success('Sign up successful! Welcome aboard!');
-			router.push(getRoute('profile'));
+			toast.success(successMessage);
+			const url = new URLSearchParams(window.location.search);
+			const redirect = url.get(REDIRECTED_URLS.callbackKey) || getRoute('profile');
+			router.replace(redirect);
 		},
-		onError: (error: unknown) => {
-			if (error instanceof ApiException) {
-				toast.error(`Sign up failed: ${error.message}`);
-				return;
-			}
-			if (error instanceof Error) {
-				toast.error(`Sign up failed: ${error.message}`);
-				return;
-			}
-			const message = 'An error occurred during sign up. Please try again.';
-			toast.error(message);
+		onError: () => {
+			toast.error(errorMessage);
 		},
 	});
 };

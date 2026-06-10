@@ -11,108 +11,103 @@
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
 	},
-	"locale": {
-		"en": "English",
-		"fr": "Français",
-		"de": "Deutsch",
-		"zh": "中文",
-		"da": "Dansk"
+
+	"auth": {
+		"signout": {
+			"label": "Logout",
+			"success": "You have been logged out successfully.",
+			"error": "An error occurred while logging out. Please try again."
+		},
+		"signin": {
+			"title": "Sign In",
+			"email": "Email",
+			"emailPlaceholder": "john.doe@example.com",
+			"password": "Password",
+			"passwordPlaceholder": "Enter your password",
+			"submit": "Sign In",
+			"forgotPassword": "Forgot your password?",
+			"noAccount": "Don't have an account? Sign Up",
+
+			"success": "You have been signed in successfully.",
+			"error": "An error occurred while signing in. Please check your credentials and try again."
+		},
+		"signup": {
+			"title": "Sign Up",
+			"account": {
+				"title": "Account Information",
+				"account_desc": "Create your account by filling in the information below.",
+				"email": "Email",
+				"emailPlaceholder": "john.doe@example.com",
+				"username": "Username",
+				"usernamePlaceholder": "john_doe",
+
+				"phone": "Phone Number",
+				"phonePlaceholder": "+33 6 12 34 56 78"
+			},
+			"profile": {
+				"title": "Profile",
+				"desc": "Tell us more about you to personalize your experience.",
+				"displayName": "Display Name",
+				"displayNamePlaceholder": "John Doe",
+				"firstName": "First Name",
+				"firstNamePlaceholder": "John",
+				"lastName": "Last Name",
+				"lastNamePlaceholder": "Doe",
+				"birthdate": "Birthdate",
+				"bio": "Biography",
+				"bioPlaceholder": "Tell us a bit about yourself"
+			},
+			"security": {
+				"title": "Security",
+				"desc": "Choose a strong password to protect your account.",
+				"password": "Password",
+				"passwordPlaceholder": "Choose a password",
+				"confirmPassword": "Confirm Password",
+				"confirmPasswordPlaceholder": "Re-enter your password"
+			},
+			"terms": {
+				"title": "Terms and Conditions",
+				"desc": "Please read and accept our Terms and Conditions to proceed.",
+				"acceptTerms": "I have read and accept the Terms and Conditions"
+			},
+			"buttons": {
+				"back": "Go Back",
+				"continue": "Continue",
+				"submit": "Submit",
+				"submitting": "Submitting",
+				"submitted": "Submitted",
+				"validating": "Validating"
+			},
+			"recap_title": "Review Your Information",
+			"alreadyHaveAccount": "Already have an account? Sign In",
+
+			"success": "Account created successfully!",
+			"error": "Failed to create account. Please try again."
+		}
 	},
 
 	"forms": {
-		"test": {
-			"name": "Name",
-			"namePlaceholder": "Enter your name",
-			"email": "E-Mail",
-			"emailPlaceholder": "john.doe@example.com",
-			"role": "Role",
-			"rolePlaceholder": "Choose your role",
-			"userRoles": "User Roles",
-			"admin": "Administrator",
-			"user": "User",
-			"bio": "Biography",
-			"bioPlaceholder": "Tell us a bit about yourself",
-			"acceptTerms": "I accept the Terms and Conditions",
-			"submit": "Submit",
-			"submitted": "Submitted",
-			"disabled": "Disabled",
-			"reset": "Reset",
-			"emptyFieldsBtn": "Fill in the fields"
-		},
-		"auth": {
-			"signup": {
-				"title": "Sign Up",
-				"account": {
-					"title": "Account Information",
-					"account_desc": "Create your account by filling in the information below.",
-					"email": "Email",
-					"emailPlaceholder": "john.doe@example.com",
-					"username": "Username",
-					"usernamePlaceholder": "john_doe",
-
-					"phone": "Phone Number",
-					"phonePlaceholder": "+33 6 12 34 56 78"
-				},
-				"profile": {
-					"title": "Profile",
-					"desc": "Tell us more about you to personalize your experience.",
-					"displayName": "Display Name",
-					"displayNamePlaceholder": "John Doe",
-					"bio": "Biography",
-					"bioPlaceholder": "Tell us a bit about yourself",
-					"firstName": "First Name",
-					"firstNamePlaceholder": "John",
-					"lastName": "Last Name",
-					"lastNamePlaceholder": "Doe"
-				},
-				"security": {
-					"title": "Security",
-					"desc": "Choose a strong password to protect your account.",
-					"password": "Password",
-					"passwordPlaceholder": "Choose a password",
-					"confirmPassword": "Confirm Password",
-					"confirmPasswordPlaceholder": "Re-enter your password"
-				},
-				"terms": {
-					"title": "Terms and Conditions",
-					"desc": "Please read and accept our Terms and Conditions to proceed.",
-					"acceptTerms": "I have read and accept the Terms and Conditions"
-				},
-				"buttons": {
-					"back": "Go Back",
-					"continue": "Continue",
-					"submit": "Submit",
-					"submitting": "Submitting",
-					"submitted": "Submitted",
-					"validating": "Validating"
-				},
-				"recap_title": "Review Your Information",
-				"success": "Account created successfully!",
-				"error": "Failed to create account. Please try again.",
-				"alreadyHaveAccount": "Already have an account? Sign In"
-			},
-			"signin": {
-				"title": "Sign In",
-				"email": "Email",
-				"emailPlaceholder": "john.doe@example.com",
-				"password": "Password",
-				"passwordPlaceholder": "Enter your password",
-				"submit": "Sign In",
-				"forgotPassword": "Forgot your password?",
-				"noAccount": "Don't have an account? Sign Up"
-			}
-		},
 		"error": {
 			"required": "This field is required",
+
 			"email": "Please enter a valid email address",
-			"invalidType": "Invalid type",
+			"string": "This field must be a string",
+			"number": "This field must be a number",
+			"date": "This field must be a valid date",
+			"boolean": "This field must be true or false",
+			"enum": "Invalid option selected",
+			"phone": "Please enter a valid phone number in E.164 format",
+			"pattern": "Invalid format",
+
+			"lowercase": "Only lowercase letters are allowed",
+			"uppercase": "Only uppercase letters are allowed",
+
 			"minLength": "Minimum length is {min} characters",
 			"maxLength": "Maximum length is {max} characters",
-			"pattern": "Invalid format",
+
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
 			"passwordsMustMatch": "passwords must match",
-			"phone": "Please enter a valid phone number in E.164 format",
 
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",

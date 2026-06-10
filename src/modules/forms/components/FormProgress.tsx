@@ -2,8 +2,9 @@
 
 import { ProgressBar } from '@/components/ui/progress-bar';
 import { StepIndicator } from '@/components/ui/step-indicator';
+import { cn } from '@/libs/utils';
 
-interface FormProgressProps {
+interface FormProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 	totalSteps: number;
 	currentStep: number;
 	progress: number;
@@ -21,8 +22,10 @@ export const FormProgress = ({
 	goTo,
 	stepTitles,
 	showStepIndicator = false,
+	className,
+	...props
 }: FormProgressProps) => (
-	<div className='space-y-2'>
+	<div className={cn('space-y-2', className)} {...props}>
 		{showStepIndicator && (
 			<nav className='flex items-center justify-between'>
 				<StepIndicator

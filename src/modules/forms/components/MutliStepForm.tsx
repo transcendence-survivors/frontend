@@ -8,17 +8,16 @@ import {
 	CardHeader,
 	CardTitle,
 	CardDescription,
+	CardFooter,
 } from '@/components/ui/card';
 import FormField from './Base/FormField';
 import { Recap } from './Recap/Recap';
 import { FormProgress } from './FormProgress';
-import MultiStepButtons, { MutliStepButtonsPayload } from './MultiStepButtons';
-import { useMultiStepForm, RecapConfig } from '../hooks/useMultiStepForm';
-import { MultiStepFormStep } from '../utils/mutliStep/types';
+import MultiStepButtons, { type MutliStepButtonsPayload } from './MultiStepButtons';
+import { useMultiStepForm, type RecapConfig } from '../hooks/useMultiStepForm';
+import { type MultiStepFormStep } from '../utils/mutliStep/types';
 import { cn } from '@/libs/utils';
-import { toast } from 'sonner';
-import Form from './Form';
-import FormToast from './FormToast';
+import FormGlobalError from './FormToast';
 
 interface WithProgressBar {
 	on: true;
@@ -106,11 +105,16 @@ export function MultiStepForm<T extends FieldValues>({
 								key={String(field.name)}
 								field={field}
 								control={form.control}
-								disabled={isSubmitting || isValidating}
+								disabled={isSubmitting || isValidating || isGlobalError}
 							/>
 						))
 					)}
 				</CardContent>
+				{form.formState.errors.form && (
+					<CardFooter>
+						<FormGlobalError error={form.formState.errors.form} />
+					</CardFooter>
+				)}
 			</Card>
 			<MultiStepButtons
 				isFirstStep={isFirstStep}
@@ -125,9 +129,6 @@ export function MultiStepForm<T extends FieldValues>({
 				}}
 				payload={buttons}
 			/>
-			{form.formState.errors.form && (
-				<FormToast error={form.formState.errors.form} />
-			)}
 		</form>
 	);
 }

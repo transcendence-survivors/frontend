@@ -1,5 +1,6 @@
 import { Button } from '@ui/button';
 import { Spinner } from '@/components/ui/spinner';
+import { cn } from '@/libs/utils';
 
 export interface MutliStepButtonsPayload {
 	backText: string;
@@ -17,7 +18,7 @@ export interface MutliStepButtonsState {
 	disableSubmit: boolean;
 }
 
-interface MultiStepNavProps {
+interface MultiStepNavProps extends React.HTMLAttributes<HTMLElement> {
 	isFirstStep: boolean;
 	isLastStep: boolean;
 	back: () => void;
@@ -38,6 +39,8 @@ const MultiStepButtons = ({
 		validatingText,
 		submittedText,
 	},
+	className,
+	...props
 }: MultiStepNavProps) => {
 	const isLoading = isValidating || isSubmitting;
 
@@ -51,7 +54,7 @@ const MultiStepButtons = ({
 	};
 
 	return (
-		<nav className='flex space-x-2'>
+		<nav className={cn('flex space-x-2', className)} {...props}>
 			{!isFirstStep && (
 				<Button type='button' variant='outline' onClick={back}>
 					{backText}

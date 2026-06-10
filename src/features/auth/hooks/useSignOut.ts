@@ -5,19 +5,24 @@ import { toast } from 'sonner';
 import { logoutRequest } from '../api/logout';
 import { useRouter } from '@i18n/utils/navigation';
 
-const useLogOut = () => {
+interface useSignOutProps {
+	successMessage: string;
+	errorMessage: string;
+}
+
+const useSignOut = ({ successMessage, errorMessage }: useSignOutProps) => {
 	const router = useRouter();
 
 	return useMutation({
 		mutationFn: logoutRequest,
 		onSuccess: () => {
-			toast.success('Logged out successfully');
+			toast.success(successMessage);
 			router.push('/login');
 		},
-		onError: (error) => {
-			toast.error('Failed to log out');
+		onError: () => {
+			toast.error(errorMessage);
 		},
 	});
 };
 
-export default useLogOut;
+export default useSignOut;

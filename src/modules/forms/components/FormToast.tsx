@@ -1,29 +1,38 @@
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { type GlobalError } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { FORM_ERRORS } from '../constants/error';
 import { isI18nKey } from '@/modules/i18n/utils/isKey';
+import { cn } from '@/libs/utils';
 
-interface FormToastProps {
+interface FormToastProps extends React.HTMLAttributes<HTMLElement> {
 	error: GlobalError;
 }
 
-const FormToast = ({ error: { message } }: FormToastProps) => {
+const FormGlobalError = ({ error: { message }, className, ...props }: FormToastProps) => {
 	const t = useTranslations();
 
-	useEffect(() => {
+	const error = useMemo(() => {
 		const value = message || '';
-		if (!isI18nKey(t, value)) {
-			toast.error(t(FORM_ERRORS.internal_server_error));
-		} else toast.error(t(value));
+		return isI18nKey(t, value) ? t(value) : t(FORM_ERRORS.internal_server_error);
+	}, [t, message]);
+
+	useEffect(() => {
+		toast.error(error);
 
 		return () => {
 			toast.dismiss();
 		};
-	}, [message, t]);
+	}, [error, t]);
 
-	return null;
+	return (
+		<small
+			className={cn('text-destructive text-center block mx-auto ', className)}
+			{...props}>
+			{error}
+		</small>
+	);
 };
 
-export default FormToast;
+export default FormGlobalError;

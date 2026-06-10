@@ -48,13 +48,15 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 			<body className='min-h-full flex flex-col'>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
-						<QuerryProvider>{children}</QuerryProvider>AD
+						<QuerryProvider>{children}</QuerryProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<Toaster
 					closeButton={true}
-					containerAriaLabel='Notification container'
 					duration={3000}
+					richColors
+					expand
+					theme='dark'
 				/>
 			</body>
 		</html>

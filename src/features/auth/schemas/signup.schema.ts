@@ -64,27 +64,29 @@ const userNameValidator: StepValidationFn<SignUpFormValues> = async ({
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 const signUpSchema = z
 	.object({
-		email: z.email({ message: FORM_ERRORS.email }),
+		email: z
+			.email({ message: FORM_ERRORS.email })
+			.lowercase({ message: FORM_ERRORS.lowercase }),
 		username: z
-			.string({ message: FORM_ERRORS.type })
+			.string({ message: FORM_ERRORS.string })
 			.min(3, { message: i18nError(FORM_ERRORS.minLength, { min: 3 }) }),
 
 		firstName: z
-			.string({ message: FORM_ERRORS.type })
+			.string({ message: FORM_ERRORS.string })
 			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
 		lastName: z
-			.string({ message: FORM_ERRORS.type })
+			.string({ message: FORM_ERRORS.string })
 			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
 		displayName: z
-			.string({ message: FORM_ERRORS.type })
+			.string({ message: FORM_ERRORS.string })
 			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
 		birthdate: z
-			.date({ message: FORM_ERRORS.type })
+			.date({ message: FORM_ERRORS.date })
 			.refine((val) => isOlderThan13(val), {
 				message: FORM_ERRORS.age_restriction,
 			}),
 		bio: z
-			.string({ message: FORM_ERRORS.type })
+			.string({ message: FORM_ERRORS.string })
 			.max(160, { message: i18nError(FORM_ERRORS.maxLength, { max: 160 }) })
 			.optional(),
 
@@ -111,11 +113,6 @@ const signUpSteps = [
 		title: 'account.title',
 		description: 'account.account_desc',
 		fields: [
-			{
-				name: 'birthdate',
-				label: 'account.phone',
-				component: 'date',
-			},
 			{
 				name: 'email',
 				label: 'account.email',
@@ -153,6 +150,11 @@ const signUpSteps = [
 				label: 'profile.displayName',
 				component: 'input',
 				placeholder: 'profile.displayNamePlaceholder',
+			},
+			{
+				name: 'birthdate',
+				label: 'profile.birthdate',
+				component: 'date',
 			},
 			{
 				name: 'bio',
@@ -201,7 +203,7 @@ const signUpSteps = [
 	},
 ] satisfies MultiStepFormStep<SignUpFormValues>[];
 
-const signUpValues: SignUpFormValues = {
+const signUpValues: Partial<SignUpFormValues> = {
 	email: '',
 	username: '',
 	firstName: '',
@@ -211,7 +213,6 @@ const signUpValues: SignUpFormValues = {
 	password: '',
 	confirmPassword: '',
 	acceptTerms: false,
-	birthdate: new Date('2000-01-01'),
 };
 
 export { signUpValues, signUpSchema, signUpSteps };

@@ -98,11 +98,15 @@ type RouteMap = typeof APP_ROUTES;
 type RouteKey = keyof RouteMap;
 type CanonicalHref = RouteMap[RouteKey]['en'];
 
+type RedirectedUrls = Record<string, CanonicalHref> | { callbackKey: string };
+
 const REDIRECTED_URLS = {
+	callbackKey: 'callbackUrl',
 	403: APP_ROUTES.login.en,
 	loggin: APP_ROUTES.login.en,
 	success: APP_ROUTES.home.en,
-} satisfies Record<string, CanonicalHref>;
+	profile: APP_ROUTES.profile.en,
+} as const satisfies RedirectedUrls;
 
 export { APP_ROUTES, REDIRECTED_URLS };
 export type { RouteMap, RouteKey, CanonicalHref };

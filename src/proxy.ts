@@ -20,7 +20,7 @@ export default async function middleware(req: NextRequest) {
 	const res = await getUserFromRequest(req);
 	if (!res) {
 		const url = new URL(REDIRECTED_URLS.loggin, req.url);
-		url.searchParams.set('callbackUrl', pathname);
+		url.searchParams.set(REDIRECTED_URLS.callbackKey, pathname);
 		return NextResponse.redirect(url);
 	}
 	const { user, setCookieHeaders } = res;

@@ -12,7 +12,7 @@ import {
 import AvatarProfile, { AvatarProfileProps } from './AvatarProfile';
 import { NavLink, useRouter } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
-import { SettingsIcon } from 'lucide-react';
+import { SettingsIcon, User } from 'lucide-react';
 import LocaleDropdownSubMenu from '@i18n/components/LocaleDropdownSubMenu';
 import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
 import ThemeDropdownSubMenu from '@themes/components/ThemeDropdownSubMenu';
@@ -26,9 +26,9 @@ interface DropDownLink extends NavLink {
 }
 
 const links: DropDownLink[] = [
-	{ key: 'profile', labelKey: 'profile', icon: <SettingsIcon /> },
+	{ key: 'profile', labelKey: 'profile', icon: <User /> },
 	{ key: 'settings', labelKey: 'settings', icon: <SettingsIcon /> },
-];
+] as const;
 
 export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 	const t = useTranslations('nav');

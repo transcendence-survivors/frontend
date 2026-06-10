@@ -19,6 +19,7 @@ interface ControlledFieldProps<T extends FieldValues> {
 	control: Control<T>;
 	label: string;
 	isRequired?: boolean;
+	layout?: 'vertical' | 'horizontal';
 	children: (props: {
 		field: ControllerRenderProps<T, Path<T>>;
 		fieldState: ControllerFieldState;
@@ -31,6 +32,7 @@ const ControlledField = <T extends FieldValues>({
 	control,
 	label,
 	isRequired = true,
+	layout = 'vertical',
 	children,
 }: ControlledFieldProps<T>) => {
 	const t = useTranslations();
@@ -40,8 +42,13 @@ const ControlledField = <T extends FieldValues>({
 			name={name}
 			control={control}
 			render={({ field, fieldState, formState }) => (
-				<Field data-invalid={fieldState.invalid} className='gap-1'>
-					<FieldLabel className='grid gap-2'>
+				<Field data-invalid={fieldState.invalid} className='gap-0'>
+					<FieldLabel
+						className={
+							layout === 'vertical'
+								? 'grid gap-2'
+								: 'flex justify-between item-center gap-1'
+						}>
 						<span>
 							{label}
 							{isRequired && (
@@ -51,10 +58,13 @@ const ControlledField = <T extends FieldValues>({
 								</>
 							)}
 						</span>
-						{children({ field, fieldState, formState })}
+						<div>{children({ field, fieldState, formState })}</div>
 					</FieldLabel>
 					{fieldState.invalid && (
-						<FieldErrorComp errors={[translateError(t, fieldState.error)]} />
+						<FieldErrorComp
+							errors={[translateError(t, fieldState.error)]}
+							className='ml-1'
+						/>
 					)}
 				</Field>
 			)}

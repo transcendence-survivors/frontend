@@ -188,14 +188,18 @@ function FieldError({
 		];
 
 		if (uniqueErrors?.length == 1) {
-			return uniqueErrors[0]?.message;
+			return <small>{uniqueErrors[0]?.message}</small>;
 		}
 
 		return (
 			<ul className='ml-4 flex list-disc flex-col gap-1'>
 				{uniqueErrors.map(
 					(error, index) =>
-						error?.message && <li key={index}>{error.message}</li>,
+						error?.message && (
+							<li key={index}>
+								<small>{error.message}</small>
+							</li>
+						),
 				)}
 			</ul>
 		);
@@ -209,7 +213,7 @@ function FieldError({
 		<div
 			role='alert'
 			data-slot='field-error'
-			className={cn('text-sm font-normal text-destructive', className)}
+			className={cn('text-base font-normal text-destructive', className)}
 			{...props}>
 			{content}
 		</div>

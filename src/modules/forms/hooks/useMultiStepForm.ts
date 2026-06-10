@@ -7,6 +7,7 @@ import { useMultiStep } from '../../../hooks/useMultiStep';
 import { runValidators } from '../utils/mutliStep/validators';
 import { MultiStepFormStep } from '../utils/mutliStep/types';
 import { RecapGroupPayload } from '../components/Recap/RecapGroup';
+import { FormFieldParams } from '../types/FormFieldParams';
 
 interface WithRecap {
 	on: true;
@@ -156,13 +157,32 @@ export const useMultiStepForm = <T extends FieldValues>(
 
 	const getRecap = useCallback((): RecapGroupPayload[] => {
 		const allValues = form.getValues();
+
+		const getValue = (field: FormFieldParams<T>) => {
+			if (field.component !== 'select') {
+				return allValues[field.name];
+			}
+			for (const group of field.optionsGroups) {
+				const option = group.options.find(
+					(option) => option.value === allValues[field.name],
+				);
+				if (option) {
+					return option.label;
+				}
+			}
+			return allValues[field.name];
+		};
+
 		return steps.map((s) => ({
 			title: s.title,
-			fields: s.fields.map((field) => ({
-				label: String(field.label),
-				asPassword: field.component === 'input' && field.variant === 'password',
-				value: allValues[field.name],
-			})),
+			fields: s.fields.map((field) => {
+				return {
+					label: String(field.label),
+					asPassword:
+						field.component === 'input' && field.variant === 'password',
+					value: getValue(field),
+				};
+			}),
 		}));
 	}, [steps, form]);
 

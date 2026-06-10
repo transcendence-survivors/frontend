@@ -58,16 +58,28 @@
 				"phone": "Phone Number",
 				"phonePlaceholder": "+33 6 12 34 56 78"
 			},
-			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
-				"displayNamePlaceholder": "John Doe",
+			"personal": {
+				"title": "Personal Information",
+				"desc": "Provide some personal details to complete your profile.",
 				"firstName": "First Name",
 				"firstNamePlaceholder": "John",
 				"lastName": "Last Name",
 				"lastNamePlaceholder": "Doe",
 				"birthdate": "Birthdate",
+				"gender": "Gender",
+				"genderPlaceholder": "Select your gender",
+				"genderOptions": {
+					"label": "Gender Options",
+					"male": "Male",
+					"female": "Female",
+					"other": "Other"
+				}
+			},
+			"profile": {
+				"title": "Profile",
+				"desc": "Tell us more about you to personalize your experience.",
+				"displayName": "Display Name",
+				"displayNamePlaceholder": "John Doe",
 				"bio": "Biography",
 				"bioPlaceholder": "Tell us a bit about yourself"
 			},

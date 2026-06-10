@@ -75,14 +75,16 @@ const signUpSchema = z
 		lastName: z
 			.string({ message: FORM_ERRORS.string })
 			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
-		displayName: z
-			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
 		birthdate: z
 			.date({ message: FORM_ERRORS.date })
 			.refine((val) => isOlderThan13(val), {
 				message: FORM_ERRORS.age_restriction,
 			}),
+		gender: z.enum(['male', 'female', 'other'], { message: FORM_ERRORS.enum }),
+
+		displayName: z
+			.string({ message: FORM_ERRORS.string })
+			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
 		bio: z
 			.string({ message: FORM_ERRORS.string })
 			.max(160, { message: i18nError(FORM_ERRORS.maxLength, { max: 160 }) })
@@ -129,32 +131,64 @@ const signUpSteps = [
 		validators: [emailValidator, userNameValidator],
 	},
 	{
-		title: 'profile.title',
-		description: 'profile.desc',
+		title: 'personal.title',
+		description: 'personal.desc',
 		fields: [
 			{
+				name: 'gender',
+				label: 'personal.gender',
+				component: 'select',
+				placeholder: 'personal.genderPlaceholder',
+				optionsGroups: [
+					{
+						label: 'personal.genderOptions.label',
+						options: [
+							{
+								value: 'male',
+								label: 'personal.genderOptions.male',
+							},
+							{
+								value: 'female',
+								label: 'personal.genderOptions.female',
+							},
+							{
+								value: 'other',
+								label: 'personal.genderOptions.other',
+							},
+						],
+					},
+				],
+			},
+			{
 				name: 'firstName',
-				label: 'profile.firstName',
+				label: 'personal.firstName',
 				component: 'input',
-				placeholder: 'profile.firstNamePlaceholder',
+				placeholder: 'personal.firstNamePlaceholder',
 			},
 			{
 				name: 'lastName',
-				label: 'profile.lastName',
+				label: 'personal.lastName',
 				component: 'input',
-				placeholder: 'profile.lastNamePlaceholder',
+				placeholder: 'personal.lastNamePlaceholder',
 			},
+			{
+				name: 'birthdate',
+				label: 'personal.birthdate',
+				component: 'date',
+			},
+		],
+	},
+	{
+		title: 'profile.title',
+		description: 'profile.desc',
+		fields: [
 			{
 				name: 'displayName',
 				label: 'profile.displayName',
 				component: 'input',
 				placeholder: 'profile.displayNamePlaceholder',
 			},
-			{
-				name: 'birthdate',
-				label: 'profile.birthdate',
-				component: 'date',
-			},
+
 			{
 				name: 'bio',
 				label: 'profile.bio',

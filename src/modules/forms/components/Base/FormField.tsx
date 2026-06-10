@@ -111,7 +111,9 @@ const FormField = <T extends FieldValues>({
 				);
 			case 'select':
 				return (
-					<Select {...communProps}>
+					<Select
+						{...communProps}
+						onValueChange={(value) => rhfField.onChange(value)}>
 						<SelectTrigger className='w-full'>
 							<SelectValue placeholder={field.placeholder} />
 						</SelectTrigger>

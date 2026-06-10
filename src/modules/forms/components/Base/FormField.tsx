@@ -75,16 +75,6 @@ const FormField = <T extends FieldValues>({
 								value={rhfField.value ?? ''}
 							/>
 						);
-					case 'date':
-						return (
-							<DatePicker
-								{...communProps}
-								setSelectedDate={rhfField.onChange}
-								selectedDate={rhfField.value}
-								// other props can be passed like
-								// disabledBefore or disabledAfter
-							/>
-						);
 					default:
 						return (
 							<Input
@@ -101,6 +91,14 @@ const FormField = <T extends FieldValues>({
 						{...communProps}
 						value={rhfField.value ?? ''}
 						placeholder={field.placeholder}
+					/>
+				);
+			case 'date':
+				return (
+					<DatePicker
+						{...communProps}
+						selectedDate={rhfField.value}
+						setSelectedDate={rhfField.onChange}
 					/>
 				);
 			case 'checkbox':

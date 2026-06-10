@@ -114,8 +114,7 @@ const signUpSteps = [
 			{
 				name: 'birthdate',
 				label: 'account.phone',
-				component: 'input',
-				variant: 'date',
+				component: 'date',
 			},
 			{
 				name: 'email',

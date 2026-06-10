@@ -14,10 +14,6 @@ interface FormInputPhone {
 	format?: string;
 }
 
-interface FormInputDate {
-	variant: 'date';
-}
-
 interface FormInputDefault {
 	variant?: 'default';
 	type?: string;
@@ -25,17 +21,15 @@ interface FormInputDefault {
 
 type FormInput = {
 	component: 'input';
-} & (
-	| FormInputPassword
-	| FormInputEmail
-	| FormInputPhone
-	| FormInputDate
-	| FormInputDefault
-);
+} & (FormInputPassword | FormInputEmail | FormInputPhone | FormInputDefault);
 
 interface FormTextarea {
 	component: 'textarea';
 	addon?: FormFieldAddon;
+}
+
+interface FormDate {
+	component: 'date';
 }
 
 interface FormOption {
@@ -64,6 +58,6 @@ interface FormFieldBase<T extends FieldValues> {
 	required?: boolean;
 }
 type FormFieldParams<T extends FieldValues> = FormFieldBase<T> &
-	(FormInput | FormTextarea | FormSelect | FormCheckBox);
+	(FormInput | FormTextarea | FormSelect | FormCheckBox | FormDate);
 
 export type { FormFieldBase, FormFieldParams };

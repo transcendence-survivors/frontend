@@ -48,7 +48,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 			<body className='min-h-full flex flex-col'>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
-						<QuerryProvider>{children}</QuerryProvider>
+						<QuerryProvider>{children}</QuerryProvider>AD
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<Toaster

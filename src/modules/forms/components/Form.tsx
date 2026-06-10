@@ -1,113 +1,106 @@
-'use client';
-
-import { type ZodType } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-
 import FormField from './Base/FormField';
-import { Field } from '@ui/field';
-
+import { type FieldValues, type UseFormReturn } from 'react-hook-form';
+import { type FormFieldParams } from '../types/FormFieldParams';
 import {
-	useForm,
-	type FieldValues,
-	type Resolver,
-	type DefaultValues,
-} from 'react-hook-form';
+	Card,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+} from '@/components/ui/card';
+import FormGlobalError from './FormGlobalError';
+import { cn } from '@/libs/utils';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
+import { type ReactNode } from 'react';
 
-import SubmitButton, { type SubmitButtonProps } from './Base/SubmitButton';
-import ResetButton, { type ResetButtonProps } from './Base/ResetButton';
-import { FormFieldParams } from '../types/FormFieldParams';
-
-type Schema<TOut extends FieldValues> = ZodType<TOut, FieldValues>;
-
-interface TruethyFormResetButtonProps extends Omit<ResetButtonProps, 'isDisabled'> {
-	show: true;
-}
-interface FalsyFormResetButtonProps {
-	show: false;
-}
-type FormResetButtonProps = TruethyFormResetButtonProps | FalsyFormResetButtonProps;
-
-type FormSubmitButtonProps = Omit<
-	SubmitButtonProps,
-	'isLoading' | 'wasSubmitted' | 'isDisabled'
->;
-
-interface FormState {
-	isPending?: boolean;
-	isError?: boolean;
-	wasSubmitted?: boolean;
-}
-
-export interface FormProps<T extends FieldValues> {
+export type FormProps<T extends FieldValues> = Omit<
+	React.HTMLAttributes<HTMLFormElement>,
+	'onSubmit' | 'title'
+> & {
+	form: UseFormReturn<T>;
 	fields: FormFieldParams<T>[];
-	schema: Schema<T>;
-	defaultValues: DefaultValues<T>;
-	onSubmit: (data: T) => void;
-	states: FormState;
-	allowMultipleSubmissions?: boolean;
-	resetBtn?: FormResetButtonProps;
-	submitBtn: FormSubmitButtonProps;
-}
+	onSubmit: (data: T) => Promise<void> | void;
+	button: {
+		submitText: string;
+		submittingText: string;
+		submittedText: string;
+	};
+	title: ReactNode;
+	description?: ReactNode;
+	bottomDescription?: ReactNode;
+};
 
 export default function Form<T extends FieldValues>({
+	form,
 	fields,
-	schema,
-	defaultValues,
 	onSubmit,
-	states: { wasSubmitted = false },
-	allowMultipleSubmissions = false,
-	resetBtn = { show: false },
-	submitBtn,
+	title,
+	description,
+	bottomDescription,
+	button,
+	className,
+	...props
 }: FormProps<T>) {
-	const {
-		control,
-		handleSubmit,
-		reset,
-		formState: { isDirty, isSubmitting },
-	} = useForm<T>({
-		resolver: zodResolver(schema) as Resolver<T>,
-		defaultValues,
-	});
+	const isSubmitting = form.formState.isSubmitting;
+	const isGlobalError = !!form.formState.errors.root;
 
-	const isFieldDisabled = isSubmitting || (wasSubmitted && !allowMultipleSubmissions);
-
-	useEffect(() => {
-		if (wasSubmitted) reset();
-	}, [wasSubmitted, reset]);
-
-	const renderResetBtn = () => {
-		if (!resetBtn.show) return null;
-		const { show, ...resetBtnProps } = resetBtn;
-		return show ? (
-			<ResetButton
-				{...resetBtnProps}
-				isDisabled={isFieldDisabled || !isDirty}
-				onClick={() => reset()}
-			/>
-		) : null;
+	const getText = () => {
+		if (isSubmitting) return button.submittingText;
+		if (form.formState.isSubmitSuccessful) return button.submittedText;
+		return button.submitText;
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className='space-y-4' noValidate>
-			{fields.map((field, index) => (
-				<FormField
-					key={index}
-					field={field}
-					control={control}
-					disabled={isFieldDisabled}
-				/>
-			))}
-			<Field>
-				{renderResetBtn()}
-				<SubmitButton
-					{...submitBtn}
-					isLoading={isSubmitting}
-					wasSubmitted={wasSubmitted}
-					isDisabled={isFieldDisabled}
-					isEmptyFields={!isDirty}
-				/>
-			</Field>
+		<form
+			noValidate
+			className={cn('space-y-4', className)}
+			onSubmit={form.handleSubmit(onSubmit)}
+			{...props}>
+			<Card>
+				<CardHeader>
+					<CardTitle>{title}</CardTitle>
+					{description && <CardDescription>{description}</CardDescription>}
+				</CardHeader>
+				<CardContent className='space-y-4'>
+					{fields.map((field) => (
+						<FormField
+							key={String(field.name)}
+							field={field}
+							control={form.control}
+							disabled={isSubmitting || isGlobalError}
+						/>
+					))}
+				</CardContent>
+				{form.formState.errors.form && (
+					<CardFooter>
+						<FormGlobalError error={form.formState.errors.form} />
+					</CardFooter>
+				)}
+				{form.formState.errors.root && (
+					<CardFooter>
+						<FormGlobalError error={form.formState.errors.root} />
+					</CardFooter>
+				)}
+			</Card>
+
+			<div className='flex items-center'>
+				{bottomDescription && (
+					<CardDescription className='w-full'>
+						{bottomDescription}
+					</CardDescription>
+				)}
+				<Button
+					type='submit'
+					className='ml-auto'
+					disabled={!form.formState.isDirty || isSubmitting || isGlobalError}>
+					<>
+						<span>{getText()}</span>
+						{isSubmitting && <Spinner />}
+					</>
+				</Button>
+			</div>
 		</form>
 	);
 }

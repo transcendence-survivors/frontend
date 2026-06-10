@@ -24,7 +24,7 @@ const FormGlobalError = ({ error: { message }, className, ...props }: FormToastP
 		return () => {
 			toast.dismiss();
 		};
-	}, [error, t]);
+	}, [error]);
 
 	return (
 		<small

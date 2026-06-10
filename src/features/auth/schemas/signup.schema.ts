@@ -26,17 +26,15 @@ const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 				],
 			};
 		}
-		if (res.code === 500) {
-			return {
-				ok: false,
-				errors: [
-					{
-						field: 'form',
-						message: FORM_ERRORS.internal_server_error,
-					},
-				],
-			};
-		}
+		return {
+			ok: false,
+			errors: [
+				{
+					field: 'root',
+					message: FORM_ERRORS.internal_server_error,
+				},
+			],
+		};
 	}
 	return { ok: true };
 };
@@ -91,13 +89,14 @@ const signUpSchema = z
 			.optional(),
 
 		password: z
-			.string()
+			.string({ message: FORM_ERRORS.string })
 			.min(6, { message: i18nError(FORM_ERRORS.minLength, { min: 6 }) })
-			.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) }),
-		confirmPassword: z
-			.string()
-			.min(6, { message: i18nError(FORM_ERRORS.minLength, { min: 6 }) })
-			.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) }),
+			.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) })
+			.regex(/[A-Z]/, { message: FORM_ERRORS.password_uppercase })
+			.regex(/[a-z]/, { message: FORM_ERRORS.password_lowercase })
+			.regex(/[0-9]/, { message: FORM_ERRORS.password_number })
+			.regex(/[^A-Za-z0-9]/, { message: FORM_ERRORS.password_special }),
+		confirmPassword: z.string({ message: FORM_ERRORS.string }),
 
 		acceptTerms: z
 			.boolean({ message: FORM_ERRORS.mustAcceptTerms })

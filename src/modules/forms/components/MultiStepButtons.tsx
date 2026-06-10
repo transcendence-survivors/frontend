@@ -47,7 +47,6 @@ const MultiStepButtons = ({
 	const getText = () => {
 		if (isValidating) return validatingText;
 		if (isSubmitting) return submittingText;
-		if (isValidating) return validatingText;
 		if (isSubmitted) return submittedText;
 		if (isLastStep) return submitText;
 		return continueText;

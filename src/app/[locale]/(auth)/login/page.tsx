@@ -1,9 +1,11 @@
-import SignUpForm from '@/features/auth/components/SignUpForm';
+import SignInForm from '@/features/auth/components/SignInForm';
 
 export default function LoginPage() {
 	return (
-		<main className='flex min-h-screen items-center justify-center'>
-			<SignUpForm />
+		<main className='flex flex-col min-h-[90vh] items-center justify-center '>
+			<section className='w-full max-w-lg px-4'>
+				<SignInForm />
+			</section>
 		</main>
 	);
 }

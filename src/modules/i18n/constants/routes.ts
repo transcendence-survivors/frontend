@@ -36,6 +36,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/anmelden',
 		it: '/accesso',
 	},
+	forgotPassword: {
+		en: '/forgot-password',
+		de: '/passwort-vergessen',
+		fr: '/mot-de-passe-oublie',
+		es: '/olvidar-contrasena',
+		che: '/passwort-vergessen',
+		it: '/password-dimenticata',
+	},
 	game: {
 		en: '/game',
 		de: '/spiel',

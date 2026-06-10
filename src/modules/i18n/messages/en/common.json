@@ -20,11 +20,25 @@
 		},
 		"signin": {
 			"title": "Sign In",
+
+			"account_exists": "Already have an account ?",
+			"sign_up": "Sign Up",
+			"forgot_password": "Forgot your password ?",
+			"reset_password": "Reset Password",
+
+			"username": "Username",
+			"usernamePlaceholder": "john_doe",
+
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
+
 			"password": "Password",
 			"passwordPlaceholder": "Enter your password",
+
 			"submit": "Sign In",
+			"submitting": "Signing In",
+			"submitted": "Signed In",
+
 			"forgotPassword": "Forgot your password?",
 			"noAccount": "Don't have an account? Sign Up",
 
@@ -107,13 +121,20 @@
 
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
-			"passwordsMustMatch": "passwords must match",
+
+			"password_match": "Passwords must match",
+			"password_uppercase": "Password must contain at least one uppercase letter",
+			"password_lowercase": "Password must contain at least one lowercase letter",
+			"password_number": "Password must contain at least one number",
+			"password_special": "Password must contain at least one special character",
 
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
 
 			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register"
+			"age_restriction": "You must be at least 13 years old to register",
+
+			"invalid_credentials": "Invalid credentials. Please verify your information and try again."
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

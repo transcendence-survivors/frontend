@@ -3,6 +3,7 @@ import { UserRole } from '../schemas/user.schema';
 
 const publicRoutes = new Set<CanonicalHref>([
 	APP_ROUTES.register.en,
+	APP_ROUTES.forgotPassword.en,
 	APP_ROUTES.login.en,
 	APP_ROUTES.home.en,
 	APP_ROUTES.posts.en,

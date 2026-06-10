@@ -53,6 +53,7 @@ const handleRefreshToken = async (req: NextRequest): Promise<RefreshResult> => {
 		if (!res.ok) {
 			return null;
 		}
+
 		const setCookieHeaders = res.headers.getSetCookie();
 		const accessToken = setCookieHeaders
 			.find((c) => c.startsWith(`${COOKIE_ACCESS_TOKEN}=`))

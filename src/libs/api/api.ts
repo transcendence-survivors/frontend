@@ -1,12 +1,10 @@
-import { request } from './client';
-
-export type ApiRequestInit = RequestInit;
+import { FetchOptions, request } from './client';
 
 export const api = {
-	get: <T>(path: string, init?: ApiRequestInit) =>
+	get: <T>(path: string, init?: FetchOptions) =>
 		request<T>(path, { ...init, method: 'GET' }),
 
-	post: <T>(path: string, body?: unknown, init?: ApiRequestInit) =>
+	post: <T>(path: string, body?: unknown, init?: FetchOptions) =>
 		request<T>(path, {
 			...init,
 			method: 'POST',
@@ -17,7 +15,7 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
-	put: <T>(path: string, body?: unknown, init?: ApiRequestInit) =>
+	put: <T>(path: string, body?: unknown, init?: FetchOptions) =>
 		request<T>(path, {
 			...init,
 			method: 'PUT',
@@ -28,6 +26,6 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
-	delete: <T>(path: string, init?: ApiRequestInit) =>
+	delete: <T>(path: string, init?: FetchOptions) =>
 		request<T>(path, { ...init, method: 'DELETE' }),
 };

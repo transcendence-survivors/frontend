@@ -6,7 +6,6 @@ import { signInEmail, signInUsername } from '../api/signIn';
 
 interface useSignInMessages {
 	successMessage: string;
-	errorMessage: string;
 }
 
 const useSignIn = <TVariables, TData, TError>(
@@ -22,9 +21,6 @@ const useSignIn = <TVariables, TData, TError>(
 			const redirect =
 				url.get(REDIRECTED_URLS.callbackKey) || REDIRECTED_URLS.profile;
 			router.replace(redirect);
-		},
-		onError: () => {
-			toast.error(messages.errorMessage);
 		},
 	});
 };

@@ -170,6 +170,10 @@
 		@apply font-sans;
 	}
 
+	h1 {
+		@apply text-2xl font-bold;
+	}
+
 	.header {
 		height: var(--header-height);
 		@apply sticky top-0 z-10 left-0 right-0;
@@ -188,7 +192,9 @@
 		}
 
 		.scrollableContainer {
-			--_max-height: calc(100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem);
+			--_max-height: calc(
+				100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem
+			);
 
 			@apply overflow-y-auto overflow-x-clip;
 			max-height: var(--_max-height);

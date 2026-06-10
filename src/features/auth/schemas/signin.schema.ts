@@ -4,8 +4,12 @@ import { z } from 'zod';
 
 export type SignInFormValues = z.infer<typeof signInSchema>;
 const signInSchema = z.object({
-	username: z.string({ message: FORM_ERRORS.string }),
-	password: z.string({ message: FORM_ERRORS.string }),
+	username: z
+		.string({ message: FORM_ERRORS.string })
+		.nonempty({ message: FORM_ERRORS.required }),
+	password: z
+		.string({ message: FORM_ERRORS.string })
+		.nonempty({ message: FORM_ERRORS.required }),
 });
 
 const signInFields = [

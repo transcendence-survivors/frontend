@@ -6,7 +6,7 @@ interface StepValidationSuccess {
 }
 
 export interface StepValidationFieldError<T> {
-	field: keyof T | 'form';
+	field: keyof T | 'form' | 'root';
 	message: string;
 }
 

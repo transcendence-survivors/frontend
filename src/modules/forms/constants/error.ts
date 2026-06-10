@@ -21,11 +21,16 @@ export const FORM_ERRORS = {
 	uppercase: `${PREFIX_KEY}.uppercase`,
 
 	mustAcceptTerms: `${PREFIX_KEY}.mustAcceptTerms`,
-	passwordsMustMatch: `${PREFIX_KEY}.passwordsMustMatch`,
+	passwordsMustMatch: `${PREFIX_KEY}.password_match`,
+	password_uppercase: `${PREFIX_KEY}.password_uppercase`,
+	password_lowercase: `${PREFIX_KEY}.password_lowercase`,
+	password_number: `${PREFIX_KEY}.password_number`,
+	password_special: `${PREFIX_KEY}.password_special`,
 
 	age_restriction: `${PREFIX_KEY}.age_restriction`,
 	email_already_in_use: `${PREFIX_KEY}.email_already_in_use`,
 	username_already_in_use: `${PREFIX_KEY}.username_already_in_use`,
 
+	invalid_credentials: `${PREFIX_KEY}.invalid_credentials`,
 	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
 } as const satisfies Record<string, MessageKeys>;

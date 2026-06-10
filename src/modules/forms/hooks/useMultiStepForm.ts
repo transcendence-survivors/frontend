@@ -183,7 +183,7 @@ export const useMultiStepForm = <T extends FieldValues>(
 
 		isValidating,
 		isSubmitting: form.formState.isSubmitting,
-		isGlobalError: !!form.formState.errors.form,
+		isGlobalError: !!form.formState.errors.root,
 
 		getRecap,
 		handleGoTo,

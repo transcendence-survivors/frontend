@@ -17,7 +17,7 @@ import MultiStepButtons, { type MutliStepButtonsPayload } from './MultiStepButto
 import { useMultiStepForm, type RecapConfig } from '../hooks/useMultiStepForm';
 import { type MultiStepFormStep } from '../utils/mutliStep/types';
 import { cn } from '@/libs/utils';
-import FormGlobalError from './FormToast';
+import FormGlobalError from './FormGlobalError';
 
 interface WithProgressBar {
 	on: true;
@@ -74,8 +74,8 @@ export function MultiStepForm<T extends FieldValues>({
 		<form
 			noValidate
 			className={cn('space-y-4', className)}
-			{...props}
-			onSubmit={handleSubmit}>
+			onSubmit={handleSubmit}
+			{...props}>
 			{progressBar.on && (
 				<FormProgress
 					totalSteps={totalSteps}
@@ -113,6 +113,11 @@ export function MultiStepForm<T extends FieldValues>({
 				{form.formState.errors.form && (
 					<CardFooter>
 						<FormGlobalError error={form.formState.errors.form} />
+					</CardFooter>
+				)}
+				{form.formState.errors.root && (
+					<CardFooter>
+						<FormGlobalError error={form.formState.errors.root} />
 					</CardFooter>
 				)}
 			</Card>

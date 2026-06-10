@@ -211,7 +211,7 @@ const signUpValues: SignUpFormValues = {
 	password: '',
 	confirmPassword: '',
 	acceptTerms: false,
-	birthdate: new Date(),
+	birthdate: new Date('2000-01-01'),
 };
 
 export { signUpValues, signUpSchema, signUpSteps };

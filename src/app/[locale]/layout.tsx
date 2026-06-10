@@ -23,11 +23,6 @@ type Params = Promise<{
 	locale: string;
 }>;
 
-interface RootLayoutProps {
-	children: React.ReactNode;
-	params: Params;
-}
-
 interface MetadataProps {
 	params: Params;
 }
@@ -35,6 +30,11 @@ interface MetadataProps {
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
 	const locale = (await params).locale as Locale;
 	return METADATA[locale] || METADATA[DEFAULT_LOCALE];
+}
+
+interface RootLayoutProps {
+	children: React.ReactNode;
+	params: Params;
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {

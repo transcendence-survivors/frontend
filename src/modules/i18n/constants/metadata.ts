@@ -3,6 +3,62 @@ import type { Metadata } from 'next';
 
 const SITE_NAME = 'Transcendence Survivors';
 
+const metaTest = {
+	title: SITE_NAME,
+	description:
+		'The ultimate survival social network for gaming and adventure enthusiasts.',
+	keywords: [
+		'social network',
+		'gaming community',
+		'adventure',
+		'survival',
+		'video games',
+		'content sharing',
+		'social interaction',
+		'gaming',
+		'game enthusiasts',
+		'online community',
+		'sharing experiences',
+		'survival tips',
+		'game strategies',
+		'gaming news',
+		'video game events',
+		'game discussion groups',
+	],
+	openGraph: {
+		title: SITE_NAME,
+		description:
+			'The ultimate survival social network for gaming and adventure enthusiasts.',
+		url: 'https://example.com/en',
+		siteName: SITE_NAME,
+		type: 'website',
+		images: [
+			{
+				url: 'https://example.com/static/og-image-en.jpg',
+				secureUrl: 'https://example.com/static/og-image-en.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Preview of Transcendence Survivors',
+				type: 'image/jpg',
+			},
+		],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		site: '@transcendence_survivors',
+		title: SITE_NAME,
+		description:
+			'The ultimate survival social network for gaming and adventure enthusiasts.',
+		creator: '@transcendence_survivors',
+		images: [
+			{
+				url: 'https://example.com/static/og-image-en.jpg',
+				alt: 'Preview of Transcendence Survivors',
+			},
+		],
+	},
+};
+
 const METADATA = {
 	fr: {
 		title: SITE_NAME,
@@ -171,6 +227,9 @@ const METADATA = {
 			],
 		},
 	},
+	che: metaTest,
+	es: metaTest,
+	it: metaTest,
 } as const satisfies Record<Locale, Metadata>;
 
 export default METADATA;

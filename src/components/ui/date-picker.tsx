@@ -3,7 +3,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/libs/utils';
 import { CalendarIcon } from 'lucide-react';
-import React from 'react';
+import { type ComponentProps, useCallback, useMemo, useState } from 'react';
 import { getDateFormat, parseDateString, toDate } from '@/libs/date';
 import useLocale from '@i18n/hooks/useLocale';
 
@@ -13,7 +13,7 @@ type DatePickerProps = {
 	disabledBefore?: string | Date;
 	disabledAfter?: string | Date;
 	disabled?: boolean;
-} & Omit<React.ComponentProps<typeof Button>, 'disabled'>;
+} & Omit<ComponentProps<typeof Button>, 'disabled'>;
 
 interface PickerState {
 	partialInput: string;
@@ -32,29 +32,29 @@ function DatePicker({
 	...props
 }: DatePickerProps) {
 	const { dateLocale } = useLocale();
-	const [state, setState] = React.useState<PickerState>({
+	const [state, setState] = useState<PickerState>({
 		partialInput: '',
 		month: selectedDate ?? new Date(),
 		isOpen: false,
 	});
 
-	const format = React.useMemo(() => getDateFormat(dateLocale), [dateLocale]);
+	const format = useMemo(() => getDateFormat(dateLocale), [dateLocale]);
 
-	const disabledBeforeDate = React.useMemo(
+	const disabledBeforeDate = useMemo(
 		() => toDate(disabledBefore) ?? FALLBACK_START,
 		[disabledBefore],
 	);
-	const disabledAfterDate = React.useMemo(
+	const disabledAfterDate = useMemo(
 		() => toDate(disabledAfter) ?? new Date(),
 		[disabledAfter],
 	);
 
-	const isDateDisabled = React.useCallback(
+	const isDateDisabled = useCallback(
 		(date: Date) => date < disabledBeforeDate || date > disabledAfterDate,
 		[disabledBeforeDate, disabledAfterDate],
 	);
 
-	const displayValue = React.useMemo(() => {
+	const displayValue = useMemo(() => {
 		if (state.partialInput.length > 0) {
 			return state.partialInput;
 		}
@@ -74,7 +74,7 @@ function DatePicker({
 		return placeholder.join(format.separator);
 	}, [state.partialInput, selectedDate, format]);
 
-	const handleSelect = React.useCallback(
+	const handleSelect = useCallback(
 		(date: Date | undefined) => {
 			if (!date) return;
 			setSelectedDate(date);
@@ -88,7 +88,7 @@ function DatePicker({
 		[setSelectedDate],
 	);
 
-	const handleKeyDown = React.useCallback(
+	const handleKeyDown = useCallback(
 		(e: React.KeyboardEvent) => {
 			const base =
 				state.partialInput ||
@@ -143,17 +143,17 @@ function DatePicker({
 		[state.partialInput, selectedDate, setSelectedDate, format],
 	);
 
-	const toggleOpen = React.useCallback(
+	const toggleOpen = useCallback(
 		() => setState((prev) => ({ ...prev, isOpen: !prev.isOpen })),
 		[],
 	);
 
-	const handleOpenChange = React.useCallback(
+	const handleOpenChange = useCallback(
 		(open: boolean) => setState((prev) => ({ ...prev, isOpen: open })),
 		[],
 	);
 
-	const handleMonthChange = React.useCallback(
+	const handleMonthChange = useCallback(
 		(month: Date) => setState((prev) => ({ ...prev, month })),
 		[],
 	);

@@ -13,11 +13,13 @@ import {
 import { Field, FieldLabel, FieldError as FieldErrorComp } from '@ui/field';
 import { useTranslations } from 'next-intl';
 import { translateError } from '../../utils/translate/errors';
+import { FormFieldParams } from '../../types/FormFieldParams';
+import FormLabelAddon from './Addons/FormLabelAddon';
 
 interface ControlledFieldProps<T extends FieldValues> {
 	name: Path<T>;
 	control: Control<T>;
-	label: string;
+	label: FormFieldParams<T>['label'];
 	isRequired?: boolean;
 	layout?: 'vertical' | 'horizontal';
 	children: (props: {
@@ -49,15 +51,18 @@ const ControlledField = <T extends FieldValues>({
 								? 'grid gap-2'
 								: 'flex justify-between item-center gap-1'
 						}>
-						<span>
-							{label}
-							{isRequired && (
-								<>
-									{' '}
-									<span className='text-destructive'>*</span>
-								</>
-							)}
-						</span>
+						<div className='flex justify-between'>
+							<div>
+								{label.text}
+								{isRequired && (
+									<>
+										{' '}
+										<span className='text-destructive'>*</span>
+									</>
+								)}
+							</div>
+							{label.addon && <FormLabelAddon addon={label.addon} />}
+						</div>
 						<div>{children({ field, fieldState, formState })}</div>
 					</FieldLabel>
 					{fieldState.invalid && (

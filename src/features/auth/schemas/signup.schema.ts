@@ -116,14 +116,16 @@ const signUpSteps = [
 		fields: [
 			{
 				name: 'email',
-				label: 'account.email',
+				label: {
+					text: 'account.email',
+				},
 				component: 'input',
 				type: 'email',
 				placeholder: 'account.emailPlaceholder',
 			},
 			{
 				name: 'username',
-				label: 'account.username',
+				label: { text: 'account.username' },
 				component: 'input',
 				placeholder: 'account.usernamePlaceholder',
 			},
@@ -136,7 +138,7 @@ const signUpSteps = [
 		fields: [
 			{
 				name: 'gender',
-				label: 'personal.gender',
+				label: { text: 'personal.gender' },
 				component: 'select',
 				placeholder: 'personal.genderPlaceholder',
 				optionsGroups: [
@@ -161,19 +163,19 @@ const signUpSteps = [
 			},
 			{
 				name: 'firstName',
-				label: 'personal.firstName',
+				label: { text: 'personal.firstName' },
 				component: 'input',
 				placeholder: 'personal.firstNamePlaceholder',
 			},
 			{
 				name: 'lastName',
-				label: 'personal.lastName',
+				label: { text: 'personal.lastName' },
 				component: 'input',
 				placeholder: 'personal.lastNamePlaceholder',
 			},
 			{
 				name: 'birthdate',
-				label: 'personal.birthdate',
+				label: { text: 'personal.birthdate' },
 				component: 'date',
 			},
 		],
@@ -184,14 +186,14 @@ const signUpSteps = [
 		fields: [
 			{
 				name: 'displayName',
-				label: 'profile.displayName',
+				label: { text: 'profile.displayName' },
 				component: 'input',
 				placeholder: 'profile.displayNamePlaceholder',
 			},
 
 			{
 				name: 'bio',
-				label: 'profile.bio',
+				label: { text: 'profile.bio' },
 				component: 'textarea',
 				placeholder: 'profile.bioPlaceholder',
 				required: false,
@@ -209,14 +211,14 @@ const signUpSteps = [
 		fields: [
 			{
 				name: 'password',
-				label: 'security.password',
+				label: { text: 'security.password' },
 				component: 'input',
 				placeholder: 'security.passwordPlaceholder',
 				variant: 'password',
 			},
 			{
 				name: 'confirmPassword',
-				label: 'security.confirmPassword',
+				label: { text: 'security.confirmPassword' },
 				component: 'input',
 				variant: 'password',
 				placeholder: 'security.confirmPasswordPlaceholder',
@@ -229,7 +231,7 @@ const signUpSteps = [
 		fields: [
 			{
 				name: 'acceptTerms',
-				label: 'terms.acceptTerms',
+				label: { text: 'terms.acceptTerms' },
 				component: 'checkbox',
 			},
 		],

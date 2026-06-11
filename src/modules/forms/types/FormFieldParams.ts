@@ -1,5 +1,5 @@
 import { FieldValues, Path } from 'react-hook-form';
-import { FormFieldAddon } from './FormFieldAddons';
+import { FormFieldAddon, FormLabelAddon } from './FormFieldAddons';
 
 interface FormInputPassword {
 	variant: 'password';
@@ -53,10 +53,14 @@ interface FormCheckBox {
 
 interface FormFieldBase<T extends FieldValues> {
 	name: Path<T>;
-	label: string;
+	label: {
+		text: string;
+		addon?: FormLabelAddon;
+	};
 	placeholder?: string;
 	required?: boolean;
 }
+
 type FormFieldParams<T extends FieldValues> = FormFieldBase<T> &
 	(FormInput | FormTextarea | FormSelect | FormCheckBox | FormDate);
 

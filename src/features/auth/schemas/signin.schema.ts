@@ -1,3 +1,4 @@
+import { FORM_ADDONS } from '@/modules/forms/constants/addons';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { FormFieldParams } from '@/modules/forms/types/FormFieldParams';
 import { z } from 'zod';
@@ -17,13 +18,22 @@ const signInFields = [
 		component: 'input',
 		name: 'username',
 		type: 'text',
-		label: 'username',
+		label: { text: 'username' },
 	},
 	{
 		component: 'input',
 		variant: 'password',
 		name: 'password',
-		label: 'password',
+		label: {
+			text: 'password',
+			addon: {
+				type: 'link',
+				variant: 'internal',
+				as: 'text',
+				href: 'forgotPassword',
+				text: FORM_ADDONS.forgot_password,
+			},
+		},
 	},
 ] satisfies FormFieldParams<SignInFormValues>[];
 

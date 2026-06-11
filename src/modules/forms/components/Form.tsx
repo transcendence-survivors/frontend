@@ -27,9 +27,8 @@ export type FormProps<T extends FieldValues> = Omit<
 		submittingText: string;
 		submittedText: string;
 	};
-	title: ReactNode;
+	title?: ReactNode;
 	description?: ReactNode;
-	bottomDescription?: ReactNode;
 };
 
 export default function Form<T extends FieldValues>({
@@ -38,7 +37,6 @@ export default function Form<T extends FieldValues>({
 	onSubmit,
 	title,
 	description,
-	bottomDescription,
 	button,
 	className,
 	...props
@@ -59,10 +57,12 @@ export default function Form<T extends FieldValues>({
 			onSubmit={form.handleSubmit(onSubmit)}
 			{...props}>
 			<Card>
-				<CardHeader>
-					<CardTitle>{title}</CardTitle>
-					{description && <CardDescription>{description}</CardDescription>}
-				</CardHeader>
+				{(title || description) && (
+					<CardHeader>
+						{title && <CardTitle>{title}</CardTitle>}
+						{description && <CardDescription>{description}</CardDescription>}
+					</CardHeader>
+				)}
 				<CardContent className='space-y-4'>
 					{fields.map((field) => (
 						<FormField
@@ -86,11 +86,6 @@ export default function Form<T extends FieldValues>({
 			</Card>
 
 			<div className='flex items-center'>
-				{bottomDescription && (
-					<CardDescription className='w-full'>
-						{bottomDescription}
-					</CardDescription>
-				)}
 				<Button
 					type='submit'
 					className='ml-auto'

@@ -15,8 +15,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { isApiError } from '@/libs/api';
-import I18nLink from '@/modules/i18n/components/I18nLink';
-import { Button } from '@/components/ui/button';
 
 const SignInForm = () => {
 	const t = useTranslations('auth.signin');
@@ -61,37 +59,6 @@ const SignInForm = () => {
 					submittingText: t('submitting'),
 					submittedText: t('submitted'),
 				}}
-				title={<h1 className='text-center'>{t('title')}</h1>}
-				description={
-					<div className='mt-2 text-center'>
-						<p>
-							<span>{t('account_exists')}&nbsp;</span>
-							<Button
-								variant='link'
-								size='sm'
-								className='select-auto p-0 h-auto'
-								asChild>
-								<I18nLink href='register'>{t('sign_up')}</I18nLink>
-							</Button>
-						</p>
-					</div>
-				}
-				bottomDescription={
-					<div className='flex w-full text-xs'>
-						<p className='mr-auto'>
-							<span>{t('forgot_password')}&nbsp;</span>
-							<Button
-								variant='link'
-								size='sm'
-								className='text-xs select-auto p-0 h-auto'
-								asChild>
-								<I18nLink href='forgotPassword'>
-									{t('reset_password')}
-								</I18nLink>
-							</Button>
-						</p>
-					</div>
-				}
 			/>
 		</>
 	);

@@ -10,7 +10,10 @@ export function translateField<T extends FieldValues>(
 
 	const base = {
 		...field,
-		label: translate(field.label),
+		label: {
+			...field.label,
+			text: translate(field.label.text),
+		},
 		placeholder: field.placeholder ? translate(field.placeholder) : undefined,
 	};
 	switch (field.component) {

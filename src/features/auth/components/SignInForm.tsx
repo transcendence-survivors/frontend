@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
-import { useSignInUsername } from '../hooks/useSignIn';
+import useSignIn from '../hooks/useSignIn';
 import Form from '@/modules/forms/components/Form';
 import {
 	signInFields,
@@ -29,7 +29,7 @@ const SignInForm = () => {
 		shouldFocusError: true,
 	});
 
-	const { mutateAsync } = useSignInUsername({
+	const { mutateAsync } = useSignIn({
 		successMessage: t('success'),
 	});
 

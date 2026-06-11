@@ -14,7 +14,7 @@ export default async function LoginPage() {
 					<Button
 						variant='link'
 						size='sm'
-						className='select-auto p-0 h-auto text-muted-foreground'
+						className='p-0 select-auto h-auto text-sm text-muted-foreground'
 						asChild>
 						<I18nLink href='register'>{t('no_account')}</I18nLink>
 					</Button>

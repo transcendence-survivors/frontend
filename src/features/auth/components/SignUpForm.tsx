@@ -37,6 +37,7 @@ const SignupForm = () => {
 	}, [password]);
 
 	async function onSubmit(data: SignUpFormValues) {
+		console.log(data);
 		mutate(data);
 	}
 

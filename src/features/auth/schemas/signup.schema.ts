@@ -67,32 +67,38 @@ const signUpSchema = z
 			.lowercase({ message: FORM_ERRORS.lowercase }),
 		username: z
 			.string({ message: FORM_ERRORS.string })
-			.min(3, { message: i18nError(FORM_ERRORS.minLength, { min: 3 }) }),
+			.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
+			.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) }),
 
 		firstName: z
 			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
+			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
+			.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) }),
 		lastName: z
 			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
+			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
+			.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) }),
 		birthdate: z
 			.date({ message: FORM_ERRORS.date })
 			.refine((val) => isOlderThan13(val), {
 				message: FORM_ERRORS.age_restriction,
 			}),
-		gender: z.enum(['male', 'female', 'other'], { message: FORM_ERRORS.enum }),
+		gender: z.enum(['male', 'female', 'other', 'prefer_not_to_say'], {
+			message: FORM_ERRORS.enum,
+		}),
 
 		displayName: z
 			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) }),
+			.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
+			.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) }),
 		bio: z
 			.string({ message: FORM_ERRORS.string })
-			.max(160, { message: i18nError(FORM_ERRORS.maxLength, { max: 160 }) })
+			.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) })
 			.optional(),
 
 		password: z
 			.string({ message: FORM_ERRORS.string })
-			.min(6, { message: i18nError(FORM_ERRORS.minLength, { min: 6 }) })
+			.min(8, { message: i18nError(FORM_ERRORS.minLength, { min: 8 }) })
 			.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) })
 			.regex(/[A-Z]/, { message: FORM_ERRORS.password_uppercase })
 			.regex(/[a-z]/, { message: FORM_ERRORS.password_lowercase })
@@ -199,7 +205,7 @@ const signUpSteps = [
 				required: false,
 				addon: {
 					type: 'length',
-					maxLength: 160,
+					maxLength: 255,
 					align: 'block-end',
 				},
 			},

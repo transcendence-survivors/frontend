@@ -24,8 +24,8 @@
 			"forgot_password": "Forgot your password ?",
 			"reset_password": "Reset Password",
 
-			"username": "Username",
-			"usernamePlaceholder": "john_doe",
+			"username_or_email": "Username or Email",
+			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
 
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
@@ -36,7 +36,6 @@
 			"submit": "Sign In",
 			"submitting": "Signing In",
 			"submitted": "Signed In",
-
 			"forgotPassword": "Forgot your password?",
 			"success": "You have been signed in successfully.",
 			"error": "An error occurred while signing in. Please check your credentials and try again."
@@ -102,6 +101,15 @@
 
 			"success": "Account created successfully!",
 			"error": "Failed to create account. Please try again."
+		},
+		"forgot_password": {
+			"title": "Reset Password",
+			"login": "Remember your password ?",
+			"email": "Email",
+			"emailPlaceholder": "john.doe@example.com",
+			"submit": "Send Reset Link",
+			"submitting": "Sending Reset Link",
+			"submitted": "Reset Link Sent"
 		}
 	},
 

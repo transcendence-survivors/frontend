@@ -6,10 +6,16 @@ import ApiException from '@/libs/api/ApiException';
 interface SignUpRequestBody {
 	email: string;
 	username: string;
-	password: string;
+
+	gender: 'male' | 'female' | 'other' | 'prefer_not_to_say';
 	firstName: string;
 	lastName: string;
+	dateOfBirth: Date;
+
 	displayName: string;
+	bio: string;
+
+	password: string;
 }
 
 const signUp = async (body: SignUpRequestBody): Promise<ApiSuccess<User>> => {

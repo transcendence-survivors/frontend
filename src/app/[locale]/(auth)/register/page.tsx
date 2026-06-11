@@ -13,8 +13,9 @@ export default async function LoginPage() {
 					<h1>{t('title')}</h1>
 					<Button
 						variant='link'
-						asChild
-						className='p-0 select-auto h-auto text-sm text-muted-foreground'>
+						size='sm'
+						className='p-0 select-auto h-auto text-sm text-muted-foreground'
+						asChild>
 						<I18nLink href='login'>{t('already_account')}</I18nLink>
 					</Button>
 				</div>

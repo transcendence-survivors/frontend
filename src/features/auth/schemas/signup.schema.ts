@@ -83,7 +83,7 @@ const signUpSchema = z
 			.refine((val) => isOlderThan13(val), {
 				message: FORM_ERRORS.age_restriction,
 			}),
-		gender: z.enum(['male', 'female', 'other', 'prefer_not_to_say'], {
+		gender: z.enum(['MALE', 'FEMALE', 'OTHER', 'PREFER_NOT_TO_SAY'], {
 			message: FORM_ERRORS.enum,
 		}),
 
@@ -152,16 +152,20 @@ const signUpSteps = [
 						label: 'personal.genderOptions.label',
 						options: [
 							{
-								value: 'male',
+								value: 'MALE',
 								label: 'personal.genderOptions.male',
 							},
 							{
-								value: 'female',
+								value: 'FEMALE',
 								label: 'personal.genderOptions.female',
 							},
 							{
-								value: 'other',
+								value: 'OTHER',
 								label: 'personal.genderOptions.other',
+							},
+							{
+								value: 'PREFER_NOT_TO_SAY',
+								label: 'personal.genderOptions.prefer_not_to_say',
 							},
 						],
 					},

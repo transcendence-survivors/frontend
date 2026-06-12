@@ -38,7 +38,17 @@ const SignupForm = () => {
 
 	async function onSubmit(data: SignUpFormValues) {
 		console.log(data);
-		mutate(data);
+		mutate({
+			username: data.username,
+			email: data.email,
+			password: data.password,
+			bio: data.bio,
+			dateOfBirth: data.birthdate,
+			displayName: data.displayName,
+			firstName: data.firstName,
+			lastName: data.lastName,
+			gender: data.gender,
+		});
 	}
 
 	return (

@@ -13,7 +13,7 @@ interface SignUpRequestBody {
 	dateOfBirth: Date;
 
 	displayName: string;
-	bio: string;
+	bio?: string;
 
 	password: string;
 }

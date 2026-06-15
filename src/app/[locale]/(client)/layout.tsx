@@ -1,5 +1,13 @@
 import Layout from '@components/layouts/Layout';
+import React from "react"
 
+import {
+	Navbar,
+	MobileNav,
+	Typography,
+	Button,
+	IconButton,
+} from "@material-tailwind/react";
 interface RootLayoutProps {
 	children: React.ReactNode;
 }

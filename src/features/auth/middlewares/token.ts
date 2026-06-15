@@ -1,10 +1,10 @@
-import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
+import type { NextRequest } from 'next/server';
 
-import { UserRole } from '../schemas/user.schema';
+import { env } from '@env';
 import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN } from '../constants/cookies';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
-import { env } from '@env';
+import { UserRole } from '../schemas/user.schema';
 
 const secret = new TextEncoder().encode(env.JWT_SECRET);
 type JWTPayload = {
@@ -69,13 +69,16 @@ const handleRefreshToken = async (req: NextRequest): Promise<RefreshResult> => {
 };
 
 const getUserFromRequest = async (req: NextRequest): Promise<UserRequestResult> => {
+	console.log("access");
+
 	const accessTokenPayload = await handleAccessToken(req);
 	if (accessTokenPayload) {
 		return { user: accessTokenPayload, setCookieHeaders: [] };
 	}
-
+	console.log("refreshing");
 	const refreshResult = await handleRefreshToken(req);
 	if (!refreshResult) return null;
+	console.log("refreshed");
 
 	return {
 		user: refreshResult.payload,

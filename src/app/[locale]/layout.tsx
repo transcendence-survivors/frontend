@@ -1,13 +1,13 @@
 import '@/app/globals.css';
 
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
-import ThemeProvider from '@themes/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
-import { Toaster } from 'sonner';
 import { DEFAULT_LOCALE, Locale } from '@i18n/constants/locales';
 import METADATA from '@i18n/constants/metadata';
+import ThemeProvider from '@themes/providers/ThemeProvider';
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { Inter } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 const inter = Inter({
 	variable: '--font-inter',

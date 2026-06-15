@@ -12,6 +12,15 @@ type StrictRouteMap<T extends RouteMapFromat> = T & {
 const defineRouteMap = <T extends RouteMapFromat>(map: StrictRouteMap<T>): T => map as T;
 
 const APP_ROUTES = defineRouteMap({
+
+	landing: {
+		en: '/home',
+		de: '/empfang',
+		fr: '/accueil',
+		es: '/acogida',
+		che: '/cquoica',
+		it: '/benvenuto'
+	},
 	home: {
 		en: '/',
 		de: '/',

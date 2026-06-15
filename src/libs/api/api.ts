@@ -1,5 +1,7 @@
 import { FetchOptions, request } from './client';
 
+
+
 export const api = {
 	get: <T>(path: string, init?: FetchOptions) =>
 		request<T>(path, { ...init, method: 'GET' }),

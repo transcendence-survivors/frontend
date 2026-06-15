@@ -1,54 +1,52 @@
 'use client';
 
-import { useForm, useWatch } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useWatch } from 'react-hook-form';
 import { signUpSchema, signUpSteps, signUpValues } from '../schemas/signup.schema';
 import { MultiStepForm } from '@forms/components/MutliStepForm';
-import { translateMultiStep } from '@forms/utils/translate/multiStep';
 import { SignUpFormValues } from '../schemas/signup.schema';
-import { useTranslations } from 'next-intl';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import useSignUp from '../hooks/useSignUp';
+import useTranslatedMultiStepForm from '@/modules/forms/hooks/useTranslatedMultiStepForm';
+import { FORM_ERRORS } from '@/modules/forms/constants/error';
+import { isApiError } from '@/libs/api';
 
 const SignupForm = () => {
-	const t = useTranslations('auth.signup');
-	const translatedSteps = useMemo(() => {
-		return translateMultiStep<SignUpFormValues>(signUpSteps, t);
-	}, [t]);
-	const { mutate } = useSignUp({
-		successMessage: t('success'),
-		errorMessage: t('error'),
-	});
-	const form = useForm<SignUpFormValues>({
-		resolver: zodResolver(signUpSchema),
+	const { t, form, translatedSteps } = useTranslatedMultiStepForm({
+		namespace: 'auth.signup',
+		fields: signUpSteps,
+		schema: signUpSchema,
 		defaultValues: signUpValues,
-		mode: 'onChange',
-		reValidateMode: 'onChange',
-		shouldFocusError: true,
 	});
 
 	const password = useWatch({ control: form.control, name: 'password' });
 	useEffect(() => {
 		if (form.getFieldState('confirmPassword').isDirty) {
 			form.trigger('confirmPassword');
-		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		} // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [password]);
 
+	const { mutateAsync } = useSignUp({ successMessage: t('success') });
 	async function onSubmit(data: SignUpFormValues) {
-		console.log(data);
-		mutate({
-			username: data.username,
-			email: data.email,
-			password: data.password,
-			bio: data.bio,
-			dateOfBirth: data.birthdate,
-			displayName: data.displayName,
-			firstName: data.firstName,
-			lastName: data.lastName,
-			gender: data.gender,
-		});
+		try {
+			const res = await mutateAsync({
+				username: data.username,
+				email: data.email,
+				password: data.password,
+				bio: data.bio,
+				dateOfBirth: data.birthdate,
+				displayName: data.displayName,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				gender: data.gender,
+			});
+			if (isApiError(res)) {
+				if (res.code === 409)
+					form.setError('form', { message: FORM_ERRORS.user_already_exists });
+				throw new Error(res.message);
+			}
+		} catch {
+			form.setError('root', { message: FORM_ERRORS.internal_server_error });
+		}
 	}
 
 	return (

@@ -110,7 +110,21 @@
 			"emailPlaceholder": "john.doe@example.com",
 			"submit": "Send Reset Link",
 			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent"
+			"submitted": "Reset Link Sent",
+			"success": "If an account with that email exists, a password reset link has been sent."
+		},
+		"reset_password": {
+			"title": "Set New Password",
+			"login": "Remember your password ?",
+			"password": "New Password",
+			"passwordPlaceholder": "Enter your new password",
+			"confirmPassword": "Confirm New Password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"submit": "Reset Password",
+			"submitting": "Resetting Password",
+			"submitted": "Password Reset",
+			"success": "Your password has been reset successfully!",
+			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
 		}
 	},
 
@@ -144,11 +158,13 @@
 
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
+			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
 
 			"internal_server_error": "An unexpected error occurred. Please try again later.",
 			"age_restriction": "You must be at least 13 years old to register",
 
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again."
+			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
+			"invalid_token": "The reset link is invalid or has expired. Please request a new one."
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

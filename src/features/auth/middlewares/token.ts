@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
-import { UserRole } from '../schemas/user.schema';
+import { UserRole } from '@user/schemas/user.schema';
 import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN } from '../constants/cookies';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
 import { env } from '@env';
@@ -59,7 +59,6 @@ const handleRefreshToken = async (req: NextRequest): Promise<RefreshResult> => {
 			.find((c) => c.startsWith(`${COOKIE_ACCESS_TOKEN}=`))
 			?.split(';')[0]
 			?.split('=')[1];
-
 		if (!accessToken) return null;
 		const payload = await verifyToken(accessToken);
 		return { payload, setCookieHeaders };

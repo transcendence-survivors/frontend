@@ -2,18 +2,32 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { REDIRECTED_URLS } from '@/modules/i18n/constants/routes';
-import { signInUsernameEmail } from '../api/signIn';
+import { signInUsernameEmail } from '../api/signIn.api';
+import { useSessionActions } from '../stores/session';
+import { isApiError } from '@/libs/api';
 
 interface useSignInMessages {
 	successMessage: string;
 }
 
 const useSignIn = ({ successMessage }: useSignInMessages) => {
+	const { setUser } = useSessionActions();
 	const router = useRouter();
 	return useMutation({
 		mutationFn: signInUsernameEmail,
-		onSuccess: () => {
+		onSuccess: (res) => {
+			if (isApiError(res)) {
+				return;
+			}
+
 			toast.success(successMessage);
+			setUser({
+				displayName: res.data.displayName,
+				email: res.data.email,
+				role: res.data.role,
+				username: res.data.username,
+				id: res.data.id,
+			});
 			const url = new URLSearchParams(window.location.search);
 			const redirect =
 				url.get(REDIRECTED_URLS.callbackKey) || REDIRECTED_URLS.profile;

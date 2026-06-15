@@ -26,6 +26,7 @@
 			"@api": ["./src/libs/api"],
 
 			"@auth/*": ["./src/features/auth/*"],
+			"@user/*": ["./src/features/user/*"],
 
 			"@themes/*": ["./src/modules/themes/*"],
 			"@i18n/*": ["./src/modules/i18n/*"],

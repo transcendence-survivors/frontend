@@ -3,11 +3,20 @@ import {
 	MultiStepFormStep,
 	StepValidationFn,
 } from '@/modules/forms/utils/mutliStep/types';
-import { i18nError } from '@forms/utils/translate/errors';
 import { z } from 'zod';
 import { isApiError } from '@/libs/api';
-import { checkEmail, checkUsername } from '../api/signUp';
-import { isOlderThan13 } from '@/libs/date';
+import { checkEmail, checkUsername } from '../api/signUp.api';
+import {
+	userBioSchema,
+	userBirthdateSchema,
+	userDisplayNameSchema,
+	userEmailSchema,
+	userFirstNameSchema,
+	userGenderSchema,
+	userLastNameSchema,
+	userNameSchema,
+	userPasswordSchema,
+} from '@/features/user/schemas/user.schema';
 
 const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 	values: { email },
@@ -62,48 +71,17 @@ const userNameValidator: StepValidationFn<SignUpFormValues> = async ({
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 const signUpSchema = z
 	.object({
-		email: z
-			.email({ message: FORM_ERRORS.email })
-			.lowercase({ message: FORM_ERRORS.lowercase }),
-		username: z
-			.string({ message: FORM_ERRORS.string })
-			.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
-			.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) }),
+		email: userEmailSchema,
+		username: userNameSchema,
+		firstName: userFirstNameSchema,
+		lastName: userLastNameSchema,
+		birthdate: userBirthdateSchema,
+		gender: userGenderSchema,
 
-		firstName: z
-			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
-			.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) }),
-		lastName: z
-			.string({ message: FORM_ERRORS.string })
-			.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
-			.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) }),
-		birthdate: z
-			.date({ message: FORM_ERRORS.date })
-			.refine((val) => isOlderThan13(val), {
-				message: FORM_ERRORS.age_restriction,
-			}),
-		gender: z.enum(['MALE', 'FEMALE', 'OTHER', 'PREFER_NOT_TO_SAY'], {
-			message: FORM_ERRORS.enum,
-		}),
+		displayName: userDisplayNameSchema,
+		bio: userBioSchema,
 
-		displayName: z
-			.string({ message: FORM_ERRORS.string })
-			.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
-			.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) }),
-		bio: z
-			.string({ message: FORM_ERRORS.string })
-			.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) })
-			.optional(),
-
-		password: z
-			.string({ message: FORM_ERRORS.string })
-			.min(8, { message: i18nError(FORM_ERRORS.minLength, { min: 8 }) })
-			.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) })
-			.regex(/[A-Z]/, { message: FORM_ERRORS.password_uppercase })
-			.regex(/[a-z]/, { message: FORM_ERRORS.password_lowercase })
-			.regex(/[0-9]/, { message: FORM_ERRORS.password_number })
-			.regex(/[^A-Za-z0-9]/, { message: FORM_ERRORS.password_special }),
+		password: userPasswordSchema,
 		confirmPassword: z.string({ message: FORM_ERRORS.string }),
 
 		acceptTerms: z

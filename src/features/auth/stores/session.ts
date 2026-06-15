@@ -1,14 +1,19 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { useShallow } from 'zustand/react/shallow';
-import { User } from '../schemas/user.schema';
+import { User } from '@user/schemas/user.schema';
+
+export type UserSession = Pick<
+	User,
+	'displayName' | 'email' | 'role' | 'username' | 'id'
+>;
 
 interface SessionState {
-	user: User | null;
+	user: UserSession | null;
 }
 
 interface SessionActions {
-	setUser: (u: User | null) => void;
+	setUser: (u: UserSession | null) => void;
 	logout: () => void;
 }
 

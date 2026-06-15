@@ -30,7 +30,9 @@ export const FORM_ERRORS = {
 	age_restriction: `${PREFIX_KEY}.age_restriction`,
 	email_already_in_use: `${PREFIX_KEY}.email_already_in_use`,
 	username_already_in_use: `${PREFIX_KEY}.username_already_in_use`,
+	user_already_exists: `${PREFIX_KEY}.user_already_exists`,
 
 	invalid_credentials: `${PREFIX_KEY}.invalid_credentials`,
+	invalid_token: `${PREFIX_KEY}.invalid_token`,
 	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
 } as const satisfies Record<string, MessageKeys>;

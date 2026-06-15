@@ -10,6 +10,7 @@ export default function ProfilePage() {
 			<p>This is the profile page.</p>
 			{user ? (
 				<div>
+					<strong>Username: {user.username}</strong>
 					<h2>Welcome, {user.username}!</h2>
 					<p>Email: {user.email}</p>
 					<p>Role: {user.role}</p>

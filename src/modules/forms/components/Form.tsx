@@ -29,6 +29,7 @@ export type FormProps<T extends FieldValues> = Omit<
 	};
 	title?: ReactNode;
 	description?: ReactNode;
+	footer?: ReactNode;
 };
 
 export default function Form<T extends FieldValues>({
@@ -37,6 +38,7 @@ export default function Form<T extends FieldValues>({
 	onSubmit,
 	title,
 	description,
+	footer,
 	button,
 	className,
 	...props
@@ -83,13 +85,19 @@ export default function Form<T extends FieldValues>({
 						<FormGlobalError error={form.formState.errors.root} />
 					</CardFooter>
 				)}
+				{footer && <CardFooter>{footer}</CardFooter>}
 			</Card>
 
 			<div className='flex items-center'>
 				<Button
 					type='submit'
 					className='ml-auto'
-					disabled={!form.formState.isDirty || isSubmitting || isGlobalError}>
+					disabled={
+						!form.formState.isDirty ||
+						isSubmitting ||
+						isGlobalError ||
+						form.formState.isSubmitSuccessful
+					}>
 					<>
 						<span>{getText()}</span>
 						{isSubmitting && <Spinner />}

@@ -47,19 +47,18 @@ const features = [
 export default function Page() {
 	return (
 		<main>
-			<Header className='bg-secondary'>
+			<Header className='bg-secondary m-3 rounded-2xl fixed z-100 top-0 left-0 right-0 dark:bg-background transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]'>
 				<LogoLanding className='fill-foreground h-5' />
 				<div className='flex gap-2 items-center'>
 					<Button>Log In</Button>
 					<Button>Sign up</Button>
-
 					<BurgerLandingDrawer />
 				</div>
 			</Header>
 			<GridBackground>
 				<div className='max-w-5xl w-full mx-auto py-20 px-4'>
 					<div className='text-center'>
-						<h1 className='heading-1'>
+						<h1 className='heading-1 mb-10'>
 							Vise. Lance.
 							<br />
 							<span className='bg-gradient-to-r from-[#B08B57] via-[#E2C56F] to-[#8C6A3C] bg-clip-text text-transparent font-bold'>

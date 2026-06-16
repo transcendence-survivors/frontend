@@ -4,7 +4,6 @@ import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Spinner } from '@/components/ui/spinner';
 import { useTranslations } from 'next-intl';
 import useSignOut from '../hooks/useSignOut';
-import { Button } from '@/components/ui/button';
 
 const LogoutDropDownItem = () => {
 	const t = useTranslations('auth.signout');

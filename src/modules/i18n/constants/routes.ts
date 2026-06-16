@@ -1,3 +1,4 @@
+import { resetPassword } from '@/features/auth/api/reset-password.api.';
 import { Locale } from './locales';
 
 type LocaleRouteFormat = Record<Locale, `/${string}`>;
@@ -52,6 +53,14 @@ const APP_ROUTES = defineRouteMap({
 		es: '/olvidar-contrasena',
 		che: '/passwort-vergessen',
 		it: '/password-dimenticata',
+	},
+	resetPassword: {
+		en: '/reset-password',
+		de: '/passwort-zuruecksetzen',
+		fr: '/reinitialiser-mot-de-passe',
+		es: '/restablecer-contrasena',
+		che: '/passwort-zuruecksetzen',
+		it: '/reimpostare-password',
 	},
 	game: {
 		en: '/game',
@@ -120,7 +129,7 @@ type RedirectedUrls = Record<string, CanonicalHref> | { callbackKey: string };
 const REDIRECTED_URLS = {
 	callbackKey: 'callbackUrl',
 	403: APP_ROUTES.login.en,
-	loggin: APP_ROUTES.login.en,
+	login: APP_ROUTES.login.en,
 	success: APP_ROUTES.home.en,
 	profile: APP_ROUTES.profile.en,
 } as const satisfies RedirectedUrls;

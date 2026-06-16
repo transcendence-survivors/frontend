@@ -2,7 +2,7 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { logoutRequest } from '../api/logout';
+import { logoutRequest } from '../api/logout.api';
 import { useRouter } from '@i18n/utils/navigation';
 
 interface useSignOutProps {

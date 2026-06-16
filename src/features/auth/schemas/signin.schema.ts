@@ -1,29 +1,34 @@
 import { FORM_ADDONS } from '@/modules/forms/constants/addons';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { FormFieldParams } from '@/modules/forms/types/FormFieldParams';
+import { i18nError } from '@/modules/forms/utils/translate/errors';
 import { z } from 'zod';
 
 export type SignInFormValues = z.infer<typeof signInSchema>;
 const signInSchema = z.object({
-	username: z
+	usernameOrEmail: z
 		.string({ message: FORM_ERRORS.string })
-		.nonempty({ message: FORM_ERRORS.required }),
+		.nonempty({ message: FORM_ERRORS.required })
+		.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) }),
 	password: z
 		.string({ message: FORM_ERRORS.string })
-		.nonempty({ message: FORM_ERRORS.required }),
+		.nonempty({ message: FORM_ERRORS.required })
+		.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) }),
 });
 
 const signInFields = [
 	{
 		component: 'input',
-		name: 'username',
+		name: 'usernameOrEmail',
+		placeholder: 'username_or_emailPlaceholder',
 		type: 'text',
-		label: { text: 'username' },
+		label: { text: 'username_or_email' },
 	},
 	{
 		component: 'input',
 		variant: 'password',
 		name: 'password',
+		placeholder: 'passwordPlaceholder',
 		label: {
 			text: 'password',
 			addon: {
@@ -38,7 +43,7 @@ const signInFields = [
 ] satisfies FormFieldParams<SignInFormValues>[];
 
 const signInValues: Partial<SignInFormValues> = {
-	username: '',
+	usernameOrEmail: '',
 	password: '',
 };
 

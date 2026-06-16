@@ -87,40 +87,50 @@ export function MultiStepForm<T extends FieldValues>({
 					showStepIndicator={progressBar.stepIndicator}
 				/>
 			)}
-			<Card>
-				<CardHeader>
-					<CardTitle>
-						{recap.on && isRecapStep ? recap.recapTitle : current?.title}
-					</CardTitle>
-					{!isRecapStep && current?.description && (
-						<CardDescription>{current.description}</CardDescription>
+			<article>
+				<Card>
+					<CardHeader>
+						<CardTitle>
+							<h2>
+								{recap.on && isRecapStep
+									? recap.recapTitle
+									: current?.title}
+							</h2>
+						</CardTitle>
+						{!isRecapStep && current?.description && (
+							<CardDescription>
+								<p>{current.description}</p>
+							</CardDescription>
+						)}
+					</CardHeader>
+					<CardContent className='space-y-4'>
+						{recap.on && isRecapStep ? (
+							<Recap data={getRecap()} />
+						) : (
+							current?.fields.map((field) => (
+								<FormField
+									key={String(field.name)}
+									field={field}
+									control={form.control}
+									disabled={
+										isSubmitting || isValidating || isGlobalError
+									}
+								/>
+							))
+						)}
+					</CardContent>
+					{form.formState.errors.form && (
+						<CardFooter>
+							<FormGlobalError error={form.formState.errors.form} />
+						</CardFooter>
 					)}
-				</CardHeader>
-				<CardContent className='space-y-4'>
-					{recap.on && isRecapStep ? (
-						<Recap data={getRecap()} />
-					) : (
-						current?.fields.map((field) => (
-							<FormField
-								key={String(field.name)}
-								field={field}
-								control={form.control}
-								disabled={isSubmitting || isValidating || isGlobalError}
-							/>
-						))
+					{form.formState.errors.root && (
+						<CardFooter>
+							<FormGlobalError error={form.formState.errors.root} />
+						</CardFooter>
 					)}
-				</CardContent>
-				{form.formState.errors.form && (
-					<CardFooter>
-						<FormGlobalError error={form.formState.errors.form} />
-					</CardFooter>
-				)}
-				{form.formState.errors.root && (
-					<CardFooter>
-						<FormGlobalError error={form.formState.errors.root} />
-					</CardFooter>
-				)}
-			</Card>
+				</Card>
+			</article>
 			<MultiStepButtons
 				isFirstStep={isFirstStep}
 				isLastStep={isLastStep}

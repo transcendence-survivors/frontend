@@ -1,8 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { useMemo } from 'react';
-import { useSignInUsername } from '../hooks/useSignIn';
+import useSignIn from '../hooks/useSignIn';
 import Form from '@/modules/forms/components/Form';
 import {
 	signInFields,
@@ -10,37 +8,25 @@ import {
 	signInSchema,
 	signInValues,
 } from '../schemas/signin.schema';
-import { translateFields } from '@/modules/forms/utils/translate/fields';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { isApiError } from '@/libs/api';
+import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
 
 const SignInForm = () => {
-	const t = useTranslations('auth.signin');
-	const translatedFields = useMemo(() => {
-		return translateFields<SignInFormValues>(signInFields, t);
-	}, [t]);
-	const form = useForm<SignInFormValues>({
-		resolver: zodResolver(signInSchema),
+	const { t, form, translatedFields } = useTranslatedForm<SignInFormValues>({
+		namespace: 'auth.signin',
+		fields: signInFields,
+		schema: signInSchema,
 		defaultValues: signInValues,
-		mode: 'onChange',
-		reValidateMode: 'onChange',
-		shouldFocusError: true,
 	});
 
-	const { mutateAsync } = useSignInUsername({
-		successMessage: t('success'),
-	});
-
+	const { mutateAsync } = useSignIn({ successMessage: t('success') });
 	async function onSubmit(data: SignInFormValues) {
 		try {
 			const res = await mutateAsync(data);
 			if (isApiError(res)) {
-				if (res.code === 401) {
+				if (res.code === 401)
 					form.setError('form', { message: FORM_ERRORS.invalid_credentials });
-					return;
-				}
 				throw new Error(res.message);
 			}
 		} catch {

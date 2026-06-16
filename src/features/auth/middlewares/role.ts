@@ -1,14 +1,6 @@
 import { APP_ROUTES, CanonicalHref } from '@/modules/i18n/constants/routes';
 import { UserRole } from '../schemas/user.schema';
 
-const publicRoutes = new Set<CanonicalHref>([
-	APP_ROUTES.register.en,
-	APP_ROUTES.forgotPassword.en,
-	APP_ROUTES.login.en,
-	APP_ROUTES.home.en,
-	APP_ROUTES.posts.en,
-]);
-
 const hierarchy: Record<UserRole, number> = {
 	USER: 1,
 	ADMIN: 2,
@@ -22,9 +14,6 @@ const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {
 const hasRequiredRole = (userRole: UserRole, required: UserRole[]): boolean =>
 	required.some((r) => hierarchy[userRole] >= hierarchy[r]);
 
-const isPublicRoute = (path: string | null): boolean => {
-	if (!path) return false;
-	return publicRoutes.has(path as CanonicalHref);
-};
+const isRoleRoute = (route: CanonicalHref): boolean => route in roleRoutes;
 
-export { hasRequiredRole, isPublicRoute, publicRoutes, roleRoutes };
+export { hasRequiredRole, isRoleRoute, roleRoutes };

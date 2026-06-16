@@ -8,6 +8,8 @@ const AUTH_ENDPOINTS = {
 	signUp: `${AUTH_START_PATH}/register`,
 	login: `${AUTH_START_PATH}/login`,
 	logout: `${AUTH_START_PATH}/logout`,
+	forgotPassword: `${AUTH_START_PATH}/forgot-password`,
+	resetPassword: `${AUTH_START_PATH}/reset-password`,
 	refresh: `${AUTH_START_PATH}/refresh`,
 	me: `${AUTH_START_PATH}/me`,
 

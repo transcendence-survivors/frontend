@@ -177,7 +177,7 @@ export const useMultiStepForm = <T extends FieldValues>(
 			title: s.title,
 			fields: s.fields.map((field) => {
 				return {
-					label: String(field.label),
+					label: String(field.label.text),
 					asPassword:
 						field.component === 'input' && field.variant === 'password',
 					value: getValue(field),

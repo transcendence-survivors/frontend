@@ -5,6 +5,7 @@ import { Menu, RocketIcon, Shield, ShieldCheckIcon } from 'lucide-react';
 import BurgerLandingDrawer from '@/components/layouts/Headers/BurgerLandingDrawer';
 import { GridBackground } from '@/components/ui/grid-background';
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
+import { Faq1 } from '@/components/ui/faq';
 
 const features = [
 	{
@@ -73,6 +74,9 @@ export default function Page() {
 					</BentoGrid>
 				</div>
 			</GridBackground>
+			<div className='bg-gradient-to-b from-black to-gray-800 min-h-screen'>
+				<Faq1></Faq1>
+			</div>
 		</main>
 	);
 }

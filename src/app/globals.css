@@ -90,6 +90,11 @@
 	--font-sans: var(--font-inter);
 	--font-geist-mono: var(--font-geist-mono);
 
+	--navbar-bg: var(--secondary);
+	--navbar-foreground: var(--secondary-foreground);
+	--navbar-border: var(--border);
+	--navbar-shadow: 0 6px 30px rgba(0,0,0,0.06);
+
 	--header-height: 4rem;
 }
 
@@ -125,6 +130,11 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+
+	--navbar-bg: var(--secondary);
+	--navbar-foreground: var(--secondary-foreground);
+	--navbar-border: var(--sidebar-border);
+	--navbar-shadow: 0 6px 30px rgba(0,0,0,0.35);
 }
 
 .neon {
@@ -159,6 +169,11 @@
 	--sidebar-accent-foreground: oklch(1 1.5% 50%);
 	--sidebar-border: oklch(1 1.5% 50%);
 	--sidebar-ring: oklch(1 1.5% 50%);
+
+	--navbar-bg: color-mix(in oklab, var(--primary) 12%, transparent);
+	--navbar-foreground: var(--primary-foreground);
+	--navbar-border: var(--border);
+	--navbar-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
 @layer base {
@@ -185,6 +200,13 @@
 	.header {
 		height: var(--header-height);
 		@apply sticky top-0 z-10 left-0 right-0;
+	}
+
+	.navbar {
+		background: var(--navbar-bg);
+		color: var(--navbar-foreground);
+		border-bottom: 1px solid var(--navbar-border);
+		box-shadow: var(--navbar-shadow);
 	}
 
 	.layout {

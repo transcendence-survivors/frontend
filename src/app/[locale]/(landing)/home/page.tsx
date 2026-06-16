@@ -47,7 +47,7 @@ const features = [
 export default function Page() {
 	return (
 		<main>
-			<Header className='bg-secondary m-3 rounded-2xl fixed z-100 top-0 left-0 right-0 dark:bg-background transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]'>
+			<Header className='navbar m-3 rounded-2xl fixed z-100 top-0 left-0 right-0 transform-gpu'>
 				<LogoLanding className='fill-foreground h-5' />
 				<div className='flex gap-2 items-center'>
 					<Button>Log In</Button>

@@ -3,7 +3,7 @@ import Header from '@/components/ui/header';
 import { Button } from '@/components/ui/button';
 import { Menu, RocketIcon, Shield, ShieldCheckIcon } from 'lucide-react';
 import BurgerLandingDrawer from '@/components/layouts/Headers/BurgerLandingDrawer';
-import { GridBackgroundDemo } from '@/components/ui/grid-background';
+import { GridBackground } from '@/components/ui/grid-background';
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
 
 const features = [
@@ -56,13 +56,15 @@ export default function Page() {
 					<BurgerLandingDrawer />
 				</div>
 			</Header>
-			<div className='w-full max-w-4xl mx-auto'>
-				<BentoGrid>
-					{features.map((feature) => (
-						<BentoCard key={feature.name} {...feature} />
-					))}
-				</BentoGrid>
-			</div>
+			<GridBackground>
+				<div className='max-w-5xl w-full mx-auto py-20 px-4'>
+					<BentoGrid>
+						{features.map((feature) => (
+							<BentoCard key={feature.name} {...feature} />
+						))}
+					</BentoGrid>
+				</div>
+			</GridBackground>
 		</main>
 	);
 }

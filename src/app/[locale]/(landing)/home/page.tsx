@@ -67,6 +67,18 @@ export default function Page() {
 							</span>
 						</h1>
 					</div>
+					<div className='video-container mb-40'>
+						<video
+							autoPlay
+							loop
+							muted
+							playsInline
+							controls
+							className='w-full h-auto'>
+							<source src='/Trailer_Zelda.mp4' type='video/mp4' />
+							Votre navigateur ne supporte pas la lecture de cette vidéo.
+						</video>
+					</div>
 					<BentoGrid>
 						{features.map((feature) => (
 							<BentoCard key={feature.name} {...feature} />

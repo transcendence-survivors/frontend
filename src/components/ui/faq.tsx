@@ -36,7 +36,7 @@ const Faq1 = ({
 		{
 			id: 'faq-3',
 			question:
-				'Suite a mes pietres perforamnces sur le jeu, on m a conseille d allumer l ecran quand je joue. Est-ce que ca peut etre une bonne solution ? ',
+				'Suite a mes pietres performances sur le jeu, on m a conseille d allumer l ecran quand je joue. Est-ce que ca peut etre une bonne solution ? ',
 			answer: 'C est une piste intéressante à explorer, en effet. Allumer l écran te permettra de voir précisément à quel point tu rates tes actions, ce qui offre un confort visuel indéniable par rapport au fait de perdre dans le noir.',
 		},
 		{

@@ -28,7 +28,7 @@ interface DropDownLink extends NavLink {
 const links: DropDownLink[] = [
 	{ key: 'profile', labelKey: 'profile', icon: <User /> },
 	{ key: 'settings', labelKey: 'settings', icon: <SettingsIcon /> },
-] as const;
+];
 
 export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 	const t = useTranslations('nav');

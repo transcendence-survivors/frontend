@@ -9,7 +9,7 @@ export interface AvatarProfileProps extends React.ComponentProps<typeof Avatar> 
 const AvatarProfile = ({ img, ...props }: AvatarProfileProps) => {
 	return (
 		<Avatar {...props}>
-			<AvatarImage src={img.src} alt={img.alt} />
+			<AvatarImage className='bg-foreground' src={img.src} alt={img.alt} />
 			<AvatarFallback>{capitalize(truncate(img.alt, 2))}</AvatarFallback>
 		</Avatar>
 	);

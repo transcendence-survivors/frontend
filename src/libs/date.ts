@@ -62,6 +62,15 @@ export function toDate(value: string | Date | undefined): Date | undefined {
 	return isNaN(d.getTime()) ? undefined : d;
 }
 
+export function formatDate(date: Date, locale: Locale): string {
+	const format = getDateFormat(locale);
+	return date.toLocaleDateString(format.intlLocale, {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric',
+	});
+}
+
 export function isOlderThan(date: Date, age: number): boolean {
 	const today = new Date();
 	const ageDate = new Date(

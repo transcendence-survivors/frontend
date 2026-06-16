@@ -58,6 +58,15 @@ export default function Page() {
 			</Header>
 			<GridBackground>
 				<div className='max-w-5xl w-full mx-auto py-20 px-4'>
+					<div className='text-center'>
+						<h1 className='heading-1'>
+							Vise. Lance.
+							<br />
+							<span className='bg-gradient-to-r from-[#B08B57] via-[#E2C56F] to-[#8C6A3C] bg-clip-text text-transparent font-bold'>
+								Bonk.
+							</span>
+						</h1>
+					</div>
 					<BentoGrid>
 						{features.map((feature) => (
 							<BentoCard key={feature.name} {...feature} />

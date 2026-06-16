@@ -6,6 +6,7 @@ import BurgerLandingDrawer from '@/components/layouts/Headers/BurgerLandingDrawe
 import { GridBackground } from '@/components/ui/grid-background';
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
 import { Faq1 } from '@/components/ui/faq';
+import { Footer2 } from '@/components/ui/footer';
 
 const features = [
 	{
@@ -89,6 +90,7 @@ export default function Page() {
 			<div className='bg-gradient-to-b from-black to-gray-800 min-h-screen'>
 				<Faq1></Faq1>
 			</div>
+			<Footer2 />
 		</main>
 	);
 }

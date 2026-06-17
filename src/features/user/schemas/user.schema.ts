@@ -24,13 +24,13 @@ const userLastNameSchema = z
 
 const userBirthdateSchema = z
 	.date({ message: FORM_ERRORS.date })
-	.refine((val) => isOlderThan13(val), {
-		message: FORM_ERRORS.age_restriction,
-	});
+	.refine((val) => isOlderThan13(val), { message: FORM_ERRORS.age_restriction });
 
 const userGenderSchema = z.enum(['MALE', 'FEMALE', 'OTHER', 'PREFER_NOT_TO_SAY'], {
 	message: FORM_ERRORS.enum,
 });
+
+const userLocaleSchema = z.enum(['EN', 'FR', 'DE'], { message: FORM_ERRORS.enum });
 
 const userDisplayNameSchema = z
 	.string({ message: FORM_ERRORS.string })
@@ -63,6 +63,8 @@ const userSchema = z.object({
 });
 
 type UserSchema = z.infer<typeof userSchema>;
+type UserGender = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY';
+type UserLocale = 'EN' | 'FR' | 'DE';
 type UserRole = 'USER' | 'ADMIN' | 'SUPER_ADMIN';
 type User = Omit<UserSchema, 'password'> & {
 	id: string;
@@ -72,14 +74,15 @@ type User = Omit<UserSchema, 'password'> & {
 export {
 	userEmailSchema,
 	userNameSchema,
+	userGenderSchema,
 	userFirstNameSchema,
 	userLastNameSchema,
 	userBirthdateSchema,
-	userGenderSchema,
+	userLocaleSchema,
 	userDisplayNameSchema,
 	userBioSchema,
 	userPasswordSchema,
 	userSchema,
 };
 
-export type { User, UserRole };
+export type { User, UserRole, UserGender, UserLocale };

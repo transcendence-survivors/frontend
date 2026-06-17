@@ -43,8 +43,10 @@ const ResetPasswordForm = () => {
 		try {
 			const res = await mutateAsync({ newPassword, token });
 			if (isApiError(res)) {
-				if (res.code !== 500)
+				if (res.code !== 500) {
 					form.setError('root', { message: FORM_ERRORS.invalid_token });
+					return;
+				}
 				throw new Error(res.message);
 			}
 		} catch {

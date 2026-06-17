@@ -11,9 +11,7 @@ const useForgotPassword = ({ successMessage }: useForgotPasswordMessages) => {
 	return useMutation({
 		mutationFn: forgotPassword,
 		onSuccess: (res) => {
-			if (isApiError(res)) {
-				return;
-			}
+			if (isApiError(res)) throw new Error(res.message);
 			toast.success(successMessage);
 		},
 	});

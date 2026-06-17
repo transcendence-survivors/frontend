@@ -38,10 +38,13 @@ const SignupForm = () => {
 				firstName: data.firstName,
 				lastName: data.lastName,
 				gender: data.gender,
+				localePreference: data?.locale,
 			});
 			if (isApiError(res)) {
-				if (res.code === 409)
+				if (res.code === 409) {
 					form.setError('form', { message: FORM_ERRORS.user_already_exists });
+					return;
+				}
 				throw new Error(res.message);
 			}
 		} catch {
@@ -65,7 +68,6 @@ const SignupForm = () => {
 				}}
 				progressBar={{ on: true, stepIndicator: true }}
 				recap={{ on: true, recapTitle: t('recap_title') }}
-				className='w-lg'
 			/>
 		</>
 	);

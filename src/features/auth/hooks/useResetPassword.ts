@@ -14,9 +14,7 @@ const useResetPassword = ({ successMessage }: useResetPasswordMessages) => {
 	return useMutation({
 		mutationFn: resetPassword,
 		onSuccess: (res) => {
-			if (isApiError(res)) {
-				return;
-			}
+			if (isApiError(res)) throw new Error(res.message);
 			toast.success(successMessage);
 			router.push(REDIRECTED_URLS.login);
 		},

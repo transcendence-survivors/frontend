@@ -1,15 +1,17 @@
 import { api, ApiResponse } from '@/libs/api';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
 import { type UserSession } from '../stores/session';
+import type { UserGender, UserLocale } from '@/features/user/schemas/user.schema';
 
 interface SignUpRequestBody {
 	email: string;
 	username: string;
 
-	gender: 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY';
 	firstName: string;
 	lastName: string;
 	dateOfBirth: Date;
+	gender?: UserGender;
+	localePreference?: UserLocale;
 
 	displayName: string;
 	bio?: string;
@@ -18,7 +20,14 @@ interface SignUpRequestBody {
 }
 
 const signUp = (body: SignUpRequestBody) => {
-	return api.post<UserSession>(AUTH_ENDPOINTS.signUp, body);
+	const localePreference: UserLocale = body?.localePreference ?? 'EN';
+	const gender: UserGender = body?.gender ?? 'PREFER_NOT_TO_SAY';
+
+	return api.post<UserSession>(AUTH_ENDPOINTS.signUp, {
+		...body,
+		localePreference,
+		gender,
+	});
 };
 
 const checkEmail = (email: string): Promise<ApiResponse<void>> => {

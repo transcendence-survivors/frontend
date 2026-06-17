@@ -1,16 +1,26 @@
-import PhoneHeader from '@/components/layouts/Header';
+import PcHeader from '@/components/layouts/Headers/Pc';
+import PhoneHeader from '@/components/layouts/Headers/Phone';
 import PhoneNav from '@/components/layouts/PhoneNav';
 
 interface RootLayoutProps {
 	children: React.ReactNode;
 }
 
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<>
-			<PhoneHeader className='header' />
-			{children}
-			<PhoneNav />
+			<div className='md:hidden'>
+				<PhoneHeader />
+			</div>
+			<div className='hidden md:block'>
+				<PcHeader />
+			</div>
+
+			<div className={'pb-20 md:pb-0'}>{children}</div>
+
+			<div className='md:hidden'>
+				<PhoneNav />
+			</div>
 		</>
 	);
 }

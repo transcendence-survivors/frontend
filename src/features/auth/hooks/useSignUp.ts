@@ -16,9 +16,7 @@ const useSignUp = ({ successMessage }: useSignUpProps) => {
 	return useMutation({
 		mutationFn: signUp,
 		onSuccess: (res) => {
-			if (isApiError(res)) {
-				return;
-			}
+			if (isApiError(res)) throw new Error(res.message);
 
 			toast.success(successMessage);
 			setUser({

@@ -1,4 +1,5 @@
-import Header from './Header';
+import PcHeader from './Headers/Pc';
+import PhoneHeader from './Headers/Phone';
 import PhoneNav from './PhoneNav';
 import SideNav from './SideNav';
 
@@ -9,7 +10,12 @@ interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 const Layout = ({ children, ...props }: LayoutProps) => {
 	return (
 		<>
-			<Header className='header' />
+			<div className='md:hidden'>
+				<PhoneHeader />
+			</div>
+			<div className='hidden md:block'>
+				<PcHeader />
+			</div>
 			<div className='max-w-4xl mx-auto w-full'>
 				<div className='layout' {...props}>
 					<div className='hidden sm:flex justify-end'>
@@ -21,7 +27,9 @@ const Layout = ({ children, ...props }: LayoutProps) => {
 					<div className='border-x w-full'>{children}</div>
 				</div>
 			</div>
-			<PhoneNav />
+			<div className='md:hidden'>
+				<PhoneNav />
+			</div>
 		</>
 	);
 };

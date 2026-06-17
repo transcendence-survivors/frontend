@@ -25,8 +25,10 @@ const SignInForm = () => {
 		try {
 			const res = await mutateAsync(data);
 			if (isApiError(res)) {
-				if (res.code === 401)
+				if (res.code === 401) {
 					form.setError('form', { message: FORM_ERRORS.invalid_credentials });
+					return;
+				}
 				throw new Error(res.message);
 			}
 		} catch {

@@ -11,7 +11,6 @@ import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { isApiError } from '@/libs/api/is';
 import useForgotPassword from '../hooks/useForgotPassword';
 import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
-import { is } from 'zod/v4/locales';
 
 const ForgotPasswordForm = () => {
 	const { t, form, translatedFields } = useTranslatedForm<ForgotPasswordFormValues>({

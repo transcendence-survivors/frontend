@@ -67,6 +67,14 @@
 					"female": "Female",
 					"other": "Other",
 					"prefer_not_to_say": "Prefer not to say"
+				},
+				"locale": "Preferred Language",
+				"localePlaceholder": "Select your preferred language for email notifications",
+				"localeOptions": {
+					"label": "Email Preference",
+					"en": "English",
+					"fr": "French",
+					"de": "German"
 				}
 			},
 			"profile": {

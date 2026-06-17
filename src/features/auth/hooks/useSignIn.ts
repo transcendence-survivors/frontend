@@ -16,9 +16,7 @@ const useSignIn = ({ successMessage }: useSignInMessages) => {
 	return useMutation({
 		mutationFn: signInUsernameEmail,
 		onSuccess: (res) => {
-			if (isApiError(res)) {
-				return;
-			}
+			if (isApiError(res)) throw new Error(res.message);
 
 			toast.success(successMessage);
 			setUser({

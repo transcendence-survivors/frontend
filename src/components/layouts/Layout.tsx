@@ -7,29 +7,31 @@ interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
 }
 
-const Layout = ({ children, ...props }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
-			<div className='md:hidden'>
-				<PhoneHeader />
-			</div>
-			<div className='hidden md:block'>
-				<PcHeader />
-			</div>
-			<div className='max-w-4xl mx-auto w-full'>
-				<div className='layout' {...props}>
-					<div className='hidden sm:flex justify-end'>
-						<SideNav
-							className='sticky-sidebar scrollableContainer'
-							align='right'
-						/>
-					</div>
-					<div className='border-x w-full'>{children}</div>
+			<div className='header'>
+				<div className='md:hidden h-full'>
+					<PhoneHeader className='h-full' />
+				</div>
+				<div className='hidden md:block h-full'>
+					<PcHeader className='h-full' />
 				</div>
 			</div>
-			<div className='md:hidden'>
-				<PhoneNav />
+			<div className='max-w-4xl mx-auto w-full'>
+				<div className='layout '>
+					<aside className='hidden sm:flex justify-end'>
+						<SideNav
+							className='sticky-sidebar scrollableContainer'
+							align='left'
+						/>
+					</aside>
+					<div className='border-x w-full min-w-0'>{children}</div>
+				</div>
 			</div>
+			<aside className='md:hidden'>
+				<PhoneNav />
+			</aside>
 		</>
 	);
 };

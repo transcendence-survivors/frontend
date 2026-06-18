@@ -19,6 +19,12 @@ const navLinks: NavLink[] = [
 	{ key: 'posts', labelKey: 'posts' },
 ];
 
+const legals: NavLink[] = [
+	{ key: 'home', labelKey: 'legal' },
+	{ key: 'profile', labelKey: 'terms' },
+	{ key: 'posts', labelKey: 'privacy' },
+];
+
 interface NavProps extends React.HTMLAttributes<HTMLElement> {
 	align?: 'left' | 'center' | 'right';
 	linkWidth?: 'fit' | 'full';
@@ -34,6 +40,12 @@ const alignX = {
 	left: 'justify-start',
 	center: 'justify-center',
 	right: 'justify-end',
+} satisfies AlignClass;
+
+const marginX = {
+	left: 'mr-auto',
+	center: 'mx-auto',
+	right: 'ml-auto',
 } satisfies AlignClass;
 
 const alignY = {
@@ -56,13 +68,29 @@ const SideNav = ({
 	const t = useTranslations('nav');
 
 	return (
-		<nav className={cn(className)} {...props}>
+		<nav
+			className={cn('flex flex-col justify-between gap-20 h-full', className)}
+			{...props}>
 			<ul className={`flex space-y-4 flex-col ${alignY[align]}`}>
 				{navLinks.map((link) => (
 					<li key={link.key} className={`${linkWidthClass[linkWidth]}`}>
 						<Button
 							variant='ghost'
 							className={`w-full ${alignX[align]}`}
+							asChild>
+							<I18nLink href={link.key}>{t(link.labelKey)}</I18nLink>
+						</Button>
+					</li>
+				))}
+			</ul>
+			<ul className={`flex flex-wrap lowercase ${alignY[align]}`}>
+				{legals.map((link) => (
+					<li
+						key={link.key}
+						className={`${linkWidthClass[linkWidth]} ${marginX[align]}`}>
+						<Button
+							variant='link'
+							className={`${alignX[align]} text-muted-foreground text-xs px-1 h-auto`}
 							asChild>
 							<I18nLink href={link.key}>{t(link.labelKey)}</I18nLink>
 						</Button>

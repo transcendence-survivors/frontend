@@ -45,7 +45,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 			suppressHydrationWarning
 			lang={locale}
 			className={`${inter.variable} ${interMono.variable} h-full antialiased`}>
-			<body className='min-h-full flex flex-col'>
+			<body>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
 						<QuerryProvider>{children}</QuerryProvider>

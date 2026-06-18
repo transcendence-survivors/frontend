@@ -180,12 +180,12 @@
 
 	.header {
 		height: var(--header-height);
-		@apply sticky top-0 z-10 left-0 right-0;
+		@apply sticky top-0 z-30 left-0 right-0;
 	}
 
 	.layout {
 		--_padding-y: 0px;
-		@apply min-h-screen grid sm:grid-cols-[40px_1fr] md:grid-cols-[200px_1fr];
+		@apply min-h-screen grid sm:grid-cols-[50px_1fr] md:grid-cols-[250px_1fr];
 
 		.sticky-sidebar {
 			--_py: 1rem;
@@ -194,18 +194,10 @@
 			padding: 1rem;
 			@apply sticky z-10 self-start w-full max-w-xs;
 		}
-
 		.scrollableContainer {
-			--_max-height: calc(
-				100vh - var(--_top) - var(--_padding-y) - var(--_py) - 3rem
-			);
-
-			@apply overflow-y-auto overflow-x-clip;
+			--_max-height: calc(100dvh - var(--_top) - var(--_padding-y) - var(--_py));
 			max-height: var(--_max-height);
-			scrollbar-gutter: stable both-edges;
-			scrollbar-gutter: stable both-edges;
-
-			scrollbar-color: var(--muted-foreground) transparent;
+			@apply overflow-y-auto overflow-x-clip no-scrollbar;
 		}
 	}
 }

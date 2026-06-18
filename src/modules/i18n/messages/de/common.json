@@ -6,7 +6,21 @@
 		"profile": "Profile",
 		"settings": "Settings",
 		"logout": "Logout",
-		"posts": "Posts"
+		"posts": "Posts",
+		"privacy": "Privacy Policy",
+		"terms": "Terms of Service",
+		"legal": "Legal Notice",
+
+		"profile_posts": "Posts",
+		"profile_comments": "Comments",
+		"profile_stats": "Stats",
+		"profile_likes": "Likes",
+		"profile_favourites": "Favourites",
+
+		"profile_followers": "Followers",
+		"profile_following": "Following",
+
+		"profile_blocked": "Blocked Users"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
@@ -20,40 +34,68 @@
 		},
 		"signin": {
 			"title": "Sign In",
+			"no_account": "Don't have an account ?",
+			"forgot_password": "Forgot your password ?",
+			"reset_password": "Reset Password",
+
+			"username_or_email": "Username or Email",
+			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
+
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
+
 			"password": "Password",
 			"passwordPlaceholder": "Enter your password",
-			"submit": "Sign In",
-			"forgotPassword": "Forgot your password?",
-			"noAccount": "Don't have an account? Sign Up",
 
+			"submit": "Sign In",
+			"submitting": "Signing In",
+			"submitted": "Signed In",
+			"forgotPassword": "Forgot your password?",
 			"success": "You have been signed in successfully.",
 			"error": "An error occurred while signing in. Please check your credentials and try again."
 		},
 		"signup": {
 			"title": "Sign Up",
+			"already_account": "Already have an account ?",
 			"account": {
 				"title": "Account Information",
 				"account_desc": "Create your account by filling in the information below.",
 				"email": "Email",
 				"emailPlaceholder": "john.doe@example.com",
 				"username": "Username",
-				"usernamePlaceholder": "john_doe",
-
-				"phone": "Phone Number",
-				"phonePlaceholder": "+33 6 12 34 56 78"
+				"usernamePlaceholder": "john_doe"
+			},
+			"personal": {
+				"title": "Personal Information",
+				"desc": "Provide some personal details to complete your profile.",
+				"firstName": "First Name",
+				"firstNamePlaceholder": "John",
+				"lastName": "Last Name",
+				"lastNamePlaceholder": "Doe",
+				"birthdate": "Birthdate",
+				"gender": "Gender",
+				"genderPlaceholder": "Select your gender",
+				"genderOptions": {
+					"label": "Gender Options",
+					"male": "Male",
+					"female": "Female",
+					"other": "Other",
+					"prefer_not_to_say": "Prefer not to say"
+				},
+				"locale": "Preferred Language",
+				"localePlaceholder": "Select your preferred language for email notifications",
+				"localeOptions": {
+					"label": "Email Preference",
+					"en": "English",
+					"fr": "French",
+					"de": "German"
+				}
 			},
 			"profile": {
 				"title": "Profile",
 				"desc": "Tell us more about you to personalize your experience.",
 				"displayName": "Display Name",
 				"displayNamePlaceholder": "John Doe",
-				"firstName": "First Name",
-				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
-				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
 				"bio": "Biography",
 				"bioPlaceholder": "Tell us a bit about yourself"
 			},
@@ -79,10 +121,32 @@
 				"validating": "Validating"
 			},
 			"recap_title": "Review Your Information",
-			"alreadyHaveAccount": "Already have an account? Sign In",
 
 			"success": "Account created successfully!",
 			"error": "Failed to create account. Please try again."
+		},
+		"forgot_password": {
+			"title": "Reset Password",
+			"login": "Remember your password ?",
+			"email": "Email",
+			"emailPlaceholder": "john.doe@example.com",
+			"submit": "Send Reset Link",
+			"submitting": "Sending Reset Link",
+			"submitted": "Reset Link Sent",
+			"success": "If an account with that email exists, a password reset link has been sent."
+		},
+		"reset_password": {
+			"title": "Set New Password",
+			"login": "Remember your password ?",
+			"password": "New Password",
+			"passwordPlaceholder": "Enter your new password",
+			"confirmPassword": "Confirm New Password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"submit": "Reset Password",
+			"submitting": "Resetting Password",
+			"submitted": "Password Reset",
+			"success": "Your password has been reset successfully!",
+			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
 		}
 	},
 
@@ -116,9 +180,14 @@
 
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
+			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
 
 			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register"
+			"age_restriction": "You must be at least 13 years old to register",
+
+			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
+			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
+			"invalid_email": "The email address is not registered. Please check and try again."
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

@@ -12,3 +12,5 @@ export interface NavLink {
 	key: RouteKey;
 	labelKey: keyof AppMessages['nav'];
 }
+
+export const createNavLinks = <T extends NavLink>(links: T[]) => links;

@@ -69,6 +69,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/rangliste',
 		it: '/classifica',
 	},
+
 	profile: {
 		en: '/profile',
 		de: '/profil',
@@ -77,6 +78,40 @@ const APP_ROUTES = defineRouteMap({
 		che: '/profil',
 		it: '/profilo',
 	},
+	profileStats: {
+		en: '/profile/stats',
+		de: '/profil/statistiken',
+		fr: '/profil/statistiques',
+		es: '/perfil/estadisticas',
+		che: '/profil/statistiken',
+		it: '/profilo/statistiche',
+	},
+
+	profileComments: {
+		en: '/profile/comments',
+		de: '/profil/kommentare',
+		fr: '/profil/commentaires',
+		es: '/perfil/comentarios',
+		che: '/profil/kommentare',
+		it: '/profilo/commenti',
+	},
+	profileLikes: {
+		en: '/profile/likes',
+		de: '/profil/likes',
+		fr: '/profil/aime',
+		es: '/perfil/likes',
+		che: '/profil/likes',
+		it: '/profilo/likes',
+	},
+	profileFavourites: {
+		en: '/profile/favourites',
+		de: '/profil/favoriten',
+		fr: '/profil/favoris',
+		es: '/perfil/favoritos',
+		che: '/profil/favoriten',
+		it: '/profilo/preferiti',
+	},
+
 	settings: {
 		en: '/settings',
 		de: '/einstellungen',

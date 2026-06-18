@@ -69,6 +69,8 @@ type UserRole = 'USER' | 'ADMIN' | 'SUPER_ADMIN';
 type User = Omit<UserSchema, 'password'> & {
 	id: string;
 	role: UserRole;
+	avatarUrl?: string;
+	bannerUrl?: string;
 };
 
 export {

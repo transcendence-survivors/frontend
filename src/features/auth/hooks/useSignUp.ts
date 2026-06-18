@@ -4,7 +4,6 @@ import { toast } from 'sonner';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { REDIRECTED_URLS } from '@/modules/i18n/constants/routes';
 import { useSessionActions } from '../stores/session';
-import { isApiError } from '@/libs/api';
 
 interface useSignUpProps {
 	successMessage: string;
@@ -16,12 +15,9 @@ const useSignUp = ({ successMessage }: useSignUpProps) => {
 	return useMutation({
 		mutationFn: signUp,
 		onSuccess: (res) => {
-			if (isApiError(res)) throw new Error(res.message);
-
 			toast.success(successMessage);
 			setUser({
 				displayName: res.data.displayName,
-				email: res.data.email,
 				role: res.data.role,
 				username: res.data.username,
 				id: res.data.id,

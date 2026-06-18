@@ -1,4 +1,4 @@
-import { api, ApiResponse } from '@/libs/api';
+import { api, ApiException, isApiError } from '@/libs/api';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
 import { type UserSession } from '../stores/session';
 import type { UserGender, UserLocale } from '@/features/user/schemas/user.schema';
@@ -19,22 +19,26 @@ interface SignUpRequestBody {
 	password: string;
 }
 
-const signUp = (body: SignUpRequestBody) => {
-	const localePreference: UserLocale = body?.localePreference ?? 'EN';
-	const gender: UserGender = body?.gender ?? 'PREFER_NOT_TO_SAY';
+const signUp = async (body: SignUpRequestBody) => {
+	const localePreference: UserLocale = body.localePreference ?? 'EN';
+	const gender: UserGender = body.gender ?? 'PREFER_NOT_TO_SAY';
 
-	return api.post<UserSession>(AUTH_ENDPOINTS.signUp, {
+	const res = await api.post<UserSession>(AUTH_ENDPOINTS.signUp, {
 		...body,
 		localePreference,
 		gender,
 	});
+	if (isApiError(res)) {
+		throw new ApiException(res.code, res.message);
+	}
+	return res;
 };
 
-const checkEmail = (email: string): Promise<ApiResponse<void>> => {
+const checkEmail = (email: string) => {
 	return api.get<void>(`${AUTH_ENDPOINTS.checkEmail}/${email}`);
 };
 
-const checkUsername = (username: string): Promise<ApiResponse<void>> => {
+const checkUsername = (username: string) => {
 	return api.get<void>(`${AUTH_ENDPOINTS.checkUsername}/${username}`);
 };
 

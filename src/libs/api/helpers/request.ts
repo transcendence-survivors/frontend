@@ -39,17 +39,11 @@ export const request = async <T>(
 	if (res.status === 401 && init._retry) {
 		try {
 			await refreshAccessToken();
-			res = await baseFetch(path, {
-				...init,
-				headers: {
-					...init.headers,
-				},
-			});
+			res = await baseFetch(path, init);
 		} catch {
 			throw new Error('unauthorized');
 		}
 	}
-
 	if (!res.ok) {
 		return {
 			status: 'error',

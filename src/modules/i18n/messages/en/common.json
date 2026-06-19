@@ -11,6 +11,11 @@
 		"terms": "Terms of Service",
 		"legal": "Legal Notice",
 
+		"feed": "Feed",
+		"friends": "Friends",
+		"chat": "Chat",
+		"search": "Search",
+
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
 		"profile_stats": "Stats",
@@ -19,7 +24,6 @@
 
 		"profile_followers": "Followers",
 		"profile_following": "Following",
-
 		"profile_blocked": "Blocked Users"
 	},
 	"home": {

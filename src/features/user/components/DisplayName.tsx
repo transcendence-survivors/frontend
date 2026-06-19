@@ -15,7 +15,9 @@ const DisplayName = ({
 }: DisplayNameProps) => {
 	const Tag = tag;
 	return (
-		<Tag className={cn('font-bold text-base leading-none', className)} {...props}>
+		<Tag
+			className={cn('text-sm font-semibold text-foreground truncate', className)}
+			{...props}>
 			{displayName}
 		</Tag>
 	);

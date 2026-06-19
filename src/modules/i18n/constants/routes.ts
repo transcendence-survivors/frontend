@@ -69,6 +69,38 @@ const APP_ROUTES = defineRouteMap({
 		che: '/rangliste',
 		it: '/classifica',
 	},
+	feed: {
+		en: '/feed',
+		de: '/feed',
+		fr: '/fil-dactualite',
+		es: '/alimentacion',
+		che: '/feed',
+		it: '/feed',
+	},
+	friends: {
+		en: '/friends',
+		de: '/freunde',
+		fr: '/amis',
+		es: '/amigos',
+		che: '/freunde',
+		it: '/amici',
+	},
+	chat: {
+		en: '/chat',
+		de: '/chat',
+		fr: '/discussion',
+		es: '/charla',
+		che: '/chat',
+		it: '/chat',
+	},
+	search: {
+		en: '/search',
+		de: '/suche',
+		fr: '/recherche',
+		es: '/buscar',
+		che: '/suche',
+		it: '/ricerca',
+	},
 
 	profile: {
 		en: '/profile',

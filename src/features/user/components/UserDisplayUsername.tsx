@@ -42,11 +42,7 @@ const UserDisplayUsername = ({
 }: UserDisplayUsernameProps) => {
 	return (
 		<div className={layoutClassNames[layout]}>
-			<DisplayName
-				className='font-bold text-2xl'
-				displayName={displayName}
-				tag={displayNameTag[as]}
-			/>
+			<DisplayName displayName={displayName} tag={displayNameTag[as]} />
 			<Username
 				username={username}
 				tag={usernameTag[as]}

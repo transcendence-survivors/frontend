@@ -25,7 +25,7 @@ const UserPage = async ({ params }: UserPageProps) => {
 	return (
 		<main>
 			<Suspense fallback={fallback}>
-				<ProfileHeaderServer activeLinkKey='profile' username={username} />
+				<ProfileHeaderServer username={username} />
 			</Suspense>
 			<Spinner className='mx-auto mt-12 size-8' />
 		</main>

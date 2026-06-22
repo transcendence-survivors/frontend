@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	devIndicators: {
+		position: 'bottom-right',
+	},
 	async rewrites() {
 		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 		return [

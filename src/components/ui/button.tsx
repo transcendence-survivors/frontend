@@ -36,9 +36,9 @@ const buttonVariants = cva(
                     hover:underline
 					`,
 				sidebar: `
-					justify-start py-6
-					hover:text-foreground hover:bg-sidebar-accent
-					data-[active=true]:bg-primary/15 data-[active=true]:text-primary data-[active=true]:border-primary/30 data-[active=true]:border
+					py-4 px-12 border-0 text-sidebar-muted-foreground rounded-none
+					hover:text-sidebar-accent-foreground/90 hover:bg-sidebar-accent/60
+					data-[active=true]:text-sidebar-accent-foreground  data-[active=true]:bg-sidebar-accent data-[active=true]:border-l-2 data-[active=true]:border-accent
 					`,
 			},
 			size: {
@@ -53,6 +53,7 @@ const buttonVariants = cva(
 				'icon-sm':
 					'size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md',
 				'icon-lg': 'size-10',
+				'sidebar': 'h-11 gap-3 px-6',
 			},
 		},
 		defaultVariants: {

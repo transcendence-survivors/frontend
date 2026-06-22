@@ -29,6 +29,14 @@
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
 	},
+	"profile": {
+		"bio": "Biography",
+		"edit": {
+			"button": "Edit Profile",
+			"title": "Edit Profile",
+			"success": "Profile updated successfully."
+		}
+	},
 
 	"auth": {
 		"signout": {

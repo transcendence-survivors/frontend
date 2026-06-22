@@ -110,15 +110,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/profil',
 		it: '/profilo',
 	},
-	profileStats: {
-		en: '/profile/stats',
-		de: '/profil/statistiken',
-		fr: '/profil/statistiques',
-		es: '/perfil/estadisticas',
-		che: '/profil/statistiken',
-		it: '/profilo/statistiche',
+	profilePosts: {
+		en: '/profile/posts',
+		de: '/profil/beitraege',
+		fr: '/profil/articles',
+		es: '/perfil/articulos',
+		che: '/profil/beitraege',
+		it: '/profilo/articoli',
 	},
-
 	profileComments: {
 		en: '/profile/comments',
 		de: '/profil/kommentare',

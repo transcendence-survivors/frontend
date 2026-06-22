@@ -7,15 +7,25 @@ export interface UsernameProps extends HTMLAttributes<HTMLSpanElement> {
 	className?: string;
 }
 
-<div className='min-w-0'>
-	<p className='text-sm font-semibold text-foreground truncate'>Elara Vélinne</p>
-</div>;
+const tagClassNames: Record<NonNullable<UsernameProps['tag']>, string> = {
+	span: 'text-xs',
+	h1: 'text-lg',
+	h2: 'text-md',
+	h3: 'text-md',
+	h4: 'text-sm',
+	h5: 'text-sm',
+	h6: 'text-xs',
+};
 
 const Username = ({ username, tag = 'span', className, ...props }: UsernameProps) => {
 	const Tag = tag;
 	return (
 		<Tag
-			className={cn('text-xs text-muted-foreground truncate', className)}
+			className={cn(
+				'text-xs text-muted-foreground truncate',
+				tagClassNames[tag],
+				className,
+			)}
 			{...props}>
 			@{username}
 		</Tag>

@@ -14,6 +14,7 @@ interface ImageModalProps {
 	thumbnailFit?: 'object-cover' | 'object-contain' | 'object-scale-down';
 	children?: React.ReactNode;
 	fallback?: React.ReactNode;
+	loading?: 'eager' | 'lazy';
 }
 
 export function ImageModal({
@@ -22,6 +23,7 @@ export function ImageModal({
 	thumbnailClassName = 'w-full aspect-square',
 	modalClassName = 'aspect-video max-h-[85vh]',
 	thumbnailFit = 'object-cover',
+	loading = 'lazy',
 	children,
 	fallback,
 }: ImageModalProps) {
@@ -37,7 +39,7 @@ export function ImageModal({
 				<Button
 					variant='ghost'
 					className={cn(
-						'relative z-10 overflow-hidden rounded-lg max-h-full cursor-pointer hover:opacity-90 transition-opacity group p-0',
+						'relative z-10 overflow-hidden border-0 max-h-full cursor-pointer hover:opacity-90 transition-opacity group',
 						thumbnailClassName,
 					)}>
 					<Image
@@ -45,6 +47,7 @@ export function ImageModal({
 						alt={alt}
 						fill
 						className={thumbnailFit}
+						loading={loading}
 						onError={() => setError(true)}
 					/>
 

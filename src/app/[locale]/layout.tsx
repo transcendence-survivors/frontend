@@ -1,7 +1,6 @@
 import '@/app/globals.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import ThemeProvider from '@themes/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
@@ -9,14 +8,24 @@ import { Toaster } from 'sonner';
 import { DEFAULT_LOCALE, Locale } from '@i18n/constants/locales';
 import METADATA from '@i18n/constants/metadata';
 
-const inter = Inter({
-	variable: '--font-inter',
+import { Manrope, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+
+const manrope = Manrope({
 	subsets: ['latin'],
+	variable: '--font-manrope',
+	display: 'swap',
 });
-const interMono = Inter({
-	variable: '--font-inter-mono',
+
+const spaceGrotesk = Space_Grotesk({
 	subsets: ['latin'],
-	weight: '400',
+	variable: '--font-space-grotesk',
+	display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+	subsets: ['latin'],
+	variable: '--font-jetbrains-mono',
+	display: 'swap',
 });
 
 type Params = Promise<{
@@ -44,7 +53,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 		<html
 			suppressHydrationWarning
 			lang={locale}
-			className={`${inter.variable} ${interMono.variable} h-full antialiased`}>
+			className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}>
 			<body>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>

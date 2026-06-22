@@ -20,7 +20,8 @@ const LogoutDropDownItem = () => {
 		<DropdownMenuItem
 			variant='destructive'
 			onClick={handleLogout}
-			disabled={isPending || isError}>
+			disabled={isPending || isError}
+			className='cursor-pointer'>
 			{isPending ? <Spinner /> : t('label')}
 		</DropdownMenuItem>
 	);

@@ -1,9 +1,7 @@
-import { isApiError } from '@/libs/api';
+import { ApiSuccess, isApiError } from '@/libs/api';
 import getUserByUsername from '../../api/get.api';
 import { User } from '../../schemas/user.schema';
 import ProfileHeader from './ProfileHeader';
-import { ProfileNavKey } from './ProfileNav';
-import { notFound } from 'next/navigation';
 
 const user: User = {
 	id: '1',
@@ -21,15 +19,14 @@ const user: User = {
 };
 
 interface ProfileHeaderProps extends React.HTMLAttributes<HTMLElement> {
-	activeLinkKey: ProfileNavKey;
 	username: string;
 }
 
 const ProfileHeaderServer = async ({ username, ...props }: ProfileHeaderProps) => {
-	const res = await getUserByUsername(username);
+	let res = await getUserByUsername(username);
 	if (isApiError(res)) {
 		// notFound();
-		res.data = user;
+		res = { ...res, data: user, status: 'success' } as ApiSuccess<User>;
 	}
 	return <ProfileHeader user={res.data} {...props} />;
 };

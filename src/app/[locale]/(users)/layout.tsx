@@ -1,4 +1,4 @@
-import Layout from '@components/layouts/Layout';
+import Layout from '@/components/layouts/Dashboard/DashboardLayout';
 
 interface RootLayoutProps {
 	children: React.ReactNode;

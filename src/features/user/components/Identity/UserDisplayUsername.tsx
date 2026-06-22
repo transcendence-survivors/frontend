@@ -1,7 +1,8 @@
-import DisplayName, { DisplayNameProps } from './DisplayName';
+import { cn } from '@/libs/utils';
+import DisplayName, { DisplayNameProps } from './UserDisplayName';
 import Username, { UsernameProps } from './Username';
 
-interface UserDisplayUsernameProps {
+export interface UserDisplayUsernameProps extends React.HTMLAttributes<HTMLDivElement> {
 	username: string;
 	displayName: string;
 	layout?: 'horizontal' | 'vertical';
@@ -39,9 +40,13 @@ const UserDisplayUsername = ({
 	displayName,
 	layout = 'vertical',
 	as = 'base',
+	className,
+	...props
 }: UserDisplayUsernameProps) => {
 	return (
-		<div className={layoutClassNames[layout]}>
+		<div
+			className={cn(layoutClassNames[layout], 'text-left min-w-0', className)}
+			{...props}>
 			<DisplayName displayName={displayName} tag={displayNameTag[as]} />
 			<Username
 				username={username}

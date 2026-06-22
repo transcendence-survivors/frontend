@@ -9,17 +9,13 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import AvatarProfile, { AvatarProfileProps } from './AvatarProfile';
 import { NavLink, useRouter } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { SettingsIcon, User } from 'lucide-react';
-import LocaleDropdownSubMenu from '@i18n/components/LocaleDropdownSubMenu';
 import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
-import ThemeDropdownSubMenu from '@themes/components/ThemeDropdownSubMenu';
+import UserIdentity from '../Identity/UserIdentity';
 
-interface AvatarDropdownProps {
-	avatar: AvatarProfileProps;
-}
+interface AvatarDropdownProps extends React.ComponentProps<typeof UserIdentity> {}
 
 interface DropDownLink extends NavLink {
 	icon: React.ReactNode;
@@ -30,7 +26,7 @@ const links: DropDownLink[] = [
 	{ key: 'settings', labelKey: 'settings', icon: <SettingsIcon /> },
 ];
 
-export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
+const AvatarDropdown = ({ avatar, user, ...props }: AvatarDropdownProps) => {
 	const t = useTranslations('nav');
 	const router = useRouter();
 
@@ -41,8 +37,8 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant='ghost' size='icon' className='rounded-full'>
-					<AvatarProfile {...avatar} />
+				<Button variant={'ghost'} className={`w-full h-auto max-w-full`}>
+					<UserIdentity avatar={avatar} user={user} {...props} />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
@@ -56,12 +52,6 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 						</DropdownMenuItem>
 					))}
 				</DropdownMenuGroup>
-				<DropdownMenu>
-					<ThemeDropdownSubMenu />
-				</DropdownMenu>
-				<DropdownMenu>
-					<LocaleDropdownSubMenu />
-				</DropdownMenu>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<LogoutDropDownItem />
@@ -69,4 +59,6 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
-}
+};
+
+export default AvatarDropdown;

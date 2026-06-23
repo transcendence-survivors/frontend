@@ -24,7 +24,8 @@
 
 		"profile_followers": "Followers",
 		"profile_following": "Following",
-		"profile_blocked": "Blocked Users"
+		"profile_blocked": "Blocked Users",
+		"concept": "Concept"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"

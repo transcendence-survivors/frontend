@@ -1,0 +1,15 @@
+import { SVGAttributes } from 'lucide-react';
+
+const LogoLanding = ({ ...props }: SVGAttributes) => {
+	return (
+		<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' {...props}>
+			<path
+				fillRule='evenodd'
+				clipRule='evenodd'
+				d='M6.42436 0H9.57565L14.995 16H11.8276L10.8115 13H5.18855L4.17242 16H1.005L6.42436 0ZM6.20468 10H9.79533L8 4.69952L6.20468 10Z'
+			/>
+		</svg>
+	);
+};
+
+export default LogoLanding;

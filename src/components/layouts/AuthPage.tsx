@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { I18nLink } from '@/modules/i18n/components/I18nLink';
-import { RouteKey } from '@/modules/i18n/constants/routes';
+import { RoutesWithoutParams } from '@/modules/i18n/constants/routes';
 
 interface AuthPageProps {
 	title: string;
 	linkText: string;
-	linkHref: RouteKey;
+	linkHref: RoutesWithoutParams;
 	children: React.ReactNode;
 }
 

@@ -62,7 +62,7 @@ export function ImageModal({
 				</Button>
 			</DialogTrigger>
 
-			<DialogContent className='w-screen !max-w-[90vw] p-0 border-none bg-transparent shadow-none ring-0 sm:rounded-none'>
+			<DialogContent className='w-screen max-w-[90vw]! p-0 border-none bg-transparent shadow-none ring-0 sm:rounded-none'>
 				<div className={cn('relative w-full', modalClassName)}>
 					<Image
 						src={src}

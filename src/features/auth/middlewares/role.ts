@@ -1,5 +1,5 @@
-import { APP_ROUTES, CanonicalHref } from '@/modules/i18n/constants/routes';
-import { UserRole } from '../schemas/user.schema';
+import { RouteKey } from '@/modules/i18n/constants/routes';
+import { UserRole } from '@user/schemas/user.schema';
 
 const hierarchy: Record<UserRole, number> = {
 	USER: 1,
@@ -7,13 +7,22 @@ const hierarchy: Record<UserRole, number> = {
 	SUPER_ADMIN: 3,
 };
 
-const roleRoutes: Partial<Record<CanonicalHref, UserRole[]>> = {
-	// [APP_ROUTES.admin.en]: [UserRole.ADMIN, UserRole.SUPER_ADMIN],
+const roleRoutes: Partial<Record<RouteKey, UserRole[]>> = {
+	settings: ['USER'],
+	feed: ['USER'],
+	chat: ['USER'],
+	chatId: ['USER'],
+	profile: ['USER'],
+	profileComments: ['USER'],
+	profileLikes: ['USER'],
+	profileFavourites: ['USER'],
+	profilePosts: ['USER'],
+	friends: ['USER'],
 };
 
 const hasRequiredRole = (userRole: UserRole, required: UserRole[]): boolean =>
 	required.some((r) => hierarchy[userRole] >= hierarchy[r]);
 
-const isRoleRoute = (route: CanonicalHref): boolean => route in roleRoutes;
+const isRoleRoute = (route: RouteKey): boolean => route in roleRoutes;
 
 export { hasRequiredRole, isRoleRoute, roleRoutes };

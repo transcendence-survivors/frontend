@@ -14,11 +14,11 @@ interface DashboardNavProps extends React.HTMLAttributes<HTMLUListElement> {
 }
 
 const links = createNavLinks([
-	{ key: 'profile', labelKey: 'profile' },
 	{ key: 'feed', labelKey: 'feed' },
+	{ key: 'search', labelKey: 'search' },
 	{ key: 'friends', labelKey: 'friends' },
 	{ key: 'chat', labelKey: 'chat' },
-	{ key: 'search', labelKey: 'search' },
+	{ key: 'profile', labelKey: 'profile' },
 ]);
 
 const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {

@@ -1,7 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './utils/routing';
 import { LOCALES } from './constants/locales';
-import { CanonicalHref } from './constants/routes';
+import { DYNAMIC_ROUTES, RouteKey, STATIC_ROUTES } from './constants/routes';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -14,22 +14,20 @@ const stripLocale = (pathname: string): string => {
 	return pathname;
 };
 
-const buildDynamicRouteRegex = (path: string): RegExp => {
-	return new RegExp(
-		`^${path
-			.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-			.replace(/:[^/]+/g, '[^/]+')}(/.*)?$`,
-	);
-};
-
-const resolveCanonicalPath = (deLocalizedPath: string): CanonicalHref | null => {
-	for (const [enPath, localeMap] of Object.entries(routing.pathnames)) {
-		for (const localizedPath of Object.values(localeMap as Record<string, string>)) {
-			if (buildDynamicRouteRegex(localizedPath).test(deLocalizedPath))
-				return enPath as CanonicalHref;
+const resolveRouteKeyPath = (path: string): RouteKey | null => {
+	for (const route of STATIC_ROUTES) {
+		console.log(`route.en: ${route.en}, path: ${path}`);
+		if (route.en === path) {
+			return route.key as RouteKey;
 		}
 	}
+	for (const route of DYNAMIC_ROUTES) {
+		if (route.regex?.test(path)) {
+			return route.key as RouteKey;
+		}
+	}
+	console.log(`No canonical path found for: ${path}`);
 	return null;
 };
 
-export { intlMiddleware, stripLocale, resolveCanonicalPath };
+export { intlMiddleware, stripLocale, resolveRouteKeyPath };

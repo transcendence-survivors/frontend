@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { intlMiddleware, resolveCanonicalPath, stripLocale } from '@i18n/middleware';
+import { intlMiddleware, resolveRouteKeyPath, stripLocale } from '@i18n/middleware';
 import { REDIRECTED_URLS } from '@i18n/constants/routes';
 import { hasRequiredRole, isRoleRoute, roleRoutes } from '@auth/middlewares/role';
 import { getUserFromRequest } from '@auth/middlewares/token';
@@ -11,8 +11,10 @@ export default async function middleware(req: NextRequest) {
 	const intlResponse = intlMiddleware(req);
 	if (intlResponse?.headers.get('location')) return intlResponse;
 
-	const canonical = resolveCanonicalPath(stripLocale(pathname));
+	const canonical = resolveRouteKeyPath(stripLocale(pathname));
+	console.log(`Canonical path for ${pathname}: ${canonical}`);
 	if (!canonical || !isRoleRoute(canonical)) {
+		console.log(`No role-based access control for route: ${canonical}`);
 		return intlResponse ?? NextResponse.next();
 	}
 
@@ -28,7 +30,7 @@ export default async function middleware(req: NextRequest) {
 	const { user, setCookieHeaders } = res;
 	const requiredRoles = roleRoutes[canonical];
 	if (requiredRoles && !hasRequiredRole(user.role, requiredRoles)) {
-		return NextResponse.redirect(new URL(REDIRECTED_URLS['403'], req.url));
+		return NextResponse.redirect(new URL(REDIRECTED_URLS['401'], req.url));
 	}
 
 	const response = intlResponse ?? NextResponse.next();

@@ -16,7 +16,6 @@ const stripLocale = (pathname: string): string => {
 
 const resolveRouteKeyPath = (path: string): RouteKey | null => {
 	for (const route of STATIC_ROUTES) {
-		console.log(`route.en: ${route.en}, path: ${path}`);
 		if (route.en === path) {
 			return route.key as RouteKey;
 		}
@@ -26,7 +25,6 @@ const resolveRouteKeyPath = (path: string): RouteKey | null => {
 			return route.key as RouteKey;
 		}
 	}
-	console.log(`No canonical path found for: ${path}`);
 	return null;
 };
 

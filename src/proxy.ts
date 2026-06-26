@@ -12,9 +12,7 @@ export default async function middleware(req: NextRequest) {
 	if (intlResponse?.headers.get('location')) return intlResponse;
 
 	const canonical = resolveRouteKeyPath(stripLocale(pathname));
-	console.log(`Canonical path for ${pathname}: ${canonical}`);
 	if (!canonical || !isRoleRoute(canonical)) {
-		console.log(`No role-based access control for route: ${canonical}`);
 		return intlResponse ?? NextResponse.next();
 	}
 

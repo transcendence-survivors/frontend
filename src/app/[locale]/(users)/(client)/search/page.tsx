@@ -21,8 +21,8 @@ const post = {
 };
 
 export default function Feed() {
-	const { globalOnlineCount, onlineFriendsCount, onlineFriends } = usePresenceState();
-	console.log('Online Friends:', onlineFriends);
+	const { globalOnlineCount, onlineFriendsCount } = usePresenceState();
+
 	return (
 		<main>
 			<section className='border-b py-5'>
@@ -30,11 +30,6 @@ export default function Feed() {
 					<ul>
 						<li>Global Online Users: {globalOnlineCount}</li>
 						<li>Online Friends: {onlineFriendsCount}</li>
-					</ul>
-					<ul>
-						{Array.from(onlineFriends).map((friendId) => (
-							<li key={friendId}>Friend ID: {friendId}</li>
-						))}
 					</ul>
 				</div>
 			</section>

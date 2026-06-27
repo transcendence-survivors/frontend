@@ -1,7 +1,12 @@
 'use client';
+
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { ImageModal } from '@/components/ui/image-modal';
-import { usePresenceState } from '@/modules/websocket/stores/presence';
+import {
+	usePresenceActions,
+	usePresenceState,
+} from '@/modules/websocket/stores/presence';
 
 const post = {
 	id: '1',
@@ -22,6 +27,8 @@ const post = {
 
 export default function Feed() {
 	const { globalOnlineCount, onlineFriendsCount, onlineFriends } = usePresenceState();
+	const { goInvisible, goVisible, goDoNotDisturb } = usePresenceActions();
+
 	console.log('Online Friends:', onlineFriends);
 	return (
 		<main>
@@ -31,11 +38,21 @@ export default function Feed() {
 						<li>Global Online Users: {globalOnlineCount}</li>
 						<li>Online Friends: {onlineFriendsCount}</li>
 					</ul>
+
 					<ul>
-						{Array.from(onlineFriends).map((friendId) => (
-							<li key={friendId}>Friend ID: {friendId}</li>
+						{Array.from(onlineFriends.entries()).map(([friendId, friend]) => (
+							<li key={friendId}>
+								Friend ID: {friendId}, Status: {friend.status}
+							</li>
 						))}
 					</ul>
+					<div>
+						<Button onClick={() => goInvisible()}>Go Invisible</Button>
+						<Button onClick={() => goVisible()}>Go Visible</Button>
+						<Button onClick={() => goDoNotDisturb()}>
+							Go Do Not Disturb
+						</Button>
+					</div>
 				</div>
 			</section>
 			<section className='max-w-3xl mx-auto px-4 py-8'>

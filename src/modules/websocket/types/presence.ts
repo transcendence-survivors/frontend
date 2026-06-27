@@ -1,23 +1,33 @@
 import { type Socket } from 'socket.io-client';
+import { Friend } from './friend';
 
-interface PresenceState {
+interface PresencePublicState {
 	socket: Socket | null;
 	isConnected: boolean;
 	globalOnlineCount: number;
 
-	onlineFriends: Set<string>;
+	onlineFriends: Map<string, Friend>;
 	onlineFriendsCount: number;
 }
 
-interface PresenceActions {
+interface PresencePublicActions {
 	initPresence: () => void;
 	disconnectPresence: () => void;
 	goInvisible: () => void;
 	goVisible: () => void;
+	goDoNotDisturb: () => void;
 }
 
-interface PresenceStore extends PresenceState {
-	actions: PresenceActions;
+interface PresenceStore extends PresencePublicState {
+	actions: PresencePublicActions;
 }
 
-export type { PresenceState, PresenceActions, PresenceStore };
+enum PresenceStatus {
+	ONLINE = 'online',
+	OFFLINE = 'offline',
+	DO_NOT_DISTURB = 'do_not_disturb',
+	INVISIBLE = 'invisible',
+}
+
+export { PresenceStatus };
+export type { PresencePublicState, PresencePublicActions, PresenceStore };

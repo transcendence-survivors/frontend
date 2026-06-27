@@ -1,6 +1,12 @@
+import { PresenceStatus } from './presence';
+
 interface FriendStatusChangePayload {
 	userId: string;
-	status: 'online' | 'offline';
+	status: PresenceStatus;
 }
 
-export type { FriendStatusChangePayload };
+interface Friend {
+	status: PresenceStatus;
+}
+
+export type { FriendStatusChangePayload, Friend };

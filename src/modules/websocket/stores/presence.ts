@@ -2,17 +2,18 @@
 
 import { io } from 'socket.io-client';
 import { PRESENCE_EVENTS } from '../constants/events';
-import { type PresenceStore } from '../types/presence';
+import { PresenceStatus, type PresenceStore } from '../types/presence';
 import { create } from 'zustand';
 import { env } from '@/libs/env';
 import { useShallow } from 'zustand/react/shallow';
+import { Friend, FriendStatusChangePayload } from '../types/friend';
 
 export const usePresenceStore = create<PresenceStore>((set, get) => ({
 	socket: null,
 	isConnected: false,
 	globalOnlineCount: 0,
 
-	onlineFriends: new Set<string>(),
+	onlineFriends: new Map<string, Friend>(),
 	onlineFriendsCount: 0,
 
 	actions: {
@@ -35,36 +36,37 @@ export const usePresenceStore = create<PresenceStore>((set, get) => ({
 				set({ globalOnlineCount: count });
 			});
 			socket.on(PRESENCE_EVENTS.SEND.INITIAL_FRIENDS, (friendsList: string[]) => {
-				console.log('Received initial online friends list:', friendsList);
 				set({
-					onlineFriends: new Set(friendsList),
+					onlineFriends: new Map(
+						friendsList.map((id) => [id, { status: PresenceStatus.ONLINE }]),
+					),
 					onlineFriendsCount: friendsList.length,
 				});
 			});
 
 			socket.on(
 				PRESENCE_EVENTS.SEND.STATUS_CHANGE,
-				(data: { userId: string; status: 'online' | 'offline' }) => {
-					const { onlineFriends } = get();
-					console.log('Received status change:', data);
-					if (data.status === 'online') {
-						if (onlineFriends.has(data.userId)) return;
-						set((prev) => {
-							const updatedFriends = new Set(prev.onlineFriends);
-							updatedFriends.add(data.userId);
-							return {
-								onlineFriends: updatedFriends,
-								onlineFriendsCount: prev.onlineFriendsCount + 1,
-							};
-						});
-						return;
-					}
+				({ userId, status }: FriendStatusChangePayload) => {
 					set((prev) => {
-						const updatedFriends = new Set(prev.onlineFriends);
-						updatedFriends.delete(data.userId);
+						const currentFriends = prev.onlineFriends;
+						const friend = currentFriends.get(userId);
+						if (friend && friend.status === status) return prev;
+						if (status === PresenceStatus.OFFLINE) {
+							if (!friend) return prev;
+							const newFriends = new Map(currentFriends);
+							newFriends.delete(userId);
+							return {
+								onlineFriends: newFriends,
+								onlineFriendsCount: prev.onlineFriendsCount - 1,
+							};
+						}
 						return {
-							onlineFriends: updatedFriends,
-							onlineFriendsCount: prev.onlineFriendsCount - 1,
+							onlineFriends: new Map(currentFriends).set(userId, {
+								status,
+							}),
+							onlineFriendsCount: friend
+								? prev.onlineFriendsCount
+								: prev.onlineFriendsCount + 1,
 						};
 					});
 				},
@@ -73,16 +75,18 @@ export const usePresenceStore = create<PresenceStore>((set, get) => ({
 
 		disconnectPresence: () => {
 			const { socket } = get();
-			if (socket) {
-				socket.disconnect();
-				set({
-					socket: null,
-					isConnected: false,
-					onlineFriends: new Set<string>(),
-					onlineFriendsCount: 0,
-					globalOnlineCount: 0,
-				});
-			}
+			if (!socket) return;
+			socket.off(PRESENCE_EVENTS.SEND.GLOBAL_COUNT);
+			socket.off(PRESENCE_EVENTS.SEND.INITIAL_FRIENDS);
+			socket.off(PRESENCE_EVENTS.SEND.STATUS_CHANGE);
+			socket.disconnect();
+			set({
+				socket: null,
+				isConnected: false,
+				onlineFriends: new Map<string, Friend>(),
+				onlineFriendsCount: 0,
+				globalOnlineCount: 0,
+			});
 		},
 
 		goInvisible: () => {
@@ -95,6 +99,12 @@ export const usePresenceStore = create<PresenceStore>((set, get) => ({
 			const { socket } = get();
 			if (socket?.connected) {
 				socket.emit(PRESENCE_EVENTS.RECEIVE.GO_VISIBLE);
+			}
+		},
+		goDoNotDisturb: () => {
+			const { socket } = get();
+			if (socket?.connected) {
+				socket.emit(PRESENCE_EVENTS.RECEIVE.GO_DO_NOT_DISTURB);
 			}
 		},
 	},

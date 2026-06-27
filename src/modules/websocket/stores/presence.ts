@@ -51,7 +51,10 @@ export const usePresenceStore = create<PresenceStore>((set, get) => ({
 						const currentFriends = prev.onlineFriends;
 						const friend = currentFriends.get(userId);
 						if (friend && friend.status === status) return prev;
-						if (status === PresenceStatus.OFFLINE) {
+						if (
+							status === PresenceStatus.OFFLINE ||
+							status === PresenceStatus.INVISIBLE
+						) {
 							if (!friend) return prev;
 							const newFriends = new Map(currentFriends);
 							newFriends.delete(userId);

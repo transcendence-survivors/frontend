@@ -11,7 +11,7 @@ import { createDropDownLinks } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { SettingsIcon, User } from 'lucide-react';
 import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
-import UserIdentity from '../Identity/UserIdentity';
+import { UserIdentity } from '../Identity/UserIdentity';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 
 interface AvatarDropdownProps extends React.ComponentProps<typeof UserIdentity> {}

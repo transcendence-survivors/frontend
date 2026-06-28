@@ -21,4 +21,17 @@ const UserIdentity = ({ avatar, user, className, ...props }: UserIdentityProps) 
 	);
 };
 
-export default UserIdentity;
+const UserIdentitySkeleton = () => {
+	const bgColor = 'bg-muted';
+	return (
+		<div className='flex items-center gap-3 h-auto overflow-x-clip whitespace-nowrap text-ellipsis max-w-full'>
+			<div className={`w-12 h-12 rounded-full ${bgColor} animate-pulse`}></div>
+			<div className='flex flex-col gap-2'>
+				<div className={`w-32 h-4 ${bgColor} animate-pulse`}></div>
+				<div className={`w-24 h-4 ${bgColor} animate-pulse`}></div>
+			</div>
+		</div>
+	);
+};
+
+export { UserIdentity, UserIdentitySkeleton };

@@ -22,13 +22,36 @@ const AvatarProfileFallback = ({
 	);
 };
 
+type AvatarBadgeState = 'online' | 'do_not_disturb' | 'offline';
+interface AvatarProfileBadgeProps extends React.ComponentProps<typeof AvatarBadge> {
+	badgeState: AvatarBadgeState;
+}
+const badgeStateClasses = {
+	online: 'bg-primary',
+	do_not_disturb: 'bg-red-500',
+	offline: 'bg-muted',
+} satisfies Record<AvatarBadgeState, string>;
+
+const AvatarProfileBadge = ({
+	badgeState,
+	className,
+	...props
+}: AvatarProfileBadgeProps) => {
+	return (
+		<AvatarBadge
+			className={cn(badgeStateClasses[badgeState], className)}
+			{...props}
+		/>
+	);
+};
+
 export interface AvatarProfileProps extends Omit<
 	React.ComponentProps<typeof Avatar>,
 	'size'
 > {
 	img: ImageProps;
 	size?: AvatarProfileSize;
-	badge?: 'online' | 'offline' | false;
+	badgeState?: AvatarBadgeState | false;
 }
 
 const sizeClasses = {
@@ -43,18 +66,14 @@ const AvatarProfile = ({
 	img,
 	size = 'lg',
 	className,
-	badge = false,
+	badgeState = false,
 	...props
 }: AvatarProfileProps) => {
 	return (
 		<Avatar className={cn(sizeClasses[size], className)} {...props}>
 			<AvatarImage src={img.src} alt={img.alt} />
 			<AvatarProfileFallback username={img.alt} />
-			{badge && (
-				<AvatarBadge
-					className={`${badge === 'online' ? '' : 'bg-primary-foreground'} `}
-				/>
-			)}
+			{badgeState && <AvatarProfileBadge badgeState={badgeState} />}
 		</Avatar>
 	);
 };
@@ -62,7 +81,6 @@ const AvatarProfile = ({
 interface AvatarProfileLinkProps {
 	avatar: AvatarProfileProps;
 }
-
 const AvatarProfileLink = ({ avatar }: AvatarProfileLinkProps) => {
 	return (
 		<I18nLink href='profile'>

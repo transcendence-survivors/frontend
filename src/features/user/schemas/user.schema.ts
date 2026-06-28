@@ -63,15 +63,8 @@ const userSchema = z.object({
 });
 
 type UserSchema = z.infer<typeof userSchema>;
-type UserGender = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY';
-type UserLocale = 'EN' | 'FR' | 'DE';
-type UserRole = 'USER' | 'ADMIN' | 'SUPER_ADMIN';
-type User = Omit<UserSchema, 'password'> & {
-	id: string;
-	role: UserRole;
-	avatarUrl?: string;
-	bannerUrl?: string;
-};
+type UserGender = z.infer<typeof userGenderSchema>;
+type UserLocale = z.infer<typeof userLocaleSchema>;
 
 export {
 	userEmailSchema,
@@ -87,4 +80,4 @@ export {
 	userSchema,
 };
 
-export type { User, UserRole, UserGender, UserLocale };
+export type { UserSchema, UserGender, UserLocale };

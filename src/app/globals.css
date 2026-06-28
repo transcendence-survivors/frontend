@@ -125,6 +125,12 @@
 	--chart-5: oklch(0.26 0.018 55);
 
 	--radius: 0.25rem;
+	--header-height: 4rem;
+}
+@media screen and (min-width: 768px) {
+	:root {
+		--header-height: 0rem;
+	}
 }
 
 .dark {
@@ -184,8 +190,7 @@
 		@apply text-5xl font-bold;
 	}
 
-	.header {
+	.main-header {
 		height: var(--header-height);
-		@apply sticky top-0 z-30 left-0 right-0;
 	}
 }

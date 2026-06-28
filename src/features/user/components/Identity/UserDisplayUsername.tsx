@@ -45,7 +45,11 @@ const UserDisplayUsername = ({
 }: UserDisplayUsernameProps) => {
 	return (
 		<div
-			className={cn(layoutClassNames[layout], 'text-left min-w-0', className)}
+			className={cn(
+				layoutClassNames[layout],
+				'text-left min-w-0 space-y-0.5',
+				className,
+			)}
 			{...props}>
 			<DisplayName displayName={displayName} tag={displayNameTag[as]} />
 			<Username

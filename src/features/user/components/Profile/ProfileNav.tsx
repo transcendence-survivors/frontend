@@ -55,10 +55,10 @@ const ProfileNav = ({ className, ...props }: ProfileNavProps) => {
 			{profileNavLinks.map((link) => (
 				<li key={link.key} className='flex-1' onFocus={onFocus}>
 					<Button
-						variant={link.key === activeLinkKey ? 'sidebar' : 'ghost'}
+						variant={'tabs'}
 						size={'lg'}
 						className={cn(
-							'w-full px-14 py-6 rounded-none border-y-0 border-x-muted select-none',
+							'w-full px-14 py-6 ',
 							isDragging ? 'cursor-grabbing' : 'cursor-pointer',
 						)}
 						data-active={link.key === activeLinkKey}

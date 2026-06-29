@@ -47,6 +47,12 @@ const buttonVariants = cva(
 					hover:text-sidebar-accent-foreground/90 hover:bg-sidebar-accent/60
 					data-[active=true]:text-sidebar-accent-foreground  data-[active=true]:bg-sidebar-accent data-[active=true]:border-l-2 data-[active=true]:border-accent
 					`,
+				tabs: `
+                    py-4 px-12 border-0 text-sidebar-muted-foreground rounded-none 
+                    data-[active=true]:border-b-2 data-[active=true]:border-accent data-[active=true]:text-accent
+                    hover:border-b-2 hover:border-foreground/40 hover:text-foreground
+                    focus-visible:border-b-2 focus-visible:border-foreground/40 focus-visible:text-foreground outline-0 
+                    `,
 			},
 			size: {
 				'default':

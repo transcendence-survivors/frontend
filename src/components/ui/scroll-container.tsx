@@ -45,7 +45,7 @@ const ScrollContainer = forwardRef<HTMLElement, ScrollContainerProps>(
 					ref={ref}
 					onMouseDown={onMouseDown}
 					className={cn(
-						'overflow-x-auto no-scrollbar border-y',
+						'overflow-x-auto no-scrollbar border-b border-border',
 						isDragging ? 'cursor-grabbing' : 'cursor-grab',
 						className,
 					)}

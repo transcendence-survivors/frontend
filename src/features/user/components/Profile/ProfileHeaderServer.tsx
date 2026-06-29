@@ -1,6 +1,6 @@
 import { ApiSuccess, isApiError } from '@/libs/api';
 import getUserByUsername from '../../api/get.api';
-import { User } from '../../schemas/user.schema';
+import { type User } from '@user/type';
 import ProfileHeader from './ProfileHeader';
 
 const user: User = {

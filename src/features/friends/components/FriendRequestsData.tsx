@@ -52,13 +52,14 @@ const FriendRequestsData = ({ direction }: FriendRequestsProps) => {
 					requests
 				</FriendsError>
 			) : (
-				<ul>
+				<ul className='flex flex-col gap-0'>
 					{friends.map(({ id, friend, since }) => (
 						<li key={id}>
 							<FriendCard
 								friend={friend}
+								containerClassName='pb-2'
 								bottom={
-									<div className='mt-3'>
+									<div className='mt-3 pt-3 px-1 border-t border-border'>
 										<Kicker>
 											{direction === 'incoming'
 												? 'Received'

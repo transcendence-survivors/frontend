@@ -1,5 +1,3 @@
-import DisplayDate from '@/components/ui/date';
-import Kicker from '@/components/ui/kicker';
 import {
 	UserIdentityLink,
 	UserIdentitySkeleton,
@@ -11,6 +9,7 @@ interface FriendCardProps extends React.HtmlHTMLAttributes<HTMLElement> {
 	friend: BaseUser;
 	badge?: boolean;
 	bottom?: React.ReactNode;
+	containerClassName?: string;
 }
 
 const FriendCard = ({
@@ -19,16 +18,21 @@ const FriendCard = ({
 	children,
 	className,
 	bottom,
+	containerClassName,
 	...props
 }: FriendCardProps) => {
 	return (
 		<article className={cn('border px-4 py-4', className)} {...props}>
-			<div className='flex flex-row items-center gap-x-4 justify-between '>
+			<div
+				className={cn(
+					'flex flex-row items-center gap-x-4 justify-between ',
+					containerClassName,
+				)}>
 				<div className='flex flex-col gap-3 max-w-[60%]'>
 					<UserIdentityLink
 						avatar={{
 							img: {
-								src: friend.avatarUrl,
+								src: friend.avatarUrl ?? '',
 								alt: friend.displayName,
 							},
 							size: 'lg',
@@ -50,13 +54,19 @@ const FriendCard = ({
 const FriendCardSkeleton = ({
 	children,
 	bottom,
+	containerClassName,
 }: {
 	children?: React.ReactNode;
 	bottom?: React.ReactNode;
+	containerClassName?: string;
 }) => {
 	return (
 		<article className='border px-4 py-4'>
-			<div className='flex flex-row items-center gap-x-4 justify-between '>
+			<div
+				className={cn(
+					'flex flex-row items-center gap-x-4 justify-between ',
+					containerClassName,
+				)}>
 				<div className='flex flex-col gap-3 max-w-[60%]'>
 					<UserIdentitySkeleton />
 				</div>

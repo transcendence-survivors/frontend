@@ -13,12 +13,13 @@ const FriendRequestsLoading = ({
 	...props
 }: FriendRequestsLoadingProps) => {
 	return (
-		<ul {...props}>
+		<ul className='flex flex-col gap-0' {...props}>
 			{Array.from({ length: numberOfSkeletons }).map((_, index) => (
 				<li key={index}>
 					<FriendCardSkeleton
+						containerClassName='pb-2'
 						bottom={
-							<div className='mt-3 bg-muted w-30 h-4 rounded-md animate-pulse' />
+							<div className='mt-3 pt-3 px-1 bg-muted w-30 h-4 rounded-md animate-pulse' />
 						}>
 						<FriendRequestActionsSkeleton direction={direction} />
 					</FriendCardSkeleton>

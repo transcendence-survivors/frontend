@@ -23,11 +23,15 @@ const signUp = async (body: SignUpRequestBody) => {
 	const localePreference: UserLocale = body.localePreference ?? 'EN';
 	const gender: UserGender = body.gender ?? 'PREFER_NOT_TO_SAY';
 
-	const res = await api.post<UserSession>(AUTH_ENDPOINTS.signUp, {
-		...body,
-		localePreference,
-		gender,
-	});
+	const res = await api.post<UserSession>(
+		AUTH_ENDPOINTS.signUp,
+		{
+			...body,
+			localePreference,
+			gender,
+		},
+		{ no_retry: true },
+	);
 	if (isApiError(res)) {
 		throw new ApiException(res.code, res.message);
 	}

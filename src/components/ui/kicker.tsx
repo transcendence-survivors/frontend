@@ -6,7 +6,7 @@ const Kicker = ({ children, className, ...props }: KickerProps) => {
 	return (
 		<span
 			className={cn(
-				'font-mono uppercase tracking-widest leading-none block text-2xs text-muted-foreground text-[10px] ',
+				'font-mono uppercase tracking-widest leading-none block text-muted-foreground text-[10px]',
 				className,
 			)}
 			{...props}>

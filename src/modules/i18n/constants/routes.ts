@@ -1,4 +1,3 @@
-import { resetPassword } from '@/features/auth/api/reset-password.api.';
 import { Locale } from './locales';
 import { compileRoutes } from '../utils/compile';
 
@@ -72,6 +71,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/rangliste',
 		it: '/classifica',
 	},
+
 	friends: {
 		en: '/friends',
 		de: '/freunde',
@@ -80,6 +80,15 @@ const APP_ROUTES = defineRouteMap({
 		che: '/freunde',
 		it: '/amici',
 	},
+	friendsRequests: {
+		en: '/friends/requests',
+		de: '/freunde/anfragen',
+		fr: '/amis/demandes',
+		es: '/amigos/solicitudes',
+		che: '/freunde/anfragen',
+		it: '/amici/richieste',
+	},
+
 	search: {
 		en: '/search',
 		de: '/suche',

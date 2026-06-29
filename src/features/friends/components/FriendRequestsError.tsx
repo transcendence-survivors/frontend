@@ -1,15 +1,13 @@
 import { cn } from '@/libs/utils';
 
-interface FriendRequestsErrorProps extends React.HTMLAttributes<HTMLDivElement> {}
+type FriendsErrorProps = React.HTMLAttributes<HTMLDivElement>;
 
-const FriendRequestsError = ({ className, ...props }: FriendRequestsErrorProps) => {
+const FriendsError = ({ className, children, ...props }: FriendsErrorProps) => {
 	return (
-		<div className={cn('py-8 flex', className)} {...props}>
-			<span className='text-destructive text-sm font-medium mx-auto'>
-				Failed to load friend requests. Please try again later.'
-			</span>
+		<div className={cn('py-8 flex text-destructive', className)} {...props}>
+			<span className=' text-sm font-medium mx-auto'>{children}</span>
 		</div>
 	);
 };
 
-export { FriendRequestsError };
+export { FriendsError };

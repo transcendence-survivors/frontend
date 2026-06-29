@@ -9,13 +9,15 @@ import { FriendRequestActionsProps } from './FriendRequestActions';
 const FriendRequestAccept = ({
 	friendId,
 	friendDisplayName,
+	direction,
 }: FriendRequestActionsProps) => {
-	const { mutate, isPending, isError, isSuccess } = useRequestAccept(
+	const { mutate, isPending, isError, isSuccess } = useRequestAccept({
 		friendId,
 		friendDisplayName,
-	);
+		direction,
+	});
 
-	const onClick = () => mutate(friendId);
+	const onClick = () => mutate();
 
 	return (
 		<Button
@@ -28,14 +30,13 @@ const FriendRequestAccept = ({
 			) : (
 				<Check className='size-3.5' />
 			)}
-			<span>Accept</span>
+			<span className='hidden sm:block'>Accept</span>
 		</Button>
 	);
 };
 
 const FriendRequestAcceptSkeleton = () => {
-	const bgColor = 'bg-muted';
-	return <div className={`w-23 h-9 ${bgColor} rounded-md animate-pulse`}></div>;
+	return <div className={`w-9 sm:w-23 h-9 bg-muted rounded-md animate-pulse`}></div>;
 };
 
 export { FriendRequestAccept, FriendRequestAcceptSkeleton };

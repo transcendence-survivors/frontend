@@ -4,7 +4,7 @@ import { CursorPaginationResponse } from './types';
 const updateInfiniteQuery = <T>(
 	queryClient: QueryClient,
 	queryKey: unknown[],
-	updater: (item: T) => boolean,
+	predicate: (item: T) => boolean,
 ) => {
 	queryClient.setQueryData<InfiniteData<CursorPaginationResponse<T[]>>>(
 		queryKey,
@@ -13,18 +13,10 @@ const updateInfiniteQuery = <T>(
 
 			return {
 				...oldData,
-				pages: oldData.pages.map((page) => {
-					const filtered = page.data.filter(updater);
-
-					return {
-						...page,
-						data: filtered,
-						meta: {
-							...page.meta,
-							itemsCount: filtered.length,
-						},
-					};
-				}),
+				pages: oldData.pages.map((page) => ({
+					...page,
+					data: page.data.filter(predicate),
+				})),
 			};
 		},
 	);

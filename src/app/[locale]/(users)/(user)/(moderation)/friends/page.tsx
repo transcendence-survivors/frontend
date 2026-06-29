@@ -5,7 +5,7 @@ export default function Page() {
 		<section>
 			<div className='max-w-4xl mx-auto'>
 				<FriendRequests
-					className='sticky top-[calc(var(--spacing)_*_46_+_var(--header-height))] 
+					className='sticky top-[var(--header-height)] sm:top-[calc(var(--spacing)_*_46_+_var(--header-height))] 
                     z-10 bg-background pt-4 pb-2 border-b border-border'
 				/>
 			</div>

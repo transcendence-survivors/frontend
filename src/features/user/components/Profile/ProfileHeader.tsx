@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { type User } from '../../schemas/user.schema';
+import { type User } from '../../type';
 import Banner from './Banner';
 import UserDisplayUsername from '../Identity/UserDisplayUsername';
 import ProfileNav from './ProfileNav';
@@ -25,7 +25,7 @@ const ProfileHeader = ({
 			<section>
 				<Banner
 					img={{
-						src: bannerUrl,
+						src: bannerUrl ?? '',
 						alt: username,
 					}}
 				/>
@@ -34,7 +34,7 @@ const ProfileHeader = ({
 						<AvatarModal
 							className='z-10'
 							img={{
-								src: avatarUrl,
+								src: avatarUrl ?? '',
 								alt: username,
 							}}
 						/>

@@ -26,7 +26,7 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 	const path = usePathname();
 	const activeKey = useMemo(() => {
 		const matchedLink = links.find((link) => path.startsWith(getPath(link.key)));
-		return matchedLink ? matchedLink.key : 'feed';
+		return matchedLink ? matchedLink.key : 'search';
 	}, [path]);
 
 	const { Tag, tagProps } = useMemo(() => {

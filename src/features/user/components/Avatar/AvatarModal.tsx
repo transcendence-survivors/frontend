@@ -2,7 +2,12 @@ import { HTMLAttributes } from 'react';
 import Image from 'next/image';
 import { cn } from '@/libs/utils';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+	Dialog,
+	DialogContent,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog';
 import { ImageProps } from '@/libs/types';
 import { Button } from '@/components/ui/button';
 import { AvatarProfileFallback } from './AvatarProfile';
@@ -48,14 +53,15 @@ export function AvatarModal({
 						/>
 					</Button>
 				</DialogTrigger>
-				<AvatarProfileFallback username={img.alt || '??'} />
+				<AvatarProfileFallback username={img.alt} />
 			</Avatar>
 
 			<DialogContent className='max-w-md w-[90vw] aspect-square border-none bg-transparent p-0 shadow-none rounded-none ring-0 sm:rounded-none'>
+				<DialogTitle className='sr-only'>Avatar Preview</DialogTitle>
 				<div className='relative w-full h-full'>
 					<Image
-						src={img.src || ''}
-						alt={img.alt || 'Avatar Preview'}
+						src={img.src}
+						alt={img.alt}
 						fill
 						className='object-contain'
 						priority

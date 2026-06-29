@@ -7,7 +7,9 @@ interface ResetPasswordRequestBody {
 }
 
 const resetPassword = async (body: ResetPasswordRequestBody) => {
-	const res = await api.post<void>(AUTH_ENDPOINTS.resetPassword, body);
+	const res = await api.post<void>(AUTH_ENDPOINTS.resetPassword, body, {
+		no_retry: true,
+	});
 	if (isApiError(res)) {
 		throw new ApiException(res.code, res.message);
 	}

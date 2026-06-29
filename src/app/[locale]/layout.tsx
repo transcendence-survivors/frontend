@@ -1,4 +1,5 @@
 import '@/app/globals.css';
+import '@/app/sonner.css';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -9,6 +10,8 @@ import METADATA from '@i18n/constants/metadata';
 import { Toaster } from 'sonner';
 
 import { Manrope, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { X } from 'lucide-react';
+import { NuqsProvider } from '@/components/providers/NuqsProvider';
 
 const manrope = Manrope({
 	subsets: ['latin'],
@@ -57,15 +60,18 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 			<body>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
-						<QuerryProvider>{children}</QuerryProvider>
+						<NuqsProvider>
+							<QuerryProvider>{children}</QuerryProvider>
+						</NuqsProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<Toaster
-					closeButton={true}
-					duration={3000}
-					richColors
-					expand
+					closeButton
+					expand={false}
 					theme='dark'
+					icons={{
+						close: <X className='size-3' />,
+					}}
 				/>
 			</body>
 		</html>

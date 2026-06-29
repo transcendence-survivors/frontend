@@ -1,0 +1,48 @@
+[data-sonner-toast] {
+	--normal-bg: var(--color-card);
+	--normal-text: var(--color-card-foreground);
+	--normal-border: var(--color-border);
+	--normal-shadow: var(--shadow-gold-glow);
+
+	background: var(--normal-bg);
+	color: var(--normal-text);
+	border: 1px solid var(--normal-border);
+	box-shadow: var(--normal-shadow);
+	border-radius: var(--radius-md);
+}
+
+[data-sonner-toast] [data-close-button] svg {
+	color: var(--normal-text);
+}
+
+[data-sonner-toast][data-type='success'] {
+	--normal-border: var(--primary);
+	--normal-shadow:
+		0 0 0 1px color-mix(in oklch, var(--color-success) 30%, transparent),
+		0 0 18px color-mix(in oklch, var(--color-success) 25%, transparent);
+	--normal-text: var(--primary);
+}
+
+[data-sonner-toast][data-type='error'] {
+	--normal-border: var(--color-destructive);
+	--normal-shadow:
+		0 0 0 1px color-mix(in oklch, var(--color-destructive) 30%, transparent),
+		0 0 18px color-mix(in oklch, var(--color-destructive) 25%, transparent);
+	--normal-text: var(--color-destructive);
+}
+
+[data-sonner-toast][data-type='warning'] {
+	--normal-border: var(--color-chart-3);
+	--normal-shadow:
+		0 0 0 1px color-mix(in oklch, var(--color-chart-3) 25%, transparent),
+		0 0 16px color-mix(in oklch, var(--color-chart-3) 20%, transparent);
+	--normal-text: var(--color-chart-3);
+}
+
+[data-sonner-toast][data-type='info'] {
+	--normal-border: var(--color-primary);
+	--normal-shadow:
+		0 0 0 1px color-mix(in oklch, var(--color-primary) 25%, transparent),
+		0 0 16px color-mix(in oklch, var(--color-primary) 20%, transparent);
+	--normal-text: var(--color-primary);
+}

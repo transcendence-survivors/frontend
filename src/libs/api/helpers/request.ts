@@ -3,7 +3,7 @@ import { ApiResponse, ApiError, ApiSuccess } from './types';
 const API_URL = '/api';
 
 export type FetchOptions = RequestInit & {
-	_retry?: boolean;
+	no_retry?: boolean;
 };
 
 const buildUrl = (path: string) =>
@@ -32,11 +32,11 @@ const refreshAccessToken = async () => {
 
 export const request = async <T>(
 	path: string,
-	init: FetchOptions = { _retry: true },
+	init: FetchOptions = { no_retry: false },
 ): Promise<ApiResponse<T>> => {
 	let res = await baseFetch(path, init);
 
-	if (res.status === 401 && init._retry) {
+	if (res.status === 401 && !init.no_retry) {
 		try {
 			await refreshAccessToken();
 			res = await baseFetch(path, init);

@@ -1,10 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getFriendRequests, GetFriendRequestsParams } from '../api/get';
+import {
+	type FriendRequestDirection,
+	type GetFriendRequestsParams,
+	getFriendRequests,
+} from '../api/get';
 import { PaginationResponse } from '@/libs/api/helpers/types';
 import { FriendRequest } from '../types';
+import { useQueryState } from 'nuqs';
 
 interface UseRequestsParams {
-	direction: GetFriendRequestsParams['direction'];
+	direction: FriendRequestDirection;
 }
 
 export type FriendRequestsInfinite = {
@@ -18,11 +23,12 @@ export const initialUserRequestsParam = {
 } satisfies Omit<GetFriendRequestsParams, 'direction'>;
 
 const useRequests = ({ direction }: UseRequestsParams) => {
-	return useInfiniteQuery({
-		queryKey: ['friends', 'requests', direction],
-		initialPageParam: { ...initialUserRequestsParam, direction },
-		queryFn: ({ pageParam }) => getFriendRequests(pageParam),
+	const [search] = useQueryState('search', { defaultValue: '' });
 
+	return useInfiniteQuery({
+		queryKey: ['friends', 'requests', direction, search],
+		initialPageParam: { ...initialUserRequestsParam, direction, search },
+		queryFn: ({ pageParam }) => getFriendRequests(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			if (!lastPage.meta.hasNextPage) return undefined;
 

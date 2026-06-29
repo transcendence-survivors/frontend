@@ -7,7 +7,9 @@ type FriendsEndpoint = `${StartPath}/${string}` | `${StartPath}`;
 const FRIENDS_ENDPOINTS = {
 	getfriends: `${FRIENDS_START_PATH}`,
 	getfriendsIds: `${FRIENDS_START_PATH}/ids`,
-	getfriendRequests: `${FRIEND_REQUEST_START_PATH}/cursor`,
+
+	getfriendRequests: `${FRIEND_REQUEST_START_PATH}`,
+	getfriendRequestsCount: `${FRIEND_REQUEST_START_PATH}/count`,
 
 	acceptFriendRequest: `${FRIEND_REQUEST_START_PATH}`,
 	deleteFriendRequest: `${FRIEND_REQUEST_START_PATH}`,

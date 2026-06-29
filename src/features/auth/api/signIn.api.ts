@@ -10,7 +10,7 @@ interface SignInUsernameRequestBody {
 
 const signInUsernameEmail = async (body: SignInUsernameRequestBody) => {
 	const res = await api.post<UserSession>(AUTH_ENDPOINTS.login, body, {
-		_retry: false,
+		no_retry: true,
 	});
 	if (isApiError(res)) {
 		throw new ApiException(res.code, res.message);

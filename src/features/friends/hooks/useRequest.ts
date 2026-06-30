@@ -4,18 +4,11 @@ import {
 	type GetFriendRequestsParams,
 	getFriendRequests,
 } from '../api/get';
-import { PaginationResponse } from '@/libs/api/helpers/types';
-import { FriendRequest } from '../types';
 import { useQueryState } from 'nuqs';
 
 interface UseRequestsParams {
 	direction: FriendRequestDirection;
 }
-
-export type FriendRequestsInfinite = {
-	pages: PaginationResponse<FriendRequest[]>[];
-	pageParams: unknown[];
-};
 
 export const initialUserRequestsParam = {
 	limit: 20,

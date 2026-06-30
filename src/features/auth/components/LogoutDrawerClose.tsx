@@ -20,7 +20,7 @@ const LogoutDrawerClose = () => {
 	return (
 		<DrawerClose onClick={handleLogout} disabled={isPending || isError} asChild>
 			<Button variant='destructive' size='sm' className='w-full'>
-				{isPending ? <Spinner /> : t('label')}
+				<>{isPending ? <Spinner /> : t('label')}</>
 			</Button>
 		</DrawerClose>
 	);

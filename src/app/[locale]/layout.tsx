@@ -1,22 +1,34 @@
 import '@/app/globals.css';
+import '@/app/sonner.css';
 
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import ThemeProvider from '@themes/providers/ThemeProvider';
 import { QuerryProvider } from '@components/providers/QuerryProvider';
 import { DEFAULT_LOCALE, Locale } from '@i18n/constants/locales';
 import METADATA from '@i18n/constants/metadata';
-import ThemeProvider from '@themes/providers/ThemeProvider';
-import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 
-const inter = Inter({
-	variable: '--font-inter',
+import { Manrope, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { X } from 'lucide-react';
+import { NuqsProvider } from '@/components/providers/NuqsProvider';
+
+const manrope = Manrope({
 	subsets: ['latin'],
+	variable: '--font-manrope',
+	display: 'swap',
 });
-const interMono = Inter({
-	variable: '--font-inter-mono',
+
+const spaceGrotesk = Space_Grotesk({
 	subsets: ['latin'],
-	weight: '400',
+	variable: '--font-space-grotesk',
+	display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+	subsets: ['latin'],
+	variable: '--font-jetbrains-mono',
+	display: 'swap',
 });
 
 type Params = Promise<{
@@ -44,19 +56,22 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 		<html
 			suppressHydrationWarning
 			lang={locale}
-			className={`${inter.variable} ${interMono.variable} h-full antialiased`}>
-			<body className='min-h-full flex flex-col'>
+			className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}>
+			<body>
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
-						<QuerryProvider>{children}</QuerryProvider>
+						<NuqsProvider>
+							<QuerryProvider>{children}</QuerryProvider>
+						</NuqsProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>
 				<Toaster
-					closeButton={true}
-					duration={3000}
-					richColors
-					expand
+					closeButton
+					expand={false}
 					theme='dark'
+					icons={{
+						close: <X className='size-3' />,
+					}}
 				/>
 			</body>
 		</html>

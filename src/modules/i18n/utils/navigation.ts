@@ -12,3 +12,10 @@ export interface NavLink {
 	key: RouteKey;
 	labelKey: keyof AppMessages['nav'];
 }
+
+export interface DropDownLink extends NavLink {
+	icon: React.ReactNode;
+}
+
+export const createNavLinks = <T extends NavLink>(links: T[]) => links;
+export const createDropDownLinks = <T extends DropDownLink>(links: T[]) => links;

@@ -44,26 +44,25 @@ const ControlledField = <T extends FieldValues>({
 			name={name}
 			control={control}
 			render={({ field, fieldState, formState }) => (
-				<Field data-invalid={fieldState.invalid} className='gap-0'>
+				<Field data-invalid={fieldState.invalid} className='gap-0 max-w-full'>
 					<FieldLabel
-						className={
-							layout === 'vertical'
-								? 'grid gap-2'
-								: 'flex justify-between item-center gap-1'
-						}>
-						<div className='flex justify-between'>
+						className={`flex w-full ${layout === 'vertical' ? 'flex-col items-start gap-2' : 'justify-between items-center gap-2'}`}>
+						<div
+							className={`flex justify-between ${layout === 'vertical' ? 'w-full' : ''}`}>
 							<div>
 								{label.text}
 								{isRequired && (
 									<>
-										{' '}
+										&nbsp;
 										<span className='text-destructive'>*</span>
 									</>
 								)}
 							</div>
 							{label.addon && <FormLabelAddon addon={label.addon} />}
 						</div>
-						<div>{children({ field, fieldState, formState })}</div>
+						<div className={layout === 'vertical' ? 'w-full' : ''}>
+							{children({ field, fieldState, formState })}
+						</div>
 					</FieldLabel>
 					{fieldState.invalid && (
 						<FieldErrorComp

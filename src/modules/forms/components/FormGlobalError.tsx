@@ -15,15 +15,11 @@ const FormGlobalError = ({ error: { message }, className, ...props }: FormToastP
 
 	const error = useMemo(() => {
 		const value = message || '';
-		console.log('FormGlobalError error message:', value);
 		return isI18nKey(t, value) ? t(value) : t(FORM_ERRORS.internal_server_error);
 	}, [t, message]);
 
-	console.log('FormGlobalError error:', error);
-
 	useEffect(() => {
 		toast.error(error);
-
 		return () => {
 			toast.dismiss();
 		};

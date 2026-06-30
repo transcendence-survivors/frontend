@@ -8,10 +8,9 @@ import {
 	forgotPasswordValues,
 } from '../schemas/forgot-password.schema';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
-import { isApiError } from '@/libs/api/is';
 import useForgotPassword from '../hooks/useForgotPassword';
 import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
-import { is } from 'zod/v4/locales';
+import { ApiException } from '@/libs/api/';
 
 const ForgotPasswordForm = () => {
 	const { t, form, translatedFields } = useTranslatedForm<ForgotPasswordFormValues>({
@@ -26,13 +25,13 @@ const ForgotPasswordForm = () => {
 	});
 	async function onSubmit(data: ForgotPasswordFormValues) {
 		try {
-			const res = await mutateAsync(data);
-			if (isApiError(res)) {
-				if (res.code == 500) {
-					throw new Error(res.message);
-				}
+			await mutateAsync(data);
+		} catch (err: unknown) {
+			if (err instanceof ApiException && err.statusCode === 404) {
+				return form.setError('email', {
+					message: FORM_ERRORS.invalid_email,
+				});
 			}
-		} catch {
 			form.setError('root', { message: FORM_ERRORS.internal_server_error });
 		}
 	}

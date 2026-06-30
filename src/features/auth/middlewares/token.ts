@@ -68,16 +68,12 @@ const handleRefreshToken = async (req: NextRequest): Promise<RefreshResult> => {
 };
 
 const getUserFromRequest = async (req: NextRequest): Promise<UserRequestResult> => {
-	console.log("access");
-
 	const accessTokenPayload = await handleAccessToken(req);
 	if (accessTokenPayload) {
 		return { user: accessTokenPayload, setCookieHeaders: [] };
 	}
-	console.log("refreshing");
 	const refreshResult = await handleRefreshToken(req);
 	if (!refreshResult) return null;
-	console.log("refreshed");
 
 	return {
 		user: refreshResult.payload,

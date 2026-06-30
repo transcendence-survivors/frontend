@@ -5,7 +5,7 @@ import { User } from '@user/schemas/user.schema';
 
 export type UserSession = Pick<
 	User,
-	'displayName' | 'email' | 'role' | 'username' | 'id'
+	'displayName' | 'role' | 'username' | 'id' | 'avatarUrl'
 >;
 
 interface SessionState {

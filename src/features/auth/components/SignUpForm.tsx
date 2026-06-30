@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import useSignUp from '../hooks/useSignUp';
 import useTranslatedMultiStepForm from '@/modules/forms/hooks/useTranslatedMultiStepForm';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
-import { isApiError } from '@/libs/api';
+import { ApiException } from '@/libs/api/';
 
 const SignupForm = () => {
 	const { t, form, translatedSteps } = useTranslatedMultiStepForm({
@@ -28,7 +28,7 @@ const SignupForm = () => {
 	const { mutateAsync } = useSignUp({ successMessage: t('success') });
 	async function onSubmit(data: SignUpFormValues) {
 		try {
-			const res = await mutateAsync({
+			await mutateAsync({
 				username: data.username,
 				email: data.email,
 				password: data.password,
@@ -38,13 +38,14 @@ const SignupForm = () => {
 				firstName: data.firstName,
 				lastName: data.lastName,
 				gender: data.gender,
+				localePreference: data.locale,
 			});
-			if (isApiError(res)) {
-				if (res.code === 409)
-					form.setError('form', { message: FORM_ERRORS.user_already_exists });
-				throw new Error(res.message);
+		} catch (err: unknown) {
+			if (err instanceof ApiException && err.statusCode === 409) {
+				return form.setError('form', {
+					message: FORM_ERRORS.user_already_exists,
+				});
 			}
-		} catch {
 			form.setError('root', { message: FORM_ERRORS.internal_server_error });
 		}
 	}
@@ -65,7 +66,6 @@ const SignupForm = () => {
 				}}
 				progressBar={{ on: true, stepIndicator: true }}
 				recap={{ on: true, recapTitle: t('recap_title') }}
-				className='w-lg'
 			/>
 		</>
 	);

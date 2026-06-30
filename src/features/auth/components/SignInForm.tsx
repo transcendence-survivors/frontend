@@ -9,8 +9,8 @@ import {
 	signInValues,
 } from '../schemas/signin.schema';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
-import { isApiError } from '@/libs/api';
 import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
+import { ApiException } from '@/libs/api/';
 
 const SignInForm = () => {
 	const { t, form, translatedFields } = useTranslatedForm<SignInFormValues>({
@@ -23,13 +23,13 @@ const SignInForm = () => {
 	const { mutateAsync } = useSignIn({ successMessage: t('success') });
 	async function onSubmit(data: SignInFormValues) {
 		try {
-			const res = await mutateAsync(data);
-			if (isApiError(res)) {
-				if (res.code === 401)
-					form.setError('form', { message: FORM_ERRORS.invalid_credentials });
-				throw new Error(res.message);
+			await mutateAsync(data);
+		} catch (err: unknown) {
+			if (err instanceof ApiException && err.statusCode === 401) {
+				return form.setError('form', {
+					message: FORM_ERRORS.invalid_credentials,
+				});
 			}
-		} catch {
 			form.setError('root', { message: FORM_ERRORS.internal_server_error });
 		}
 	}

@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
@@ -9,59 +7,43 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import AvatarProfile, { AvatarProfileProps } from './AvatarProfile';
-import { NavLink, useRouter } from '@/modules/i18n/utils/navigation';
+import { createDropDownLinks } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { SettingsIcon, User } from 'lucide-react';
-import LocaleDropdownSubMenu from '@i18n/components/LocaleDropdownSubMenu';
 import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
-import ThemeDropdownSubMenu from '@themes/components/ThemeDropdownSubMenu';
+import { UserIdentity } from '../Identity/UserIdentity';
+import I18nLink from '@/modules/i18n/components/I18nLink';
 
-interface AvatarDropdownProps {
-	avatar: AvatarProfileProps;
-}
+interface AvatarDropdownProps extends React.ComponentProps<typeof UserIdentity> {}
 
-interface DropDownLink extends NavLink {
-	icon: React.ReactNode;
-}
-
-const links: DropDownLink[] = [
+const links = createDropDownLinks([
 	{ key: 'profile', labelKey: 'profile', icon: <User /> },
 	{ key: 'settings', labelKey: 'settings', icon: <SettingsIcon /> },
-] as const;
+]);
 
-export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
+const AvatarDropdown = ({ avatar, user, ...props }: AvatarDropdownProps) => {
 	const t = useTranslations('nav');
-	const router = useRouter();
-
-	const redirectTo = (url: string) => {
-		router.push(url);
-	};
 
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant='ghost' size='icon' className='rounded-full'>
-					<AvatarProfile {...avatar} />
+				<Button variant={'ghost'} className={`w-full h-auto max-w-full`}>
+					<UserIdentity avatar={avatar} user={user} {...props} />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuGroup>
 					{links.map((link) => (
-						<DropdownMenuItem
-							key={link.key}
-							onClick={() => redirectTo(link.key)}>
-							{link.icon}
-							{t(link.labelKey)}
+						<DropdownMenuItem key={link.key} asChild>
+							<I18nLink
+								href={link.key}
+								className='flex items-center gap-2 w-full'>
+								{link.icon}
+								{t(link.labelKey)}
+							</I18nLink>
 						</DropdownMenuItem>
 					))}
 				</DropdownMenuGroup>
-				<DropdownMenu>
-					<ThemeDropdownSubMenu />
-				</DropdownMenu>
-				<DropdownMenu>
-					<LocaleDropdownSubMenu />
-				</DropdownMenu>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<LogoutDropDownItem />
@@ -69,4 +51,6 @@ export function AvatarDropdown({ avatar }: AvatarDropdownProps) {
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
-}
+};
+
+export default AvatarDropdown;

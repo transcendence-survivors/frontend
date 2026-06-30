@@ -115,7 +115,10 @@ const FormField = <T extends FieldValues>({
 						{...communProps}
 						onValueChange={(value) => rhfField.onChange(value)}>
 						<SelectTrigger className='w-full'>
-							<SelectValue placeholder={field.placeholder} />
+							<SelectValue
+								placeholder={field.placeholder}
+								className='absolute left-2 top-1/2 -translate-y-1/2 text-sm text-muted-foreground'
+							/>
 						</SelectTrigger>
 						<SelectContent>
 							{field.optionsGroups.map(({ label, options }, groupIndex) => (
@@ -165,7 +168,7 @@ const FormField = <T extends FieldValues>({
 					{componentType === 'checkbox' ? (
 						renderControl(rhfField, fieldState)
 					) : (
-						<InputGroup>
+						<InputGroup className='max-w-full overflow-clip'>
 							{renderControl(rhfField, fieldState)}
 							{renderAddon(rhfField)}
 						</InputGroup>

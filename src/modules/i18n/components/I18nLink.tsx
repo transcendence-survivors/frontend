@@ -1,34 +1,29 @@
 import type { ReactNode, ComponentProps } from 'react';
 import { Link } from '@/modules/i18n/utils/navigation';
-import type { RouteKey, RouteMap } from '../constants/routes';
+import type { ParamRoutes, StaticRoutes } from '../constants/routes';
 import type { Locale } from '../constants/locales';
 import { getPath } from '../utils/routing';
 
 export type LinkProps = ComponentProps<typeof Link>;
 
-type HasMoreSegments<T extends string> =
-	T extends `${string}:${infer Param}/${infer Rest}`
-		? Param | ExtractParams<`/${Rest}`>
-		: never;
-
-type HasFinalParam<T extends string> = T extends `${string}:${infer Param}`
-	? Param
-	: never;
-
-type ExtractParams<T extends string> =
-	HasMoreSegments<T> extends never ? HasFinalParam<T> : HasMoreSegments<T>;
-
-type RouteParams<K extends RouteKey> = ExtractParams<RouteMap[K]['en']>;
-
-type Params<K extends RouteKey> =
-	RouteParams<K> extends never ? undefined : Record<RouteParams<K>, string | number>;
-
-type I18nLinkProps<K extends RouteKey> = Omit<LinkProps, 'href'> & {
-	href: K;
+type BaseLinkProps = Omit<LinkProps, 'href'> & {
 	locale?: Locale;
-	params?: Params<K>;
 	children: Readonly<ReactNode>;
 };
+
+type I18nLinkProps =
+	| {
+			[K in keyof StaticRoutes]: BaseLinkProps & {
+				href: K;
+				params?: never;
+			};
+	  }[keyof StaticRoutes]
+	| {
+			[K in keyof ParamRoutes]: BaseLinkProps & {
+				href: K;
+				params: ParamRoutes[K];
+			};
+	  }[keyof ParamRoutes];
 
 const resolveHref = (path: string, params?: Record<string, string | number>): string =>
 	params
@@ -38,13 +33,7 @@ const resolveHref = (path: string, params?: Record<string, string | number>): st
 			)
 		: path;
 
-export const I18nLink = <K extends RouteKey>({
-	href,
-	locale,
-	params,
-	children,
-	...rest
-}: I18nLinkProps<K>) => (
+export const I18nLink = ({ href, locale, params, children, ...rest }: I18nLinkProps) => (
 	<Link href={resolveHref(getPath(href), params)} locale={locale} {...rest}>
 		{children}
 	</Link>

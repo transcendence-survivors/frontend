@@ -33,6 +33,7 @@ export const FORM_ERRORS = {
 	user_already_exists: `${PREFIX_KEY}.user_already_exists`,
 
 	invalid_credentials: `${PREFIX_KEY}.invalid_credentials`,
+	invalid_email: `${PREFIX_KEY}.invalid_email`,
 	invalid_token: `${PREFIX_KEY}.invalid_token`,
 	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
 } as const satisfies Record<string, MessageKeys>;

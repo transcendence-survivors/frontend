@@ -27,6 +27,7 @@ export type FormProps<T extends FieldValues> = Omit<
 		submittingText: string;
 		submittedText: string;
 	};
+	multipleSubmit?: boolean;
 	title?: ReactNode;
 	description?: ReactNode;
 	footer?: ReactNode;
@@ -40,6 +41,7 @@ export default function Form<T extends FieldValues>({
 	description,
 	footer,
 	button,
+	multipleSubmit = false,
 	className,
 	...props
 }: FormProps<T>) {
@@ -71,7 +73,11 @@ export default function Form<T extends FieldValues>({
 							key={String(field.name)}
 							field={field}
 							control={form.control}
-							disabled={isSubmitting || isGlobalError}
+							disabled={
+								isSubmitting ||
+								isGlobalError ||
+								(!multipleSubmit && form.formState.isSubmitSuccessful)
+							}
 						/>
 					))}
 				</CardContent>
@@ -96,7 +102,7 @@ export default function Form<T extends FieldValues>({
 						!form.formState.isDirty ||
 						isSubmitting ||
 						isGlobalError ||
-						form.formState.isSubmitSuccessful
+						(!multipleSubmit && form.formState.isSubmitSuccessful)
 					}>
 					<>
 						<span>{getText()}</span>

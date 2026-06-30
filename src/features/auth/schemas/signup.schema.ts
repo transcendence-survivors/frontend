@@ -14,6 +14,7 @@ import {
 	userFirstNameSchema,
 	userGenderSchema,
 	userLastNameSchema,
+	userLocaleSchema,
 	userNameSchema,
 	userPasswordSchema,
 } from '@/features/user/schemas/user.schema';
@@ -22,7 +23,6 @@ const emailValidator: StepValidationFn<SignUpFormValues> = async ({
 	values: { email },
 }) => {
 	const res = await checkEmail(email);
-	console.log(res);
 	if (isApiError(res)) {
 		if (res.code === 409) {
 			return {
@@ -73,10 +73,12 @@ const signUpSchema = z
 	.object({
 		email: userEmailSchema,
 		username: userNameSchema,
+
 		firstName: userFirstNameSchema,
 		lastName: userLastNameSchema,
 		birthdate: userBirthdateSchema,
-		gender: userGenderSchema,
+		gender: userGenderSchema.optional(),
+		locale: userLocaleSchema.optional(),
 
 		displayName: userDisplayNameSchema,
 		bio: userBioSchema,
@@ -121,9 +123,53 @@ const signUpSteps = [
 		description: 'personal.desc',
 		fields: [
 			{
+				name: 'firstName',
+				label: { text: 'personal.firstName' },
+				component: 'input',
+				placeholder: 'personal.firstNamePlaceholder',
+			},
+			{
+				name: 'lastName',
+				label: { text: 'personal.lastName' },
+				component: 'input',
+				placeholder: 'personal.lastNamePlaceholder',
+			},
+			{
+				name: 'birthdate',
+				label: { text: 'personal.birthdate' },
+				component: 'date',
+			},
+			{
+				name: 'locale',
+				label: { text: 'personal.locale' },
+				component: 'select',
+				required: false,
+				placeholder: 'personal.localePlaceholder',
+				optionsGroups: [
+					{
+						label: 'personal.localeOptions.label',
+						options: [
+							{
+								value: 'EN',
+								label: 'personal.localeOptions.en',
+							},
+							{
+								value: 'FR',
+								label: 'personal.localeOptions.fr',
+							},
+							{
+								value: 'DE',
+								label: 'personal.localeOptions.de',
+							},
+						],
+					},
+				],
+			},
+			{
 				name: 'gender',
 				label: { text: 'personal.gender' },
 				component: 'select',
+				required: false,
 				placeholder: 'personal.genderPlaceholder',
 				optionsGroups: [
 					{
@@ -148,23 +194,6 @@ const signUpSteps = [
 						],
 					},
 				],
-			},
-			{
-				name: 'firstName',
-				label: { text: 'personal.firstName' },
-				component: 'input',
-				placeholder: 'personal.firstNamePlaceholder',
-			},
-			{
-				name: 'lastName',
-				label: { text: 'personal.lastName' },
-				component: 'input',
-				placeholder: 'personal.lastNamePlaceholder',
-			},
-			{
-				name: 'birthdate',
-				label: { text: 'personal.birthdate' },
-				component: 'date',
 			},
 		],
 	},

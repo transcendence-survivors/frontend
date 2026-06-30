@@ -5,12 +5,11 @@ import { usePosts } from '../hook/usePosts';
 export default function Posts() {
 	const limit = 10;
 	const page = 1;
-	const { data, isLoading, error } = usePosts(page, limit);
+	const { data, isLoading, isError } = usePosts(page, limit);
 
 	if (isLoading) return 'Loading';
-	if (error) return 'Error loading posts';
-	if (!data) return 'Pas de data';
-	console.log(data);
+	if (isError) return 'Error loading posts';
+	if (!data || data?.data.data.length === 0) return 'Pas de data';
 	const posts = data.data.data;
 
 	return (
@@ -19,7 +18,7 @@ export default function Posts() {
 				<div key={p.id} className='p-4 border rounded-md'>
 					<div className='font-semibold'>
 						{' '}
-						{p.author?.displayName ?? p.authorId}
+						{p.author?.displayName ?? p.author.id}
 					</div>
 					<div className='text-foreground'>{p.content}</div>
 					<div className='text-foreground'>

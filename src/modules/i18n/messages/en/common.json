@@ -7,10 +7,36 @@
 		"settings": "Settings",
 		"logout": "Logout",
 		"posts": "Posts",
+		"privacy": "Privacy Policy",
+		"terms": "Terms of Service",
+		"legal": "Legal Notice",
+
+		"feed": "Feed",
+		"friends": "Friends",
+		"chat": "Chat",
+		"search": "Search",
+
+		"profile_posts": "Posts",
+		"profile_comments": "Comments",
+		"profile_stats": "Stats",
+		"profile_likes": "Likes",
+		"profile_favourites": "Favourites",
+
+		"profile_followers": "Followers",
+		"profile_following": "Following",
+		"profile_blocked": "Blocked Users",
 		"concept": "Concept"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
+	},
+	"profile": {
+		"bio": "Biography",
+		"edit": {
+			"button": "Edit Profile",
+			"title": "Edit Profile",
+			"success": "Profile updated successfully."
+		}
 	},
 
 	"auth": {
@@ -68,6 +94,14 @@
 					"female": "Female",
 					"other": "Other",
 					"prefer_not_to_say": "Prefer not to say"
+				},
+				"locale": "Preferred Language",
+				"localePlaceholder": "Select your preferred language for email notifications",
+				"localeOptions": {
+					"label": "Email Preference",
+					"en": "English",
+					"fr": "French",
+					"de": "German"
 				}
 			},
 			"profile": {
@@ -165,7 +199,8 @@
 			"age_restriction": "You must be at least 13 years old to register",
 
 			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one."
+			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
+			"invalid_email": "The email address is not registered. Please check and try again."
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

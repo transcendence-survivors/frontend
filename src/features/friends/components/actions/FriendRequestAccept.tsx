@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Check } from 'lucide-react';
+import { UserRoundCheck } from 'lucide-react';
 import { useRequestAccept } from '../../hooks/useRequestAccept';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
@@ -28,7 +28,7 @@ const FriendRequestAccept = ({
 			{isPending ? (
 				<Spinner className='size-3.5' />
 			) : (
-				<Check className='size-3.5' />
+				<UserRoundCheck className='size-3.5' />
 			)}
 			<span className='hidden sm:block'>Accept</span>
 		</Button>

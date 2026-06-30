@@ -1,15 +1,15 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { X, CircleX } from 'lucide-react';
+import { MailX, UserRoundX } from 'lucide-react';
 import { useRequestDelete } from '../../hooks/useRequestDelete';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { FriendRequestDirection } from '../../api/get';
 
 const icons = {
-	incoming: <X className='size-3.5' />,
-	outgoing: <CircleX className='size-3.5' />,
+	incoming: <UserRoundX className='size-3.5' />,
+	outgoing: <MailX className='size-3.5' />,
 } satisfies Record<FriendRequestDirection, React.ReactNode>;
 
 const FriendRequestDelete = ({

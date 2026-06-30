@@ -1,5 +1,7 @@
 import { api } from '@/libs/api/api';
 
+import type { UserSession } from '@/features/posts/hook/usePosts';
+
 export function fetchPosts(page: number, limit: number) {
-	return api.get(`/v1/posts?page=${page}&limit=${limit}`);
+	return api.get<UserSession>(`/posts?page=${page}&limit=${limit}`);
 }

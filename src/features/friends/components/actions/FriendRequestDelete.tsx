@@ -2,10 +2,19 @@
 
 import { Button } from '@/components/ui/button';
 import { X, CircleX } from 'lucide-react';
-import { useRequestDelete } from '../../hooks/useRequestDelete';
+import { useRequestDelete } from '../../hooks/useRequestActions';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { FriendRequestDirection } from '../../api/get';
+
+interface FriendRequestDeleteProps extends Omit<
+	FriendRequestActionsProps,
+	'friendDisplayName'
+> {
+	successMessage: string;
+	failureMessage: string;
+	ariaLabel: string;
+}
 
 const icons = {
 	incoming: <X className='size-3.5' />,
@@ -14,14 +23,18 @@ const icons = {
 
 const FriendRequestDelete = ({
 	friendId,
-	friendDisplayName,
 	direction,
-}: FriendRequestActionsProps) => {
+	successMessage,
+	failureMessage,
+	ariaLabel,
+}: FriendRequestDeleteProps) => {
 	const { mutate, isPending, isError } = useRequestDelete({
 		friendId,
-		friendDisplayName,
 		direction,
+		successMessage,
+		failureMessage,
 	});
+
 	const onClick = () => mutate();
 
 	return (
@@ -31,6 +44,7 @@ const FriendRequestDelete = ({
 			className={`text-muted-foreground hover:border-destructive/60 hover:text-destructive`}
 			disabled={isPending || isError}
 			aria-invalid={isError}
+			aria-label={ariaLabel}
 			onClick={onClick}>
 			{isPending ? <Spinner className='size-3.5' /> : icons[direction]}
 		</Button>

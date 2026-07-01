@@ -2,19 +2,33 @@
 
 import { Button } from '@/components/ui/button';
 import { Check } from 'lucide-react';
-import { useRequestAccept } from '../../hooks/useRequestAccept';
+import { useRequestAccept } from '../../hooks/useRequestActions';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
 
+interface FriendRequestAcceptProps extends Omit<
+	FriendRequestActionsProps,
+	'friendDisplayName'
+> {
+	successMessage: string;
+	failureMessage: string;
+	ariaLabel: string;
+	label: string;
+}
+
 const FriendRequestAccept = ({
 	friendId,
-	friendDisplayName,
 	direction,
-}: FriendRequestActionsProps) => {
+	successMessage,
+	failureMessage,
+	ariaLabel,
+	label,
+}: FriendRequestAcceptProps) => {
 	const { mutate, isPending, isError, isSuccess } = useRequestAccept({
 		friendId,
-		friendDisplayName,
 		direction,
+		successMessage,
+		failureMessage,
 	});
 
 	const onClick = () => mutate();
@@ -24,13 +38,14 @@ const FriendRequestAccept = ({
 			onClick={onClick}
 			disabled={isPending || isError || isSuccess}
 			variant={isError ? 'outline' : 'default'}
+			aria-label={ariaLabel}
 			aria-invalid={isError}>
 			{isPending ? (
 				<Spinner className='size-3.5' />
 			) : (
 				<Check className='size-3.5' />
 			)}
-			<span className='hidden sm:block'>Accept</span>
+			<span className='hidden sm:block'>{label}</span>
 		</Button>
 	);
 };

@@ -1,16 +1,10 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { type FriendRequestDirection, getFriendRequestsCount } from '../api/get';
-import { useQueryState } from 'nuqs';
+import { getFriendRequestsCount } from '../api/get';
+import { type UseRequestsParams } from './useRequest';
 
-interface GetFriendRequestsCountParams {
-	direction: FriendRequestDirection;
-}
-
-const useRequestCount = ({ direction }: GetFriendRequestsCountParams) => {
-	const [search] = useQueryState('search', { defaultValue: '' });
-
+const useRequestCount = ({ direction, search }: UseRequestsParams) => {
 	return useQuery({
 		queryKey: ['friends', 'requests', direction, search, 'count'],
 		queryFn: () => getFriendRequestsCount({ direction, search }),

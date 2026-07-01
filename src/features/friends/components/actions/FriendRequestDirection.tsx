@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
+import { useTranslations } from 'next-intl';
 
 interface FriendRequestDirectionProps {
 	direction: 'incoming' | 'outgoing';
@@ -12,6 +13,8 @@ const FriendRequestDirection = ({
 	direction,
 	setDirection,
 }: FriendRequestDirectionProps) => {
+	const t = useTranslations('friend_page.requests');
+
 	return (
 		<ButtonGroup>
 			<Button
@@ -20,7 +23,7 @@ const FriendRequestDirection = ({
 				disabled={direction === 'incoming'}
 				onClick={() => setDirection('incoming')}
 				className='text-[12px] '>
-				Incoming
+				{t('incoming_button')}
 			</Button>
 			<Button
 				size='sm'
@@ -28,7 +31,7 @@ const FriendRequestDirection = ({
 				disabled={direction === 'outgoing'}
 				onClick={() => setDirection('outgoing')}
 				className='text-[12px] '>
-				Outgoing
+				{t('outgoing_button')}
 			</Button>
 		</ButtonGroup>
 	);

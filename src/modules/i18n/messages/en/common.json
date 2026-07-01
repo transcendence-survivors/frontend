@@ -27,15 +27,74 @@
 		"profile_blocked": "Blocked Users",
 		"concept": "Concept"
 	},
-	"home": {
-		"welcome": "Welcome to Transcendence Survivor !"
-	},
+	"home": {},
 	"profile": {
 		"bio": "Biography",
 		"edit": {
 			"button": "Edit Profile",
 			"title": "Edit Profile",
 			"success": "Profile updated successfully."
+		}
+	},
+	"friend_page": {
+		"title": "Friends & Moderation",
+		"subtitle": "Bearers in your circle",
+		"input_placeholder": "Search by username...",
+
+		"add_friend": {
+			"button": "Add Friend",
+			"success": "Friend request sent successfully.",
+			"error": "Failed to send friend request. Please try again."
+		},
+
+		"nav": {
+			"friends": "Friends",
+			"requests": "Requests",
+			"blocked": "Blocked Users"
+		},
+
+		"friends": {
+			"title": "Friends",
+			"count": "{count} friend(s).",
+			"delete_button": "Unfriend",
+			"delete_success_displayname": "You have unfriended {displayName} successfully.",
+			"delete_failure_displayname": "Failed to unfriend {displayName}. Please try again.",
+			"no_friends": "You have no friends yet. Start adding some!",
+			"no_friends_search": "No friends found for your search."
+		},
+
+		"requests": {
+			"title": "Friend Requests",
+			"incoming_button": "Incoming",
+			"outgoing_button": "Outgoing",
+
+			"incoming_count": "{count} incoming friend request(s).",
+			"incoming_count_search": "{count} incoming friend request(s) found for your search.",
+			"outgoing_count": "{count} outgoing friend request(s).",
+			"outgoing_count_search": "{count} outgoing friend request(s) found for your search.",
+
+			"delete_from_displayname": "Decline {displayName}'s friend request",
+
+			"delete_to_displayname": "Delete your friend request to {displayName}",
+			"delete_success_from_displayname": "{displayName}'s friend request deleted successfully.",
+			"delete_success_to_displayname": "Your friend request to {displayName} has been deleted successfully.",
+			"delete_failure_from_displayname": "Failed to delete {displayName}'s friend request. Please try again.",
+			"delete_failure_to_displayname": "Failed to delete your friend request to {displayName}. Please try again.",
+
+			"accept_button": "Accept",
+			"accept_from_displayname": "Accept {displayName}'s friend request",
+			"accept_success_from_displayname": "{displayName}'s friend request accepted successfully.",
+			"accept_failure_from_displayname": "Failed to accept {displayName}'s friend request. Please try again.",
+
+			"no_incoming_requests": "You have no incoming friend requests.",
+			"no_incoming_requests_search": "No incoming friend requests found for your search.",
+			"no_outgoing_requests": "You have no outgoing friend requests.",
+			"no_outgoing_requests_search": "No outgoing friend requests found for your search.",
+
+			"no_more_incoming_requests": "No more incoming friend requests to load.",
+			"no_more_outgoing_requests": "No more outgoing friend requests to load.",
+
+			"fetch_error": "Failed to load friend requests. Please try again later."
 		}
 	},
 
@@ -205,5 +264,16 @@
 		"addons": {
 			"length": "{current} / {max} characters max"
 		}
+	},
+	"date": {
+		"today": "Today",
+		"yesterday": "Yesterday",
+		"just_now": "Just now",
+		"minutes_ago": "{count} minutes ago",
+		"hours_ago": "{count} hours ago",
+		"days_ago": "{count} days ago",
+		"weeks_ago": "{count} weeks ago",
+		"months_ago": "{count} months ago",
+		"years_ago": "{count} years ago"
 	}
 }

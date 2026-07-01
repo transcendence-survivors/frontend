@@ -3,7 +3,7 @@ import type { Locale } from 'date-fns';
 type DateFormat = {
 	intlLocale: string;
 	separator: string;
-	order: [number, number, number]; // [dayIndex, monthIndex, yearIndex]
+	order: [number, number, number];
 };
 
 export function getDateFormat(locale: Locale): DateFormat {

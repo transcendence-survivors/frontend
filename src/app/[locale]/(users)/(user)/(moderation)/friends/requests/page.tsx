@@ -1,4 +1,4 @@
-import { FriendRequests } from '@/features/friends/components/requests/FriendRequests';
+import { FriendRequests } from '@/features/relationships/friend-request/components/FriendRequests';
 
 export default function Page() {
 	return (

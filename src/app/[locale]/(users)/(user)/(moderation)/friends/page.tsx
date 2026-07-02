@@ -1,4 +1,4 @@
-import Friends from '@/features/friends/components/friends/Friends';
+import Friends from '@/features/relationships/friend/components/Friends';
 
 export default function Page() {
 	return (

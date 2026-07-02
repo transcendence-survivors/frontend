@@ -1,8 +1,9 @@
 import { createNavigation } from 'next-intl/navigation';
 import { routing } from './routing';
-import { DeepKeys, AppMessages } from '../messages/types';
+import { AppMessages } from '../messages/types';
 import { RoutesWithParams, RoutesWithoutParams, ParamRoutes } from '../constants/routes';
 import { ReactNode } from 'react';
+import { DeepKeys } from '@/libs/types';
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
 	createNavigation(routing);
@@ -25,8 +26,7 @@ type NavLinkDynamic<T extends object, TArg> = {
 }[RoutesWithParams];
 
 export type NavLink<T extends object = AppMessages, TArg = unknown> =
-	| NavLinkStatic<T>
-	| NavLinkDynamic<T, TArg>;
+	NavLinkStatic<T> | NavLinkDynamic<T, TArg>;
 
 export type IconNavLink<T extends object = AppMessages, TArg = unknown> =
 	| (NavLinkStatic<T> & { icon: ReactNode })

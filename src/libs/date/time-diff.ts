@@ -1,4 +1,4 @@
-import { TIME_UNITS } from './constants';
+import { TIME_UNITS, TimeUnit } from './constants';
 
 const getMinuteDifference = (now: Date, date: Date) => {
 	const diff = now.getTime() - date.getTime();
@@ -25,6 +25,9 @@ const getYearDifference = (now: Date, date: Date) => {
 	return Math.floor(diff / TIME_UNITS.YEAR);
 };
 
+const getUnitDifference = (unit: TimeUnit, now: Date, date: Date): number =>
+	Math.floor((now.getTime() - date.getTime()) / TIME_UNITS[unit]);
+
 export {
 	getMinuteDifference,
 	getHourDifference,
@@ -32,4 +35,5 @@ export {
 	getWeekDifference,
 	getMonthDifference,
 	getYearDifference,
+	getUnitDifference,
 };

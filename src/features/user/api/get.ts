@@ -1,9 +1,11 @@
 import { api, ApiError } from '@/libs/api';
-import { User } from '../schemas/user.schema';
+import { type UserFacade } from '../type';
+import { USERS_ENDPOINTS } from '../constants/endpoints';
 
 const getUserByUsername = async (username: string) => {
 	try {
-		return await api.get<User>(`/users/${username}`);
+		const url = `${USERS_ENDPOINTS.getUserByUsername.replace(':username', username)}`;
+		return await api.get<UserFacade>(url);
 	} catch {
 		return {
 			code: 500,

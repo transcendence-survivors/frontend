@@ -1,13 +1,13 @@
 'use client';
 
 import { Spinner } from '@/components/ui/spinner';
-import { useRequests, type UseRequestsParams } from '../../hooks/useRequest';
+import { useRequests, type UseRequestsParams } from '../../hooks/request/useRequest';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { FriendRequestsLoading } from './FriendRequestsLoading';
 import { FriendsError } from '../FriendRequestsError';
 import { FriendRequestCard } from './FriendRequestCard';
 import { useTranslations } from 'next-intl';
+import { FriendRequestsLoading } from './FriendRequestsLoading';
 
 interface FriendRequestsProps
 	extends React.HTMLAttributes<HTMLDivElement>, UseRequestsParams {}
@@ -40,13 +40,6 @@ const FriendRequestsData = ({
 	}
 
 	const friends = data.pages.flatMap((page) => page.data);
-	const isDuplicate = (friendId: string) => {
-		const friendIds = friends.map((friend) => friend.id);
-		return friendIds.filter((id) => id === friendId).length > 1;
-	};
-
-	const uniqueFriends = friends.filter((friend) => !isDuplicate(friend.id));
-	console.log('uniqueFriends:', uniqueFriends, 'vs friends:', friends);
 
 	return (
 		<>
@@ -63,13 +56,14 @@ const FriendRequestsData = ({
 							)}
 				</FriendsError>
 			) : (
-				<ul className='flex flex-col gap-0'>
+				<ul className='flex flex-col gap-2'>
 					{friends.map(({ id, friend, since }) => (
 						<li key={id}>
 							<FriendRequestCard
 								friend={friend}
 								since={since}
 								direction={direction}
+								search={search}
 							/>
 						</li>
 					))}

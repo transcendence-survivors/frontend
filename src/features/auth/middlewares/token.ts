@@ -2,9 +2,10 @@ import { jwtVerify } from 'jose';
 import type { NextRequest } from 'next/server';
 
 import { env } from '@env';
-import { UserRole } from '@user/schemas/user.schema';
+import { UserRole } from '@user/type';
 import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN } from '../constants/cookies';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
+import { api } from '@/libs/api';
 
 const secret = new TextEncoder().encode(env.JWT_SECRET);
 type JWTPayload = {
@@ -42,7 +43,7 @@ const handleRefreshToken = async (req: NextRequest): Promise<RefreshResult> => {
 	if (!token) return null;
 
 	try {
-		const url = `${env.NEXT_PUBLIC_API_URL}${AUTH_ENDPOINTS.refresh}`;
+		const url = `${env.API_INTERNAL}${AUTH_ENDPOINTS.refresh}`;
 		const res = await fetch(url, {
 			method: 'POST',
 			headers: {

@@ -1,21 +1,33 @@
 import { createNavigation } from 'next-intl/navigation';
 import { routing } from './routing';
-import { RouteKey } from '../constants/routes';
-import { AppMessages } from '../messages/types';
+import { DeepKeys, AppMessages } from '../messages/types';
+import { RoutesWithParams, RoutesWithoutParams, ParamRoutes } from '../constants/routes';
+import { ReactNode } from 'react';
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
 	createNavigation(routing);
 
 export { default as getRequestConfig } from '../request';
 
-export interface NavLink {
-	key: RouteKey;
-	labelKey: keyof AppMessages['nav'];
-}
+type NavLinkStatic<T extends object> = {
+	[K in RoutesWithoutParams]: {
+		key: K;
+		labelKey: DeepKeys<T>;
+	};
+}[RoutesWithoutParams];
 
-export interface DropDownLink extends NavLink {
-	icon: React.ReactNode;
-}
+type NavLinkDynamic<T extends object, TArg> = {
+	[K in RoutesWithParams]: {
+		key: K;
+		labelKey: DeepKeys<T>;
+		getHrefParams: (arg: TArg) => ParamRoutes[K];
+	};
+}[RoutesWithParams];
 
-export const createNavLinks = <T extends NavLink>(links: T[]) => links;
-export const createDropDownLinks = <T extends DropDownLink>(links: T[]) => links;
+export type NavLink<T extends object = AppMessages, TArg = unknown> =
+	| NavLinkStatic<T>
+	| NavLinkDynamic<T, TArg>;
+
+export type IconNavLink<T extends object = AppMessages, TArg = unknown> =
+	| (NavLinkStatic<T> & { icon: ReactNode })
+	| (NavLinkDynamic<T, TArg> & { icon: ReactNode });

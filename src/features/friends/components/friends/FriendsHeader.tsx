@@ -1,39 +1,28 @@
 import Kicker from '@/components/ui/kicker';
-import { useRequestCount } from '../../hooks/request/useRequestCount';
 import { cn } from '@/libs/utils';
 import { useTranslations } from 'next-intl';
+import { useFriendsCount } from '../../hooks/friends/useFriendCount';
 import { ButtonsState } from '@/components/ui/buttons-state';
-import { FriendRequestDirection } from '../../api/get-requests';
+import { FriendStatus } from '../../api/get-friends';
 
 interface FriendRequestHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 	search?: string;
-	direction: FriendRequestDirection;
-	setDirection: (direction: FriendRequestDirection) => void;
+	friendIds: string[];
+	status: FriendStatus;
+	setStatus: (status: FriendStatus) => void;
 }
 
 const FriendRequestHeader = ({
-	direction,
-	setDirection,
 	search,
+	friendIds,
+	status,
+	setStatus,
 	className,
 	...props
 }: FriendRequestHeaderProps) => {
-	const { data, isLoading, isError } = useRequestCount({ direction, search });
-	const t = useTranslations('friend_page.requests');
-
+	const { data, isLoading, isError } = useFriendsCount({ search, status, friendIds });
+	const t = useTranslations('friend_page.friends');
 	const count = data?.count ?? 0;
-	const getFriendRequestText = () => {
-		if (search)
-			return t(
-				direction === 'incoming'
-					? 'incoming_count_search'
-					: 'outgoing_count_search',
-				{ count },
-			);
-		return t(direction === 'incoming' ? 'incoming_count' : 'outgoing_count', {
-			count,
-		});
-	};
 
 	return (
 		<header
@@ -41,11 +30,12 @@ const FriendRequestHeader = ({
 			{...props}>
 			<h2 className='text-2xl font-bold text-center sr-only'>{t('title')}</h2>
 			<ButtonsState
-				value={direction}
-				setValue={setDirection}
+				value={status}
+				setValue={setStatus}
 				buttons={[
-					{ node: t('incoming_button'), value: 'incoming' },
-					{ node: t('outgoing_button'), value: 'outgoing' },
+					{ node: t('all_button'), value: 'all' },
+					{ node: t('online_button'), value: 'online' },
+					{ node: t('offline_button'), value: 'offline' },
 				]}
 			/>
 			{!isError &&
@@ -53,7 +43,7 @@ const FriendRequestHeader = ({
 					<div className='bg-muted h-4 w-30 block animate-pulse mx-auto' />
 				) : (
 					<Kicker className='mx-auto text-center'>
-						{getFriendRequestText()}
+						{t(search ? 'count_search' : 'count', { count })}
 					</Kicker>
 				))}
 		</header>

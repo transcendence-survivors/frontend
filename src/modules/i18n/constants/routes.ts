@@ -88,6 +88,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/freunde/anfragen',
 		it: '/amici/richieste',
 	},
+	blocked: {
+		en: '/blocked',
+		de: '/blockiert',
+		fr: '/bloques',
+		es: '/bloqueados',
+		che: '/blockiert',
+		it: '/bloccati',
+	},
 
 	search: {
 		en: '/search',
@@ -113,6 +121,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/chat/:id',
 		it: '/chat/:id',
 	},
+
 	userName: {
 		en: '/:username',
 		de: '/:username',
@@ -121,45 +130,37 @@ const APP_ROUTES = defineRouteMap({
 		che: '/:username',
 		it: '/:username',
 	},
-	profile: {
-		en: '/profile',
-		de: '/profil',
-		fr: '/profil',
-		es: '/perfil',
-		che: '/profil',
-		it: '/profilo',
+	userNamePosts: {
+		en: '/:username/posts',
+		de: '/:username/beitraege',
+		fr: '/:username/articles',
+		es: '/:username/articulos',
+		che: '/:username/beitraege',
+		it: '/:username/articoli',
 	},
-	profilePosts: {
-		en: '/profile/posts',
-		de: '/profil/beitraege',
-		fr: '/profil/articles',
-		es: '/perfil/articulos',
-		che: '/profil/beitraege',
-		it: '/profilo/articoli',
+	userNameComments: {
+		en: '/:username/comments',
+		de: '/:username/kommentare',
+		fr: '/:username/commentaires',
+		es: '/:username/comentarios',
+		che: '/:username/kommentare',
+		it: '/:username/commenti',
 	},
-	profileComments: {
-		en: '/profile/comments',
-		de: '/profil/kommentare',
-		fr: '/profil/commentaires',
-		es: '/perfil/comentarios',
-		che: '/profil/kommentare',
-		it: '/profilo/commenti',
+	userNameLikes: {
+		en: '/:username/likes',
+		de: '/:username/likes',
+		fr: '/:username/aime',
+		es: '/:username/likes',
+		che: '/:username/likes',
+		it: '/:username/likes',
 	},
-	profileLikes: {
-		en: '/profile/likes',
-		de: '/profil/likes',
-		fr: '/profil/aime',
-		es: '/perfil/likes',
-		che: '/profil/likes',
-		it: '/profilo/likes',
-	},
-	profileFavourites: {
-		en: '/profile/favourites',
-		de: '/profil/favoriten',
-		fr: '/profil/favoris',
-		es: '/perfil/favoritos',
-		che: '/profil/favoriten',
-		it: '/profilo/preferiti',
+	userNameFavourites: {
+		en: '/:username/favourites',
+		de: '/:username/favoriten',
+		fr: '/:username/favoris',
+		es: '/:username/favoritos',
+		che: '/:username/favoriten',
+		it: '/:username/preferiti',
 	},
 
 	settings: {
@@ -216,7 +217,7 @@ const REDIRECTED_URLS = {
 	401: APP_ROUTES.login.en,
 	login: APP_ROUTES.login.en,
 	success: APP_ROUTES.home.en,
-	profile: APP_ROUTES.profile.en,
+	profile: APP_ROUTES.userName.en,
 } as const satisfies RedirectedUrls;
 const COMPILED_ROUTES = compileRoutes(APP_ROUTES);
 const STATIC_ROUTES = COMPILED_ROUTES.filter((r) => !r.isDynamic);

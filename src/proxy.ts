@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { intlMiddleware, resolveRouteKeyPath, stripLocale } from '@i18n/middleware';
+import { intlMiddleware, stripLocale } from '@i18n/middleware';
 import { REDIRECTED_URLS } from '@i18n/constants/routes';
 import { hasRequiredRole, isRoleRoute, roleRoutes } from '@auth/middlewares/role';
 import { getUserFromRequest } from '@auth/middlewares/token';
 import { COOKIE_REFRESH_TOKEN } from './features/auth/constants/cookies';
+import { resolveRouteKeyPath } from './modules/i18n/utils/resolve';
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;

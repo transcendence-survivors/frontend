@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { FriendRequestDirection } from '../../api/get';
+import { FriendRequestDirection } from '../../../api/get-requests';
 import { FriendRequestAccept, FriendRequestAcceptSkeleton } from './FriendRequestAccept';
 import { FriendRequestDelete, FriendRequestDeleteSkeleton } from './FriendRequestDelete';
 
@@ -7,12 +7,14 @@ export interface FriendRequestActionsProps {
 	friendId: string;
 	friendDisplayName: string;
 	direction: FriendRequestDirection;
+	search?: string;
 }
 
 const FriendRequestActions = ({
 	friendId,
 	friendDisplayName,
 	direction,
+	search,
 }: FriendRequestActionsProps) => {
 	const t = useTranslations('friend_page.requests');
 
@@ -22,6 +24,7 @@ const FriendRequestActions = ({
 				<FriendRequestAccept
 					friendId={friendId}
 					direction={direction}
+					search={search}
 					successMessage={t('accept_success_from_displayname', {
 						displayName: friendDisplayName,
 					})}

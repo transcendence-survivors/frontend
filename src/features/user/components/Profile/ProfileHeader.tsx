@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { type User } from '../../type';
+import { UserFacade } from '../../type';
 import Banner from './Banner';
 import UserDisplayUsername from '../Identity/UserDisplayUsername';
 import ProfileNav from './ProfileNav';
@@ -8,14 +8,11 @@ import { useTranslations } from 'next-intl';
 import EditProfile from './EditProfile';
 
 interface ProfileHeaderProps extends React.HTMLAttributes<HTMLElement> {
-	user: Pick<
-		User,
-		'username' | 'displayName' | 'avatarUrl' | 'bannerUrl' | 'birthdate' | 'bio'
-	>;
+	user: UserFacade;
 }
 
 const ProfileHeader = ({
-	user: { username, displayName, bannerUrl, avatarUrl, bio },
+	user: { username, displayName, coverImageUrl, avatarUrl, bio },
 	...props
 }: ProfileHeaderProps) => {
 	const t = useTranslations('profile');
@@ -25,7 +22,7 @@ const ProfileHeader = ({
 			<section>
 				<Banner
 					img={{
-						src: bannerUrl ?? '',
+						src: coverImageUrl ?? '',
 						alt: username,
 					}}
 				/>
@@ -63,7 +60,7 @@ const ProfileHeader = ({
 					)}
 				</div>
 			</section>
-			<ProfileNav />
+			<ProfileNav username={username} />
 		</header>
 	);
 };

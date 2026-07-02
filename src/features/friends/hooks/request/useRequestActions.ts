@@ -1,10 +1,12 @@
+'use client';
+
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { FriendRequestDirection, GetFriendRequests } from '../api/get';
-import type { FriendRequest } from '../types';
+import type { FriendRequestDirection, GetFriendRequests } from '../../api/get-requests';
+import type { FriendRequest } from '../../types';
 import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
-import { acceptFriendRequest } from '../api/accept';
-import { deleteFriendRequest } from '../api/delete';
+import { acceptFriendRequest } from '../../api/accept';
+import { deleteFriendRequest } from '../../api/delete';
 
 type FriendRequestAction = 'accept' | 'delete';
 
@@ -14,6 +16,7 @@ interface UseRequestActionParams {
 	action: FriendRequestAction;
 	successMessage: string;
 	failureMessage: string;
+	search?: string;
 }
 
 const requestActionFns: Record<
@@ -30,9 +33,10 @@ const useRequestAction = ({
 	action,
 	successMessage,
 	failureMessage,
+	search,
 }: UseRequestActionParams) => {
 	const queryClient = useQueryClient();
-	const queryKey = ['friends', 'requests', direction];
+	const queryKey = ['friend-requests', { direction, search }];
 
 	return useMutation({
 		mutationKey: ['friends', action, friendId],

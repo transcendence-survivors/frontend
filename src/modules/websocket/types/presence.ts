@@ -16,10 +16,15 @@ interface PresencePublicActions {
 	goInvisible: () => void;
 	goVisible: () => void;
 	goDoNotDisturb: () => void;
+	isFriendOnline: (friendId: string) => boolean;
+	getFriendStatus: (friendId: string) => PresenceStatus | null;
 }
+
+interface PresenceStoreInternal {}
 
 interface PresenceStore extends PresencePublicState {
 	actions: PresencePublicActions;
+	internal: PresenceStoreInternal;
 }
 
 enum PresenceStatus {

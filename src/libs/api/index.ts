@@ -1,4 +1,5 @@
 import { FetchOptions, request } from './helpers/request';
+import { CursorParams } from './helpers/types';
 
 export const api = {
 	get: <T>(path: string, init?: FetchOptions) =>
@@ -39,6 +40,15 @@ export const api = {
 
 	delete: <T>(path: string, init?: FetchOptions) =>
 		request<T>(path, { ...init, method: 'DELETE' }),
+};
+
+export const buildUrlParams = <T extends string>(params: CursorParams<T>) => {
+	const urlParams = new URLSearchParams();
+	if (params.limit) urlParams.append('limit', params.limit.toString());
+	if (params.search) urlParams.append('search', params.search);
+	if (params.cursor) urlParams.append('cursor', params.cursor);
+	if (params.orderBy) urlParams.append('orderBy', params.orderBy);
+	return urlParams;
 };
 
 export { isApiSuccess, isApiError } from './helpers/is';

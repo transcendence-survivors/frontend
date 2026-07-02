@@ -2,10 +2,10 @@
 
 import { Button } from '@/components/ui/button';
 import { X, CircleX } from 'lucide-react';
-import { useRequestDelete } from '../../hooks/useRequestActions';
+import { useRequestDelete } from '../../../hooks/request/useRequestActions';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
-import { FriendRequestDirection } from '../../api/get';
+import { FriendRequestDirection } from '../../../api/get-requests';
 
 interface FriendRequestDeleteProps extends Omit<
 	FriendRequestActionsProps,
@@ -26,6 +26,7 @@ const FriendRequestDelete = ({
 	direction,
 	successMessage,
 	failureMessage,
+	search,
 	ariaLabel,
 }: FriendRequestDeleteProps) => {
 	const { mutate, isPending, isError } = useRequestDelete({
@@ -33,6 +34,7 @@ const FriendRequestDelete = ({
 		direction,
 		successMessage,
 		failureMessage,
+		search,
 	});
 
 	const onClick = () => mutate();

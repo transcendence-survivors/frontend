@@ -4,15 +4,16 @@ import {
 } from '@/features/user/components/Identity/UserIdentity';
 import { BaseUser } from '@/features/user/type';
 import { cn } from '@/libs/utils';
+import { PresenceStatus } from '@/modules/websocket/types/presence';
 
 interface FriendCardProps extends React.HtmlHTMLAttributes<HTMLElement> {
 	friend: BaseUser;
-	badge?: boolean;
+	badge?: PresenceStatus | false;
 	bottom?: React.ReactNode;
 	containerClassName?: string;
 }
 
-const FriendCard = ({
+const UserCard = ({
 	friend,
 	badge = false,
 	children,
@@ -36,7 +37,7 @@ const FriendCard = ({
 								alt: friend.displayName,
 							},
 							size: 'lg',
-							badgeState: badge ? 'online' : false,
+							badgeState: badge,
 						}}
 						user={{
 							displayName: friend.displayName,
@@ -51,7 +52,7 @@ const FriendCard = ({
 	);
 };
 
-const FriendCardSkeleton = ({
+const UserCardSkeleton = ({
 	children,
 	bottom,
 	containerClassName,
@@ -77,4 +78,4 @@ const FriendCardSkeleton = ({
 	);
 };
 
-export { FriendCard, FriendCardSkeleton };
+export { UserCard, UserCardSkeleton };

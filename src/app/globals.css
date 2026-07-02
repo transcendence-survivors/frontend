@@ -2,6 +2,8 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+@source "../**/*.{js,ts,jsx,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 @custom-variant neon (&:is(.neon *));
 
@@ -173,12 +175,12 @@
 		@apply border-border outline-ring/50;
 	}
 
-	body {
-		@apply bg-background text-foreground;
-	}
-
 	html {
 		@apply font-sans;
+		scroll-behavior: smooth;
+	}
+	body {
+		@apply bg-background text-foreground;
 	}
 
 	h1 {
@@ -191,5 +193,31 @@
 
 	.main-header {
 		height: var(--header-height);
+	}
+}
+
+@utility friend-sticky-if-tall {
+	position: static;
+}
+
+@utility friend-sub-sticky-if-tall {
+	position: static;
+}
+
+@media (min-height: 500px) {
+	.friend-sub-sticky-if-tall {
+		top: var(--header-height);
+		@apply sticky z-10 bg-background;
+	}
+}
+
+@media (min-height: 750px) and (min-width: 640px) {
+	.friend-sub-sticky-if-tall {
+		@apply sticky z-10 bg-background;
+		top: calc(var(--spacing) * 60 + var(--header-height));
+	}
+	.friend-sticky-if-tall {
+		@apply h-60 sticky z-10 bg-background;
+		top: var(--header-height);
 	}
 }

@@ -11,17 +11,17 @@ type BaseLinkProps = Omit<LinkProps, 'href'> & {
 	children: Readonly<ReactNode>;
 };
 
-type I18nLinkProps =
+export type I18nLinkProps =
 	| {
 			[K in keyof StaticRoutes]: BaseLinkProps & {
 				href: K;
-				params?: never;
+				hrefParams?: never;
 			};
 	  }[keyof StaticRoutes]
 	| {
 			[K in keyof ParamRoutes]: BaseLinkProps & {
 				href: K;
-				params: ParamRoutes[K];
+				hrefParams: ParamRoutes[K];
 			};
 	  }[keyof ParamRoutes];
 
@@ -33,8 +33,14 @@ const resolveHref = (path: string, params?: Record<string, string | number>): st
 			)
 		: path;
 
-export const I18nLink = ({ href, locale, params, children, ...rest }: I18nLinkProps) => (
-	<Link href={resolveHref(getPath(href), params)} locale={locale} {...rest}>
+export const I18nLink = ({
+	href,
+	locale,
+	hrefParams,
+	children,
+	...rest
+}: I18nLinkProps) => (
+	<Link href={resolveHref(getPath(href), hrefParams)} locale={locale} {...rest}>
 		{children}
 	</Link>
 );

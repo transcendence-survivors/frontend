@@ -16,16 +16,21 @@
 		"chat": "Chat",
 		"search": "Search",
 
-		"profile_posts": "Posts",
-		"profile_comments": "Comments",
-		"profile_stats": "Stats",
-		"profile_likes": "Likes",
-		"profile_favourites": "Favourites",
+		"concept": "Concept",
 
-		"profile_followers": "Followers",
-		"profile_following": "Following",
-		"profile_blocked": "Blocked Users",
-		"concept": "Concept"
+		"user": {
+			"posts": "Posts",
+			"comments": "Comments",
+			"stats": "Stats",
+			"likes": "Likes",
+			"favourites": "Favourites"
+		},
+
+		"friend": {
+			"requests": "Requests",
+			"friends": "Friends",
+			"blocked": "Blocked Users"
+		}
 	},
 	"home": {},
 	"profile": {
@@ -56,11 +61,17 @@
 		"friends": {
 			"title": "Friends",
 			"count": "{count} friend(s).",
+			"count_search": "{count} friend(s) found for your search.",
 			"delete_button": "Unfriend",
 			"delete_success_displayname": "You have unfriended {displayName} successfully.",
 			"delete_failure_displayname": "Failed to unfriend {displayName}. Please try again.",
 			"no_friends": "You have no friends yet. Start adding some!",
-			"no_friends_search": "No friends found for your search."
+			"no_friends_search": "No friends found for your search.",
+			"no_more_friends": "No more friends to load.",
+			"fetch_error": "Failed to load friends. Please try again later.",
+			"all_button": "All",
+			"online_button": "Online",
+			"offline_button": "Offline"
 		},
 
 		"requests": {
@@ -93,6 +104,9 @@
 
 			"no_more_incoming_requests": "No more incoming friend requests to load.",
 			"no_more_outgoing_requests": "No more outgoing friend requests to load.",
+
+			"received": "Received",
+			"sent": "Sent",
 
 			"fetch_error": "Failed to load friend requests. Please try again later."
 		}

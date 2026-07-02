@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { UserPlus } from 'lucide-react';
-import { FriendCard } from './FriendCard';
+import { UserCard } from './UserCard';
 
 const FriendAddDialog = () => {
 	return (
@@ -31,7 +31,7 @@ const FriendAddDialog = () => {
 					<Input placeholder="Enter bearer's username" className='w-full' />
 					<ul>
 						<li className='py-2'>
-							<FriendCard
+							<UserCard
 								friend={{
 									id: 'test',
 									displayName: 'jean-louis',
@@ -42,7 +42,7 @@ const FriendAddDialog = () => {
 								<Button variant='outline' className='ml-auto'>
 									<UserPlus className='size-3.5' />
 								</Button>
-							</FriendCard>
+							</UserCard>
 						</li>
 					</ul>
 				</div>

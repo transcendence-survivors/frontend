@@ -1,4 +1,4 @@
-import { FriendRequestDirection } from '../../api/get';
+import { FriendRequestDirection } from '../../api/get-requests';
 import { FriendRequestCardSkeleton } from './FriendRequestCard';
 
 interface FriendRequestsLoadingProps extends React.HTMLAttributes<HTMLUListElement> {
@@ -12,7 +12,7 @@ const FriendRequestsLoading = ({
 	...props
 }: FriendRequestsLoadingProps) => {
 	return (
-		<ul className='flex flex-col gap-0' {...props}>
+		<ul className='flex flex-col gap-2' {...props}>
 			{Array.from({ length: numberOfSkeletons }).map((_, index) => (
 				<li key={index}>
 					<FriendRequestCardSkeleton direction={direction} />

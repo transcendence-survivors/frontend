@@ -29,7 +29,6 @@ export default function Feed() {
 	const { globalOnlineCount, onlineFriendsCount, onlineFriends } = usePresenceState();
 	const { goInvisible, goVisible, goDoNotDisturb } = usePresenceActions();
 
-	console.log('Online Friends:', onlineFriends);
 	return (
 		<main>
 			<section className='border-b py-5'>

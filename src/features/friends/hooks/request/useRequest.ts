@@ -1,16 +1,18 @@
+'use client';
+
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { type GetFriendRequestsParams, getFriendRequests } from '../api/get';
+import { type GetFriendRequestsParams, getFriendRequests } from '../../api/get-requests';
 
 export type UseRequestsParams = Pick<GetFriendRequestsParams, 'direction' | 'search'>;
 
 const initialUserRequestsParam = {
-	limit: 20,
+	limit: 100,
 	orderBy: 'createdDesc',
 } satisfies Omit<GetFriendRequestsParams, 'direction'>;
 
 const useRequests = ({ direction, search }: UseRequestsParams) => {
 	return useInfiniteQuery({
-		queryKey: ['friends', 'requests', direction, search],
+		queryKey: ['friend-requests', { direction, search }],
 		initialPageParam: { ...initialUserRequestsParam, direction, search },
 		queryFn: ({ pageParam }) => getFriendRequests(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

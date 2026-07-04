@@ -4,6 +4,7 @@ interface Post {
 	id: string;
 	createdAt: Date;
 	content?: string;
+	imageUrl?: string;
 	author: BaseUser;
 }
 

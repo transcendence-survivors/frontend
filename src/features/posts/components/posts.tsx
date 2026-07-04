@@ -35,6 +35,15 @@ export default function Posts() {
 						</div>
 						<div className='text-foreground'>{p.content}</div>
 						<div className='text-foreground'>
+							{p.imageUrl && (
+								<img
+									src={p.imageUrl}
+									alt=''
+									className='mt-2 w-full max-h-96 object-cover rounded-md'
+								/>
+							)}
+						</div>
+						<div className='text-foreground'>
 							<br />
 							{new Date(p.createdAt).toLocaleString('fr-FR', {
 								day: '2-digit',

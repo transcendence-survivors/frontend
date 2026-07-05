@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { addLike, deleteLike, fetchLikeCount } from '../api/likes';
+import { addLike, deleteLike, fetchLikeInfo } from '../api/likes';
 
-export function useLikeAdd() {
+export function useAddLike() {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: addLike,
@@ -24,6 +24,6 @@ export function useDeleteLike() {
 export function useLikeCount(postId: string) {
 	return useQuery({
 		queryKey: ['likes', postId],
-		queryFn: () => fetchLikeCount(postId),
+		queryFn: () => fetchLikeInfo(postId),
 	});
 }

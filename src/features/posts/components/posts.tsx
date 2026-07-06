@@ -29,7 +29,9 @@ export default function Posts() {
 
 	return (
 		<>
-			<CreatePost />
+			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
+				<CreatePost />
+			</div>
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
 					<li

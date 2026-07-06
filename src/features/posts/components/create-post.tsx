@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useCreatePost } from '../hook/useCreatePost';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { ImageIcon } from 'lucide-react';
 
 export default function CreatePost() {
+	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
 	const createPost = useCreatePost();
@@ -23,11 +25,21 @@ export default function CreatePost() {
 				placeholder='Commencer à écrire un post'
 			/>
 			<input
+				ref={fileInputRef}
 				type='file'
 				accept='image/*'
-				onChange={(e) => setFile(e.target?.files?.[0])}
+				onChange={(e) => setFile(e.target.files?.[0])}
+				className='hidden'
 			/>
-			<Button type='submit'>Poster</Button>
+			<div className='flex items-center justify-between'>
+				<Button
+					type='button'
+					variant='ghost'
+					onClick={() => fileInputRef.current?.click()}>
+					<ImageIcon />
+				</Button>
+				<Button type='submit'>Poster</Button>
+			</div>
 		</form>
 	);
 }

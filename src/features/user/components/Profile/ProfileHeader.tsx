@@ -16,13 +16,19 @@ const ProfileHeader = ({
 	...props
 }: ProfileHeaderProps) => {
 	const t = useTranslations('profile');
-
+	console.log('ProfileHeader user:', {
+		username,
+		displayName,
+		coverImageUrl,
+		avatarUrl,
+		bio,
+	});
 	return (
 		<header {...props}>
 			<section>
 				<Banner
 					img={{
-						src: coverImageUrl ?? '',
+						src: coverImageUrl,
 						alt: username,
 					}}
 				/>

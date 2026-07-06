@@ -40,13 +40,6 @@ const FriendsData = ({ getFriendStatus, params }: FriendRequestHeaderProps) => {
 	}
 
 	const friends = data.pages.flatMap((page) => page.data);
-	const isDuplicate = (friendId: string) => {
-		const friendIds = friends.map((friend) => friend.friend.id);
-		return friendIds.filter((id) => id === friendId).length > 1;
-	};
-	const uniqueFriends = friends.filter(({ friend }) => !isDuplicate(friend.id));
-	console.log('Unique Friends:', uniqueFriends, 'vs All Friends:', friends);
-
 	return (
 		<>
 			{friends.length === 0 ? (

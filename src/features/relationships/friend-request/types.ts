@@ -5,10 +5,17 @@ interface FriendRequest extends BaseFriendship {
 	status: 'PENDING';
 }
 
-type friendRequestOrderBy = 'createdAsc' | 'createdDesc';
+type FriendRequestOrderBy =
+	| 'created-asc'
+	| 'created-desc'
+	| 'username-asc'
+	| 'username-desc'
+	| 'displayname-asc'
+	| 'displayname-desc';
+
 type FriendRequestDirection = 'incoming' | 'outgoing';
 
-type GetFriendRequestsParams = CursorParams<friendRequestOrderBy> & {
+type GetFriendRequestsParams = CursorParams<FriendRequestOrderBy> & {
 	direction: FriendRequestDirection;
 };
 

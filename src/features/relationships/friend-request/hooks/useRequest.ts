@@ -5,8 +5,8 @@ import { UseRequestsParams, type GetFriendRequestsParams } from '../types';
 import { getFriendRequests } from '../api/get';
 
 const initialUserRequestsParam = {
-	limit: 100,
-	orderBy: 'createdDesc',
+	limit: 50,
+	orderBy: 'created-desc',
 } satisfies Omit<GetFriendRequestsParams, 'direction'>;
 
 const useRequests = ({ direction, search }: UseRequestsParams) => {

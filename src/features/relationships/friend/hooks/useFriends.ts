@@ -6,7 +6,7 @@ import { GetFriendIdsParams, GetFriendsParams } from '../types';
 
 const initialFriendsParam = {
 	limit: 50,
-	orderBy: 'userNameAsc',
+	orderBy: 'username-asc',
 } satisfies GetFriendsParams;
 
 type UseFriendsParams = Omit<GetFriendIdsParams, 'cursor' | 'limit'>;

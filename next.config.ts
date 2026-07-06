@@ -12,9 +12,7 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	devIndicators: {
-		position: 'top-left',
-	},
+	devIndicators: false,
 };
 
 const withNextIntl = createNextIntlPlugin('./src/modules/i18n/request.ts');

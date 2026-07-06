@@ -6,7 +6,13 @@ interface Friend extends BaseFriendship {
 }
 
 type FriendStatus = 'all' | 'online' | 'offline';
-type FriendOrderBy = 'createdAsc' | 'createdDesc' | 'userNameAsc' | 'userNameDesc';
+type FriendOrderBy =
+	| 'updated-asc'
+	| 'updated-desc'
+	| 'username-asc'
+	| 'username-desc'
+	| 'displayname-asc'
+	| 'displayname-desc';
 
 type IdsParams = {
 	friendIds: string[];

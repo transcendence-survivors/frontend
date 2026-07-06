@@ -81,10 +81,11 @@ const AvatarProfile = ({
 
 interface AvatarProfileLinkProps {
 	avatar: AvatarProfileProps;
+	username: string;
 }
-const AvatarProfileLink = ({ avatar }: AvatarProfileLinkProps) => {
+const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 	return (
-		<I18nLink href='profile'>
+		<I18nLink href='userName' hrefParams={{ username }}>
 			<AvatarProfile {...avatar} />
 		</I18nLink>
 	);

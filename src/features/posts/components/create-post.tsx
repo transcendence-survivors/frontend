@@ -22,6 +22,7 @@ export default function CreatePost() {
 			<Textarea
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
+				className='resize-none'
 				placeholder='Commencer à écrire un post'
 			/>
 			<input

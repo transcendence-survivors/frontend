@@ -15,6 +15,9 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
+	postForm: <T>(path: string, body: FormData, init?: FetchOptions) =>
+		request<T>(path, { ...init, method: 'POST', body }),
+
 	put: <T>(path: string, body?: unknown, init?: FetchOptions) =>
 		request<T>(path, {
 			...init,

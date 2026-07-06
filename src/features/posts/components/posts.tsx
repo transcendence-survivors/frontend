@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import LikeButton from '@/features/likes/components/likes';
+import CreatePost from './create-post';
 
 export default function Posts() {
 	const { ref, inView } = useInView({
@@ -28,6 +29,7 @@ export default function Posts() {
 
 	return (
 		<>
+			<CreatePost />
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
 					<li

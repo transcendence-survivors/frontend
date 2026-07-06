@@ -25,3 +25,13 @@ export async function fetchPosts({ cursor, limit, orderBy, search }: FetchPostPa
 	if (isApiError(res)) throw Error(res.message);
 	return res;
 }
+
+export async function createPost(content?: string, file?: File) {
+	const formData = new FormData();
+	if (content) formData.append('content', content);
+	if (file) formData.append('file', file);
+
+	const res = await api.postForm<Post>(POST_ENDPOINTS.getPost, formData);
+	if (isApiError(res)) throw Error(res.message);
+	return res;
+}

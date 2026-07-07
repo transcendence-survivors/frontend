@@ -12,32 +12,14 @@ export type ApiError = {
 	errors?: unknown;
 };
 
-export type BasePaginationParams<T extends string> = {
-	page?: number;
-	limit?: number;
-	search?: string;
-	orderBy?: T;
-};
-export type PaginationResponse<T> = {
-	data: T;
-	meta: {
-		page: number;
-		limit: number;
-		total: number;
-		totalPages: number;
-		hasNextPage: boolean;
-		hasPrevPage: boolean;
-		itemsCount: number;
-	};
-};
-
-export type BaseCursorPaginationParams<T extends string> = {
+export type CursorParams<T extends string> = {
 	cursor?: string;
 	limit?: number;
 	search?: string;
 	orderBy?: T;
 };
-export type CursorPaginationResponse<T> = {
+
+export type CursorResponse<T> = {
 	data: T;
 	meta: {
 		hasNextPage: boolean;

@@ -99,7 +99,14 @@ export const useDragScroll = ({
 	const onMouseDown = useCallback((e: React.MouseEvent) => {
 		if (!ref.current) return;
 
-		setState((prev) => ({ ...prev, isDragging: true }));
+		setState((prev) => {
+			if (prev.isDragging) return prev;
+			if (!prev.canScrollLeft && !prev.canScrollRight) return prev;
+			return {
+				...prev,
+				isDragging: true,
+			};
+		});
 		dragInfo.current = {
 			startX: e.pageX - ref.current.offsetLeft,
 			scrollLeft: ref.current.scrollLeft,

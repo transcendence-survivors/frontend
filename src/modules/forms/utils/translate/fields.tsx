@@ -1,11 +1,11 @@
 import { type FieldValues } from 'react-hook-form';
-import { type LooseTFunction, type RootTFunction } from './types';
 import { type FormFieldParams } from '../../types/FormFieldParams';
+import type { LooseTFunction, RootTFunction } from '@/modules/i18n/messages/types';
 
-export function translateField<T extends FieldValues>(
+const translateField = <T extends FieldValues>(
 	field: FormFieldParams<T>,
 	t: RootTFunction,
-): FormFieldParams<T> {
+): FormFieldParams<T> => {
 	const translate = t as LooseTFunction;
 
 	const base = {
@@ -33,11 +33,13 @@ export function translateField<T extends FieldValues>(
 		default:
 			return base;
 	}
-}
+};
 
-export function translateFields<T extends FieldValues>(
+const translateFields = <T extends FieldValues>(
 	fields: FormFieldParams<T>[],
 	t: RootTFunction,
-): FormFieldParams<T>[] {
+): FormFieldParams<T>[] => {
 	return fields.map((field) => translateField(field, t));
-}
+};
+
+export { translateField, translateFields };

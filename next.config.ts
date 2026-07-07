@@ -12,18 +12,7 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	devIndicators: {
-		position: 'bottom-right',
-	},
-	async rewrites() {
-		const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-		return [
-			{
-				source: '/api/:path*',
-				destination: `${apiUrl}/:path*`,
-			},
-		];
-	},
+	devIndicators: false,
 };
 
 const withNextIntl = createNextIntlPlugin('./src/modules/i18n/request.ts');

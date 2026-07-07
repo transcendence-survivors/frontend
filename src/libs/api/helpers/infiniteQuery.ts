@@ -1,25 +1,22 @@
 import { InfiniteData, QueryClient } from '@tanstack/react-query';
-import { CursorPaginationResponse } from './types';
+import { CursorResponse } from './types';
 
 const updateInfiniteQuery = <T>(
 	queryClient: QueryClient,
 	queryKey: unknown[],
 	predicate: (item: T) => boolean,
 ) => {
-	queryClient.setQueryData<InfiniteData<CursorPaginationResponse<T[]>>>(
-		queryKey,
-		(oldData) => {
-			if (!oldData) return oldData;
+	queryClient.setQueryData<InfiniteData<CursorResponse<T[]>>>(queryKey, (oldData) => {
+		if (!oldData) return oldData;
 
-			return {
-				...oldData,
-				pages: oldData.pages.map((page) => ({
-					...page,
-					data: page.data.filter(predicate),
-				})),
-			};
-		},
-	);
+		return {
+			...oldData,
+			pages: oldData.pages.map((page) => ({
+				...page,
+				data: page.data.filter(predicate),
+			})),
+		};
+	});
 };
 
 export { updateInfiniteQuery };

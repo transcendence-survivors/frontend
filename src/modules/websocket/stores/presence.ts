@@ -110,7 +110,17 @@ export const usePresenceStore = create<PresenceStore>((set, get) => ({
 				socket.emit(PRESENCE_EVENTS.RECEIVE.GO_DO_NOT_DISTURB);
 			}
 		},
+		isFriendOnline: (friendId: string) => {
+			const { onlineFriends } = get();
+			return onlineFriends.has(friendId);
+		},
+		getFriendStatus: (friendId: string) => {
+			const { onlineFriends } = get();
+			const friend = onlineFriends.get(friendId);
+			return friend ? friend.status : PresenceStatus.OFFLINE;
+		},
 	},
+	internal: {},
 }));
 
 export const usePresenceState = () =>
@@ -123,5 +133,23 @@ export const usePresenceState = () =>
 		})),
 	);
 
+export const useOnlineFriends = () =>
+	usePresenceStore(
+		useShallow((state) => ({
+			onlineFriends: state.onlineFriends,
+			onlineFriendsCount: state.onlineFriendsCount,
+			isFriendOnline: state.actions.isFriendOnline,
+			getFriendStatus: state.actions.getFriendStatus,
+		})),
+	);
+
 export const usePresenceActions = () =>
-	usePresenceStore(useShallow((state) => state.actions));
+	usePresenceStore(
+		useShallow((state) => ({
+			initPresence: state.actions.initPresence,
+			disconnectPresence: state.actions.disconnectPresence,
+			goInvisible: state.actions.goInvisible,
+			goVisible: state.actions.goVisible,
+			goDoNotDisturb: state.actions.goDoNotDisturb,
+		})),
+	);

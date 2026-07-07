@@ -1,46 +1,59 @@
-import { RouteMap } from '../constants/routes';
+import type { Locale } from '../constants/locales';
+import type { RouteMap, RouteKey } from '../constants/routes';
 
-type CompiledRoute = {
-	key: string;
-	en: string;
-	localeMap: Record<string, string>;
+type CompiledLocalePath = {
+	path: string;
 	isDynamic: boolean;
 	regex?: RegExp;
 	paramNames?: string[];
 };
 
+type CompiledRoute = {
+	key: RouteKey;
+	isDynamic: boolean;
+	locales: Record<Locale, CompiledLocalePath>;
+};
+
 const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const compilePath = (path: string) => {
+const compilePath = (path: string): CompiledLocalePath => {
 	const paramNames: string[] = [];
 
-	const regexString = escapeRegex(path).replace(/\\:([^/]+)/g, (_, key) => {
-		paramNames.push(key);
-		return '([^/]+)';
-	});
+	const regexString = path
+		.split('/')
+		.map((segment) => {
+			if (segment.startsWith(':')) {
+				paramNames.push(segment.slice(1));
+				return '([^/]+)';
+			}
+			return escapeRegex(segment);
+		})
+		.join('/');
+
+	const isDynamic = paramNames.length > 0;
 
 	return {
-		regex: new RegExp(`^${regexString}$`),
-		paramNames,
-		isDynamic: paramNames.length > 0,
+		path,
+		isDynamic,
+		regex: isDynamic ? new RegExp(`^${regexString}$`) : undefined,
+		paramNames: isDynamic ? paramNames : undefined,
 	};
 };
 
 const compileRoutes = (routes: RouteMap): CompiledRoute[] => {
 	return Object.entries(routes).map(([key, localeMap]) => {
-		const en = localeMap.en;
-		const { regex, paramNames, isDynamic } = compilePath(en);
+		const locales = Object.fromEntries(
+			Object.entries(localeMap).map(([locale, path]) => [
+				locale,
+				compilePath(path),
+			]),
+		) as Record<Locale, CompiledLocalePath>;
 
-		return {
-			key,
-			en,
-			localeMap,
-			isDynamic,
-			regex: isDynamic ? regex : undefined,
-			paramNames: isDynamic ? paramNames : undefined,
-		};
+		const isDynamic = locales.en.isDynamic;
+
+		return { key: key as RouteKey, isDynamic, locales };
 	});
 };
 
 export { compileRoutes, compilePath };
-export type { CompiledRoute };
+export type { CompiledRoute, CompiledLocalePath };

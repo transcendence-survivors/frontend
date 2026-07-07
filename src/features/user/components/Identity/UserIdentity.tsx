@@ -34,13 +34,13 @@ const UserIdentityLink = ({
 }: UserIdentityLinkProps) => {
 	return (
 		<I18nLink
+			{...props}
 			href='userName'
-			params={{ username: `@${user.username}` }}
+			hrefParams={{ username: `@${user.username}` }}
 			className={cn(
 				'flex items-center gap-3 h-auto px-2 overflow-x-clip whitespace-nowrap text-ellipsis outline-0 max-w-full group/identity hover:underline focus-within:underline',
 				className,
-			)}
-			{...props}>
+			)}>
 			<AvatarProfile
 				{...avatar}
 				className='

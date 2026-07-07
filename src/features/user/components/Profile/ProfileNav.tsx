@@ -6,25 +6,28 @@ import { useFocusScroll } from '@/hooks/useFocusScroll';
 import { Button } from '@/components/ui/button';
 import { capitalize, cn } from '@/libs/utils';
 import { I18nLink } from '@/modules/i18n/components/I18nLink';
-import { createNavLinks, usePathname } from '@i18n/utils/navigation';
+import { NavLink, usePathname } from '@i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
-import { getPath } from '@/modules/i18n/utils/routing';
+import { AppMessages } from '@/modules/i18n/messages/types';
+import { resolveRouteKeyPath } from '@/modules/i18n/utils/resolve';
 
-const profileNavLinks = createNavLinks([
-	{ key: 'profile', labelKey: 'profile_stats' },
-	{ key: 'profileComments', labelKey: 'profile_comments' },
-	{ key: 'profilePosts', labelKey: 'profile_posts' },
-	{ key: 'profileLikes', labelKey: 'profile_likes' },
-	{ key: 'profileFavourites', labelKey: 'profile_favourites' },
-]);
+const getHrefParams = (username: string) => ({ username: `@${username}` });
 
-export type ProfileNavKey = (typeof profileNavLinks)[number]['key'];
+const profileLinks = [
+	{ key: 'userName', labelKey: 'stats', getHrefParams },
+	{ key: 'userNameComments', labelKey: 'comments', getHrefParams },
+	{ key: 'userNamePosts', labelKey: 'posts', getHrefParams },
+	{ key: 'userNameLikes', labelKey: 'likes', getHrefParams },
+	{ key: 'userNameFavourites', labelKey: 'favourites', getHrefParams },
+] as const satisfies NavLink<AppMessages['nav']['user'], string>[];
 
-interface ProfileNavProps extends React.HTMLAttributes<HTMLElement> {}
+interface ProfileNavProps extends React.HTMLAttributes<HTMLElement> {
+	username: string;
+}
 
-const ProfileNav = ({ className, ...props }: ProfileNavProps) => {
-	const t = useTranslations('nav');
+const ProfileNav = ({ username, ...props }: ProfileNavProps) => {
+	const t = useTranslations('nav.user');
 	const path = usePathname();
 	const {
 		ref,
@@ -38,7 +41,10 @@ const ProfileNav = ({ className, ...props }: ProfileNavProps) => {
 	const { onFocus } = useFocusScroll({ scrollContainerRef: ref });
 
 	const activeLinkKey = useMemo(() => {
-		const activeLink = profileNavLinks.find((link) => getPath(link.key) === path);
+		const activeLink = profileLinks.find((link) => {
+			const resolvedPath = resolveRouteKeyPath(path);
+			return resolvedPath === link.key;
+		});
 		return activeLink ? activeLink.key : 'profile';
 	}, [path]);
 
@@ -50,9 +56,8 @@ const ProfileNav = ({ className, ...props }: ProfileNavProps) => {
 			canScrollRight={canScrollRight}
 			onMouseDown={onMouseDown}
 			onDragStart={preventNativeDrag}
-			className={className}
 			{...props}>
-			{profileNavLinks.map((link) => (
+			{profileLinks.map((link) => (
 				<li key={link.key} className='flex-1' onFocus={onFocus}>
 					<Button
 						variant={'tabs'}
@@ -67,7 +72,8 @@ const ProfileNav = ({ className, ...props }: ProfileNavProps) => {
 							href={link.key}
 							draggable={false}
 							onClick={handleLinkClick}
-							onDragStart={preventNativeDrag}>
+							onDragStart={preventNativeDrag}
+							hrefParams={link.getHrefParams(username)}>
 							{capitalize(t(link.labelKey))}
 						</I18nLink>
 					</Button>

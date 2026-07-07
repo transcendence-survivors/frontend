@@ -1,22 +1,20 @@
+import { env } from '@/libs/env';
 import { ApiResponse, ApiError, ApiSuccess } from './types';
-
-const API_URL = '/api';
 
 export type FetchOptions = RequestInit & {
 	no_retry?: boolean;
 };
+const API_URL =
+	typeof window !== 'undefined' ? env.NEXT_PUBLIC_API_URL : env.API_INTERNAL;
 
 const buildUrl = (path: string) =>
 	`${API_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 const baseFetch = (path: string, init: RequestInit) => {
 	const url = buildUrl(path);
-
 	return fetch(url, {
 		...init,
-		headers: {
-			...init.headers,
-		},
+		headers: { ...init.headers },
 		credentials: 'include',
 	});
 };

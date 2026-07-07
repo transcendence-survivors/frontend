@@ -1,196 +1,278 @@
 {
 	"nav": {
-		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
-		"profile": "Profile",
-		"settings": "Settings",
-		"logout": "Logout",
-		"posts": "Posts",
-		"privacy": "Privacy Policy",
-		"terms": "Terms of Service",
-		"legal": "Legal Notice",
+		"home": "Accueil",
+		"game": "Jeu",
+		"leaderboard": "Classement",
+		"profile": "Profil",
+		"settings": "Paramètres",
+		"logout": "Déconnexion",
+		"posts": "Publications",
+		"privacy": "Politique de confidentialité",
+		"terms": "Conditions d'utilisation",
+		"legal": "Mentions légales",
 
-		"profile_posts": "Posts",
-		"profile_comments": "Comments",
-		"profile_stats": "Stats",
-		"profile_likes": "Likes",
-		"profile_favourites": "Favourites",
+		"feed": "Fil",
+		"friends": "Amis",
+		"chat": "Discussion",
+		"search": "Recherche",
 
-		"profile_followers": "Followers",
-		"profile_following": "Following",
+		"profile_posts": "Publications",
+		"profile_comments": "Commentaires",
+		"profile_stats": "Statistiques",
+		"profile_likes": "J'aime",
+		"profile_favourites": "Favoris",
 
-		"profile_blocked": "Blocked Users"
+		"profile_followers": "Abonnés",
+		"profile_following": "Abonnements",
+		"profile_blocked": "Utilisateurs bloqués",
+		"concept": "Concept"
 	},
-	"home": {
-		"welcome": "Welcome to Transcendence Survivor !"
+	"home": {},
+	"profile": {
+		"bio": "Biographie",
+		"edit": {
+			"button": "Modifier le profil",
+			"title": "Modifier le profil",
+			"success": "Profil mis à jour avec succès."
+		}
+	},
+	"friend_page": {
+		"title": "Amis & Modération",
+		"subtitle": "Membres de votre cercle",
+		"input_placeholder": "Rechercher par nom d'utilisateur...",
+
+		"add_friend": {
+			"button": "Ajouter un ami",
+			"success": "Demande d'ami envoyée avec succès.",
+			"error": "Échec de l'envoi de la demande d'ami. Veuillez réessayer."
+		},
+
+		"nav": {
+			"friends": "Amis",
+			"requests": "Demandes",
+			"blocked": "Utilisateurs bloqués"
+		},
+
+		"friends": {
+			"title": "Amis",
+			"count": "{count} ami(s).",
+			"delete_button": "Retirer l'ami",
+			"delete_success_displayname": "Vous avez retiré {displayName} de vos amis avec succès.",
+			"delete_failure_displayname": "Échec du retrait de {displayName}. Veuillez réessayer.",
+			"no_friends": "Vous n'avez pas encore d'amis. Commencez à en ajouter !",
+			"no_friends_search": "Aucun ami trouvé pour votre recherche."
+		},
+
+		"requests": {
+			"title": "Demandes d'amis",
+			"incoming_button": "Entrantes",
+			"outgoing_button": "Sortantes",
+
+			"incoming_count": "{count} demande(s) d'ami entrante(s).",
+			"incoming_count_search": "{count} demande(s) d'ami entrante(s) trouvée(s) pour votre recherche.",
+			"outgoing_count": "{count} demande(s) d'ami sortante(s).",
+			"outgoing_count_search": "{count} demande(s) d'ami sortante(s) trouvée(s) pour votre recherche.",
+
+			"delete_from_displayname": "Décliner la demande d'ami de {displayName}",
+			"delete_to_displayname": "Supprimer votre demande d'ami à {displayName}",
+			"delete_success_from_displayname": "La demande d'ami de {displayName} a été supprimée avec succès.",
+			"delete_success_to_displayname": "Votre demande d'ami à {displayName} a été supprimée avec succès.",
+			"delete_failure_from_displayname": "Échec de la suppression de la demande d'ami de {displayName}. Veuillez réessayer.",
+			"delete_failure_to_displayname": "Échec de la suppression de votre demande d'ami à {displayName}. Veuillez réessayer.",
+
+			"accept_button": "Accepter",
+			"accept_from_displayname": "Accepter la demande d'ami de {displayName}",
+			"accept_success_from_displayname": "La demande d'ami de {displayName} a été acceptée avec succès.",
+			"accept_failure_from_displayname": "Échec de l'acceptation de la demande d'ami de {displayName}. Veuillez réessayer.",
+
+			"no_incoming_requests": "Vous n'avez aucune demande d'ami entrante.",
+			"no_incoming_requests_search": "Aucune demande d'ami entrante trouvée pour votre recherche.",
+			"no_outgoing_requests": "Vous n'avez aucune demande d'ami sortante.",
+			"no_outgoing_requests_search": "Aucune demande d'ami sortante trouvée pour votre recherche.",
+
+			"no_more_incoming_requests": "Plus aucune demande d'ami entrante à charger.",
+			"no_more_outgoing_requests": "Plus aucune demande d'ami sortante à charger.",
+
+			"fetch_error": "Échec du chargement des demandes d'amis. Veuillez réessayer plus tard."
+		}
 	},
 
 	"auth": {
 		"signout": {
-			"label": "Logout",
-			"success": "You have been logged out successfully.",
-			"error": "An error occurred while logging out. Please try again."
+			"label": "Déconnexion",
+			"success": "Vous avez été déconnecté avec succès.",
+			"error": "Une erreur est survenue lors de la déconnexion. Veuillez réessayer."
 		},
 		"signin": {
-			"title": "Sign In",
-			"no_account": "Don't have an account ?",
-			"forgot_password": "Forgot your password ?",
-			"reset_password": "Reset Password",
+			"title": "Connexion",
+			"no_account": "Vous n'avez pas de compte ?",
+			"forgot_password": "Mot de passe oublié ?",
+			"reset_password": "Réinitialiser le mot de passe",
 
-			"username_or_email": "Username or Email",
-			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
+			"username_or_email": "Nom d'utilisateur ou email",
+			"username_or_emailPlaceholder": "john_doe ou john.doe@example.com",
 
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
 
-			"password": "Password",
-			"passwordPlaceholder": "Enter your password",
+			"password": "Mot de passe",
+			"passwordPlaceholder": "Entrez votre mot de passe",
 
-			"submit": "Sign In",
-			"submitting": "Signing In",
-			"submitted": "Signed In",
-			"forgotPassword": "Forgot your password?",
-			"success": "You have been signed in successfully.",
-			"error": "An error occurred while signing in. Please check your credentials and try again."
+			"submit": "Se connecter",
+			"submitting": "Connexion en cours",
+			"submitted": "Connecté",
+			"forgotPassword": "Mot de passe oublié ?",
+			"success": "Connexion réussie.",
+			"error": "Une erreur est survenue lors de la connexion. Veuillez vérifier vos identifiants et réessayer."
 		},
 		"signup": {
-			"title": "Sign Up",
-			"already_account": "Already have an account ?",
+			"title": "Inscription",
+			"already_account": "Déjà un compte ?",
 			"account": {
-				"title": "Account Information",
-				"account_desc": "Create your account by filling in the information below.",
+				"title": "Informations du compte",
+				"account_desc": "Créez votre compte en remplissant les informations ci-dessous.",
 				"email": "Email",
 				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
+				"username": "Nom d'utilisateur",
 				"usernamePlaceholder": "john_doe"
 			},
 			"personal": {
-				"title": "Personal Information",
-				"desc": "Provide some personal details to complete your profile.",
-				"firstName": "First Name",
+				"title": "Informations personnelles",
+				"desc": "Fournissez quelques informations personnelles pour compléter votre profil.",
+				"firstName": "Prénom",
 				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
+				"lastName": "Nom",
 				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
-				"gender": "Gender",
-				"genderPlaceholder": "Select your gender",
+				"birthdate": "Date de naissance",
+				"gender": "Genre",
+				"genderPlaceholder": "Sélectionnez votre genre",
 				"genderOptions": {
-					"label": "Gender Options",
-					"male": "Male",
-					"female": "Female",
-					"other": "Other",
-					"prefer_not_to_say": "Prefer not to say"
+					"label": "Options de genre",
+					"male": "Homme",
+					"female": "Femme",
+					"other": "Autre",
+					"prefer_not_to_say": "Préfère ne pas répondre"
 				},
-				"locale": "Preferred Language",
-				"localePlaceholder": "Select your preferred language for email notifications",
+				"locale": "Langue préférée",
+				"localePlaceholder": "Sélectionnez votre langue préférée pour les notifications par email",
 				"localeOptions": {
-					"label": "Email Preference",
-					"en": "English",
-					"fr": "French",
-					"de": "German"
+					"label": "Préférences de langue",
+					"en": "Anglais",
+					"fr": "Français",
+					"de": "Allemand"
 				}
 			},
 			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
+				"title": "Profil",
+				"desc": "Parlez-nous un peu de vous pour personnaliser votre expérience.",
+				"displayName": "Nom d'affichage",
 				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself"
+				"bio": "Biographie",
+				"bioPlaceholder": "Dites-nous quelques mots sur vous"
 			},
 			"security": {
-				"title": "Security",
-				"desc": "Choose a strong password to protect your account.",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password"
+				"title": "Sécurité",
+				"desc": "Choisissez un mot de passe sécurisé pour protéger votre compte.",
+				"password": "Mot de passe",
+				"passwordPlaceholder": "Choisissez un mot de passe",
+				"confirmPassword": "Confirmer le mot de passe",
+				"confirmPasswordPlaceholder": "Retapez votre mot de passe"
 			},
 			"terms": {
-				"title": "Terms and Conditions",
-				"desc": "Please read and accept our Terms and Conditions to proceed.",
-				"acceptTerms": "I have read and accept the Terms and Conditions"
+				"title": "Conditions générales",
+				"desc": "Veuillez lire et accepter nos Conditions générales pour continuer.",
+				"acceptTerms": "J'ai lu et j'accepte les Conditions générales"
 			},
 			"buttons": {
-				"back": "Go Back",
-				"continue": "Continue",
-				"submit": "Submit",
-				"submitting": "Submitting",
-				"submitted": "Submitted",
-				"validating": "Validating"
+				"back": "Retour",
+				"continue": "Continuer",
+				"submit": "Soumettre",
+				"submitting": "Soumission en cours",
+				"submitted": "Soumis",
+				"validating": "Validation en cours"
 			},
-			"recap_title": "Review Your Information",
+			"recap_title": "Vérifiez vos informations",
 
-			"success": "Account created successfully!",
-			"error": "Failed to create account. Please try again."
+			"success": "Compte créé avec succès !",
+			"error": "Échec de la création du compte. Veuillez réessayer."
 		},
 		"forgot_password": {
-			"title": "Reset Password",
-			"login": "Remember your password ?",
+			"title": "Réinitialisation du mot de passe",
+			"login": "Vous vous souvenez de votre mot de passe ?",
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
-			"submit": "Send Reset Link",
-			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent",
-			"success": "If an account with that email exists, a password reset link has been sent."
+			"submit": "Envoyer le lien de réinitialisation",
+			"submitting": "Envoi du lien de réinitialisation",
+			"submitted": "Lien de réinitialisation envoyé",
+			"success": "Si un compte avec cet email existe, un lien de réinitialisation a été envoyé."
 		},
 		"reset_password": {
-			"title": "Set New Password",
-			"login": "Remember your password ?",
-			"password": "New Password",
-			"passwordPlaceholder": "Enter your new password",
-			"confirmPassword": "Confirm New Password",
-			"confirmPasswordPlaceholder": "Re-enter your new password",
-			"submit": "Reset Password",
-			"submitting": "Resetting Password",
-			"submitted": "Password Reset",
-			"success": "Your password has been reset successfully!",
-			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+			"title": "Définir un nouveau mot de passe",
+			"login": "Vous vous souvenez de votre mot de passe ?",
+			"password": "Nouveau mot de passe",
+			"passwordPlaceholder": "Entrez votre nouveau mot de passe",
+			"confirmPassword": "Confirmer le nouveau mot de passe",
+			"confirmPasswordPlaceholder": "Retapez votre nouveau mot de passe",
+			"submit": "Réinitialiser le mot de passe",
+			"submitting": "Réinitialisation du mot de passe en cours",
+			"submitted": "Mot de passe réinitialisé",
+			"success": "Votre mot de passe a été réinitialisé avec succès !",
+			"error": "Échec de la réinitialisation du mot de passe. Le lien est peut-être invalide ou expiré. Veuillez réessayer."
 		}
 	},
 
 	"forms": {
 		"error": {
-			"required": "This field is required",
+			"required": "Ce champ est obligatoire",
 
-			"email": "Please enter a valid email address",
-			"string": "This field must be a string",
-			"number": "This field must be a number",
-			"date": "This field must be a valid date",
-			"boolean": "This field must be true or false",
-			"enum": "Invalid option selected",
-			"phone": "Please enter a valid phone number in E.164 format",
-			"pattern": "Invalid format",
+			"email": "Veuillez entrer une adresse email valide",
+			"string": "Ce champ doit être une chaîne de caractères",
+			"number": "Ce champ doit être un nombre",
+			"date": "Ce champ doit être une date valide",
+			"boolean": "Ce champ doit être vrai ou faux",
+			"enum": "Option sélectionnée invalide",
+			"phone": "Veuillez entrer un numéro de téléphone valide au format E.164",
+			"pattern": "Format invalide",
 
-			"lowercase": "Only lowercase letters are allowed",
-			"uppercase": "Only uppercase letters are allowed",
+			"lowercase": "Seules les lettres minuscules sont autorisées",
+			"uppercase": "Seules les lettres majuscules sont autorisées",
 
-			"minLength": "Minimum length is {min} characters",
-			"maxLength": "Maximum length is {max} characters",
+			"minLength": "La longueur minimale est de {min} caractères",
+			"maxLength": "La longueur maximale est de {max} caractères",
 
-			"select": "Please select an option",
-			"mustAcceptTerms": "You must accept the terms and conditions",
+			"select": "Veuillez sélectionner une option",
+			"mustAcceptTerms": "Vous devez accepter les conditions générales",
 
-			"password_match": "Passwords must match",
-			"password_uppercase": "Password must contain at least one uppercase letter",
-			"password_lowercase": "Password must contain at least one lowercase letter",
-			"password_number": "Password must contain at least one number",
-			"password_special": "Password must contain at least one special character",
+			"password_match": "Les mots de passe doivent correspondre",
+			"password_uppercase": "Le mot de passe doit contenir au moins une majuscule",
+			"password_lowercase": "Le mot de passe doit contenir au moins une minuscule",
+			"password_number": "Le mot de passe doit contenir au moins un chiffre",
+			"password_special": "Le mot de passe doit contenir au moins un caractère spécial",
 
-			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken",
-			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
+			"email_already_in_use": "Cet email est déjà utilisé",
+			"username_already_in_use": "Ce nom d'utilisateur est déjà utilisé",
+			"user_already_exists": "Un utilisateur avec cet email ou ce nom d'utilisateur s'est inscrit pendant que vous remplissiez le formulaire. Veuillez réessayer avec des identifiants différents.",
 
-			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register",
+			"internal_server_error": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+			"age_restriction": "Vous devez avoir au moins 13 ans pour vous inscrire",
 
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"invalid_credentials": "Identifiants invalides. Veuillez vérifier vos informations et réessayer.",
+			"invalid_token": "Le lien de réinitialisation est invalide ou expiré. Veuillez en demander un nouveau.",
+			"invalid_email": "L'adresse email n'est pas enregistrée. Veuillez vérifier et réessayer."
 		},
 		"addons": {
-			"length": "{current} / {max} characters max"
+			"length": "{current} / {max} caractères max"
 		}
+	},
+	"date": {
+		"today": "Aujourd'hui",
+		"yesterday": "Hier",
+		"just_now": "À l'instant",
+		"minutes_ago": "il y a {count} minute(s)",
+		"hours_ago": "il y a {count} heure(s)",
+		"days_ago": "il y a {count} jour(s)",
+		"weeks_ago": "il y a {count} semaine(s)",
+		"months_ago": "il y a {count} mois",
+		"years_ago": "il y a {count} an(s)"
 	}
 }

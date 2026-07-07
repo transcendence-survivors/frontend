@@ -1,8 +1,8 @@
-import { MultiStepFormStep } from '../mutliStep/types';
+import type { LooseTFunction, RootTFunction } from '@/modules/i18n/messages/types';
+import type { MultiStepFormStep } from '../mutliStep/types';
 import { translateFields } from './fields';
-import { LooseTFunction, RootTFunction } from './types';
 
-export const translateMultiStep = <T extends Record<string, unknown>>(
+const translateMultiStep = <T extends Record<string, unknown>>(
 	steps: MultiStepFormStep<T>[],
 	t: RootTFunction,
 ): MultiStepFormStep<T>[] => {
@@ -15,3 +15,5 @@ export const translateMultiStep = <T extends Record<string, unknown>>(
 		fields: translateFields(step.fields, t),
 	}));
 };
+
+export { translateMultiStep };

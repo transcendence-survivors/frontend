@@ -1,5 +1,8 @@
-import { MessageKeys } from '@/modules/i18n/messages/types';
-import { LooseTFunction, RootTFunction } from './types';
+import {
+	LooseTFunction,
+	MessageKeys,
+	RootTFunction,
+} from '@/modules/i18n/messages/types';
 import { FieldError } from 'react-hook-form';
 
 type I18nErrorPayload = {
@@ -9,15 +12,12 @@ type I18nErrorPayload = {
 
 type ArgTuple = [I18nErrorPayload['key'], I18nErrorPayload['values']];
 
-export const i18nError = (...args: ArgTuple): string => {
+const i18nError = (...args: ArgTuple): string => {
 	const [key, values] = args;
 	return JSON.stringify({ key, values } satisfies I18nErrorPayload);
 };
 
-export const translateError = (
-	t: RootTFunction,
-	error?: FieldError,
-): FieldError | undefined => {
+const translateError = (t: RootTFunction, error?: FieldError): FieldError | undefined => {
 	if (!error?.message) {
 		return undefined;
 	}
@@ -40,3 +40,5 @@ export const translateError = (
 		message: translate(error.message),
 	};
 };
+
+export { i18nError, translateError };

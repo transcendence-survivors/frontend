@@ -19,12 +19,14 @@ const useSignUp = ({ successMessage }: useSignUpProps) => {
 			setUser({
 				displayName: res.data.displayName,
 				role: res.data.role,
+				avatarUrl: res.data.avatarUrl,
 				username: res.data.username,
 				id: res.data.id,
 			});
 			const url = new URLSearchParams(window.location.search);
 			const redirect =
-				url.get(REDIRECTED_URLS.callbackKey) || REDIRECTED_URLS.profile;
+				url.get(REDIRECTED_URLS.callbackKey) ||
+				REDIRECTED_URLS.profile.replace(':username', res.data.username);
 			router.replace(redirect);
 		},
 	});

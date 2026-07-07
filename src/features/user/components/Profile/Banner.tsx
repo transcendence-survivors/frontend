@@ -8,7 +8,7 @@ interface BannerProps extends HTMLAttributes<HTMLDivElement> {
 	img: ImageProps;
 }
 
-const Banner = ({ img: { src = '', alt }, className, ...props }: BannerProps) => {
+const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 	return (
 		<div
 			className={cn(

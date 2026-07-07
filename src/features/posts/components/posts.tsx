@@ -7,6 +7,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import LikeButton from '@/features/likes/components/likes';
 import CreatePost from './create-post';
+import { ImageModal } from '@/components/ui/image-modal';
 
 export default function Posts() {
 	const { ref, inView } = useInView({
@@ -61,10 +62,10 @@ export default function Posts() {
 							</div>
 							<p>{p.content}</p>
 							{p.imageUrl && (
-								<img
+								<ImageModal
 									src={p.imageUrl}
 									alt=''
-									className='mt-2 w-full max-h-96 object-cover rounded-2xl border border-border'
+									thumbnailClassName='mt-2 w-full aspect-video rounded-2xl border border-border'
 								/>
 							)}
 							<LikeButton postId={p.id} />

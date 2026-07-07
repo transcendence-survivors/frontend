@@ -16,6 +16,9 @@ export const api = {
 			body: body ? JSON.stringify(body) : undefined,
 		}),
 
+	postForm: <T>(path: string, body: FormData, init?: FetchOptions) =>
+		request<T>(path, { ...init, method: 'POST', body }),
+
 	put: <T>(path: string, body?: unknown, init?: FetchOptions) =>
 		request<T>(path, {
 			...init,
@@ -54,3 +57,4 @@ export const buildUrlParams = <T extends string>(params: CursorParams<T>) => {
 export { isApiSuccess, isApiError } from './helpers/is';
 export type { ApiResponse, ApiSuccess, ApiError } from './helpers/types';
 export { default as ApiException } from './helpers/ApiException';
+export * from './helpers/types';

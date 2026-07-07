@@ -5,10 +5,17 @@ const nextConfig: NextConfig = {
 	allowedDevOrigins: ['10.13.3.2', 'localhost', '127.0.0.1', '::1', '0.0.0.0'],
 	reactStrictMode: true,
 	images: {
+		unoptimized: true, //breaks images display when decided to add click and display in full screen image (because of minio). Need to find a solution or ask about bcaboccel
 		remotePatterns: [
 			{
 				protocol: 'https',
 				hostname: '**',
+			},
+
+			{
+				protocol: 'http',
+				hostname: 'localhost',
+				port: '9000',
 			},
 		],
 	},

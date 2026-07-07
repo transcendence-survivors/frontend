@@ -1,38 +1,83 @@
 'use client';
 
+import { useInView } from 'react-intersection-observer';
 import { usePosts } from '../hook/usePosts';
+import { useEffect } from 'react';
+import { Spinner } from '@/components/ui/spinner';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import LikeButton from '@/features/likes/components/likes';
+import CreatePost from './create-post';
+import { ImageModal } from '@/components/ui/image-modal';
 
 export default function Posts() {
-	const limit = 10;
-	const page = 1;
-	const { data, isLoading, isError } = usePosts(page, limit);
+	const { ref, inView } = useInView({
+		rootMargin: '0px 0px 100px 0px',
+	});
+	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
+		usePosts();
+	useEffect(() => {
+		if (!hasNextPage) return;
+		if (!inView) return;
+		if (isFetchingNextPage) return;
+
+		fetchNextPage();
+	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	if (isLoading) return 'Loading';
 	if (isError) return 'Error loading posts';
-	if (!data || data?.data.data.length === 0) return 'Pas de data';
-	const posts = data.data.data;
+	if (!data || data.pages.length === 0) return 'Pas de data';
+	const posts = data.pages.flatMap((page) => page.data.data);
 
 	return (
-		<div className='container mx-auto px-4 py-8'>
-			{posts.map((p) => (
-				<div key={p.id} className='p-4 border rounded-md'>
-					<div className='font-semibold'>
-						{' '}
-						{p.author?.displayName ?? p.author.id}
-					</div>
-					<div className='text-foreground'>{p.content}</div>
-					<div className='text-foreground'>
-						<br />
-						{new Date(p.createdAt).toLocaleString('fr-FR', {
-							day: '2-digit',
-							month: '2-digit',
-							year: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-						})}
-					</div>
+		<>
+			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
+				<CreatePost />
+			</div>
+			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
+				{posts.map((p) => (
+					<li
+						key={p.id}
+						className='flex gap-3 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
+						<Avatar>
+							<AvatarImage src={p.author.avatarUrl} />
+							<AvatarFallback>
+								{p.author.displayName.charAt(0)}
+							</AvatarFallback>
+						</Avatar>
+						<div>
+							<div className='flex gap-2'>
+								<span className='font-semibold'>
+									{' '}
+									{p.author?.displayName ?? p.author.id}
+								</span>
+								<span className='text-sm text-muted-foreground'>
+									{new Date(p.createdAt).toLocaleString('fr-FR', {
+										day: '2-digit',
+										month: '2-digit',
+										year: 'numeric',
+										hour: '2-digit',
+										minute: '2-digit',
+									})}
+								</span>
+							</div>
+							<p>{p.content}</p>
+							{p.imageUrl && (
+								<ImageModal
+									src={p.imageUrl}
+									alt=''
+									thumbnailClassName='mt-2 w-full aspect-video rounded-2xl border border-border'
+								/>
+							)}
+							<LikeButton postId={p.id} />
+						</div>
+					</li>
+				))}
+			</ul>
+			{hasNextPage && (
+				<div ref={ref} className='flex justify-center py-4'>
+					{isFetchingNextPage && <Spinner className='size-6' />}
 				</div>
-			))}
-		</div>
+			)}
+		</>
 	);
 }

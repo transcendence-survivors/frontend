@@ -1,11 +1,32 @@
-import { api, isApiError } from '@/libs/api';
+import { api, CursorParams, CursorResponse, isApiError } from '@/libs/api';
 
 import { POST_ENDPOINTS } from '../constants/endpoints';
 import { Post } from '../types/post';
-import { PaginationResponse } from '@/libs/api/helpers/types';
 
-export async function fetchPosts(page: number, limit: number) {
-	const res = await api.get<PaginationResponse<Post[]>>(`${POST_ENDPOINTS.getPost}`);
+type FetchPostResponse = CursorResponse<Post[]>;
+
+export type FetchPostParams = CursorParams<'date-asc' | 'date-desc'>;
+export async function fetchPosts({ cursor, limit, orderBy, search }: FetchPostParams) {
+	await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+	const urlParams = new URLSearchParams();
+	if (cursor) urlParams.append('cursor', cursor);
+	if (limit) urlParams.append('limit', limit.toString());
+	if (orderBy) urlParams.append('orderBy', orderBy);
+	if (search) urlParams.append('search', search);
+
+	const res = await api.get<FetchPostResponse>(
+		`${POST_ENDPOINTS.getPost}?${urlParams.toString()}`,
+	);
+	if (isApiError(res)) throw Error(res.message);
+	return res;
+}
+
+export async function createPost(content?: string, file?: File) {
+	const formData = new FormData();
+	if (content) formData.append('content', content);
+	if (file) formData.append('file', file);
+
+	const res = await api.postForm<Post>(POST_ENDPOINTS.getPost, formData);
 	if (isApiError(res)) throw Error(res.message);
 	return res;
 }

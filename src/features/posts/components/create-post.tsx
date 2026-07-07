@@ -3,6 +3,7 @@ import { useCreatePost } from '../hook/useCreatePost';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { ImageIcon } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 
 export default function CreatePost() {
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ export default function CreatePost() {
 				className='resize-none'
 				placeholder='Commencer à écrire un post'
 			/>
-			<input
+			<Input
 				ref={fileInputRef}
 				type='file'
 				accept='image/*'

@@ -55,7 +55,7 @@ export default function Feed() {
 					</div>
 				</div>
 			</section>
-			<section className='max-w-3xl mx-auto px-4 py-8'>
+			{/* <section className='max-w-3xl mx-auto px-4 py-8'>
 				<Card className='w-full cursor-pointer'>
 					<CardHeader>
 						<h2 className='text-lg font-semibold'>{post.title}</h2>
@@ -75,7 +75,7 @@ export default function Feed() {
 						</ul>
 					</CardContent>
 				</Card>
-			</section>
+			</section> */}
 
 			<section>
 				<Posts />

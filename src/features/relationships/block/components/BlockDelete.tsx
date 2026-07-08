@@ -1,26 +1,26 @@
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { X } from 'lucide-react';
-import { UseFriendsParams } from '../hooks/useFriends';
-import { useFriendDelete } from '../hooks/useFriendActions';
+import { UseBlocksParams } from '../hooks/useBlocks';
+import { useBlockDelete } from '../hooks/useBlockActions';
+import { Unban } from '@/components/icons/unban';
 
-interface FriendDeleteProps {
+interface FriendRequestDeleteProps {
 	successMessage: string;
 	failureMessage: string;
 	ariaLabel: string;
-	friendId: string;
-	params: UseFriendsParams;
+	blockedId: string;
+	params: UseBlocksParams;
 }
 
-const FriendDelete = ({
-	friendId,
+const BlockDelete = ({
+	blockedId,
 	successMessage,
 	failureMessage,
 	params,
 	ariaLabel,
-}: FriendDeleteProps) => {
-	const { mutate, isPending, isError } = useFriendDelete({
-		friendId,
+}: FriendRequestDeleteProps) => {
+	const { mutate, isPending, isError } = useBlockDelete({
+		blockedId,
 		successMessage,
 		failureMessage,
 		params,
@@ -37,13 +37,17 @@ const FriendDelete = ({
 			aria-invalid={isError}
 			aria-label={ariaLabel}
 			onClick={onClick}>
-			{isPending ? <Spinner className='size-3.5' /> : <X className='size-3.5' />}
+			{isPending ? (
+				<Spinner className='size-3.5' />
+			) : (
+				<Unban className='size-3.5' />
+			)}
 		</Button>
 	);
 };
 
-const FriendDeleteSkeleton = () => {
+const BlockDeleteSkeleton = () => {
 	return <div className={`size-9 bg-muted rounded-md animate-pulse`}></div>;
 };
 
-export { FriendDelete, FriendDeleteSkeleton };
+export { BlockDelete, BlockDeleteSkeleton };

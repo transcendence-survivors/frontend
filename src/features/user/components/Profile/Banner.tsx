@@ -12,12 +12,12 @@ const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 	return (
 		<div
 			className={cn(
-				'relative w-full aspect-3/1 max-h-96 border-b bg-gold-radial-foreground overflow-hidden text-secondary-foreground',
+				'relative w-full aspect-3/1 max-h-96 border-b bg-gold-radial overflow-hidden text-secondary-foreground',
 				className,
 			)}
 			{...props}>
 			<ImageModal
-				src={src}
+				src={'https://mon-42.intra/images/'}
 				alt={alt}
 				thumbnailClassName='w-full h-full absolute inset-0 rounded-none'
 				thumbnailFit='object-cover'

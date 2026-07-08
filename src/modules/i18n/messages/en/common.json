@@ -41,21 +41,36 @@
 			"success": "Profile updated successfully."
 		}
 	},
-	"friend_page": {
+
+	"users": {
+		"no_befriended_users": "No users found that you are not friends with.",
+		"no_befriended_users_search": "No users found that you are not friends with for your search.",
+		"no_more_befriended_users": "No more users to load that you are not friends with.",
+
+		"no_users": "No users found.",
+		"no_users_search": "No users found for your search.",
+		"no_more_users": "No more users to load.",
+		"fetch_error": "Failed to load users. Please try again later."
+	},
+	"relationships": {
 		"title": "Friends & Moderation",
 		"subtitle": "Bearers in your circle",
-		"input_placeholder": "Search by username...",
-
-		"add_friend": {
-			"button": "Add Friend",
-			"success": "Friend request sent successfully.",
-			"error": "Failed to send friend request. Please try again."
-		},
+		"input_placeholder": "Search by @username or display name...",
 
 		"nav": {
 			"friends": "Friends",
 			"requests": "Requests",
 			"blocked": "Blocked Users"
+		},
+
+		"add": {
+			"title": "Add Bearer to your circle",
+			"button": "Add Friend",
+			"placeholder": "Search by @username or display name...",
+			"aria_label": "Add Friend",
+			"failed": "Failed to send friend request. Please try again.",
+			"success_accepted_displayname": "You are now friends with {displayName}.",
+			"success_pending_displayname": "Your friend request to {displayName} is sent."
 		},
 
 		"friends": {
@@ -69,6 +84,22 @@
 			"no_friends_search": "No friends found for your search.",
 			"no_more_friends": "No more friends to load.",
 			"fetch_error": "Failed to load friends. Please try again later.",
+			"all_button": "All",
+			"online_button": "Online",
+			"offline_button": "Offline"
+		},
+
+		"blocked": {
+			"title": "Blocked Users",
+			"count": "{count} blocked user(s).",
+			"count_search": "{count} blocked user(s) found for your search.",
+			"delete_button": "Unblock",
+			"delete_success_displayname": "You have unblocked {displayName} successfully.",
+			"delete_failure_displayname": "Failed to unblock {displayName}. Please try again.",
+			"no_blocked": "You have no blocked users yet. Start blocking some!",
+			"no_blocked_search": "No blocked users found for your search.",
+			"no_more_blocked": "No more blocked users to load.",
+			"fetch_error": "Failed to load blocked users. Please try again later.",
 			"all_button": "All",
 			"online_button": "Online",
 			"offline_button": "Offline"

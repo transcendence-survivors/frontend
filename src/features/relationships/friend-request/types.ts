@@ -1,9 +1,11 @@
 import { CursorParams, CursorResponse } from '@/libs/api/helpers/types';
-import { BaseFriendship } from '../types';
+import { BaseFriendship, Friendship } from '../types';
 
 interface FriendRequest extends BaseFriendship {
 	status: 'PENDING';
 }
+
+type SendFriendRequest = Friendship;
 
 type FriendRequestOrderBy =
 	| 'created-asc'
@@ -28,4 +30,5 @@ export type {
 	FriendRequestDirection,
 	UseRequestsParams,
 	FriendRequest,
+	SendFriendRequest,
 };

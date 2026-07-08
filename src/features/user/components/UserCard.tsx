@@ -7,14 +7,14 @@ import { cn } from '@/libs/utils';
 import { PresenceStatus } from '@/modules/websocket/types/presence';
 
 interface FriendCardProps extends React.HtmlHTMLAttributes<HTMLElement> {
-	friend: BaseUser;
+	user: BaseUser;
 	badge?: PresenceStatus | false;
 	bottom?: React.ReactNode;
 	containerClassName?: string;
 }
 
 const UserCard = ({
-	friend,
+	user,
 	badge = false,
 	children,
 	className,
@@ -33,15 +33,15 @@ const UserCard = ({
 					<UserIdentityLink
 						avatar={{
 							img: {
-								src: friend.avatarUrl ?? '',
-								alt: friend.displayName,
+								src: user.avatarUrl ?? '',
+								alt: user.displayName,
 							},
 							size: 'lg',
 							badgeState: badge,
 						}}
 						user={{
-							displayName: friend.displayName,
-							username: friend.username,
+							displayName: user.displayName,
+							username: user.username,
 						}}
 					/>
 				</div>

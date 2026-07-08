@@ -4,25 +4,23 @@ import { Spinner } from '@/components/ui/spinner';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
-import { FriendsLoading } from './FriendsLoading';
-import { FriendCard } from './FriendCard';
-import { PresencePublicActions } from '@/modules/websocket/types/presence';
+import { BlocksLoading } from './BlocksLoading';
+import { BlockCard } from './BlockCard';
 import { Error } from '../../components/error';
-import { useFriends, type UseFriendsParams } from '../hooks/useFriends';
+import { useBlocks, UseBlocksParams } from '../hooks/useBlocks';
 
-interface FriendsDataProps extends React.HTMLAttributes<HTMLDivElement> {
-	getFriendStatus: PresencePublicActions['getFriendStatus'];
-	params: UseFriendsParams;
+interface BlocksDataProps extends React.HTMLAttributes<HTMLDivElement> {
+	params: UseBlocksParams;
 }
 
-const FriendsData = ({ getFriendStatus, params }: FriendsDataProps) => {
-	const t = useTranslations('relationships.friends');
+const BlocksData = ({ params }: BlocksDataProps) => {
+	const t = useTranslations('relationships.blocked');
 	const { ref, inView } = useInView({
 		threshold: 0,
 		rootMargin: '0px 0px 100px 0px',
 	});
 	const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
-		useFriends(params);
+		useBlocks(params);
 
 	useEffect(() => {
 		if (!inView) return;
@@ -33,28 +31,24 @@ const FriendsData = ({ getFriendStatus, params }: FriendsDataProps) => {
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	if (isLoading) {
-		return <FriendsLoading numberOfSkeletons={10} />;
+		return <BlocksLoading numberOfSkeletons={10} />;
 	}
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;
 	}
 
-	const friends = data.pages.flatMap((page) => page.data);
+	const blocked = data.pages.flatMap((page) => page.data);
 	return (
 		<>
-			{friends.length === 0 ? (
+			{blocked.length === 0 ? (
 				<Error className='text-muted-foreground'>
-					{!params.search ? t('no_friends') : t('no_friends_search')}
+					{!params.search ? t('no_blocked') : t('no_blocked_search')}
 				</Error>
 			) : (
 				<ul className='flex flex-col gap-2'>
-					{friends.map(({ id, friend }) => (
+					{blocked.map(({ id, blocked }) => (
 						<li key={id}>
-							<FriendCard
-								user={friend}
-								badge={getFriendStatus(friend.id) || false}
-								params={params}
-							/>
+							<BlockCard user={blocked} params={params} />
 						</li>
 					))}
 				</ul>
@@ -64,13 +58,13 @@ const FriendsData = ({ getFriendStatus, params }: FriendsDataProps) => {
 					{isFetchingNextPage && <Spinner className='size-6' />}
 				</div>
 			)}
-			{!hasNextPage && friends.length > 0 && (
+			{!hasNextPage && blocked.length > 0 && (
 				<div className='flex justify-center py-4 text-muted-foreground text-sm'>
-					{t('no_more_friends')}
+					{t('no_more_blocked')}
 				</div>
 			)}
 		</>
 	);
 };
 
-export default FriendsData;
+export default BlocksData;

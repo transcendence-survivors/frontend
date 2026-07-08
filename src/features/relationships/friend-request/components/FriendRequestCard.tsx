@@ -1,25 +1,24 @@
 import Kicker from '@/components/ui/kicker';
-import { FriendRequestDirection } from '../../friend/api/get-requests';
 import {
 	FriendRequestActions,
 	FriendRequestActionsSkeleton,
 } from './actions/FriendRequestActions';
-import { UserCard, UserCardSkeleton } from '../../components/UserCard';
+import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
 import DisplayDate from '@/components/ui/date';
 import { useTranslations } from 'next-intl';
-import { UseRequestsParams } from '../types';
+import { FriendRequestDirection, UseRequestsParams } from '../types';
 
-type FriendRequestCardProps = Pick<React.ComponentProps<typeof UserCard>, 'friend'> & {
+type FriendRequestCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user'> & {
 	since: Date;
 	params: UseRequestsParams;
 };
 
-const FriendRequestCard = ({ friend, since, params }: FriendRequestCardProps) => {
-	const t = useTranslations('friend_page.requests');
+const FriendRequestCard = ({ user, since, params }: FriendRequestCardProps) => {
+	const t = useTranslations('relationships.requests');
 
 	return (
 		<UserCard
-			friend={friend}
+			user={user}
 			containerClassName='pb-2'
 			bottom={
 				<div className='mt-3 pt-3 px-1 border-t border-border'>
@@ -31,8 +30,8 @@ const FriendRequestCard = ({ friend, since, params }: FriendRequestCardProps) =>
 			}>
 			<div className='flex items-center gap-4'>
 				<FriendRequestActions
-					friendId={friend.id}
-					friendDisplayName={friend.displayName}
+					friendId={user.id}
+					friendDisplayName={user.displayName}
 					params={params}
 				/>
 			</div>

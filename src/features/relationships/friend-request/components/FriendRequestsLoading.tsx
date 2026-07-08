@@ -1,4 +1,4 @@
-import { FriendRequestDirection } from '../../friend/api/get-requests';
+import { FriendRequestDirection } from '../types';
 import { FriendRequestCardSkeleton } from './FriendRequestCard';
 
 interface FriendRequestsLoadingProps extends React.HTMLAttributes<HTMLUListElement> {

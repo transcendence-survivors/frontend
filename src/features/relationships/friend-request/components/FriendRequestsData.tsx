@@ -3,7 +3,7 @@
 import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { RelationShipError } from '../../components/RelationShipError';
+import { Error } from '../../components/error';
 import { FriendRequestCard } from './FriendRequestCard';
 import { useTranslations } from 'next-intl';
 import { FriendRequestsLoading } from './FriendRequestsLoading';
@@ -15,7 +15,7 @@ interface FriendRequestsProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const FriendRequestsData = ({ params }: FriendRequestsProps) => {
-	const t = useTranslations('friend_page.requests');
+	const t = useTranslations('relationships.requests');
 	const { ref, inView } = useInView({
 		threshold: 0,
 		rootMargin: '0px 0px 100px 0px',
@@ -39,7 +39,7 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 		);
 	}
 	if (isError || !data) {
-		return <RelationShipError>{t('fetch_error')}</RelationShipError>;
+		return <Error>{t('fetch_error')}</Error>;
 	}
 
 	const friends = data.pages.flatMap((page) => page.data);
@@ -47,7 +47,7 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 	return (
 		<>
 			{friends.length === 0 ? (
-				<RelationShipError className='text-muted-foreground'>
+				<Error className='text-muted-foreground'>
 					{!search
 						? direction === 'incoming'
 							? t('no_incoming_requests')
@@ -57,13 +57,13 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 									? 'no_incoming_requests_search'
 									: 'no_outgoing_requests_search',
 							)}
-				</RelationShipError>
+				</Error>
 			) : (
 				<ul className='flex flex-col gap-2'>
 					{friends.map(({ id, friend, since }) => (
 						<li key={id}>
 							<FriendRequestCard
-								friend={friend}
+								user={friend}
 								since={since}
 								params={params}
 							/>

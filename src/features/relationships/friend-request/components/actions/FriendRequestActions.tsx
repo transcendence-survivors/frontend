@@ -1,8 +1,7 @@
 import { useTranslations } from 'next-intl';
-import { FriendRequestDirection } from '../../../friend/api/get-requests';
 import { FriendRequestAccept, FriendRequestAcceptSkeleton } from './FriendRequestAccept';
 import { FriendRequestDelete, FriendRequestDeleteSkeleton } from './FriendRequestDelete';
-import { UseRequestsParams } from '../../types';
+import { FriendRequestDirection, UseRequestsParams } from '../../types';
 
 export interface FriendRequestActionsProps {
 	friendId: string;
@@ -15,7 +14,7 @@ const FriendRequestActions = ({
 	friendDisplayName,
 	params,
 }: FriendRequestActionsProps) => {
-	const t = useTranslations('friend_page.requests');
+	const t = useTranslations('relationships.requests');
 
 	return (
 		<div className='flex gap-2'>

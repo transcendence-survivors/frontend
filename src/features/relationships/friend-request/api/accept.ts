@@ -2,7 +2,7 @@ import { api, isApiError } from '@libs/api';
 import { FRIEND_REQUEST_ENDPOINTS } from '../constants/endpoints';
 
 const acceptFriendRequest = async (friendId: string) => {
-	const res = await api.patch(
+	const res = await api.patch<void>(
 		`${FRIEND_REQUEST_ENDPOINTS.acceptFriendRequest}/${friendId}`,
 	);
 	if (isApiError(res)) {

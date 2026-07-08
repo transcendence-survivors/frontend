@@ -5,20 +5,19 @@ import FriendsHeader from './FriendsHeader';
 import FriendsData from './FriendsData';
 import { useOnlineFriends } from '@/modules/websocket/stores/presence';
 
-type FriendRequestsProps = React.HTMLAttributes<HTMLElement>;
+type FriendsProps = React.HTMLAttributes<HTMLElement>;
 
-const Friends = ({ ...props }: FriendRequestsProps) => {
+const Friends = ({ ...props }: FriendsProps) => {
 	const [search] = useQueryState('search', { defaultValue: '' });
 	const [status, setStatus] = useQueryState(
 		'status',
 		parseAsStringLiteral(['all', 'online', 'offline']).withDefault('all'),
 	);
 
-	const normalizedSearch = search.startsWith('@') ? search.slice(1) : search;
 	const { onlineFriends, getFriendStatus } = useOnlineFriends();
 	const friendIds = [...onlineFriends.keys()];
 
-	const params = { search: normalizedSearch, status, friendIds };
+	const params = { search, status, friendIds };
 
 	return (
 		<>

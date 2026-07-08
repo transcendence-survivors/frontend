@@ -2,8 +2,7 @@ import Kicker from '@/components/ui/kicker';
 import { cn } from '@/libs/utils';
 import { useTranslations } from 'next-intl';
 import { ButtonsState } from '@/components/ui/buttons-state';
-import { FriendRequestDirection } from '../../friend/api/get-requests';
-import { UseRequestsParams } from '../types';
+import { FriendRequestDirection, UseRequestsParams } from '../types';
 import { useRequestCount } from '../hooks/useRequestCount';
 
 interface FriendRequestHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,7 +17,7 @@ const FriendRequestHeader = ({
 	...props
 }: FriendRequestHeaderProps) => {
 	const { data, isLoading, isError } = useRequestCount(params);
-	const t = useTranslations('friend_page.requests');
+	const t = useTranslations('relationships.requests');
 
 	const { direction, search } = params;
 	const count = data?.count ?? 0;

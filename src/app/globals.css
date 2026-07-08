@@ -62,7 +62,7 @@
 	--background-image-gold-radial: radial-gradient(
 		circle at 35% 28%,
 		var(--color-primary) 0%,
-		var(--color-chart-3) 55%,
+		var(--color-chart-3) 35%,
 		var(--color-chart-5) 100%
 	);
 	--color-gold-radial-foreground: var(--primary-foreground);

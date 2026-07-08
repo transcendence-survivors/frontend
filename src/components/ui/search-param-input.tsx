@@ -1,23 +1,25 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useQueryState } from 'nuqs';
 import { Input } from './input';
+import { parseAsString, useQueryState } from 'nuqs';
+import { usePathname } from '@/modules/i18n/utils/navigation';
 
-type Props = {
-	paramKey: string;
+interface Props {
+	defaultValue?: string;
+	onValueChange: (value: string) => void;
 	placeholder?: string;
 	debounceMs?: number;
 	className?: string;
-};
+}
 
-export function SearchParamInput({
-	paramKey,
-	placeholder = 'Search...',
+const SearchInput = ({
+	defaultValue = '',
+	onValueChange,
+	placeholder = '',
 	debounceMs = 500,
 	className,
-}: Props) {
-	const [value, setValue] = useQueryState(paramKey);
+}: Props) => {
 	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	useEffect(() => {
@@ -26,21 +28,58 @@ export function SearchParamInput({
 		};
 	}, []);
 
-	const debouncedSet = (val: string) => {
+	const handleChange = (val: string) => {
 		if (timerRef.current) clearTimeout(timerRef.current);
 
 		timerRef.current = setTimeout(() => {
-			setValue(val || null);
+			onValueChange(val);
 		}, debounceMs);
 	};
 
 	return (
 		<Input
-			defaultValue={value || ''}
+			defaultValue={defaultValue}
 			placeholder={placeholder}
 			className={className}
 			type='text'
-			onChange={(e) => debouncedSet(e.target.value)}
+			onChange={(e) => handleChange(e.target.value)}
+		/>
+	);
+};
+
+interface SearchParamsInputProps {
+	paramKey: string;
+	placeholder?: string;
+	debounceMs?: number;
+	className?: string;
+	onValueChange?: (key: string, value: string) => void;
+}
+
+export function SearchParamsInput({
+	paramKey,
+	placeholder,
+	debounceMs,
+	className,
+	onValueChange,
+}: SearchParamsInputProps) {
+	const pathname = usePathname();
+	const [value, setValue] = useQueryState(paramKey, parseAsString.withDefault(''));
+
+	const handleChange = (val: string) => {
+		setValue(val || null);
+		onValueChange?.(paramKey, val);
+	};
+
+	return (
+		<SearchInput
+			key={pathname}
+			defaultValue={value}
+			placeholder={placeholder}
+			debounceMs={debounceMs}
+			className={className}
+			onValueChange={handleChange}
 		/>
 	);
 }
+
+export { SearchInput };

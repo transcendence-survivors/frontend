@@ -1,18 +1,29 @@
-import { api, ApiError } from '@/libs/api';
-import { type UserFacade } from '../type';
+import { api, buildUrlParams, isApiError } from '@/libs/api';
 import { USERS_ENDPOINTS } from '../constants/endpoints';
+import { GetUsers, GetUsersFeedParams, GetUsersParams } from '../type';
 
-const getUserByUsername = async (username: string) => {
-	try {
-		const url = `${USERS_ENDPOINTS.getUserByUsername.replace(':username', username)}`;
-		return await api.get<UserFacade>(url);
-	} catch {
-		return {
-			code: 500,
-			message: 'User not found',
-			status: 'error',
-		} satisfies ApiError;
+const getUsers = async (params: GetUsersParams) => {
+	const urlParams = buildUrlParams(params);
+	const res = await api.get<GetUsers>(
+		`${USERS_ENDPOINTS.getUsers}?${urlParams.toString()}`,
+	);
+	if (isApiError(res)) {
+		throw new Error(res.message);
 	}
+	return res.data;
 };
 
-export default getUserByUsername;
+const getFeedUsers = async (params: GetUsersFeedParams) => {
+	const urlParams = buildUrlParams(params);
+	urlParams.append('feed', params.feed);
+
+	const res = await api.get<GetUsers>(
+		`${USERS_ENDPOINTS.feedGetUsers}?${urlParams.toString()}`,
+	);
+	if (isApiError(res)) {
+		throw new Error(res.message);
+	}
+	return res.data;
+};
+
+export { getUsers, getFeedUsers };

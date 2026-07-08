@@ -1,28 +1,36 @@
 import { useTranslations } from 'next-intl';
-import { UserCard, UserCardSkeleton } from '../../components/UserCard';
+import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
 import { UseFriendsParams } from '../hooks/useFriends';
 import { FriendDelete, FriendDeleteSkeleton } from './FriendsDelete';
+import { BlockAdd } from '../../block/components/BlockAdd';
 
-type FriendCardProps = Pick<React.ComponentProps<typeof UserCard>, 'friend' | 'badge'> & {
+type FriendCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user' | 'badge'> & {
 	params: UseFriendsParams;
 };
 
-const FriendCard = ({ friend, badge, params }: FriendCardProps) => {
-	const t = useTranslations('friend_page.friends');
+const FriendCard = ({ user, badge, params }: FriendCardProps) => {
+	const t = useTranslations('relationships.friends');
 
 	return (
-		<UserCard friend={friend} badge={badge}>
+		<UserCard user={user} badge={badge}>
 			<div className='flex items-center gap-4'>
 				<FriendDelete
 					params={params}
-					friendId={friend.id}
+					friendId={user.id}
 					ariaLabel={t('delete_button')}
 					successMessage={t('delete_success_displayname', {
-						displayName: friend.displayName,
+						displayName: user.displayName,
 					})}
 					failureMessage={t('delete_failure_displayname', {
-						displayName: friend.displayName,
+						displayName: user.displayName,
 					})}
+				/>
+				<BlockAdd
+					ariaLabel='dawd'
+					blockedId={user.id}
+					failureMessage='adawd'
+					params={{ search: params.search }}
+					successMessage='adwa'
 				/>
 			</div>
 		</UserCard>

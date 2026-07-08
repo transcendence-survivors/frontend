@@ -6,19 +6,14 @@ import { FriendStatus } from '../types';
 import { useFriendsCount } from '../hooks/useFriendCount';
 import { UseFriendsParams } from '../hooks/useFriends';
 
-interface FriendRequestHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FriendHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseFriendsParams;
 	setStatus: (status: FriendStatus) => void;
 }
 
-const FriendRequestHeader = ({
-	params,
-	setStatus,
-	className,
-	...props
-}: FriendRequestHeaderProps) => {
+const FriendHeader = ({ params, setStatus, className, ...props }: FriendHeaderProps) => {
 	const { data, isLoading, isError } = useFriendsCount(params);
-	const t = useTranslations('friend_page.friends');
+	const t = useTranslations('relationships.friends');
 	const count = data?.count ?? 0;
 
 	return (
@@ -47,4 +42,4 @@ const FriendRequestHeader = ({
 	);
 };
 
-export default FriendRequestHeader;
+export default FriendHeader;

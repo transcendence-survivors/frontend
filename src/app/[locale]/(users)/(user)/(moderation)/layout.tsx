@@ -1,12 +1,12 @@
 import GoTop from '@/components/ui/goTop';
 import Kicker from '@/components/ui/kicker';
-import { SearchParamInput } from '@/components/ui/search-param-input';
+import { SearchParamsInput } from '@/components/ui/search-param-input';
 import FriendAddDialog from '@/features/relationships/components/FriendAddDialog';
 import RelationShipNav from '@/features/relationships/components/RelationsShipNav';
 import { getTranslations } from 'next-intl/server';
 
 export default async function FriendsLayout({ children }: { children: React.ReactNode }) {
-	const t = await getTranslations('friend_page');
+	const t = await getTranslations('relationships');
 
 	return (
 		<main>
@@ -21,7 +21,7 @@ export default async function FriendsLayout({ children }: { children: React.Reac
 				<div className='px-10 mt-6'>
 					<div className='max-w-4xl mx-auto pb-2'>
 						<RelationShipNav />
-						<SearchParamInput
+						<SearchParamsInput
 							paramKey='search'
 							placeholder={t('input_placeholder')}
 							className='w-full h-10'

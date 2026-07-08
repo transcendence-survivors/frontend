@@ -6,4 +6,6 @@ interface BaseFriendship {
 	friend: BaseUser;
 }
 
-export type { BaseFriendship };
+type Friendship = BaseFriendship & ({ status: 'ACCEPTED' } | { status: 'PENDING' });
+
+export type { BaseFriendship, Friendship };

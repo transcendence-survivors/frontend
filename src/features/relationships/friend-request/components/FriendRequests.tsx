@@ -12,8 +12,7 @@ const FriendRequests = ({ ...props }: FriendRequestsProps) => {
 		'direction',
 		parseAsStringLiteral(['incoming', 'outgoing']).withDefault('incoming'),
 	);
-	const normalizedSearch = search.startsWith('@') ? search.slice(1) : search;
-	const params = { direction, search: normalizedSearch };
+	const params = { direction, search };
 
 	return (
 		<>

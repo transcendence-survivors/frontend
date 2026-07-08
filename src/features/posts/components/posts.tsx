@@ -68,7 +68,11 @@ export default function Posts() {
 									thumbnailClassName='mt-2 w-full aspect-video rounded-2xl border border-border'
 								/>
 							)}
-							<LikeButton postId={p.id} />
+							<LikeButton
+								postId={p.id}
+								likeCount={p.likeCount}
+								isLiked={p.isLiked}
+							/>
 						</div>
 					</li>
 				))}

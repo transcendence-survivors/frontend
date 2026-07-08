@@ -6,6 +6,8 @@ interface Post {
 	content?: string;
 	imageUrl?: string;
 	author: BaseUser;
+	likeCount: number;
+	isLiked: boolean;
 }
 
 export type { Post };

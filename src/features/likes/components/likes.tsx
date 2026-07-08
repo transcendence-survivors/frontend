@@ -11,13 +11,16 @@ export default function LikeButton({ postId }: likeButtonProps) {
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
+	const isMutating = addLike.isPending || deleteLike.isPending;
+
 	function handleClick() {
+		if (isMutating) return;
 		if (data?.data.isLiked === true) deleteLike.mutate(postId);
 		else addLike.mutate(postId);
 	}
 
 	return (
-		<Button variant='ghost' onClick={handleClick}>
+		<Button variant='ghost' disabled={isMutating} onClick={handleClick}>
 			<Heart
 				className={
 					data?.data.isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'

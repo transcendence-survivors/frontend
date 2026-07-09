@@ -4,10 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import { usePosts } from '../hook/usePosts';
 import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import LikeButton from '@/features/likes/components/LikeButton';
-import CreatePost from './create-post';
-import { ImageModal } from '@/components/ui/image-modal';
 import PostCard from './post-card';
 
 export default function Posts() {

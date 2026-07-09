@@ -2,6 +2,7 @@ import { Post } from '../types/post';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import LikeButton from '@/features/likes/components/LikeButton';
 import { ImageModal } from '@/components/ui/image-modal';
+import DisplayDate from '@/components/ui/date';
 
 interface PostCardProps {
 	post: Post;
@@ -22,15 +23,10 @@ export default function PostCard({ post }: PostCardProps) {
 						{' '}
 						{post.author?.displayName ?? post.author.id}
 					</span>
-					<span className='text-sm text-muted-foreground'>
-						{new Date(post.createdAt).toLocaleString('fr-FR', {
-							day: '2-digit',
-							month: '2-digit',
-							year: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-						})}
-					</span>
+					<DisplayDate
+						date={new Date(post.createdAt)}
+						className='text-sm text-muted-foreground'
+					/>
 				</div>
 				<p>{post.content}</p>
 				{post.imageUrl && (

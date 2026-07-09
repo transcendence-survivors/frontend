@@ -24,28 +24,28 @@ function toggleLikeInCache(postId: string, isLiked: boolean, delta: number) {
 	};
 }
 
-export function useAddLike() {
-	const queryClient = useQueryClient();
-	return useMutation({
-		mutationFn: addLike,
-		onSuccess: (_data, postId) => {
-			queryClient.setQueriesData<InfiniteData<PostsPage>>(
-				{ queryKey: ['posts'] },
-				toggleLikeInCache(postId, true, 1),
-			);
-		},
-	});
-}
+type LikeRequestAction = 'like' | 'unlike';
 
-export function useDeleteLike() {
+const requestActionFns: Record<LikeRequestAction, (postId: string) => Promise<unknown>> =
+	{
+		like: addLike,
+		unlike: deleteLike,
+	};
+
+const useLikeAction = (action: LikeRequestAction) => {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: deleteLike,
+		mutationFn: requestActionFns[action],
 		onSuccess: (_data, postId) => {
 			queryClient.setQueriesData<InfiniteData<PostsPage>>(
 				{ queryKey: ['posts'] },
-				toggleLikeInCache(postId, false, -1),
+				action === 'like'
+					? toggleLikeInCache(postId, true, 1)
+					: toggleLikeInCache(postId, false, -1),
 			);
 		},
 	});
-}
+};
+
+export const useAddLike = () => useLikeAction('like');
+export const useDeleteLike = () => useLikeAction('unlike');

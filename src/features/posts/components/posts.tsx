@@ -41,7 +41,7 @@ export default function Posts() {
 								{p.author.displayName.charAt(0)}
 							</AvatarFallback>
 						</Avatar>
-						<div>
+						<div className='flex-1 min-w-0'>
 							<div className='flex gap-2'>
 								<span className='font-semibold'>
 									{' '}
@@ -62,7 +62,7 @@ export default function Posts() {
 								<ImageModal
 									src={p.imageUrl}
 									alt=''
-									thumbnailClassName='mt-2 w-full aspect-video rounded-2xl border border-border'
+									thumbnailClassName='mt-2 w-full h-auto aspect-square rounded-2xl border border-border'
 								/>
 							)}
 							<LikeButton

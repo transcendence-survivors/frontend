@@ -27,11 +27,15 @@ export default function Posts() {
 
 	return (
 		<>
-			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
+			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
-					<PostCard key={p.id} post={p} />
+					<article
+						key={p.id}
+						className='flex flex-col items-start gap-2 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
+						<PostCard post={p} />
+					</article>
 				))}
-			</ul>
+			</div>
 			{hasNextPage && (
 				<div ref={ref} className='flex justify-center py-4'>
 					{isFetchingNextPage && <Spinner className='size-6' />}

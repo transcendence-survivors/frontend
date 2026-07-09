@@ -10,8 +10,8 @@ interface PostCardProps {
 
 export default function PostCard({ post }: PostCardProps) {
 	return (
-		<li className='flex flex-col items-start gap-2 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
-			<div className='flex items-center gap-3'>
+		<>
+			<div className='flex items-start gap-3'>
 				<UserIdentityLink
 					className='pl-1'
 					avatar={{
@@ -25,10 +25,6 @@ export default function PostCard({ post }: PostCardProps) {
 						username: post.author.username,
 					}}
 				/>
-				<DisplayDate
-					date={new Date(post.createdAt)}
-					className='text-sm text-muted-foreground'
-				/>
 			</div>
 			<p className='pl-1'>{post.content}</p>
 			{post.imageUrl && (
@@ -40,13 +36,19 @@ export default function PostCard({ post }: PostCardProps) {
 					/>
 				</div>
 			)}
-			<div className='flex items-center px-0 gap-2 pl-1'>
-				<LikeButton
-					postId={post.id}
-					likeCount={post.likeCount}
-					isLiked={post.isLiked}
+			<div className='flex items-center justify-between px-0 gap-2 pl-1 w-full'>
+				<div className='flex items-center gap-2'>
+					<LikeButton
+						postId={post.id}
+						likeCount={post.likeCount}
+						isLiked={post.isLiked}
+					/>
+				</div>
+				<DisplayDate
+					date={new Date(post.createdAt)}
+					className='text-sm text-muted-foreground'
 				/>
 			</div>
-		</li>
+		</>
 	);
 }

@@ -32,9 +32,18 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 	const t = useTranslations('nav');
 	const path = usePathname();
 	const activeKey = useMemo(() => {
+		if (path.startsWith(getPath('blocked'))) {
+			return 'friends';
+		}
+
+		const userName = user?.username ? `/@${user.username}` : '';
+		if (path.startsWith(userName)) {
+			return 'userName';
+		}
+
 		const matchedLink = links.find((link) => path.startsWith(getPath(link.key)));
 		return matchedLink ? matchedLink.key : 'search';
-	}, [path]);
+	}, [path, user?.username]);
 
 	const { Tag, tagProps } = useMemo(() => {
 		return {
@@ -52,7 +61,7 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 							asChild
 							variant='sidebar'
 							size='sidebar'
-							className='w-full gap-3 justify-start'
+							className='w-full gap-3 justify-start font-semibold'
 							data-active={activeKey === link.key}>
 							{'getHrefParams' in link ? (
 								<I18nLink

@@ -42,7 +42,10 @@ const useFriendDelete = ({
 			toast.error(failureMessage);
 		},
 		onSuccess: () => toast.success(successMessage),
-		onSettled: () => queryClient.invalidateQueries({ queryKey }),
+		onSettled: () => {
+			queryClient.invalidateQueries({ queryKey });
+			queryClient.invalidateQueries({ queryKey: ['users'] });
+		},
 	});
 };
 

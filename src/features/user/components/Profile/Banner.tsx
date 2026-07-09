@@ -17,14 +17,12 @@ const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 			)}
 			{...props}>
 			<ImageModal
-				src={'https://mon-42.intra/images/'}
+				src={src}
 				alt={alt}
 				thumbnailClassName='w-full h-full absolute inset-0 rounded-none'
 				thumbnailFit='object-cover'
 				modalClassName='aspect-3/1 max-h-[85vh] h-auto rounded-none'
-				loading='eager'>
-				<Search className='size-10 stroke-white/70' />
-			</ImageModal>
+				loading='eager'></ImageModal>
 		</div>
 	);
 };

@@ -4,7 +4,7 @@ import { USERS_ENDPOINTS } from '../constants/endpoints';
 
 const profileByUsername = async (username: string) => {
 	try {
-		const url = `${USERS_ENDPOINTS.getUserByUsername.replace(':username', username)}`;
+		const url = `${USERS_ENDPOINTS.getProfileByUsername.replace(':username', username)}`;
 		return await api.get<UserFacade>(url);
 	} catch {
 		return {

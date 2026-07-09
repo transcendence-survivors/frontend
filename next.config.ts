@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
 	allowedDevOrigins: ['10.13.3.2', 'localhost', '127.0.0.1', '::1', '0.0.0.0'],
 	reactStrictMode: true,
 	images: {
-		// unoptimized: true,
 		remotePatterns: [
 			{
 				protocol: 'https',

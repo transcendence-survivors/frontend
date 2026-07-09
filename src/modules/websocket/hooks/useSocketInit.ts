@@ -1,17 +1,17 @@
-// hooks/useSocketInit.ts
 import { useEffect } from 'react';
-import { usePresenceActions } from '../stores/presence';
+import { useIsAuthenticated } from '@/features/auth/stores/session';
+import { useSocketActions } from './useSocketActions';
 
-export const useSocketInit = (isAuthenticated: boolean) => {
-	const { initPresence, disconnectPresence } = usePresenceActions();
+export const useSocketInit = () => {
+	const isAuthenticated = useIsAuthenticated();
+	const { connectSocket, disconnectSocket } = useSocketActions();
 
 	useEffect(() => {
-		if (isAuthenticated) {
-			initPresence();
-		}
+		if (isAuthenticated) connectSocket();
+		else disconnectSocket();
 
 		return () => {
-			disconnectPresence();
+			disconnectSocket();
 		};
-	}, [isAuthenticated, initPresence, disconnectPresence]);
+	}, [isAuthenticated, connectSocket, disconnectSocket]);
 };

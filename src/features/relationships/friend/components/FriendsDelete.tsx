@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { X } from 'lucide-react';
+import { UserRoundMinus } from 'lucide-react';
 import { UseFriendsParams } from '../hooks/useFriends';
 import { useFriendDelete } from '../hooks/useFriendActions';
 
@@ -37,7 +37,11 @@ const FriendDelete = ({
 			aria-invalid={isError}
 			aria-label={ariaLabel}
 			onClick={onClick}>
-			{isPending ? <Spinner className='size-3.5' /> : <X className='size-3.5' />}
+			{isPending ? (
+				<Spinner className='size-3.5' />
+			) : (
+				<UserRoundMinus className='size-3.5' />
+			)}
 		</Button>
 	);
 };

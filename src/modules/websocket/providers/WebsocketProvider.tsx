@@ -7,7 +7,7 @@ interface WebsocketProviderProps {
 }
 
 const WebsocketProvider = ({ children }: WebsocketProviderProps) => {
-	useSocketInit(true);
+	useSocketInit();
 
 	return <>{children}</>;
 };

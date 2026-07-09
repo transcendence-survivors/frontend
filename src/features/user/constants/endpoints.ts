@@ -5,7 +5,7 @@ type StartPath = typeof USER_START_PATH | typeof USER_FEED_START_PATH;
 type UsersEndpoint = `${StartPath}/${string}` | `${StartPath}`;
 
 const USERS_ENDPOINTS = {
-	getUserByUsername: `${USER_START_PATH}/:username`,
+	getProfileByUsername: `${USER_START_PATH}/profile/:username`,
 
 	getUsers: `${USER_START_PATH}`,
 	getUsersCount: `${USER_START_PATH}/count`,

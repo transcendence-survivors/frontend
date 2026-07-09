@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { UseBlocksParams } from '../hooks/useBlocks';
 import { useBlockAdd } from '../hooks/useBlockActions';
-import { Unban } from '@/components/icons/unban';
 import { Ban } from 'lucide-react';
 
 interface FriendRequestDeleteProps {

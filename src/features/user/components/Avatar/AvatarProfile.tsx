@@ -2,7 +2,7 @@ import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from '@ui/avatar';
 import { ImageProps } from '@libs/types';
 import { capitalize, cn, truncate } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { PresenceStatus } from '@/modules/websocket/types/presence';
+import { PresenceStatus } from '@/features/presence/types/status';
 
 export type AvatarProfileSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -27,10 +27,10 @@ interface AvatarProfileBadgeProps extends React.ComponentProps<typeof AvatarBadg
 	badgeState: PresenceStatus;
 }
 const badgeStateClasses = {
-	online: 'bg-primary',
-	do_not_disturb: 'bg-red-500',
-	offline: 'bg-muted',
-	invisible: 'bg-muted',
+	[PresenceStatus.ONLINE]: 'bg-primary',
+	[PresenceStatus.DO_NOT_DISTURB]: 'bg-red-500',
+	[PresenceStatus.OFFLINE]: 'bg-muted',
+	[PresenceStatus.INVISIBLE]: 'bg-muted',
 } satisfies Record<PresenceStatus, string>;
 
 const AvatarProfileBadge = ({
@@ -91,4 +91,4 @@ const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 	);
 };
 
-export { AvatarProfile, AvatarProfileFallback, AvatarProfileLink };
+export { AvatarProfile, AvatarProfileFallback, AvatarProfileLink, AvatarProfileBadge };

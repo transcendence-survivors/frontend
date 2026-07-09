@@ -4,7 +4,7 @@ import DashboardNav from './DashboardNav';
 import Kicker from '@/components/ui/kicker';
 import AvatarDropdown from '@/features/user/components/Avatar/AvatarDropDown';
 
-interface DashboardSidebarProps extends React.HTMLAttributes<HTMLElement> {}
+type DashboardSidebarProps = React.HTMLAttributes<HTMLElement>;
 
 const DashboardSidebar = ({ className, ...props }: DashboardSidebarProps) => {
 	return (
@@ -28,19 +28,7 @@ const DashboardSidebar = ({ className, ...props }: DashboardSidebarProps) => {
 
 				<div className='px-3 py-3 space-y-2'>
 					<div className='border-t border-sidebar-border py-5 max-w-full'>
-						<AvatarDropdown
-							className='py-2'
-							avatar={{
-								img: {
-									src: 'https://example.com/avatar.jpg',
-									alt: 'test',
-								},
-							}}
-							user={{
-								username: 'john_doeasdawdawdaasdawdawdawdw',
-								displayName: 'John Doe',
-							}}
-						/>
+						<AvatarDropdown />
 					</div>
 				</div>
 			</div>

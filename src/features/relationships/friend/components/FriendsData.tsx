@@ -6,12 +6,12 @@ import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { FriendsLoading } from './FriendsLoading';
 import { FriendCard } from './FriendCard';
-import { PresencePublicActions } from '@/modules/websocket/types/presence';
 import { Error } from '../../components/error';
 import { useFriends, type UseFriendsParams } from '../hooks/useFriends';
+import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
 
 interface FriendsDataProps extends React.HTMLAttributes<HTMLDivElement> {
-	getFriendStatus: PresencePublicActions['getFriendStatus'];
+	getFriendStatus: PresenceSlice['presenceActions']['getFriendStatus'];
 	params: UseFriendsParams;
 }
 

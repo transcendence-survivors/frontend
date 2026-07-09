@@ -1,6 +1,5 @@
 'use client';
 
-import useSignIn from '../hooks/useSignIn';
 import Form from '@/modules/forms/components/Form';
 import {
 	signInFields,
@@ -11,6 +10,7 @@ import {
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
 import { ApiException } from '@/libs/api/';
+import { useSignIn } from '../hooks/useAuthActions';
 
 const SignInForm = () => {
 	const { t, form, translatedFields } = useTranslatedForm<SignInFormValues>({

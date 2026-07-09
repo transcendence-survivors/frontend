@@ -1,4 +1,5 @@
 import DashboardLayout from '@/components/layouts/Dashboard/DashboardLayout';
+import PresenceProvider from '@/features/presence/components/PresenceProvider';
 import WebsocketProvider from '@/modules/websocket/providers/WebsocketProvider';
 
 interface RootLayoutProps {
@@ -9,7 +10,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<>
 			<WebsocketProvider>
-				<DashboardLayout>{children}</DashboardLayout>
+				<PresenceProvider>
+					<DashboardLayout>{children}</DashboardLayout>
+				</PresenceProvider>
 			</WebsocketProvider>
 		</>
 	);

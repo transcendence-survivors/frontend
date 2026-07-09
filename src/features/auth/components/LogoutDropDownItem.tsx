@@ -9,7 +9,6 @@ const LogoutDropDownItem = () => {
 	const t = useTranslations('auth.signout');
 	const { isPending, mutate, isError } = useSignOut({
 		successMessage: t('success'),
-		errorMessage: t('error'),
 	});
 
 	const handleLogout = () => {

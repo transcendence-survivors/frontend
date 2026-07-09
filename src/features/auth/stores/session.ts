@@ -10,6 +10,7 @@ export type UserSession = Pick<
 
 interface SessionState {
 	user: UserSession | null;
+	isAuthenticated: boolean;
 }
 
 interface SessionActions {
@@ -23,13 +24,17 @@ export const useSessionStore = create<SessionStore>()(
 	persist(
 		(set) => ({
 			user: null,
-			setUser: (user) => set({ user }),
-			logout: () => set({ user: null }),
+			isAuthenticated: false,
+			setUser: (user) => set({ user, isAuthenticated: !!user }),
+			logout: () => set({ user: null, isAuthenticated: false }),
 		}),
 		{
 			name: 'session-storage',
 			storage: createJSONStorage(() => localStorage),
-			partialize: (state) => ({ user: state.user }),
+			partialize: (state) => ({
+				user: state.user,
+				isAuthenticated: state.isAuthenticated,
+			}),
 		},
 	),
 );
@@ -43,3 +48,4 @@ export const useSessionActions = () =>
 	);
 
 export const useUser = () => useSessionStore((s) => s.user);
+export const useIsAuthenticated = () => useSessionStore((s) => s.isAuthenticated);

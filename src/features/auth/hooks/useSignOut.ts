@@ -5,13 +5,13 @@ import { toast } from 'sonner';
 import { logoutRequest } from '../api/logout.api';
 import { useRouter } from '@i18n/utils/navigation';
 import { useSessionActions } from '../stores/session';
+import { REDIRECTED_URLS } from '@/modules/i18n/constants/routes';
 
 interface useSignOutProps {
 	successMessage: string;
-	errorMessage: string;
 }
 
-const useSignOut = ({ successMessage, errorMessage }: useSignOutProps) => {
+const useSignOut = ({ successMessage }: useSignOutProps) => {
 	const router = useRouter();
 	const { logout } = useSessionActions();
 
@@ -20,10 +20,11 @@ const useSignOut = ({ successMessage, errorMessage }: useSignOutProps) => {
 		onSuccess: () => {
 			logout();
 			toast.success(successMessage);
-			router.push('/login');
+			router.push(REDIRECTED_URLS.login);
 		},
 		onError: () => {
-			toast.error(errorMessage);
+			logout();
+			router.push(REDIRECTED_URLS.login);
 		},
 	});
 };

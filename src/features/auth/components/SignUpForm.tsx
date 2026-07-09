@@ -5,7 +5,7 @@ import { signUpSchema, signUpSteps, signUpValues } from '../schemas/signup.schem
 import { MultiStepForm } from '@forms/components/MutliStepForm';
 import { SignUpFormValues } from '../schemas/signup.schema';
 import { useEffect } from 'react';
-import useSignUp from '../hooks/useSignUp';
+import { useSignUp } from '../hooks/useAuthActions';
 import useTranslatedMultiStepForm from '@/modules/forms/hooks/useTranslatedMultiStepForm';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { ApiException } from '@/libs/api/';

@@ -143,6 +143,23 @@
 		}
 	},
 
+	"presence": {
+		"online": "Online",
+		"online_description": "You are visible to your friends.",
+		"do_not_disturb": "Do Not Disturb",
+		"do_not_disturb_description": "You will not receive notifications for new messages or friend requests.",
+		"invisible": "Invisible",
+		"invisible_description": "You will appear offline to your friends, but you can still use the app normally.",
+
+		"count_online": "{count} bearers in the light",
+		"count_online_friends": "{count} friends in the light"
+	},
+
+	"feed": {
+		"title": "Feed",
+		"subtitle": "Dispatches from the lantern-bearers"
+	},
+
 	"auth": {
 		"signout": {
 			"label": "Logout",

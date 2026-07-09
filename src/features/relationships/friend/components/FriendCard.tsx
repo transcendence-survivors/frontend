@@ -25,13 +25,6 @@ const FriendCard = ({ user, badge, params }: FriendCardProps) => {
 						displayName: user.displayName,
 					})}
 				/>
-				<BlockAdd
-					ariaLabel='dawd'
-					blockedId={user.id}
-					failureMessage='adawd'
-					params={{ search: params.search }}
-					successMessage='adwa'
-				/>
 			</div>
 		</UserCard>
 	);

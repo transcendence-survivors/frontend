@@ -48,14 +48,18 @@ export default function CreatePost() {
 				className='hidden'
 			/>
 			<div className='relative'>
-				<Button
-					className='absolute top-2 right-2'
-					type='button'
-					variant='ghost'
-					onClick={() => handleRemoveFile()}>
-					<X />
-				</Button>
-				{previewUrl && <img src={previewUrl} />}
+				{previewUrl && (
+					<>
+						<Button
+							className='absolute top-2 right-2'
+							type='button'
+							variant='ghost'
+							onClick={() => handleRemoveFile()}>
+							<X />
+						</Button>
+						<img src={previewUrl} />
+					</>
+				)}
 			</div>
 			<div className='flex items-center justify-between'>
 				<Button

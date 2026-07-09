@@ -8,6 +8,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import LikeButton from '@/features/likes/components/LikeButton';
 import CreatePost from './create-post';
 import { ImageModal } from '@/components/ui/image-modal';
+import PostCard from './post-card';
 
 export default function Posts() {
 	const { ref, inView } = useInView({
@@ -32,46 +33,7 @@ export default function Posts() {
 		<>
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
-					<li
-						key={p.id}
-						className='flex gap-3 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
-						<Avatar>
-							<AvatarImage src={p.author.avatarUrl} />
-							<AvatarFallback>
-								{p.author.displayName.charAt(0)}
-							</AvatarFallback>
-						</Avatar>
-						<div className='flex-1 min-w-0'>
-							<div className='flex gap-2'>
-								<span className='font-semibold'>
-									{' '}
-									{p.author?.displayName ?? p.author.id}
-								</span>
-								<span className='text-sm text-muted-foreground'>
-									{new Date(p.createdAt).toLocaleString('fr-FR', {
-										day: '2-digit',
-										month: '2-digit',
-										year: 'numeric',
-										hour: '2-digit',
-										minute: '2-digit',
-									})}
-								</span>
-							</div>
-							<p>{p.content}</p>
-							{p.imageUrl && (
-								<ImageModal
-									src={p.imageUrl}
-									alt=''
-									thumbnailClassName='mt-2 w-full h-auto aspect-square rounded-2xl border border-border'
-								/>
-							)}
-							<LikeButton
-								postId={p.id}
-								likeCount={p.likeCount}
-								isLiked={p.isLiked}
-							/>
-						</div>
-					</li>
+					<PostCard key={p.id} post={p} />
 				))}
 			</ul>
 			{hasNextPage && (

@@ -22,7 +22,11 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 
 	return (
 		<>
-			<Button variant='ghost' disabled={isMutating} onClick={handleClick}>
+			<Button
+				className='px-0'
+				variant='ghost'
+				disabled={isMutating}
+				onClick={handleClick}>
 				<Heart
 					className={isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'}
 				/>

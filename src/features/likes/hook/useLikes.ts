@@ -35,6 +35,7 @@ const requestActionFns: Record<LikeRequestAction, (postId: string) => Promise<un
 const useLikeAction = (action: LikeRequestAction) => {
 	const queryClient = useQueryClient();
 	return useMutation({
+		mutationKey: ['likes', action],
 		mutationFn: requestActionFns[action],
 		onSuccess: (_data, postId) => {
 			queryClient.setQueriesData<InfiniteData<PostsPage>>(

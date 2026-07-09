@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { ImageModal } from '@/components/ui/image-modal';
+import CreatePost from '@/features/posts/components/create-post';
 import Posts from '@/features/posts/components/posts';
 import {
 	usePresenceActions,
@@ -76,7 +77,9 @@ export default function Feed() {
 					</CardContent>
 				</Card>
 			</section> */}
-
+			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
+				<CreatePost />
+			</div>
 			<section>
 				<Posts />
 			</section>

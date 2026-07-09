@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCreatePost } from '../hook/useCreatePost';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { ImageIcon } from 'lucide-react';
+import { ImageIcon, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 export default function CreatePost() {
@@ -10,12 +10,26 @@ export default function CreatePost() {
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
 	const createPost = useCreatePost();
+	const previewUrl = useMemo(
+		() => (file ? URL.createObjectURL(file) : undefined),
+		[file],
+	);
+	useEffect(() => {
+		if (!previewUrl) return;
+
+		return () => URL.revokeObjectURL(previewUrl);
+	}, [previewUrl]);
 
 	function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
 		e.preventDefault();
 		createPost.mutate({ content, file });
 		setContent('');
 		setFile(undefined);
+	}
+
+	function handleRemoveFile() {
+		setFile(undefined);
+		if (fileInputRef.current) fileInputRef.current.value = '';
 	}
 
 	return (
@@ -33,6 +47,16 @@ export default function CreatePost() {
 				onChange={(e) => setFile(e.target.files?.[0])}
 				className='hidden'
 			/>
+			<div className='relative'>
+				<Button
+					className='absolute top-2 right-2'
+					type='button'
+					variant='ghost'
+					onClick={() => handleRemoveFile()}>
+					<X />
+				</Button>
+				{previewUrl && <img src={previewUrl} />}
+			</div>
 			<div className='flex items-center justify-between'>
 				<Button
 					type='button'

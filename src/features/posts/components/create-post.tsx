@@ -57,7 +57,10 @@ export default function CreatePost() {
 							onClick={() => handleRemoveFile()}>
 							<X />
 						</Button>
-						<img src={previewUrl} />
+						<img
+							src={previewUrl}
+							className='mt-2 w-full aspect-square rounded 2-xl border border-border object-cover'
+						/>
 					</>
 				)}
 			</div>

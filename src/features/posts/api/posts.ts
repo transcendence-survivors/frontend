@@ -30,3 +30,9 @@ export async function createPost(content?: string, file?: File) {
 	if (isApiError(res)) throw Error(res.message);
 	return res;
 }
+
+export async function deletePost(postId: string) {
+	const res = await api.delete(`${POST_ENDPOINTS.getPost}/${postId}`);
+	if (isApiError(res)) throw Error(res.message);
+	return res;
+}

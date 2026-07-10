@@ -3,15 +3,29 @@ import LikeButton from '@/features/likes/components/LikeButton';
 import { ImageModal } from '@/components/ui/image-modal';
 import DisplayDate from '@/components/ui/date';
 import { UserIdentityLink } from '@/features/user/components/Identity/UserIdentity';
+import { useUser } from '@/features/auth/stores/session';
+import { useDeletePost } from '../hook/useDeletePost';
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { MoreHorizontal, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface PostCardProps {
 	post: Post;
 }
 
 export default function PostCard({ post }: PostCardProps) {
+	const user = useUser();
+	const isOwner = user?.id === post.author.id;
+	const deletePost = useDeletePost();
+
 	return (
 		<>
-			<div className='flex items-start gap-3'>
+			<div className='flex items-start justify-between w-full gap-3'>
 				<UserIdentityLink
 					className='pl-1'
 					avatar={{
@@ -25,6 +39,23 @@ export default function PostCard({ post }: PostCardProps) {
 						username: post.author.username,
 					}}
 				/>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant='ghost'>
+							<MoreHorizontal />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
+						{isOwner && (
+							<DropdownMenuItem
+								variant='destructive'
+								onClick={() => deletePost.mutate(post.id)}>
+								<Trash2 />
+								Delete
+							</DropdownMenuItem>
+						)}
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
 			<p className='pl-1'>{post.content}</p>
 			{post.imageUrl && (

@@ -1,5 +1,6 @@
 import { getPostById } from '@/features/posts/api/posts';
 import PostCard from '@/features/posts/components/post-card';
+import PostDetailHeader from '@/features/posts/components/post-page-header';
 import { isApiError } from '@/libs/api';
 import { notFound } from 'next/navigation';
 
@@ -13,8 +14,11 @@ export default async function PostPage({ params }: PostPageProps) {
 	if (isApiError(res)) notFound();
 
 	return (
-		<article className='flex flex-col items-start gap-2 p-4 border-b'>
-			<PostCard post={res.data} />
-		</article>
+		<>
+			<PostDetailHeader />
+			<article className='max-w-xl mx-auto flex flex-col items-start gap-2 p-4 border-b'>
+				<PostCard post={res.data} />
+			</article>
+		</>
 	);
 }

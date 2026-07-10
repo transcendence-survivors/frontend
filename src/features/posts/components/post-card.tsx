@@ -1,3 +1,5 @@
+'use client';
+
 import { Post } from '../types/post';
 import { ImageModal } from '@/components/ui/image-modal';
 
@@ -15,7 +17,7 @@ export default function PostCard({ post }: PostCardProps) {
 
 			<p className='pl-1'>{post.content}</p>
 			{post.imageUrl && (
-				<div className='pl-1 w-full'>
+				<div className='pl-1 w-full' onClick={(e) => e.stopPropagation()}>
 					<ImageModal
 						src={post.imageUrl}
 						alt=''

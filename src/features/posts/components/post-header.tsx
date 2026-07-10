@@ -23,7 +23,9 @@ export default function PostHeader({ post }: PostHeaderProps) {
 	const deletePost = useDeletePost();
 
 	return (
-		<div className='flex items-start justify-between w-full gap-3'>
+		<div
+			className='flex items-start justify-between w-full gap-3'
+			onClick={(e) => e.stopPropagation()}>
 			<UserIdentityLink
 				className='pl-1'
 				avatar={{

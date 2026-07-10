@@ -1,3 +1,5 @@
+'use client';
+
 import { UserIdentityLink } from '@/features/user/components/Identity/UserIdentity';
 import { Post } from '../types/post';
 import {

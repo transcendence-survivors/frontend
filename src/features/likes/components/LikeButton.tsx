@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { useAddLike, useDeleteLike } from '../hook/useLikes';
 import { Heart } from 'lucide-react';

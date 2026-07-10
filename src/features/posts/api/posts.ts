@@ -36,3 +36,7 @@ export async function deletePost(postId: string) {
 	if (isApiError(res)) throw Error(res.message);
 	return res;
 }
+
+export async function getPostById(postId: string) {
+	return api.get<Post>(`${POST_ENDPOINTS.getPost}/${postId}`);
+}

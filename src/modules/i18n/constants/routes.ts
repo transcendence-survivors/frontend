@@ -180,6 +180,15 @@ const APP_ROUTES = defineRouteMap({
 		che: '/beitraege/:id',
 		it: '/articoli/:id',
 	},
+
+	userNamePost: {
+		en: '/:username/post/:id',
+		de: '/:username/beitraege/:id',
+		fr: '/:username/articles/:id',
+		es: '/:username/articulos/:id',
+		che: '/:username/beitraege/:id',
+		it: '/:username/articoli/:id',
+	},
 } as const);
 
 type RouteMap = typeof APP_ROUTES;

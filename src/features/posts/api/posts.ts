@@ -6,7 +6,10 @@ import { Post } from '../types/post';
 type FetchPostResponse = CursorResponse<Post[]>;
 
 export type FetchPostParams = CursorParams<'date-asc' | 'date-desc'>;
-export async function fetchPosts({ cursor, limit, orderBy, search }: FetchPostParams) {
+export async function fetchPosts(
+	parentPostId: string | undefined,
+	{ cursor, limit, orderBy, search }: FetchPostParams,
+) {
 	await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 	const urlParams = new URLSearchParams();
 	if (cursor) urlParams.append('cursor', cursor);
@@ -14,17 +17,20 @@ export async function fetchPosts({ cursor, limit, orderBy, search }: FetchPostPa
 	if (orderBy) urlParams.append('orderBy', orderBy);
 	if (search) urlParams.append('search', search);
 
-	const res = await api.get<FetchPostResponse>(
-		`${POST_ENDPOINTS.getPost}?${urlParams.toString()}`,
-	);
+	const path = parentPostId
+		? `${POST_ENDPOINTS.getPost}/${parentPostId}/replies`
+		: POST_ENDPOINTS.getPost;
+
+	const res = await api.get<FetchPostResponse>(`${path}?${urlParams.toString()}`);
 	if (isApiError(res)) throw Error(res.message);
 	return res;
 }
 
-export async function createPost(content?: string, file?: File) {
+export async function createPost(content?: string, file?: File, parentPostId?: string) {
 	const formData = new FormData();
 	if (content) formData.append('content', content);
 	if (file) formData.append('file', file);
+	if (parentPostId) formData.append('parentPostId', parentPostId);
 
 	const res = await api.postForm<Post>(POST_ENDPOINTS.getPost, formData);
 	if (isApiError(res)) throw Error(res.message);

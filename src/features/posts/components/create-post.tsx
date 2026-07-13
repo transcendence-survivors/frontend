@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCreatePost } from '../hook/useCreatePost';
 import { Textarea } from '@/components/ui/textarea';
@@ -5,11 +7,15 @@ import { Button } from '@/components/ui/button';
 import { ImageIcon, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
-export default function CreatePost() {
+interface createPostProps {
+	parentPostId?: string;
+}
+
+export default function CreatePost({ parentPostId }: createPostProps) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
-	const createPost = useCreatePost();
+	const createPost = useCreatePost(parentPostId);
 	const previewUrl = useMemo(
 		() => (file ? URL.createObjectURL(file) : undefined),
 		[file],
@@ -59,7 +65,7 @@ export default function CreatePost() {
 						</Button>
 						<img
 							src={previewUrl}
-							className='mt-2 w-full aspect-square rounded 2-xl border border-border object-cover'
+							className='mt-2 w-full aspect-square rounded-2-xl border border-border object-cover'
 						/>
 					</>
 				)}

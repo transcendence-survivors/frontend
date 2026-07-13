@@ -23,11 +23,10 @@ export default function PostHeader({ post }: PostHeaderProps) {
 	const deletePost = useDeletePost();
 
 	return (
-		<div
-			className='flex items-start justify-between w-full gap-3'
-			onClick={(e) => e.stopPropagation()}>
+		<div className='flex items-start justify-between w-full gap-3'>
 			<UserIdentityLink
 				className='pl-1'
+				onClick={(e) => e.stopPropagation()}
 				avatar={{
 					img: {
 						src: post.author.avatarUrl ?? '',
@@ -39,23 +38,25 @@ export default function PostHeader({ post }: PostHeaderProps) {
 					username: post.author.username,
 				}}
 			/>
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant='ghost'>
-						<MoreHorizontal />
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent>
-					{isOwner && (
-						<DropdownMenuItem
-							variant='destructive'
-							onClick={() => deletePost.mutate(post.id)}>
-							<Trash2 />
-							Delete
-						</DropdownMenuItem>
-					)}
-				</DropdownMenuContent>
-			</DropdownMenu>
+			<div onClick={(e) => e.stopPropagation()}>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant='ghost'>
+							<MoreHorizontal />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
+						{isOwner && (
+							<DropdownMenuItem
+								variant='destructive'
+								onClick={() => deletePost.mutate(post.id)}>
+								<Trash2 />
+								Delete
+							</DropdownMenuItem>
+						)}
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
 		</div>
 	);
 }

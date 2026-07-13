@@ -8,6 +8,7 @@ interface Post {
 	author: BaseUser;
 	likeCount: number;
 	isLiked: boolean;
+	parentPostId?: string;
 }
 
 export type { Post };

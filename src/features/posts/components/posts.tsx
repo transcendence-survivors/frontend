@@ -5,18 +5,17 @@ import { usePosts } from '../hook/usePosts';
 import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
 import PostCard from './post-card';
-import { useRouter } from '@/modules/i18n/utils/navigation';
-import { resolveHref } from '@/modules/i18n/components/I18nLink';
-import { getPath } from '@/modules/i18n/utils/routing';
 
-export default function Posts() {
-	const router = useRouter();
+interface PostsProps {
+	parentPostId?: string;
+}
 
+export default function Posts({ parentPostId }: PostsProps) {
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
 	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
-		usePosts();
+		usePosts(parentPostId);
 	useEffect(() => {
 		if (!hasNextPage) return;
 		if (!inView) return;
@@ -32,23 +31,13 @@ export default function Posts() {
 
 	return (
 		<>
-			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
+			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
-					<article
-						onClick={() =>
-							router.push(
-								resolveHref(getPath('userNamePost'), {
-									username: `@${p.author.username}`,
-									id: p.id,
-								}),
-							)
-						}
-						key={p.id}
-						className='flex flex-col items-start gap-2 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
+					<li key={p.id}>
 						<PostCard post={p} />
-					</article>
+					</li>
 				))}
-			</div>
+			</ul>
 			{hasNextPage && (
 				<div ref={ref} className='flex justify-center py-4'>
 					{isFetchingNextPage && <Spinner className='size-6' />}

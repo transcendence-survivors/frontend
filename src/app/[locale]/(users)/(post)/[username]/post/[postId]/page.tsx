@@ -19,7 +19,7 @@ export default async function PostPage({ params }: PostPageProps) {
 		<>
 			<PostDetailHeader />
 			<article className='max-w-xl mx-auto flex flex-col items-start gap-2 p-4 border-b'>
-				<PostCard post={res.data} />
+				<PostCard post={res.data} isDetailView={true} />
 			</article>
 			<div className='max-w-xl mx-auto'>
 				<CreatePost parentPostId={postId} />

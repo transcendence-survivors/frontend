@@ -11,9 +11,10 @@ import { getPath } from '@/modules/i18n/utils/routing';
 
 interface PostCardProps {
 	post: Post;
+	isDetailView?: boolean;
 }
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post, isDetailView }: PostCardProps) {
 	const router = useRouter();
 
 	return (
@@ -27,7 +28,7 @@ export default function PostCard({ post }: PostCardProps) {
 					}),
 				)
 			}>
-			<PostHeader post={post} />
+			<PostHeader post={post} isDetailView={isDetailView} />
 
 			<p className='pl-1'>{post.content}</p>
 			{post.imageUrl && (

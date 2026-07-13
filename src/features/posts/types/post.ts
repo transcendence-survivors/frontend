@@ -9,6 +9,11 @@ interface Post {
 	likeCount: number;
 	isLiked: boolean;
 	parentPostId?: string;
+	parent?: {
+		author: {
+			username: string;
+		};
+	};
 	commentCount: number;
 }
 

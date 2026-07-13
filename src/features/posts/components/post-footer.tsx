@@ -1,6 +1,7 @@
 import LikeButton from '@/features/likes/components/LikeButton';
 import { Post } from '../types/post';
 import DisplayDate from '@/components/ui/date';
+import { MessageCircle } from 'lucide-react';
 
 interface PostFooterProps {
 	post: Post;
@@ -15,6 +16,10 @@ export default function PostFooter({ post }: PostFooterProps) {
 					likeCount={post.likeCount}
 					isLiked={post.isLiked}
 				/>
+				<div className='flex items-center gap-1'>
+					<MessageCircle className='size-4' />
+					{post.commentCount > 0 && <span>{post.commentCount}</span>}
+				</div>
 			</div>
 			<DisplayDate
 				date={new Date(post.createdAt)}

@@ -33,7 +33,7 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 					className={isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'}
 				/>
 			</Button>
-			<span>{likeCount}</span>
+			{likeCount > 0 && <span>{likeCount}</span>}
 		</>
 	);
 }

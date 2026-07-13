@@ -9,6 +9,7 @@ interface Post {
 	likeCount: number;
 	isLiked: boolean;
 	parentPostId?: string;
+	commentCount: number;
 }
 
 export type { Post };

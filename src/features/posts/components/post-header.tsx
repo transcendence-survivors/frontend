@@ -59,13 +59,15 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 									deletePost.mutate(post.id, {
 										onSuccess: () => {
 											if (!isDetailView) return;
-
 											if (post.parentPostId && post.parent) {
 												router.push(
-													resolveHref(getPath('userNamePost'), {
-														username: `@${post.parent.author.username}`,
-														id: post.parentPostId,
-													}),
+													resolveHref(
+														getPath('userNamePostsId'),
+														{
+															username: `@${post.parent.author.username}`,
+															id: post.parentPostId,
+														},
+													),
 												);
 											} else {
 												router.push(getPath('feed'));

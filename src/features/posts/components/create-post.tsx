@@ -39,7 +39,7 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className='flex flex-col gap-3 p-4 border-b'>
+		<form onSubmit={handleSubmit} className='flex flex-col gap-3 py-4 border-b'>
 			<Textarea
 				value={content}
 				onChange={(e) => setContent(e.target.value)}

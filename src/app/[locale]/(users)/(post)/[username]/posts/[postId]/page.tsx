@@ -16,15 +16,11 @@ export default async function PostPage({ params }: PostPageProps) {
 	if (isApiError(res)) notFound();
 
 	return (
-		<>
+		<main className='max-w-xl mx-auto px-4 py-8'>
 			<PostDetailHeader />
-			<article className='max-w-xl mx-auto flex flex-col items-start gap-2 p-4 border-b'>
-				<PostCard post={res.data} isDetailView={true} />
-			</article>
-			<div className='max-w-xl mx-auto'>
-				<CreatePost parentPostId={postId} />
-			</div>
+			<PostCard post={res.data} isDetailView={true} />
+			<CreatePost parentPostId={postId} />
 			<Posts parentPostId={postId} />
-		</>
+		</main>
 	);
 }

@@ -10,7 +10,6 @@ export async function fetchPosts(
 	parentPostId: string | undefined,
 	{ cursor, limit, orderBy, search }: FetchPostParams,
 ) {
-	await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 	const urlParams = new URLSearchParams();
 	if (cursor) urlParams.append('cursor', cursor);
 	if (limit) urlParams.append('limit', limit.toString());

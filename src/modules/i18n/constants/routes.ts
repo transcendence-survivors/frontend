@@ -71,7 +71,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/rangliste',
 		it: '/classifica',
 	},
-
 	friends: {
 		en: '/friends',
 		de: '/freunde',
@@ -96,7 +95,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/blockiert',
 		it: '/bloccati',
 	},
-
 	search: {
 		en: '/search',
 		de: '/suche',
@@ -121,7 +119,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/chat/:id',
 		it: '/chat/:id',
 	},
-
 	userName: {
 		en: '/:username',
 		de: '/:username',
@@ -137,6 +134,14 @@ const APP_ROUTES = defineRouteMap({
 		es: '/:username/articulos',
 		che: '/:username/beitraege',
 		it: '/:username/articoli',
+	},
+	userNamePostsId: {
+		en: '/:username/posts/:id',
+		de: '/:username/beitraege/:id',
+		fr: '/:username/articles/:id',
+		es: '/:username/articulos/:id',
+		che: '/:username/beitraege/:id',
+		it: '/:username/articoli/:id',
 	},
 	userNameComments: {
 		en: '/:username/comments',
@@ -179,15 +184,6 @@ const APP_ROUTES = defineRouteMap({
 		es: '/articulos/:id',
 		che: '/beitraege/:id',
 		it: '/articoli/:id',
-	},
-
-	userNamePost: {
-		en: '/:username/post/:id',
-		de: '/:username/beitraege/:id',
-		fr: '/:username/articles/:id',
-		es: '/:username/articulos/:id',
-		che: '/:username/beitraege/:id',
-		it: '/:username/articoli/:id',
 	},
 } as const);
 

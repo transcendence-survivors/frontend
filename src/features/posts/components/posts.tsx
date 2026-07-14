@@ -11,11 +11,10 @@ interface PostsProps {
 }
 
 export default function Posts({ parentPostId }: PostsProps) {
-	const { ref, inView } = useInView({
-		rootMargin: '0px 0px 100px 0px',
-	});
+	const { ref, inView } = useInView({ rootMargin: '0px 0px 100px 0px' });
 	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
 		usePosts(parentPostId);
+
 	useEffect(() => {
 		if (!hasNextPage) return;
 		if (!inView) return;
@@ -27,11 +26,12 @@ export default function Posts({ parentPostId }: PostsProps) {
 	if (isLoading) return 'Loading';
 	if (isError) return 'Error loading posts';
 	if (!data || data.pages.length === 0) return 'Pas de data';
+
 	const posts = data.pages.flatMap((page) => page.data.data);
 
 	return (
 		<>
-			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
+			<ul>
 				{posts.map((p) => (
 					<li key={p.id}>
 						<PostCard post={p} />

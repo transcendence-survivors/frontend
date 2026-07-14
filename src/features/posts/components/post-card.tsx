@@ -22,14 +22,13 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 			className='flex flex-col items-start gap-2 w-full p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'
 			onClick={() =>
 				router.push(
-					resolveHref(getPath('userNamePost'), {
+					resolveHref(getPath('userNamePostsId'), {
 						username: `@${post.author.username}`,
 						id: post.id,
 					}),
 				)
 			}>
 			<PostHeader post={post} isDetailView={isDetailView} />
-
 			<p className='pl-1'>{post.content}</p>
 			{post.imageUrl && (
 				<div className='pl-1 w-full' onClick={(e) => e.stopPropagation()}>

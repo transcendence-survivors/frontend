@@ -8,7 +8,7 @@ export type LinkProps = ComponentProps<typeof Link>;
 
 type BaseLinkProps = Omit<LinkProps, 'href'> & {
 	locale?: Locale;
-	children: Readonly<ReactNode>;
+	children?: Readonly<ReactNode>;
 };
 
 export type I18nLinkProps =

@@ -20,6 +20,7 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 		() => (file ? URL.createObjectURL(file) : undefined),
 		[file],
 	);
+
 	useEffect(() => {
 		if (!previewUrl) return;
 
@@ -39,7 +40,7 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className='flex flex-col gap-3 py-4 border-b'>
+		<form onSubmit={handleSubmit} className='flex flex-col gap-3 py-4'>
 			<Textarea
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
@@ -77,7 +78,9 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 					onClick={() => fileInputRef.current?.click()}>
 					<ImageIcon />
 				</Button>
-				<Button type='submit'>Poster</Button>
+				<Button type='submit' disabled={!content.trim() && !file}>
+					Poster
+				</Button>
 			</div>
 		</form>
 	);

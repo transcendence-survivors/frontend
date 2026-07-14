@@ -25,14 +25,12 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 	const user = useUser();
 	const isOwner = user?.id === post.author.id;
 	const deletePost = useDeletePost();
-
 	const router = useRouter();
 
 	return (
 		<div className='flex items-start justify-between w-full gap-3'>
 			<UserIdentityLink
-				className='pl-1'
-				onClick={(e) => e.stopPropagation()}
+				className='pl-1 z-10'
 				avatar={{
 					img: {
 						src: post.author.avatarUrl ?? '',
@@ -44,10 +42,10 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 					username: post.author.username,
 				}}
 			/>
-			<div onClick={(e) => e.stopPropagation()}>
+			<div>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant='ghost'>
+						<Button variant='ghost' className='z-10'>
 							<MoreHorizontal />
 						</Button>
 					</DropdownMenuTrigger>

@@ -31,7 +31,7 @@ export default function Posts({ parentPostId }: PostsProps) {
 
 	return (
 		<>
-			<ul>
+			<ul className='flex flex-col gap-4'>
 				{posts.map((p) => (
 					<li key={p.id}>
 						<PostCard post={p} />

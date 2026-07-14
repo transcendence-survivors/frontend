@@ -16,24 +16,26 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 
 	const isMutating = addLike.isPending || deleteLike.isPending;
 
-	function handleClick() {
+	const handleClick = () => {
 		if (isMutating) return;
 		if (isLiked) deleteLike.mutate(postId);
 		else addLike.mutate(postId);
-	}
+	};
 
 	return (
-		<>
+		<div className='flex items-center gap-0.5'>
 			<Button
-				className='px-0'
 				variant='ghost'
-				disabled={isMutating}
+				size='icon'
+				className='p-2 rounded-full'
+				// disabled={isMutating}
+				aria-disabled={isMutating}
 				onClick={handleClick}>
 				<Heart
-					className={isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'}
+					className={`size-4 ${isLiked ? 'text-primary fill-primary' : ''}`}
 				/>
 			</Button>
 			{likeCount > 0 && <span>{likeCount}</span>}
-		</>
+		</div>
 	);
 }

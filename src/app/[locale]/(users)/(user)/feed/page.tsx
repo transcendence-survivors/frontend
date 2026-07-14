@@ -1,4 +1,5 @@
 import Kicker from '@/components/ui/kicker';
+import CreatePost from '@/features/posts/components/create-post';
 import Posts from '@/features/posts/components/posts';
 import PresenceCounter from '@/features/presence/components/PresenceCounter';
 import { getTranslations } from 'next-intl/server';
@@ -14,10 +15,13 @@ export default async function Feed() {
 						<h1>{t('title')}</h1>
 						<Kicker className='text-xs'>{t('subtitle')}</Kicker>
 					</div>
-
 					<PresenceCounter />
 				</section>
 			</header>
+
+			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
+				<CreatePost />
+			</div>
 			<section>
 				<Posts />
 			</section>

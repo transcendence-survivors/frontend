@@ -6,6 +6,15 @@ interface Post {
 	content?: string;
 	imageUrl?: string;
 	author: BaseUser;
+	likeCount: number;
+	isLiked: boolean;
+	parentPostId?: string;
+	parent?: {
+		author: {
+			username: string;
+		};
+	};
+	commentCount: number;
 }
 
 export type { Post };

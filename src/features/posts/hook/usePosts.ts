@@ -6,11 +6,11 @@ const initialPageParam = {
 	orderBy: 'date-desc',
 } satisfies FetchPostParams;
 
-export function usePosts() {
+export function usePosts(parentPostId?: string) {
 	return useInfiniteQuery({
-		queryKey: ['posts'],
+		queryKey: ['posts', parentPostId],
 		initialPageParam: { ...initialPageParam },
-		queryFn: ({ pageParam }) => fetchPosts(pageParam),
+		queryFn: ({ pageParam }) => fetchPosts(parentPostId, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			if (!lastPage.data.meta.hasNextPage) return undefined;
 

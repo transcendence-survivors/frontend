@@ -25,7 +25,10 @@ export type I18nLinkProps =
 			};
 	  }[keyof ParamRoutes];
 
-const resolveHref = (path: string, params?: Record<string, string | number>): string =>
+export const resolveHref = (
+	path: string,
+	params?: Record<string, string | number>,
+): string =>
 	params
 		? Object.entries(params).reduce(
 				(acc, [key, value]) => acc.replace(`:${key}`, String(value)),

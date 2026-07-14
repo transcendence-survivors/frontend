@@ -4,17 +4,18 @@ import { useInView } from 'react-intersection-observer';
 import { usePosts } from '../hook/usePosts';
 import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import LikeButton from '@/features/likes/components/likes';
-import CreatePost from './create-post';
-import { ImageModal } from '@/components/ui/image-modal';
+import PostCard from './post-card';
 
-export default function Posts() {
+interface PostsProps {
+	parentPostId?: string;
+}
+
+export default function Posts({ parentPostId }: PostsProps) {
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
 	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
-		usePosts();
+		usePosts(parentPostId);
 	useEffect(() => {
 		if (!hasNextPage) return;
 		if (!inView) return;
@@ -30,46 +31,10 @@ export default function Posts() {
 
 	return (
 		<>
-			<div className='max-w-xl mx-auto px-4 py-8 list-none'>
-				<CreatePost />
-			</div>
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{posts.map((p) => (
-					<li
-						key={p.id}
-						className='flex gap-3 p-4 border-b hover:bg-muted/50 transition-colors cursor-pointer'>
-						<Avatar>
-							<AvatarImage src={p.author.avatarUrl} />
-							<AvatarFallback>
-								{p.author.displayName.charAt(0)}
-							</AvatarFallback>
-						</Avatar>
-						<div>
-							<div className='flex gap-2'>
-								<span className='font-semibold'>
-									{' '}
-									{p.author?.displayName ?? p.author.id}
-								</span>
-								<span className='text-sm text-muted-foreground'>
-									{new Date(p.createdAt).toLocaleString('fr-FR', {
-										day: '2-digit',
-										month: '2-digit',
-										year: 'numeric',
-										hour: '2-digit',
-										minute: '2-digit',
-									})}
-								</span>
-							</div>
-							<p>{p.content}</p>
-							{p.imageUrl && (
-								<ImageModal
-									src={p.imageUrl}
-									alt=''
-									thumbnailClassName='mt-2 w-full aspect-video rounded-2xl border border-border'
-								/>
-							)}
-							<LikeButton postId={p.id} />
-						</div>
+					<li key={p.id}>
+						<PostCard post={p} />
 					</li>
 				))}
 			</ul>

@@ -6,6 +6,7 @@ import PostFooter from './post-footer';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import ParentPostPreview from './parent-post-preview';
 
 interface PostCardProps {
 	post: Post;
@@ -34,6 +35,13 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 				<div className='w-full flex flex-col items-start gap-2'>
 					<PostHeader post={post} isDetailView={isDetailView} />
 					<p className='pl-1'>{post.content}</p>
+					{post.quotedPost && post.quotedPostId && (
+						<ParentPostPreview
+							parent={post.quotedPost}
+							postId={post.quotedPostId}
+							username={post.quotedPost.author.username}
+						/>
+					)}
 					{post.imageUrl && (
 						<div className='pl-1 w-full z-10'>
 							<ImageModal

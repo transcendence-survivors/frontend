@@ -1,11 +1,17 @@
-import { Spinner } from '@/components/ui/spinner';
+import { urlDecode } from '@/libs/urls';
+import { notFound } from 'next/navigation';
+import UserComments from '@/features/posts/components/user-comments';
 
-const ProfilePage = () => {
-	return (
-		<div>
-			<Spinner className='mx-auto mt-12 size-8' />
-		</div>
-	);
-};
+interface CommentsPageProps {
+	params: Promise<{ username: string }>;
+}
 
-export default ProfilePage;
+export default async function CommentsPage({ params }: CommentsPageProps) {
+	const { username } = await params;
+	if (!urlDecode(username).startsWith('@')) {
+		notFound();
+	}
+	const decodedUsername = urlDecode(username).substring(1);
+
+	return <UserComments username={decodedUsername} />;
+}

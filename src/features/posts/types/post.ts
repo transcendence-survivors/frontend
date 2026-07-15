@@ -10,9 +10,13 @@ interface Post {
 	isLiked: boolean;
 	parentPostId?: string;
 	parent?: {
-		author: {
-			username: string;
-		};
+		content?: string;
+		author: BaseUser;
+	};
+	quotedPostId?: string;
+	quotedPost?: {
+		content?: string;
+		author: BaseUser;
 	};
 	commentCount: number;
 }

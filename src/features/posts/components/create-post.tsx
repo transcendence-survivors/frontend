@@ -9,13 +9,14 @@ import { Input } from '@/components/ui/input';
 
 interface createPostProps {
 	parentPostId?: string;
+	quotedPostId?: string;
 }
 
-export default function CreatePost({ parentPostId }: createPostProps) {
+export default function CreatePost({ parentPostId, quotedPostId }: createPostProps) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
-	const createPost = useCreatePost(parentPostId);
+	const createPost = useCreatePost(parentPostId, quotedPostId);
 	const previewUrl = useMemo(
 		() => (file ? URL.createObjectURL(file) : undefined),
 		[file],

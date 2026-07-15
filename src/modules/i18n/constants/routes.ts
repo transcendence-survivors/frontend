@@ -1,5 +1,6 @@
 import { Locale } from './locales';
 import { compileRoutes } from '../utils/compile';
+import { getPathImpl } from '../utils/routing';
 
 type LocaleRouteFormat = Record<Locale, `/${string}`>;
 type RouteMapFromat = Record<string, LocaleRouteFormat>;
@@ -215,25 +216,40 @@ type StaticRoutes = {
 type RoutesWithParams = keyof ParamRoutes;
 type RoutesWithoutParams = keyof StaticRoutes;
 
-type RedirectedUrls = Record<string, CanonicalHref> | { callbackKey: string };
-
-const REDIRECTED_URLS = {
-	callbackKey: 'callbackUrl',
-	401: APP_ROUTES.login.en,
-	login: APP_ROUTES.login.en,
-	success: APP_ROUTES.home.en,
-	profile: APP_ROUTES.userName.en,
-} as const satisfies RedirectedUrls;
 const COMPILED_ROUTES = compileRoutes(APP_ROUTES);
 const STATIC_ROUTES = COMPILED_ROUTES.filter((r) => !r.isDynamic);
 const DYNAMIC_ROUTES = COMPILED_ROUTES.filter((r) => r.isDynamic);
 
-export { APP_ROUTES, REDIRECTED_URLS, STATIC_ROUTES, DYNAMIC_ROUTES, COMPILED_ROUTES };
+type RouteHelperFn<K extends RouteKey> =
+	RouteParams<K> extends never ? () => string : (params: Params<K>) => string;
+
+type RouteHelpers = {
+	[K in RouteKey]: RouteHelperFn<K>;
+};
+
+const ROUTES: RouteHelpers = Object.fromEntries(
+	(Object.keys(APP_ROUTES) as RouteKey[]).map((key) => [
+		key,
+		(params?: Record<string, string | number>) => getPathImpl(key, params),
+	]),
+) as RouteHelpers;
+
+const CALLBACK_KEY = 'callback' as const;
+
+export {
+	APP_ROUTES,
+	STATIC_ROUTES,
+	DYNAMIC_ROUTES,
+	COMPILED_ROUTES,
+	ROUTES,
+	CALLBACK_KEY,
+};
 export type {
 	RouteMap,
 	RouteKey,
 	CanonicalHref,
 	RouteParams,
+	Params,
 	ParamRoutes,
 	StaticRoutes,
 	RoutesWithParams,

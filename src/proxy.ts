@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { intlMiddleware, stripLocale } from '@i18n/middleware';
-import { REDIRECTED_URLS } from '@i18n/constants/routes';
+import { intlMiddleware } from '@i18n/middleware';
 import { hasRequiredRole, isRoleRoute, roleRoutes } from '@auth/middlewares/role';
 import { getUserFromRequest } from '@auth/middlewares/token';
 import { COOKIE_REFRESH_TOKEN } from './features/auth/constants/cookies';
-import { resolveRouteKeyPath } from './modules/i18n/utils/resolve';
+import { resolveRouteKeyPath, stripLocale } from './modules/i18n/utils/resolve';
+import { CALLBACK_KEY, ROUTES } from './modules/i18n/constants/routes';
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -19,8 +19,8 @@ export default async function middleware(req: NextRequest) {
 
 	const res = await getUserFromRequest(req);
 	if (!res) {
-		const url = new URL(REDIRECTED_URLS.login, req.url);
-		url.searchParams.set(REDIRECTED_URLS.callbackKey, pathname);
+		const url = new URL(ROUTES.login(), req.url);
+		url.searchParams.set(CALLBACK_KEY, pathname);
 		const response = NextResponse.redirect(url);
 		response.cookies.delete(COOKIE_REFRESH_TOKEN);
 		return response;
@@ -29,7 +29,7 @@ export default async function middleware(req: NextRequest) {
 	const { user, setCookieHeaders } = res;
 	const requiredRoles = roleRoutes[canonical];
 	if (requiredRoles && !hasRequiredRole(user.role, requiredRoles)) {
-		return NextResponse.redirect(new URL(REDIRECTED_URLS['401'], req.url));
+		return NextResponse.redirect(new URL(ROUTES.login(), req.url));
 	}
 
 	const response = intlResponse ?? NextResponse.next();

@@ -2,13 +2,13 @@ import { useTranslations } from 'next-intl';
 import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
 import { UseFriendsParams } from '../hooks/useFriends';
 import { FriendDelete, FriendDeleteSkeleton } from './FriendsDelete';
-import { BlockAdd } from '../../block/components/BlockAdd';
+import { memo } from 'react';
 
 type FriendCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user' | 'badge'> & {
 	params: UseFriendsParams;
 };
 
-const FriendCard = ({ user, badge, params }: FriendCardProps) => {
+const FriendCard = memo(({ user, badge, params }: FriendCardProps) => {
 	const t = useTranslations('relationships.friends');
 
 	return (
@@ -28,7 +28,7 @@ const FriendCard = ({ user, badge, params }: FriendCardProps) => {
 			</div>
 		</UserCard>
 	);
-};
+});
 
 type FriendCardSkeletonProps = React.ComponentProps<typeof UserCardSkeleton>;
 
@@ -40,4 +40,5 @@ const FriendCardSkeleton = ({ ...props }: FriendCardSkeletonProps) => {
 	);
 };
 
+FriendCard.displayName = 'FriendCard';
 export { FriendCard, FriendCardSkeleton };

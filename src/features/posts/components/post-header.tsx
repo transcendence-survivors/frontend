@@ -13,8 +13,7 @@ import { MoreHorizontal, Trash2 } from 'lucide-react';
 import { useUser } from '@/features/auth/stores/session';
 import { useDeletePost } from '../hook/useDeletePost';
 import { useRouter } from '@/modules/i18n/utils/navigation';
-import { resolveHref } from '@/modules/i18n/components/I18nLink';
-import { getPath } from '@/modules/i18n/utils/routing';
+import { ROUTES } from '@/modules/i18n/constants/routes';
 
 interface PostHeaderProps {
 	post: Post;
@@ -59,16 +58,14 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 											if (!isDetailView) return;
 											if (post.parentPostId && post.parent) {
 												router.push(
-													resolveHref(
-														getPath('userNamePostsId'),
-														{
-															username: `@${post.parent.author.username}`,
-															id: post.parentPostId,
-														},
-													),
+													ROUTES.userNamePostsId({
+														username:
+															post.parent.author.username,
+														id: post.parentPostId,
+													}),
 												);
 											} else {
-												router.push(getPath('feed'));
+												router.push(ROUTES.feed());
 											}
 										},
 									})

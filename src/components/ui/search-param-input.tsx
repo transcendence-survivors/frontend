@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { Input } from './input';
 import { parseAsString, useQueryState } from 'nuqs';
 import { usePathname } from '@/modules/i18n/utils/navigation';
+import { InputSearch } from './input-search';
 
 interface Props {
 	defaultValue?: string;
@@ -37,7 +37,7 @@ const SearchInput = ({
 	};
 
 	return (
-		<Input
+		<InputSearch
 			defaultValue={defaultValue}
 			placeholder={placeholder}
 			className={className}

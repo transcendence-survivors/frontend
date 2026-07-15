@@ -155,6 +155,17 @@
 		"count_online_friends": "{count} friends in the light"
 	},
 
+	"chat": {
+		"rooms": {
+			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
+			"no_chat_rooms_search": "No chat rooms found for your search.",
+			"no_more_chat_rooms": "No more chat rooms to load.",
+			"fetch_error": "Failed to load chat rooms. Please try again later."
+		},
+		"title": "Chat",
+		"subtitle": "Conversations with your friends"
+	},
+
 	"feed": {
 		"title": "Feed",
 		"subtitle": "Dispatches from the lantern-bearers"

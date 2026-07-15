@@ -1,16 +1,18 @@
+import { PresenceStatus } from '@/features/presence/types/status';
 import {
+	UserIdentity,
 	UserIdentityLink,
 	UserIdentitySkeleton,
 } from '@/features/user/components/Identity/UserIdentity';
 import { BaseUser } from '@/features/user/type';
 import { cn } from '@/libs/utils';
-import { PresenceStatus } from '@/modules/websocket/types/presence';
 
 interface FriendCardProps extends React.HtmlHTMLAttributes<HTMLElement> {
 	user: BaseUser;
 	badge?: PresenceStatus | false;
 	bottom?: React.ReactNode;
 	containerClassName?: string;
+	useIdentityLink?: boolean;
 }
 
 const UserCard = ({
@@ -20,8 +22,23 @@ const UserCard = ({
 	className,
 	bottom,
 	containerClassName,
+	useIdentityLink = true,
 	...props
 }: FriendCardProps) => {
+	const avatarProps = {
+		img: {
+			src: user.avatarUrl ?? '',
+			alt: user.displayName,
+		},
+		size: 'lg',
+		badgeState: badge,
+	} as const;
+
+	const userProps = {
+		displayName: user.displayName,
+		username: user.username,
+	} as const;
+
 	return (
 		<article className={cn('border px-4 py-4', className)} {...props}>
 			<div
@@ -30,20 +47,15 @@ const UserCard = ({
 					containerClassName,
 				)}>
 				<div className='flex flex-col gap-3 max-w-[60%]'>
-					<UserIdentityLink
-						avatar={{
-							img: {
-								src: user.avatarUrl ?? '',
-								alt: user.displayName,
-							},
-							size: 'lg',
-							badgeState: badge,
-						}}
-						user={{
-							displayName: user.displayName,
-							username: user.username,
-						}}
-					/>
+					{useIdentityLink ? (
+						<UserIdentityLink
+							avatar={avatarProps}
+							user={userProps}
+							className='max-w-full'
+						/>
+					) : (
+						<UserIdentity avatar={avatarProps} user={userProps} />
+					)}
 				</div>
 				<div className='ml-auto'>{children}</div>
 			</div>

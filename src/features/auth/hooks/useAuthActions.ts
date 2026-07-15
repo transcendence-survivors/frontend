@@ -1,12 +1,13 @@
 'use client';
 
-import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useRouter } from '@/modules/i18n/utils/navigation';
-import { REDIRECTED_URLS } from '@/modules/i18n/constants/routes';
+import { CALLBACK_KEY, ROUTES } from '@/modules/i18n/constants/routes';
 import { useSessionActions } from '../stores/session';
 import { signUp } from '../api/signUp.api';
 import { signInUsernameEmail } from '../api/signIn.api';
+import { stripLocale } from '@/modules/i18n/utils/resolve';
 
 const authActionFns = {
 	signUp: signUp,
@@ -45,11 +46,12 @@ const useAuthAction = <TAction extends AuthAction>({
 			});
 
 			const url = new URLSearchParams(window.location.search);
-			const redirect =
-				url.get(REDIRECTED_URLS.callbackKey) ||
-				REDIRECTED_URLS.profile.replace(':username', `@${res.data.username}`);
-
-			router.replace(redirect);
+			const callbackUrl = url.get(CALLBACK_KEY);
+			router.replace(
+				callbackUrl
+					? stripLocale(callbackUrl)
+					: ROUTES.userName({ username: res.data.username }),
+			);
 		},
 	});
 };

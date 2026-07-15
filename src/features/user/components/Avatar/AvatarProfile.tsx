@@ -1,4 +1,10 @@
-import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from '@ui/avatar';
+import {
+	Avatar,
+	AvatarBadge,
+	AvatarFallback,
+	AvatarGroupCount,
+	AvatarImage,
+} from '@ui/avatar';
 import { ImageProps } from '@libs/types';
 import { capitalize, cn, truncate } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
@@ -79,6 +85,18 @@ const AvatarProfile = ({
 	);
 };
 
+interface AvatarProfileCountProps extends React.ComponentProps<typeof AvatarGroupCount> {
+	size?: AvatarProfileSize;
+}
+
+const AvatarProfileCount = ({
+	className,
+	size = 'lg',
+	...props
+}: AvatarProfileCountProps) => {
+	return <AvatarGroupCount className={cn(sizeClasses[size], className)} {...props} />;
+};
+
 interface AvatarProfileLinkProps {
 	avatar: AvatarProfileProps;
 	username: string;
@@ -91,4 +109,10 @@ const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 	);
 };
 
-export { AvatarProfile, AvatarProfileFallback, AvatarProfileLink, AvatarProfileBadge };
+export {
+	AvatarProfile,
+	AvatarProfileFallback,
+	AvatarProfileLink,
+	AvatarProfileBadge,
+	AvatarProfileCount,
+};

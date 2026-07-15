@@ -45,7 +45,7 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 			<div>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className='z-10'>
+						<Button variant='ghost' className='relative z-10' size='icon'>
 							<MoreHorizontal />
 						</Button>
 					</DropdownMenuTrigger>

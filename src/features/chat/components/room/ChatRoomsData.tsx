@@ -1,19 +1,21 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import ChatRoomCard from './ChatRoomCard';
+import { ChatRoomCard, ChatRoomCardSkeleton } from './ChatRoomCard';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { Error } from '@/features/relationships/components/error';
-import { FriendsLoading } from '@/features/relationships/friend/components/FriendsLoading';
 import { Spinner } from '@/components/ui/spinner';
-import { useChatRooms, UseChatRoomsParams } from '../hooks/useChatRooms';
+import { useChatRooms, UseChatRoomsParams } from '../../hooks/useChatRooms';
+import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
+import { LoadingList } from '@/components/ui/loading-list';
 
 interface ChatRoomsDataProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseChatRoomsParams;
+	getFriendStatus: PresenceSlice['presenceActions']['getFriendStatus'];
 }
 
-const ChatRoomsData = ({ params }: ChatRoomsDataProps) => {
+const ChatRoomsData = ({ params, getFriendStatus }: ChatRoomsDataProps) => {
 	const t = useTranslations('chat.rooms');
 	const { ref, inView } = useInView({
 		threshold: 0,
@@ -31,7 +33,12 @@ const ChatRoomsData = ({ params }: ChatRoomsDataProps) => {
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	if (isLoading) {
-		return <FriendsLoading numberOfSkeletons={10} />;
+		return (
+			<LoadingList
+				numberOfSkeletons={10}
+				SkeletonComponent={ChatRoomCardSkeleton}
+			/>
+		);
 	}
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;
@@ -45,10 +52,14 @@ const ChatRoomsData = ({ params }: ChatRoomsDataProps) => {
 					{!params.search ? t('no_chat_rooms') : t('no_chat_rooms_search')}
 				</Error>
 			) : (
-				<ul className='flex-1 overflow-y-auto'>
+				<ul className='flex flex-col gap-0'>
 					{rooms.map((room) => (
 						<li key={room.id}>
-							<ChatRoomCard c={room} state={'OFFLINE'} />
+							<ChatRoomCard
+								room={room}
+								getFriendStatus={getFriendStatus}
+								params={params}
+							/>
 						</li>
 					))}
 				</ul>

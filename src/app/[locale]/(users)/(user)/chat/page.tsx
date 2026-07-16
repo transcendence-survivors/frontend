@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Kicker from '@/components/ui/kicker';
+import ChatRoomCreate from '@/features/chat/components/room/create/ChatRoomCreate';
 
 export default function ChatRooms() {
 	return (
@@ -19,7 +20,7 @@ export default function ChatRooms() {
 							<p>Chat room not created ?</p>
 							<span>Ask your friends to play with you!</span>
 						</div>
-						<Button className='ml-auto'>Create Chat</Button>
+						<ChatRoomCreate />
 					</div>
 				</section>
 			</Card>

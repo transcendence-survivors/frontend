@@ -4,11 +4,11 @@ import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Error } from '../../components/error';
-import { FriendRequestCard } from './FriendRequestCard';
+import { FriendRequestCard, FriendRequestCardSkeleton } from './FriendRequestCard';
 import { useTranslations } from 'next-intl';
-import { FriendRequestsLoading } from './FriendRequestsLoading';
 import { useRequests } from '../hooks/useRequest';
 import { UseRequestsParams } from '../types';
+import { LoadingList } from '@/components/ui/loading-list';
 
 interface FriendRequestsProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseRequestsParams;
@@ -35,7 +35,11 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 
 	if (isLoading) {
 		return (
-			<FriendRequestsLoading numberOfSkeletons={10} direction={params.direction} />
+			<LoadingList
+				numberOfSkeletons={10}
+				SkeletonComponent={FriendRequestCardSkeleton}
+				skeletonProps={{ direction }}
+			/>
 		);
 	}
 	if (isError || !data) {

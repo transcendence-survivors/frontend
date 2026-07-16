@@ -4,11 +4,12 @@ import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Error } from '@/features/relationships/components/error';
-import { UsersLoading } from './UsersLoading';
 import { useUsers, UseUsersParams } from '../hooks/useUsers';
 import { useTranslations } from 'next-intl';
 import { BaseUser } from '@/features/user/type';
 import { cn } from '@/libs/utils';
+import { LoadingList } from '@/components/ui/loading-list';
+import { UserCardSkeleton } from './UserCard';
 
 export interface BaseUserCardProps {
 	user: BaseUser;
@@ -50,8 +51,15 @@ const UsersFeedData = <T extends BaseUserCardProps>({
 	const feed = feedParams?.feed;
 
 	if (isLoading) {
-		return <UsersLoading numberOfSkeletons={20} />;
+		return (
+			<LoadingList
+				numberOfSkeletons={20}
+				className={className}
+				SkeletonComponent={UserCardSkeleton}
+			/>
+		);
 	}
+
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;
 	}

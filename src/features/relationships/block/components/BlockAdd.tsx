@@ -3,6 +3,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { UseBlocksParams } from '../hooks/useBlocks';
 import { useBlockAdd } from '../hooks/useBlockActions';
 import { Ban } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface FriendRequestDeleteProps {
 	successMessage: string;
@@ -43,7 +44,7 @@ const BlockAdd = ({
 };
 
 const BlockDeleteSkeleton = () => {
-	return <div className={`size-9 bg-muted rounded-md animate-pulse`}></div>;
+	return <Skeleton className={`size-9 rounded-md`} />;
 };
 
 export { BlockAdd, BlockDeleteSkeleton };

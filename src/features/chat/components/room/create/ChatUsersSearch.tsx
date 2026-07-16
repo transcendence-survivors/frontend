@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo, useState } from 'react';
 import { SearchInput } from '@/components/ui/search-param-input';
 import { UsersFeedData } from '@/features/user/components/UsersFeedData';
 import { BaseUser } from '@/features/user/type';
-import ChatUserCard from '../ChatUserCard';
+import ChatUserCard from '../../ChatUserCard';
 
 interface ChatUsersSearchProps {
 	selectedUsers: BaseUser[];

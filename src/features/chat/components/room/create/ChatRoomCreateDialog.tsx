@@ -13,20 +13,29 @@ import {
 import { BaseUser } from '@/features/user/type';
 import ChatSelectedUsersPreview from './ChatSelectedUsersPreview';
 import ChatUsersSearch from './ChatUsersSearch';
-import ChatCreateButton from './create/ChatCreateButton';
+import ChatCreateButton from './ChatCreateButton';
+import { Input } from '@/components/ui/input';
+import { UseChatRoomsParams } from '@/features/chat/hooks/useChatRooms';
 
-interface ChatCreateDialogProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ChatRoomCreateDialogProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
+	params: UseChatRoomsParams;
 }
 
-const ChatCreateDialog = ({ children }: ChatCreateDialogProps) => {
+const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) => {
 	const [selectedUsers, setSelectedUsers] = useState<BaseUser[]>([]);
+	const [groupName, setGroupName] = useState<string>('');
 
 	const handleUserSelect = useCallback((user: BaseUser) => {
 		setSelectedUsers((prev) => {
 			const exists = prev.some(({ id }) => id === user.id);
 			return exists ? prev.filter(({ id }) => id !== user.id) : [...prev, user];
 		});
+	}, []);
+
+	const clearSelectedUsers = useCallback(() => {
+		setSelectedUsers([]);
+		setGroupName('');
 	}, []);
 
 	return (
@@ -49,9 +58,21 @@ const ChatCreateDialog = ({ children }: ChatCreateDialogProps) => {
 					/>
 					<DialogFooter>
 						<div className='flex flex-col justify-between gap-3 w-full pt-3 border-t border-border'>
-							<ChatSelectedUsersPreview users={selectedUsers} />
+							<div className='flex gap-2'>
+								<ChatSelectedUsersPreview users={selectedUsers} />
+								{selectedUsers.length > 1 && (
+									<Input
+										placeholder='Group Name'
+										value={groupName}
+										onChange={(e) => setGroupName(e.target.value)}
+									/>
+								)}
+							</div>
 							<ChatCreateButton
+								groupName={groupName}
+								onMutationSuccess={clearSelectedUsers}
 								usersIds={selectedUsers.map(({ id }) => id)}
+								params={params}
 							/>
 						</div>
 					</DialogFooter>
@@ -61,4 +82,4 @@ const ChatCreateDialog = ({ children }: ChatCreateDialogProps) => {
 	);
 };
 
-export default ChatCreateDialog;
+export default ChatRoomCreateDialog;

@@ -3,6 +3,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { UserRoundMinus } from 'lucide-react';
 import { UseFriendsParams } from '../hooks/useFriends';
 import { useFriendDelete } from '../hooks/useFriendActions';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface FriendDeleteProps {
 	successMessage: string;
@@ -47,7 +48,7 @@ const FriendDelete = ({
 };
 
 const FriendDeleteSkeleton = () => {
-	return <div className={`size-9 bg-muted rounded-md animate-pulse`}></div>;
+	return <Skeleton className={`size-9 rounded-md`} />;
 };
 
 export { FriendDelete, FriendDeleteSkeleton };

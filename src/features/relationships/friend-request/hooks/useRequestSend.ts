@@ -32,11 +32,10 @@ const useRequestSend = ({
 		onMutate: async () => {
 			await queryClient.cancelQueries({ queryKey });
 			const previous = queryClient.getQueryData<InfiniteData<GetUsers>>(queryKey);
-			updateInfiniteQuery<BaseUser>(
-				queryClient,
-				queryKey,
-				(req) => req.id !== userId,
-			);
+			updateInfiniteQuery<BaseUser>(queryClient, queryKey, {
+				type: 'filter',
+				callback: (req) => req.id !== userId,
+			});
 			return { previous };
 		},
 		onSuccess: (data) => {

@@ -9,6 +9,7 @@ export type LinkProps = ComponentProps<typeof Link>;
 type BaseLinkProps = Omit<LinkProps, 'href'> & {
 	locale?: Locale;
 	children?: Readonly<ReactNode>;
+	queryParams?: Record<string, string | number>;
 };
 
 export type I18nLinkProps =
@@ -41,9 +42,16 @@ export const I18nLink = ({
 	locale,
 	hrefParams,
 	children,
+	queryParams,
 	...rest
 }: I18nLinkProps) => (
-	<Link href={resolveHref(getBasePath(href), hrefParams)} locale={locale} {...rest}>
+	<Link
+		href={{
+			pathname: resolveHref(getBasePath(href), hrefParams),
+			query: queryParams,
+		}}
+		locale={locale}
+		{...rest}>
 		{children}
 	</Link>
 );

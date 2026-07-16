@@ -49,11 +49,10 @@ const useBlockAction = ({
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetBlocksResponse>>(blockKey);
 
-			updateInfiniteQuery<Block>(
-				queryClient,
-				blockKey,
-				(block) => block.blocked.id !== blockedId,
-			);
+			updateInfiniteQuery<Block>(queryClient, blockKey, {
+				type: 'filter',
+				callback: (block) => block.blocked.id !== blockedId,
+			});
 
 			return { previous };
 		},

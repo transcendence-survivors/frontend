@@ -2,6 +2,7 @@ import { cn } from '@/libs/utils';
 import { AvatarProfile } from '../Avatar/AvatarProfile';
 import UserDisplayUsername from './UserDisplayUsername';
 import I18nLink from '@/modules/i18n/components/I18nLink';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface UserIdentityBaseProps {
 	avatar: React.ComponentProps<typeof AvatarProfile>;
@@ -63,13 +64,12 @@ const UserIdentityLink = ({
 };
 
 const UserIdentitySkeleton = () => {
-	const bgColor = 'bg-muted';
 	return (
 		<div className='flex items-center gap-3 h-auto overflow-x-clip whitespace-nowrap text-ellipsis max-w-full'>
-			<div className={`w-12 h-12 rounded-full ${bgColor} animate-pulse`}></div>
+			<Skeleton className={`w-12 h-12 rounded-full`} />
 			<div className='flex flex-col gap-2'>
-				<div className={`w-32 h-4 ${bgColor} animate-pulse`}></div>
-				<div className={`w-24 h-4 ${bgColor} animate-pulse`}></div>
+				<Skeleton className={`w-32 h-4`} />
+				<Skeleton className={`w-24 h-4`} />
 			</div>
 		</div>
 	);

@@ -27,4 +27,7 @@ export type CursorResponse<T> = {
 	};
 };
 
+export type Endpoint<T extends string> =
+	T | `${T}/${string}` | ((...args: string[]) => `${T}/${string}`);
+
 export type ApiResponse<T> = ApiSuccess<T> | ApiError;

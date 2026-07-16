@@ -30,11 +30,10 @@ const useFriendDelete = ({
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendsResponse>>(queryKey);
-			updateInfiniteQuery<Friend>(
-				queryClient,
-				queryKey,
-				(req) => req.friend.id !== friendId,
-			);
+			updateInfiniteQuery<Friend>(queryClient, queryKey, {
+				type: 'filter',
+				callback: (req) => req.friend.id !== friendId,
+			});
 			return { previous };
 		},
 		onError: (_err, _vars, ctx) => {

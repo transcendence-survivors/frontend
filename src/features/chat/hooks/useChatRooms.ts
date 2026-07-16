@@ -11,10 +11,10 @@ const initialChatRoomsParam = {
 
 type UseChatRoomsParams = Omit<GetChatRoomSearchParams, 'cursor' | 'limit'>;
 
-const useChatRooms = ({ search, orderBy, type }: UseChatRoomsParams) => {
+const useChatRooms = (params: UseChatRoomsParams) => {
 	return useInfiniteQuery({
-		queryKey: ['chat-rooms', { search, orderBy, type }],
-		initialPageParam: { ...initialChatRoomsParam, search, orderBy, type },
+		queryKey: ['chat-rooms', params],
+		initialPageParam: { ...initialChatRoomsParam, ...params },
 		queryFn: ({ pageParam }) => getChatRooms(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			if (!lastPage.meta.hasNextPage) return undefined;

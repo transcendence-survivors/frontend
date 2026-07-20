@@ -8,12 +8,15 @@ import { Repeat2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import CreatePost from './create-post';
+import { useState } from 'react';
 
 interface PostFooterProps {
 	post: Post;
 }
 
 export default function PostFooter({ post }: PostFooterProps) {
+	const [open, setOpen] = useState(false);
+
 	return (
 		<div className='flex items-center justify-between px-0 gap-2 pl-1 w-full'>
 			<div className='flex items-center gap-2 z-10'>
@@ -23,14 +26,17 @@ export default function PostFooter({ post }: PostFooterProps) {
 					</div>
 					{post.commentCount > 0 && <span>{post.commentCount}</span>}
 				</div>
-				<Dialog>
+				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
 						<Button variant='ghost' className='px-0'>
 							<Repeat2 className='size-4' />
 						</Button>
 					</DialogTrigger>
 					<DialogContent>
-						<CreatePost quotedPostId={post.id} />
+						<CreatePost
+							quotedPostId={post.id}
+							onSuccess={() => setOpen(false)}
+						/>
 					</DialogContent>
 				</Dialog>
 				<LikeButton

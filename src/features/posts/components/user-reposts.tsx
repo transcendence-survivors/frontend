@@ -34,7 +34,7 @@ export default function UserReposts({ username }: UserRepostsProps) {
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{reposts.map((r) => (
 					<li key={r.id}>
-						<PostCard post={r} />
+						<PostCard post={r} hideRepostBanner />
 					</li>
 				))}
 			</ul>

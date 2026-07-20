@@ -34,7 +34,7 @@ export default function UserLikes({ username }: UserLikesProps) {
 			<ul className='max-w-xl mx-auto px-4 py-8 list-none'>
 				{likes.map((p) => (
 					<li key={p.id}>
-						<PostCard post={p} />
+						<PostCard post={p} hideRepostBanner />
 					</li>
 				))}
 			</ul>

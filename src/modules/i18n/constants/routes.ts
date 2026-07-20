@@ -159,13 +159,13 @@ const APP_ROUTES = defineRouteMap({
 		che: '/:username/likes',
 		it: '/:username/likes',
 	},
-	userNameFavourites: {
-		en: '/:username/favourites',
-		de: '/:username/favoriten',
-		fr: '/:username/favoris',
-		es: '/:username/favoritos',
-		che: '/:username/favoriten',
-		it: '/:username/preferiti',
+	userNameReposts: {
+		en: '/:username/reposts',
+		de: '/:username/reposts',
+		fr: '/:username/reposts',
+		es: '/:username/reposts',
+		che: '/:username/reposts',
+		it: '/:username/reposts',
 	},
 
 	settings: {

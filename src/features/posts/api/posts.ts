@@ -59,6 +59,21 @@ export async function fetchUserReposts(
 	return res;
 }
 
+export async function fetchUserLikes(
+	username: string,
+	{ cursor, limit, orderBy, search }: FetchPostParams,
+) {
+	const urlParams = new URLSearchParams();
+	if (cursor) urlParams.append('cursor', cursor);
+	if (limit) urlParams.append('limit', limit.toString());
+	if (orderBy) urlParams.append('orderBy', orderBy);
+	if (search) urlParams.append('search', search);
+	const res = await api.get<FetchPostResponse>(
+		`${POST_ENDPOINTS.getPost}/user/${username}/likes?${urlParams.toString()}`,
+	);
+	if (isApiError(res)) throw Error(res.message);
+	return res;
+}
 export async function createPost(
 	content?: string,
 	file?: File,

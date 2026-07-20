@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAddLike, useDeleteLike } from '../hook/useLikes';
 import { Heart } from 'lucide-react';
@@ -11,6 +12,8 @@ interface likeButtonProps {
 }
 
 export default function LikeButton({ postId, likeCount, isLiked }: likeButtonProps) {
+	const [liked, setLiked] = useState(isLiked);
+	const [count, setCount] = useState(likeCount);
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
@@ -18,8 +21,15 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 
 	const handleClick = () => {
 		if (isMutating) return;
-		if (isLiked) deleteLike.mutate(postId);
-		else addLike.mutate(postId);
+		if (liked) {
+			deleteLike.mutate(postId);
+			setLiked(false);
+			setCount((c) => c - 1);
+		} else {
+			addLike.mutate(postId);
+			setLiked(true);
+			setCount((c) => c + 1);
+		}
 	};
 
 	return (
@@ -28,14 +38,11 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 				variant='ghost'
 				size='icon'
 				className='p-2 rounded-full'
-				// disabled={isMutating}
 				aria-disabled={isMutating}
 				onClick={handleClick}>
-				<Heart
-					className={`size-4 ${isLiked ? 'text-primary fill-primary' : ''}`}
-				/>
+				<Heart className={`size-4 ${liked ? 'text-primary fill-primary' : ''}`} />
 			</Button>
-			{likeCount > 0 && <span>{likeCount}</span>}
+			{count > 0 && <span>{count}</span>}
 		</div>
 	);
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs';
 import { useMemo } from 'react';
 import { ChatRoomFeed, ChatRoomOrderBy } from '../types';

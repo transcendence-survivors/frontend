@@ -7,7 +7,6 @@ import { cn } from '@/libs/utils';
 import { SearchParamsInput } from '@/components/ui/search-param-input';
 import ChatRoomsData from './ChatRoomsData';
 import { ChatRoomFeed } from '../../types';
-import { useOnlineFriends } from '@/features/presence/hooks/useOnlineFriends';
 import { ButtonsState } from '@/components/ui/buttons-state';
 import { useChatRoomParams } from '../../hooks/useChatRoomParams';
 
@@ -15,7 +14,6 @@ type ChatNavProps = React.HTMLAttributes<HTMLElement>;
 
 const ChatRoomsNav = ({ className, ...props }: ChatNavProps) => {
 	const { params, setFilters } = useChatRoomParams();
-	const { getFriendStatus } = useOnlineFriends();
 
 	return (
 		<aside
@@ -51,7 +49,7 @@ const ChatRoomsNav = ({ className, ...props }: ChatNavProps) => {
 				/>
 			</div>
 			<div className='overflow-y-auto no-scrollbar'>
-				<ChatRoomsData params={params} getFriendStatus={getFriendStatus} />
+				<ChatRoomsData params={params} />
 			</div>
 		</aside>
 	);

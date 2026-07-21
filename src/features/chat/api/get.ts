@@ -1,4 +1,4 @@
-import { api, buildUrlParams, CursorResponse, isApiError } from '@/libs/api';
+import { api, ApiError, buildUrlParams, CursorResponse, isApiError } from '@/libs/api';
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
 import { ChatRoom, GetChatRoomSearchParams } from '../types';
 
@@ -16,4 +16,20 @@ const getChatRooms = async (params: GetChatRoomSearchParams) => {
 	return response.data;
 };
 
-export { getChatRooms };
+const getChatRoom = async (id: string, cookie: string) => {
+	try {
+		return await api.get<ChatRoom>(CHAT_ENDPOINTS.getRoom(id), {
+			headers: {
+				Cookie: cookie,
+			},
+		});
+	} catch {
+		return {
+			status: 'error',
+			message: 'Failed to fetch chat room',
+			code: 500,
+		} satisfies ApiError;
+	}
+};
+
+export { getChatRooms, getChatRoom };

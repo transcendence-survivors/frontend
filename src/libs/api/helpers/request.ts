@@ -34,6 +34,8 @@ export const request = async <T>(
 ): Promise<ApiResponse<T>> => {
 	let res = await baseFetch(path, init);
 
+	console.log('Request:', path, init);
+	console.log('Response:', res);
 	if (res.status === 401 && !init.no_retry) {
 		try {
 			await refreshAccessToken();

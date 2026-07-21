@@ -227,7 +227,7 @@ type RouteHelpers = {
 	[K in RouteKey]: RouteHelperFn<K>;
 };
 
-const ROUTES: RouteHelpers = Object.fromEntries(
+const ROUTES = Object.fromEntries(
 	(Object.keys(APP_ROUTES) as RouteKey[]).map((key) => [
 		key,
 		(params?: Record<string, string | number>) => getPathImpl(key, params),

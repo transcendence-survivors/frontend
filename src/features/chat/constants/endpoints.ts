@@ -5,6 +5,7 @@ const CHAT_START_PATH = '/chat/rooms' as const;
 type StartPath = typeof CHAT_START_PATH;
 
 const CHAT_ENDPOINTS = {
+	getRoom: (id: string) => `${CHAT_START_PATH}/${id}`,
 	getRooms: `${CHAT_START_PATH}`,
 	getRoomsCount: `${CHAT_START_PATH}/count`,
 	deleteRoom: (id: string) => `${CHAT_START_PATH}/${id}`,

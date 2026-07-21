@@ -1,12 +1,19 @@
 import type { Locale } from '../constants/locales';
 import type { RouteMap, RouteKey } from '../constants/routes';
 
-type CompiledLocalePath = {
-	path: string;
-	isDynamic: boolean;
-	regex?: RegExp;
-	paramNames?: string[];
-};
+type CompiledLocalePath =
+	| {
+			path: string;
+			isDynamic: false;
+			regex?: undefined;
+			paramNames?: undefined;
+	  }
+	| {
+			path: string;
+			isDynamic: true;
+			regex: RegExp;
+			paramNames: string[];
+	  };
 
 type CompiledRoute = {
 	key: RouteKey;
@@ -26,17 +33,23 @@ const compilePath = (path: string): CompiledLocalePath => {
 				paramNames.push(segment.slice(1));
 				return '([^/]+)';
 			}
+
 			return escapeRegex(segment);
 		})
 		.join('/');
 
-	const isDynamic = paramNames.length > 0;
+	if (paramNames.length === 0) {
+		return {
+			path,
+			isDynamic: false,
+		};
+	}
 
 	return {
 		path,
-		isDynamic,
-		regex: isDynamic ? new RegExp(`^${regexString}$`) : undefined,
-		paramNames: isDynamic ? paramNames : undefined,
+		isDynamic: true,
+		regex: new RegExp(`^${regexString}$`),
+		paramNames,
 	};
 };
 
@@ -49,9 +62,11 @@ const compileRoutes = (routes: RouteMap): CompiledRoute[] => {
 			]),
 		) as Record<Locale, CompiledLocalePath>;
 
-		const isDynamic = locales.en.isDynamic;
-
-		return { key: key as RouteKey, isDynamic, locales };
+		return {
+			key: key as RouteKey,
+			isDynamic: locales.en.isDynamic,
+			locales,
+		};
 	});
 };
 

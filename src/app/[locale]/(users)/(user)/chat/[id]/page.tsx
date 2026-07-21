@@ -1,17 +1,10 @@
-import { notFound } from 'next/navigation';
 import ChatMessage from '@/features/chat/components/ChatMessage';
-import ChatRoomHeader from '@/features/chat/components/ChatRoomHeader';
+import ChatRoomHeader from '@/features/chat/components/room/ChatRoomHeader';
 import ChatMessageForm from '@/features/chat/components/ChatMessageForm';
-
-export type Conversation = {
-	id: string;
-	name: string;
-	initial: string;
-	preview: string;
-	time: string;
-	unread?: number;
-	online?: boolean;
-};
+import { getChatRoom } from '@/features/chat/api/get';
+import { isApiError } from '@/libs/api';
+import { notFound } from 'next/navigation';
+import { cookies } from 'next/dist/server/request/cookies';
 
 export type Message = {
 	id: string;
@@ -80,20 +73,17 @@ interface ChatRoomProps {
 }
 
 export default async function ChatRoom({ params }: ChatRoomProps) {
-	const { id } = await params;
+	const [{ id }, cookieStore] = await Promise.all([params, cookies()]);
+	const res = await getChatRoom(id, cookieStore.toString());
+	if (isApiError(res)) {
+		notFound();
+	}
+	const room = res.data;
 
 	return (
 		<main className='flex w-full min-h-0 h-full'>
 			<section className={`flex flex-col flex-1 bg-background`}>
-				<ChatRoomHeader
-					id={id}
-					user={{
-						displayName: 'Test User',
-						avatarUrl: `https://avatarssinitials.ssvg`,
-						id: '1',
-						username: 'test',
-					}}
-				/>
+				<ChatRoomHeader room={room} />
 
 				<div className='flex-1 overflow-y-auto px-4 py-6 md:px-10'>
 					<div className='my-4 flex items-center justify-center gap-3 eyebrow'>

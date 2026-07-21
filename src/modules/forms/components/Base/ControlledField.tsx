@@ -21,6 +21,7 @@ interface ControlledFieldProps<T extends FieldValues> {
 	control: Control<T>;
 	label: FormFieldParams<T>['label'];
 	isRequired?: boolean;
+	hideError?: boolean;
 	layout?: 'vertical' | 'horizontal';
 	children: (props: {
 		field: ControllerRenderProps<T, Path<T>>;
@@ -34,6 +35,7 @@ const ControlledField = <T extends FieldValues>({
 	control,
 	label,
 	isRequired = true,
+	hideError = false,
 	layout = 'vertical',
 	children,
 }: ControlledFieldProps<T>) => {
@@ -44,11 +46,26 @@ const ControlledField = <T extends FieldValues>({
 			name={name}
 			control={control}
 			render={({ field, fieldState, formState }) => (
-				<Field data-invalid={fieldState.invalid} className='gap-0 max-w-full'>
+				<Field
+					data-invalid={fieldState.invalid}
+					className='gap-0 max-w-full relative'>
 					<FieldLabel
-						className={`flex w-full ${layout === 'vertical' ? 'flex-col items-start gap-2' : 'justify-between items-center gap-2'}`}>
+						className={`
+                            flex w-full 
+                            ${
+								label.srOnly
+									? ''
+									: layout === 'vertical'
+										? 'flex-col items-start gap-2'
+										: 'justify-between items-center gap-2'
+							}}`}>
 						<div
-							className={`flex justify-between ${layout === 'vertical' ? 'w-full' : ''}`}>
+							className={`
+                                flex justify-between 
+                                ${layout === 'vertical' ? 'w-full' : ''}
+                                ${label.className ?? ''}
+                                ${label.srOnly ? 'sr-only' : ''}
+                            `}>
 							<div>
 								{label.text}
 								{isRequired && (
@@ -64,7 +81,7 @@ const ControlledField = <T extends FieldValues>({
 							{children({ field, fieldState, formState })}
 						</div>
 					</FieldLabel>
-					{fieldState.invalid && (
+					{fieldState.invalid && !hideError && (
 						<FieldErrorComp
 							errors={[translateError(t, fieldState.error)]}
 							className='ml-1'

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import ParentPostPreview from './parent-post-preview';
 import { Repeat2 } from 'lucide-react';
+import PostContent from './post-content';
 
 interface PostCardProps {
 	post: Post;
@@ -46,7 +47,7 @@ export default function PostCard({
 						</div>
 					)}
 					<PostHeader post={post} isDetailView={isDetailView} />
-					<p className='pl-1'>{post.content}</p>
+					<PostContent content={post.content} isDetailView={isDetailView} />
 					{post.quotedPost && post.quotedPostId && (
 						<ParentPostPreview
 							parent={post.quotedPost}

@@ -16,6 +16,7 @@ export default function UserPosts({ username }: UserPostsProps) {
 	});
 	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
 		useUserPosts(username);
+
 	useEffect(() => {
 		if (!hasNextPage) return;
 		if (!inView) return;

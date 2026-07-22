@@ -12,8 +12,10 @@ interface likeButtonProps {
 }
 
 export default function LikeButton({ postId, likeCount, isLiked }: likeButtonProps) {
-	const [liked, setLiked] = useState(isLiked);
-	const [count, setCount] = useState(likeCount);
+	const [state, setState] = useState({
+		isLiked: isLiked,
+		likeCount: likeCount,
+	});
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
@@ -21,14 +23,20 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 
 	const handleClick = () => {
 		if (isMutating) return;
-		if (liked) {
+		if (state.isLiked) {
 			deleteLike.mutate(postId);
-			setLiked(false);
-			setCount((c) => c - 1);
+			setState((prev) => ({
+				...prev,
+				isLiked: false,
+				likeCount: prev.likeCount - 1,
+			}));
 		} else {
 			addLike.mutate(postId);
-			setLiked(true);
-			setCount((c) => c + 1);
+			setState((prev) => ({
+				...prev,
+				isLiked: true,
+				likeCount: prev.likeCount + 1,
+			}));
 		}
 	};
 
@@ -40,9 +48,11 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 				className='p-2 rounded-full'
 				aria-disabled={isMutating}
 				onClick={handleClick}>
-				<Heart className={`size-4 ${liked ? 'text-primary fill-primary' : ''}`} />
+				<Heart
+					className={`size-4 ${state.isLiked ? 'text-primary fill-primary' : ''}`}
+				/>
 			</Button>
-			{count > 0 && <span>{count}</span>}
+			{state.likeCount > 0 && <span>{state.likeCount}</span>}
 		</div>
 	);
 }

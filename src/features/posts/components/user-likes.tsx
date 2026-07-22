@@ -16,6 +16,7 @@ export default function UserLikes({ username }: UserLikesProps) {
 	});
 	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
 		useUserLikes(username);
+
 	useEffect(() => {
 		if (!hasNextPage) return;
 		if (!inView) return;

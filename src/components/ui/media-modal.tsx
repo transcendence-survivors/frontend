@@ -12,13 +12,22 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/libs/utils';
 
+const fit = {
+	cover: 'object-cover',
+	contain: 'object-contain',
+	fill: 'object-fill',
+	none: 'object-none',
+	scaleDown: 'object-scale-down',
+} as const;
+
 export interface MediaModalProps {
 	src: string;
 	alt: string;
 	type?: 'image' | 'video';
 	thumbnailClassName?: string;
 	modalClassName?: string;
-	thumbnailFit?: string;
+	thumbnailFit?: keyof typeof fit;
+	modalFit?: keyof typeof fit;
 	loading?: 'lazy' | 'eager';
 	children?: React.ReactNode;
 	fallback?: React.ReactNode;
@@ -30,7 +39,8 @@ export const MediaModal = ({
 	type = 'image',
 	thumbnailClassName = 'w-full aspect-square',
 	modalClassName = 'aspect-video max-h-[85vh]',
-	thumbnailFit = 'object-cover',
+	thumbnailFit = 'cover',
+	modalFit = 'contain',
 	loading = 'lazy',
 	children,
 	fallback,
@@ -57,7 +67,7 @@ export const MediaModal = ({
 						<div className='size-full bg-muted'>
 							<video
 								src={src}
-								className={cn('size-full', thumbnailFit)}
+								className={`size-full ${fit[thumbnailFit]}`}
 								onError={() => setError(true)}
 							/>
 							<div className='absolute inset-0 flex items-center justify-center bg-black/30'>
@@ -69,7 +79,7 @@ export const MediaModal = ({
 							src={src}
 							alt={alt}
 							fill
-							className={thumbnailFit}
+							className={fit[thumbnailFit]}
 							loading={loading}
 							onError={() => setError(true)}
 						/>
@@ -107,7 +117,7 @@ export const MediaModal = ({
 							src={src}
 							controls
 							autoPlay
-							className='max-h-[85vh] max-w-full min-w-full object-contain'
+							className={`max-h-[85vh] max-w-full min-w-full ${fit[modalFit]}`}
 							onError={() => setError(true)}
 						/>
 					) : (
@@ -115,7 +125,7 @@ export const MediaModal = ({
 							src={src}
 							alt={alt}
 							fill
-							className='object-cover'
+							className={`max-h-[85vh] max-w-full min-w-full ${fit[modalFit]}`}
 							priority
 							onError={() => setError(true)}
 						/>

@@ -6,6 +6,7 @@ import { Post } from '../types/post';
 type FetchPostResponse = CursorResponse<Post[]>;
 
 export type FetchPostParams = CursorParams<'date-asc' | 'date-desc'>;
+
 export async function fetchPosts(
 	parentPostId: string | undefined,
 	{ cursor, limit, orderBy, search }: FetchPostParams,

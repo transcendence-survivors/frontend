@@ -6,13 +6,21 @@ import PostFooter from './post-footer';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import ParentPostPreview from './parent-post-preview';
+import { Repeat2 } from 'lucide-react';
+import PostContent from './post-content';
 
 interface PostCardProps {
 	post: Post;
 	isDetailView?: boolean;
+	hideRepostBanner?: boolean;
 }
 
-export default function PostCard({ post, isDetailView }: PostCardProps) {
+export default function PostCard({
+	post,
+	isDetailView,
+	hideRepostBanner,
+}: PostCardProps) {
 	return (
 		<Card
 			size='sm'
@@ -32,8 +40,21 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 					</Button>
 				)}
 				<div className='w-full flex flex-col items-start gap-2'>
+					{post.quotedPostId && !hideRepostBanner && (
+						<div className='flex items-center gap-2 pl-1 text-sm text-muted-foreground'>
+							<Repeat2 className='size-4' />
+							<span>{post.author.displayName} reposted </span>
+						</div>
+					)}
 					<PostHeader post={post} isDetailView={isDetailView} />
-					<p className='pl-1'>{post.content}</p>
+					<PostContent content={post.content} isDetailView={isDetailView} />
+					{post.quotedPost && post.quotedPostId && (
+						<ParentPostPreview
+							parent={post.quotedPost}
+							postId={post.quotedPostId}
+							username={post.quotedPost.author.username}
+						/>
+					)}
 					{post.imageUrl && (
 						<div className='pl-1 w-full z-10'>
 							<ImageModal

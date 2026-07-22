@@ -19,7 +19,7 @@ const profileLinks = [
 	{ key: 'userNameComments', labelKey: 'comments', getHrefParams },
 	{ key: 'userNamePosts', labelKey: 'posts', getHrefParams },
 	{ key: 'userNameLikes', labelKey: 'likes', getHrefParams },
-	{ key: 'userNameFavourites', labelKey: 'favourites', getHrefParams },
+	{ key: 'userNameReposts', labelKey: 'reposts', getHrefParams },
 ] as const satisfies NavLink<AppMessages['nav']['user'], string>[];
 
 interface ProfileNavProps extends React.HTMLAttributes<HTMLElement> {

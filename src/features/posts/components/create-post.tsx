@@ -9,13 +9,19 @@ import { Input } from '@/components/ui/input';
 
 interface createPostProps {
 	parentPostId?: string;
+	quotedPostId?: string;
+	onSuccess?: () => void;
 }
 
-export default function CreatePost({ parentPostId }: createPostProps) {
+export default function CreatePost({
+	parentPostId,
+	quotedPostId,
+	onSuccess,
+}: createPostProps) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
-	const createPost = useCreatePost(parentPostId);
+	const createPost = useCreatePost(parentPostId, quotedPostId);
 	const previewUrl = useMemo(
 		() => (file ? URL.createObjectURL(file) : undefined),
 		[file],
@@ -29,7 +35,7 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 
 	function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
 		e.preventDefault();
-		createPost.mutate({ content, file });
+		createPost.mutate({ content, file }, { onSuccess });
 		setContent('');
 		setFile(undefined);
 	}
@@ -78,7 +84,9 @@ export default function CreatePost({ parentPostId }: createPostProps) {
 					onClick={() => fileInputRef.current?.click()}>
 					<ImageIcon />
 				</Button>
-				<Button type='submit' disabled={!content.trim() && !file}>
+				<Button
+					type='submit'
+					disabled={!content.trim() && !file && !quotedPostId}>
 					Poster
 				</Button>
 			</div>

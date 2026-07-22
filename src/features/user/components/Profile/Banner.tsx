@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 import { cn } from '@/libs/utils';
-import { ImageModal } from '@ui/image-modal';
+import { MediaModal } from '@/components/ui/media-modal';
 import { ImageProps } from '@/libs/types';
 import { Search } from 'lucide-react';
 
@@ -16,13 +16,14 @@ const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 				className,
 			)}
 			{...props}>
-			<ImageModal
+			<MediaModal
 				src={src}
 				alt={alt}
 				thumbnailClassName='w-full h-full absolute inset-0 rounded-none'
 				thumbnailFit='object-cover'
-				modalClassName='aspect-3/1 max-h-[85vh] h-auto rounded-none'
-				loading='eager'></ImageModal>
+				modalClassName='aspect-3/1 max-h-[85vh] min-h-[min(300px,80vh)] h-auto w-auto rounded-none '
+				loading='eager'
+			/>
 		</div>
 	);
 };

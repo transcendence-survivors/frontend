@@ -2,12 +2,13 @@ import { useTranslations } from 'next-intl';
 import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
 import { UseBlocksParams } from '../hooks/useBlocks';
 import { BlockDelete, BlockDeleteSkeleton } from './BlockDelete';
+import { memo } from 'react';
 
 type BlockCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user'> & {
 	params: UseBlocksParams;
 };
 
-const BlockCard = ({ user, params }: BlockCardProps) => {
+const BlockCard = memo(({ user, params }: BlockCardProps) => {
 	const t = useTranslations('relationships.blocked');
 
 	return (
@@ -27,7 +28,7 @@ const BlockCard = ({ user, params }: BlockCardProps) => {
 			</div>
 		</UserCard>
 	);
-};
+});
 
 type BlockCardSkeletonProps = React.ComponentProps<typeof UserCardSkeleton>;
 
@@ -39,4 +40,5 @@ const BlockCardSkeleton = ({ ...props }: BlockCardSkeletonProps) => {
 	);
 };
 
+BlockCard.displayName = 'BlockCard';
 export { BlockCard, BlockCardSkeleton };

@@ -3,6 +3,7 @@
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import FriendRequestHeader from './FriendRequestsHeader';
 import { FriendRequestsData } from './FriendRequestsData';
+import { useMemo } from 'react';
 
 type FriendRequestsProps = React.HTMLAttributes<HTMLElement>;
 
@@ -12,7 +13,13 @@ const FriendRequests = ({ ...props }: FriendRequestsProps) => {
 		'direction',
 		parseAsStringLiteral(['incoming', 'outgoing']).withDefault('incoming'),
 	);
-	const params = { direction, search };
+	const params = useMemo(
+		() => ({
+			search,
+			direction,
+		}),
+		[search, direction],
+	);
 
 	return (
 		<>

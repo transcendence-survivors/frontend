@@ -4,10 +4,12 @@ import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Error } from '@/features/relationships/components/error';
-import { UsersLoading } from './UsersLoading';
 import { useUsers, UseUsersParams } from '../hooks/useUsers';
 import { useTranslations } from 'next-intl';
 import { BaseUser } from '@/features/user/type';
+import { cn } from '@/libs/utils';
+import { LoadingList } from '@/components/ui/loading-list';
+import { UserCardSkeleton } from './UserCard';
 
 export interface BaseUserCardProps {
 	user: BaseUser;
@@ -16,7 +18,7 @@ export interface BaseUserCardProps {
 
 interface UsersFeedProps<
 	T extends BaseUserCardProps,
-> extends React.HTMLAttributes<HTMLDivElement> {
+> extends React.HTMLAttributes<HTMLUListElement> {
 	params: UseUsersParams;
 	CardComponent: React.ComponentType<T>;
 	extraCardProps?: Omit<T, 'user' | 'params'>;
@@ -26,6 +28,8 @@ const UsersFeedData = <T extends BaseUserCardProps>({
 	params,
 	CardComponent,
 	extraCardProps,
+	className,
+	...props
 }: UsersFeedProps<T>) => {
 	const t = useTranslations('users');
 	const { ref, inView } = useInView({
@@ -47,8 +51,15 @@ const UsersFeedData = <T extends BaseUserCardProps>({
 	const feed = feedParams?.feed;
 
 	if (isLoading) {
-		return <UsersLoading numberOfSkeletons={20} />;
+		return (
+			<LoadingList
+				numberOfSkeletons={20}
+				className={className}
+				SkeletonComponent={UserCardSkeleton}
+			/>
+		);
 	}
+
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;
 	}
@@ -63,7 +74,7 @@ const UsersFeedData = <T extends BaseUserCardProps>({
 					{feed !== 'not-friends' && t(search ? 'no_users_search' : 'no_users')}
 				</Error>
 			) : (
-				<ul className='flex flex-col gap-2 '>
+				<ul className={cn('flex flex-col gap-2', className)} {...props}>
 					{users.map((user) => (
 						<li key={user.id}>
 							<CardComponent

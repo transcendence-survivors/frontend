@@ -4,11 +4,11 @@ import { Spinner } from '@/components/ui/spinner';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
-import { FriendsLoading } from './FriendsLoading';
-import { FriendCard } from './FriendCard';
+import { FriendCard, FriendCardSkeleton } from './FriendCard';
 import { Error } from '../../components/error';
 import { useFriends, type UseFriendsParams } from '../hooks/useFriends';
 import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
+import { LoadingList } from '@/components/ui/loading-list';
 
 interface FriendsDataProps extends React.HTMLAttributes<HTMLDivElement> {
 	getFriendStatus: PresenceSlice['presenceActions']['getFriendStatus'];
@@ -33,7 +33,9 @@ const FriendsData = ({ getFriendStatus, params }: FriendsDataProps) => {
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	if (isLoading) {
-		return <FriendsLoading numberOfSkeletons={10} />;
+		return (
+			<LoadingList numberOfSkeletons={10} SkeletonComponent={FriendCardSkeleton} />
+		);
 	}
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;

@@ -4,7 +4,7 @@ import RoundedLight from '@/components/icons/RoundedLight';
 import { Button } from '@/components/ui/button';
 import { I18nLink } from '@/modules/i18n/components/I18nLink';
 import { NavLink, usePathname } from '@i18n/utils/navigation';
-import { getPath } from '@/modules/i18n/utils/routing';
+import { getBasePath } from '@/modules/i18n/utils/routing';
 import { useTranslations } from 'next-intl';
 import { Fragment, useMemo } from 'react';
 import { DrawerClose } from '@/components/ui/drawer';
@@ -32,7 +32,7 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 	const t = useTranslations('nav');
 	const path = usePathname();
 	const activeKey = useMemo(() => {
-		if (path.startsWith(getPath('blocked'))) {
+		if (path.startsWith(getBasePath('blocked'))) {
 			return 'friends';
 		}
 
@@ -41,7 +41,7 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 			return 'userName';
 		}
 
-		const matchedLink = links.find((link) => path.startsWith(getPath(link.key)));
+		const matchedLink = links.find((link) => path.startsWith(getBasePath(link.key)));
 		return matchedLink ? matchedLink.key : 'search';
 	}, [path, user?.username]);
 

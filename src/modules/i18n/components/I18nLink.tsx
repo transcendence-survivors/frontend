@@ -2,13 +2,14 @@ import type { ReactNode, ComponentProps } from 'react';
 import { Link } from '@/modules/i18n/utils/navigation';
 import type { ParamRoutes, StaticRoutes } from '../constants/routes';
 import type { Locale } from '../constants/locales';
-import { getPath } from '../utils/routing';
+import { getBasePath } from '../utils/routing';
 
 export type LinkProps = ComponentProps<typeof Link>;
 
 type BaseLinkProps = Omit<LinkProps, 'href'> & {
 	locale?: Locale;
 	children?: Readonly<ReactNode>;
+	queryParams?: Record<string, string | number>;
 };
 
 export type I18nLinkProps =
@@ -41,9 +42,16 @@ export const I18nLink = ({
 	locale,
 	hrefParams,
 	children,
+	queryParams,
 	...rest
 }: I18nLinkProps) => (
-	<Link href={resolveHref(getPath(href), hrefParams)} locale={locale} {...rest}>
+	<Link
+		href={{
+			pathname: resolveHref(getBasePath(href), hrefParams),
+			query: queryParams,
+		}}
+		locale={locale}
+		{...rest}>
 		{children}
 	</Link>
 );

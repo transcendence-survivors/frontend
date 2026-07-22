@@ -162,7 +162,8 @@ const FormField = <T extends FieldValues>({
 			control={control}
 			label={field.label}
 			layout={field.component === 'checkbox' ? 'horizontal' : 'vertical'}
-			isRequired={field.required}>
+			isRequired={field.required}
+			hideError={field.hideError}>
 			{({ field: rhfField, fieldState }) => (
 				<>
 					{componentType === 'checkbox' ? (

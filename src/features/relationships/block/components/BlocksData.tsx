@@ -4,10 +4,10 @@ import { Spinner } from '@/components/ui/spinner';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
-import { BlocksLoading } from './BlocksLoading';
-import { BlockCard } from './BlockCard';
+import { BlockCard, BlockCardSkeleton } from './BlockCard';
 import { Error } from '../../components/error';
 import { useBlocks, UseBlocksParams } from '../hooks/useBlocks';
+import { LoadingList } from '@/components/ui/loading-list';
 
 interface BlocksDataProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseBlocksParams;
@@ -31,7 +31,9 @@ const BlocksData = ({ params }: BlocksDataProps) => {
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	if (isLoading) {
-		return <BlocksLoading numberOfSkeletons={10} />;
+		return (
+			<LoadingList numberOfSkeletons={10} SkeletonComponent={BlockCardSkeleton} />
+		);
 	}
 	if (isError || !data) {
 		return <Error>{t('fetch_error')}</Error>;

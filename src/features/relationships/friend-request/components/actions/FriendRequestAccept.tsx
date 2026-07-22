@@ -5,6 +5,7 @@ import { UserRoundCheck } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { useRequestAccept } from '../../hooks/useRequestActions';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface FriendRequestAcceptProps extends Omit<
 	FriendRequestActionsProps,
@@ -51,7 +52,7 @@ const FriendRequestAccept = ({
 };
 
 const FriendRequestAcceptSkeleton = () => {
-	return <div className={`w-9 sm:w-23 h-9 bg-muted rounded-md animate-pulse`}></div>;
+	return <Skeleton className={`w-9 sm:w-23 h-9 rounded-md`} />;
 };
 
 export { FriendRequestAccept, FriendRequestAcceptSkeleton };

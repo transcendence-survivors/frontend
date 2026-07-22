@@ -1,5 +1,5 @@
 import { Post } from '../types/post';
-import { ImageModal } from '@/components/ui/image-modal';
+import { MediaModal } from '@/components/ui/media-modal';
 
 import PostHeader from './post-header';
 import PostFooter from './post-footer';
@@ -57,9 +57,9 @@ export default function PostCard({
 					)}
 					{post.imageUrl && (
 						<div className='pl-1 w-full z-10'>
-							<ImageModal
+							<MediaModal
 								src={post.imageUrl}
-								alt=''
+								alt={`Post image by ${post.author.username}`}
 								thumbnailClassName='px-0 mt-2 w-full h-auto aspect-square rounded-2xl border border-border'
 							/>
 						</div>

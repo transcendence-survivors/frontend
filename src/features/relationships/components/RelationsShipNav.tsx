@@ -8,7 +8,7 @@ import { cn } from '@/libs/utils';
 import { I18nLink } from '@/modules/i18n/components/I18nLink';
 import { AppMessages } from '@/modules/i18n/messages/types';
 import { NavLink, usePathname } from '@/modules/i18n/utils/navigation';
-import { getPath } from '@/modules/i18n/utils/routing';
+import { getBasePath } from '@/modules/i18n/utils/routing';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
@@ -36,7 +36,7 @@ const RelationShipNav = ({ ...props }: RelationShipNavProps) => {
 
 	const pathname = usePathname();
 	const activeLinkKey = useMemo(() => {
-		const activeLink = links.find((link) => getPath(link.key) === pathname);
+		const activeLink = links.find((link) => getBasePath(link.key) === pathname);
 		return activeLink ? activeLink.key : 'friends';
 	}, [pathname]);
 

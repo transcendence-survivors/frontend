@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { UserRoundPlus } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
 import { useRequestSend, UseSendFriendRequestParams } from '../../hooks/useRequestSend';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface FriendRequestSendProps extends UseSendFriendRequestParams {
 	ariaLabel: string;
@@ -47,7 +48,7 @@ const FriendRequestSend = ({
 };
 
 const FriendRequestSendSkeleton = () => {
-	return <div className={`w-9 sm:w-23 h-9 bg-muted rounded-md animate-pulse`}></div>;
+	return <Skeleton className={`w-9 sm:w-23 h-9 rounded-md`} />;
 };
 
 export { FriendRequestSend, FriendRequestSendSkeleton };

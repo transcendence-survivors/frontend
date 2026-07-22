@@ -56,9 +56,12 @@ interface FormFieldBase<T extends FieldValues> {
 	label: {
 		text: string;
 		addon?: FormLabelAddon;
+		className?: string;
+		srOnly?: boolean;
 	};
 	placeholder?: string;
 	required?: boolean;
+	hideError?: boolean;
 }
 
 type FormFieldParams<T extends FieldValues> = FormFieldBase<T> &

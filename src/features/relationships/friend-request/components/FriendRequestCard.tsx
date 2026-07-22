@@ -7,15 +7,15 @@ import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
 import DisplayDate from '@/components/ui/date';
 import { useTranslations } from 'next-intl';
 import { FriendRequestDirection, UseRequestsParams } from '../types';
+import { memo } from 'react';
 
 type FriendRequestCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user'> & {
 	since: Date;
 	params: UseRequestsParams;
 };
 
-const FriendRequestCard = ({ user, since, params }: FriendRequestCardProps) => {
+const FriendRequestCard = memo(({ user, since, params }: FriendRequestCardProps) => {
 	const t = useTranslations('relationships.requests');
-
 	return (
 		<UserCard
 			user={user}
@@ -37,7 +37,7 @@ const FriendRequestCard = ({ user, since, params }: FriendRequestCardProps) => {
 			</div>
 		</UserCard>
 	);
-};
+});
 
 interface FriendRequestCardSkeletonProps extends React.ComponentProps<
 	typeof UserCardSkeleton
@@ -60,5 +60,7 @@ const FriendRequestCardSkeleton = ({
 		</UserCardSkeleton>
 	);
 };
+
+FriendRequestCard.displayName = 'FriendRequestCard';
 
 export { FriendRequestCardSkeleton, FriendRequestCard };

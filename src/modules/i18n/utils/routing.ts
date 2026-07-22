@@ -1,29 +1,28 @@
 import { defineRouting } from 'next-intl/routing';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../constants/locales';
-import {
-	APP_ROUTES,
-	type RouteMap,
-	type RouteKey,
-	type CanonicalHref,
-} from '../constants/routes';
+import { APP_ROUTES, type RouteKey, type CanonicalHref } from '../constants/routes';
 
-const getRoute = <K extends RouteKey, L extends Locale = typeof DEFAULT_LOCALE>(
-	key: K,
-	locale: L = DEFAULT_LOCALE as L,
-): RouteMap[K][L] => APP_ROUTES[key][locale];
-
-const getPath = (key: RouteKey): CanonicalHref => APP_ROUTES[key].en;
-
-const resolveRoute = (key: RouteKey, locale: Locale) => {
-	return getRoute(key, locale);
+export const getPathImpl = (
+	key: RouteKey,
+	params?: Record<string, string | number>,
+): string => {
+	const template = APP_ROUTES[key].en;
+	if (!params) return template;
+	return template.replace(/:([a-zA-Z0-9_]+)/g, (_match, paramName: string) => {
+		const value = params[paramName];
+		if (value === undefined) {
+			throw new Error(`Missing value for param "${paramName}" in route "${key}"`);
+		}
+		return String(value);
+	});
 };
 
-const routing = defineRouting({
+export const getBasePath = (key: RouteKey): CanonicalHref => APP_ROUTES[key].en;
+
+export const routing = defineRouting({
 	locales: LOCALES,
 	defaultLocale: DEFAULT_LOCALE,
 	pathnames: Object.fromEntries(
 		Object.values(APP_ROUTES).map((value) => [value.en, value]),
 	) as Record<string, Record<Locale, string>>,
 });
-
-export { routing, getRoute, getPath, resolveRoute };

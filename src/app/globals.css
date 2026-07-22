@@ -194,6 +194,9 @@
 	.main-header {
 		height: var(--header-height);
 	}
+	.h-main {
+		height: calc(100vh - var(--header-height));
+	}
 }
 
 @utility friend-sticky-if-tall {

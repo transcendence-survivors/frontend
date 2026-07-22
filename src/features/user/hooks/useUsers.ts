@@ -9,7 +9,7 @@ export type UseUsersParams = {
 
 const initialUserParams = {
 	orderBy: 'created-desc',
-	limit: 50,
+	limit: 25,
 } satisfies Omit<GetUsersParams, 'search'>;
 
 const useUsers = ({ orderBy, search, feedParams }: UseUsersParams) => {

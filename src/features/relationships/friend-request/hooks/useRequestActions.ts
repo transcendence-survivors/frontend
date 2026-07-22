@@ -43,11 +43,10 @@ const useRequestAction = ({
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendRequests>>(queryKey);
-			updateInfiniteQuery<FriendRequest>(
-				queryClient,
-				queryKey,
-				(req) => req.friend.id !== friendId,
-			);
+			updateInfiniteQuery<FriendRequest>(queryClient, queryKey, {
+				type: 'filter',
+				callback: (req) => req.friend.id !== friendId,
+			});
 			return { previous };
 		},
 		onError: (_err, _vars, ctx) => {

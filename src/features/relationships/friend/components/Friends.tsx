@@ -4,6 +4,7 @@ import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import FriendsHeader from './FriendsHeader';
 import FriendsData from './FriendsData';
 import { useOnlineFriends } from '@/features/presence/hooks/useOnlineFriends';
+import { useMemo } from 'react';
 
 type FriendsProps = React.HTMLAttributes<HTMLElement>;
 
@@ -15,8 +16,15 @@ const Friends = ({ ...props }: FriendsProps) => {
 	);
 
 	const { onlineFriends, getFriendStatus } = useOnlineFriends();
-	const friendIds = [...onlineFriends.keys()];
-	const params = { search, status, friendIds };
+	const friendIds = useMemo(() => [...onlineFriends.keys()], [onlineFriends]);
+	const params = useMemo(
+		() => ({
+			search,
+			status,
+			friendIds,
+		}),
+		[search, status, friendIds],
+	);
 
 	return (
 		<>

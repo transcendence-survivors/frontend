@@ -8,6 +8,8 @@ interface Post {
 	author: BaseUser;
 	likeCount: number;
 	isLiked: boolean;
+	repostCount: number;
+	isReposted: boolean;
 	parentPostId?: string;
 	parent?: {
 		content?: string;

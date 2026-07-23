@@ -5,7 +5,9 @@ export interface PresenceFriend {
 	id: string;
 	status: PresenceStatus;
 }
-export type PresenceInitialFriendsPayload = PresenceFriend[];
+export type PresenceInitialFriendsPayload = {
+	friends: PresenceFriend[];
+};
 
 export type PresenceFriendStatusChangePayload = PresenceFriend;
 export type PresenceFriendConnectedPayload = PresenceFriend & BaseUser;

@@ -60,7 +60,7 @@ export const createPresenceSlice: StateCreator<
 
 			socket.on(
 				PRESENCE_EVENTS.RECEIVE.INITIAL_FRIENDS,
-				(friends: PresenceInitialFriendsPayload) => {
+				({ friends }: PresenceInitialFriendsPayload) => {
 					set({
 						onlineFriends: new Map(
 							friends.map((friend) => [

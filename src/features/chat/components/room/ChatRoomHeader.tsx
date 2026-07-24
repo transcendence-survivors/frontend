@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/libs/utils';
 import { ArrowLeft, MoreHorizontal, Settings2 } from 'lucide-react';
 import ChatRoomAvatar from './ChatRoomAvatar';
-import { ChatRoom } from '../../types';
+import { ChatRoom } from '../../types/room';
 import { getMemberPlusCount, getRoomName } from '../../utils/room';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 

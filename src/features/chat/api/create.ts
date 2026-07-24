@@ -1,6 +1,6 @@
 import { api } from '@/libs/api';
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
-import { ChatRoom, ChatRoomType } from '../types';
+import { ChatRoom, ChatRoomType } from '../types/room';
 
 interface ChatRoomCreatePayload {
 	type: ChatRoomType;

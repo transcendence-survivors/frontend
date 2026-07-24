@@ -5,7 +5,7 @@ import { createChatRoom } from '../api/create';
 import { UseChatRoomsParams } from './useChatRooms';
 import { queryClient } from '@/components/providers/QuerryProvider';
 import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
-import { ChatRoom } from '../types';
+import { ChatRoom } from '../types/room';
 import { isApiError } from '@/libs/api';
 import { deleteRoom } from '../api/rooms';
 

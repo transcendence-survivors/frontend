@@ -1,6 +1,6 @@
 import { api, ApiError, buildUrlParams, CursorResponse, isApiError } from '@/libs/api';
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
-import { ChatRoom, GetChatRoomSearchParams } from '../types';
+import { ChatRoom, GetChatRoomSearchParams } from '../types/room';
 
 type GetChatRooms = CursorResponse<ChatRoom[]>;
 

@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand';
 import { SocketSlice } from '@/modules/websocket/stores/socketSlice';
-import { PRESENCE_EVENTS } from '../constants/events';
+import { PRESENCE_EVENTS, PresenceEmitEvent } from '../constants/events';
 import { PresenceStatus } from '../types/status';
 import {
 	PresenceFriend,
@@ -10,6 +10,7 @@ import {
 } from '../types/events';
 import { toast } from 'sonner';
 import { PresenceToast } from '../components/PresenceToast';
+import { emit } from '@/modules/websocket/helpers/emit';
 
 export interface PresenceSlice {
 	status: PresenceStatus;
@@ -21,12 +22,18 @@ export interface PresenceSlice {
 		initPresenceListeners: () => void;
 		cleanupPresenceListeners: () => void;
 
-		goStatus: (status: PresenceStatus) => void;
+		goStatus: (status: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => void;
 
 		isFriendOnline: (friendId: string) => boolean;
 		getFriendStatus: (friendId: string) => PresenceStatus;
 	};
 }
+
+const statusEventMap = {
+	[PresenceStatus.ONLINE]: PRESENCE_EVENTS.SEND.GO_VISIBLE,
+	[PresenceStatus.DO_NOT_DISTURB]: PRESENCE_EVENTS.SEND.GO_DO_NOT_DISTURB,
+	[PresenceStatus.INVISIBLE]: PRESENCE_EVENTS.SEND.GO_INVISIBLE,
+} satisfies Record<Exclude<PresenceStatus, PresenceStatus.OFFLINE>, PresenceEmitEvent>;
 
 export const createPresenceSlice: StateCreator<
 	SocketSlice & PresenceSlice,
@@ -156,22 +163,22 @@ export const createPresenceSlice: StateCreator<
 			});
 		},
 
-		goStatus: (newStatus: Omit<PresenceStatus, PresenceStatus.OFFLINE>) => {
+		goStatus: async (newStatus: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => {
 			const { socket, status } = get();
 			if (!socket?.connected) return;
 			if (status === newStatus) return;
-			switch (newStatus) {
-				case PresenceStatus.ONLINE:
-					socket.emit(PRESENCE_EVENTS.SEND.GO_VISIBLE);
-					break;
-				case PresenceStatus.DO_NOT_DISTURB:
-					socket.emit(PRESENCE_EVENTS.SEND.GO_DO_NOT_DISTURB);
-					break;
-				case PresenceStatus.INVISIBLE:
-					socket.emit(PRESENCE_EVENTS.SEND.GO_INVISIBLE);
-					break;
+
+			try {
+				await emit<void>({
+					socket,
+					event: statusEventMap[newStatus],
+					payload: undefined,
+				});
+
+				set({ status: newStatus });
+			} catch {
+				toast.error('Failed to update presence status');
 			}
-			set({ status: newStatus as PresenceStatus });
 		},
 
 		isFriendOnline: (friendId: string) => {

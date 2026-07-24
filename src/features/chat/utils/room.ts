@@ -1,4 +1,4 @@
-import { ChatRoom, ChatRoomType, DirectChatRoom } from '../types';
+import { ChatRoom, ChatRoomType, DirectChatRoom } from '../types/room';
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 import { PresenceStatus } from '@/features/presence/types/status';
 import { statusPriority } from '@/features/presence/helpers/priority';

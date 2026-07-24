@@ -1,6 +1,6 @@
 'use client';
 
-import { ChatRoom, ChatRoomType } from '../../types';
+import { ChatRoom, ChatRoomType } from '../../types/room';
 import {
 	AvatarProfile,
 	AvatarProfileBadge,

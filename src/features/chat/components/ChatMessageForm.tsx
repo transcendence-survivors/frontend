@@ -9,9 +9,10 @@ import { Paperclip, Send, X } from 'lucide-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import z from 'zod';
+import { useSendMessage } from '../hooks/useSendMessage';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
-	roomId?: string;
+	roomId: string;
 }
 
 const ACCEPTED_MEDIA_TYPES = ['image/', 'video/'];
@@ -52,7 +53,13 @@ type ChatMessageFormValues = z.infer<typeof schema>;
 
 const EMPTY_ATTACHMENTS: File[] = [];
 
-export const ChatMessageForm = ({ className, ...props }: ChatMessageFormProps) => {
+export const ChatMessageForm = ({
+	className,
+	roomId,
+	...props
+}: ChatMessageFormProps) => {
+	const { mutateAsync } = useSendMessage();
+
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const {
@@ -109,9 +116,19 @@ export const ChatMessageForm = ({ className, ...props }: ChatMessageFormProps) =
 		setValue('attachments', updatedFiles, { shouldValidate: true });
 	};
 
-	const submit = (data: ChatMessageFormValues) => {
-		console.log('Submitting message:', data);
-		reset();
+	const submit = async (data: ChatMessageFormValues) => {
+		if (!roomId) return;
+
+		await mutateAsync({
+			roomId,
+			content: data.text,
+			files: data.attachments ?? [],
+		});
+
+		reset({
+			text: '',
+			attachments: [],
+		});
 	};
 
 	const isSubmitDisabled = isSubmitting || (!isDirty && attachments.length === 0);

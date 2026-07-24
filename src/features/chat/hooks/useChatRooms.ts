@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getChatRooms } from '../api/get';
-import { ChatRoomOrderBy, GetChatRoomSearchParams } from '../types';
+import { ChatRoomOrderBy, GetChatRoomSearchParams } from '../types/room';
 
 const initialChatRoomsParam = {
 	limit: 20,

@@ -6,7 +6,7 @@ import { Plus } from 'lucide-react';
 import { cn } from '@/libs/utils';
 import { SearchParamsInput } from '@/components/ui/search-param-input';
 import ChatRoomsData from './ChatRoomsData';
-import { ChatRoomFeed } from '../../types';
+import { ChatRoomFeed } from '../../types/room';
 import { ButtonsState } from '@/components/ui/buttons-state';
 import { useChatRoomParams } from '../../hooks/useChatRoomParams';
 

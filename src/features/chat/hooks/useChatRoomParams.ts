@@ -2,7 +2,7 @@
 
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs';
 import { useMemo } from 'react';
-import { ChatRoomFeed, ChatRoomOrderBy } from '../types';
+import { ChatRoomFeed, ChatRoomOrderBy } from '../types/room';
 
 export const useChatRoomParams = () => {
 	const [filters, setFilters] = useQueryStates({

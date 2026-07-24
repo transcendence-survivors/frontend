@@ -1,7 +1,7 @@
 import LogoLanding from '@/components/icons/LogoLanding';
 import Header from '@/components/ui/header';
 import { Button } from '@/components/ui/button';
-import { Menu, RocketIcon, Shield, ShieldCheckIcon } from 'lucide-react';
+import { RocketIcon, Shield, ShieldCheckIcon } from 'lucide-react';
 import BurgerLandingDrawer from '@/components/layouts/Headers/BurgerLandingDrawer';
 import { GridBackground } from '@/components/ui/grid-background';
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { ChatRoom } from '../../types';
+import { ChatRoom } from '../../types/room';
 import { memo } from 'react';
 import { UseChatRoomsParams } from '../../hooks/useChatRooms';
 import { Skeleton } from '@/components/ui/skeleton';

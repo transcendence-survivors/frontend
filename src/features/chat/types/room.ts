@@ -1,5 +1,5 @@
 import { CursorParams } from '@/libs/api';
-import { BaseUser } from '../user/type';
+import { BaseUser } from '../../user/type';
 
 export enum ChatRoomType {
 	DIRECT = 'DIRECT',

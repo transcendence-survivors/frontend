@@ -97,7 +97,7 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 						))}
 					</div>
 				</div>
-				<ChatMessageForm />
+				<ChatMessageForm roomId={id} />
 			</section>
 		</main>
 	);

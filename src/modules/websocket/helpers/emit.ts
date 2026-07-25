@@ -4,13 +4,13 @@ import { WsResponse } from '../types/response';
 interface EmitParams {
 	socket: Socket;
 	event: string;
-	payload: unknown;
+	payload?: unknown;
 }
 
-export const emit = <T>(params: EmitParams) => {
-	const { socket, event, payload } = params;
+export const emit = <T>({ socket, event, payload }: EmitParams) => {
 	return new Promise((resolve, reject) => {
 		socket.emit(event, payload, (response: WsResponse<T>) => {
+			console.log(`Received response for event ${event}:`, response);
 			if (response.status === 'success') resolve(response.data);
 			else reject(new Error(response.message));
 		});

@@ -8,10 +8,10 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
 	return (
-		// <WebsocketProvider>
-		// 	<PresenceProvider>
-		<DashboardLayout>{children}</DashboardLayout>
-		// 	</PresenceProvider>
-		// </WebsocketProvider>
+		<WebsocketProvider>
+			<PresenceProvider>
+				<DashboardLayout>{children}</DashboardLayout>
+			</PresenceProvider>
+		</WebsocketProvider>
 	);
 }

@@ -61,6 +61,7 @@ export const createPresenceSlice: StateCreator<
 			socket.on(
 				PRESENCE_EVENTS.RECEIVE.INITIAL_STATUS,
 				({ status }: { status: PresenceStatus }) => {
+					console.log(`Initial presence status: ${status}`);
 					set({ status });
 				},
 			);
@@ -172,13 +173,9 @@ export const createPresenceSlice: StateCreator<
 				await emit<void>({
 					socket,
 					event: statusEventMap[newStatus],
-					payload: undefined,
 				});
-
 				set({ status: newStatus });
-			} catch {
-				toast.error('Failed to update presence status');
-			}
+			} catch {}
 		},
 
 		isFriendOnline: (friendId: string) => {

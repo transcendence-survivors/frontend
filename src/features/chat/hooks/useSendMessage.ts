@@ -65,17 +65,17 @@ async function uploadAttachments(files: File[]): Promise<string[]> {
 }
 
 export function useSendMessage() {
-	// const { sendMessage } = useWsChatActions();
+	const { sendMessage } = useWsChatActions();
 
 	return useMutation({
 		mutationFn: async ({ roomId, content, files = [] }: SendMessageInput) => {
 			const attachmentUrls = await uploadAttachments(files);
 			console.log('Attachment URLs:', attachmentUrls);
-			// return sendMessage({
-			// 	roomId,
-			// 	content,
-			// 	attachmentUrls,
-			// });
+			return sendMessage({
+				roomId,
+				content,
+				attachmentUrls,
+			});
 		},
 		onError: (error) => {
 			console.error('Error sending message:', error);

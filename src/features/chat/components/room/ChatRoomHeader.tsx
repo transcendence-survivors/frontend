@@ -30,7 +30,7 @@ const ChatRoomHeader = ({ room, className, ...props }: ChatRoomHeaderProps) => {
 					size='icon'
 					className='rounded p-2 hover:bg-muted hover:text-foreground md:hidden'>
 					<I18nLink href='chat'>
-						<ArrowLeft className='h-5 w-5' />
+						<ArrowLeft className='size-4' />
 					</I18nLink>
 				</Button>
 				<div className='flex items-center gap-4 min-w-0'>

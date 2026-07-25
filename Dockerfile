@@ -5,12 +5,21 @@ WORKDIR /app
 RUN npm install -g pnpm
 RUN pnpm config set store-dir /pnpm/store
 
-COPY package.json ./
+# Manifests uniquement (couche de cache)
+COPY pnpm-workspace.yaml package.json ./
+COPY apps/network/client/package.json ./apps/network/client/package.json
+COPY apps/game/ui/package.json ./apps/game/ui/package.json
+COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.json
 
 RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
     pnpm install
 
-COPY . .
+# Uniquement les 3 packages dont cette image a besoin
+COPY apps/network/client ./apps/network/client
+COPY apps/game/ui ./apps/game/ui
+COPY apps/game/shared-package ./apps/game/shared-package
+
+WORKDIR /app/apps/network/client
 
 EXPOSE 3000
 

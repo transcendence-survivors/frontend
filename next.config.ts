@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
 		],
 	},
 	devIndicators: false,
+	transpilePackages: ['@transcendence/game-shared', '@transcendence/game-ui'],
 };
 
 const withNextIntl = createNextIntlPlugin('./src/modules/i18n/request.ts');

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface PostContentProps {
 	content?: string;
@@ -10,6 +11,7 @@ interface PostContentProps {
 const MAX_LENGTH = 280;
 
 export default function PostContent({ content, isDetailView }: PostContentProps) {
+	const t = useTranslations('posts.card');
 	const [expanded, setExpanded] = useState(false);
 
 	if (!content) return null;
@@ -28,7 +30,7 @@ export default function PostContent({ content, isDetailView }: PostContentProps)
 					type='button'
 					className='block text-primary mt-1 p-0 hover:underline focus:outline-none focus-visible:underline'
 					onClick={() => setExpanded((v) => !v)}>
-					{expanded ? 'See less' : 'See more'}
+					{expanded ? t('see_less') : t('see_more')}
 				</button>
 			)}
 		</p>

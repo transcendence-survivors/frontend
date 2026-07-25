@@ -5,12 +5,14 @@ import { useUserReposts } from '../hook/useUserReposts';
 import { useEffect } from 'react';
 import PostCard from './post-card';
 import { Spinner } from '@/components/ui/spinner';
+import { useTranslations } from 'next-intl';
 
 interface UserRepostsProps {
 	username: string;
 }
 
 export default function UserReposts({ username }: UserRepostsProps) {
+	const t = useTranslations('posts.reposts');
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
@@ -24,9 +26,9 @@ export default function UserReposts({ username }: UserRepostsProps) {
 		fetchNextPage();
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-	if (isLoading) return 'Loading';
-	if (isError) return 'Error loading reposts';
-	if (!data || data.pages.length === 0) return 'No reposts yet';
+	if (isLoading) return t('loading');
+	if (isError) return t('fetch_error');
+	if (!data || data.pages.length === 0) return t('no_reposts');
 	const reposts = data.pages.flatMap((page) => page.data.data);
 
 	return (

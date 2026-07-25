@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAddLike, useDeleteLike } from '../hook/useLikes';
 import { Heart } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface likeButtonProps {
 	postId: string;
@@ -12,6 +13,7 @@ interface likeButtonProps {
 }
 
 export default function LikeButton({ postId, likeCount, isLiked }: likeButtonProps) {
+	const t = useTranslations('posts.actions');
 	const [state, setState] = useState({
 		isLiked: isLiked,
 		likeCount: likeCount,
@@ -47,6 +49,7 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 				size='icon'
 				className='p-2 rounded-full'
 				aria-disabled={isMutating}
+				aria-label={state.isLiked ? t('unlike') : t('like')}
 				onClick={handleClick}>
 				<Heart
 					className={`size-4 ${state.isLiked ? 'text-primary fill-primary' : ''}`}

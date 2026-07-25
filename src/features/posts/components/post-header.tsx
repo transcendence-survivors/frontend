@@ -14,6 +14,7 @@ import { useUser } from '@/features/auth/stores/session';
 import { useDeletePost } from '../hook/useDeletePost';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { ROUTES } from '@/modules/i18n/constants/routes';
+import { useTranslations } from 'next-intl';
 
 interface PostHeaderProps {
 	post: Post;
@@ -21,6 +22,7 @@ interface PostHeaderProps {
 }
 
 export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
+	const t = useTranslations('posts.actions');
 	const user = useUser();
 	const isOwner = user?.id === post.author.id;
 	const deletePost = useDeletePost();
@@ -71,7 +73,7 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 									})
 								}>
 								<Trash2 />
-								Delete
+								{t('delete')}
 							</DropdownMenuItem>
 						)}
 					</DropdownMenuContent>

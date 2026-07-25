@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { ImageIcon, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from 'next-intl';
 
 interface createPostProps {
 	parentPostId?: string;
@@ -18,6 +19,7 @@ export default function CreatePost({
 	quotedPostId,
 	onSuccess,
 }: createPostProps) {
+	const t = useTranslations('posts.create');
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [content, setContent] = useState('');
 	const [file, setFile] = useState<File | undefined>();
@@ -51,7 +53,7 @@ export default function CreatePost({
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
 				className='resize-none'
-				placeholder='Commencer à écrire un post'
+				placeholder={t('placeholder')}
 			/>
 			<Input
 				ref={fileInputRef}
@@ -67,6 +69,7 @@ export default function CreatePost({
 							className='absolute top-2 right-2'
 							type='button'
 							variant='ghost'
+							aria-label={t('remove_image')}
 							onClick={() => handleRemoveFile()}>
 							<X />
 						</Button>
@@ -81,13 +84,14 @@ export default function CreatePost({
 				<Button
 					type='button'
 					variant='ghost'
+					aria-label={t('add_image')}
 					onClick={() => fileInputRef.current?.click()}>
 					<ImageIcon />
 				</Button>
 				<Button
 					type='submit'
 					disabled={!content.trim() && !file && !quotedPostId}>
-					Poster
+					{t('submit')}
 				</Button>
 			</div>
 		</form>

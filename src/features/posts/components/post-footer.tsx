@@ -16,12 +16,14 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAddRepost, useDeleteRepost } from '@/features/reposts/hook/useReposts';
+import { useTranslations } from 'next-intl';
 
 interface PostFooterProps {
 	post: Post;
 }
 
 export default function PostFooter({ post }: PostFooterProps) {
+	const t = useTranslations('posts.actions');
 	const [reposted, setReposted] = useState(post.isReposted);
 	const [repostCount, setRepostCount] = useState(post.repostCount);
 	const [quoteOpen, setQuoteOpen] = useState(false);
@@ -47,7 +49,7 @@ export default function PostFooter({ post }: PostFooterProps) {
 		<div className='flex items-center justify-between px-0 gap-2 pl-1 w-full'>
 			<div className='flex items-center gap-2 z-10'>
 				<div className='flex items-center gap-1 z-0'>
-					<div className='p-2'>
+					<div className='p-2' aria-label={t('comment')}>
 						<MessageCircle className='size-4' />
 					</div>
 					{post.commentCount > 0 && <span>{post.commentCount}</span>}
@@ -63,10 +65,10 @@ export default function PostFooter({ post }: PostFooterProps) {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						<DropdownMenuItem onClick={handleRepostClick}>
-							{reposted ? 'Undo repost' : 'Repost'}
+							{reposted ? t('undo_repost') : t('repost')}
 						</DropdownMenuItem>
 						<DropdownMenuItem onClick={() => setQuoteOpen(true)}>
-							Quote
+							{t('quote')}
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

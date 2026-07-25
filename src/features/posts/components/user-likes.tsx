@@ -5,12 +5,14 @@ import { useUserLikes } from '../hook/useUserLikes';
 import PostCard from './post-card';
 import { Spinner } from '@/components/ui/spinner';
 import { useInView } from 'react-intersection-observer';
+import { useTranslations } from 'next-intl';
 
 interface UserLikesProps {
 	username: string;
 }
 
 export default function UserLikes({ username }: UserLikesProps) {
+	const t = useTranslations('posts.likes');
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
@@ -25,9 +27,9 @@ export default function UserLikes({ username }: UserLikesProps) {
 		fetchNextPage();
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-	if (isLoading) return 'Loading';
-	if (isError) return 'Error loading likes';
-	if (!data || data.pages.length === 0) return 'No likes found';
+	if (isLoading) return t('loading');
+	if (isError) return t('fetch_error');
+	if (!data || data.pages.length === 0) return t('no_likes');
 	const likes = data.pages.flatMap((page) => page.data.data);
 
 	return (

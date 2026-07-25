@@ -5,12 +5,14 @@ import { useUserComments } from '../hook/useUserComments';
 import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
 import PostCard from './post-card';
+import { useTranslations } from 'next-intl';
 
 interface UserCommentsProps {
 	username: string;
 }
 
 export default function UserComments({ username }: UserCommentsProps) {
+	const t = useTranslations('posts.comments');
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
@@ -24,9 +26,9 @@ export default function UserComments({ username }: UserCommentsProps) {
 		fetchNextPage();
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-	if (isLoading) return 'Loading';
-	if (isError) return 'Error loading comments';
-	if (!data || data.pages.length === 0) return 'Pas de commentaires';
+	if (isLoading) return t('loading');
+	if (isError) return t('fetch_error');
+	if (!data || data.pages.length === 0) return t('no_comments');
 	const comments = data.pages.flatMap((page) => page.data.data);
 
 	return (

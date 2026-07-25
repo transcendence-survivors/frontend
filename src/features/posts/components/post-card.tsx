@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import ParentPostPreview from './parent-post-preview';
 import { Repeat2 } from 'lucide-react';
 import PostContent from './post-content';
+import { useTranslations } from 'next-intl';
 
 interface PostCardProps {
 	post: Post;
@@ -21,6 +22,8 @@ export default function PostCard({
 	isDetailView,
 	hideRepostBanner,
 }: PostCardProps) {
+	const t = useTranslations('posts.card');
+
 	return (
 		<Card
 			size='sm'
@@ -43,7 +46,11 @@ export default function PostCard({
 					{post.quotedPostId && !hideRepostBanner && (
 						<div className='flex items-center gap-2 pl-1 text-sm text-muted-foreground'>
 							<Repeat2 className='size-4' />
-							<span>{post.author.displayName} reposted </span>
+							<span>
+								{t('reposted_by', {
+									displayName: post.author.displayName,
+								})}
+							</span>
 						</div>
 					)}
 					<PostHeader post={post} isDetailView={isDetailView} />
@@ -59,7 +66,9 @@ export default function PostCard({
 						<div className='pl-1 w-full z-10'>
 							<MediaModal
 								src={post.imageUrl}
-								alt={`Post image by ${post.author.username}`}
+								alt={t('image_alt', {
+									username: post.author.username,
+								})}
 								thumbnailClassName='px-0 mt-2 w-full h-auto aspect-square rounded-2xl border border-border'
 								modalFit='contain'
 								modalClassName='min-h-[min(1500px,80vh)] aspect-square '

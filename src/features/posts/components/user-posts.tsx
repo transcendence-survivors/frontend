@@ -5,12 +5,14 @@ import { useUserPosts } from '../hook/useUserPosts';
 import { useEffect } from 'react';
 import { Spinner } from '@/components/ui/spinner';
 import PostCard from './post-card';
+import { useTranslations } from 'next-intl';
 
 interface UserPostsProps {
 	username: string;
 }
 
 export default function UserPosts({ username }: UserPostsProps) {
+	const t = useTranslations('posts.list');
 	const { ref, inView } = useInView({
 		rootMargin: '0px 0px 100px 0px',
 	});
@@ -25,9 +27,9 @@ export default function UserPosts({ username }: UserPostsProps) {
 		fetchNextPage();
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-	if (isLoading) return 'Loading';
-	if (isError) return 'Error loading posts';
-	if (!data || data.pages.length === 0) return 'Pas de posts';
+	if (isLoading) return t('loading');
+	if (isError) return t('fetch_error');
+	if (!data || data.pages.length === 0) return t('no_posts');
 	const posts = data.pages.flatMap((page) => page.data.data);
 
 	return (

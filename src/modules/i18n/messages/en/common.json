@@ -171,6 +171,53 @@
 		"subtitle": "Dispatches from the lantern-bearers"
 	},
 
+	"posts": {
+		"create": {
+			"placeholder": "Start writing a post",
+			"submit": "Post",
+			"add_image": "Add an image",
+			"remove_image": "Remove image"
+		},
+		"card": {
+			"reposted_by": "{displayName} reposted",
+			"image_alt": "Post image by {username}",
+			"see_more": "See more",
+			"see_less": "See less"
+		},
+		"actions": {
+			"comment": "Comment",
+			"repost": "Repost",
+			"undo_repost": "Undo repost",
+			"quote": "Quote",
+			"like": "Like",
+			"unlike": "Unlike",
+			"delete": "Delete"
+		},
+		"detail": {
+			"back": "Post"
+		},
+		"list": {
+			"loading": "Loading posts...",
+			"no_posts": "No posts yet.",
+			"fetch_error": "Failed to load posts. Please try again later."
+		},
+		"comments": {
+			"loading": "Loading comments...",
+			"no_comments": "No comments yet.",
+			"fetch_error": "Failed to load comments. Please try again later."
+		},
+		"likes": {
+			"loading": "Loading likes...",
+			"no_likes": "No liked posts yet.",
+			"fetch_error": "Failed to load likes. Please try again later."
+		},
+		"reposts": {
+			"loading": "Loading reposts...",
+			"no_reposts": "No reposts yet.",
+			"fetch_error": "Failed to load reposts. Please try again later."
+		}
+	},
+
 	"auth": {
 		"signout": {
 			"label": "Logout",

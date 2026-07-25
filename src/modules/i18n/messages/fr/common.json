@@ -97,6 +97,53 @@
 		}
 	},
 
+	"posts": {
+		"create": {
+			"placeholder": "Commencer à écrire un post",
+			"submit": "Poster",
+			"add_image": "Ajouter une image",
+			"remove_image": "Retirer l'image"
+		},
+		"card": {
+			"reposted_by": "{displayName} a reposté",
+			"image_alt": "Image du post de {username}",
+			"see_more": "Voir plus",
+			"see_less": "Voir moins"
+		},
+		"actions": {
+			"comment": "Commenter",
+			"repost": "Reposter",
+			"undo_repost": "Annuler le repost",
+			"quote": "Citer",
+			"like": "J'aime",
+			"unlike": "Je n'aime plus",
+			"delete": "Supprimer"
+		},
+		"detail": {
+			"back": "Post"
+		},
+		"list": {
+			"loading": "Chargement des posts...",
+			"no_posts": "Aucun post pour le moment.",
+			"fetch_error": "Échec du chargement des posts. Veuillez réessayer plus tard."
+		},
+		"comments": {
+			"loading": "Chargement des commentaires...",
+			"no_comments": "Aucun commentaire pour le moment.",
+			"fetch_error": "Échec du chargement des commentaires. Veuillez réessayer plus tard."
+		},
+		"likes": {
+			"loading": "Chargement des likes...",
+			"no_likes": "Aucun post aimé pour le moment.",
+			"fetch_error": "Échec du chargement des likes. Veuillez réessayer plus tard."
+		},
+		"reposts": {
+			"loading": "Chargement des reposts...",
+			"no_reposts": "Aucun repost pour le moment.",
+			"fetch_error": "Échec du chargement des reposts. Veuillez réessayer plus tard."
+		}
+	},
+
 	"auth": {
 		"signout": {
 			"label": "Déconnexion",

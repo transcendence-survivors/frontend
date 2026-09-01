@@ -13,7 +13,6 @@ export function GameRoot() {
 		startedRef.current = true;
 		let cancelled = false;
 
-		console.log(canvas);
 		initGame(canvas).then(() => {
 			if (cancelled) {
 				destroyGame();

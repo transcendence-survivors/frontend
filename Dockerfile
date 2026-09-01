@@ -2,10 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.15.0
 RUN pnpm config set store-dir /pnpm/store
 
-# Manifests uniquement (couche de cache)
 COPY pnpm-workspace.yaml package.json ./
 COPY apps/network/client/package.json ./apps/network/client/package.json
 COPY apps/game/ui/package.json ./apps/game/ui/package.json
@@ -14,7 +13,6 @@ COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.js
 RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
     pnpm install
 
-# Uniquement les 3 packages dont cette image a besoin
 COPY apps/network/client ./apps/network/client
 COPY apps/game/ui ./apps/game/ui
 COPY apps/game/shared-package ./apps/game/shared-package

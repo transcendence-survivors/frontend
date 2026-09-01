@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAddLike, useDeleteLike } from '../hook/useLikes';
 import { Heart } from 'lucide-react';
@@ -21,24 +21,51 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
+	// verrou synchrone : isPending (react-query) ne se met à jour qu'au
+	// prochain render, trop tard pour bloquer un double-clic très rapide
+	const isPendingRef = useRef(false);
 	const isMutating = addLike.isPending || deleteLike.isPending;
 
 	const handleClick = () => {
-		if (isMutating) return;
+		if (isPendingRef.current) return;
+		isPendingRef.current = true;
+
 		if (state.isLiked) {
-			deleteLike.mutate(postId);
 			setState((prev) => ({
 				...prev,
 				isLiked: false,
 				likeCount: prev.likeCount - 1,
 			}));
+			deleteLike.mutate(postId, {
+				onError: () => {
+					setState((prev) => ({
+						...prev,
+						isLiked: true,
+						likeCount: prev.likeCount + 1,
+					}));
+				},
+				onSettled: () => {
+					isPendingRef.current = false;
+				},
+			});
 		} else {
-			addLike.mutate(postId);
 			setState((prev) => ({
 				...prev,
 				isLiked: true,
 				likeCount: prev.likeCount + 1,
 			}));
+			addLike.mutate(postId, {
+				onError: () => {
+					setState((prev) => ({
+						...prev,
+						isLiked: false,
+						likeCount: prev.likeCount - 1,
+					}));
+				},
+				onSettled: () => {
+					isPendingRef.current = false;
+				},
+			});
 		}
 	};
 
@@ -48,7 +75,7 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 				variant='ghost'
 				size='icon'
 				className='p-2 rounded-full'
-				aria-disabled={isMutating}
+				disabled={isMutating}
 				aria-label={state.isLiked ? t('unlike') : t('like')}
 				onClick={handleClick}>
 				<Heart

@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import { getPostById } from '@/features/posts/api/posts';
 import CreatePost from '@/features/posts/components/create-post';
 import PostCard from '@/features/posts/components/post-card';
@@ -11,8 +12,8 @@ interface PostPageProps {
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-	const { postId } = await params;
-	const res = await getPostById(postId);
+	const [{ postId }, cookieStore] = await Promise.all([params, cookies()]);
+	const res = await getPostById(postId, cookieStore.toString());
 	if (isApiError(res)) notFound();
 
 	return (

@@ -116,6 +116,8 @@ export async function deletePost(postId: string) {
 	return res;
 }
 
-export async function getPostById(postId: string) {
-	return api.get<Post>(`${POST_ENDPOINTS.getPost}/${postId}`);
+export async function getPostById(postId: string, cookie?: string) {
+	return api.get<Post>(`${POST_ENDPOINTS.getPost}/${postId}`, {
+		headers: cookie ? { Cookie: cookie } : undefined,
+	});
 }

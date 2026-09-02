@@ -70,7 +70,6 @@ export function useSendMessage() {
 	return useMutation({
 		mutationFn: async ({ roomId, content, files = [] }: SendMessageInput) => {
 			const attachmentUrls = await uploadAttachments(files);
-			console.log('Attachment URLs:', attachmentUrls);
 			return sendMessage({
 				roomId,
 				content,
@@ -80,8 +79,6 @@ export function useSendMessage() {
 		onError: (error) => {
 			console.error('Error sending message:', error);
 		},
-		onSuccess: () => {
-			console.log('Message sent successfully');
-		},
+		onSuccess: () => {},
 	});
 }

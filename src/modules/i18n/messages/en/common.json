@@ -162,6 +162,12 @@
 			"no_more_chat_rooms": "No more chat rooms to load.",
 			"fetch_error": "Failed to load chat rooms. Please try again later."
 		},
+		"messages": {
+			"no_messages": "No messages yet. Start the conversation!",
+			"no_messages_search": "No messages found for your search.",
+			"no_more_messages": "No more messages to load.",
+			"fetch_error": "Failed to load messages. Please try again later."
+		},
 		"title": "Chat",
 		"subtitle": "Conversations with your friends"
 	},

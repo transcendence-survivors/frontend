@@ -8,6 +8,7 @@ interface EmitParams {
 }
 
 export const emit = <T>({ socket, event, payload }: EmitParams) => {
+	console.log(`Emitting event ${event} with payload:`, payload);
 	return new Promise((resolve, reject) => {
 		socket.emit(event, payload, (response: WsResponse<T>) => {
 			console.log(`Received response for event ${event}:`, response);

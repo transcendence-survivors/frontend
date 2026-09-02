@@ -1,6 +1,7 @@
 import { api, ApiError, buildUrlParams, CursorResponse, isApiError } from '@/libs/api';
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
 import { ChatRoom, GetChatRoomSearchParams } from '../types/room';
+import { GetChatMessagesParams, GetChatMessagesResponse } from '../types/message';
 
 type GetChatRooms = CursorResponse<ChatRoom[]>;
 
@@ -32,4 +33,15 @@ const getChatRoom = async (id: string, cookie: string) => {
 	}
 };
 
-export { getChatRooms, getChatRoom };
+const getChatMessages = async (roomId: string, params: GetChatMessagesParams) => {
+	const urlParams = buildUrlParams(params);
+	const res = await api.get<GetChatMessagesResponse>(
+		`${CHAT_ENDPOINTS.getMessages(roomId)}?${urlParams.toString()}`,
+	);
+	if (isApiError(res)) {
+		throw new Error(res.message);
+	}
+	return res.data;
+};
+
+export { getChatRooms, getChatRoom, getChatMessages };

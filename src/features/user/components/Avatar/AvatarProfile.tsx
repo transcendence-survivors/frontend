@@ -103,7 +103,7 @@ interface AvatarProfileLinkProps {
 }
 const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 	return (
-		<I18nLink href='userName' hrefParams={{ username }}>
+		<I18nLink href='userName' hrefParams={{ username: `@${username}` }}>
 			<AvatarProfile {...avatar} />
 		</I18nLink>
 	);

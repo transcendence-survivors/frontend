@@ -9,7 +9,7 @@ import { Paperclip, Send, X } from 'lucide-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import z from 'zod';
-import { useSendMessage } from '../hooks/useSendMessage';
+import { useSendMessage } from '../../hooks/useSendMessage';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
@@ -124,6 +124,7 @@ export const ChatMessageForm = ({
 			content: data.text,
 			files: data.attachments ?? [],
 		});
+		console.log('Message sent:', data.text, 'Attachments:', data.attachments);
 
 		reset({
 			text: '',

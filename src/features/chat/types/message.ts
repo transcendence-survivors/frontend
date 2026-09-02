@@ -1,4 +1,5 @@
 import { BaseUser } from '@/features/user/type';
+import { CursorParams, CursorResponse } from '@/libs/api/helpers/types';
 
 export interface ChatMessage {
 	id: string;
@@ -11,3 +12,8 @@ export interface ChatMessage {
 	createdAt: string;
 	sender: BaseUser;
 }
+
+type ChatMessageOrderBy = 'created-asc' | 'created-desc';
+
+export type GetChatMessagesParams = CursorParams<ChatMessageOrderBy>;
+export type GetChatMessagesResponse = CursorResponse<ChatMessage[]>;

@@ -7,7 +7,7 @@ interface UseChatMessagesParams {
 }
 
 const initialChatMessagesParam = {
-	limit: 30,
+	limit: 10,
 	orderBy: 'created-desc',
 } satisfies GetChatMessagesParams;
 

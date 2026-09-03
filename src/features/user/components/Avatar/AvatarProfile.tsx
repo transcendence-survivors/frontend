@@ -9,6 +9,10 @@ import { ImageProps } from '@libs/types';
 import { capitalize, cn, truncate } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { PresenceStatus } from '@/features/presence/types/status';
+import { TooltipContent, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
+import { BaseUser } from '../../type';
+import UserDisplayName from '../Identity/UserDisplayName';
+import Username from '../Identity/Username';
 
 export type AvatarProfileSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -109,10 +113,56 @@ const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 	);
 };
 
+type AvatarProfileTooltipProps = {
+	user: BaseUser;
+	isLink?: boolean;
+} & Pick<AvatarProfileProps, 'size' | 'badgeState'>;
+
+const AvatarProfileTooltip = ({
+	user: { displayName, username, avatarUrl },
+	size = 'md',
+	isLink = true,
+	badgeState,
+}: AvatarProfileTooltipProps) => {
+	const img = {
+		src: avatarUrl ?? '',
+		alt: displayName,
+	} as const;
+
+	const avatarProps = {
+		img,
+		size,
+		badgeState,
+	} as const;
+
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<div className={`${isLink && 'cursor-pointer'}`}>
+					{isLink ? (
+						<AvatarProfileLink avatar={avatarProps} username={username} />
+					) : (
+						<AvatarProfile {...avatarProps} />
+					)}
+				</div>
+			</TooltipTrigger>
+			<TooltipContent
+				className='bg-background text-foreground shadow-md'
+				side='top'>
+				<div className='flex flex-col items-center gap-1'>
+					<UserDisplayName displayName={displayName} />
+					<Username username={username} />
+				</div>
+			</TooltipContent>
+		</Tooltip>
+	);
+};
+
 export {
 	AvatarProfile,
 	AvatarProfileFallback,
 	AvatarProfileLink,
 	AvatarProfileBadge,
 	AvatarProfileCount,
+	AvatarProfileTooltip,
 };

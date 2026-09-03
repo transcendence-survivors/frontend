@@ -1,22 +1,32 @@
 'use client';
 
+import React, { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import z from 'zod';
+import { Paperclip, Save, Send } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
-import { MediaModal } from '@/components/ui/media-modal';
 import { cn } from '@/libs/utils';
 import FormField from '@/modules/forms/components/Base/FormField';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Paperclip, Send, X } from 'lucide-react';
-import { useEffect, useMemo, useRef } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
-import z from 'zod';
-import { useSendMessage } from '../../hooks/useSendMessage';
+import { useSendMessage, useEditMessage } from '../../hooks/useMessageActions';
+import { ChatMessage } from '../../types/message';
+
+import {
+	MediaAttachmentPreviews,
+	MediaPreviewItem,
+} from '@/components/ui/media-attachment-previews';
+import { ChatMessageModeBanner } from './ChatMessageModeBanner';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
+	onCancelMode: () => void;
+	editingMessage?: ChatMessage | null;
+	replyingToMessage?: ChatMessage | null;
 }
 
 const ACCEPTED_MEDIA_TYPES = ['image/', 'video/'];
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+const MAX_FILE_SIZE = 50 * 1024 * 1024;
 const MAX_FILES_COUNT = 5;
 
 const schema = z
@@ -56,9 +66,13 @@ const EMPTY_ATTACHMENTS: File[] = [];
 export const ChatMessageForm = ({
 	className,
 	roomId,
+	onCancelMode,
+	editingMessage,
+	replyingToMessage,
 	...props
 }: ChatMessageFormProps) => {
-	const { mutateAsync } = useSendMessage();
+	const { mutateAsync: sendMessage } = useSendMessage();
+	const { mutateAsync: editMessage } = useEditMessage();
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -67,13 +81,14 @@ export const ChatMessageForm = ({
 		setValue,
 		control,
 		reset,
-		formState: { errors, isDirty, isSubmitting },
+		clearErrors,
+		setFocus,
+		formState: { errors, isDirty, isSubmitting, isSubmitted },
 	} = useForm<ChatMessageFormValues>({
 		resolver: zodResolver(schema),
-		defaultValues: {
-			text: '',
-			attachments: [],
-		},
+		mode: 'onSubmit',
+		reValidateMode: 'onChange',
+		defaultValues: { text: '', attachments: [] },
 	});
 
 	const attachments =
@@ -83,15 +98,25 @@ export const ChatMessageForm = ({
 			defaultValue: EMPTY_ATTACHMENTS,
 		}) ?? EMPTY_ATTACHMENTS;
 
-	const previews = useMemo(() => {
+	const previews: MediaPreviewItem[] = useMemo(() => {
 		return attachments.map((file) => ({
 			file,
 			url: URL.createObjectURL(file),
-			type: file.type.startsWith('video/')
-				? ('video' as const)
-				: ('image' as const),
+			type: file.type.startsWith('video/') ? 'video' : 'image',
 		}));
 	}, [attachments]);
+
+	useEffect(() => {
+		clearErrors();
+
+		if (editingMessage) {
+			setValue('text', editingMessage.content ?? '', { shouldValidate: true });
+			setValue('attachments', [], { shouldValidate: true });
+		}
+		if (editingMessage || replyingToMessage) {
+			setFocus('text');
+		}
+	}, [editingMessage, replyingToMessage, setValue, clearErrors, setFocus]);
 
 	useEffect(() => {
 		return () => {
@@ -111,25 +136,35 @@ export const ChatMessageForm = ({
 		}
 	};
 
-	const removeAttachment = (indexToRemove: number) => {
-		const updatedFiles = attachments.filter((_, index) => index !== indexToRemove);
-		setValue('attachments', updatedFiles, { shouldValidate: true });
-	};
+	const handleRemoveAttachment = useCallback(
+		(indexToRemove: number) => {
+			const updatedFiles = attachments.filter(
+				(_, index) => index !== indexToRemove,
+			);
+			setValue('attachments', updatedFiles, { shouldValidate: true });
+		},
+		[attachments, setValue],
+	);
 
 	const submit = async (data: ChatMessageFormValues) => {
 		if (!roomId) return;
 
-		await mutateAsync({
-			roomId,
-			content: data.text,
-			files: data.attachments ?? [],
-		});
-		console.log('Message sent:', data.text, 'Attachments:', data.attachments);
+		if (editingMessage) {
+			await editMessage({
+				messageId: editingMessage.id,
+				content: data.text,
+			});
+		} else {
+			await sendMessage({
+				roomId,
+				content: data.text,
+				files: data.attachments ?? [],
+				replyToId: replyingToMessage?.id,
+			});
+		}
 
-		reset({
-			text: '',
-			attachments: [],
-		});
+		reset({ text: '', attachments: [] });
+		onCancelMode();
 	};
 
 	const isSubmitDisabled = isSubmitting || (!isDirty && attachments.length === 0);
@@ -137,37 +172,17 @@ export const ChatMessageForm = ({
 	return (
 		<form
 			onSubmit={handleSubmit(submit)}
-			className={cn('px-3 bg-card border-t border-border', className)}
+			className={cn('px-3 bg-card border-t border-border flex flex-col', className)}
 			{...props}>
-			{previews.length > 0 && (
-				<div
-					aria-live='polite'
-					className='flex flex-wrap gap-2 border-b border-border py-3'>
-					{previews.map(({ file, url, type }, index) => (
-						<div
-							key={`${file.name}-${file.lastModified}-${index}`}
-							className='group relative size-20 overflow-hidden rounded-md border border-border bg-muted'>
-							<MediaModal
-								src={url}
-								alt={file.name}
-								type={type}
-								thumbnailClassName='size-full rounded-none'
-								modalClassName='min-w-[300px] min-h-[300px] max-h-[85vh]'
-							/>
-
-							<Button
-								type='button'
-								variant='destructive'
-								size='icon'
-								className='absolute right-1 top-1 z-20 size-5 rounded-full p-0 shadow-sm'
-								onClick={() => removeAttachment(index)}
-								aria-label={`Remove ${file.name}`}>
-								<X className='size-3' aria-hidden='true' />
-							</Button>
-						</div>
-					))}
-				</div>
-			)}
+			<ChatMessageModeBanner
+				editingMessage={editingMessage}
+				replyingToMessage={replyingToMessage}
+				onCancel={onCancelMode}
+			/>
+			<MediaAttachmentPreviews
+				previews={previews}
+				onRemove={handleRemoveAttachment}
+			/>
 
 			<div className='py-3 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2'>
 				<div>
@@ -175,7 +190,9 @@ export const ChatMessageForm = ({
 						type='button'
 						variant='ghost'
 						size='icon'
-						disabled={attachments.length >= MAX_FILES_COUNT}
+						disabled={
+							attachments.length >= MAX_FILES_COUNT || !!editingMessage
+						}
 						aria-label='Attach images or videos'
 						onClick={() => fileInputRef.current?.click()}
 						className='text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50'>
@@ -199,7 +216,9 @@ export const ChatMessageForm = ({
 					field={{
 						component: 'input',
 						name: 'text',
-						placeholder: 'Send a message into the dark…',
+						placeholder: editingMessage
+							? 'Edit message…'
+							: 'Send a message into the dark…',
 						label: {
 							text: 'Message',
 							srOnly: true,
@@ -214,11 +233,16 @@ export const ChatMessageForm = ({
 					type='submit'
 					disabled={isSubmitDisabled}
 					className='h-full px-4 text-sm'>
-					<Send className='size-3.5 mr-1.5' aria-hidden='true' />
-					Send
+					{editingMessage ? (
+						<Save className='size-3.5 mr-1.5' />
+					) : (
+						<Send className='size-3.5 mr-1.5' />
+					)}
+					{editingMessage ? 'Save' : 'Send'}
 				</Button>
 			</div>
-			{(errors.attachments || errors.text) && (
+
+			{isSubmitted && (errors.attachments || errors.text) && (
 				<p role='alert' className='pb-2 text-center text-[11px] text-destructive'>
 					{errors.attachments?.message || errors.text?.message}
 				</p>

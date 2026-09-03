@@ -71,7 +71,7 @@ export default function PostCard({
 								})}
 								thumbnailClassName='px-0 mt-2 w-full h-auto aspect-square rounded-2xl border border-border'
 								modalFit='contain'
-								modalClassName='min-h-[min(1500px,80vh)] aspect-square '
+								modalClassName='min-h-[min(1500px,80vh)] aspect-square'
 							/>
 						</div>
 					)}

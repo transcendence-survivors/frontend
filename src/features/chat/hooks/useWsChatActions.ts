@@ -6,5 +6,7 @@ export const useWsChatActions = () =>
 		useShallow((state) => ({
 			initChatListeners: state.chatActions.initChatListeners,
 			sendMessage: state.chatActions.sendMessage,
+			editMessage: state.chatActions.editMessage,
+			softDeleteMessage: state.chatActions.softDeleteMessage,
 		})),
 	);

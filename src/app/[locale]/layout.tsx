@@ -12,6 +12,7 @@ import { Toaster } from 'sonner';
 import { Manrope, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { X } from 'lucide-react';
 import { NuqsProvider } from '@/components/providers/NuqsProvider';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const manrope = Manrope({
 	subsets: ['latin'],
@@ -61,7 +62,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 				<NextIntlClientProvider locale={locale}>
 					<ThemeProvider>
 						<NuqsProvider>
-							<QuerryProvider>{children}</QuerryProvider>
+							<QuerryProvider>
+								<TooltipProvider>{children}</TooltipProvider>
+							</QuerryProvider>
 						</NuqsProvider>
 					</ThemeProvider>
 				</NextIntlClientProvider>

@@ -12,6 +12,12 @@ interface SendMessagePayload {
 	roomId: string;
 	content: string;
 	attachmentUrls?: string[];
+	replyToId?: string;
+}
+
+interface EditMessagePayload {
+	messageId: string;
+	content: string;
 }
 
 export interface ChatSlice {
@@ -21,7 +27,10 @@ export interface ChatSlice {
 
 		joinRoom: (roomId: string) => Promise<void>;
 		leaveRoom: (roomId: string) => Promise<void>;
+
 		sendMessage: (msg: SendMessagePayload) => void;
+		editMessage: (msg: EditMessagePayload) => void;
+		softDeleteMessage: (messageId: string) => void;
 	};
 }
 
@@ -47,7 +56,6 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 						page.data.some((m) => m.id === message.id),
 					);
 					if (alreadyExists) return;
-
 					updateInfiniteQuery<ChatMessage>(queryClient, queryKey, {
 						type: 'append',
 						item: message,
@@ -67,24 +75,23 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 
 				socket.on(
 					CHAT_EVENTS.RECEIVE.MESSAGE_SOFT_DELETED,
-					(payload: { id: string; roomId: string }) => {
-						const callback = (m: ChatMessage) => {
-							if (m.id === payload.id) {
-								return {
-									...m,
-									isDeleted: true,
-									content: undefined,
-									attachmentUrls: [],
-								};
-							}
-							return m;
-						};
+					(message: { messageId: string; roomId: string }) => {
 						updateInfiniteQuery<ChatMessage>(
 							queryClient,
-							['chat-messages', { roomId: payload.roomId }],
+							['chat-messages', { roomId: message.roomId }],
 							{
 								type: 'map',
-								callback,
+								callback: (m) => {
+									if (m.id === message.messageId) {
+										return {
+											...m,
+											isDeleted: true,
+											content: undefined,
+											attachmentUrls: [],
+										};
+									}
+									return m;
+								},
 							},
 						);
 					},
@@ -104,7 +111,7 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 				const socket = get().socket;
 				if (!socket) throw new Error('Socket is not connected');
 
-				await emit({
+				await emit<void>({
 					socket,
 					event: CHAT_EVENTS.SEND.ROOM_JOIN,
 					payload: { roomId },
@@ -115,7 +122,7 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 				const socket = get().socket;
 				if (!socket) throw new Error('Socket is not connected');
 
-				await emit({
+				await emit<void>({
 					socket,
 					event: CHAT_EVENTS.SEND.ROOM_LEAVE,
 					payload: { roomId },
@@ -126,10 +133,32 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 				const socket = get().socket;
 				if (!socket) throw new Error('Socket is not connected');
 
-				return emit<ChatMessage>({
+				return emit<void>({
 					socket,
 					event: CHAT_EVENTS.SEND.MESSAGE_SEND,
 					payload,
+				});
+			},
+
+			async editMessage(payload) {
+				const socket = get().socket;
+				if (!socket) throw new Error('Socket is not connected');
+
+				return emit<void>({
+					socket,
+					event: CHAT_EVENTS.SEND.MESSAGE_EDIT,
+					payload,
+				});
+			},
+
+			async softDeleteMessage(messageId) {
+				const socket = get().socket;
+				if (!socket) throw new Error('Socket is not connected');
+
+				return emit<void>({
+					socket,
+					event: CHAT_EVENTS.SEND.MESSAGE_SOFT_DELETE,
+					payload: { messageId },
 				});
 			},
 		},

@@ -34,14 +34,6 @@ const ChatMessageBubble = memo(
 			hour: '2-digit',
 			minute: '2-digit',
 		});
-		console.log(
-			'Rendering ChatMessageBubble for message:',
-			message.id,
-			'isMe:',
-			isMe,
-			'showAvatar:',
-			showAvatar,
-		);
 
 		return (
 			<div

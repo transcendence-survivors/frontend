@@ -62,6 +62,7 @@ interface FormFieldBase<T extends FieldValues> {
 	placeholder?: string;
 	required?: boolean;
 	hideError?: boolean;
+	className?: string;
 }
 
 type FormFieldParams<T extends FieldValues> = FormFieldBase<T> &

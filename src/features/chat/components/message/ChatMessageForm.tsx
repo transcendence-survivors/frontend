@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import { Paperclip, Save, Send } from 'lucide-react';
+import { Paperclip, Save, Send, Smile } from 'lucide-react';
+import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/libs/utils';
 import FormField from '@/modules/forms/components/Base/FormField';
 import { useSendMessage, useEditMessage } from '../../hooks/useMessageActions';
@@ -75,10 +77,13 @@ export const ChatMessageForm = ({
 	const { mutateAsync: editMessage } = useEditMessage();
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const cursorRef = useRef({ start: 0, end: 0 });
+	const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
 	const {
 		handleSubmit,
 		setValue,
+		getValues,
 		control,
 		reset,
 		clearErrors,
@@ -129,7 +134,10 @@ export const ChatMessageForm = ({
 		if (selectedFiles.length === 0) return;
 
 		const updatedFiles = [...attachments, ...selectedFiles].slice(0, MAX_FILES_COUNT);
-		setValue('attachments', updatedFiles, { shouldValidate: true });
+		setValue('attachments', updatedFiles, {
+			shouldValidate: true,
+			shouldDirty: true,
+		});
 
 		if (fileInputRef.current) {
 			fileInputRef.current.value = '';
@@ -141,9 +149,49 @@ export const ChatMessageForm = ({
 			const updatedFiles = attachments.filter(
 				(_, index) => index !== indexToRemove,
 			);
-			setValue('attachments', updatedFiles, { shouldValidate: true });
+			setValue('attachments', updatedFiles, {
+				shouldValidate: true,
+				shouldDirty: true,
+			});
 		},
 		[attachments, setValue],
+	);
+
+	const handleSaveCursorPosition = useCallback((e: React.SyntheticEvent) => {
+		const target = e.target as HTMLTextAreaElement;
+		if (target && target.tagName === 'TEXTAREA') {
+			cursorRef.current = {
+				start: target.selectionStart,
+				end: target.selectionEnd,
+			};
+		}
+	}, []);
+
+	const handleEmojiSelect = useCallback(
+		(emojiData: EmojiClickData, event: MouseEvent) => {
+			const currentText = getValues('text') || '';
+			const { start, end } = cursorRef.current;
+
+			const updatedText =
+				currentText.slice(0, start) + emojiData.emoji + currentText.slice(end);
+
+			setValue('text', updatedText, { shouldValidate: true, shouldDirty: true });
+
+			const newPos = start + emojiData.emoji.length;
+			cursorRef.current = { start: newPos, end: newPos };
+
+			if (!event.shiftKey) {
+				setIsEmojiOpen(false);
+				setFocus('text');
+				setTimeout(() => {
+					const activeEl = document.activeElement as HTMLTextAreaElement | null;
+					if (activeEl && activeEl.tagName === 'TEXTAREA') {
+						activeEl.setSelectionRange(newPos, newPos);
+					}
+				}, 0);
+			}
+		},
+		[getValues, setValue, setFocus],
 	);
 
 	const submit = async (data: ChatMessageFormValues) => {
@@ -169,9 +217,27 @@ export const ChatMessageForm = ({
 
 	const isSubmitDisabled = isSubmitting || (!isDirty && attachments.length === 0);
 
+	const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+		const target = e.target as HTMLElement;
+
+		if (target.tagName === 'TEXTAREA') {
+			handleSaveCursorPosition(e);
+			if (e.key === 'Enter' && !e.shiftKey) {
+				e.preventDefault();
+				if (!isSubmitDisabled) {
+					handleSubmit(submit)();
+				}
+			}
+		}
+	};
+
 	return (
 		<form
 			onSubmit={handleSubmit(submit)}
+			onKeyDown={handleFormKeyDown}
+			onKeyUp={handleSaveCursorPosition}
+			onClick={handleSaveCursorPosition}
+			onBlur={handleSaveCursorPosition}
 			className={cn('px-3 bg-card border-t border-border flex flex-col', className)}
 			{...props}>
 			<ChatMessageModeBanner
@@ -185,7 +251,7 @@ export const ChatMessageForm = ({
 			/>
 
 			<div className='py-3 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2'>
-				<div>
+				<div className='flex items-center gap-1'>
 					<Button
 						type='button'
 						variant='ghost'
@@ -209,12 +275,38 @@ export const ChatMessageForm = ({
 						aria-label='Attach images or videos'
 						onChange={handleFileChange}
 					/>
+
+					<Popover open={isEmojiOpen} onOpenChange={setIsEmojiOpen}>
+						<PopoverTrigger asChild>
+							<Button
+								type='button'
+								variant='ghost'
+								size='icon'
+								aria-label='Choose emoji'
+								className='text-muted-foreground hover:bg-muted hover:text-foreground'>
+								<Smile className='size-4' aria-hidden='true' />
+							</Button>
+						</PopoverTrigger>
+						<PopoverContent
+							side='top'
+							align='start'
+							onOpenAutoFocus={(e) => e.preventDefault()}
+							onCloseAutoFocus={(e) => e.preventDefault()}
+							className='w-auto p-0 border-none shadow-none bg-transparent'>
+							<EmojiPicker
+								onEmojiClick={(emojiData, event) =>
+									handleEmojiSelect(emojiData, event)
+								}
+								theme={Theme.AUTO}
+							/>
+						</PopoverContent>
+					</Popover>
 				</div>
 
 				<FormField
 					control={control}
 					field={{
-						component: 'input',
+						component: 'textarea',
 						name: 'text',
 						placeholder: editingMessage
 							? 'Edit message…'
@@ -225,21 +317,24 @@ export const ChatMessageForm = ({
 						},
 						required: false,
 						hideError: true,
+						className:
+							'resize-none min-h-8 max-h-[min(12rem,50vh)] overflow-y-auto',
 					}}
 				/>
-
-				<Button
-					size='sm'
-					type='submit'
-					disabled={isSubmitDisabled}
-					className='h-full px-4 text-sm'>
-					{editingMessage ? (
-						<Save className='size-3.5 mr-1.5' />
-					) : (
-						<Send className='size-3.5 mr-1.5' />
-					)}
-					{editingMessage ? 'Save' : 'Send'}
-				</Button>
+				<div className='flex items-center gap-1 h-full'>
+					<Button
+						size='sm'
+						type='submit'
+						disabled={isSubmitDisabled}
+						className='h-full px-4 text-sm'>
+						{editingMessage ? (
+							<Save className='size-3.5 mr-1.5' />
+						) : (
+							<Send className='size-3.5 mr-1.5' />
+						)}
+						{editingMessage ? 'Save' : 'Send'}
+					</Button>
+				</div>
 			</div>
 
 			{isSubmitted && (errors.attachments || errors.text) && (

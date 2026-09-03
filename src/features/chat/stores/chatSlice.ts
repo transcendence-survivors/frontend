@@ -42,7 +42,6 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 		chatActions: {
 			initChatListeners(queryClient) {
 				const socket = get().socket;
-				console.log('socket', socket);
 				if (!socket) return;
 				get().chatActions.destroyChatListeners();
 

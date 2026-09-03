@@ -46,6 +46,7 @@ const FormField = <T extends FieldValues>({
 			'aria-invalid': fieldState.invalid,
 			'disabled': disabled,
 			'name': field.name,
+			'className': field.className,
 		};
 		switch (componentType) {
 			case 'input':

@@ -61,7 +61,6 @@ export const createPresenceSlice: StateCreator<
 			socket.on(
 				PRESENCE_EVENTS.RECEIVE.INITIAL_STATUS,
 				({ status }: { status: PresenceStatus }) => {
-					console.log(`Initial presence status: ${status}`);
 					set({ status });
 				},
 			);

@@ -19,6 +19,7 @@
 		"@transcendence/game-ui": "workspace:*",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"cn": "^0.2.5",
 		"date-fns": "^4.4.0",
 		"emoji-picker-react": "^4.19.4",
 		"input-otp": "^1.4.2",

@@ -14,7 +14,7 @@ import {
 	AlertDialogTrigger,
 	AlertDialog,
 } from '@/components/ui/alert-dialog';
-import { ChatMessageContent } from './ChatMessageContent';
+import { ChatMessageBubbleContent } from './bubble/ChatMessageBubbleContent';
 
 interface ChatMessageActionsProps {
 	message: ChatMessage;
@@ -102,7 +102,7 @@ export const ChatMessageActions = memo(
 								</AlertDialogDescription>
 
 								<div className='max-h-[65vh] overflow-y-auto rounded-lg border border-border/50 bg-background w-full'>
-									<ChatMessageContent
+									<ChatMessageBubbleContent
 										message={message}
 										isMe={isMe}
 										showReplyPreview={false}

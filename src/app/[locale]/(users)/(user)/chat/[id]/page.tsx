@@ -1,11 +1,9 @@
 import ChatRoomHeader from '@/features/chat/components/room/ChatRoomHeader';
-import ChatMessageForm from '@/features/chat/components/message/ChatMessageForm';
 import { getChatRoom } from '@/features/chat/api/get';
 import { isApiError } from '@/libs/api';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/dist/server/request/cookies';
-import ChatMessages from '@/features/chat/components/message/ChatMessages';
-import ChatContainer from '@/features/chat/components/message/ChatContainer';
+import ChatContainer from '@/features/chat/components/ChatContainer';
 
 interface ChatRoomProps {
 	params: Promise<{

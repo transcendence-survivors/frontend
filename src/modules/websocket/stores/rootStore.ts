@@ -4,12 +4,14 @@ import {
 	createPresenceSlice,
 	PresenceSlice,
 } from '@/features/presence/stores/presenceSlice';
-import { createChatSlice, ChatSlice } from '@/features/chat/stores/chatSlice';
+import { createMessageSlice, MessageSlice } from '@/features/chat/stores/messageSlice';
+import { createTypingSlice, TypingSlice } from '@/features/chat/stores/typingSlice';
 
-type RootStoreState = SocketSlice & PresenceSlice & ChatSlice;
+type RootStoreState = SocketSlice & PresenceSlice & MessageSlice & TypingSlice;
 
 export const useWebsocketStore = create<RootStoreState>()((...a) => ({
 	...createSocketSlice(...a),
 	...createPresenceSlice(...a),
-	...createChatSlice(...a),
+	...createMessageSlice(...a),
+	...createTypingSlice(...a),
 }));

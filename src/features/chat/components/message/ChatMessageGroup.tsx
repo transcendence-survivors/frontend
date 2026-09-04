@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatDateDivider } from './ChatDateDivider';
-import { ChatMessageBubble } from './ChatMessageBubble';
+import { ChatMessageBubble } from './bubble/ChatMessageBubble';
 import { ChatMessage } from '../../types/message';
 
 interface ChatMessageGroupProps {

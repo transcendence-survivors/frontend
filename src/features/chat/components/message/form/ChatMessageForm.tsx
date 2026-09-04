@@ -1,24 +1,28 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import z from 'zod';
-import { Paperclip, Save, Send, Smile } from 'lucide-react';
-import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
+import { Save, Send } from 'lucide-react';
+import { EmojiClickData } from 'emoji-picker-react';
 
 import { Button } from '@/components/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/libs/utils';
 import FormField from '@/modules/forms/components/Base/FormField';
-import { useSendMessage, useEditMessage } from '../../hooks/useMessageActions';
-import { ChatMessage } from '../../types/message';
+import { MediaAttachmentPreviews } from '@/components/ui/media-attachment-previews';
+
+import { useSendMessage, useEditMessage } from '../../../hooks/useMessageActions';
+import { ChatMessage } from '../../../types/message';
+import { ChatMessageModeBanner } from './ChatMessageModeBanner';
+import { ChatTypingIndicator } from '../../ChatTypingIndicator';
 
 import {
-	MediaAttachmentPreviews,
-	MediaPreviewItem,
-} from '@/components/ui/media-attachment-previews';
-import { ChatMessageModeBanner } from './ChatMessageModeBanner';
+	chatMessageSchema,
+	ChatMessageFormValues,
+} from '../../../schemas/message.schema';
+import { useChatFormTyping } from '../../../hooks/useChatFormTyping';
+import { useFileAttachments } from '../../../../../modules/forms/hooks/useFileAttachments';
+import { ChatMessageFormControls } from './ChatMessageFormControls';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
@@ -26,42 +30,6 @@ interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	editingMessage?: ChatMessage | null;
 	replyingToMessage?: ChatMessage | null;
 }
-
-const ACCEPTED_MEDIA_TYPES = ['image/', 'video/'];
-const MAX_FILE_SIZE = 50 * 1024 * 1024;
-const MAX_FILES_COUNT = 5;
-
-const schema = z
-	.object({
-		text: z.string().trim(),
-		attachments: z
-			.array(
-				z.custom<File>((val) => val instanceof File, { message: 'Invalid file' }),
-			)
-			.max(MAX_FILES_COUNT, `You can attach up to ${MAX_FILES_COUNT} files`)
-			.refine(
-				(files) => files.every((file) => file.size <= MAX_FILE_SIZE),
-				'Each file must be under 50MB',
-			)
-			.refine(
-				(files) =>
-					files.every((file) =>
-						ACCEPTED_MEDIA_TYPES.some((type) => file.type.startsWith(type)),
-					),
-				'Only images and videos are supported',
-			)
-			.optional(),
-	})
-	.refine(
-		(data) =>
-			data.text.length > 0 || (data.attachments && data.attachments.length > 0),
-		{
-			message: 'Message cannot be empty unless an attachment is provided',
-			path: ['text'],
-		},
-	);
-
-type ChatMessageFormValues = z.infer<typeof schema>;
 
 const EMPTY_ATTACHMENTS: File[] = [];
 
@@ -76,7 +44,6 @@ export const ChatMessageForm = ({
 	const { mutateAsync: sendMessage } = useSendMessage();
 	const { mutateAsync: editMessage } = useEditMessage();
 
-	const fileInputRef = useRef<HTMLInputElement>(null);
 	const cursorRef = useRef({ start: 0, end: 0 });
 	const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
@@ -88,28 +55,31 @@ export const ChatMessageForm = ({
 		reset,
 		clearErrors,
 		setFocus,
-		formState: { errors, isDirty, isSubmitting, isSubmitted },
+		formState: { errors, isDirty, isSubmitting },
 	} = useForm<ChatMessageFormValues>({
-		resolver: zodResolver(schema),
-		mode: 'onSubmit',
-		reValidateMode: 'onChange',
+		resolver: zodResolver(chatMessageSchema),
 		defaultValues: { text: '', attachments: [] },
 	});
 
+	const textValue = useWatch({ control, name: 'text' });
 	const attachments =
-		useWatch<ChatMessageFormValues, 'attachments'>({
-			control,
-			name: 'attachments',
-			defaultValue: EMPTY_ATTACHMENTS,
-		}) ?? EMPTY_ATTACHMENTS;
+		useWatch({ control, name: 'attachments', defaultValue: EMPTY_ATTACHMENTS }) ??
+		EMPTY_ATTACHMENTS;
 
-	const previews: MediaPreviewItem[] = useMemo(() => {
-		return attachments.map((file) => ({
-			file,
-			url: URL.createObjectURL(file),
-			type: file.type.startsWith('video/') ? 'video' : 'image',
-		}));
-	}, [attachments]);
+	const { stopTyping } = useChatFormTyping({
+		roomId,
+		textValue,
+		attachments,
+		isEditing: !!editingMessage,
+	});
+
+	const { fileInputRef, previews, handleFileChange, handleRemoveAttachment } =
+		useFileAttachments({
+			attachments,
+			setValue,
+			fieldName: 'attachments',
+			maxFiles: 5,
+		});
 
 	useEffect(() => {
 		clearErrors();
@@ -122,40 +92,6 @@ export const ChatMessageForm = ({
 			setFocus('text');
 		}
 	}, [editingMessage, replyingToMessage, setValue, clearErrors, setFocus]);
-
-	useEffect(() => {
-		return () => {
-			previews.forEach((preview) => URL.revokeObjectURL(preview.url));
-		};
-	}, [previews]);
-
-	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const selectedFiles = Array.from(e.target.files || []);
-		if (selectedFiles.length === 0) return;
-
-		const updatedFiles = [...attachments, ...selectedFiles].slice(0, MAX_FILES_COUNT);
-		setValue('attachments', updatedFiles, {
-			shouldValidate: true,
-			shouldDirty: true,
-		});
-
-		if (fileInputRef.current) {
-			fileInputRef.current.value = '';
-		}
-	};
-
-	const handleRemoveAttachment = useCallback(
-		(indexToRemove: number) => {
-			const updatedFiles = attachments.filter(
-				(_, index) => index !== indexToRemove,
-			);
-			setValue('attachments', updatedFiles, {
-				shouldValidate: true,
-				shouldDirty: true,
-			});
-		},
-		[attachments, setValue],
-	);
 
 	const handleSaveCursorPosition = useCallback((e: React.SyntheticEvent) => {
 		const target = e.target as HTMLTextAreaElement;
@@ -171,12 +107,10 @@ export const ChatMessageForm = ({
 		(emojiData: EmojiClickData, event: MouseEvent) => {
 			const currentText = getValues('text') || '';
 			const { start, end } = cursorRef.current;
-
 			const updatedText =
 				currentText.slice(0, start) + emojiData.emoji + currentText.slice(end);
 
 			setValue('text', updatedText, { shouldValidate: true, shouldDirty: true });
-
 			const newPos = start + emojiData.emoji.length;
 			cursorRef.current = { start: newPos, end: newPos };
 
@@ -197,6 +131,8 @@ export const ChatMessageForm = ({
 	const submit = async (data: ChatMessageFormValues) => {
 		if (!roomId) return;
 
+		stopTyping();
+
 		if (editingMessage) {
 			await editMessage({
 				messageId: editingMessage.id,
@@ -216,10 +152,8 @@ export const ChatMessageForm = ({
 	};
 
 	const isSubmitDisabled = isSubmitting || (!isDirty && attachments.length === 0);
-
 	const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
 		const target = e.target as HTMLElement;
-
 		if (target.tagName === 'TEXTAREA') {
 			handleSaveCursorPosition(e);
 			if (e.key === 'Enter' && !e.shiftKey) {
@@ -245,63 +179,22 @@ export const ChatMessageForm = ({
 				replyingToMessage={replyingToMessage}
 				onCancel={onCancelMode}
 			/>
+			<ChatTypingIndicator roomId={roomId} className='pt-2 -mb-1' />
 			<MediaAttachmentPreviews
 				previews={previews}
 				onRemove={handleRemoveAttachment}
 			/>
 
 			<div className='py-3 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2'>
-				<div className='flex items-center gap-1'>
-					<Button
-						type='button'
-						variant='ghost'
-						size='icon'
-						disabled={
-							attachments.length >= MAX_FILES_COUNT || !!editingMessage
-						}
-						aria-label='Attach images or videos'
-						onClick={() => fileInputRef.current?.click()}
-						className='text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50'>
-						<Paperclip className='size-4' aria-hidden='true' />
-					</Button>
-
-					<input
-						ref={fileInputRef}
-						type='file'
-						multiple
-						accept='image/*,video/*'
-						tabIndex={-1}
-						className='sr-only'
-						aria-label='Attach images or videos'
-						onChange={handleFileChange}
-					/>
-
-					<Popover open={isEmojiOpen} onOpenChange={setIsEmojiOpen}>
-						<PopoverTrigger asChild>
-							<Button
-								type='button'
-								variant='ghost'
-								size='icon'
-								aria-label='Choose emoji'
-								className='text-muted-foreground hover:bg-muted hover:text-foreground'>
-								<Smile className='size-4' aria-hidden='true' />
-							</Button>
-						</PopoverTrigger>
-						<PopoverContent
-							side='top'
-							align='start'
-							onOpenAutoFocus={(e) => e.preventDefault()}
-							onCloseAutoFocus={(e) => e.preventDefault()}
-							className='w-auto p-0 border-none shadow-none bg-transparent'>
-							<EmojiPicker
-								onEmojiClick={(emojiData, event) =>
-									handleEmojiSelect(emojiData, event)
-								}
-								theme={Theme.AUTO}
-							/>
-						</PopoverContent>
-					</Popover>
-				</div>
+				<ChatMessageFormControls
+					fileInputRef={fileInputRef}
+					attachmentsCount={attachments.length}
+					isEditing={!!editingMessage}
+					isEmojiOpen={isEmojiOpen}
+					setIsEmojiOpen={setIsEmojiOpen}
+					onFileChange={handleFileChange}
+					onEmojiSelect={handleEmojiSelect}
+				/>
 
 				<FormField
 					control={control}
@@ -311,16 +204,14 @@ export const ChatMessageForm = ({
 						placeholder: editingMessage
 							? 'Edit message…'
 							: 'Send a message into the dark…',
-						label: {
-							text: 'Message',
-							srOnly: true,
-						},
+						label: { text: 'Message', srOnly: true },
 						required: false,
 						hideError: true,
 						className:
 							'resize-none min-h-8 max-h-[min(12rem,50vh)] overflow-y-auto',
 					}}
 				/>
+
 				<div className='flex items-center gap-1 h-full'>
 					<Button
 						size='sm'
@@ -337,7 +228,7 @@ export const ChatMessageForm = ({
 				</div>
 			</div>
 
-			{isSubmitted && (errors.attachments || errors.text) && (
+			{(errors.attachments || errors.text) && (
 				<p role='alert' className='pb-2 text-center text-[11px] text-destructive'>
 					{errors.attachments?.message || errors.text?.message}
 				</p>

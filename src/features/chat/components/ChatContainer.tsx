@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import ChatMessageForm from './ChatMessageForm';
-import { ChatMessage } from '../../types/message';
-import ChatMessages from './ChatMessages';
-import { useJoinChatRoom } from '../../hooks/useJoinChatRoom';
+import ChatMessageForm from './message/form/ChatMessageForm';
+import { ChatMessage } from '../types/message';
+import ChatMessages from './message/ChatMessages';
+import { useJoinChatRoom } from '../hooks/useJoinChatRoom';
 import { useUser } from '@/features/auth/stores/session';
-import { useSoftDeleteMessage } from '../../hooks/useMessageActions';
+import { useSoftDeleteMessage } from '../hooks/useMessageActions';
 
 interface ChatContainerProps {
 	roomId: string;

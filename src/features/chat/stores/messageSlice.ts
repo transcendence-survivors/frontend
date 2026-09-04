@@ -20,10 +20,10 @@ interface EditMessagePayload {
 	content: string;
 }
 
-export interface ChatSlice {
+export interface MessageSlice {
 	chatActions: {
-		initChatListeners: (queryClient: QueryClient) => void;
-		destroyChatListeners(): void;
+		initMessageListeners: (queryClient: QueryClient) => void;
+		destroyMessageListeners(): void;
 
 		joinRoom: (roomId: string) => Promise<void>;
 		leaveRoom: (roomId: string) => Promise<void>;
@@ -34,16 +34,18 @@ export interface ChatSlice {
 	};
 }
 
-export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], ChatSlice> = (
-	_set,
-	get,
-) => {
+export const createMessageSlice: StateCreator<
+	SocketState & MessageSlice,
+	[],
+	[],
+	MessageSlice
+> = (_set, get) => {
 	return {
 		chatActions: {
-			initChatListeners(queryClient) {
+			initMessageListeners(queryClient) {
 				const socket = get().socket;
 				if (!socket) return;
-				get().chatActions.destroyChatListeners();
+				get().chatActions.destroyMessageListeners();
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_NEW, (message: ChatMessage) => {
 					const queryKey = ['chat-messages', { roomId: message.roomId }];
@@ -97,7 +99,7 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 				);
 			},
 
-			destroyChatListeners() {
+			destroyMessageListeners() {
 				const socket = get().socket;
 				if (!socket) return;
 
@@ -164,14 +166,16 @@ export const createChatSlice: StateCreator<SocketState & ChatSlice, [], [], Chat
 	};
 };
 
-export const useChatActions = () => {
+export const useMessageActions = () => {
 	return useWebsocketStore(
 		useShallow((state) => ({
 			joinRoom: state.chatActions.joinRoom,
 			leaveRoom: state.chatActions.leaveRoom,
 			sendMessage: state.chatActions.sendMessage,
-			initChatListeners: state.chatActions.initChatListeners,
-			destroyChatListeners: state.chatActions.destroyChatListeners,
+			editMessage: state.chatActions.editMessage,
+			softDeleteMessage: state.chatActions.softDeleteMessage,
+			initMessageListeners: state.chatActions.initMessageListeners,
+			destroyMessageListeners: state.chatActions.destroyMessageListeners,
 		})),
 	);
 };

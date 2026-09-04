@@ -12,7 +12,7 @@ import { LoadingList } from '@/components/ui/loading-list';
 import { Error } from '@/features/relationships/components/error';
 import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
-import { ChatMessageBubbleSkeleton } from './ChatMessageBubble';
+import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
 import { ChatMessage } from '../../types/message';
 
 interface ChatMessagesProps {

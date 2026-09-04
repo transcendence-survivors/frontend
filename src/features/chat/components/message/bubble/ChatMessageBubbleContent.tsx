@@ -1,7 +1,7 @@
 import { HTMLAttributes, memo } from 'react';
 import { cn } from '@/libs/utils';
-import { ChatMessage } from '../../types/message';
-import { ChatMessageReplyPreview } from './ChatMessageReplyPreview';
+import { ChatMessage } from '../../../types/message';
+import { ChatMessageReplyPreview } from '../ChatMessageReplyPreview';
 import { ChatMessageBubbleAttachments } from './ChatMessageBubbleAttachments';
 
 export interface ChatMessageContentProps extends HTMLAttributes<HTMLDivElement> {
@@ -10,7 +10,7 @@ export interface ChatMessageContentProps extends HTMLAttributes<HTMLDivElement> 
 	showReplyPreview?: boolean;
 }
 
-export const ChatMessageContent = memo(
+export const ChatMessageBubbleContent = memo(
 	({
 		message,
 		isMe = false,
@@ -44,4 +44,4 @@ export const ChatMessageContent = memo(
 		);
 	},
 );
-ChatMessageContent.displayName = 'ChatMessageContent';
+ChatMessageBubbleContent.displayName = 'ChatMessageContent';

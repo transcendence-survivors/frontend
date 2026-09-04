@@ -1,19 +1,30 @@
-// modules/chat/hooks/use-chat-init.ts
 import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useChatActions } from '../stores/chatSlice';
+import { useMessageActions } from '../stores/messageSlice';
 import { useSocketState } from '@/modules/websocket/hooks/useSocketState';
+import { useTypingActions } from '../stores/typingSlice';
 
 export function useChatInit() {
 	const queryClient = useQueryClient();
 	const { socket, isConnected } = useSocketState();
-	const { initChatListeners, destroyChatListeners } = useChatActions();
+	const { initMessageListeners, destroyMessageListeners } = useMessageActions();
+	const { initTypingListeners, destroyTypingListeners } = useTypingActions();
 
 	useEffect(() => {
 		if (!socket || !isConnected) return;
-		initChatListeners(queryClient);
+		initMessageListeners(queryClient);
+		initTypingListeners();
 		return () => {
-			destroyChatListeners();
+			destroyMessageListeners();
+			destroyTypingListeners();
 		};
-	}, [socket, isConnected, queryClient, initChatListeners, destroyChatListeners]);
+	}, [
+		socket,
+		isConnected,
+		queryClient,
+		initMessageListeners,
+		destroyMessageListeners,
+		initTypingListeners,
+		destroyTypingListeners,
+	]);
 }

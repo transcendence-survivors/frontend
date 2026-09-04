@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { ChatMessage } from '../../types/message';
+import { ChatMessage } from '../../../types/message';
 import { AvatarProfileTooltip } from '@/features/user/components/Avatar/AvatarProfile';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ChatMessageActions } from './ChatMessageActions';
+import { ChatMessageActions } from '../ChatMessageActions';
 import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
-import { ChatMessageContent } from './ChatMessageContent';
+import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 
 interface ChatMessageBubbleProps {
 	message: ChatMessage;
@@ -42,8 +42,10 @@ const ChatMessageBubble = memo(
 				{showAvatar && <AvatarProfileTooltip user={message.sender} size='sm' />}
 
 				<div
-					className={`relative flex max-w-[75%] flex-col ${isMe ? 'items-end' : 'items-start'} ${!isMe && !showAvatar ? 'ml-10' : ''}`}>
-					<ChatMessageContent
+					className={`relative flex max-w-[75%] flex-col 
+                    ${isMe ? 'items-end' : 'items-start'} 
+                    ${!isMe && !showAvatar ? 'ml-10' : ''}`}>
+					<ChatMessageBubbleContent
 						message={message}
 						isMe={isMe}
 						className={
@@ -52,7 +54,6 @@ const ChatMessageBubble = memo(
 								: 'bg-card border border-border text-card-foreground rounded-bl-xs group-hover:bg-muted focus-within:bg-muted'
 						}
 					/>
-
 					<ChatMessageActions
 						message={message}
 						isMe={isMe}
@@ -62,10 +63,10 @@ const ChatMessageBubble = memo(
 					/>
 				</div>
 
-				<span className='mt-1 flex items-center gap-1.5 font-mono text-[10px] font-medium text-muted-foreground'>
-					{formattedTime}
+				<div className='mt-1 flex items-center gap-1.5 font-mono text-[10px] font-medium text-muted-foreground'>
+					<span>{formattedTime}</span>
 					{message.isEdited && <span className='italic'>(edited)</span>}
-				</span>
+				</div>
 			</div>
 		);
 	},

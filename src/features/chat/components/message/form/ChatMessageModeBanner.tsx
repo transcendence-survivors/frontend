@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Pencil, Reply, X } from 'lucide-react';
-import { ChatMessage } from '../../types/message';
+import { ChatMessage } from '../../../types/message';
 
 interface ChatMessageModeBannerProps {
 	editingMessage?: ChatMessage | null;

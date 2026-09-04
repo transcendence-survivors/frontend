@@ -1,9 +1,9 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { useWsChatActions } from './useWsChatActions';
 import { toast } from 'sonner';
 import { uploadAttachments } from '@/libs/api/helpers/attachments';
+import { useMessageActions } from '../stores/messageSlice';
 
 interface SendMessageInput {
 	roomId: string;
@@ -13,7 +13,7 @@ interface SendMessageInput {
 }
 
 export const useSendMessage = () => {
-	const { sendMessage } = useWsChatActions();
+	const { sendMessage } = useMessageActions();
 
 	return useMutation({
 		mutationFn: async ({
@@ -37,7 +37,7 @@ export const useSendMessage = () => {
 };
 
 export const useEditMessage = () => {
-	const { editMessage } = useWsChatActions();
+	const { editMessage } = useMessageActions();
 
 	return useMutation({
 		mutationFn: async ({
@@ -56,7 +56,7 @@ export const useEditMessage = () => {
 };
 
 export const useSoftDeleteMessage = () => {
-	const { softDeleteMessage } = useWsChatActions();
+	const { softDeleteMessage } = useMessageActions();
 
 	return useMutation({
 		mutationFn: async (messageId: string) => {

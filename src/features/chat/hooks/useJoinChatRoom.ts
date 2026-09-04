@@ -1,9 +1,9 @@
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 import { useEffect } from 'react';
-import { useChatActions } from '../stores/chatSlice';
+import { useMessageActions } from '../stores/messageSlice';
 
 export function useJoinChatRoom(roomId: string) {
-	const { joinRoom, leaveRoom } = useChatActions();
+	const { joinRoom, leaveRoom } = useMessageActions();
 	const socket = useWebsocketStore((s) => s.socket);
 
 	useEffect(() => {

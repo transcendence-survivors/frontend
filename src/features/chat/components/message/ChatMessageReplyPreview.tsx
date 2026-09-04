@@ -14,7 +14,7 @@ export const ChatMessageReplyPreview = ({
 			className={`mb-1 flex items-center gap-1.5 rounded-md  px-2.5 py-1 text-xs border-l-2 
                 ${
 					isMe
-						? 'rounded-br-none bg-chart-2 text-muted '
+						? 'rounded-br-none bg-chart-2 text-muted'
 						: 'rounded-bl-none bg-muted/60 text-muted-foreground border-primary/70'
 				}`}>
 			<Reply className='size-3 shrink-0' />

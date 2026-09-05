@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAddRepost, useDeleteRepost } from '@/features/reposts/hook/useReposts';
 import { useTranslations } from 'next-intl';
+import I18nLink from '@/modules/i18n/components/I18nLink';
 
 interface PostFooterProps {
 	post: Post;
@@ -49,9 +50,13 @@ export default function PostFooter({ post }: PostFooterProps) {
 		<div className='flex items-center justify-between px-0 gap-2 pl-1 w-full'>
 			<div className='flex items-center gap-2 z-10'>
 				<div className='flex items-center gap-1 z-0'>
-					<div className='p-2' aria-label={t('comment')}>
+					<I18nLink
+						href='userNamePostsId'
+						hrefParams={{ username: post.author.username, id: post.id }}
+						className='p-2'
+						aria-label={t('comment')}>
 						<MessageCircle className='size-4' />
-					</div>
+					</I18nLink>
 					{post.commentCount > 0 && <span>{post.commentCount}</span>}
 				</div>
 				<DropdownMenu>

@@ -24,6 +24,20 @@ export default function PostCard({
 }: PostCardProps) {
 	const t = useTranslations('posts.card');
 
+	if (post.quotedPostId && !post.content && !post.imageUrl && post.quotedPost) {
+		return (
+			<div className='w-full'>
+				<div className='flex items-center gap-2 px-5 pt-3 text-sm text-muted-foreground'>
+					<Repeat2 className='size-4' />
+					<span>
+						{t('reposted_by', { displayName: post.author.displayName })}
+					</span>
+				</div>
+				<PostCard post={post.quotedPost} isDetailView={isDetailView} />
+			</div>
+		);
+	}
+
 	return (
 		<Card
 			size='sm'

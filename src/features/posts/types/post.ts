@@ -16,10 +16,7 @@ interface Post {
 		author: BaseUser;
 	};
 	quotedPostId?: string;
-	quotedPost?: {
-		content?: string;
-		author: BaseUser;
-	};
+	quotedPost?: Post;
 	commentCount: number;
 }
 

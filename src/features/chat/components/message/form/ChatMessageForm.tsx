@@ -11,7 +11,7 @@ import { cn } from '@/libs/utils';
 import FormField from '@/modules/forms/components/Base/FormField';
 import { MediaAttachmentPreviews } from '@/components/ui/media-attachment-previews';
 
-import { useSendMessage, useEditMessage } from '../../../hooks/useMessageActions';
+import { useSendMessage, useEditMessage } from '../../../hooks/message/useMessageActions';
 import { ChatMessage } from '../../../types/message';
 import { ChatMessageModeBanner } from './ChatMessageModeBanner';
 import { ChatTypingIndicator } from '../../ChatTypingIndicator';

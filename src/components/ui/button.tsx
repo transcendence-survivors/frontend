@@ -45,7 +45,8 @@ const buttonVariants = cva(
 				sidebar: `
 					py-4 px-12 border-0 text-sidebar-muted-foreground rounded-none
 					hover:text-sidebar-accent-foreground/90 hover:bg-sidebar-accent/60
-					data-[active=true]:text-sidebar-accent-foreground  data-[active=true]:bg-sidebar-accent data-[active=true]:border-l-2 data-[active=true]:border-accent
+                    focus-visible:text-sidebar-accent-foreground/90 focus-visible:bg-sidebar-accent/60
+					data-[active=true]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:border-l-2 data-[active=true]:border-accent
 					`,
 				tabs: `
                     py-4 px-12 border-0 text-sidebar-muted-foreground rounded-none 

@@ -168,6 +168,35 @@
 			"no_more_messages": "No more messages to load.",
 			"fetch_error": "Failed to load messages. Please try again later."
 		},
+		"members": {
+			"sort": {
+				"label": "Sort members",
+				"username_asc": "Username (A-Z)",
+				"username_desc": "Username (Z-A)",
+				"joined_desc": "Recently joined",
+				"joined_asc": "Oldest members",
+				"displayname_asc": "Display Name (A-Z)",
+				"displayname_desc": "Display Name (Z-A)",
+				"role_asc": "Role (highest first)",
+				"role_desc": "Role (lowest first)"
+			},
+			"title": "Members",
+			"search_placeholder": "Search members...",
+			"count_label": "{count, plural, =1 {member} other {members}}",
+			"no_members": "No members in this chat room yet.",
+			"no_members_search": "No members found for your search.",
+			"no_more_members": "No more members to load.",
+			"fetch_error": "Failed to load members. Please try again later.",
+			"actions": "Member actions",
+			"view_profile": "View profile",
+			"kick": "Kick member",
+			"roles": {
+				"owner": "Owner",
+				"admin": "Admin",
+				"member": "Member"
+			},
+			"joined_at": "Joined at"
+		},
 		"title": "Chat",
 		"subtitle": "Conversations with your friends"
 	},

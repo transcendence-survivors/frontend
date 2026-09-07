@@ -1,13 +1,13 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { createChatRoom } from '../api/create';
+import { createChatRoom } from '../../api/create';
 import { UseChatRoomsParams } from './useChatRooms';
 import { queryClient } from '@/components/providers/QuerryProvider';
 import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
-import { ChatRoom } from '../types/room';
+import { ChatRoom } from '../../types/room';
 import { isApiError } from '@/libs/api';
-import { deleteRoom } from '../api/rooms';
+import { deleteRoom } from '../../api/rooms';
 
 type UseChatRoomCreateParams = {
 	params: UseChatRoomsParams;

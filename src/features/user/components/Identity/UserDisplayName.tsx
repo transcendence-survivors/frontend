@@ -8,13 +8,13 @@ export interface DisplayNameProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const tagClassNames: Record<NonNullable<DisplayNameProps['tag']>, string> = {
-	span: 'text-sm font-semibold text-foreground truncate',
-	h1: 'text-2xl font-bold text-foreground truncate',
-	h2: 'text-xl font-semibold text-foreground truncate',
-	h3: 'text-lg font-semibold text-foreground truncate',
-	h4: 'text-base font-semibold text-foreground truncate',
-	h5: 'text-sm font-semibold text-foreground truncate',
-	h6: 'text-xs font-semibold text-foreground truncate',
+	span: 'text-sm font-semibold  tracking-tight',
+	h1: 'text-2xl font-bold ',
+	h2: 'text-xl font-semibold',
+	h3: 'text-lg font-semibold',
+	h4: 'text-base font-semibold',
+	h5: 'text-sm font-semibold',
+	h6: 'text-xs font-semibold',
 };
 
 const UserDisplayName = ({
@@ -25,7 +25,9 @@ const UserDisplayName = ({
 }: DisplayNameProps) => {
 	const Tag = tag;
 	return (
-		<Tag className={cn(tagClassNames[tag], className)} {...props}>
+		<Tag
+			className={cn(tagClassNames[tag], 'text-foreground truncate', className)}
+			{...props}>
 			{displayName}
 		</Tag>
 	);

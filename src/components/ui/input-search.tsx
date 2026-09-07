@@ -6,10 +6,10 @@ interface InputSearchProps extends React.ComponentProps<'input'> {
 	buttonProps?: React.ComponentProps<'button'>;
 }
 
-const InputSearch = ({ buttonProps, ...props }: InputSearchProps) => {
+const InputSearch = ({ buttonProps, className, ...props }: InputSearchProps) => {
 	return (
 		<div className='relative w-full'>
-			<Input {...props} type='text' className='pr-8' />
+			<Input {...props} type='text' className={`pr-8 ${className || ''}`} />
 			<Button
 				className='absolute top-0 right-0 h-full px-3 hover:bg-transparent'
 				size='icon'

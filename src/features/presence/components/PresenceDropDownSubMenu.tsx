@@ -41,7 +41,9 @@ const PresenceDropDownSubMenu = () => {
 	const { goStatus } = usePresenceActions();
 
 	const currentStatus = li.find((item) => item.status === status.status);
-	const handleStatusChange = (newStatus: PresenceStatus) => {
+	const handleStatusChange = (
+		newStatus: Exclude<PresenceStatus, PresenceStatus.OFFLINE>,
+	) => {
 		if (newStatus !== status.status) {
 			goStatus(newStatus);
 		}

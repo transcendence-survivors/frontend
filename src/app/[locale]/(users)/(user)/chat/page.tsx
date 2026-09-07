@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Kicker from '@/components/ui/kicker';
 import ChatRoomCreate from '@/features/chat/components/room/create/ChatRoomCreate';

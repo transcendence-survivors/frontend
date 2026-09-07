@@ -5,6 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ChatMessageActions } from '../ChatMessageActions';
 import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
 import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
+import DisplayDate from '@/components/ui/date';
 
 interface ChatMessageBubbleProps {
 	message: ChatMessage;
@@ -24,47 +25,52 @@ const ChatMessageBubble = memo(
 		onDelete,
 		onReply,
 	}: ChatMessageBubbleProps) => {
-		if (message.isDeleted) {
-			return <ChatMessageBubbleDeleted isMe={isMe} />;
-		}
-
 		const showAvatar = !isMe && message.sender.id !== prevUserId;
-		const formattedTime = new Date(message.createdAt).toLocaleTimeString([], {
-			hour: '2-digit',
-			minute: '2-digit',
-		});
 
 		return (
 			<div
-				className={`group flex gap-2 px-4 py-2 hover:bg-muted focus-within:bg-muted ${
+				className={`group flex items-center gap-2 px-4 py-2 hover:bg-muted focus-within:bg-muted ${
 					isMe ? 'flex-row-reverse' : 'flex-row'
 				}`}>
 				{showAvatar && <AvatarProfileTooltip user={message.sender} size='sm' />}
 
 				<div
-					className={`relative flex max-w-[75%] flex-col 
-                    ${isMe ? 'items-end' : 'items-start'} 
-                    ${!isMe && !showAvatar ? 'ml-10' : ''}`}>
-					<ChatMessageBubbleContent
-						message={message}
-						isMe={isMe}
-						className={
-							isMe
-								? 'bg-primary text-primary-foreground rounded-br-xs group-hover:bg-chart-2 focus-within:bg-chart-2'
-								: 'bg-card border border-border text-card-foreground rounded-bl-xs group-hover:bg-muted focus-within:bg-muted'
-						}
-					/>
-					<ChatMessageActions
-						message={message}
-						isMe={isMe}
-						onEdit={onEdit}
-						onDelete={onDelete}
-						onReply={onReply}
-					/>
+					className={`
+                        relative flex max-w-[75%] min-w-0 flex-col 
+                        ${isMe ? 'items-end' : 'items-start'} 
+                        ${!isMe && !showAvatar ? 'ml-10' : ''}`}>
+					{message.isDeleted ? (
+						<ChatMessageBubbleDeleted />
+					) : (
+						<>
+							<ChatMessageBubbleContent
+								message={message}
+								isMe={isMe}
+								className={
+									isMe
+										? 'bg-primary text-primary-foreground rounded-br-xs group-hover:bg-chart-2 focus-within:bg-chart-2'
+										: 'bg-card border border-border text-card-foreground rounded-bl-xs group-hover:bg-muted focus-within:bg-muted'
+								}
+							/>
+							<ChatMessageActions
+								message={message}
+								isMe={isMe}
+								onEdit={onEdit}
+								onDelete={onDelete}
+								onReply={onReply}
+							/>
+						</>
+					)}
 				</div>
 
 				<div className='mt-1 flex items-center gap-1.5 font-mono text-[10px] font-medium text-muted-foreground'>
-					<span>{formattedTime}</span>
+					<DisplayDate
+						date={new Date(message.createdAt)}
+						formatOptions={{
+							hour: '2-digit',
+							minute: '2-digit',
+						}}
+					/>
 					{message.isEdited && <span className='italic'>(edited)</span>}
 				</div>
 			</div>

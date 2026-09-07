@@ -15,7 +15,7 @@ import ChatSelectedUsersPreview from './ChatSelectedUsersPreview';
 import ChatUsersSearch from './ChatUsersSearch';
 import ChatCreateButton from './ChatCreateButton';
 import { Input } from '@/components/ui/input';
-import { UseChatRoomsParams } from '@/features/chat/hooks/useChatRooms';
+import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
 
 interface ChatRoomCreateDialogProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;

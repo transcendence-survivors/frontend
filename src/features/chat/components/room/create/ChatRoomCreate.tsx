@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useChatRoomParams } from '@/features/chat/hooks/useChatRoomParams';
+import { useChatRoomParams } from '@/features/chat/hooks/room/useChatRoomParams';
 import { Plus } from 'lucide-react';
 import ChatRoomCreateDialog from './ChatRoomCreateDialog';
 

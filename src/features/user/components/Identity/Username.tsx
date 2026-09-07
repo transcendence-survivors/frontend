@@ -22,7 +22,7 @@ const Username = ({ username, tag = 'span', className, ...props }: UsernameProps
 	return (
 		<Tag
 			className={cn(
-				'text-xs text-muted-foreground truncate',
+				'text-xs text-muted-foreground truncate tracking-tighter',
 				tagClassNames[tag],
 				className,
 			)}

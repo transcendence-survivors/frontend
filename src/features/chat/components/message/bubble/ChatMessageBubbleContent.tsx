@@ -21,7 +21,7 @@ export const ChatMessageBubbleContent = memo(
 		return (
 			<div
 				className={cn(
-					'relative rounded-2xl px-4 py-2 text-sm shadow-sm transition-colors',
+					'relative min-w-0 max-w-full rounded-2xl px-4 py-2 text-sm shadow-sm transition-colors',
 					className,
 				)}
 				{...props}>
@@ -30,7 +30,7 @@ export const ChatMessageBubbleContent = memo(
 				)}
 
 				{message.content && (
-					<p className='whitespace-pre-wrap wrap-break-words leading-relaxed'>
+					<p className='min-w-0 max-w-full whitespace-pre-wrap break-all leading-relaxed'>
 						{message.content}
 					</p>
 				)}

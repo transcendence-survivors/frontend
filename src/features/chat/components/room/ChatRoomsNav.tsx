@@ -8,7 +8,7 @@ import { SearchParamsInput } from '@/components/ui/search-param-input';
 import ChatRoomsData from './ChatRoomsData';
 import { ChatRoomFeed } from '../../types/room';
 import { ButtonsState } from '@/components/ui/buttons-state';
-import { useChatRoomParams } from '../../hooks/useChatRoomParams';
+import { useChatRoomParams } from '../../hooks/room/useChatRoomParams';
 
 type ChatNavProps = React.HTMLAttributes<HTMLElement>;
 

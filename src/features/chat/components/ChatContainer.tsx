@@ -4,9 +4,9 @@ import { useState, useCallback } from 'react';
 import ChatMessageForm from './message/form/ChatMessageForm';
 import { ChatMessage } from '../types/message';
 import ChatMessages from './message/ChatMessages';
-import { useJoinChatRoom } from '../hooks/useJoinChatRoom';
+import { useJoinChatRoom } from '../hooks/room/useJoinChatRoom';
 import { useUser } from '@/features/auth/stores/session';
-import { useSoftDeleteMessage } from '../hooks/useMessageActions';
+import { useSoftDeleteMessage } from '../hooks/message/useMessageActions';
 
 interface ChatContainerProps {
 	roomId: string;
@@ -48,7 +48,7 @@ export const ChatContainer = ({ roomId }: ChatContainerProps) => {
 	);
 
 	return (
-		<div className='flex flex-col h-full overflow-hidden'>
+		<section className='flex flex-col h-full'>
 			<ChatMessages
 				userId={user?.id ?? ''}
 				roomId={roomId}
@@ -62,7 +62,7 @@ export const ChatContainer = ({ roomId }: ChatContainerProps) => {
 				replyingToMessage={actionState.replyingToMessage}
 				onCancelMode={handleCancelMode}
 			/>
-		</div>
+		</section>
 	);
 };
 

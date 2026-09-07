@@ -2,10 +2,11 @@ import { Button } from '@/components/ui/button';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { ChatRoom } from '../../types/room';
 import { memo } from 'react';
-import { UseChatRoomsParams } from '../../hooks/useChatRooms';
+import { UseChatRoomsParams } from '../../hooks/room/useChatRooms';
 import { Skeleton } from '@/components/ui/skeleton';
 import ChatRoomAvatar from './ChatRoomAvatar';
 import { getRoomName } from '../../utils/room';
+import DisplayDate from '@/components/ui/date';
 
 interface ChatRoomCardProps {
 	room: ChatRoom;
@@ -22,7 +23,7 @@ const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
 				variant='sidebar'
 				size='lg'
 				data-active={isActive}
-				className={`h-20 grid grid-cols-[60px_auto_auto] justify-baseline w-full gap-3 px-4 py-3 text-left ${isActive ? '' : 'border-b border-border'}`}
+				className={`h-20 grid grid-cols-[60px_auto_auto] overflow-hidden justify-baseline w-full gap-3 px-4 py-3 text-left ${isActive ? '' : 'border-b border-border'}`}
 				asChild>
 				<I18nLink
 					href={'chatId'}
@@ -32,15 +33,22 @@ const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
 
 					<div className='min-w-0'>
 						<h3 className='truncate font-semibold'>{name}</h3>
-						<span className='truncate text-xs text-muted-foreground font-light'>
+						<span className='truncate text-xs text-muted-foreground font-light block'>
 							{room.lastMessage?.content || 'No messages yet'}
 						</span>
 					</div>
 
 					{room.lastMessage && (
 						<div className='flex shrink-0 flex-col items-end gap-1'>
-							<span className='font-mono text-[10px] text-muted-foreground'>
-								{room.lastMessage?.createdAt}
+							<span className='font-mono text-[10px] tracking-tighter text-muted-foreground'>
+								<DisplayDate
+									date={room.lastMessage.createdAt}
+									formatOptions={{
+										month: 'short',
+										day: 'numeric',
+										hour: '2-digit',
+									}}
+								/>
 							</span>
 							{/* {c.unread && (
 							<span className='rounded-sm bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground'>

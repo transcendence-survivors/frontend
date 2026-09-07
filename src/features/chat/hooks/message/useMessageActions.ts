@@ -3,7 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { uploadAttachments } from '@/libs/api/helpers/attachments';
-import { useMessageActions } from '../stores/messageSlice';
+import { useMessageActions } from '../../stores/messageSlice';
 
 interface SendMessageInput {
 	roomId: string;

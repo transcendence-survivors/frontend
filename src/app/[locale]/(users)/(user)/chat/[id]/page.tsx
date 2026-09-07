@@ -2,8 +2,10 @@ import ChatRoomHeader from '@/features/chat/components/room/ChatRoomHeader';
 import { getChatRoom } from '@/features/chat/api/get';
 import { isApiError } from '@/libs/api';
 import { notFound } from 'next/navigation';
-import { cookies } from 'next/dist/server/request/cookies';
 import ChatContainer from '@/features/chat/components/ChatContainer';
+import { cookies } from 'next/headers';
+import { ChatSidebarProvider } from '@/features/chat/components/sidebar/ChatSidebarContext';
+import { ChatSidebar } from '@/features/chat/components/sidebar/ChatSidebar';
 
 interface ChatRoomProps {
 	params: Promise<{
@@ -14,17 +16,19 @@ interface ChatRoomProps {
 export default async function ChatRoom({ params }: ChatRoomProps) {
 	const [{ id }, cookieStore] = await Promise.all([params, cookies()]);
 	const res = await getChatRoom(id, cookieStore.toString());
-	if (isApiError(res)) {
-		notFound();
-	}
+
+	if (isApiError(res)) notFound();
 	const room = res.data;
 
 	return (
-		<main className='flex w-full min-h-0 h-full'>
-			<section className={`flex flex-col flex-1 bg-background`}>
+		<main>
+			<ChatSidebarProvider>
 				<ChatRoomHeader room={room} />
-				<ChatContainer roomId={room.id} />
-			</section>
+				<div className='flex'>
+					<ChatContainer roomId={room.id} />
+					<ChatSidebar roomId={room.id} />
+				</div>
+			</ChatSidebarProvider>
 		</main>
 	);
 }

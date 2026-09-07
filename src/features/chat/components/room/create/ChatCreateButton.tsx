@@ -7,8 +7,8 @@ import { isApiError } from '@/libs/api';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/modules/i18n/constants/routes';
-import { useChatRoomCreate } from '@/features/chat/hooks/useChatRoomActions';
-import { UseChatRoomsParams } from '@/features/chat/hooks/useChatRooms';
+import { useChatRoomCreate } from '@/features/chat/hooks/room/useChatRoomActions';
+import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
 import { ChatRoomType } from '@/features/chat/types/room';
 
 interface ChatCreateButtonProps extends ComponentProps<typeof Button> {

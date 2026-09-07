@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ChatMessage } from '../types/message';
+import { ChatMessage } from '../../types/message';
 
 interface PageData {
 	data: ChatMessage[];
@@ -14,15 +14,9 @@ export const useGroupedMessages = (pages?: PageData[]) => {
 
 		const messagePerDay = messages.reduce<Record<string, ChatMessage[]>>(
 			(acc, message) => {
-				const date = new Date(message.createdAt).toLocaleDateString(undefined, {
-					weekday: 'short',
-					year: 'numeric',
-					month: 'short',
-					day: 'numeric',
-				});
-
-				if (!acc[date]) acc[date] = [];
-				acc[date].push(message);
+				const dateKey = new Date(message.createdAt).toLocaleDateString('en-CA');
+				if (!acc[dateKey]) acc[dateKey] = [];
+				acc[dateKey].push(message);
 				return acc;
 			},
 			{},

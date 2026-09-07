@@ -22,7 +22,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/',
 		it: '/',
 	},
-
 	register: {
 		en: '/register',
 		de: '/registrieren',

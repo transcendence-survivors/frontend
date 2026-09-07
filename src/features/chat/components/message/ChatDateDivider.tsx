@@ -1,3 +1,4 @@
+import DisplayDate from '@/components/ui/date';
 import { memo } from 'react';
 
 interface ChatDateDividerProps {
@@ -7,7 +8,15 @@ interface ChatDateDividerProps {
 export const ChatDateDivider = memo(({ date }: ChatDateDividerProps) => (
 	<div className='my-2 flex items-center justify-center gap-3 text-xs text-muted-foreground'>
 		<span className='h-px flex-1 bg-border' />
-		<span>{date}</span>
+		<DisplayDate
+			date={new Date(date)}
+			formatOptions={{
+				weekday: 'short',
+				year: 'numeric',
+				month: 'short',
+				day: 'numeric',
+			}}
+		/>
 		<span className='h-px flex-1 bg-border' />
 	</div>
 ));

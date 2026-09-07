@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 
-import { useChatMessages } from '../../hooks/useChatMessages';
+import { useChatMessages } from '../../hooks/message/useChatMessages';
 import { useChatScroll } from '../../hooks/useChatScroll';
-import { useGroupedMessages } from '../../hooks/useGroupedMessages';
+import { useGroupedMessages } from '../../hooks/message/useGroupedMessages';
 
 import { LoadingList } from '@/components/ui/loading-list';
 import { Error } from '@/features/relationships/components/error';
@@ -36,7 +36,8 @@ const ChatMessages = ({
 		useChatMessages({ roomId });
 
 	const { messages, messagePerDay } = useGroupedMessages(data?.pages);
-	const { containerRef, isInitialLoad } = useChatScroll({
+
+	const { containerRef, isInitialLoad, snapshotScroll } = useChatScroll({
 		messageCount: messages.length,
 	});
 
@@ -47,9 +48,17 @@ const ChatMessages = ({
 
 	useEffect(() => {
 		if (inView && hasNextPage && !isFetchingNextPage && !isInitialLoad.current) {
+			snapshotScroll();
 			fetchNextPage();
 		}
-	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage, isInitialLoad]);
+	}, [
+		inView,
+		hasNextPage,
+		isFetchingNextPage,
+		fetchNextPage,
+		isInitialLoad,
+		snapshotScroll,
+	]);
 
 	if (isLoading) {
 		return (
@@ -74,17 +83,21 @@ const ChatMessages = ({
 	}
 
 	return (
-		<div ref={containerRef} className='flex flex-1 flex-col overflow-y-auto'>
-			<div ref={topIntersectionRef} className='flex justify-center py-2 mt-auto'>
+		<div
+			ref={containerRef}
+			className='flex flex-1 flex-col overflow-y-auto overflow-x-clip'>
+			<div
+				ref={topIntersectionRef}
+				className='flex items-center justify-center h-10 shrink-0 mt-auto'>
 				{isFetchingNextPage && <Spinner className='size-6' />}
 				{!hasNextPage && (
-					<span className='text-xs text-muted-foreground py-2'>
+					<span className='text-xs text-muted-foreground'>
 						{t('no_more_messages')}
 					</span>
 				)}
 			</div>
 
-			<div className='flex flex-col gap-4'>
+			<div className='flex flex-col gap-4 min-w-0 '>
 				{Object.entries(messagePerDay).map(([date, dayMessages]) => (
 					<ChatMessageGroup
 						key={date}

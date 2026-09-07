@@ -1,5 +1,5 @@
 import type { Locale } from 'date-fns';
-
+import { useFormatter } from 'next-intl';
 import {
 	TIME_UNIT_TRANSLATION_KEYS,
 	TIME_UNITS,
@@ -9,13 +9,69 @@ import {
 import { LooseTFunction, RootTFunction } from '@i18n/messages/types';
 import { getUnitDifference } from './time-diff';
 
+type Formatter = ReturnType<typeof useFormatter>;
+
+export type DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+
+type GetDateTextParams = {
+	date: Date;
+	dateLocale: Locale;
+	max_ago?: TimeUnit;
+	t: RootTFunction;
+	format?: Formatter;
+	formatOptions?: DateTimeFormatOptions;
+};
+
+const defaultFormatOptions: DateTimeFormatOptions = {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+};
+
+export const getDateText = ({
+	date,
+	dateLocale,
+	max_ago,
+	t,
+	format,
+	formatOptions,
+}: GetDateTextParams): string => {
+	const translate = t as LooseTFunction;
+	const now = new Date();
+	const diffMs = now.getTime() - date.getTime();
+
+	const options = formatOptions ?? defaultFormatOptions;
+
+	if ((max_ago && diffMs >= TIME_UNITS[max_ago]) || (!max_ago && formatOptions)) {
+		if (format) {
+			return format.dateTime(date, options as Parameters<Formatter['dateTime']>[1]);
+		}
+		return date.toLocaleDateString(dateLocale.code, options);
+	}
+
+	if (diffMs < TIME_UNITS.MINUTE) {
+		return translate(TIME_UNIT_TRANSLATION_KEYS.NOW);
+	}
+
+	for (let i = TIME_UNITS_HIERARCHY.length - 1; i >= 0; i--) {
+		const { unit, value } = TIME_UNITS_HIERARCHY[i];
+		if (diffMs >= value) {
+			return translate(TIME_UNIT_TRANSLATION_KEYS[unit], {
+				count: getUnitDifference(unit, now, date),
+			});
+		}
+	}
+
+	return translate(TIME_UNIT_TRANSLATION_KEYS.NOW);
+};
+
 type DateFormat = {
 	intlLocale: Intl.LocalesArgument;
 	separator: string;
 	order: [number, number, number];
 };
 
-const getDateFormat = (locale: Locale): DateFormat => {
+export const getDateFormat = (locale: Locale): DateFormat => {
 	const intlLocale = locale.code.replace('_', '-');
 	const ref = new Date(2013, 10, 5);
 
@@ -42,7 +98,7 @@ const getDateFormat = (locale: Locale): DateFormat => {
 	};
 };
 
-const parseDateString = (raw: string, format: DateFormat): Date => {
+export const parseDateString = (raw: string, format: DateFormat): Date => {
 	const parts = raw.split(format.separator);
 	const [dayIndex, monthIndex, yearIndex] = format.order;
 
@@ -62,55 +118,10 @@ const parseDateString = (raw: string, format: DateFormat): Date => {
 
 	return new Date(Date.UTC(year, month - 1, day));
 };
-
-const toDate = (value: string | Date | undefined): Date | undefined => {
+export const toDate = (value: string | Date | undefined): Date | undefined => {
 	if (!value) {
 		return undefined;
 	}
 	const d = new Date(value);
 	return isNaN(d.getTime()) ? undefined : d;
 };
-
-const formatDate = (date: Date, locale: Locale): string => {
-	const format = getDateFormat(locale);
-	return date.toLocaleDateString(format.intlLocale, {
-		day: '2-digit',
-		month: '2-digit',
-		year: 'numeric',
-	});
-};
-
-type GetDateTextParams = {
-	date: Date;
-	dateLocale: Locale;
-	max_ago?: TimeUnit;
-	t: RootTFunction;
-};
-
-const getDateText = ({ date, dateLocale, max_ago, t }: GetDateTextParams): string => {
-	const translate = t as LooseTFunction;
-
-	const now = new Date();
-	const diffMs = now.getTime() - date.getTime();
-
-	if (max_ago && diffMs >= TIME_UNITS[max_ago]) {
-		return formatDate(date, dateLocale);
-	}
-
-	if (diffMs < TIME_UNITS.MINUTE) {
-		return translate(TIME_UNIT_TRANSLATION_KEYS.NOW);
-	}
-
-	for (let i = TIME_UNITS_HIERARCHY.length - 1; i >= 0; i--) {
-		const { unit, value } = TIME_UNITS_HIERARCHY[i];
-		if (diffMs >= value) {
-			return translate(TIME_UNIT_TRANSLATION_KEYS[unit], {
-				count: getUnitDifference(unit, now, date),
-			});
-		}
-	}
-
-	return translate(TIME_UNIT_TRANSLATION_KEYS.NOW);
-};
-
-export { getDateFormat, parseDateString, toDate, formatDate, getDateText };

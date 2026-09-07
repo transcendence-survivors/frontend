@@ -1,13 +1,28 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 
 interface UseChatScrollOptions {
 	messageCount: number;
 }
 
+interface ScrollSnapshot {
+	scrollHeight: number;
+	scrollTop: number;
+}
+
 export const useChatScroll = ({ messageCount }: UseChatScrollOptions) => {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const prevScrollHeightRef = useRef<number>(0);
-	const isInitialLoad = useRef(true);
+	const isInitialLoad = useRef<boolean>(true);
+	const pendingSnapshotRef = useRef<ScrollSnapshot | null>(null);
+
+	const snapshotScroll = useCallback(() => {
+		const container = containerRef.current;
+		if (!container) return;
+
+		pendingSnapshotRef.current = {
+			scrollHeight: container.scrollHeight,
+			scrollTop: container.scrollTop,
+		};
+	}, []);
 
 	useLayoutEffect(() => {
 		const container = containerRef.current;
@@ -16,13 +31,21 @@ export const useChatScroll = ({ messageCount }: UseChatScrollOptions) => {
 		if (isInitialLoad.current) {
 			container.scrollTop = container.scrollHeight;
 			isInitialLoad.current = false;
-		} else if (prevScrollHeightRef.current > 0) {
-			const heightDifference = container.scrollHeight - prevScrollHeightRef.current;
-			container.scrollTop += heightDifference;
+			return;
 		}
 
-		prevScrollHeightRef.current = container.scrollHeight;
+		if (pendingSnapshotRef.current) {
+			const { scrollHeight: oldScrollHeight, scrollTop: oldScrollTop } =
+				pendingSnapshotRef.current;
+
+			const heightDifference = container.scrollHeight - oldScrollHeight;
+			if (heightDifference > 0) {
+				container.scrollTop = oldScrollTop + heightDifference;
+			}
+
+			pendingSnapshotRef.current = null;
+		}
 	}, [messageCount]);
 
-	return { containerRef, isInitialLoad };
+	return { containerRef, isInitialLoad, snapshotScroll };
 };

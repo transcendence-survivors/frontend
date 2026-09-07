@@ -1,14 +1,18 @@
-interface ChatMessageBubbleDeletedProps {
-	isMe: boolean;
-}
+import { cn } from '@/libs/utils';
+import { HTMLAttributes } from 'react';
 
-export const ChatMessageBubbleDeleted = ({ isMe }: ChatMessageBubbleDeletedProps) => (
+type ChatMessageBubbleDeletedProps = HTMLAttributes<HTMLDivElement> & {};
+
+export const ChatMessageBubbleDeleted = ({
+	className,
+	...props
+}: ChatMessageBubbleDeletedProps) => (
 	<div
-		className={`flex items-end gap-2 px-4 py-2 ${isMe ? 'flex-row-reverse' : 'flex-row'}`}>
-		<div
-			className={`rounded-2xl border border-dashed border-border px-4 py-2 text-xs italic text-muted-foreground 
-            ${isMe ? '' : 'ml-10'}`}>
-			This message was deleted
-		</div>
+		className={cn(
+			'rounded-2xl border border-dashed border-border px-4 py-2 text-xs italic text-muted-foreground',
+			className,
+		)}
+		{...props}>
+		This message was deleted
 	</div>
 );

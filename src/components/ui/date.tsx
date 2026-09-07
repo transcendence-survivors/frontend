@@ -1,26 +1,48 @@
 'use client';
 
-import { getDateText, TimeUnit } from '@/libs/date';
-
-import useLocaleParams from '@/modules/i18n/hooks/useLocale';
-import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
+import { useFormatter, useTranslations } from 'next-intl';
+import useLocaleParams from '@/modules/i18n/hooks/useLocale';
+import { getDateText, TimeUnit, DateTimeFormatOptions } from '@/libs/date';
 
-interface DateProps extends React.HTMLAttributes<HTMLDivElement> {
-	date: Date;
+export interface DisplayDateProps extends React.HTMLAttributes<HTMLSpanElement> {
+	date: Date | string | number;
 	max_ago?: TimeUnit;
+	formatOptions?: DateTimeFormatOptions;
 }
 
-const DisplayDate = ({ date, max_ago, ...props }: DateProps) => {
-	const { dateLocale } = useLocaleParams();
+const DisplayDate = ({
+	date,
+	max_ago,
+	formatOptions,
+	className,
+	...props
+}: DisplayDateProps) => {
+	const format = useFormatter();
 	const t = useTranslations();
+	const { dateLocale } = useLocaleParams();
 
-	const dateText = useMemo(
-		() => getDateText({ date, dateLocale, max_ago, t }),
-		[date, dateLocale, max_ago, t],
+	const dateObject = useMemo(() => {
+		const d = new Date(date);
+		return isNaN(d.getTime()) ? new Date() : d;
+	}, [date]);
+
+	const dateText = useMemo(() => {
+		return getDateText({
+			date: dateObject,
+			dateLocale,
+			max_ago,
+			t,
+			format,
+			formatOptions,
+		});
+	}, [dateObject, dateLocale, max_ago, t, format, formatOptions]);
+
+	return (
+		<span className={className} {...props}>
+			{dateText}
+		</span>
 	);
-
-	return <span {...props}>{dateText}</span>;
 };
 
 export default DisplayDate;

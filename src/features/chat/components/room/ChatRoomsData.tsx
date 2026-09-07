@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect, useMemo } from 'react';
 import { Error } from '@/features/relationships/components/error';
 import { Spinner } from '@/components/ui/spinner';
-import { useChatRooms, UseChatRoomsParams } from '../../hooks/useChatRooms';
+import { useChatRooms, UseChatRoomsParams } from '../../hooks/room/useChatRooms';
 import { LoadingList } from '@/components/ui/loading-list';
 import { usePathname } from 'next/navigation';
 import { matchRoute } from '@/modules/i18n/utils/match';

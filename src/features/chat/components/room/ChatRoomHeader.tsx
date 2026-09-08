@@ -13,7 +13,7 @@ interface ChatRoomHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ChatRoomHeader = ({ room, className, ...props }: ChatRoomHeaderProps) => {
 	const name = getRoomName(room);
-	const elipsisMembersCount = getMemberPlusCount(room);
+	const elipsisMembersCount = getMemberPlusCount(room, { showAllOnName: true });
 	const displayName =
 		`${name} ${elipsisMembersCount ? `(+${elipsisMembersCount})` : ''}`.trim();
 

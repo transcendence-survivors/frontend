@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { AppMessages } from '@/modules/i18n/messages/types';
 import { NavLink } from '@/modules/i18n/utils/navigation';
 import {
 	Drawer,
@@ -17,25 +18,25 @@ import { useTranslations } from 'next-intl';
 import { VisuallyHidden } from 'radix-ui';
 import { useTransition } from 'react';
 
-const navLinks: NavLink[] = [
+const navLinks: NavLink<AppMessages['nav']>[] = [
 	{
-		key: 'landing',
+		key: 'home',
 		labelKey: 'concept',
 	},
 	{
-		key: 'landing',
+		key: 'home',
 		labelKey: 'game',
 	},
 	{
-		key: 'landing',
+		key: 'home',
 		labelKey: 'home',
 	},
 	{
-		key: 'landing',
+		key: 'home',
 		labelKey: 'leaderboard',
 	},
 	{
-		key: 'landing',
+		key: 'home',
 		labelKey: 'posts',
 	},
 ];

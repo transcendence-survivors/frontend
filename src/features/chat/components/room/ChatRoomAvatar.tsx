@@ -27,7 +27,7 @@ const ChatRoomAvatar = ({ room }: ChatRoomAvatarProps) => {
 	const status = getRoomStatus(room);
 
 	const displayedMembers = isDirect ? [] : room.membersPreview.slice(0, MAX_AVATARS);
-	const memberPlusCount = getMemberPlusCount(room, MAX_AVATARS);
+	const memberPlusCount = getMemberPlusCount(room, { maxPreview: MAX_AVATARS });
 
 	return (
 		<div className='w-16'>

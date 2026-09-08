@@ -48,7 +48,7 @@ export const ChatContainer = ({ roomId }: ChatContainerProps) => {
 	);
 
 	return (
-		<section className='flex flex-col h-full'>
+		<section className='flex flex-col min-w-0 w-full'>
 			<ChatMessages
 				userId={user?.id ?? ''}
 				roomId={roomId}

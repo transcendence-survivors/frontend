@@ -21,10 +21,10 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 	const room = res.data;
 
 	return (
-		<main>
+		<main className='flex flex-col h-full overflow-clip'>
 			<ChatSidebarProvider>
 				<ChatRoomHeader room={room} />
-				<div className='flex'>
+				<div className='flex flex-1 min-h-0'>
 					<ChatContainer roomId={room.id} />
 					<ChatSidebar roomId={room.id} />
 				</div>

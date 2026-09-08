@@ -1,5 +1,6 @@
 import { CursorParams } from '@/libs/api';
 import { BaseUser } from '../../user/type';
+import { ChatMessage } from './message';
 
 export enum ChatRoomType {
 	DIRECT = 'DIRECT',
@@ -19,17 +20,11 @@ export enum ChatRoomFeed {
 	GROUP = 'group',
 }
 
-interface LastMessage {
-	content: string;
-	createdAt: string;
-	senderDisplayName: string;
-}
-
 interface ChatRoomBase {
 	id: string;
 	name: string | null;
 	avatarUrl: string | null;
-	lastMessage: LastMessage | null;
+	lastMessage: ChatMessage | null;
 }
 
 export interface DirectChatRoom extends ChatRoomBase {

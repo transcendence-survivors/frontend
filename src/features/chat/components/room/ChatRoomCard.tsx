@@ -7,6 +7,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import ChatRoomAvatar from './ChatRoomAvatar';
 import { getRoomName } from '../../utils/room';
 import DisplayDate from '@/components/ui/date';
+import { useTranslations } from 'next-intl';
+import { getMessagePreview } from '../../utils/message';
 
 interface ChatRoomCardProps {
 	room: ChatRoom;
@@ -15,7 +17,9 @@ interface ChatRoomCardProps {
 }
 
 const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
+	const t = useTranslations('chat');
 	const name = getRoomName(room);
+	const messagePreview = getMessagePreview(room.lastMessage, t);
 
 	return (
 		<article>
@@ -34,7 +38,7 @@ const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
 					<div className='min-w-0'>
 						<h3 className='truncate font-semibold'>{name}</h3>
 						<span className='truncate text-xs text-muted-foreground font-light block'>
-							{room.lastMessage?.content || 'No messages yet'}
+							{messagePreview}
 						</span>
 					</div>
 

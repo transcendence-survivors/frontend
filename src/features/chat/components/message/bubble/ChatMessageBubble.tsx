@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ChatMessage } from '../../../types/message';
+import { ChatMessage, ChatMessageType } from '../../../types/message';
 import { AvatarProfileTooltip } from '@/features/user/components/Avatar/AvatarProfile';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ChatMessageActions } from '../ChatMessageActions';
@@ -8,7 +8,7 @@ import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 import DisplayDate from '@/components/ui/date';
 
 interface ChatMessageBubbleProps {
-	message: ChatMessage;
+	message: Extract<ChatMessage, { type: ChatMessageType.TEXT }>;
 	isMe: boolean;
 	prevUserId?: string;
 	onEdit?: (message: ChatMessage) => void;

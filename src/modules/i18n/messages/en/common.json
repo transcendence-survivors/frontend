@@ -166,7 +166,25 @@
 			"no_messages": "No messages yet. Start the conversation!",
 			"no_messages_search": "No messages found for your search.",
 			"no_more_messages": "No more messages to load.",
-			"fetch_error": "Failed to load messages. Please try again later."
+			"fetch_error": "Failed to load messages. Please try again later.",
+
+			"preview": {
+				"no_messages": "No messages yet",
+				"deleted_message": "This message was deleted",
+				"attachments": "{count, plural, =1 {Sent 1 attachment} other {Sent {count} attachments}}"
+			},
+
+			"system": {
+				"default_actor": "System",
+				"role_updated": "{actor} changed {target}'s role from {oldRole} to {newRole}.",
+				"kicked": "{actor} removed {target} from the room.",
+				"joined": "{user} joined the room.",
+				"left": "{user} left the room.",
+				"room_renamed": "{actor} renamed the room from \"{oldName}\" to \"{newName}\".",
+				"room_avatar_changed": "{actor} updated the room avatar.",
+				"ownership_transferred": "{actor} transferred room ownership to {target}.",
+				"room_created": "{actor} created the room."
+			}
 		},
 		"members": {
 			"sort": {

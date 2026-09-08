@@ -21,10 +21,19 @@ export const getRoomAvatarUrl = (room: ChatRoom) => {
 	return room.avatarUrl;
 };
 
-export const getMemberPlusCount = (room: ChatRoom, maxPreview?: number) => {
+export const getMemberPlusCount = (
+	room: ChatRoom,
+	{ maxPreview, showAllOnName }: { maxPreview?: number; showAllOnName?: boolean } = {
+		maxPreview: undefined,
+	},
+) => {
 	if (isDirectRoom(room)) {
 		return 0;
 	}
+	if (showAllOnName && room.name) {
+		return room.memberCount;
+	}
+
 	const maxCount = maxPreview
 		? Math.min(maxPreview, room.membersPreview.length)
 		: room.membersPreview.length;

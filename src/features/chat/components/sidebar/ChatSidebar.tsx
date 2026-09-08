@@ -16,8 +16,8 @@ export const ChatSidebar = ({ roomId, className, ...props }: ChatMembersSidebarP
 			className={cn(
 				'bg-background transition-all duration-150 ease-in-out flex flex-col min-h-0',
 				isOpen
-					? 'w-72 opacity-100 border-l border-border'
-					: 'w-0 opacity-0 overflow-hidden border-none',
+					? 'w-72 min-w-72  opacity-100 border-l border-border'
+					: 'w-0 min-w-0 opacity-0 overflow-hidden border-none',
 				className,
 			)}
 			{...props}>

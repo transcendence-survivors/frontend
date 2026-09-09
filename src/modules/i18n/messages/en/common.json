@@ -173,7 +173,15 @@
 				"deleted_message": "This message was deleted",
 				"attachments": "{count, plural, =1 {Sent 1 attachment} other {Sent {count} attachments}}"
 			},
-
+			"actions": {
+				"reply": "Reply",
+				"edit": "Edit",
+				"delete": "Delete",
+				"dialogs": {
+					"delete_title": "Delete message ?",
+					"delete_description": "This action cannot be undone. This message will be permanently removed from the conversation."
+				}
+			},
 			"system": {
 				"default_actor": "System",
 				"role_updated": "{actor} changed {target}'s role from {oldRole} to {newRole}.",
@@ -187,6 +195,11 @@
 			}
 		},
 		"members": {
+			"roles": {
+				"owner": "Owner",
+				"admin": "Admin",
+				"member": "Member"
+			},
 			"sort": {
 				"label": "Sort members",
 				"username_asc": "Username (A-Z)",
@@ -206,14 +219,25 @@
 			"no_more_members": "No more members to load.",
 			"fetch_error": "Failed to load members. Please try again later.",
 			"actions": "Member actions",
-			"view_profile": "View profile",
 			"kick": "Kick member",
-			"roles": {
-				"owner": "Owner",
-				"admin": "Admin",
-				"member": "Member"
-			},
-			"joined_at": "Joined at"
+			"promote_to_admin": "Promote to Admin",
+			"demote_to_member": "Demote to Member",
+			"transfer_ownership": "Transfer Ownership",
+			"leave_room": "Leave Room",
+			"view_profile": "View Profile",
+			"joined_at": "Joined",
+			"dialogs": {
+				"kick_title": "Kick member",
+				"kick_description": "Are you sure you want to kick this member from the chat room? They will no longer have access to messages.",
+				"promote_title": "Promote member",
+				"promote_description": "Are you sure you want to promote this member to Admin? They will gain administrative privileges in this room.",
+				"demote_title": "Demote member",
+				"demote_description": "Are you sure you want to demote this Admin to Member? They will lose administrative privileges.",
+				"transfer_title": "Transfer ownership",
+				"transfer_description": "Are you sure you want to transfer ownership of this room? You will be demoted to Admin and lose owner privilege.",
+				"leave_title": "Leave chat room",
+				"leave_description": "Are you sure you want to leave this chat room? You will need to be re-invited to join again."
+			}
 		},
 		"title": "Chat",
 		"subtitle": "Conversations with your friends"
@@ -448,5 +472,9 @@
 		"weeks_ago": "{count} weeks ago",
 		"months_ago": "{count} months ago",
 		"years_ago": "{count} years ago"
+	},
+	"common": {
+		"confirm": "Confirm",
+		"cancel": "Cancel"
 	}
 }

@@ -3,12 +3,19 @@
 import { cn } from '@/libs/utils';
 import { useChatSidebar } from './ChatSidebarContext';
 import { ChatMembers } from '../member/ChatMembers';
+import { ChatMemberRole } from '../../types/member';
 
 interface ChatMembersSidebarProps extends React.HTMLAttributes<HTMLElement> {
 	roomId: string;
+	currentUserRole: ChatMemberRole;
 }
 
-export const ChatSidebar = ({ roomId, className, ...props }: ChatMembersSidebarProps) => {
+export const ChatSidebar = ({
+	roomId,
+	currentUserRole,
+	className,
+	...props
+}: ChatMembersSidebarProps) => {
 	const { isOpen } = useChatSidebar();
 
 	return (
@@ -21,7 +28,7 @@ export const ChatSidebar = ({ roomId, className, ...props }: ChatMembersSidebarP
 				className,
 			)}
 			{...props}>
-			<ChatMembers roomId={roomId} />
+			<ChatMembers roomId={roomId} currentUserRole={currentUserRole} />
 		</aside>
 	);
 };

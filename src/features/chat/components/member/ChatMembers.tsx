@@ -5,7 +5,7 @@ import { ChatMemberCount } from './ChatMemberCount';
 import { useTranslations } from 'next-intl';
 import ChatMembersData from './ChatMembersData';
 import { useUser } from '@/features/auth/stores/session';
-import { ChatMemberOrderBy } from '../../types/member';
+import { ChatMemberOrderBy, ChatMemberRole } from '../../types/member';
 import { SearchInput } from '@/components/ui/search-param-input';
 import { Users, ArrowUpDown } from 'lucide-react';
 import {
@@ -22,6 +22,7 @@ import { AppMessages } from '@/modules/i18n/messages/types';
 interface ChatMembersSectionProps {
 	roomId: string;
 	className?: string;
+	currentUserRole: ChatMemberRole;
 }
 
 const orderByOptions: {
@@ -38,13 +39,20 @@ const orderByOptions: {
 	{ value: 'role-desc', labelKey: 'sort.role_desc' },
 ] as const;
 
-export const ChatMembers = ({ roomId, className }: ChatMembersSectionProps) => {
+export const ChatMembers = ({
+	roomId,
+	className,
+	currentUserRole,
+}: ChatMembersSectionProps) => {
 	const user = useUser();
 	const t = useTranslations('chat.members');
 
 	const [search, setSearch] = useState('');
 	const [orderBy, setOrderBy] = useState<ChatMemberOrderBy>('username-asc');
 
+	if (!user) {
+		return null;
+	}
 	return (
 		<div className='flex flex-col min-h-0 gap-0 w-full'>
 			<div>
@@ -94,12 +102,10 @@ export const ChatMembers = ({ roomId, className }: ChatMembersSectionProps) => {
 					roomId,
 					search,
 					orderBy,
+					limit: 50,
 				}}
-				currentUserId={user?.id}
-				currentUserRole={'ADMIN'}
-				onKick={(memberId) => {
-					console.log('Kick member with ID:', memberId);
-				}}
+				currentUserId={user!.id}
+				currentUserRole={currentUserRole}
 				className={className}
 			/>
 		</div>

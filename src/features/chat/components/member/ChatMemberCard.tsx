@@ -1,5 +1,6 @@
 'use client';
 
+import { ReactNode } from 'react';
 import {
 	UserIdentity,
 	UserIdentitySkeleton,
@@ -13,22 +14,37 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { UserX, User, Crown, ShieldCheck, Calendar, History, Clock } from 'lucide-react';
-import { useFormatter, useTranslations } from 'next-intl';
+import {
+	UserX,
+	User,
+	Crown,
+	ShieldCheck,
+	Clock,
+	ShieldAlert,
+	UserMinus,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
-import { canManageMember } from '../../utils/role';
+import { canManageMember, ChatMemberPermissionEnum } from '../../utils/role';
 import { ChatMember, ChatMemberRole } from '../../types/member';
 import { AppMessages } from '@/modules/i18n/messages/types';
 import { DeepKeys } from '@/libs/types';
 import { I18nLink } from '@/modules/i18n/components/I18nLink';
 import DisplayDate from '@/components/ui/date';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ChatMemberKickButton } from './actions/ChatMemberKickButton';
+import { ChatTransferOwnershipButton } from './actions/ChatTransferOwnershipButton';
+import { ChatMemberDemoteButton } from './actions/ChatMemberDemoteButton';
+import { LeaveRoomButton } from './actions/ChatLeaveButton';
+import { ChatMemberPromoteButton } from './actions/ChatMemberPromoteButton';
+import { UseChatMembersParams } from '../../hooks/member/useChatMembers';
 
 export interface ChatMemberCardProps {
+	roomId: string;
 	member: ChatMember;
 	currentUserId?: string;
 	currentUserRole?: ChatMemberRole;
-	onKick?: (memberId: string) => void;
+	params: UseChatMembersParams;
 }
 
 const roleTradMap: Record<ChatMemberRole, DeepKeys<AppMessages['chat']['members']>> = {
@@ -37,50 +53,66 @@ const roleTradMap: Record<ChatMemberRole, DeepKeys<AppMessages['chat']['members'
 	MEMBER: 'roles.member',
 } as const;
 
-const ROLE_BADGE_STYLE: Record<
-	ChatMemberRole,
-	{ icon?: React.ReactNode; className: string }
-> = {
-	OWNER: {
-		icon: <Crown className='size-3 text-amber-500 fill-amber-500/20' />,
-		className:
-			'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
-	},
-	ADMIN: {
-		icon: <ShieldCheck className='size-3 text-indigo-500' />,
-		className:
-			'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
-	},
-	MEMBER: {
-		className: 'bg-muted/60 text-muted-foreground border-border/50',
-	},
-};
+const ROLE_BADGE_STYLE: Record<ChatMemberRole, { icon?: ReactNode; className: string }> =
+	{
+		OWNER: {
+			icon: <Crown className='size-3 text-amber-500 fill-amber-500/20' />,
+			className:
+				'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+		},
+		ADMIN: {
+			icon: <ShieldCheck className='size-3 text-indigo-500' />,
+			className:
+				'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
+		},
+		MEMBER: {
+			className: 'bg-muted/60 text-muted-foreground border-border/50',
+		},
+	};
 
 export const ChatMemberCard = ({
+	roomId,
 	member,
 	currentUserId,
 	currentUserRole,
-	onKick,
+	params,
 }: ChatMemberCardProps) => {
 	const t = useTranslations('chat.members');
 
 	const isSelf = currentUserId === member.user.id;
-	const canKick = !isSelf && canManageMember(currentUserRole, member.role);
+	const isOwner = currentUserRole === 'OWNER';
+
+	const canPromote =
+		!isSelf &&
+		member.role === 'MEMBER' &&
+		canManageMember({
+			actorRole: currentUserRole,
+			targetRole: member.role,
+			permission: ChatMemberPermissionEnum.MEMBER_PROMOTE,
+			desiredRole: 'ADMIN',
+		});
+
+	const canDemote =
+		!isSelf &&
+		member.role === 'ADMIN' &&
+		canManageMember({
+			actorRole: currentUserRole,
+			targetRole: member.role,
+			permission: ChatMemberPermissionEnum.MEMBER_DEMOTE,
+			desiredRole: 'MEMBER',
+		});
+
+	const canKick =
+		!isSelf &&
+		canManageMember({
+			actorRole: currentUserRole,
+			targetRole: member.role,
+			permission: ChatMemberPermissionEnum.MEMBER_KICK,
+		});
+
+	const canTransfer = isOwner && !isSelf;
+	const hasAnyManagementAction = canPromote || canDemote || canTransfer || canKick;
 	const roleStyle = ROLE_BADGE_STYLE[member.role];
-
-	const avatarProps = {
-		img: {
-			src: member.user.avatarUrl ?? '',
-			alt: member.user.displayName,
-		},
-		size: 'md' as const,
-		badgeState: false as const,
-	};
-
-	const userProps = {
-		displayName: member.user.displayName,
-		username: member.user.username,
-	};
 
 	return (
 		<DropdownMenu>
@@ -92,8 +124,18 @@ export const ChatMemberCard = ({
 						'h-auto max-w-full w-full overflow-clip justify-between gap-x-3 p-3',
 					)}>
 					<UserIdentity
-						avatar={avatarProps}
-						user={userProps}
+						avatar={{
+							img: {
+								src: member.user.avatarUrl ?? '',
+								alt: member.user.displayName,
+							},
+							size: 'md' as const,
+							badgeState: false as const,
+						}}
+						user={{
+							displayName: member.user.displayName,
+							username: member.user.username,
+						}}
 						className='min-w-0 flex-1'
 					/>
 
@@ -119,8 +161,7 @@ export const ChatMemberCard = ({
 					<>
 						<DropdownMenuLabel className='font-normal text-muted-foreground text-xs flex items-center gap-2 py-1.5'>
 							<Clock className='size-3.5 shrink-0 text-muted-foreground' />
-
-							<strong className='truncate font-meidum text-[10px] text-muted-foreground'>
+							<strong className='truncate font-medium text-[10px] text-muted-foreground'>
 								{t('joined_at')}{' '}
 								<DisplayDate
 									date={new Date(member.joinedAt)}
@@ -148,18 +189,92 @@ export const ChatMemberCard = ({
 					</I18nLink>
 				</DropdownMenuItem>
 
-				{canKick && (
+				{isSelf && !isOwner && (
 					<>
-						<DropdownMenuItem asChild>
-							<Button
-								variant='destructive'
-								size='sm'
-								className='w-full justify-start text-xs'
-								onClick={() => onKick?.(member.id)}>
-								<UserX className='size-3.5' />
-								<span>{t('kick')}</span>
-							</Button>
-						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<LeaveRoomButton
+							roomId={roomId}
+							currentUserId={currentUserId}
+							params={params}
+							asChild>
+							<DropdownMenuItem
+								onSelect={(e) => e.preventDefault()}
+								className='text-xs'>
+								<UserMinus className='size-3.5' />
+								<span>{t('leave_room')}</span>
+							</DropdownMenuItem>
+						</LeaveRoomButton>
+					</>
+				)}
+
+				{hasAnyManagementAction && (
+					<>
+						<DropdownMenuSeparator />
+
+						{canPromote && (
+							<ChatMemberPromoteButton
+								roomId={roomId}
+								targetUserId={member.user.id}
+								params={params}
+								asChild>
+								<DropdownMenuItem
+									onSelect={(e) => e.preventDefault()}
+									className='text-xs'>
+									<ShieldCheck className='size-3.5 text-primary' />
+									<span>{t('promote_to_admin')}</span>
+								</DropdownMenuItem>
+							</ChatMemberPromoteButton>
+						)}
+
+						{canDemote && (
+							<ChatMemberDemoteButton
+								roomId={roomId}
+								targetUserId={member.user.id}
+								params={params}
+								asChild>
+								<DropdownMenuItem
+									onSelect={(e) => e.preventDefault()}
+									className='text-xs'>
+									<ShieldAlert className='size-3.5 text-amber-500' />
+									<span>{t('demote_to_member')}</span>
+								</DropdownMenuItem>
+							</ChatMemberDemoteButton>
+						)}
+
+						{canTransfer && (
+							<ChatTransferOwnershipButton
+								roomId={roomId}
+								targetUserId={member.user.id}
+								params={params}
+								asChild>
+								<DropdownMenuItem
+									onSelect={(e) => e.preventDefault()}
+									className='text-xs'>
+									<ShieldCheck className='size-3.5 text-emerald-500' />
+									<span>{t('transfer_ownership')}</span>
+								</DropdownMenuItem>
+							</ChatTransferOwnershipButton>
+						)}
+
+						{canKick && (
+							<>
+								{(canPromote || canDemote || canTransfer) && (
+									<DropdownMenuSeparator />
+								)}
+								<ChatMemberKickButton
+									roomId={roomId}
+									targetUserId={member.user.id}
+									params={params}
+									asChild>
+									<DropdownMenuItem
+										onSelect={(e) => e.preventDefault()}
+										className='text-xs'>
+										<UserX className='size-3.5' />
+										<span>{t('kick')}</span>
+									</DropdownMenuItem>
+								</ChatMemberKickButton>
+							</>
+						)}
 					</>
 				)}
 			</DropdownMenuContent>

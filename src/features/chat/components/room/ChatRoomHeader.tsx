@@ -46,7 +46,7 @@ const ChatRoomHeader = ({ room, className, ...props }: ChatRoomHeaderProps) => {
 			</div>
 
 			<div className='flex gap-1 text-muted-foreground'>
-				<ChatSidebarTrigger />
+				{room.type === 'GROUP' && <ChatSidebarTrigger />}
 			</div>
 		</header>
 	);

@@ -15,6 +15,7 @@ export const getSystemMessage = (
 	message: SystemChatMessage,
 	t: RootTFunction,
 ): string | null => {
+	console.log('getSystemMessage called with message:', message);
 	switch (message.type) {
 		case ChatMessageType.ROLE_UPDATED:
 			return t('messages.system.role_updated', {
@@ -55,7 +56,7 @@ export const getSystemMessage = (
 		case ChatMessageType.OWNERSHIP_TRANSFERRED:
 			return t('messages.system.ownership_transferred', {
 				actor: message.sender.displayName,
-				target: message.metadata.targetUser.displayName,
+				target: message.metadata?.targetUser?.displayName,
 			});
 
 		case ChatMessageType.ROOM_CREATED:

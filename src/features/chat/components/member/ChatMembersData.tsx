@@ -13,16 +13,14 @@ import { ChatMemberRole } from '../../types/member';
 
 interface ChatMemberProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseChatMembersParams;
-	currentUserId?: string;
-	currentUserRole?: ChatMemberRole;
-	onKick?: (memberId: string) => void;
+	currentUserId: string;
+	currentUserRole: ChatMemberRole;
 }
 
 const ChatMembersData = ({
 	params,
 	currentUserId,
 	currentUserRole,
-	onKick,
 	className,
 	...props
 }: ChatMemberProps) => {
@@ -71,10 +69,11 @@ const ChatMembersData = ({
 					{members.map((member) => (
 						<li key={member.id}>
 							<ChatMemberCard
+								roomId={params.roomId}
 								member={member}
 								currentUserId={currentUserId}
 								currentUserRole={currentUserRole}
-								onKick={onKick}
+								params={params}
 							/>
 						</li>
 					))}

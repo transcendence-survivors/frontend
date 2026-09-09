@@ -61,6 +61,7 @@ export const createMessageSlice: StateCreator<
 						type: 'append',
 						item: message,
 					});
+					queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
 				});
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_EDITED, (message: ChatMessage) => {
@@ -87,8 +88,6 @@ export const createMessageSlice: StateCreator<
 										return {
 											...m,
 											isDeleted: true,
-											content: undefined,
-											attachmentUrls: [],
 										};
 									}
 									return m;

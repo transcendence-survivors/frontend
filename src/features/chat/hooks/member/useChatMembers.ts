@@ -4,16 +4,16 @@ import { getChatMembers } from '../../api/member';
 
 export interface UseChatMembersParams {
 	roomId: string;
+	orderBy: GetChatMembersParams['orderBy'];
+	limit: number;
 	search?: string;
-	orderBy?: GetChatMembersParams['orderBy'];
-	limit?: number;
 }
 
 export const useChatMembers = ({
 	roomId,
 	search,
-	orderBy = 'joined-desc',
-	limit = 10,
+	orderBy,
+	limit,
 }: UseChatMembersParams) => {
 	const initialPageParam = {
 		limit,

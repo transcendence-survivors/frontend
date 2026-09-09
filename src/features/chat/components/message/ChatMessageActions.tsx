@@ -1,20 +1,11 @@
+import { memo } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { TooltipContent, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
 import { Pencil, Reply, Trash2 } from 'lucide-react';
 import { ChatMessage } from '../../types/message';
-import { memo } from 'react';
-import {
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-	AlertDialog,
-} from '@/components/ui/alert-dialog';
 import { ChatMessageBubbleContent } from './bubble/ChatMessageBubbleContent';
+import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 
 interface ChatMessageActionsProps {
 	message: ChatMessage;
@@ -26,6 +17,8 @@ interface ChatMessageActionsProps {
 
 export const ChatMessageActions = memo(
 	({ message, isMe, onEdit, onDelete, onReply }: ChatMessageActionsProps) => {
+		const t = useTranslations('chat.messages.actions');
+
 		if (!onReply && !onEdit && !onDelete) return null;
 
 		return (
@@ -49,7 +42,7 @@ export const ChatMessageActions = memo(
 						<TooltipContent
 							side='top'
 							className='flex items-center gap-2 text-xs'>
-							<span>Reply</span>
+							<span>{t('reply')}</span>
 						</TooltipContent>
 					</Tooltip>
 				)}
@@ -68,64 +61,45 @@ export const ChatMessageActions = memo(
 						<TooltipContent
 							side='top'
 							className='flex items-center gap-2 text-xs'>
-							<span>Edit</span>
+							<span>{t('edit')}</span>
 						</TooltipContent>
 					</Tooltip>
 				)}
 
 				{onDelete && (
-					<AlertDialog>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<AlertDialogTrigger asChild>
+					<Tooltip>
+						<ActionConfirmDialog
+							title={t('dialogs.delete_title')}
+							description={t('dialogs.delete_description')}
+							confirmText={t('delete')}
+							isDestructive
+							onConfirm={() => onDelete(message.id)}
+							trigger={
+								<TooltipTrigger asChild>
 									<Button
 										variant='ghost'
 										size='icon'
 										className='size-7 text-destructive hover:bg-destructive/10 hover:text-destructive'>
 										<Trash2 className='size-3.5' />
 									</Button>
-								</AlertDialogTrigger>
-							</TooltipTrigger>
-							<TooltipContent
-								side='top'
-								className='flex items-center gap-2 text-xs'>
-								<span>Delete</span>
-							</TooltipContent>
-						</Tooltip>
-
-						<AlertDialogContent className='p-0 bg-card gap-0'>
-							<AlertDialogHeader className='p-4 space-y-2'>
-								<AlertDialogTitle>Delete message ?</AlertDialogTitle>
-								<AlertDialogDescription>
-									This action cannot be undone. This message will be
-									permanently removed from the conversation.
-								</AlertDialogDescription>
-
-								<div className='max-h-[65vh] overflow-y-auto rounded-lg border border-border/50 bg-background w-full'>
-									<ChatMessageBubbleContent
-										message={message}
-										isMe={isMe}
-										showReplyPreview={false}
-									/>
-								</div>
-							</AlertDialogHeader>
-
-							<AlertDialogFooter className='px-4 py-3 border-t border-border bg-muted flex items-center justify-end gap-4'>
-								<AlertDialogCancel variant='outline' className='flex-1'>
-									Cancel
-								</AlertDialogCancel>
-								<AlertDialogAction
-									variant='destructive'
-									onClick={() => onDelete(message.id)}
-									className='flex-1'>
-									Delete
-								</AlertDialogAction>
-							</AlertDialogFooter>
-						</AlertDialogContent>
-					</AlertDialog>
+								</TooltipTrigger>
+							}>
+							<ChatMessageBubbleContent
+								message={message}
+								isMe={isMe}
+								showReplyPreview={false}
+							/>
+						</ActionConfirmDialog>
+						<TooltipContent
+							side='top'
+							className='flex items-center gap-2 text-xs'>
+							<span>{t('delete')}</span>
+						</TooltipContent>
+					</Tooltip>
 				)}
 			</aside>
 		);
 	},
 );
+
 ChatMessageActions.displayName = 'ChatMessageActions';

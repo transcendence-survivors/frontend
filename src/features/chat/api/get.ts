@@ -2,6 +2,7 @@ import { api, ApiError, buildUrlParams, CursorResponse, isApiError } from '@/lib
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
 import { ChatRoom, GetChatRoomSearchParams } from '../types/room';
 import { GetChatMessagesParams, GetChatMessagesResponse } from '../types/message';
+import { ChatMemberRole } from '../types/member';
 
 type GetChatRooms = CursorResponse<ChatRoom[]>;
 
@@ -19,11 +20,14 @@ const getChatRooms = async (params: GetChatRoomSearchParams) => {
 
 const getChatRoom = async (id: string, cookie: string) => {
 	try {
-		return await api.get<ChatRoom>(CHAT_ENDPOINTS.getRoom(id), {
-			headers: {
-				Cookie: cookie,
+		return await api.get<ChatRoom & { currentUserRole: ChatMemberRole }>(
+			CHAT_ENDPOINTS.getRoom(id),
+			{
+				headers: {
+					Cookie: cookie,
+				},
 			},
-		});
+		);
 	} catch {
 		return {
 			status: 'error',

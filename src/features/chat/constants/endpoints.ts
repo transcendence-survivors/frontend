@@ -17,6 +17,12 @@ const CHAT_ENDPOINTS = {
 
 	getMembers: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members`,
 	getMembersCount: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members/count`,
+	kickMember: (roomId: string, targetUserId: string) =>
+		`/chat/${roomId}/members/${targetUserId}`,
+	updateMemberRole: (roomId: string, targetUserId: string) =>
+		`/chat/${roomId}/members/${targetUserId}/role`,
+	transferOwnership: (roomId: string) => `/chat/${roomId}/members/transfer-ownership`,
+	leaveRoom: (roomId: string) => `/chat/${roomId}/leave`,
 } as const satisfies Record<string, Endpoint<StartPath>>;
 
 export { CHAT_ENDPOINTS };

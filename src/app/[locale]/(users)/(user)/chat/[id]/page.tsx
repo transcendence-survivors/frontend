@@ -1,5 +1,5 @@
 import ChatRoomHeader from '@/features/chat/components/room/ChatRoomHeader';
-import { getChatRoom } from '@/features/chat/api/get';
+import { getChatRoom } from '@/features/chat/api/rooms';
 import { isApiError } from '@/libs/api';
 import { notFound } from 'next/navigation';
 import ChatContainer from '@/features/chat/components/ChatContainer';
@@ -23,7 +23,7 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 	return (
 		<main className='flex flex-col h-full overflow-clip'>
 			<ChatSidebarProvider>
-				<ChatRoomHeader room={room} />
+				<ChatRoomHeader room={room} role={room.currentUserRole} />
 				<div className='flex flex-1 min-h-0'>
 					<ChatContainer roomId={room.id} />
 					{room.type === 'GROUP' && (

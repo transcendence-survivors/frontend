@@ -27,6 +27,10 @@ export const FORM_ERRORS = {
 	password_number: `${PREFIX_KEY}.password_number`,
 	password_special: `${PREFIX_KEY}.password_special`,
 
+	fileSizeMB: `${PREFIX_KEY}.fileSizeMB`,
+	imageOnly: `${PREFIX_KEY}.imageOnly`,
+	imageVideoOnly: `${PREFIX_KEY}.imageVideoOnly`,
+
 	age_restriction: `${PREFIX_KEY}.age_restriction`,
 	email_already_in_use: `${PREFIX_KEY}.email_already_in_use`,
 	username_already_in_use: `${PREFIX_KEY}.username_already_in_use`,
@@ -35,5 +39,8 @@ export const FORM_ERRORS = {
 	invalid_credentials: `${PREFIX_KEY}.invalid_credentials`,
 	invalid_email: `${PREFIX_KEY}.invalid_email`,
 	invalid_token: `${PREFIX_KEY}.invalid_token`,
+
+	at_least_one: `${PREFIX_KEY}.at_least_one`,
+
 	internal_server_error: `${PREFIX_KEY}.internal_server_error`,
 } as const satisfies Record<string, MessageKeys>;

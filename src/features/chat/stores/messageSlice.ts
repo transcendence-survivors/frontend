@@ -40,6 +40,8 @@ export const createMessageSlice: StateCreator<
 	[],
 	MessageSlice
 > = (_set, get) => {
+	const queryKey = (roomId: string) => ['chat-messages', roomId];
+
 	return {
 		chatActions: {
 			initMessageListeners(queryClient) {
@@ -48,26 +50,29 @@ export const createMessageSlice: StateCreator<
 				get().chatActions.destroyMessageListeners();
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_NEW, (message: ChatMessage) => {
-					const queryKey = ['chat-messages', { roomId: message.roomId }];
 					const existing = queryClient.getQueryData<{
 						pages: { data: ChatMessage[] }[];
-					}>(queryKey);
+					}>(queryKey(message.roomId));
 
 					const alreadyExists = existing?.pages.some((page) =>
 						page.data.some((m) => m.id === message.id),
 					);
 					if (alreadyExists) return;
-					updateInfiniteQuery<ChatMessage>(queryClient, queryKey, {
-						type: 'append',
-						item: message,
-					});
+					updateInfiniteQuery<ChatMessage>(
+						queryClient,
+						queryKey(message.roomId),
+						{
+							type: 'append',
+							item: message,
+						},
+					);
 					queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
 				});
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_EDITED, (message: ChatMessage) => {
 					updateInfiniteQuery<ChatMessage>(
 						queryClient,
-						['chat-messages', { roomId: message.roomId }],
+						queryKey(message.roomId),
 						{
 							type: 'map',
 							callback: (m) => (m.id === message.id ? message : m),
@@ -80,7 +85,7 @@ export const createMessageSlice: StateCreator<
 					(message: { messageId: string; roomId: string }) => {
 						updateInfiniteQuery<ChatMessage>(
 							queryClient,
-							['chat-messages', { roomId: message.roomId }],
+							queryKey(message.roomId),
 							{
 								type: 'map',
 								callback: (m) => {
@@ -109,7 +114,7 @@ export const createMessageSlice: StateCreator<
 
 			async joinRoom(roomId) {
 				const socket = get().socket;
-				if (!socket) throw new Error('Socket is not connected');
+				if (!socket) return;
 
 				await emit<void>({
 					socket,
@@ -120,7 +125,7 @@ export const createMessageSlice: StateCreator<
 
 			async leaveRoom(roomId) {
 				const socket = get().socket;
-				if (!socket) throw new Error('Socket is not connected');
+				if (!socket) return;
 
 				await emit<void>({
 					socket,
@@ -131,7 +136,7 @@ export const createMessageSlice: StateCreator<
 
 			async sendMessage(payload) {
 				const socket = get().socket;
-				if (!socket) throw new Error('Socket is not connected');
+				if (!socket) return;
 
 				return emit<void>({
 					socket,
@@ -142,7 +147,7 @@ export const createMessageSlice: StateCreator<
 
 			async editMessage(payload) {
 				const socket = get().socket;
-				if (!socket) throw new Error('Socket is not connected');
+				if (!socket) return;
 
 				return emit<void>({
 					socket,
@@ -153,7 +158,7 @@ export const createMessageSlice: StateCreator<
 
 			async softDeleteMessage(messageId) {
 				const socket = get().socket;
-				if (!socket) throw new Error('Socket is not connected');
+				if (!socket) return;
 
 				return emit<void>({
 					socket,

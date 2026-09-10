@@ -4,6 +4,7 @@ import {
 	AvatarProfileCount,
 } from '@/features/user/components/Avatar/AvatarProfile';
 import { BaseUser } from '@/features/user/type';
+import { useTranslations } from 'next-intl';
 
 const MAX_SELECTED_USERS = 5;
 
@@ -12,12 +13,9 @@ interface ChatSelectedUsersPreviewProps {
 }
 
 const ChatSelectedUsersPreview = ({ users }: ChatSelectedUsersPreviewProps) => {
+	const t = useTranslations('chat.rooms.create');
 	if (!users.length) {
-		return (
-			<p className='text-sm text-muted-foreground'>
-				Select at least one user to create a chat.
-			</p>
-		);
+		return <p className='text-sm text-muted-foreground'>{t('no_users_selected')}</p>;
 	}
 
 	const visibleUsers = users.slice(0, MAX_SELECTED_USERS);

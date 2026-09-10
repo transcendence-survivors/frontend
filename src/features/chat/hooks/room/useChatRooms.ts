@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getChatRooms } from '../../api/get';
+import { getChatRooms } from '../../api/rooms';
 import { ChatRoomOrderBy, GetChatRoomSearchParams } from '../../types/room';
 
 const initialChatRoomsParam = {
@@ -9,9 +9,9 @@ const initialChatRoomsParam = {
 	orderBy: ChatRoomOrderBy.UPDATED_DESC,
 } satisfies GetChatRoomSearchParams;
 
-type UseChatRoomsParams = Omit<GetChatRoomSearchParams, 'cursor' | 'limit'>;
+export type UseChatRoomsParams = Omit<GetChatRoomSearchParams, 'cursor' | 'limit'>;
 
-const useChatRooms = (params: UseChatRoomsParams) => {
+export const useChatRooms = (params: UseChatRoomsParams) => {
 	return useInfiniteQuery({
 		queryKey: ['chat-rooms', params],
 		initialPageParam: { ...initialChatRoomsParam, ...params },
@@ -26,6 +26,3 @@ const useChatRooms = (params: UseChatRoomsParams) => {
 		},
 	});
 };
-
-export { useChatRooms };
-export type { UseChatRoomsParams };

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { GetChatMessagesParams } from '../../types/message';
-import { getChatMessages } from '../../api/get';
+import { getChatMessages } from '../../api/message';
 
 interface UseChatMessagesParams {
 	roomId: string;
@@ -13,7 +13,7 @@ const initialChatMessagesParam = {
 
 export const useChatMessages = ({ roomId }: UseChatMessagesParams) => {
 	return useInfiniteQuery({
-		queryKey: ['chat-messages', { roomId }],
+		queryKey: ['chat-messages', roomId],
 		initialPageParam: initialChatMessagesParam,
 		queryFn: ({ pageParam }) => getChatMessages(roomId, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

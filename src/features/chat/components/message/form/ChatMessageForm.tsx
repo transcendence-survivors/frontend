@@ -12,7 +12,7 @@ import FormField from '@/modules/forms/components/Base/FormField';
 import { MediaAttachmentPreviews } from '@/components/ui/media-attachment-previews';
 
 import { useSendMessage, useEditMessage } from '../../../hooks/message/useMessageActions';
-import { ChatMessage } from '../../../types/message';
+import { ChatMessage, ChatMessageType } from '../../../types/message';
 import { ChatMessageModeBanner } from './ChatMessageModeBanner';
 import { ChatTypingIndicator } from '../../ChatTypingIndicator';
 
@@ -27,8 +27,8 @@ import { ChatMessageFormControls } from './ChatMessageFormControls';
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
 	onCancelMode: () => void;
-	editingMessage?: ChatMessage | null;
-	replyingToMessage?: ChatMessage | null;
+	editingMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
+	replyingToMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
 }
 
 const EMPTY_ATTACHMENTS: File[] = [];

@@ -6,7 +6,7 @@ export interface UseFileAttachmentsOptions<
 	TFieldValues extends FieldValues = FieldValues,
 	TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > {
-	attachments: File[];
+	attachments?: File[] | File | null;
 	setValue: UseFormSetValue<TFieldValues>;
 	fieldName?: TFieldName;
 	maxFiles?: number;
@@ -25,13 +25,22 @@ export const useFileAttachments = <
 }: UseFileAttachmentsOptions<TFieldValues, TFieldName>) => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
+	const filesArray = useMemo(() => {
+		if (!attachments) return [];
+		return Array.isArray(attachments) ? attachments : [attachments];
+	}, [attachments]);
+
+	const isSingleFileMode = useMemo(() => {
+		return !Array.isArray(attachments) && maxFiles === 1;
+	}, [attachments, maxFiles]);
+
 	const previews: MediaPreviewItem[] = useMemo(() => {
-		return (attachments || []).map((file) => ({
+		return filesArray.map((file) => ({
 			file,
 			url: URL.createObjectURL(file),
 			type: file.type.startsWith('video/') ? 'video' : 'image',
 		}));
-	}, [attachments]);
+	}, [filesArray]);
 
 	useEffect(() => {
 		return () => {
@@ -44,12 +53,18 @@ export const useFileAttachments = <
 			const selectedFiles = Array.from(e.target.files || []);
 			if (selectedFiles.length === 0) return;
 
-			const nextFiles =
-				appendMode === 'append'
-					? [...(attachments || []), ...selectedFiles].slice(0, maxFiles)
-					: selectedFiles.slice(0, maxFiles);
+			let nextValue: unknown;
 
-			setValue(fieldName, nextFiles as PathValue<TFieldValues, TFieldName>, {
+			if (isSingleFileMode || maxFiles === 1) {
+				nextValue = selectedFiles[0];
+			} else {
+				nextValue =
+					appendMode === 'append'
+						? [...filesArray, ...selectedFiles].slice(0, maxFiles)
+						: selectedFiles.slice(0, maxFiles);
+			}
+
+			setValue(fieldName, nextValue as PathValue<TFieldValues, TFieldName>, {
 				shouldValidate: true,
 				shouldDirty: true,
 				shouldTouch: true,
@@ -59,38 +74,46 @@ export const useFileAttachments = <
 				fileInputRef.current.value = '';
 			}
 		},
-		[attachments, appendMode, fieldName, maxFiles, setValue],
+		[filesArray, appendMode, fieldName, isSingleFileMode, maxFiles, setValue],
 	);
 
 	const handleRemoveAttachment = useCallback(
-		(indexToRemove: number) => {
-			const updatedFiles = (attachments || []).filter(
-				(_, index) => index !== indexToRemove,
-			);
+		(indexToRemove: number = 0) => {
+			let nextValue: unknown;
 
-			setValue(fieldName, updatedFiles as PathValue<TFieldValues, TFieldName>, {
+			if (isSingleFileMode || maxFiles === 1) {
+				nextValue = undefined;
+			} else {
+				nextValue = filesArray.filter((_, index) => index !== indexToRemove);
+			}
+
+			setValue(fieldName, nextValue as PathValue<TFieldValues, TFieldName>, {
 				shouldValidate: true,
 				shouldDirty: true,
 				shouldTouch: true,
 			});
 		},
-		[attachments, fieldName, setValue],
+		[filesArray, fieldName, isSingleFileMode, maxFiles, setValue],
 	);
 
 	const handleClearAttachments = useCallback(() => {
-		setValue(fieldName, [] as unknown as PathValue<TFieldValues, TFieldName>, {
+		const nextValue = isSingleFileMode || maxFiles === 1 ? undefined : [];
+
+		setValue(fieldName, nextValue as unknown as PathValue<TFieldValues, TFieldName>, {
 			shouldValidate: true,
 			shouldDirty: true,
 			shouldTouch: true,
 		});
+
 		if (fileInputRef.current) {
 			fileInputRef.current.value = '';
 		}
-	}, [fieldName, setValue]);
+	}, [fieldName, isSingleFileMode, maxFiles, setValue]);
 
 	return {
 		fileInputRef,
 		previews,
+		file: filesArray[0] as File | undefined,
 		handleFileChange,
 		handleRemoveAttachment,
 		handleClearAttachments,

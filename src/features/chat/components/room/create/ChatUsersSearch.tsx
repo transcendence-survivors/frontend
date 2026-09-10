@@ -5,6 +5,7 @@ import { SearchInput } from '@/components/ui/search-param-input';
 import { UsersFeedData } from '@/features/user/components/UsersFeedData';
 import { BaseUser } from '@/features/user/type';
 import ChatUserCard from '../../ChatUserCard';
+import { useTranslations } from 'next-intl';
 
 interface ChatUsersSearchProps {
 	selectedUsers: BaseUser[];
@@ -12,6 +13,7 @@ interface ChatUsersSearchProps {
 }
 
 const ChatUsersSearch = memo(({ selectedUsers, onUserSelect }: ChatUsersSearchProps) => {
+	const t = useTranslations('chat.rooms.create');
 	const [search, setSearch] = useState('');
 
 	const selectedUserIds = useMemo(
@@ -48,7 +50,7 @@ const ChatUsersSearch = memo(({ selectedUsers, onUserSelect }: ChatUsersSearchPr
 		<section className='flex min-h-0 flex-col gap-2'>
 			<SearchInput
 				onValueChange={setSearch}
-				placeholder='Search for friends to add to the chat...'
+				placeholder={t('search_placeholder')}
 				className='py-5'
 			/>
 

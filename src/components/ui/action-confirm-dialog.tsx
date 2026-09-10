@@ -39,12 +39,8 @@ export const ActionConfirmDialog = ({
 
 	return (
 		<AlertDialog>
-			<AlertDialogTrigger asChild onClick={(e) => e.stopPropagation()}>
-				{trigger}
-			</AlertDialogTrigger>
-			<AlertDialogContent
-				className='p-0 bg-card gap-0'
-				onClick={(e) => e.stopPropagation()}>
+			<AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+			<AlertDialogContent className='p-0 bg-card gap-0'>
 				<AlertDialogHeader className='p-4 space-y-2'>
 					<AlertDialogTitle>{title}</AlertDialogTitle>
 					<AlertDialogDescription>{description}</AlertDialogDescription>
@@ -60,8 +56,7 @@ export const ActionConfirmDialog = ({
 					<AlertDialogCancel
 						variant='outline'
 						className='flex-1'
-						disabled={isPending}
-						onClick={(e) => e.stopPropagation()}>
+						disabled={isPending}>
 						{t('cancel')}
 					</AlertDialogCancel>
 					<AlertDialogAction

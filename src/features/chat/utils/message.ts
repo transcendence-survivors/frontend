@@ -15,7 +15,6 @@ export const getSystemMessage = (
 	message: SystemChatMessage,
 	t: RootTFunction,
 ): string | null => {
-	console.log('getSystemMessage called with message:', message);
 	switch (message.type) {
 		case ChatMessageType.ROLE_UPDATED:
 			return t('messages.system.role_updated', {
@@ -41,18 +40,6 @@ export const getSystemMessage = (
 				user: message.metadata.targetUser.displayName,
 			});
 
-		case ChatMessageType.ROOM_RENAMED:
-			return t('messages.system.room_renamed', {
-				actor: message.sender.displayName,
-				oldName: message.metadata.oldValue,
-				newName: message.metadata.newValue,
-			});
-
-		case ChatMessageType.ROOM_AVATAR_CHANGED:
-			return t('messages.system.room_avatar_changed', {
-				actor: message.sender.displayName,
-			});
-
 		case ChatMessageType.OWNERSHIP_TRANSFERRED:
 			return t('messages.system.ownership_transferred', {
 				actor: message.sender.displayName,
@@ -63,6 +50,46 @@ export const getSystemMessage = (
 			return t('messages.system.room_created', {
 				actor: message.sender.displayName,
 			});
+
+		case ChatMessageType.ROOM_RENAMED: {
+			const { oldValue, newValue } = message.metadata;
+
+			if (!oldValue && newValue) {
+				return t('messages.system.room_name_added', {
+					actor: message.sender.displayName,
+					newName: newValue,
+				});
+			}
+
+			if (oldValue && !newValue) {
+				return t('messages.system.room_name_removed', {
+					actor: message.sender.displayName,
+				});
+			}
+
+			return t('messages.system.room_renamed', {
+				actor: message.sender.displayName,
+				oldName: oldValue,
+				newName: newValue,
+			});
+		}
+		case ChatMessageType.ROOM_AVATAR_CHANGED: {
+			const { oldValue, newValue } = message.metadata;
+
+			if (!oldValue && newValue) {
+				return t('messages.system.room_avatar_added', {
+					actor: message.sender.displayName,
+				});
+			}
+			if (oldValue && !newValue) {
+				return t('messages.system.room_avatar_removed', {
+					actor: message.sender.displayName,
+				});
+			}
+			return t('messages.system.room_avatar_changed', {
+				actor: message.sender.displayName,
+			});
+		}
 
 		default:
 			return null;

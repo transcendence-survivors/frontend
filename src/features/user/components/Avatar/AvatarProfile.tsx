@@ -14,7 +14,7 @@ import { BaseUser } from '../../type';
 import UserDisplayName from '../Identity/UserDisplayName';
 import Username from '../Identity/Username';
 
-export type AvatarProfileSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarProfileSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | '3xl';
 
 interface AvatarProfileFallbackProps extends React.ComponentProps<typeof AvatarFallback> {
 	username: string;
@@ -66,11 +66,13 @@ export interface AvatarProfileProps extends Omit<
 }
 
 const sizeClasses = {
-	xs: 'size-6',
-	sm: 'size-8',
-	md: 'size-10',
-	lg: 'size-12',
-	xl: 'size-14',
+	'xs': 'size-6',
+	'sm': 'size-8',
+	'md': 'size-10',
+	'lg': 'size-12',
+	'xl': 'size-14',
+	'xxl': 'size-16',
+	'3xl': 'size-20',
 } satisfies Record<AvatarProfileSize, string>;
 
 const AvatarProfile = ({
@@ -82,7 +84,7 @@ const AvatarProfile = ({
 }: AvatarProfileProps) => {
 	return (
 		<Avatar className={cn(sizeClasses[size], className)} {...props}>
-			<AvatarImage src={img.src} alt={img.alt} />
+			{img.src && <AvatarImage src={img.src} alt={img.alt} />}
 			<AvatarProfileFallback username={img.alt} />
 			{badgeState && <AvatarProfileBadge badgeState={badgeState} />}
 		</Avatar>

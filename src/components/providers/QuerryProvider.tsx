@@ -19,4 +19,4 @@ const QuerryProvider = ({ children }: QuerryProviderProps) => {
 	return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
-export { QuerryProvider, queryClient };
+export { QuerryProvider };

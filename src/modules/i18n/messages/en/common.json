@@ -160,7 +160,35 @@
 			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
 			"no_chat_rooms_search": "No chat rooms found for your search.",
 			"no_more_chat_rooms": "No more chat rooms to load.",
-			"fetch_error": "Failed to load chat rooms. Please try again later."
+			"fetch_error": "Failed to load chat rooms. Please try again later.",
+
+			"group_settings": {
+				"title": "Edit Group Details",
+				"description": "Change the group name or update the avatar picture.",
+				"group_name_label": "Group Name",
+				"group_name_placeholder": "Enter group name",
+				"change_avatar_hint": "Click the image to upload a new picture",
+				"remove_avatar": "Remove picture",
+				"cancel": "Cancel",
+				"save": "Save changes",
+
+				"delete_group_button": "Delete group",
+				"delete_group_title": "Delete group",
+				"delete_group_description": "Are you sure you want to delete this chat room ? This action cannot be undone and all messages will be permanently lost.",
+				"delete_confirm": "Delete"
+			},
+			"create": {
+				"title": "Create Chat Room",
+				"description": "Start a new conversation with your friends.",
+				"group_name_label": "Group Name",
+				"group_name_placeholder": "Enter group name",
+				"button": "Create Chat Room",
+				"success": "Chat room created successfully.",
+				"failure": "Failed to create chat room. Please try again.",
+				"dm_exists": "A direct message with this user already exists. You can continue the conversation in that chat room.",
+				"no_users_selected": "Select at least one user to create a chat.",
+				"search_placeholder": "Search for friends to add to the chat..."
+			}
 		},
 		"messages": {
 			"no_messages": "No messages yet. Start the conversation!",
@@ -189,7 +217,11 @@
 				"joined": "{user} joined the room.",
 				"left": "{user} left the room.",
 				"room_renamed": "{actor} renamed the room from \"{oldName}\" to \"{newName}\".",
+				"room_name_added": "{actor} set the room name to \"{newName}\".",
+				"room_name_removed": "{actor} removed the room name.",
 				"room_avatar_changed": "{actor} updated the room avatar.",
+				"room_avatar_added": "{actor} added a room avatar.",
+				"room_avatar_removed": "{actor} removed the room avatar.",
 				"ownership_transferred": "{actor} transferred room ownership to {target}.",
 				"room_created": "{actor} created the room."
 			}
@@ -437,6 +469,10 @@
 
 			"minLength": "Minimum length is {min} characters",
 			"maxLength": "Maximum length is {max} characters",
+			"fileSizeMB": "File size must be less than {maxSize} MB",
+
+			"imageOnly": "Only image files are allowed",
+			"imageVideoOnly": "Only image and video files are allowed",
 
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
@@ -456,7 +492,9 @@
 
 			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
 			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"invalid_email": "The email address is not registered. Please check and try again.",
+
+			"at_least_one": "At least one field is required"
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

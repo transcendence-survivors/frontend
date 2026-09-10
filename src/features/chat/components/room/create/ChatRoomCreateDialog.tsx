@@ -16,6 +16,7 @@ import ChatUsersSearch from './ChatUsersSearch';
 import ChatCreateButton from './ChatCreateButton';
 import { Input } from '@/components/ui/input';
 import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
+import { useTranslations } from 'next-intl';
 
 interface ChatRoomCreateDialogProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
@@ -23,6 +24,9 @@ interface ChatRoomCreateDialogProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) => {
+	const t = useTranslations('chat.rooms.create');
+
+	const [open, setOpen] = useState(false);
 	const [selectedUsers, setSelectedUsers] = useState<BaseUser[]>([]);
 	const [groupName, setGroupName] = useState<string>('');
 
@@ -36,21 +40,19 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 	const clearSelectedUsers = useCallback(() => {
 		setSelectedUsers([]);
 		setGroupName('');
+		setOpen(false);
 	}, []);
 
 	return (
-		<Dialog>
+		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>{children}</DialogTrigger>
 			<DialogContent>
 				<div className='flex flex-col gap-2 max-h-[60vh] '>
-					<DialogHeader>
+					<DialogHeader className='flex flex-col mb-2'>
 						<DialogTitle className='text-2xl font-semibold'>
-							Create a new chat
+							{t('title')}
 						</DialogTitle>
-
-						<DialogDescription>
-							Create a new chat and invite your friends to join.
-						</DialogDescription>
+						<DialogDescription>{t('description')}</DialogDescription>
 					</DialogHeader>
 					<ChatUsersSearch
 						selectedUsers={selectedUsers}

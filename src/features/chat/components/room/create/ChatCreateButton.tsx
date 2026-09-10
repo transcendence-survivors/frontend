@@ -10,6 +10,7 @@ import { ROUTES } from '@/modules/i18n/constants/routes';
 import { useChatRoomCreate } from '@/features/chat/hooks/room/useChatRoomActions';
 import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
 import { ChatRoomType } from '@/features/chat/types/room';
+import { useTranslations } from 'next-intl';
 
 interface ChatCreateButtonProps extends ComponentProps<typeof Button> {
 	usersIds: string[];
@@ -25,10 +26,10 @@ const ChatCreateButton = ({
 	onMutationSuccess,
 	...props
 }: ChatCreateButtonProps) => {
+	const t = useTranslations('chat.rooms.create');
 	const router = useRouter();
 
 	const { mutateAsync, isPending } = useChatRoomCreate({
-		params,
 		usersIds,
 		name: groupName,
 		onMutationSuccess,
@@ -43,25 +44,24 @@ const ChatCreateButton = ({
 			});
 			if (isApiError(response)) {
 				if (response.code == 409) {
-					toast.error(
-						'A direct chat with this user already exists. Please check your chat rooms.',
-					);
+					toast.error(t('dm_exists'));
 					return;
 				}
-				throw new Error(`Failed to create chat: ${response.message}`);
+				throw new Error();
 			}
 			onMutationSuccess?.();
-			toast.success('Chat created successfully!');
-			router.push(ROUTES.chatId({ id: response.data.id }));
+			toast.success(t('success'));
+			const paramsString = new URLSearchParams(params).toString();
+			router.push(`${ROUTES.chatId({ id: response.data.id })}?${paramsString}`);
 		} catch {
-			toast.error('Failed to create chat.');
+			toast.error(t('failure'));
 		}
 	};
 
 	return (
 		<Button disabled={!usersIds.length || isPending} {...props} onClick={handleClick}>
 			{isPending && <Spinner className='size-4 animate-spin' />}
-			<span>Create Chat</span>
+			<span>{t('button')}</span>
 		</Button>
 	);
 };

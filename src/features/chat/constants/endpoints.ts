@@ -9,6 +9,7 @@ const CHAT_ENDPOINTS = {
 	getRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,
 	getRooms: `${CHAT_ROOM_START_PATH}`,
 	getRoomsCount: `${CHAT_ROOM_START_PATH}/count`,
+	patchRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,
 	deleteRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,
 	createRoom: `${CHAT_ROOM_START_PATH}`,
 

@@ -32,7 +32,7 @@ const ChatRoomAvatar = ({ room }: ChatRoomAvatarProps) => {
 	return (
 		<div className='w-16'>
 			<AvatarGroup
-				className={`-space-x-6 relative ${isDirect ? 'w-14' : 'w-full'}`}>
+				className={`-space-x-6 relative ${isDirect || avatarUrl ? 'w-14' : 'w-full'}`}>
 				{isDirect || avatarUrl ? (
 					<AvatarProfile
 						img={{

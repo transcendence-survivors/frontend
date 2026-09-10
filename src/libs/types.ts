@@ -15,7 +15,7 @@ type NestedMessageKeysHelper<T extends object, Prefix extends string = ''> = {
 }[keyof T];
 
 interface ImageProps {
-	src: string;
+	src?: string | null;
 	alt: string;
 }
 

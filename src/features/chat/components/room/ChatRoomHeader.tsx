@@ -1,21 +1,30 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/libs/utils';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Pencil } from 'lucide-react';
 import ChatRoomAvatar from './ChatRoomAvatar';
 import { ChatRoom } from '../../types/room';
 import { getMemberPlusCount, getRoomName } from '../../utils/room';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { ChatSidebarTrigger } from '../sidebar/ChatSidebarTrigger';
+import { ChatMemberRole } from '../../types/member';
+import { ChatRoomEditForm } from './ChatRoomForm';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { ChatRoomDeleteButton } from './ChatRoomDeleteButton';
 
 interface ChatRoomHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 	room: ChatRoom;
+	role: ChatMemberRole;
 }
 
-const ChatRoomHeader = ({ room, className, ...props }: ChatRoomHeaderProps) => {
+const ChatRoomHeader = ({ room, role, className, ...props }: ChatRoomHeaderProps) => {
 	const name = getRoomName(room);
 	const elipsisMembersCount = getMemberPlusCount(room, { showAllOnName: true });
 	const displayName =
 		`${name} ${elipsisMembersCount ? `(+${elipsisMembersCount})` : ''}`.trim();
+
+	const isGroup = room.type === 'GROUP';
+	const canEdit = isGroup && (role === 'OWNER' || role === 'ADMIN');
+	const canDelete = (isGroup && role === 'OWNER') || !isGroup;
 
 	return (
 		<header
@@ -46,7 +55,15 @@ const ChatRoomHeader = ({ room, className, ...props }: ChatRoomHeaderProps) => {
 			</div>
 
 			<div className='flex gap-1 text-muted-foreground'>
-				{room.type === 'GROUP' && <ChatSidebarTrigger />}
+				{canDelete && <ChatRoomDeleteButton roomId={room.id} />}
+				{canEdit && (
+					<ChatRoomEditForm
+						roomId={room.id}
+						initialName={room.name ?? ''}
+						initialAvatarUrl={room.avatarUrl}
+					/>
+				)}
+				{isGroup && <ChatSidebarTrigger />}
 			</div>
 		</header>
 	);

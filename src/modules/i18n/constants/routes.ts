@@ -23,6 +23,24 @@ const APP_ROUTES = defineRouteMap({
 		it: '/',
 	},
 
+	lore: {
+		en: '/lore',
+		de: '/lore',
+		fr: '/lore',
+		es: '/lore',
+		che: '/lore',
+		it: '/lore',
+	},
+
+	support: {
+		en: '/support',
+		de: '/support',
+		fr: '/support',
+		es: '/support',
+		che: '/support',
+		it: '/support',
+	},
+
 	register: {
 		en: '/register',
 		de: '/registrieren',

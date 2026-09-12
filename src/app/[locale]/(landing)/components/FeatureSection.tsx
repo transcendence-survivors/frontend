@@ -32,37 +32,25 @@ export default function FeatureSection() {
 		<div className='mb-20 mt-24'>
 			<p
 				className={
-					'font-mono text-xs tracking-[0.2em] ' +
-					'text-primary mb-4 uppercase'
+					'font-mono text-xs tracking-[0.2em] ' + 'text-primary mb-4 uppercase'
 				}>
 				Le système
 			</p>
-			<h2
-				className={
-					'text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'
-				}>
+			<h2 className={'text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'}>
 				Un seul mécanisme, fusionné de trois. La lumière est tout.
 			</h2>
 			<BentoGrid className='md:grid-cols-2 auto-rows-auto gap-px bg-border border border-border'>
 				{features.map((feature) => (
 					<div key={feature.name} className='bg-background p-8'>
 						<div
-							className={
-								'h-28 mb-6 bg-gradient-to-br ' +
-								feature.gradient
-							}
+							className={'h-28 mb-6 bg-gradient-to-br ' + feature.gradient}
 						/>
-						<h3
-							className={
-								'text-lg font-semibold ' +
-								'text-foreground mb-2'
-							}>
+						<h3 className={'text-lg font-semibold ' + 'text-foreground mb-2'}>
 							{feature.name}
 						</h3>
 						<p
 							className={
-								'text-sm text-muted-foreground ' +
-								'leading-relaxed'
+								'text-sm text-muted-foreground ' + 'leading-relaxed'
 							}>
 							{feature.description}
 						</p>

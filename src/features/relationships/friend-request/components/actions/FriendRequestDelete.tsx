@@ -1,12 +1,18 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 import { MailX, UserRoundX } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
+
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { useRequestDelete } from '../../hooks/useRequestActions';
 import { FriendRequestDirection } from '../../types';
-import { Skeleton } from '@/components/ui/skeleton';
+import { NestedMessageKeys } from '@/modules/i18n/messages/types';
 
 interface FriendRequestDeleteProps extends Omit<
 	FriendRequestActionsProps,
@@ -14,7 +20,6 @@ interface FriendRequestDeleteProps extends Omit<
 > {
 	successMessage: string;
 	failureMessage: string;
-	ariaLabel: string;
 }
 
 const icons = {
@@ -22,13 +27,19 @@ const icons = {
 	outgoing: <MailX className='size-3.5' />,
 } satisfies Record<FriendRequestDirection, React.ReactNode>;
 
+const translationKeys = {
+	incoming: 'relationships.requests.reject',
+	outgoing: 'relationships.requests.cancel',
+} satisfies Record<FriendRequestDirection, NestedMessageKeys>;
+
 const FriendRequestDelete = ({
 	friendId,
 	successMessage,
 	failureMessage,
 	params,
-	ariaLabel,
 }: FriendRequestDeleteProps) => {
+	const t = useTranslations(translationKeys[params.direction]);
+
 	const { mutate, isPending, isError } = useRequestDelete({
 		friendId,
 		successMessage,
@@ -36,24 +47,45 @@ const FriendRequestDelete = ({
 		params,
 	});
 
-	const onClick = () => mutate();
+	const label = t('tooltip');
 
 	return (
-		<Button
-			variant='outline'
-			size={'icon'}
-			className={`text-muted-foreground hover:border-destructive/60 hover:text-destructive`}
-			disabled={isPending || isError}
-			aria-invalid={isError}
-			aria-label={ariaLabel}
-			onClick={onClick}>
-			{isPending ? <Spinner className='size-3.5' /> : icons[params.direction]}
-		</Button>
+		<Tooltip>
+			<ActionConfirmDialog
+				title={t('title')}
+				description={t('description')}
+				confirmText={t('confirm')}
+				isDestructive
+				isPending={isPending}
+				onConfirm={() => mutate()}
+				trigger={
+					<TooltipTrigger asChild>
+						<Button
+							type='button'
+							variant='outline'
+							size='icon'
+							className='text-muted-foreground hover:border-destructive/60 hover:text-destructive'
+							disabled={isPending || isError}
+							aria-invalid={isError}
+							aria-label={label}>
+							{isPending ? (
+								<Spinner className='size-3.5' />
+							) : (
+								icons[params.direction]
+							)}
+						</Button>
+					</TooltipTrigger>
+				}
+			/>
+			<TooltipContent>
+				<p>{label}</p>
+			</TooltipContent>
+		</Tooltip>
 	);
 };
 
 const FriendRequestDeleteSkeleton = () => {
-	return <Skeleton className={`size-9 rounded-md`} />;
+	return <Skeleton className='size-9 rounded-md' />;
 };
 
 export { FriendRequestDelete, FriendRequestDeleteSkeleton };

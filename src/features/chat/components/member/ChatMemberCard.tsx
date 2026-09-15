@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import {
 	UserIdentity,
 	UserIdentitySkeleton,
@@ -35,15 +35,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ChatMemberKickButton } from './actions/ChatMemberKickButton';
 import { ChatTransferOwnershipButton } from './actions/ChatTransferOwnershipButton';
 import { ChatMemberDemoteButton } from './actions/ChatMemberDemoteButton';
-import { LeaveRoomButton } from './actions/ChatLeaveButton';
+import { ChatLeaveButton } from './actions/ChatLeaveButton';
 import { ChatMemberPromoteButton } from './actions/ChatMemberPromoteButton';
 import { UseChatMembersParams } from '../../hooks/member/useChatMembers';
 
 export interface ChatMemberCardProps {
 	roomId: string;
 	member: ChatMember;
-	currentUserId?: string;
-	currentUserRole?: ChatMemberRole;
+	userId?: string;
+	role?: ChatMemberRole;
 	params: UseChatMembersParams;
 }
 
@@ -70,198 +70,139 @@ const ROLE_BADGE_STYLE: Record<ChatMemberRole, { icon?: ReactNode; className: st
 		},
 	};
 
-export const ChatMemberCard = ({
-	roomId,
-	member,
-	currentUserId,
-	currentUserRole,
-	params,
-}: ChatMemberCardProps) => {
-	const t = useTranslations('chat.members');
+export const ChatMemberCard = memo(
+	({ roomId, member, userId, role, params }: ChatMemberCardProps) => {
+		const t = useTranslations('chat.members');
 
-	const isSelf = currentUserId === member.user.id;
-	const isOwner = currentUserRole === 'OWNER';
+		const isSelf = userId === member.user.id;
+		const isOwner = role === 'OWNER';
 
-	const canPromote =
-		!isSelf &&
-		member.role === 'MEMBER' &&
-		canManageMember({
-			actorRole: currentUserRole,
-			targetRole: member.role,
-			permission: ChatMemberPermissionEnum.MEMBER_PROMOTE,
-			desiredRole: 'ADMIN',
-		});
+		const canPromote =
+			!isSelf &&
+			member.role === 'MEMBER' &&
+			canManageMember({
+				actorRole: role,
+				targetRole: member.role,
+				permission: ChatMemberPermissionEnum.MEMBER_PROMOTE,
+				desiredRole: 'ADMIN',
+			});
 
-	const canDemote =
-		!isSelf &&
-		member.role === 'ADMIN' &&
-		canManageMember({
-			actorRole: currentUserRole,
-			targetRole: member.role,
-			permission: ChatMemberPermissionEnum.MEMBER_DEMOTE,
-			desiredRole: 'MEMBER',
-		});
+		const canDemote =
+			!isSelf &&
+			member.role === 'ADMIN' &&
+			canManageMember({
+				actorRole: role,
+				targetRole: member.role,
+				permission: ChatMemberPermissionEnum.MEMBER_DEMOTE,
+				desiredRole: 'MEMBER',
+			});
 
-	const canKick =
-		!isSelf &&
-		canManageMember({
-			actorRole: currentUserRole,
-			targetRole: member.role,
-			permission: ChatMemberPermissionEnum.MEMBER_KICK,
-		});
+		const canKick =
+			!isSelf &&
+			canManageMember({
+				actorRole: role,
+				targetRole: member.role,
+				permission: ChatMemberPermissionEnum.MEMBER_KICK,
+			});
 
-	const canTransfer = isOwner && !isSelf;
-	const hasAnyManagementAction = canPromote || canDemote || canTransfer || canKick;
-	const roleStyle = ROLE_BADGE_STYLE[member.role];
+		const canTransfer = isOwner && !isSelf;
+		const hasAnyManagementAction = canPromote || canDemote || canTransfer || canKick;
+		const roleStyle = ROLE_BADGE_STYLE[member.role];
 
-	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Button
-					variant='sidebar'
-					data-active={isSelf}
-					className={cn(
-						'h-auto max-w-full w-full overflow-clip justify-between gap-x-3 p-3',
-					)}>
-					<UserIdentity
-						avatar={{
-							img: {
-								src: member.user.avatarUrl ?? '',
-								alt: member.user.displayName,
-							},
-							size: 'md' as const,
-							badgeState: false as const,
-						}}
-						user={{
-							displayName: member.user.displayName,
-							username: member.user.username,
-						}}
-						className='min-w-0 flex-1'
-					/>
+		return (
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<Button
+						variant='sidebar'
+						data-active={isSelf}
+						className={cn(
+							'h-auto max-w-full w-full overflow-clip justify-between gap-x-3 p-3',
+						)}>
+						<UserIdentity
+							avatar={{
+								img: {
+									src: member.user.avatarUrl ?? '',
+									alt: member.user.displayName,
+								},
+								size: 'md',
+							}}
+							user={{
+								displayName: member.user.displayName,
+								username: member.user.username,
+							}}
+							className='min-w-0 flex-1'
+						/>
 
-					<div className='flex items-center gap-x-2 ml-auto shrink-0'>
-						<span
-							className={cn(
-								'inline-flex items-center gap-0.5 rounded-md border p-1 text-[9px] leading-none tracking-tight',
-								roleStyle.className,
-							)}>
-							{roleStyle.icon}
-							<strong>
-								{t(roleTradMap[member.role], {
-									defaultValue: member.role,
-								})}
-							</strong>
-						</span>
-					</div>
-				</Button>
-			</DropdownMenuTrigger>
+						<div className='flex items-center gap-x-2 ml-auto shrink-0'>
+							<span
+								className={cn(
+									'inline-flex items-center gap-0.5 rounded-md border p-1 text-[9px] leading-none tracking-tight',
+									roleStyle.className,
+								)}>
+								{roleStyle.icon}
+								<strong>
+									{t(roleTradMap[member.role], {
+										defaultValue: member.role,
+									})}
+								</strong>
+							</span>
+						</div>
+					</Button>
+				</DropdownMenuTrigger>
 
-			<DropdownMenuContent align='end' className='w-56'>
-				{member.joinedAt && (
-					<>
-						<DropdownMenuLabel className='font-normal text-muted-foreground text-xs flex items-center gap-2 py-1.5'>
-							<Clock className='size-3.5 shrink-0 text-muted-foreground' />
-							<strong className='truncate font-medium text-[10px] text-muted-foreground'>
-								{t('joined_at')}{' '}
-								<DisplayDate
-									date={new Date(member.joinedAt)}
-									formatOptions={{
-										year: 'numeric',
-										month: 'short',
-										day: 'numeric',
-										hour: '2-digit',
-										minute: '2-digit',
-									}}
-								/>
-							</strong>
-						</DropdownMenuLabel>
-						<DropdownMenuSeparator />
-					</>
-				)}
+				<DropdownMenuContent align='end' className='w-56'>
+					{member.joinedAt && (
+						<>
+							<DropdownMenuLabel className='font-normal text-muted-foreground text-xs flex items-center gap-2 py-1.5'>
+								<Clock className='size-3.5 shrink-0 text-muted-foreground' />
+								<strong className='truncate font-medium text-[10px] text-muted-foreground'>
+									{t('joined_at')}{' '}
+									<DisplayDate
+										date={new Date(member.joinedAt)}
+										formatOptions={{
+											year: 'numeric',
+											month: 'short',
+											day: 'numeric',
+											hour: '2-digit',
+											minute: '2-digit',
+										}}
+									/>
+								</strong>
+							</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+						</>
+					)}
 
-				<DropdownMenuItem asChild>
-					<I18nLink
-						href='userName'
-						hrefParams={{ username: `@${member.user.username}` }}
-						className='flex items-center gap-2 text-xs cursor-pointer'>
-						<User className='size-3.5 text-muted-foreground' />
-						<span>{t('view_profile')}</span>
-					</I18nLink>
-				</DropdownMenuItem>
+					<DropdownMenuItem asChild>
+						<I18nLink
+							href='userName'
+							hrefParams={{ username: `@${member.user.username}` }}
+							className='flex items-center gap-2 text-xs cursor-pointer'>
+							<User className='size-3.5 text-muted-foreground' />
+							<span>{t('view_profile')}</span>
+						</I18nLink>
+					</DropdownMenuItem>
 
-				{isSelf && !isOwner && (
-					<>
-						<DropdownMenuSeparator />
-						<LeaveRoomButton
-							roomId={roomId}
-							currentUserId={currentUserId}
-							params={params}
-							asChild>
-							<DropdownMenuItem
-								onSelect={(e) => e.preventDefault()}
-								className='text-xs'>
-								<UserMinus className='size-3.5' />
-								<span>{t('leave_room')}</span>
-							</DropdownMenuItem>
-						</LeaveRoomButton>
-					</>
-				)}
-
-				{hasAnyManagementAction && (
-					<>
-						<DropdownMenuSeparator />
-
-						{canPromote && (
-							<ChatMemberPromoteButton
-								roomId={roomId}
-								targetUserId={member.user.id}
-								params={params}
-								asChild>
+					{isSelf && !isOwner && (
+						<>
+							<DropdownMenuSeparator />
+							<ChatLeaveButton roomId={roomId} params={params}>
 								<DropdownMenuItem
 									onSelect={(e) => e.preventDefault()}
-									className='text-xs'>
-									<ShieldCheck className='size-3.5 text-primary' />
-									<span>{t('promote_to_admin')}</span>
+									className='text-xs'
+									variant={'destructive'}>
+									<UserMinus className='size-3.5' />
+									<span>{t('leave_room')}</span>
 								</DropdownMenuItem>
-							</ChatMemberPromoteButton>
-						)}
+							</ChatLeaveButton>
+						</>
+					)}
 
-						{canDemote && (
-							<ChatMemberDemoteButton
-								roomId={roomId}
-								targetUserId={member.user.id}
-								params={params}
-								asChild>
-								<DropdownMenuItem
-									onSelect={(e) => e.preventDefault()}
-									className='text-xs'>
-									<ShieldAlert className='size-3.5 text-amber-500' />
-									<span>{t('demote_to_member')}</span>
-								</DropdownMenuItem>
-							</ChatMemberDemoteButton>
-						)}
-
-						{canTransfer && (
-							<ChatTransferOwnershipButton
-								roomId={roomId}
-								targetUserId={member.user.id}
-								params={params}
-								asChild>
-								<DropdownMenuItem
-									onSelect={(e) => e.preventDefault()}
-									className='text-xs'>
-									<ShieldCheck className='size-3.5 text-emerald-500' />
-									<span>{t('transfer_ownership')}</span>
-								</DropdownMenuItem>
-							</ChatTransferOwnershipButton>
-						)}
-
-						{canKick && (
-							<>
-								{(canPromote || canDemote || canTransfer) && (
-									<DropdownMenuSeparator />
-								)}
-								<ChatMemberKickButton
+					{hasAnyManagementAction && (
+						<>
+							<DropdownMenuSeparator />
+							{canPromote && (
+								<ChatMemberPromoteButton
 									roomId={roomId}
 									targetUserId={member.user.id}
 									params={params}
@@ -269,18 +210,67 @@ export const ChatMemberCard = ({
 									<DropdownMenuItem
 										onSelect={(e) => e.preventDefault()}
 										className='text-xs'>
-										<UserX className='size-3.5' />
-										<span>{t('kick')}</span>
+										<ShieldCheck className='size-3.5 text-primary' />
+										<span>{t('promote_to_admin')}</span>
 									</DropdownMenuItem>
-								</ChatMemberKickButton>
-							</>
-						)}
-					</>
-				)}
-			</DropdownMenuContent>
-		</DropdownMenu>
-	);
-};
+								</ChatMemberPromoteButton>
+							)}
+							{canDemote && (
+								<ChatMemberDemoteButton
+									roomId={roomId}
+									targetUserId={member.user.id}
+									params={params}
+									asChild>
+									<DropdownMenuItem
+										onSelect={(e) => e.preventDefault()}
+										className='text-xs'>
+										<ShieldAlert className='size-3.5 text-amber-500' />
+										<span>{t('demote_to_member')}</span>
+									</DropdownMenuItem>
+								</ChatMemberDemoteButton>
+							)}
+							{canTransfer && (
+								<ChatTransferOwnershipButton
+									roomId={roomId}
+									targetUserId={member.user.id}
+									params={params}
+									asChild>
+									<DropdownMenuItem
+										onSelect={(e) => e.preventDefault()}
+										className='text-xs'>
+										<ShieldCheck className='size-3.5 text-emerald-500' />
+										<span>{t('transfer_ownership')}</span>
+									</DropdownMenuItem>
+								</ChatTransferOwnershipButton>
+							)}
+							{canKick && (
+								<>
+									{(canPromote || canDemote || canTransfer) && (
+										<DropdownMenuSeparator />
+									)}
+									<ChatMemberKickButton
+										roomId={roomId}
+										targetUserId={member.user.id}
+										params={params}
+										asChild>
+										<DropdownMenuItem
+											onSelect={(e) => e.preventDefault()}
+											className='text-xs'>
+											<UserX className='size-3.5' />
+											<span>{t('kick')}</span>
+										</DropdownMenuItem>
+									</ChatMemberKickButton>
+								</>
+							)}
+						</>
+					)}
+				</DropdownMenuContent>
+			</DropdownMenu>
+		);
+	},
+);
+
+ChatMemberCard.displayName = 'ChatMemberCard';
 
 export const ChatMemberCardSkeleton = () => {
 	return (

@@ -27,17 +27,17 @@ export const getSystemMessage = (
 		case ChatMessageType.KICKED:
 			return t('messages.system.kicked', {
 				actor: message.sender.displayName,
-				target: message.metadata.targetUser.displayName,
+				target: message.metadata?.targetUser?.displayName,
 			});
 
 		case ChatMessageType.JOINED:
 			return t('messages.system.joined', {
-				user: message.metadata.targetUser.displayName,
+				user: message.metadata?.targetUser?.displayName,
 			});
 
 		case ChatMessageType.LEFT:
 			return t('messages.system.left', {
-				user: message.metadata.targetUser.displayName,
+				user: message.metadata?.targetUser?.displayName,
 			});
 
 		case ChatMessageType.OWNERSHIP_TRANSFERRED:
@@ -48,7 +48,7 @@ export const getSystemMessage = (
 
 		case ChatMessageType.ROOM_CREATED:
 			return t('messages.system.room_created', {
-				actor: message.sender.displayName,
+				actor: message.sender?.displayName,
 			});
 
 		case ChatMessageType.ROOM_RENAMED: {

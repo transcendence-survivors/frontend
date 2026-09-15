@@ -1,6 +1,11 @@
 import { api, ApiError, buildUrlParams, CursorResponse, isApiError } from '@/libs/api';
 import { CHAT_ENDPOINTS } from '../constants/endpoints';
-import { ChatRoom, ChatRoomType, GetChatRoomSearchParams } from '../types/room';
+import {
+	ChatRoom,
+	ChatRoomType,
+	DirectChatRoom,
+	GetChatRoomSearchParams,
+} from '../types/room';
 import { uploadAttachments } from '@/libs/api/helpers/attachments';
 import { ChatMemberRole } from '../types/member';
 
@@ -41,6 +46,17 @@ export const getChatRoom = async (id: string, cookie: string) => {
 			code: 500,
 		} satisfies ApiError;
 	}
+};
+
+export const getOrCreateDirectRoom = async (
+	targetUserId: string,
+): Promise<DirectChatRoom> => {
+	const res = await api.post<DirectChatRoom>(CHAT_ENDPOINTS.directRoom, {
+		targetUserId,
+	});
+	if (isApiError(res))
+		throw new Error(`Failed to get or create direct room: ${res.message}`);
+	return res.data;
 };
 
 export const createChatRoom = async (payload: ChatRoomCreatePayload) => {

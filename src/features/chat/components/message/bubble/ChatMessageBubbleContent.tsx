@@ -1,11 +1,11 @@
 import { HTMLAttributes, memo } from 'react';
 import { cn } from '@/libs/utils';
-import { ChatMessage } from '../../../types/message';
+import { TextChatMessage } from '../../../types/message';
 import { ChatMessageReplyPreview } from '../ChatMessageReplyPreview';
 import { ChatMessageBubbleAttachments } from './ChatMessageBubbleAttachments';
 
 export interface ChatMessageContentProps extends HTMLAttributes<HTMLDivElement> {
-	message: ChatMessage;
+	message: TextChatMessage;
 	isMe?: boolean;
 	showReplyPreview?: boolean;
 }

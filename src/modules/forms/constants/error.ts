@@ -27,9 +27,12 @@ export const FORM_ERRORS = {
 	password_number: `${PREFIX_KEY}.password_number`,
 	password_special: `${PREFIX_KEY}.password_special`,
 
+	maxFilesCount: `${PREFIX_KEY}.maxFilesCount`,
 	fileSizeMB: `${PREFIX_KEY}.fileSizeMB`,
 	imageOnly: `${PREFIX_KEY}.imageOnly`,
 	imageVideoOnly: `${PREFIX_KEY}.imageVideoOnly`,
+
+	messageEmptyIfAttachments: `${PREFIX_KEY}.message_empty_if_attachments`,
 
 	age_restriction: `${PREFIX_KEY}.age_restriction`,
 	email_already_in_use: `${PREFIX_KEY}.email_already_in_use`,

@@ -22,7 +22,7 @@ export const useChatMembers = ({
 	} satisfies GetChatMembersParams;
 
 	return useInfiniteQuery({
-		queryKey: ['chat-members', { roomId, search, orderBy, limit }],
+		queryKey: ['chat-members', roomId, { search, orderBy, limit }],
 		initialPageParam,
 		queryFn: ({ pageParam }) => getChatMembers(roomId, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

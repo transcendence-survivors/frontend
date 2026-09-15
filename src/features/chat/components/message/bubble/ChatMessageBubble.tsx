@@ -1,25 +1,28 @@
 import { memo } from 'react';
-import { ChatMessage, ChatMessageType } from '../../../types/message';
+import { TextChatMessage } from '../../../types/message';
 import { AvatarProfileTooltip } from '@/features/user/components/Avatar/AvatarProfile';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ChatMessageActions } from '../ChatMessageActions';
 import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
 import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 import DisplayDate from '@/components/ui/date';
+import { ChatMemberRole } from '@/features/chat/types/member';
 
 interface ChatMessageBubbleProps {
-	message: Extract<ChatMessage, { type: ChatMessageType.TEXT }>;
+	message: TextChatMessage;
 	isMe: boolean;
+	role: ChatMemberRole;
 	prevUserId?: string;
-	onEdit?: (message: ChatMessage) => void;
-	onDelete?: (messageId: string) => void;
-	onReply?: (message: ChatMessage) => void;
+	onEdit: (message: TextChatMessage) => void;
+	onDelete: (messageId: string) => void;
+	onReply: (message: TextChatMessage) => void;
 }
 
 const ChatMessageBubble = memo(
 	({
 		message,
 		isMe,
+		role,
 		prevUserId,
 		onEdit,
 		onDelete,
@@ -55,6 +58,7 @@ const ChatMessageBubble = memo(
 							<ChatMessageActions
 								message={message}
 								isMe={isMe}
+								role={role}
 								onEdit={onEdit}
 								onDelete={onDelete}
 								onReply={onReply}

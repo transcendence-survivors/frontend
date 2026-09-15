@@ -6,7 +6,7 @@ import { ChatRoomOrderBy, GetChatRoomSearchParams } from '../../types/room';
 
 const initialChatRoomsParam = {
 	limit: 20,
-	orderBy: ChatRoomOrderBy.UPDATED_DESC,
+	orderBy: ChatRoomOrderBy.ACTIVITY_ASC,
 } satisfies GetChatRoomSearchParams;
 
 export type UseChatRoomsParams = Omit<GetChatRoomSearchParams, 'cursor' | 'limit'>;

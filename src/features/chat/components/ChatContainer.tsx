@@ -2,22 +2,24 @@
 
 import { useState, useCallback } from 'react';
 import ChatMessageForm from './message/form/ChatMessageForm';
-import { ChatMessage } from '../types/message';
+import { TextChatMessage } from '../types/message';
 import ChatMessages from './message/ChatMessages';
 import { useJoinChatRoom } from '../hooks/room/useJoinChatRoom';
 import { useUser } from '@/features/auth/stores/session';
 import { useSoftDeleteMessage } from '../hooks/message/useMessageActions';
+import { ChatMemberRole } from '../types/member';
 
 interface ChatContainerProps {
 	roomId: string;
+	role: ChatMemberRole;
 }
 
 interface ChatContainerState {
-	editingMessage: ChatMessage | null;
-	replyingToMessage: ChatMessage | null;
+	editingMessage: TextChatMessage | null;
+	replyingToMessage: TextChatMessage | null;
 }
 
-export const ChatContainer = ({ roomId }: ChatContainerProps) => {
+export const ChatContainer = ({ roomId, role }: ChatContainerProps) => {
 	useJoinChatRoom(roomId);
 	const user = useUser();
 	const { mutateAsync: softDeleteMessage } = useSoftDeleteMessage();
@@ -27,11 +29,11 @@ export const ChatContainer = ({ roomId }: ChatContainerProps) => {
 		replyingToMessage: null,
 	});
 
-	const handleEditMessage = useCallback((message: ChatMessage) => {
+	const handleEditMessage = useCallback((message: TextChatMessage) => {
 		setActionState({ editingMessage: message, replyingToMessage: null });
 	}, []);
 
-	const handleReplyMessage = useCallback((message: ChatMessage) => {
+	const handleReplyMessage = useCallback((message: TextChatMessage) => {
 		setActionState({ editingMessage: null, replyingToMessage: message });
 	}, []);
 
@@ -51,6 +53,7 @@ export const ChatContainer = ({ roomId }: ChatContainerProps) => {
 		<section className='flex flex-col min-w-0 w-full'>
 			<ChatMessages
 				userId={user?.id ?? ''}
+				role={role}
 				roomId={roomId}
 				onEditMessage={handleEditMessage}
 				onDeleteMessage={handleDeleteMessage}

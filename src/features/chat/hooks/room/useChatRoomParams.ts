@@ -10,12 +10,14 @@ export const useChatRoomParams = () => {
 		type: parseAsStringEnum(Object.values(ChatRoomFeed)).withDefault(
 			ChatRoomFeed.ALL,
 		),
+		orderBy: parseAsStringEnum(Object.values(ChatRoomOrderBy)).withDefault(
+			ChatRoomOrderBy.ACTIVITY_DESC,
+		),
 	});
 
 	const params = useMemo(
 		() => ({
 			...filters,
-			orderBy: ChatRoomOrderBy.UPDATED_DESC,
 		}),
 		[filters],
 	);

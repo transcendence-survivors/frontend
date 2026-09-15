@@ -4,6 +4,7 @@ export enum ChatMemberPermissionEnum {
 	MEMBER_PROMOTE = 'MEMBER_PROMOTE',
 	MEMBER_DEMOTE = 'MEMBER_DEMOTE',
 	MEMBER_KICK = 'MEMBER_KICK',
+	DELETE_MESSAGE = 'DELETE_MESSAGE',
 }
 
 export const ROLE_HIERARCHY: Record<ChatMemberRole, number> = {
@@ -17,8 +18,12 @@ export const ROLE_PERMISSIONS: Record<ChatMemberRole, ChatMemberPermissionEnum[]
 		ChatMemberPermissionEnum.MEMBER_PROMOTE,
 		ChatMemberPermissionEnum.MEMBER_DEMOTE,
 		ChatMemberPermissionEnum.MEMBER_KICK,
+		ChatMemberPermissionEnum.DELETE_MESSAGE,
 	],
-	ADMIN: [ChatMemberPermissionEnum.MEMBER_KICK],
+	ADMIN: [
+		ChatMemberPermissionEnum.MEMBER_KICK,
+		ChatMemberPermissionEnum.DELETE_MESSAGE,
+	],
 	MEMBER: [],
 };
 

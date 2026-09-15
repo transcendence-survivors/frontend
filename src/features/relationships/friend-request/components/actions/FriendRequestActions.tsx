@@ -49,12 +49,6 @@ const FriendRequestActions = ({
 						: 'delete_failure_to_displayname',
 					{ displayName: friendDisplayName },
 				)}
-				ariaLabel={t(
-					params.direction === 'incoming'
-						? 'delete_from_displayname'
-						: 'delete_to_displayname',
-					{ displayName: friendDisplayName },
-				)}
 			/>
 		</div>
 	);

@@ -1,50 +1,74 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { Ban } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
+
 import { UseBlocksParams } from '../hooks/useBlocks';
 import { useBlockAdd } from '../hooks/useBlockActions';
-import { Ban } from 'lucide-react';
-import { Skeleton } from '@/components/ui/skeleton';
 
-interface FriendRequestDeleteProps {
-	successMessage: string;
-	failureMessage: string;
-	ariaLabel: string;
+interface BlockAddButtonProps {
 	blockedId: string;
+	blockedDisplayName: string;
 	params: UseBlocksParams;
 }
 
-const BlockAdd = ({
+export const BlockAddButton = ({
 	blockedId,
-	successMessage,
-	failureMessage,
+	blockedDisplayName,
 	params,
-	ariaLabel,
-}: FriendRequestDeleteProps) => {
+}: BlockAddButtonProps) => {
+	const t = useTranslations('relationships.blocked.add');
+
 	const { mutate, isPending, isError } = useBlockAdd({
 		blockedId,
-		successMessage,
-		failureMessage,
+		successMessage: t('success_displayname', { displayName: blockedDisplayName }),
+		failureMessage: t('failure_displayname', { displayName: blockedDisplayName }),
 		params,
 	});
 
-	const onClick = () => mutate();
+	const label = t('tooltip');
 
 	return (
-		<Button
-			variant='outline'
-			size={'icon'}
-			className={`text-muted-foreground hover:border-destructive/60 hover:text-destructive`}
-			disabled={isPending || isError}
-			aria-invalid={isError}
-			aria-label={ariaLabel}
-			onClick={onClick}>
-			{isPending ? <Spinner className='size-3.5' /> : <Ban className='size-3.5' />}
-		</Button>
+		<ActionConfirmDialog
+			title={t('title')}
+			description={t('description')}
+			confirmText={t('confirm')}
+			isDestructive
+			isPending={isPending}
+			onConfirm={() => mutate()}
+			trigger={
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Button
+							type='button'
+							variant='destructive'
+							size='icon'
+							className='text-muted-foreground hover:border-destructive/60 hover:text-destructive'
+							disabled={isPending || isError}
+							aria-invalid={isError}
+							aria-label={label}>
+							{isPending ? (
+								<Spinner className='size-3.5' />
+							) : (
+								<Ban className='size-3.5' />
+							)}
+						</Button>
+					</TooltipTrigger>
+					<TooltipContent>
+						<p>{label}</p>
+					</TooltipContent>
+				</Tooltip>
+			}
+		/>
 	);
 };
 
-const BlockDeleteSkeleton = () => {
-	return <Skeleton className={`size-9 rounded-md`} />;
+export const BlockAddButtonSkeleton = () => {
+	return <Skeleton className='size-9 rounded-md' />;
 };
-
-export { BlockAdd, BlockDeleteSkeleton };

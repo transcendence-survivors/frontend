@@ -72,7 +72,7 @@ export const transferChatRoomOwnership = async (
 };
 
 export const leaveChatRoom = async (roomId: string): Promise<void> => {
-	const res = await api.post<void>(CHAT_ENDPOINTS.leaveRoom(roomId));
+	const res = await api.delete<void>(CHAT_ENDPOINTS.leaveRoom(roomId));
 	if (isApiError(res)) {
 		throw new Error(res.message);
 	}

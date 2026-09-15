@@ -26,14 +26,17 @@ const ChatRoomAvatar = ({ room }: ChatRoomAvatarProps) => {
 	const avatarUrl = getRoomAvatarUrl(room);
 	const status = getRoomStatus(room);
 
+	const count = room.type === ChatRoomType.DIRECT ? 2 : room.memberCount;
 	const displayedMembers = isDirect ? [] : room.membersPreview.slice(0, MAX_AVATARS);
 	const memberPlusCount = getMemberPlusCount(room, { maxPreview: MAX_AVATARS });
+
+	const isAvatarProfile = isDirect || avatarUrl || count <= 2;
 
 	return (
 		<div className='w-16'>
 			<AvatarGroup
-				className={`-space-x-6 relative ${isDirect || avatarUrl ? 'w-14' : 'w-full'}`}>
-				{isDirect || avatarUrl ? (
+				className={`-space-x-6 relative ${isAvatarProfile ? 'w-14' : 'w-full'}`}>
+				{isAvatarProfile ? (
 					<AvatarProfile
 						img={{
 							src: avatarUrl || ``,

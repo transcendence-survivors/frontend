@@ -4,8 +4,7 @@ import { isApiError } from '@/libs/api';
 import { notFound } from 'next/navigation';
 import ChatContainer from '@/features/chat/components/ChatContainer';
 import { cookies } from 'next/headers';
-import { ChatSidebarProvider } from '@/features/chat/components/sidebar/ChatSidebarContext';
-import { ChatSidebar } from '@/features/chat/components/sidebar/ChatSidebar';
+import { ChatMembersSidebar } from '@/features/chat/components/sidebar/ChatMembersSidebar';
 
 interface ChatRoomProps {
 	params: Promise<{
@@ -21,19 +20,17 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 	const room = res.data;
 
 	return (
-		<main className='flex flex-col h-full overflow-clip'>
-			<ChatSidebarProvider>
-				<ChatRoomHeader room={room} role={room.currentUserRole} />
-				<div className='flex flex-1 min-h-0'>
-					<ChatContainer roomId={room.id} />
-					{room.type === 'GROUP' && (
-						<ChatSidebar
-							roomId={room.id}
-							currentUserRole={room.currentUserRole}
-						/>
-					)}
-				</div>
-			</ChatSidebarProvider>
+		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
+			<ChatRoomHeader room={room} role={room.currentUserRole} />
+			<div className='flex flex-1 min-h-0 relative'>
+				<ChatContainer roomId={room.id} role={room.currentUserRole} />
+				{room.type === 'GROUP' && (
+					<ChatMembersSidebar
+						roomId={room.id}
+						currentUserRole={room.currentUserRole}
+					/>
+				)}
+			</div>
 		</main>
 	);
 }

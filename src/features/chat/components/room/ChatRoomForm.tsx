@@ -52,7 +52,7 @@ export const ChatRoomEditForm = ({
 		resolver: zodResolver(patchRoomSchema),
 		mode: 'onChange',
 		defaultValues: {
-			name: initialName,
+			name: initialName || '',
 			removeAvatar: false,
 			avatarFile: undefined,
 		},

@@ -64,7 +64,11 @@ export const ChatMessageFormControls = ({
 					onOpenAutoFocus={(e) => e.preventDefault()}
 					onCloseAutoFocus={(e) => e.preventDefault()}
 					className='w-auto p-0 border-none shadow-none bg-transparent'>
-					<EmojiPicker onEmojiClick={onEmojiSelect} theme={Theme.AUTO} />
+					<EmojiPicker
+						onEmojiClick={onEmojiSelect}
+						theme={Theme.AUTO}
+						className='max-w-3/4'
+					/>
 				</PopoverContent>
 			</Popover>
 		</div>

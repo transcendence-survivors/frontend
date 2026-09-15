@@ -1,16 +1,18 @@
 import React from 'react';
 import { ChatDateDivider } from './ChatDateDivider';
 import { ChatMessageBubble } from './bubble/ChatMessageBubble';
-import { ChatMessage, ChatMessageType } from '../../types/message';
+import { ChatMessage, ChatMessageType, TextChatMessage } from '../../types/message';
 import { ChatMessageSystem } from './bubble/ChatMessageSystem';
+import { ChatMemberRole } from '../../types/member';
 
 interface ChatMessageGroupProps {
 	date: string;
 	dayMessages: ChatMessage[];
-	currentUserId?: string;
-	onEdit: (message: ChatMessage) => void;
+	currentUserId: string;
+	role: ChatMemberRole;
+	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
-	onReply: (message: ChatMessage) => void;
+	onReply: (message: TextChatMessage) => void;
 }
 
 export const ChatMessageGroup = React.memo(
@@ -18,6 +20,7 @@ export const ChatMessageGroup = React.memo(
 		date,
 		dayMessages,
 		currentUserId,
+		role,
 		onEdit,
 		onDelete,
 		onReply,
@@ -40,16 +43,16 @@ export const ChatMessageGroup = React.memo(
 					const prevUserId = isPrevSystemMessage
 						? undefined
 						: prevMessage?.sender?.id;
-					const isMe = currentUserId === message.sender?.id;
 
 					return (
 						<li key={message.id}>
 							<ChatMessageBubble
 								message={message}
-								isMe={isMe}
+								isMe={currentUserId === message.sender?.id}
+								role={role}
 								prevUserId={prevUserId}
-								onEdit={isMe ? onEdit : undefined}
-								onDelete={isMe ? onDelete : undefined}
+								onEdit={onEdit}
+								onDelete={onDelete}
 								onReply={onReply}
 							/>
 						</li>

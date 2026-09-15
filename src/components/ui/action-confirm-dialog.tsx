@@ -52,7 +52,7 @@ export const ActionConfirmDialog = ({
 					)}
 				</AlertDialogHeader>
 
-				<AlertDialogFooter className='px-4 py-3 border-t border-border bg-muted flex items-center justify-end gap-4'>
+				<AlertDialogFooter className='px-4 py-3 border-t border-border bg-muted flex flex-row items-center justify-end gap-4'>
 					<AlertDialogCancel
 						variant='outline'
 						className='flex-1'

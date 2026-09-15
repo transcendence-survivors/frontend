@@ -8,14 +8,15 @@ import { QueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 
-interface SendMessagePayload {
+export interface SendMessagePayload {
 	roomId: string;
 	content: string;
 	attachmentUrls?: string[];
 	replyToId?: string;
 }
 
-interface EditMessagePayload {
+export interface EditMessagePayload {
+	roomId: string;
 	messageId: string;
 	content: string;
 }

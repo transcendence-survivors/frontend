@@ -135,6 +135,7 @@ export const ChatMessageForm = ({
 
 		if (editingMessage) {
 			await editMessage({
+				roomId,
 				messageId: editingMessage.id,
 				content: data.text,
 			});
@@ -217,13 +218,15 @@ export const ChatMessageForm = ({
 						size='sm'
 						type='submit'
 						disabled={isSubmitDisabled}
-						className='h-full px-4 text-sm'>
+						className='h-full px-4 text-sm gap-1.5'>
 						{editingMessage ? (
-							<Save className='size-3.5 mr-1.5' />
+							<Save className='size-3.5' />
 						) : (
-							<Send className='size-3.5 mr-1.5' />
+							<Send className='size-3.5' />
 						)}
-						{editingMessage ? 'Save' : 'Send'}
+						<span className='sr-only sm:not-sr-only'>
+							{editingMessage ? 'Save' : 'Send'}
+						</span>
 					</Button>
 				</div>
 			</div>

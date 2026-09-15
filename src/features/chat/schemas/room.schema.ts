@@ -2,7 +2,7 @@ import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { i18nError } from '@/modules/forms/utils/translate/errors';
 import { z } from 'zod';
 
-const MAX_FILE_SIZE = 1 * 1024 * 1024;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const ACCEPTED_MEDIA_TYPES = ['image/'];
 
 export const patchRoomSchema = z
@@ -22,7 +22,7 @@ export const patchRoomSchema = z
 				{ message: FORM_ERRORS.imageOnly },
 			)
 			.refine((file) => file.size <= MAX_FILE_SIZE, {
-				message: i18nError(FORM_ERRORS.fileSizeMB, { maxSize: 1 }),
+				message: i18nError(FORM_ERRORS.fileSizeMB, { maxSize: 10 }),
 			})
 			.optional(),
 	})

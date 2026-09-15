@@ -18,11 +18,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { DeepKeys } from '@/libs/types';
 import { AppMessages } from '@/modules/i18n/messages/types';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface ChatMembersSectionProps {
 	roomId: string;
 	className?: string;
-	currentUserRole: ChatMemberRole;
+	role: ChatMemberRole;
 }
 
 const orderByOptions: {
@@ -39,11 +40,7 @@ const orderByOptions: {
 	{ value: 'role-desc', labelKey: 'sort.role_desc' },
 ] as const;
 
-export const ChatMembers = ({
-	roomId,
-	className,
-	currentUserRole,
-}: ChatMembersSectionProps) => {
+export const ChatMembers = ({ roomId, className, role }: ChatMembersSectionProps) => {
 	const user = useUser();
 	const t = useTranslations('chat.members');
 
@@ -53,6 +50,14 @@ export const ChatMembers = ({
 	if (!user) {
 		return null;
 	}
+
+	const params = {
+		roomId,
+		search,
+		orderBy,
+		limit: 50,
+	};
+
 	return (
 		<div className='flex flex-col min-h-0 gap-0 w-full'>
 			<div>
@@ -68,44 +73,45 @@ export const ChatMembers = ({
 						placeholder={t('search_placeholder')}
 						className='rounded-none text-sm placeholder:text-sm'
 					/>
-
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button
-								variant='outline'
-								size='icon'
-								aria-label={t('sort.label')}>
-								<ArrowUpDown className='size-4' />
-							</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align='end' className='w-48'>
-							<DropdownMenuRadioGroup
-								value={orderBy}
-								onValueChange={(val) =>
-									setOrderBy(val as ChatMemberOrderBy)
-								}>
-								{orderByOptions.map((option) => (
-									<DropdownMenuRadioItem
-										key={option.value}
-										value={option.value}>
-										{t(option.labelKey)}
-									</DropdownMenuRadioItem>
-								))}
-							</DropdownMenuRadioGroup>
-						</DropdownMenuContent>
-					</DropdownMenu>
+					<Tooltip>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<TooltipTrigger asChild>
+									<Button
+										variant='outline'
+										size='icon'
+										aria-label={t('sort.label')}>
+										<ArrowUpDown className='size-4' />
+									</Button>
+								</TooltipTrigger>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align='end' className='w-48'>
+								<DropdownMenuRadioGroup
+									value={orderBy}
+									onValueChange={(val) =>
+										setOrderBy(val as ChatMemberOrderBy)
+									}>
+									{orderByOptions.map((option) => (
+										<DropdownMenuRadioItem
+											key={option.value}
+											value={option.value}>
+											{t(option.labelKey)}
+										</DropdownMenuRadioItem>
+									))}
+								</DropdownMenuRadioGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
+						<TooltipContent>
+							<p>{t('sort.label')}</p>
+						</TooltipContent>
+					</Tooltip>
 				</div>
 			</div>
 
 			<ChatMembersData
-				params={{
-					roomId,
-					search,
-					orderBy,
-					limit: 50,
-				}}
-				currentUserId={user!.id}
-				currentUserRole={currentUserRole}
+				params={params}
+				userId={user.id}
+				role={role}
 				className={className}
 			/>
 		</div>

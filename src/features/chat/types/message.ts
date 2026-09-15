@@ -14,7 +14,9 @@ export enum ChatMessageType {
 	ROOM_AVATAR_CHANGED = 'ROOM_AVATAR_CHANGED',
 }
 
-type UserSummary = Pick<BaseUser, 'id' | 'displayName'>;
+type UserSummary = BaseUser & {
+	role: ChatMemberRole;
+};
 
 interface BaseChatMessage {
 	id: string;
@@ -24,12 +26,12 @@ interface BaseChatMessage {
 	createdAt: string;
 }
 
-interface TextChatMessage extends BaseChatMessage {
+export interface TextChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'TEXT'>;
 	content: string;
 	attachmentUrls: string[];
 	replyToId?: string | null;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata?: null;
 }
 interface LeftChatMessage extends BaseChatMessage {
@@ -40,14 +42,14 @@ interface LeftChatMessage extends BaseChatMessage {
 }
 interface JoinedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'JOINED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		targetUser: UserSummary;
 	};
 }
 interface RoleUpdatedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'ROLE_UPDATED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		targetUser: UserSummary;
 		oldRole: ChatMemberRole;
@@ -56,14 +58,14 @@ interface RoleUpdatedChatMessage extends BaseChatMessage {
 }
 interface KickedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'KICKED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		targetUser: UserSummary;
 	};
 }
 interface NameChangedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'ROOM_RENAMED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		oldValue: string;
 		newValue: string;
@@ -71,7 +73,7 @@ interface NameChangedChatMessage extends BaseChatMessage {
 }
 interface AvatarChangedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'ROOM_AVATAR_CHANGED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		oldValue: string;
 		newValue: string;
@@ -79,7 +81,7 @@ interface AvatarChangedChatMessage extends BaseChatMessage {
 }
 interface OwnershipTransferredChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'OWNERSHIP_TRANSFERRED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 	metadata: {
 		targetUser: UserSummary;
 		oldRole: ChatMemberRole;
@@ -88,7 +90,7 @@ interface OwnershipTransferredChatMessage extends BaseChatMessage {
 }
 interface RoomCreatedChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'ROOM_CREATED'>;
-	sender: BaseUser;
+	sender: UserSummary;
 }
 
 export type ChatMessage =

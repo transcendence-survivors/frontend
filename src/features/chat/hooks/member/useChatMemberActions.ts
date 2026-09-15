@@ -1,3 +1,5 @@
+'use client';
+
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
 	kickChatMember,
@@ -8,15 +10,17 @@ import {
 import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
 import { ChatMember, ChatMemberRole, GetChatMembersResponse } from '../../types/member';
 import { UseChatMembersParams } from './useChatMembers';
+import { ROUTES } from '@/modules/i18n/constants/routes';
+import { useRouter } from 'next/navigation';
 
 export type MemberAction = 'kick' | 'promote' | 'demote' | 'transfer' | 'leave';
 
 interface UseChatMemberActionParams {
 	roomId: string;
-	params?: UseChatMembersParams;
-	targetUserId: string;
 	action: MemberAction;
+	targetUserId?: string;
 	role?: ChatMemberRole;
+	params?: UseChatMembersParams;
 }
 
 const useChatMemberAction = ({
@@ -27,40 +31,46 @@ const useChatMemberAction = ({
 	role,
 }: UseChatMemberActionParams) => {
 	const queryClient = useQueryClient();
-	const queryKey = ['chat-members', params];
+	const router = useRouter();
+
+	const queryKey = ['chat-members', roomId, params];
 
 	return useMutation({
-		mutationKey: ['chat-members', action, roomId, targetUserId],
+		mutationKey: ['chat-members', action, roomId, targetUserId ?? 'me'],
 		mutationFn: async () => {
 			switch (action) {
 				case 'kick':
-					return kickChatMember(roomId, targetUserId);
+					return kickChatMember(roomId, targetUserId!);
 				case 'promote':
 				case 'demote':
-					if (!role) throw new Error('Role is required for role update');
-					return updateChatMemberRole(roomId, targetUserId, role);
+					return updateChatMemberRole(roomId, targetUserId!, role!);
 				case 'transfer':
-					return transferChatRoomOwnership(roomId, targetUserId);
+					return transferChatRoomOwnership(roomId, targetUserId!);
 				case 'leave':
 					return leaveChatRoom(roomId);
 			}
 		},
 		onMutate: async () => {
-			await queryClient.cancelQueries({ queryKey });
+			await queryClient.cancelQueries({ queryKey, exact: true });
+
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetChatMembersResponse>>(queryKey);
 
-			if (action === 'kick' || action === 'leave') {
+			if (action === 'kick') {
 				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
 					type: 'filter',
 					callback: (m) => m.user.id !== targetUserId,
 				});
-			} else if ((action === 'promote' || action === 'demote') && role) {
+			} else if (
+				(action === 'promote' || action === 'demote') &&
+				role &&
+				targetUserId
+			) {
 				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
 					type: 'map',
 					callback: (m) => (m.user.id === targetUserId ? { ...m, role } : m),
 				});
-			} else if (action === 'transfer') {
+			} else if (action === 'transfer' && targetUserId) {
 				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
 					type: 'map',
 					callback: (m) => {
@@ -74,10 +84,18 @@ const useChatMemberAction = ({
 			return { previous };
 		},
 		onError: (_err, _vars, ctx) => {
-			if (ctx?.previous) queryClient.setQueryData(queryKey, ctx.previous);
+			if (ctx?.previous) {
+				queryClient.setQueryData(queryKey, ctx.previous);
+			}
+		},
+		onSuccess: () => {
+			if (action === 'leave') {
+				router.push(ROUTES.chat());
+				router.refresh();
+			}
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey: ['chat-members'] });
+			queryClient.invalidateQueries({ queryKey: ['chat-members', roomId] });
 			queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
 		},
 	});
@@ -122,14 +140,9 @@ export const useTransferOwnership = (
 		action: 'transfer',
 	});
 
-export const useLeaveRoom = (
-	roomId: string,
-	currentUserId: string,
-	params?: UseChatMembersParams,
-) =>
+export const useLeaveRoom = (roomId: string, params?: UseChatMembersParams) =>
 	useChatMemberAction({
 		roomId,
-		targetUserId: currentUserId,
 		params,
 		action: 'leave',
 	});

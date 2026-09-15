@@ -77,29 +77,52 @@
 			"title": "Friends",
 			"count": "{count} friend(s).",
 			"count_search": "{count} friend(s) found for your search.",
-			"delete_button": "Unfriend",
-			"delete_success_displayname": "You have unfriended {displayName} successfully.",
-			"delete_failure_displayname": "Failed to unfriend {displayName}. Please try again.",
 			"no_friends": "You have no friends yet. Start adding some!",
 			"no_friends_search": "No friends found for your search.",
 			"no_more_friends": "No more friends to load.",
 			"fetch_error": "Failed to load friends. Please try again later.",
+
 			"all_button": "All",
 			"online_button": "Online",
-			"offline_button": "Offline"
+			"offline_button": "Offline",
+
+			"delete": {
+				"tooltip": "Remove friend",
+				"title": "Remove friend",
+				"description": "Are you sure you want to remove this friend? This action cannot be undone.",
+				"confirm": "Remove",
+				"success_displayname": "You have unfriended {displayName} successfully.",
+				"failure_displayname": "Failed to unfriend {displayName}. Please try again."
+			}
 		},
 
 		"blocked": {
 			"title": "Blocked Users",
 			"count": "{count} blocked user(s).",
 			"count_search": "{count} blocked user(s) found for your search.",
-			"delete_button": "Unblock",
-			"delete_success_displayname": "You have unblocked {displayName} successfully.",
-			"delete_failure_displayname": "Failed to unblock {displayName}. Please try again.",
+			"add": {
+				"tooltip": "Block user",
+				"title": "Block user",
+				"description": "Are you sure you want to block this user? They won't be able to message you or see your activity.",
+				"confirm": "Block",
+				"success_displayname": "You have blocked {displayName} successfully.",
+				"failure_displayname": "Failed to block {displayName}. Please try again."
+			},
+
+			"remove": {
+				"tooltip": "Unblock user",
+				"title": "Unblock user",
+				"description": "Are you sure you want to unblock this user? They will be able to message you and view your activity again.",
+				"confirm": "Unblock",
+				"success_displayname": "You have unblocked {displayName} successfully.",
+				"failure_displayname": "Failed to unblock {displayName}. Please try again."
+			},
+
 			"no_blocked": "You have no blocked users yet. Start blocking some!",
 			"no_blocked_search": "No blocked users found for your search.",
 			"no_more_blocked": "No more blocked users to load.",
 			"fetch_error": "Failed to load blocked users. Please try again later.",
+
 			"all_button": "All",
 			"online_button": "Online",
 			"offline_button": "Offline"
@@ -139,6 +162,19 @@
 			"received": "Received",
 			"sent": "Sent",
 
+			"reject": {
+				"tooltip": "Decline request",
+				"title": "Decline friend request",
+				"description": "Are you sure you want to decline this friend request?",
+				"confirm": "Decline"
+			},
+			"cancel": {
+				"tooltip": "Cancel request",
+				"title": "Cancel friend request",
+				"description": "Are you sure you want to cancel this pending request?",
+				"confirm": "Cancel request"
+			},
+
 			"fetch_error": "Failed to load friend requests. Please try again later."
 		}
 	},
@@ -157,10 +193,27 @@
 
 	"chat": {
 		"rooms": {
+			"title": "Chat Rooms",
+			"page": {
+				"title": "No chat Selected",
+				"subtitle": "Select a chat to start messaging.",
+				"not_created": "Chat room not created ?",
+				"ask_friends": "Ask your friends to play with you!",
+				"create_button": "Create Chat"
+			},
+
 			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
 			"no_chat_rooms_search": "No chat rooms found for your search.",
 			"no_more_chat_rooms": "No more chat rooms to load.",
 			"fetch_error": "Failed to load chat rooms. Please try again later.",
+			"search_placeholder": "Search chat rooms...",
+			"sort": {
+				"label": "Sort chat rooms",
+				"activity_desc": "Activity (recent messages first)",
+				"activity_asc": "Activity (oldest messages first)",
+				"created_desc": "Creation date (recent first)",
+				"created_asc": "Creation date (oldest first)"
+			},
 
 			"group_settings": {
 				"title": "Edit Group Details",
@@ -272,7 +325,8 @@
 			}
 		},
 		"title": "Chat",
-		"subtitle": "Conversations with your friends"
+		"subtitle": "Conversations with your friends",
+		"send_dm": "Send a DM"
 	},
 
 	"feed": {
@@ -470,6 +524,7 @@
 			"minLength": "Minimum length is {min} characters",
 			"maxLength": "Maximum length is {max} characters",
 			"fileSizeMB": "File size must be less than {maxSize} MB",
+			"maxFilesCount": "You can attach up to {maxCount} files",
 
 			"imageOnly": "Only image files are allowed",
 			"imageVideoOnly": "Only image and video files are allowed",
@@ -494,7 +549,9 @@
 			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
 			"invalid_email": "The email address is not registered. Please check and try again.",
 
-			"at_least_one": "At least one field is required"
+			"at_least_one": "At least one field is required",
+
+			"message_empty_if_attachments": "Message text cannot be empty unless an attachment is provided"
 		},
 		"addons": {
 			"length": "{current} / {max} characters max"

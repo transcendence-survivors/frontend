@@ -13,14 +13,14 @@ import { ChatMemberRole } from '../../types/member';
 
 interface ChatMemberProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseChatMembersParams;
-	currentUserId: string;
-	currentUserRole: ChatMemberRole;
+	userId: string;
+	role: ChatMemberRole;
 }
 
 const ChatMembersData = ({
 	params,
-	currentUserId,
-	currentUserRole,
+	userId,
+	role,
 	className,
 	...props
 }: ChatMemberProps) => {
@@ -71,8 +71,8 @@ const ChatMembersData = ({
 							<ChatMemberCard
 								roomId={params.roomId}
 								member={member}
-								currentUserId={currentUserId}
-								currentUserRole={currentUserRole}
+								userId={userId}
+								role={role}
 								params={params}
 							/>
 						</li>

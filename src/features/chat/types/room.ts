@@ -8,8 +8,8 @@ export enum ChatRoomType {
 }
 
 export enum ChatRoomOrderBy {
-	UPDATED_ASC = 'updated-asc',
-	UPDATED_DESC = 'updated-desc',
+	ACTIVITY_DESC = 'activity-desc',
+	ACTIVITY_ASC = 'activity-asc',
 	CREATED_ASC = 'created-asc',
 	CREATED_DESC = 'created-desc',
 }

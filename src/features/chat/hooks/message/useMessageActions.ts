@@ -3,7 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { uploadAttachments } from '@/libs/api/helpers/attachments';
-import { useMessageActions } from '../../stores/messageSlice';
+import { EditMessagePayload, useMessageActions } from '../../stores/messageSlice';
 
 interface SendMessageInput {
 	roomId: string;
@@ -40,14 +40,8 @@ export const useEditMessage = () => {
 	const { editMessage } = useMessageActions();
 
 	return useMutation({
-		mutationFn: async ({
-			messageId,
-			content,
-		}: {
-			messageId: string;
-			content: string;
-		}) => {
-			return editMessage({ messageId, content });
+		mutationFn: async (payload: EditMessagePayload) => {
+			return editMessage(payload);
 		},
 		onError: () => {
 			toast.error('Failed to edit message');

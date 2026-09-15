@@ -13,19 +13,22 @@ import { Error } from '@/features/relationships/components/error';
 import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
-import { ChatMessage } from '../../types/message';
+import { TextChatMessage } from '../../types/message';
+import { ChatMemberRole } from '../../types/member';
 
 interface ChatMessagesProps {
 	roomId: string;
 	userId: string;
-	onEditMessage: (message: ChatMessage) => void;
+	role: ChatMemberRole;
+	onEditMessage: (message: TextChatMessage) => void;
 	onDeleteMessage: (messageId: string) => void;
-	onReplyMessage: (message: ChatMessage) => void;
+	onReplyMessage: (message: TextChatMessage) => void;
 }
 
 const ChatMessages = ({
 	roomId,
 	userId,
+	role,
 	onEditMessage,
 	onDeleteMessage,
 	onReplyMessage,
@@ -104,6 +107,7 @@ const ChatMessages = ({
 						date={date}
 						dayMessages={dayMessages}
 						currentUserId={userId}
+						role={role}
 						onEdit={onEditMessage}
 						onDelete={onDeleteMessage}
 						onReply={onReplyMessage}

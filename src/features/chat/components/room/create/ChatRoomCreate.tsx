@@ -5,13 +5,17 @@ import { useChatRoomParams } from '@/features/chat/hooks/room/useChatRoomParams'
 import { Plus } from 'lucide-react';
 import ChatRoomCreateDialog from './ChatRoomCreateDialog';
 
-const ChatRoomCreate = () => {
+interface ChatRoomCreateProps {
+	children?: React.ReactNode;
+}
+
+const ChatRoomCreate = ({ children }: ChatRoomCreateProps) => {
 	const { params } = useChatRoomParams();
 
 	return (
 		<ChatRoomCreateDialog params={params}>
 			<Button className='ml-auto' size='lg'>
-				Create Chat
+				{children}
 				<Plus className='size-4' />
 			</Button>
 		</ChatRoomCreateDialog>

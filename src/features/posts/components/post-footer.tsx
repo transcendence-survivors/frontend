@@ -1,23 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import LikeButton from '@/features/likes/components/LikeButton';
-import { Post } from '../types/post';
-import DisplayDate from '@/components/ui/date';
-import { MessageCircle } from 'lucide-react';
-import { Repeat2 } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { MessageCircle, Repeat2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import CreatePost from './create-post';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import LikeButton from '@/features/likes/components/LikeButton';
 import { useAddRepost, useDeleteRepost } from '@/features/reposts/hook/useReposts';
-import { useTranslations } from 'next-intl';
+import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
+import { Post } from '../types/post';
+import CreatePost from './create-post';
 
 interface PostFooterProps {
 	post: Post;
@@ -47,54 +46,52 @@ export default function PostFooter({ post }: PostFooterProps) {
 	};
 
 	return (
-		<div className='flex items-center justify-between px-0 gap-2 pl-1 w-full'>
-			<div className='flex items-center gap-2 z-10'>
-				<div className='flex items-center gap-1 z-0'>
-					<I18nLink
-						href='userNamePostsId'
-						hrefParams={{ username: post.author.username, id: post.id }}
-						className='p-2'
-						aria-label={t('comment')}>
-						<MessageCircle className='size-4' />
-					</I18nLink>
-					{post.commentCount > 0 && <span>{post.commentCount}</span>}
-				</div>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className='px-0'>
-							<Repeat2
-								className={`size-4 ${reposted ? 'text-primary' : ''}`}
-							/>
-							{repostCount > 0 && <span>{repostCount}</span>}
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent>
-						<DropdownMenuItem onClick={handleRepostClick}>
-							{reposted ? t('undo_repost') : t('repost')}
-						</DropdownMenuItem>
-						<DropdownMenuItem onClick={() => setQuoteOpen(true)}>
-							{t('quote')}
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-				<Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
-					<DialogContent>
-						<CreatePost
-							quotedPostId={post.id}
-							onSuccess={() => setQuoteOpen(false)}
-						/>
-					</DialogContent>
-				</Dialog>
-				<LikeButton
-					postId={post.id}
-					likeCount={post.likeCount}
-					isLiked={post.isLiked}
-				/>
-			</div>
-			<DisplayDate
-				date={new Date(post.createdAt)}
-				className='text-sm text-muted-foreground'
+		<div className='-ml-2 mt-1 flex items-center gap-6 text-muted-foreground'>
+			<Button variant='ghost' size='sm' className='relative z-10' asChild>
+				<I18nLink
+					href='userNamePostsId'
+					hrefParams={{ username: `@${post.author.username}`, id: post.id }}
+					aria-label={t('comment')}>
+					<MessageCircle />
+					{post.commentCount > 0 && post.commentCount}
+				</I18nLink>
+			</Button>
+
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<Button
+						variant='ghost'
+						size='sm'
+						aria-label={t('repost')}
+						className={cn('relative z-10', reposted && 'text-primary')}>
+						<Repeat2 />
+						{repostCount > 0 && repostCount}
+					</Button>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent>
+					<DropdownMenuItem onClick={handleRepostClick}>
+						{reposted ? t('undo_repost') : t('repost')}
+					</DropdownMenuItem>
+					<DropdownMenuItem onClick={() => setQuoteOpen(true)}>
+						{t('quote')}
+					</DropdownMenuItem>
+				</DropdownMenuContent>
+			</DropdownMenu>
+
+			<LikeButton
+				postId={post.id}
+				likeCount={post.likeCount}
+				isLiked={post.isLiked}
 			/>
+
+			<Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
+				<DialogContent>
+					<CreatePost
+						quotedPostId={post.id}
+						onSuccess={() => setQuoteOpen(false)}
+					/>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 }

@@ -18,8 +18,8 @@ export default async function Feed() {
 					<PresenceCounter />
 				</section>
 			</header>
-			<div className='max-w-xl mx-auto px-4 py-8'>
-				<section>
+			<div className='max-w-2xl mx-auto'>
+				<section className='px-4 border-b border-border'>
 					<CreatePost />
 				</section>
 				<section>

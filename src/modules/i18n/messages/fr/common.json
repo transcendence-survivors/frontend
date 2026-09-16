@@ -108,7 +108,9 @@
 			"reposted_by": "{displayName} a reposté",
 			"image_alt": "Image du post de {username}",
 			"see_more": "Voir plus",
-			"see_less": "Voir moins"
+			"see_less": "Voir moins",
+			"replying_to": "En réponse à",
+			"open_post": "Ouvrir le post"
 		},
 		"actions": {
 			"comment": "Commenter",

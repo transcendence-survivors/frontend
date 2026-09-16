@@ -17,10 +17,12 @@ export default async function PostPage({ params }: PostPageProps) {
 	if (isApiError(res)) notFound();
 
 	return (
-		<main className='max-w-xl mx-auto px-4 py-8'>
+		<main className='max-w-2xl mx-auto pb-8'>
 			<PostDetailHeader />
 			<PostCard post={res.data} isDetailView={true} />
-			<CreatePost parentPostId={postId} />
+			<div className='px-4 border-y border-border'>
+				<CreatePost parentPostId={postId} />
+			</div>
 			<Posts parentPostId={postId} />
 		</main>
 	);

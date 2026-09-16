@@ -1,50 +1,24 @@
 'use client';
 
-import { useInView } from 'react-intersection-observer';
-import { usePosts } from '../hook/usePosts';
-import { useEffect } from 'react';
-import { Spinner } from '@/components/ui/spinner';
-import PostCard from './post-card';
 import { useTranslations } from 'next-intl';
+import { usePosts } from '../hook/usePosts';
+import PostList from './post-list';
 
 interface PostsProps {
 	parentPostId?: string;
 }
 
 export default function Posts({ parentPostId }: PostsProps) {
-	const t = useTranslations('posts.list');
-	const { ref, inView } = useInView({ rootMargin: '0px 0px 100px 0px' });
-	const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
-		usePosts(parentPostId);
-
-	useEffect(() => {
-		if (!hasNextPage) return;
-		if (!inView) return;
-		if (isFetchingNextPage) return;
-
-		fetchNextPage();
-	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
-
-	if (isLoading) return t('loading');
-	if (isError) return t('fetch_error');
-	if (!data || data.pages.length === 0) return t('no_posts');
-
-	const posts = data.pages.flatMap((page) => page.data.data);
+	const t = useTranslations('posts');
+	const query = usePosts(parentPostId);
 
 	return (
-		<>
-			<ul className='flex flex-col gap-4'>
-				{posts.map((p) => (
-					<li key={p.id}>
-						<PostCard post={p} />
-					</li>
-				))}
-			</ul>
-			{hasNextPage && (
-				<div ref={ref} className='flex justify-center py-4'>
-					{isFetchingNextPage && <Spinner className='size-6' />}
-				</div>
-			)}
-		</>
+		<PostList
+			query={query}
+			emptyMessage={parentPostId ? t('comments.no_comments') : t('list.no_posts')}
+			errorMessage={
+				parentPostId ? t('comments.fetch_error') : t('list.fetch_error')
+			}
+		/>
 	);
 }

@@ -20,6 +20,7 @@ interface ChatMessagesProps {
 	roomId: string;
 	userId: string;
 	role: ChatMemberRole;
+	isGroup: boolean;
 	onEditMessage: (message: TextChatMessage) => void;
 	onDeleteMessage: (messageId: string) => void;
 	onReplyMessage: (message: TextChatMessage) => void;
@@ -29,6 +30,7 @@ const ChatMessages = ({
 	roomId,
 	userId,
 	role,
+	isGroup,
 	onEditMessage,
 	onDeleteMessage,
 	onReplyMessage,
@@ -108,6 +110,7 @@ const ChatMessages = ({
 						dayMessages={dayMessages}
 						currentUserId={userId}
 						role={role}
+						isGroup={isGroup}
 						onEdit={onEditMessage}
 						onDelete={onDeleteMessage}
 						onReply={onReplyMessage}

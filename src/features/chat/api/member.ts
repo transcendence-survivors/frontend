@@ -35,6 +35,15 @@ export const getChatMembersCount = async (
 	return res.data;
 };
 
+export const addMembers = async (roomId: string, userIds: string[]): Promise<void> => {
+	const res = await api.post<void>(CHAT_ENDPOINTS.addMembers(roomId), {
+		userIds,
+	});
+	if (isApiError(res)) {
+		throw new Error(res.message);
+	}
+};
+
 export const kickChatMember = async (
 	roomId: string,
 	targetUserId: string,

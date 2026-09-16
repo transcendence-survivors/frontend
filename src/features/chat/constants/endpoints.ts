@@ -21,6 +21,7 @@ const CHAT_ENDPOINTS = {
 
 	getMembers: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members`,
 	getMembersCount: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members/count`,
+	addMembers: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members`,
 	kickMember: (roomId: string, targetUserId: string) =>
 		`/chat/${roomId}/members/kick/${targetUserId}`,
 	updateMemberRole: (roomId: string, targetUserId: string) =>

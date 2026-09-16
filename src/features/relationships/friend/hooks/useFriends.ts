@@ -9,9 +9,9 @@ const initialFriendsParam = {
 	orderBy: 'username-asc',
 } satisfies GetFriendsParams;
 
-type UseFriendsParams = Omit<GetFriendIdsParams, 'cursor' | 'limit'>;
+export type UseFriendsParams = Omit<GetFriendIdsParams, 'cursor' | 'limit'>;
 
-const useFriends = ({ search, friendIds, status }: UseFriendsParams) => {
+export const useFriends = ({ search, friendIds, status }: UseFriendsParams) => {
 	return useInfiniteQuery({
 		queryKey: ['friends', { search, friendIds, status }],
 		initialPageParam: { ...initialFriendsParam, search, friendIds, status },
@@ -26,6 +26,3 @@ const useFriends = ({ search, friendIds, status }: UseFriendsParams) => {
 		},
 	});
 };
-
-export { useFriends };
-export type { UseFriendsParams };

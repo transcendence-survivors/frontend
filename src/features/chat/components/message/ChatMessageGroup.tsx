@@ -10,6 +10,7 @@ interface ChatMessageGroupProps {
 	dayMessages: ChatMessage[];
 	currentUserId: string;
 	role: ChatMemberRole;
+	isGroup: boolean;
 	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
 	onReply: (message: TextChatMessage) => void;
@@ -21,6 +22,7 @@ export const ChatMessageGroup = React.memo(
 		dayMessages,
 		currentUserId,
 		role,
+		isGroup,
 		onEdit,
 		onDelete,
 		onReply,
@@ -49,6 +51,7 @@ export const ChatMessageGroup = React.memo(
 							<ChatMessageBubble
 								message={message}
 								isMe={currentUserId === message.sender?.id}
+								isGroup={isGroup}
 								role={role}
 								prevUserId={prevUserId}
 								onEdit={onEdit}

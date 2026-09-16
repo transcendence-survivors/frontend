@@ -11,6 +11,7 @@ import { ChatMemberRole } from '@/features/chat/types/member';
 interface ChatMessageBubbleProps {
 	message: TextChatMessage;
 	isMe: boolean;
+	isGroup: boolean;
 	role: ChatMemberRole;
 	prevUserId?: string;
 	onEdit: (message: TextChatMessage) => void;
@@ -22,6 +23,7 @@ const ChatMessageBubble = memo(
 	({
 		message,
 		isMe,
+		isGroup,
 		role,
 		prevUserId,
 		onEdit,
@@ -58,6 +60,7 @@ const ChatMessageBubble = memo(
 							<ChatMessageActions
 								message={message}
 								isMe={isMe}
+								isGroup={isGroup}
 								role={role}
 								onEdit={onEdit}
 								onDelete={onDelete}

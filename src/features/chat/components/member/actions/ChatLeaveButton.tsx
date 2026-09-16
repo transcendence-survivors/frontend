@@ -29,37 +29,44 @@ export const ChatLeaveButton = ({
 	const t = useTranslations('chat.members');
 	const { mutate, isPending } = useLeaveRoom(roomId, params);
 
-	const defaultTrigger = (
-		<TooltipProvider>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button
-						variant='ghost'
-						size='icon'
-						disabled={isPending || disabled}
-						onClick={onClick}
-						{...props}>
-						<UserMinus className='size-3.5' />
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent>
-					<p>{t('leave_room')}</p>
-				</TooltipContent>
-			</Tooltip>
-		</TooltipProvider>
-	);
-
-	const finalTrigger = children ?? defaultTrigger;
-
+	if (children) {
+		return (
+			<ActionConfirmDialog
+				title={t('dialogs.leave_title')}
+				description={t('dialogs.leave_description')}
+				confirmText={t('leave_room')}
+				isDestructive
+				isPending={isPending}
+				onConfirm={() => mutate()}
+				trigger={children}
+			/>
+		);
+	}
 	return (
-		<ActionConfirmDialog
-			title={t('dialogs.leave_title')}
-			description={t('dialogs.leave_description')}
-			confirmText={t('leave_room')}
-			isDestructive
-			isPending={isPending}
-			onConfirm={() => mutate()}
-			trigger={finalTrigger}
-		/>
+		<Tooltip>
+			<ActionConfirmDialog
+				title={t('dialogs.leave_title')}
+				description={t('dialogs.leave_description')}
+				confirmText={t('leave_room')}
+				isDestructive
+				isPending={isPending}
+				onConfirm={() => mutate()}
+				trigger={
+					<TooltipTrigger asChild>
+						<Button
+							variant='ghost'
+							size='icon'
+							disabled={isPending || disabled}
+							onClick={onClick}
+							{...props}>
+							<UserMinus className='size-3.5' />
+						</Button>
+					</TooltipTrigger>
+				}
+			/>
+			<TooltipContent>
+				<p>{t('leave_room')}</p>
+			</TooltipContent>
+		</Tooltip>
 	);
 };

@@ -23,7 +23,11 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
 			<ChatRoomHeader room={room} role={room.currentUserRole} />
 			<div className='flex flex-1 min-h-0 relative'>
-				<ChatContainer roomId={room.id} role={room.currentUserRole} />
+				<ChatContainer
+					roomId={room.id}
+					roomType={room.type}
+					role={room.currentUserRole}
+				/>
 				{room.type === 'GROUP' && (
 					<ChatMembersSidebar
 						roomId={room.id}

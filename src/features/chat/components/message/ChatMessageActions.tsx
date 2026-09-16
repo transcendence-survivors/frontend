@@ -13,6 +13,7 @@ interface ChatMessageActionsProps {
 	message: TextChatMessage;
 	isMe: boolean;
 	role: ChatMemberRole;
+	isGroup: boolean;
 	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
 	onReply: (message: TextChatMessage) => void;
@@ -25,6 +26,7 @@ export const ChatMessageActions = ({
 	onDelete,
 	onReply,
 	role,
+	isGroup,
 }: ChatMessageActionsProps) => {
 	const t = useTranslations('chat.messages.actions');
 
@@ -32,11 +34,12 @@ export const ChatMessageActions = ({
 	const canEdit = isMe;
 	const canDelete =
 		isMe ||
-		canManageMember({
-			actorRole: role,
-			targetRole: message.sender.role,
-			permission: ChatMemberPermissionEnum.DELETE_MESSAGE,
-		});
+		(isGroup &&
+			canManageMember({
+				actorRole: role,
+				targetRole: message.sender.role,
+				permission: ChatMemberPermissionEnum.DELETE_MESSAGE,
+			}));
 
 	return (
 		<aside

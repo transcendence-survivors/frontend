@@ -8,9 +8,11 @@ import { useJoinChatRoom } from '../hooks/room/useJoinChatRoom';
 import { useUser } from '@/features/auth/stores/session';
 import { useSoftDeleteMessage } from '../hooks/message/useMessageActions';
 import { ChatMemberRole } from '../types/member';
+import { ChatRoomType } from '../types/room';
 
 interface ChatContainerProps {
 	roomId: string;
+	roomType: ChatRoomType;
 	role: ChatMemberRole;
 }
 
@@ -19,7 +21,7 @@ interface ChatContainerState {
 	replyingToMessage: TextChatMessage | null;
 }
 
-export const ChatContainer = ({ roomId, role }: ChatContainerProps) => {
+export const ChatContainer = ({ roomId, roomType, role }: ChatContainerProps) => {
 	useJoinChatRoom(roomId);
 	const user = useUser();
 	const { mutateAsync: softDeleteMessage } = useSoftDeleteMessage();
@@ -55,6 +57,7 @@ export const ChatContainer = ({ roomId, role }: ChatContainerProps) => {
 				userId={user?.id ?? ''}
 				role={role}
 				roomId={roomId}
+				isGroup={roomType === ChatRoomType.GROUP}
 				onEditMessage={handleEditMessage}
 				onDeleteMessage={handleDeleteMessage}
 				onReplyMessage={handleReplyMessage}

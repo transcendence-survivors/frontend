@@ -30,7 +30,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/lore',
 		it: '/lore',
 	},
-
 	support: {
 		en: '/support',
 		de: '/support',
@@ -39,6 +38,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/support',
 		it: '/support',
 	},
+
 	register: {
 		en: '/register',
 		de: '/registrieren',

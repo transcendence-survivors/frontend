@@ -44,6 +44,7 @@ const useLikeAction = (action: LikeRequestAction) => {
 					? toggleLikeInCache(postId, true, 1)
 					: toggleLikeInCache(postId, false, -1),
 			);
+			//queryClient.invalidateQueries({ queryKey: ['userLikes', username] });
 		},
 	});
 };

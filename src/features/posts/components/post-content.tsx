@@ -23,12 +23,13 @@ export default function PostContent({ content, isDetailView }: PostContentProps)
 		: content;
 
 	return (
-		<p className='pl-1 z-10 w-full min-w-0 [overflow-wrap:anywhere]'>
+		<p
+			className={`w-full min-w-0 whitespace-pre-wrap [overflow-wrap:anywhere] ${isDetailView ? 'text-base' : 'text-sm'}`}>
 			{displayContent}
 			{!isDetailView && isLong && (
 				<button
 					type='button'
-					className='block text-primary mt-1 p-0 hover:underline focus:outline-none focus-visible:underline'
+					className='relative z-10 block text-primary mt-1 p-0 hover:underline focus:outline-none focus-visible:underline'
 					onClick={() => setExpanded((v) => !v)}>
 					{expanded ? t('see_less') : t('see_more')}
 				</button>

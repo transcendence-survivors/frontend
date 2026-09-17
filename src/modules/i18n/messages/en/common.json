@@ -10,6 +10,9 @@
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
 		"legal": "Legal Notice",
+		"lore": "Lore",
+		"support": "Support",
+		"enter_hub": "Enter Hub →",
 
 		"feed": "Feed",
 		"friends": "Friends",
@@ -345,7 +348,9 @@
 			"reposted_by": "{displayName} reposted",
 			"image_alt": "Post image by {username}",
 			"see_more": "See more",
-			"see_less": "See less"
+			"see_less": "See less",
+			"replying_to": "Replying to",
+			"open_post": "Open post"
 		},
 		"actions": {
 			"comment": "Comment",

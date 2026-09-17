@@ -70,19 +70,15 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 	};
 
 	return (
-		<div className='flex items-center gap-0.5'>
-			<Button
-				variant='ghost'
-				size='icon'
-				className='p-2 rounded-full'
-				disabled={isMutating}
-				aria-label={state.isLiked ? t('unlike') : t('like')}
-				onClick={handleClick}>
-				<Heart
-					className={`size-4 ${state.isLiked ? 'text-primary fill-primary' : ''}`}
-				/>
-			</Button>
-			{state.likeCount > 0 && <span>{state.likeCount}</span>}
-		</div>
+		<Button
+			variant='ghost'
+			size='sm'
+			className={`relative z-10 ${state.isLiked ? 'text-primary' : ''}`}
+			disabled={isMutating}
+			aria-label={state.isLiked ? t('unlike') : t('like')}
+			onClick={handleClick}>
+			<Heart className={state.isLiked ? 'fill-primary' : ''} />
+			{state.likeCount > 0 && state.likeCount}
+		</Button>
 	);
 }

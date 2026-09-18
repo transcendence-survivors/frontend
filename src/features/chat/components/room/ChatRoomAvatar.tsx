@@ -1,5 +1,3 @@
-'use client';
-
 import { ChatRoom, ChatRoomType } from '../../types/room';
 import {
 	AvatarProfile,

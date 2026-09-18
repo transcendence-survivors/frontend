@@ -3,7 +3,7 @@
 import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { useUsers, UseUsersParams } from '../hooks/useUsers';
 import { useTranslations } from 'next-intl';
 import { BaseUser } from '@/features/user/type';
@@ -13,7 +13,7 @@ import { UserCardSkeleton } from './UserCard';
 
 export interface BaseUserCardProps {
 	user: BaseUser;
-	params: UseUsersParams;
+	params?: UseUsersParams;
 }
 
 interface UsersFeedProps<
@@ -24,7 +24,7 @@ interface UsersFeedProps<
 	extraCardProps?: Omit<T, 'user' | 'params'>;
 }
 
-const UsersFeedData = <T extends BaseUserCardProps>({
+export const UsersFeedData = <T extends BaseUserCardProps>({
 	params,
 	CardComponent,
 	extraCardProps,
@@ -103,5 +103,3 @@ const UsersFeedData = <T extends BaseUserCardProps>({
 		</>
 	);
 };
-
-export { UsersFeedData };

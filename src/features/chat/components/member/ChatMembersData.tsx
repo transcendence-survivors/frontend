@@ -3,7 +3,7 @@
 import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { LoadingList } from '@/components/ui/loading-list';

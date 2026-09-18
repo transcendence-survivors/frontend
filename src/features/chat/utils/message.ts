@@ -31,8 +31,9 @@ export const getSystemMessage = (
 			});
 
 		case ChatMessageType.JOINED:
-			return t('messages.system.joined', {
-				user: message.metadata?.targetUser?.displayName,
+			return t('messages.system.added', {
+				actor: message?.sender?.displayName,
+				target: message.metadata?.targetUser?.displayName,
 			});
 
 		case ChatMessageType.LEFT:

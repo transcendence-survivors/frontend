@@ -6,13 +6,10 @@ import { ChatMessageActions } from '../ChatMessageActions';
 import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
 import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 import DisplayDate from '@/components/ui/date';
-import { ChatMemberRole } from '@/features/chat/types/member';
+import { useUser } from '@/features/auth/stores/session';
 
 interface ChatMessageBubbleProps {
 	message: TextChatMessage;
-	isMe: boolean;
-	isGroup: boolean;
-	role: ChatMemberRole;
 	prevUserId?: string;
 	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
@@ -20,16 +17,10 @@ interface ChatMessageBubbleProps {
 }
 
 const ChatMessageBubble = memo(
-	({
-		message,
-		isMe,
-		isGroup,
-		role,
-		prevUserId,
-		onEdit,
-		onDelete,
-		onReply,
-	}: ChatMessageBubbleProps) => {
+	({ message, prevUserId, onEdit, onDelete, onReply }: ChatMessageBubbleProps) => {
+		const user = useUser();
+		const isMe = user?.id === message.sender?.id;
+
 		const showAvatar = !isMe && message.sender.id !== prevUserId;
 
 		return (
@@ -60,8 +51,6 @@ const ChatMessageBubble = memo(
 							<ChatMessageActions
 								message={message}
 								isMe={isMe}
-								isGroup={isGroup}
-								role={role}
 								onEdit={onEdit}
 								onDelete={onDelete}
 								onReply={onReply}

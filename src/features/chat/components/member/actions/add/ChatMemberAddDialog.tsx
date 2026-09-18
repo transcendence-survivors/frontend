@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
 	Dialog,
 	DialogContent,
@@ -10,25 +11,25 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { BaseUser } from '@/features/user/type';
-import ChatSelectedUsersPreview from './ChatSelectedUsersPreview';
-import ChatCreateUsersSearch from './ChatCreateUsersSearch';
-import ChatCreateButton from './ChatCreateButton';
-import { Input } from '@/components/ui/input';
-import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
-import { useTranslations } from 'next-intl';
+import ChatSelectedUsersPreview from '../../../room/create/ChatSelectedUsersPreview';
+import { useChatMembersAdd } from '@/features/chat/hooks/member/useChatMemberAdd';
+import { Spinner } from '@/components/ui/spinner';
+import ChatMembersAddUsersSearch from './ChatMemberAddUsersSearch';
 
-interface ChatRoomCreateDialogProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ChatMemberAddDialogProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
-	params: UseChatRoomsParams;
+	roomId: string;
 }
 
-const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) => {
-	const t = useTranslations('chat.rooms.create');
+const ChatMembersAddDialog = ({ children, roomId }: ChatMemberAddDialogProps) => {
+	const t = useTranslations('chat.members.dialogs.add');
 
 	const [open, setOpen] = useState(false);
 	const [selectedUsers, setSelectedUsers] = useState<BaseUser[]>([]);
-	const [groupName, setGroupName] = useState<string>('');
+
+	const { mutate: addMembers, isPending } = useChatMembersAdd(roomId);
 
 	const handleUserSelect = useCallback((user: BaseUser) => {
 		setSelectedUsers((prev) => {
@@ -37,27 +38,44 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 		});
 	}, []);
 
-	const clearSelectedUsers = useCallback(() => {
+	const handleReset = useCallback(() => {
 		setSelectedUsers([]);
-		setGroupName('');
 		setOpen(false);
 	}, []);
 
+	const handleOpenChange = (newOpen: boolean) => {
+		if (!newOpen) {
+			setSelectedUsers([]);
+		}
+		setOpen(newOpen);
+	};
+
+	const handleSubmit = () => {
+		if (!selectedUsers.length) return;
+
+		addMembers(
+			selectedUsers.map(({ id }) => id),
+			{ onSuccess: handleReset },
+		);
+	};
+
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
+		<Dialog open={open} onOpenChange={handleOpenChange}>
 			<DialogTrigger asChild>{children}</DialogTrigger>
-			<DialogContent>
-				<div className='flex flex-col gap-2 max-h-[60vh] '>
+			<DialogContent className='sm:max-w-[480px]'>
+				<div className='flex flex-col gap-2 max-h-[70vh] min-h-0'>
 					<DialogHeader className='flex flex-col mb-2'>
 						<DialogTitle className='text-2xl font-semibold'>
 							{t('title')}
 						</DialogTitle>
 						<DialogDescription>{t('description')}</DialogDescription>
 					</DialogHeader>
-					<ChatCreateUsersSearch
+
+					<ChatMembersAddUsersSearch
 						selectedUsers={selectedUsers}
 						onUserSelect={handleUserSelect}
 					/>
+
 					<DialogFooter>
 						<div className='flex flex-col justify-between gap-3 w-full pt-3 border-t border-border'>
 							<div className='flex gap-2'>
@@ -65,20 +83,12 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 									users={selectedUsers}
 									noUsersSelectedText={t('no_users_selected')}
 								/>
-								{selectedUsers.length > 1 && (
-									<Input
-										placeholder='Group Name'
-										value={groupName}
-										onChange={(e) => setGroupName(e.target.value)}
-									/>
-								)}
 							</div>
-							<ChatCreateButton
-								groupName={groupName}
-								onMutationSuccess={clearSelectedUsers}
-								usersIds={selectedUsers.map(({ id }) => id)}
-								params={params}
-							/>
+							<Button
+								onClick={handleSubmit}
+								disabled={isPending || selectedUsers.length === 0}>
+								{isPending ? <Spinner className='size-4' /> : t('add')}
+							</Button>
 						</div>
 					</DialogFooter>
 				</div>
@@ -87,4 +97,4 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 	);
 };
 
-export default ChatRoomCreateDialog;
+export default ChatMembersAddDialog;

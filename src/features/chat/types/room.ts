@@ -2,11 +2,6 @@ import { CursorParams } from '@/libs/api';
 import { BaseUser } from '../../user/type';
 import { ChatMessage } from './message';
 
-export enum ChatRoomType {
-	DIRECT = 'DIRECT',
-	GROUP = 'GROUP',
-}
-
 export enum ChatRoomOrderBy {
 	ACTIVITY_DESC = 'activity-desc',
 	ACTIVITY_ASC = 'activity-asc',
@@ -18,6 +13,11 @@ export enum ChatRoomFeed {
 	ALL = 'all',
 	DIRECT = 'direct',
 	GROUP = 'group',
+}
+
+export enum ChatRoomType {
+	DIRECT = 'DIRECT',
+	GROUP = 'GROUP',
 }
 
 interface ChatRoomBase {

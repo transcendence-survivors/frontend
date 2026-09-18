@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { FriendCard, FriendCardSkeleton } from './FriendCard';
-import { Error } from '../../components/error';
+import { Error } from '../../../../components/ui/error';
 import { useFriends, type UseFriendsParams } from '../hooks/useFriends';
 import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
 import { LoadingList } from '@/components/ui/loading-list';

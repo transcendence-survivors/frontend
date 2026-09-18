@@ -17,7 +17,7 @@ const DashboardSidebar = ({ className, ...props }: DashboardSidebarProps) => {
 			<div className='flex flex-col h-full'>
 				<div className='px-3 py-3 space-y-2'>
 					<div className='border-b border-sidebar-border py-2'>
-						<LogoLink className='w-full' />
+						<LogoLink className='w-full py-6' />
 					</div>
 				</div>
 

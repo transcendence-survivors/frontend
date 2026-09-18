@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { deleteFriend } from '../api/delete';
 import { UseFriendsParams } from './useFriends';
 import { Friend, GetFriendsResponse } from '../types';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 interface UseFriendDeleteParams {
 	friendId: string;
@@ -20,8 +21,8 @@ const useFriendDelete = ({
 	failureMessage,
 	params,
 }: UseFriendDeleteParams) => {
-	const queryClient = useQueryClient();
-	const queryKey = ['friends', { ...params }];
+	const { invalidate, queryClient } = useInvalidateQueries();
+	const queryKey = ['friends', params];
 
 	return useMutation({
 		mutationKey: ['friends', 'delete', friendId],
@@ -42,8 +43,8 @@ const useFriendDelete = ({
 		},
 		onSuccess: () => toast.success(successMessage),
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey });
-			queryClient.invalidateQueries({ queryKey: ['users'] });
+			invalidate(queryKey, { mode: 'instant' });
+			invalidate(['users'], { mode: 'instant' });
 		},
 	});
 };

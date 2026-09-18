@@ -1,19 +1,22 @@
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 import { useEffect } from 'react';
-import { useMessageActions } from '../../stores/messageSlice';
+import { useRoomActions } from '../../stores/roomSlice';
+import { ChatRoom } from '../../types/room';
+import { ChatMemberRole } from '../../types/member';
 
-export function useJoinChatRoom(roomId: string) {
-	const { joinRoom, leaveRoom } = useMessageActions();
+export const useJoinChatRoom = (room: ChatRoom, role: ChatMemberRole) => {
 	const socket = useWebsocketStore((s) => s.socket);
+	const { joinRoom, leaveRoom, setRoom, setRoomRole, clearRoomState } =
+		useRoomActions();
 
 	useEffect(() => {
-		if (!socket || !roomId) return;
+		setRoom(room);
+		setRoomRole(role);
+		if (socket && room.id) joinRoom(room.id);
 
-		joinRoom(roomId).catch((err) => console.error('Failed to join room', err));
 		return () => {
-			leaveRoom(roomId).catch(() => {
-				console.error('Failed to leave room', roomId);
-			});
+			if (socket && room.id) leaveRoom(room.id);
+			clearRoomState();
 		};
-	}, [socket, roomId, joinRoom, leaveRoom]);
-}
+	}, [socket, room, role, joinRoom, leaveRoom, setRoom, setRoomRole, clearRoomState]);
+};

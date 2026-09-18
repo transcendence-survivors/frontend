@@ -12,6 +12,7 @@ import { ChatMember, ChatMemberRole, GetChatMembersResponse } from '../../types/
 import { UseChatMembersParams } from './useChatMembers';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 import { useRouter } from 'next/navigation';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 export type MemberAction = 'kick' | 'promote' | 'demote' | 'transfer' | 'leave';
 
@@ -30,10 +31,14 @@ const useChatMemberAction = ({
 	action,
 	role,
 }: UseChatMemberActionParams) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 	const router = useRouter();
 
-	const queryKey = ['chat-members', roomId, params];
+	const queryKey = [
+		'chat-members',
+		roomId,
+		{ search: params?.search, orderBy: params?.orderBy, limit: params?.limit },
+	];
 
 	return useMutation({
 		mutationKey: ['chat-members', action, roomId, targetUserId ?? 'me'],
@@ -95,8 +100,8 @@ const useChatMemberAction = ({
 			}
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey: ['chat-members', roomId] });
-			queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
+			invalidate(['chat-members', roomId], { mode: 'instant' });
+			invalidate(['chat-rooms'], { mode: 'instant' });
 		},
 	});
 };

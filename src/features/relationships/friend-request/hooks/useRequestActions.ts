@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { acceptFriendRequest } from '../api/accept';
 import { deleteFriendRequest } from '../api/delete';
 import { GetFriendRequests, FriendRequest, UseRequestsParams } from '../types';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 type FriendRequestAction = 'accept' | 'delete';
 
@@ -33,7 +34,7 @@ const useRequestAction = ({
 	successMessage,
 	failureMessage,
 }: UseRequestActionParams) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 	const queryKey = ['friend-requests', params];
 
 	return useMutation({
@@ -54,7 +55,7 @@ const useRequestAction = ({
 			toast.error(failureMessage);
 		},
 		onSuccess: () => toast.success(successMessage),
-		onSettled: () => queryClient.invalidateQueries({ queryKey }),
+		onSettled: () => invalidate(queryKey, { mode: 'instant' }),
 	});
 };
 

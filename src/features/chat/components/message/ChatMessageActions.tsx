@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { TooltipContent, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
@@ -6,14 +5,12 @@ import { Pencil, Reply, Trash2 } from 'lucide-react';
 import { TextChatMessage } from '../../types/message';
 import { ChatMessageBubbleContent } from './bubble/ChatMessageBubbleContent';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
-import { ChatMemberRole } from '../../types/member';
 import { canManageMember, ChatMemberPermissionEnum } from '../../utils/role';
+import { useRoomRole, useRoomType } from '../../stores/roomSlice';
 
 interface ChatMessageActionsProps {
 	message: TextChatMessage;
 	isMe: boolean;
-	role: ChatMemberRole;
-	isGroup: boolean;
 	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
 	onReply: (message: TextChatMessage) => void;
@@ -25,18 +22,18 @@ export const ChatMessageActions = ({
 	onEdit,
 	onDelete,
 	onReply,
-	role,
-	isGroup,
 }: ChatMessageActionsProps) => {
 	const t = useTranslations('chat.messages.actions');
+	const roomType = useRoomType();
+	const userRole = useRoomRole();
 
 	const canReply = true;
 	const canEdit = isMe;
 	const canDelete =
 		isMe ||
-		(isGroup &&
+		(roomType === 'GROUP' &&
 			canManageMember({
-				actorRole: role,
+				actorRole: userRole,
 				targetRole: message.sender.role,
 				permission: ChatMemberPermissionEnum.DELETE_MESSAGE,
 			}));

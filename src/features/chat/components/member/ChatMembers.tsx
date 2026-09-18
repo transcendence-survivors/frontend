@@ -7,7 +7,7 @@ import ChatMembersData from './ChatMembersData';
 import { useUser } from '@/features/auth/stores/session';
 import { ChatMemberOrderBy, ChatMemberRole } from '../../types/member';
 import { SearchInput } from '@/components/ui/search-param-input';
-import { Users, ArrowUpDown } from 'lucide-react';
+import { Users, ArrowUpDown, UserPlus } from 'lucide-react';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { DeepKeys } from '@/libs/types';
 import { AppMessages } from '@/modules/i18n/messages/types';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import ChatMembersAddDialog from './actions/add/ChatMemberAddDialog';
 
 interface ChatMembersSectionProps {
 	roomId: string;
@@ -57,16 +58,35 @@ export const ChatMembers = ({ roomId, className, role }: ChatMembersSectionProps
 		orderBy,
 		limit: 50,
 	};
+	const tooltipContent = t('dialogs.add.tooltip');
 
 	return (
 		<div className='flex flex-col min-h-0 gap-0 w-full'>
 			<div>
-				<div className='p-4 border-b border-border flex items-center gap-2 font-semibold shrink-0'>
-					<Users className='size-4' />
-					<h2 className='text-lg font-semibold flex items-center gap-2 truncate'>
-						<ChatMemberCount roomId={roomId} search={search} />
-					</h2>
+				<div className='p-4 border-b border-border flex items-center justify-between gap-2 font-semibold shrink-0'>
+					<div className='flex items-center gap-2'>
+						<Users className='size-4' />
+						<h2 className='text-lg font-semibold flex items-center gap-2 truncate'>
+							<ChatMemberCount roomId={roomId} search={search} />
+						</h2>
+					</div>
+					<Tooltip>
+						<ChatMembersAddDialog roomId={roomId}>
+							<TooltipTrigger asChild>
+								<Button
+									variant='outline'
+									size='icon'
+									aria-label={tooltipContent}>
+									<UserPlus className='size-4' />
+								</Button>
+							</TooltipTrigger>
+						</ChatMembersAddDialog>
+						<TooltipContent>
+							<p>{tooltipContent}</p>
+						</TooltipContent>
+					</Tooltip>
 				</div>
+
 				<div className='flex items-center gap-2 p-2 border-b border-border'>
 					<SearchInput
 						onValueChange={(value) => setSearch(value)}

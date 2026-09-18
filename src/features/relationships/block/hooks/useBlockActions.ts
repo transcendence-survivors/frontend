@@ -8,6 +8,7 @@ import { addBlock } from '../api/add';
 import { deleteBlock } from '../api/delete';
 import { Block, GetBlocksResponse } from '../types';
 import { UseBlocksParams } from './useBlocks';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 type BlockAction = 'add' | 'delete';
 
@@ -31,7 +32,7 @@ const useBlockAction = ({
 	successMessage,
 	failureMessage,
 }: UseBlockActionParams) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 
 	const blockKey = ['blocks', params];
 	const friendsKey = ['friends', params];
@@ -68,7 +69,7 @@ const useBlockAction = ({
 		onSettled: async () => {
 			await Promise.all(
 				invalidateKeys.map((queryKey) =>
-					queryClient.invalidateQueries({ queryKey }),
+					invalidate(queryKey, { mode: 'instant' }),
 				),
 			);
 		},

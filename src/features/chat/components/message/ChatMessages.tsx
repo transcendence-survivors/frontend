@@ -3,24 +3,18 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
-
 import { useChatMessages } from '../../hooks/message/useChatMessages';
 import { useChatScroll } from '../../hooks/useChatScroll';
 import { useGroupedMessages } from '../../hooks/message/useGroupedMessages';
-
 import { LoadingList } from '@/components/ui/loading-list';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
 import { TextChatMessage } from '../../types/message';
-import { ChatMemberRole } from '../../types/member';
 
 interface ChatMessagesProps {
 	roomId: string;
-	userId: string;
-	role: ChatMemberRole;
-	isGroup: boolean;
 	onEditMessage: (message: TextChatMessage) => void;
 	onDeleteMessage: (messageId: string) => void;
 	onReplyMessage: (message: TextChatMessage) => void;
@@ -28,9 +22,6 @@ interface ChatMessagesProps {
 
 const ChatMessages = ({
 	roomId,
-	userId,
-	role,
-	isGroup,
 	onEditMessage,
 	onDeleteMessage,
 	onReplyMessage,
@@ -108,9 +99,6 @@ const ChatMessages = ({
 						key={date}
 						date={date}
 						dayMessages={dayMessages}
-						currentUserId={userId}
-						role={role}
-						isGroup={isGroup}
 						onEdit={onEditMessage}
 						onDelete={onDeleteMessage}
 						onReply={onReplyMessage}

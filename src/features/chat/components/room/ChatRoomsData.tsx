@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { ChatRoomCard, ChatRoomCardSkeleton } from './ChatRoomCard';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useMemo } from 'react';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { Spinner } from '@/components/ui/spinner';
 import { useChatRooms, UseChatRoomsParams } from '../../hooks/room/useChatRooms';
 import { LoadingList } from '@/components/ui/loading-list';

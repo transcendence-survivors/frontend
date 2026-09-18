@@ -7,9 +7,7 @@ import { cookies } from 'next/headers';
 import { ChatMembersSidebar } from '@/features/chat/components/sidebar/ChatMembersSidebar';
 
 interface ChatRoomProps {
-	params: Promise<{
-		id: string;
-	}>;
+	params: Promise<{ id: string }>;
 }
 
 export default async function ChatRoom({ params }: ChatRoomProps) {
@@ -17,22 +15,15 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 	const res = await getChatRoom(id, cookieStore.toString());
 
 	if (isApiError(res)) notFound();
-	const room = res.data;
+	const { currentUserRole: role, ...room } = res.data;
 
 	return (
 		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
-			<ChatRoomHeader room={room} role={room.currentUserRole} />
+			<ChatRoomHeader room={room} role={role} />
 			<div className='flex flex-1 min-h-0 relative'>
-				<ChatContainer
-					roomId={room.id}
-					roomType={room.type}
-					role={room.currentUserRole}
-				/>
+				<ChatContainer room={room} role={role} />
 				{room.type === 'GROUP' && (
-					<ChatMembersSidebar
-						roomId={room.id}
-						currentUserRole={room.currentUserRole}
-					/>
+					<ChatMembersSidebar roomId={room.id} currentUserRole={role} />
 				)}
 			</div>
 		</main>

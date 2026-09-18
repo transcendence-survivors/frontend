@@ -7,6 +7,7 @@ import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
 import { QueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
+import { invalidateQueries } from '@/libs/api/helpers/queryInvalidator';
 
 export interface SendMessagePayload {
 	roomId: string;
@@ -25,9 +26,6 @@ export interface MessageSlice {
 	chatActions: {
 		initMessageListeners: (queryClient: QueryClient) => void;
 		destroyMessageListeners(): void;
-
-		joinRoom: (roomId: string) => Promise<void>;
-		leaveRoom: (roomId: string) => Promise<void>;
 
 		sendMessage: (msg: SendMessagePayload) => void;
 		editMessage: (msg: EditMessagePayload) => void;
@@ -67,7 +65,10 @@ export const createMessageSlice: StateCreator<
 							item: message,
 						},
 					);
-					queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
+					invalidateQueries(queryClient, ['chat-rooms'], {
+						mode: 'debounce',
+						delay: 1000,
+					});
 				});
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_EDITED, (message: ChatMessage) => {
@@ -113,28 +114,6 @@ export const createMessageSlice: StateCreator<
 				socket.off(CHAT_EVENTS.RECEIVE.MESSAGE_SOFT_DELETED);
 			},
 
-			async joinRoom(roomId) {
-				const socket = get().socket;
-				if (!socket) return;
-
-				await emit<void>({
-					socket,
-					event: CHAT_EVENTS.SEND.ROOM_JOIN,
-					payload: { roomId },
-				});
-			},
-
-			async leaveRoom(roomId) {
-				const socket = get().socket;
-				if (!socket) return;
-
-				await emit<void>({
-					socket,
-					event: CHAT_EVENTS.SEND.ROOM_LEAVE,
-					payload: { roomId },
-				});
-			},
-
 			async sendMessage(payload) {
 				const socket = get().socket;
 				if (!socket) return;
@@ -174,8 +153,6 @@ export const createMessageSlice: StateCreator<
 export const useMessageActions = () => {
 	return useWebsocketStore(
 		useShallow((state) => ({
-			joinRoom: state.chatActions.joinRoom,
-			leaveRoom: state.chatActions.leaveRoom,
 			sendMessage: state.chatActions.sendMessage,
 			editMessage: state.chatActions.editMessage,
 			softDeleteMessage: state.chatActions.softDeleteMessage,

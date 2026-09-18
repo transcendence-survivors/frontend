@@ -6,6 +6,7 @@ import { sendFriendRequest } from '../api/send';
 import { UseUsersParams } from '@/features/user/hooks/useUsers';
 import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
 import { BaseUser, GetUsers } from '@/features/user/type';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 export interface UseSendFriendRequestParams {
 	userId: string;
@@ -22,7 +23,7 @@ const useRequestSend = ({
 	acceptedMessage,
 	failureMessage,
 }: UseSendFriendRequestParams) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 	const queryKey = ['users', params];
 
 	return useMutation({
@@ -41,12 +42,12 @@ const useRequestSend = ({
 		onSuccess: (data) => {
 			if (data.data.status === 'ACCEPTED') {
 				toast.success(acceptedMessage);
-				queryClient.invalidateQueries({ queryKey: ['users'] });
-				queryClient.invalidateQueries({ queryKey: ['friend-requests'] });
-				queryClient.invalidateQueries({ queryKey: ['friends'] });
+				invalidate(['users'], { mode: 'instant' });
+				invalidate(['friend-requests'], { mode: 'instant' });
+				invalidate(['friends'], { mode: 'instant' });
 			} else {
 				toast.success(pendingMessage);
-				queryClient.invalidateQueries({ queryKey });
+				invalidate(queryKey, { mode: 'instant' });
 			}
 		},
 		onError: (e, _, context) => {
@@ -55,7 +56,7 @@ const useRequestSend = ({
 				queryClient.setQueryData(queryKey, context.previous);
 			}
 		},
-		onSettled: () => queryClient.invalidateQueries({ queryKey }),
+		onSettled: () => invalidate(queryKey, { mode: 'instant' }),
 	});
 };
 

@@ -269,8 +269,8 @@
 			"system": {
 				"default_actor": "System",
 				"role_updated": "{actor} changed {target}'s role from {oldRole} to {newRole}.",
+				"added": "{actor} added {target} to the room.",
 				"kicked": "{actor} removed {target} from the room.",
-				"joined": "{user} joined the room.",
 				"left": "{user} left the room.",
 				"room_renamed": "{actor} renamed the room from \"{oldName}\" to \"{newName}\".",
 				"room_name_added": "{actor} set the room name to \"{newName}\".",
@@ -314,6 +314,7 @@
 			"leave_room": "Leave Room",
 			"view_profile": "View Profile",
 			"joined_at": "Joined",
+
 			"dialogs": {
 				"kick_title": "Kick member",
 				"kick_description": "Are you sure you want to kick this member from the chat room? They will no longer have access to messages.",
@@ -324,7 +325,18 @@
 				"transfer_title": "Transfer ownership",
 				"transfer_description": "Are you sure you want to transfer ownership of this room? You will be demoted to Admin and lose owner privilege.",
 				"leave_title": "Leave chat room",
-				"leave_description": "Are you sure you want to leave this chat room? You will need to be re-invited to join again."
+				"leave_description": "Are you sure you want to leave this chat room? You will need to be re-invited to join again.",
+				"add": {
+					"tooltip": "Add members",
+					"title": "Add Members",
+					"description": "Select friends to add to this group chat.",
+					"search_placeholder": "Search friends...",
+					"add": "Add Members",
+					"no_friends": "No friends available to add.",
+					"no_friends_found": "No friends match your search.",
+					"no_users_selected": "Select at least one friend to add to the chat.",
+					"fetch_error": "Failed to load friends. Please try again."
+				}
 			}
 		},
 		"title": "Chat",

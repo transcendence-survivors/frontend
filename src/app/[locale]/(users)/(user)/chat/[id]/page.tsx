@@ -14,17 +14,18 @@ export default async function ChatRoom({ params }: ChatRoomProps) {
 	const [{ id }, cookieStore] = await Promise.all([params, cookies()]);
 	const res = await getChatRoom(id, cookieStore.toString());
 
-	if (isApiError(res)) notFound();
+	if (isApiError(res)) {
+		console.error('Error fetching chat room:', res);
+		notFound();
+	}
 	const { currentUserRole: role, ...room } = res.data;
 
 	return (
 		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
-			<ChatRoomHeader room={room} role={role} />
+			<ChatRoomHeader />
 			<div className='flex flex-1 min-h-0 relative'>
 				<ChatContainer room={room} role={role} />
-				{room.type === 'GROUP' && (
-					<ChatMembersSidebar roomId={room.id} currentUserRole={role} />
-				)}
+				{room.type === 'GROUP' && <ChatMembersSidebar roomId={room.id} />}
 			</div>
 		</main>
 	);

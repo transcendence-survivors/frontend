@@ -217,6 +217,11 @@
 				"created_desc": "Creation date (recent first)",
 				"created_asc": "Creation date (oldest first)"
 			},
+			"status": {
+				"online": "Online · in the dark together",
+				"offline": "Offline · in the dark alone",
+				"dnd": "Do Not Disturb · in the dark alone"
+			},
 
 			"group_settings": {
 				"title": "Edit Group Details",

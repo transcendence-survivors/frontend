@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ChatMemberCount } from './ChatMemberCount';
 import { useTranslations } from 'next-intl';
 import ChatMembersData from './ChatMembersData';
 import { useUser } from '@/features/auth/stores/session';
-import { ChatMemberOrderBy, ChatMemberRole } from '../../types/member';
+import { ChatMemberOrderBy } from '../../types/member';
 import { SearchInput } from '@/components/ui/search-param-input';
 import { Users, ArrowUpDown, UserPlus } from 'lucide-react';
 import {
@@ -24,7 +24,6 @@ import ChatMembersAddDialog from './actions/add/ChatMemberAddDialog';
 interface ChatMembersSectionProps {
 	roomId: string;
 	className?: string;
-	role: ChatMemberRole;
 }
 
 const orderByOptions: {
@@ -41,23 +40,23 @@ const orderByOptions: {
 	{ value: 'role-desc', labelKey: 'sort.role_desc' },
 ] as const;
 
-export const ChatMembers = ({ roomId, className, role }: ChatMembersSectionProps) => {
+export const ChatMembers = ({ roomId, className }: ChatMembersSectionProps) => {
 	const user = useUser();
 	const t = useTranslations('chat.members');
 
 	const [search, setSearch] = useState('');
 	const [orderBy, setOrderBy] = useState<ChatMemberOrderBy>('username-asc');
 
-	if (!user) {
-		return null;
-	}
+	const params = useMemo(() => {
+		return {
+			roomId,
+			search,
+			orderBy,
+			limit: 50,
+		};
+	}, [roomId, search, orderBy]);
+	if (!user) return null;
 
-	const params = {
-		roomId,
-		search,
-		orderBy,
-		limit: 50,
-	};
 	const tooltipContent = t('dialogs.add.tooltip');
 
 	return (
@@ -128,12 +127,7 @@ export const ChatMembers = ({ roomId, className, role }: ChatMembersSectionProps
 				</div>
 			</div>
 
-			<ChatMembersData
-				params={params}
-				userId={user.id}
-				role={role}
-				className={className}
-			/>
+			<ChatMembersData params={params} userId={user.id} className={className} />
 		</div>
 	);
 };

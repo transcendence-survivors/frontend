@@ -23,7 +23,7 @@ export interface EditMessagePayload {
 }
 
 export interface MessageSlice {
-	chatActions: {
+	chatMessageActions: {
 		initMessageListeners: (queryClient: QueryClient) => void;
 		destroyMessageListeners(): void;
 
@@ -41,12 +41,19 @@ export const createMessageSlice: StateCreator<
 > = (_set, get) => {
 	const queryKey = (roomId: string) => ['chat-messages', roomId];
 
+	const invalidateRooms = (queryClient: QueryClient) => {
+		invalidateQueries(queryClient, ['chat-rooms'], {
+			mode: 'debounce',
+			delay: 1000,
+		});
+	};
+
 	return {
-		chatActions: {
+		chatMessageActions: {
 			initMessageListeners(queryClient) {
 				const socket = get().socket;
 				if (!socket) return;
-				get().chatActions.destroyMessageListeners();
+				get().chatMessageActions.destroyMessageListeners();
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_NEW, (message: ChatMessage) => {
 					const existing = queryClient.getQueryData<{
@@ -65,10 +72,7 @@ export const createMessageSlice: StateCreator<
 							item: message,
 						},
 					);
-					invalidateQueries(queryClient, ['chat-rooms'], {
-						mode: 'debounce',
-						delay: 1000,
-					});
+					invalidateRooms(queryClient);
 				});
 
 				socket.on(CHAT_EVENTS.RECEIVE.MESSAGE_EDITED, (message: ChatMessage) => {
@@ -153,11 +157,11 @@ export const createMessageSlice: StateCreator<
 export const useMessageActions = () => {
 	return useWebsocketStore(
 		useShallow((state) => ({
-			sendMessage: state.chatActions.sendMessage,
-			editMessage: state.chatActions.editMessage,
-			softDeleteMessage: state.chatActions.softDeleteMessage,
-			initMessageListeners: state.chatActions.initMessageListeners,
-			destroyMessageListeners: state.chatActions.destroyMessageListeners,
+			sendMessage: state.chatMessageActions.sendMessage,
+			editMessage: state.chatMessageActions.editMessage,
+			softDeleteMessage: state.chatMessageActions.softDeleteMessage,
+			initMessageListeners: state.chatMessageActions.initMessageListeners,
+			destroyMessageListeners: state.chatMessageActions.destroyMessageListeners,
 		})),
 	);
 };

@@ -72,15 +72,8 @@ export const useChatRoomDelete = (roomId: string) => {
 };
 
 export const useChatRoomEdit = (roomId: string) => {
-	const { invalidate } = useInvalidateQueries();
-	const router = useRouter();
-
 	return useMutation({
 		mutationKey: ['chat-rooms', 'edit', roomId],
 		mutationFn: (params: ChatRoomPatchPayload) => patchChatRoom(roomId, params),
-		onSuccess: () => {
-			invalidate(['chat-rooms'], { mode: 'instant' });
-			router.refresh();
-		},
 	});
 };

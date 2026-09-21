@@ -15,12 +15,6 @@ interface ChatUserButtonProps extends BaseUserCardProps {
 
 export const ChatUserSearchCard = memo(
 	({ user, onClick, isSelectedFn }: ChatUserButtonProps) => {
-		CONSOLE.log(
-			'Rendering ChatUserSearchCard for user:',
-			user.id,
-			'Selected:',
-			isSelectedFn(user.id),
-		);
 		const handleClick = useCallback(() => {
 			onClick(user);
 		}, [onClick, user]);
@@ -37,6 +31,16 @@ export const ChatUserSearchCard = memo(
 				</UserCard>
 			</Button>
 		);
+	},
+	(prevProps, nextProps) => {
+		const isUserUnchanged = prevProps.user.id === nextProps.user.id;
+		const isOnClickUnchanged = prevProps.onClick === nextProps.onClick;
+
+		const wasSelected = prevProps.isSelectedFn(prevProps.user.id);
+		const isSelectedNow = nextProps.isSelectedFn(nextProps.user.id);
+		const isSelectedUnchanged = wasSelected === isSelectedNow;
+
+		return isUserUnchanged && isOnClickUnchanged && isSelectedUnchanged;
 	},
 );
 

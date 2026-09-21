@@ -5,7 +5,7 @@ import { getFriendsFromIds } from '../api/get';
 import { GetFriendIdsParams, GetFriendsParams } from '../types';
 
 const initialFriendsParam = {
-	limit: 50,
+	limit: 25,
 	orderBy: 'username-asc',
 } satisfies GetFriendsParams;
 

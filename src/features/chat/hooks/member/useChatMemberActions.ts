@@ -31,7 +31,7 @@ const useChatMemberAction = ({
 	action,
 	role,
 }: UseChatMemberActionParams) => {
-	const { invalidate, queryClient } = useInvalidateQueries();
+	const { queryClient } = useInvalidateQueries();
 	const router = useRouter();
 
 	const queryKey = [
@@ -98,10 +98,6 @@ const useChatMemberAction = ({
 				router.push(ROUTES.chat());
 				router.refresh();
 			}
-		},
-		onSettled: () => {
-			invalidate(['chat-members', roomId], { mode: 'instant' });
-			invalidate(['chat-rooms'], { mode: 'instant' });
 		},
 	});
 };

@@ -3,16 +3,13 @@
 import { cn } from '@/libs/utils';
 import { useMembersSidebar } from './ChatSidebarContext';
 import { ChatMembers } from '../member/ChatMembers';
-import { ChatMemberRole } from '../../types/member';
 
 interface ChatMembersSidebarProps extends React.HTMLAttributes<HTMLElement> {
 	roomId: string;
-	currentUserRole: ChatMemberRole;
 }
 
 export const ChatMembersSidebar = ({
 	roomId,
-	currentUserRole,
 	className,
 	...props
 }: ChatMembersSidebarProps) => {
@@ -28,7 +25,7 @@ export const ChatMembersSidebar = ({
 				className,
 			)}
 			{...props}>
-			<ChatMembers roomId={roomId} role={currentUserRole} />
+			<ChatMembers roomId={roomId} />
 		</aside>
 	);
 };

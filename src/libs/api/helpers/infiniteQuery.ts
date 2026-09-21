@@ -1,4 +1,4 @@
-import { InfiniteData, QueryClient } from '@tanstack/react-query';
+import { InfiniteData, QueryClient, QueryKey } from '@tanstack/react-query';
 import { CursorResponse } from './types';
 
 type UpdateInfiniteQueryOptions<T> =
@@ -8,7 +8,7 @@ type UpdateInfiniteQueryOptions<T> =
 
 export const updateInfiniteQuery = <T>(
 	queryClient: QueryClient,
-	queryKey: unknown[],
+	queryKey: QueryKey,
 	options: UpdateInfiniteQueryOptions<T>,
 ) => {
 	queryClient.setQueryData<InfiniteData<CursorResponse<T[]>>>(queryKey, (oldData) => {

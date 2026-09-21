@@ -25,7 +25,7 @@ export interface PresenceSlice {
 		goStatus: (status: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => void;
 
 		isFriendOnline: (friendId: string) => boolean;
-		getFriendStatus: (friendId: string) => PresenceStatus;
+		getFriendStatus: (friendId: string) => Exclude<PresenceStatus, 'INVISIBLE'>;
 	};
 }
 
@@ -184,7 +184,11 @@ export const createPresenceSlice: StateCreator<
 		getFriendStatus: (friendId: string) => {
 			const { onlineFriends } = get();
 			const friend = onlineFriends.get(friendId);
-			return friend ? friend.status : PresenceStatus.OFFLINE;
+			return friend
+				? friend.status === PresenceStatus.INVISIBLE
+					? PresenceStatus.OFFLINE
+					: friend.status
+				: PresenceStatus.OFFLINE;
 		},
 	},
 });

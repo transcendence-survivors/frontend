@@ -1,3 +1,5 @@
+'use client';
+
 import { ChatRoom, ChatRoomType } from '../../types/room';
 import {
 	AvatarProfile,
@@ -5,12 +7,8 @@ import {
 	AvatarProfileCount,
 } from '@/features/user/components/Avatar/AvatarProfile';
 import { AvatarGroup } from '@/components/ui/avatar';
-import {
-	getMemberPlusCount,
-	getRoomAvatarUrl,
-	getRoomName,
-	getRoomStatus,
-} from '../../utils/room';
+import { getMemberPlusCount, getRoomAvatarUrl, getRoomName } from '../../utils/room';
+import { useRoomStatus } from '../../hooks/room/useChatRoomStatus';
 
 interface ChatRoomAvatarProps {
 	room: ChatRoom;
@@ -22,12 +20,11 @@ const ChatRoomAvatar = ({ room }: ChatRoomAvatarProps) => {
 	const isDirect = room.type === ChatRoomType.DIRECT;
 	const name = getRoomName(room);
 	const avatarUrl = getRoomAvatarUrl(room);
-	const status = getRoomStatus(room);
+	const status = useRoomStatus(room);
 
 	const count = room.type === ChatRoomType.DIRECT ? 2 : room.memberCount;
 	const displayedMembers = isDirect ? [] : room.membersPreview.slice(0, MAX_AVATARS);
 	const memberPlusCount = getMemberPlusCount(room, { maxPreview: MAX_AVATARS });
-
 	const isAvatarProfile = isDirect || avatarUrl || count <= 2;
 
 	return (

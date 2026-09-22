@@ -1,19 +1,21 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { initGame, destroyGame } from '@transcendence/game-ui';
+import { useUser } from '@/features/auth/stores/session';
 
 export function GameRoot() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const startedRef = useRef(false);
 
+	const user = useUser();
 	useEffect(() => {
 		const canvas = canvasRef.current;
-		if (!canvas || startedRef.current) return;
+		if (!canvas || startedRef.current || !user) return;
 
 		startedRef.current = true;
 		let cancelled = false;
 
-		initGame(canvas).then(() => {
+		initGame(canvas, user.displayName, user.id, user.avatarUrl).then(() => {
 			if (cancelled) {
 				destroyGame();
 				startedRef.current = false;
@@ -24,7 +26,7 @@ export function GameRoot() {
 			destroyGame();
 			startedRef.current = false;
 		};
-	}, []);
+	}, [user]);
 
 	return <canvas ref={canvasRef} className='w-full h-full' />;
 }

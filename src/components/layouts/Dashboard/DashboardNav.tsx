@@ -10,6 +10,8 @@ import { Fragment, useMemo } from 'react';
 import { DrawerClose } from '@/components/ui/drawer';
 import { AppMessages } from '@/modules/i18n/messages/types';
 import { useUser } from '@/features/auth/stores/session';
+import { ChatNotifications } from '@/features/chat/components/ChatNotifications';
+import { FriendRequestNotifications } from '@/features/relationships/friend-request/components/FriendRequestNotifications';
 
 interface DashboardNavProps extends React.HTMLAttributes<HTMLUListElement> {
 	isDrawer?: boolean;
@@ -18,14 +20,24 @@ interface DashboardNavProps extends React.HTMLAttributes<HTMLUListElement> {
 const links = [
 	{ key: 'feed', labelKey: 'feed' },
 	{ key: 'search', labelKey: 'search' },
-	{ key: 'friends', labelKey: 'friends' },
-	{ key: 'chat', labelKey: 'chat' },
+	{
+		key: 'friends',
+		labelKey: 'friends',
+		additional: <FriendRequestNotifications className='size-5 ml-auto' />,
+	},
+	{
+		key: 'chat',
+		labelKey: 'chat',
+		additional: <ChatNotifications className='size-5 ml-auto' />,
+	},
 	{
 		key: 'userName',
 		labelKey: 'profile',
 		getHrefParams: (username) => ({ username: `@${username}` }),
 	},
-] as const satisfies NavLink<AppMessages['nav'], string>[];
+] as const satisfies (NavLink<AppMessages['nav'], string> & {
+	additional?: React.ReactNode;
+})[];
 
 const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 	const user = useUser();
@@ -80,6 +92,7 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 										data-active={activeKey === link.key}
 									/>
 									{t(link.labelKey)}
+									{'additional' in link && link.additional}
 								</I18nLink>
 							)}
 						</Button>

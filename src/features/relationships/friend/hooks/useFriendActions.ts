@@ -1,7 +1,7 @@
 'use client';
 
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
 import { deleteFriend } from '../api/delete';
 import { UseFriendsParams } from './useFriends';
@@ -31,7 +31,7 @@ const useFriendDelete = ({
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendsResponse>>(queryKey);
-			updateInfiniteQuery<Friend>(queryClient, queryKey, {
+			updateInfiniteQueries<Friend>(queryClient, queryKey, {
 				type: 'filter',
 				callback: (req) => req.friend.id !== friendId,
 			});

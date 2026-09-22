@@ -25,6 +25,7 @@ interface ChatRoomBase {
 	name: string | null;
 	avatarUrl: string | null;
 	lastMessage: ChatMessage | null;
+	unreadCount: number;
 }
 
 export interface DirectChatRoom extends ChatRoomBase {

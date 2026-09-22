@@ -1,7 +1,7 @@
 'use client';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatRoom } from '../../types/room';
 import { isApiError } from '@/libs/api';
 import {
@@ -49,7 +49,7 @@ export const useChatRoomDelete = (roomId: string) => {
 			await queryClient.cancelQueries({ queryKey: roomsQueryKeys, exact: true });
 			const previous = queryClient.getQueryData(roomsQueryKeys);
 
-			updateInfiniteQuery<ChatRoom>(queryClient, roomsQueryKeys, {
+			updateInfiniteQueries<ChatRoom>(queryClient, roomsQueryKeys, {
 				type: 'filter',
 				callback: (room) => room.id !== roomId,
 			});

@@ -204,6 +204,10 @@
 				"ask_friends": "Ask your friends to play with you!",
 				"create_button": "Create Chat"
 			},
+			"type": {
+				"group": "Group",
+				"direct": "Direct"
+			},
 
 			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
 			"no_chat_rooms_search": "No chat rooms found for your search.",

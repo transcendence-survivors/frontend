@@ -6,30 +6,33 @@ type UpdateInfiniteQueryOptions<T> =
 	| { type: 'filter'; callback: (item: T) => boolean }
 	| { type: 'append'; item: T };
 
-export const updateInfiniteQuery = <T>(
+export const updateInfiniteQueries = <T>(
 	queryClient: QueryClient,
 	queryKey: QueryKey,
 	options: UpdateInfiniteQueryOptions<T>,
 ) => {
-	queryClient.setQueryData<InfiniteData<CursorResponse<T[]>>>(queryKey, (oldData) => {
-		if (!oldData) return oldData;
+	queryClient.setQueriesData<InfiniteData<CursorResponse<T[]>>>(
+		{ queryKey },
+		(oldData) => {
+			if (!oldData) return oldData;
 
-		const updatePage = (page: CursorResponse<T[]>) => {
-			switch (options.type) {
-				case 'map':
-					return { ...page, data: page.data.map(options.callback) };
-				case 'filter':
-					return { ...page, data: page.data.filter(options.callback) };
-				case 'append':
-					return { ...page, data: [options.item, ...page.data] };
-			}
-		};
+			const updatePage = (page: CursorResponse<T[]>) => {
+				switch (options.type) {
+					case 'map':
+						return { ...page, data: page.data.map(options.callback) };
+					case 'filter':
+						return { ...page, data: page.data.filter(options.callback) };
+					case 'append':
+						return { ...page, data: [options.item, ...page.data] };
+				}
+			};
 
-		return {
-			...oldData,
-			pages: oldData.pages.map((page, index) =>
-				options.type === 'append' && index !== 0 ? page : updatePage(page),
-			),
-		};
-	});
+			return {
+				...oldData,
+				pages: oldData.pages.map((page, index) =>
+					options.type === 'append' && index !== 0 ? page : updatePage(page),
+				),
+			};
+		},
+	);
 };

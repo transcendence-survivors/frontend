@@ -7,7 +7,7 @@ import {
 	transferChatRoomOwnership,
 	updateChatMemberRole,
 } from '../../api/member';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatMember, ChatMemberRole, GetChatMembersResponse } from '../../types/member';
 import { UseChatMembersParams } from './useChatMembers';
 import { ROUTES } from '@/modules/i18n/constants/routes';
@@ -62,7 +62,7 @@ const useChatMemberAction = ({
 				queryClient.getQueryData<InfiniteData<GetChatMembersResponse>>(queryKey);
 
 			if (action === 'kick') {
-				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
+				updateInfiniteQueries<ChatMember>(queryClient, queryKey, {
 					type: 'filter',
 					callback: (m) => m.user.id !== targetUserId,
 				});
@@ -71,12 +71,12 @@ const useChatMemberAction = ({
 				role &&
 				targetUserId
 			) {
-				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
+				updateInfiniteQueries<ChatMember>(queryClient, queryKey, {
 					type: 'map',
 					callback: (m) => (m.user.id === targetUserId ? { ...m, role } : m),
 				});
 			} else if (action === 'transfer' && targetUserId) {
-				updateInfiniteQuery<ChatMember>(queryClient, queryKey, {
+				updateInfiniteQueries<ChatMember>(queryClient, queryKey, {
 					type: 'map',
 					callback: (m) => {
 						if (m.user.id === targetUserId) return { ...m, role: 'OWNER' };

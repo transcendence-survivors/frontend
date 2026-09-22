@@ -24,8 +24,9 @@ export const getChatRooms = async (params: GetChatRoomSearchParams) => {
 	const response = await api.get<GetChatRooms>(
 		`${CHAT_ENDPOINTS.getRooms}?${urlParams}`,
 	);
-	if (isApiError(response))
+	if (isApiError(response)) {
 		throw new Error(`Failed to fetch chat rooms: ${response.message}`);
+	}
 	return response.data;
 };
 
@@ -39,7 +40,15 @@ export const getChatRoom = async (id: string, cookie: string) => {
 				},
 			},
 		);
-	} catch {
+	} catch (error) {
+		// !TODO: fix when 401 Unauthorized
+		console.log('----------------------------------------------------------------');
+		console.log('----------------------------------------------------------------');
+		console.log('----------------------------------------------------------------');
+		console.log('Error fetching chat rooms:', error);
+		console.log('----------------------------------------------------------------');
+		console.log('----------------------------------------------------------------');
+		console.log('----------------------------------------------------------------');
 		return {
 			status: 'error',
 			message: 'Failed to fetch chat room',

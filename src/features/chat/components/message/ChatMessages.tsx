@@ -12,6 +12,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
 import { TextChatMessage } from '../../types/message';
+import { useUser } from '@/features/auth/stores/session';
 
 interface ChatMessagesProps {
 	roomId: string;
@@ -27,14 +28,18 @@ const ChatMessages = ({
 	onReplyMessage,
 }: ChatMessagesProps) => {
 	const t = useTranslations('chat.messages');
+	const user = useUser();
 
 	const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useChatMessages({ roomId });
 
 	const { messages, messagePerDay } = useGroupedMessages(data?.pages);
-
+	const lastMessage = messages.length - 1 >= 0 ? messages[messages.length - 1] : null;
 	const { containerRef, isInitialLoad, snapshotScroll } = useChatScroll({
 		messageCount: messages.length,
+		lastMessageSenderId:
+			(lastMessage?.type === 'TEXT' && lastMessage?.sender?.id) || undefined,
+		currentUserId: user?.id,
 	});
 
 	const { ref: topIntersectionRef, inView } = useInView({

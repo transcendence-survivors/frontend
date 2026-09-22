@@ -3,7 +3,7 @@
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { addBlock } from '../api/add';
 import { deleteBlock } from '../api/delete';
 import { Block, GetBlocksResponse } from '../types';
@@ -50,7 +50,7 @@ const useBlockAction = ({
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetBlocksResponse>>(blockKey);
 
-			updateInfiniteQuery<Block>(queryClient, blockKey, {
+			updateInfiniteQueries<Block>(queryClient, blockKey, {
 				type: 'filter',
 				callback: (block) => block.blocked.id !== blockedId,
 			});

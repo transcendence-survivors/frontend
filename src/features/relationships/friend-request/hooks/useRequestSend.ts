@@ -4,7 +4,7 @@ import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query
 import { toast } from 'sonner';
 import { sendFriendRequest } from '../api/send';
 import { UseUsersParams } from '@/features/user/hooks/useUsers';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { BaseUser, GetUsers } from '@/features/user/type';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
@@ -33,7 +33,7 @@ const useRequestSend = ({
 		onMutate: async () => {
 			await queryClient.cancelQueries({ queryKey });
 			const previous = queryClient.getQueryData<InfiniteData<GetUsers>>(queryKey);
-			updateInfiniteQuery<BaseUser>(queryClient, queryKey, {
+			updateInfiniteQueries<BaseUser>(queryClient, queryKey, {
 				type: 'filter',
 				callback: (req) => req.id !== userId,
 			});

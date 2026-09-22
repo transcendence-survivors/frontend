@@ -2,7 +2,7 @@
 
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
 import { acceptFriendRequest } from '../api/accept';
 import { deleteFriendRequest } from '../api/delete';
@@ -44,7 +44,7 @@ const useRequestAction = ({
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendRequests>>(queryKey);
-			updateInfiniteQuery<FriendRequest>(queryClient, queryKey, {
+			updateInfiniteQueries<FriendRequest>(queryClient, queryKey, {
 				type: 'filter',
 				callback: (req) => req.friend.id !== friendId,
 			});

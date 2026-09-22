@@ -8,7 +8,7 @@ import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 import { ChatRoom, ChatRoomType } from '../types/room';
 import { ChatMemberRole } from '../types/member';
 import { invalidateQueries } from '@/libs/api/helpers/queryInvalidator';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatMessage } from '../types/message';
 
 export interface RoomSliceState {
@@ -21,9 +21,7 @@ export interface RoomSliceActions {
 	setRoom: (room: ChatRoom) => void;
 	setRoomRole: (role: ChatMemberRole) => void;
 	setUserId: (userId: string | null) => void;
-
 	patchRoom: (partialRoom: Partial<ChatRoom>) => void;
-
 	clearRoomState: () => void;
 
 	initRoomListeners: (queryClient: QueryClient) => void;
@@ -58,15 +56,20 @@ interface RoomAvatarChanged {
 	newAvatarUrl: string | null;
 }
 
-export interface RoomSlice {
-	roomState: RoomSliceState;
+export type RoomSlice = RoomSliceState & {
 	roomActions: RoomSliceActions;
-}
+};
 
 export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], RoomSlice> = (
 	set,
 	get,
 ) => {
+	let onMemberAddedHandler: ((data: MemberAdded) => void) | null = null;
+	let onMemberRemovedHandler: ((data: MemberRemoved) => void) | null = null;
+	let onMemberRoleUpdatedHandler: ((data: MemberRoleUpdated) => void) | null = null;
+	let onRoomRenamedHandler: ((data: RoomRenamed) => void) | null = null;
+	let onRoomAvatarChangedHandler: ((data: RoomAvatarChanged) => void) | null = null;
+
 	const invalidateRooms = (queryClient: QueryClient): void => {
 		invalidateQueries(queryClient, ['chat-rooms'], {
 			mode: 'debounce',
@@ -84,59 +87,37 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 	};
 
 	return {
-		roomState: {
-			room: null,
-			role: 'MEMBER',
-			userId: null,
-		},
+		room: null,
+		role: 'MEMBER',
+		userId: null,
 
 		roomActions: {
 			setRoom(room) {
-				set((state) => ({
-					roomState: {
-						...state.roomState,
-						room,
-					},
-				}));
+				set({ room });
 			},
 
 			setRoomRole(role) {
-				set((state) => ({
-					roomState: {
-						...state.roomState,
-						role,
-					},
-				}));
+				set({ role });
 			},
 
 			setUserId(userId) {
-				set((state) => ({
-					roomState: {
-						...state.roomState,
-						userId,
-					},
-				}));
+				set({ userId });
 			},
 
 			patchRoom(partialRoom) {
 				set((state) => {
-					if (!state.roomState.room) return state;
+					if (!state.room) return state;
 					return {
-						roomState: {
-							...state.roomState,
-							room: {
-								...state.roomState.room,
-								...partialRoom,
-							} as ChatRoom,
-						},
+						room: {
+							...state.room,
+							...partialRoom,
+						} as ChatRoom,
 					};
 				});
 			},
 
 			clearRoomState() {
-				set({
-					roomState: { room: null, role: 'MEMBER', userId: null },
-				});
+				set({ room: null, role: 'MEMBER', userId: null });
 			},
 
 			initRoomListeners(queryClient) {
@@ -145,8 +126,8 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 
 				get().roomActions.destroyRoomListeners();
 
-				socket.on(CHAT_EVENTS.RECEIVE.MEMBER_ADDED, (data: MemberAdded) => {
-					const room = get().roomState.room;
+				onMemberAddedHandler = (data: MemberAdded) => {
+					const room = get().room;
 
 					if (
 						!room ||
@@ -164,10 +145,10 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 
 					invalidateMembers(queryClient, data.roomId);
 					invalidateRooms(queryClient);
-				});
+				};
 
-				socket.on(CHAT_EVENTS.RECEIVE.MEMBER_REMOVED, (data: MemberRemoved) => {
-					const room = get().roomState.room;
+				onMemberRemovedHandler = (data: MemberRemoved) => {
+					const room = get().room;
 
 					if (
 						!room ||
@@ -177,6 +158,7 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 					) {
 						return;
 					}
+
 					get().roomActions.patchRoom({
 						memberIds: room.memberIds.filter((id) => id !== data.userId),
 						memberCount: room.memberCount - 1,
@@ -184,65 +166,68 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 
 					invalidateMembers(queryClient, data.roomId);
 					invalidateRooms(queryClient);
-				});
+				};
 
-				socket.on(
-					CHAT_EVENTS.RECEIVE.MEMBER_ROLE_UPDATED,
-					(data: MemberRoleUpdated) => {
-						const { room, role, userId } = get().roomState;
+				onMemberRoleUpdatedHandler = (data: MemberRoleUpdated) => {
+					const { room, role, userId } = get();
 
-						if (!room || room.id !== data.roomId) return;
-						if (data.targetUserId === userId && role !== data.newRole) {
-							get().roomActions.setRoomRole(data.newRole);
-						}
+					if (!room || room.id !== data.roomId) return;
+					if (data.targetUserId === userId && role !== data.newRole) {
+						get().roomActions.setRoomRole(data.newRole);
+					}
 
-						invalidateMembers(queryClient, data.roomId);
-						updateInfiniteQuery<ChatMessage>(
-							queryClient,
-							['chat-members', data.roomId],
-							{
-								type: 'map',
-								callback: (m) => {
-									if (
-										m.type === 'TEXT' &&
-										m.sender.id === data.targetUserId
-									) {
-										return {
-											...m,
-											sender: { ...m.sender, role: data.newRole },
-										};
-									}
-									return m;
-								},
+					invalidateMembers(queryClient, data.roomId);
+					updateInfiniteQueries<ChatMessage>(
+						queryClient,
+						['chat-messages', data.roomId],
+						{
+							type: 'map',
+							callback: (m) => {
+								if (
+									m.type === 'TEXT' &&
+									m.sender.id === data.targetUserId
+								) {
+									return {
+										...m,
+										sender: { ...m.sender, role: data.newRole },
+									};
+								}
+								return m;
 							},
-						);
-					},
-				);
+						},
+					);
+				};
 
-				socket.on(CHAT_EVENTS.RECEIVE.ROOM_RENAMED, (data: RoomRenamed) => {
-					const room = get().roomState.room;
+				onRoomRenamedHandler = (data: RoomRenamed) => {
+					const room = get().room;
 
 					if (!room || room.id !== data.roomId) return;
 					get().roomActions.patchRoom({
 						name: data.newName,
 					});
-
 					invalidateRooms(queryClient);
-				});
+				};
 
+				onRoomAvatarChangedHandler = (data: RoomAvatarChanged) => {
+					const room = get().room;
+
+					if (!room || room.id !== data.roomId) return;
+					get().roomActions.patchRoom({
+						avatarUrl: data.newAvatarUrl,
+					});
+					invalidateRooms(queryClient);
+				};
+
+				socket.on(CHAT_EVENTS.RECEIVE.MEMBER_ADDED, onMemberAddedHandler);
+				socket.on(CHAT_EVENTS.RECEIVE.MEMBER_REMOVED, onMemberRemovedHandler);
+				socket.on(
+					CHAT_EVENTS.RECEIVE.MEMBER_ROLE_UPDATED,
+					onMemberRoleUpdatedHandler,
+				);
+				socket.on(CHAT_EVENTS.RECEIVE.ROOM_RENAMED, onRoomRenamedHandler);
 				socket.on(
 					CHAT_EVENTS.RECEIVE.ROOM_AVATAR_CHANGED,
-					(data: RoomAvatarChanged) => {
-						const room = get().roomState.room;
-
-						if (!room || room.id !== data.roomId) return;
-
-						get().roomActions.patchRoom({
-							avatarUrl: data.newAvatarUrl,
-						});
-
-						invalidateRooms(queryClient);
-					},
+					onRoomAvatarChangedHandler,
 				);
 			},
 
@@ -250,11 +235,35 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 				const socket = get().socket;
 				if (!socket) return;
 
-				socket.off(CHAT_EVENTS.RECEIVE.MEMBER_ADDED);
-				socket.off(CHAT_EVENTS.RECEIVE.MEMBER_REMOVED);
-				socket.off(CHAT_EVENTS.RECEIVE.MEMBER_ROLE_UPDATED);
-				socket.off(CHAT_EVENTS.RECEIVE.ROOM_RENAMED);
-				socket.off(CHAT_EVENTS.RECEIVE.ROOM_AVATAR_CHANGED);
+				if (onMemberAddedHandler) {
+					socket.off(CHAT_EVENTS.RECEIVE.MEMBER_ADDED, onMemberAddedHandler);
+					onMemberAddedHandler = null;
+				}
+				if (onMemberRemovedHandler) {
+					socket.off(
+						CHAT_EVENTS.RECEIVE.MEMBER_REMOVED,
+						onMemberRemovedHandler,
+					);
+					onMemberRemovedHandler = null;
+				}
+				if (onMemberRoleUpdatedHandler) {
+					socket.off(
+						CHAT_EVENTS.RECEIVE.MEMBER_ROLE_UPDATED,
+						onMemberRoleUpdatedHandler,
+					);
+					onMemberRoleUpdatedHandler = null;
+				}
+				if (onRoomRenamedHandler) {
+					socket.off(CHAT_EVENTS.RECEIVE.ROOM_RENAMED, onRoomRenamedHandler);
+					onRoomRenamedHandler = null;
+				}
+				if (onRoomAvatarChangedHandler) {
+					socket.off(
+						CHAT_EVENTS.RECEIVE.ROOM_AVATAR_CHANGED,
+						onRoomAvatarChangedHandler,
+					);
+					onRoomAvatarChangedHandler = null;
+				}
 			},
 
 			async joinRoom(roomId) {
@@ -291,12 +300,12 @@ export const useRoomActions = () => {
 };
 
 export const useRoom = () => {
-	return useWebsocketStore((state) => state.roomState.room);
+	return useWebsocketStore((state) => state.room);
 };
 
 export const useRoomMemberIds = (): string[] => {
 	return useWebsocketStore((state) => {
-		const room = state.roomState.room;
+		const room = state.room;
 		if (!room) return [];
 		if (room.type === ChatRoomType.GROUP) {
 			return room.memberIds;
@@ -306,12 +315,12 @@ export const useRoomMemberIds = (): string[] => {
 };
 
 export const useRoomRole = () => {
-	return useWebsocketStore((state) => state.roomState.role);
+	return useWebsocketStore((state) => state.role);
 };
 
 export const useRoomType = (): ChatRoomType | null => {
 	return useWebsocketStore((state) => {
-		const room = state.roomState.room;
+		const room = state.room;
 		if (!room) return null;
 		return room.type;
 	});

@@ -2,7 +2,6 @@ import { HTMLAttributes } from 'react';
 import { cn } from '@/libs/utils';
 import { MediaModal } from '@/components/ui/media-modal';
 import { ImageProps } from '@/libs/types';
-import { Search } from 'lucide-react';
 
 interface BannerProps extends HTMLAttributes<HTMLDivElement> {
 	img: ImageProps;

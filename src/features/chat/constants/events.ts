@@ -5,10 +5,27 @@ const ROOM_PREFIX = `${CHAT_PREFIX}room`;
 const MEMBER_PREFIX = `${CHAT_PREFIX}member`;
 
 const CHAT_EVENTS = {
+	SEND: {
+		MESSAGE_SEND: `${MESSAGE_PREFIX}:send`,
+		MESSAGE_EDIT: `${MESSAGE_PREFIX}:edit`,
+		MESSAGE_SOFT_DELETE: `${MESSAGE_PREFIX}:soft-delete`,
+
+		NOTIFICATION_MARK_AS_READ: `${MESSAGE_PREFIX}:notification-mark-as-read`,
+
+		TYPING_START: `${TYPING_PREFIX}:start`,
+		TYPING_STOP: `${TYPING_PREFIX}:stop`,
+
+		ROOM_JOIN: `${ROOM_PREFIX}:join`,
+		ROOM_LEAVE: `${ROOM_PREFIX}:leave`,
+	},
+
 	RECEIVE: {
 		MESSAGE_NEW: `${MESSAGE_PREFIX}:new`,
 		MESSAGE_EDITED: `${MESSAGE_PREFIX}:edited`,
 		MESSAGE_SOFT_DELETED: `${MESSAGE_PREFIX}:soft-deleted`,
+
+		NOTIFICATION_MESSAGE_NEW: `${MESSAGE_PREFIX}:notification-message-new`,
+		NOTIFICATION_READ: `${MESSAGE_PREFIX}:notification-read`,
 
 		TYPING_UPDATE: `${TYPING_PREFIX}:update`,
 
@@ -18,19 +35,6 @@ const CHAT_EVENTS = {
 		MEMBER_ADDED: `${MEMBER_PREFIX}:added`,
 		MEMBER_REMOVED: `${MEMBER_PREFIX}:removed`,
 		MEMBER_ROLE_UPDATED: `${MEMBER_PREFIX}:role-updated`,
-	},
-
-	SEND: {
-		MESSAGE_SEND: `${MESSAGE_PREFIX}:send`,
-		MESSAGE_EDIT: `${MESSAGE_PREFIX}:edit`,
-		MESSAGE_SOFT_DELETE: `${MESSAGE_PREFIX}:soft-delete`,
-		MESSAGE_READ: `${MESSAGE_PREFIX}:read`,
-
-		TYPING_START: `${TYPING_PREFIX}:start`,
-		TYPING_STOP: `${TYPING_PREFIX}:stop`,
-
-		ROOM_JOIN: `${ROOM_PREFIX}:join`,
-		ROOM_LEAVE: `${ROOM_PREFIX}:leave`,
 	},
 } as const;
 

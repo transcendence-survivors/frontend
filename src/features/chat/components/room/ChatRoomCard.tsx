@@ -1,6 +1,8 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { ChatRoom } from '../../types/room';
+import { ChatRoom, ChatRoomType } from '../../types/room';
 import { memo } from 'react';
 import { UseChatRoomsParams } from '../../hooks/room/useChatRooms';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -9,17 +11,33 @@ import { getRoomName } from '../../utils/room';
 import DisplayDate from '@/components/ui/date';
 import { useTranslations } from 'next-intl';
 import { getMessagePreview } from '../../utils/message';
+import NotificationBubble from '@/components/ui/notification-bubble';
+import { DeepKeys } from '@/libs/types';
+import { AppMessages } from '@/modules/i18n/messages/types';
+import { useCurrentRoomId, useRoomUnreadCount } from '../../stores/notificationSlice';
 
 interface ChatRoomCardProps {
 	room: ChatRoom;
-	isActive?: boolean;
 	params: UseChatRoomsParams;
 }
 
-const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
+const typeMap = {
+	[ChatRoomType.GROUP]: 'rooms.type.group',
+	[ChatRoomType.DIRECT]: 'rooms.type.direct',
+} as const satisfies Record<ChatRoom['type'], DeepKeys<AppMessages['chat']>>;
+
+const ChatRoomCard = memo(({ room, params }: ChatRoomCardProps) => {
+	const currentRoomId = useCurrentRoomId();
+	const isActive = currentRoomId === room.id;
+	const liveUnreadCount = useRoomUnreadCount(room.id);
 	const t = useTranslations('chat');
 	const name = getRoomName(room);
 	const messagePreview = getMessagePreview(room.lastMessage, t);
+	const unreadCount = isActive
+		? 0
+		: liveUnreadCount === -1
+			? room.unreadCount
+			: liveUnreadCount;
 
 	return (
 		<article>
@@ -27,40 +45,43 @@ const ChatRoomCard = memo(({ room, isActive, params }: ChatRoomCardProps) => {
 				variant='sidebar'
 				size='lg'
 				data-active={isActive}
-				className={`h-20 grid grid-cols-[60px_auto_auto] overflow-hidden justify-baseline w-full gap-3 px-4 py-3 text-left ${isActive ? '' : 'border-b border-border'}`}
+				className={`h-25 px-0 py-0 flex flex-col justify-baseline overflow-hidden w-full transition-colors ${isActive ? '' : 'border-b border-border'}`}
 				asChild>
 				<I18nLink
 					href={'chatId'}
 					hrefParams={{ id: room.id }}
 					queryParams={params}>
-					<ChatRoomAvatar room={room} />
+					<span className='flex items-center w-full bg-muted text-[10px] uppercase font-bold px-2 py-1'>
+						{t(typeMap[room.type])}
+					</span>
+					<div className='grid grid-cols-[60px_auto_auto] items-center gap-3 w-full px-4 py-2'>
+						<ChatRoomAvatar room={room} />
 
-					<div className='min-w-0'>
-						<h3 className='truncate font-semibold'>{name}</h3>
-						<span className='truncate text-xs text-muted-foreground font-light block'>
-							{messagePreview}
-						</span>
-					</div>
-
-					{room.lastMessage && (
-						<div className='flex shrink-0 flex-col items-end gap-1'>
-							<span className='font-mono text-[10px] tracking-tighter text-muted-foreground'>
-								<DisplayDate
-									date={room.lastMessage.createdAt}
-									formatOptions={{
-										month: 'short',
-										day: 'numeric',
-										hour: '2-digit',
-									}}
-								/>
+						<div className='min-w-0 h-full pt-1'>
+							<h3 className='truncate font-semibold'>{name}</h3>
+							<span className='truncate text-[11px] text-muted-foreground font-light block tracking-tight'>
+								{messagePreview}
 							</span>
-							{/* {c.unread && (
-							<span className='rounded-sm bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground'>
-								{c.unread}
-							</span>
-						)} */}
 						</div>
-					)}
+
+						{room.lastMessage && (
+							<div className='flex shrink-0 flex-col h-full pt-1.5 items-end justify-start gap-1'>
+								<span className='font-mono text-[9px] tracking-[-0.1em] text-muted-foreground'>
+									<DisplayDate
+										date={room.lastMessage.createdAt}
+										formatOptions={{
+											month: 'short',
+											day: 'numeric',
+											hour: '2-digit',
+										}}
+									/>
+								</span>
+								{unreadCount > 0 && (
+									<NotificationBubble count={unreadCount} />
+								)}
+							</div>
+						)}
+					</div>
 				</I18nLink>
 			</Button>
 		</article>
@@ -89,6 +110,7 @@ const ChatRoomCardSkeleton = () => {
 
 				<div className='flex shrink-0 flex-col items-end gap-2'>
 					<Skeleton className='h-3 w-10 rounded-md' />
+					<Skeleton className='size-4 rounded-md' />
 				</div>
 			</Button>
 		</article>

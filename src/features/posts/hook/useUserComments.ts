@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { type FetchPostParams, fetchUserComments } from '../api/posts';
+import { postKeys } from '../constants/query-keys';
 
 const initialPageParam = {
 	limit: 20,
@@ -8,7 +9,7 @@ const initialPageParam = {
 
 export function useUserComments(username: string) {
 	return useInfiniteQuery({
-		queryKey: ['userComments', username],
+		queryKey: postKeys.userComments(username),
 		initialPageParam: { ...initialPageParam },
 		queryFn: ({ pageParam }) => fetchUserComments(username, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

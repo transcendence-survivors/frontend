@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { type FetchPostParams, fetchPosts } from '../api/posts';
+import { postKeys } from '../constants/query-keys';
 
 const initialPageParam = {
 	limit: 20,
@@ -8,7 +9,7 @@ const initialPageParam = {
 
 export function usePosts(parentPostId?: string) {
 	return useInfiniteQuery({
-		queryKey: ['posts', parentPostId],
+		queryKey: postKeys.feed(parentPostId),
 		initialPageParam: { ...initialPageParam },
 		queryFn: ({ pageParam }) => fetchPosts(parentPostId, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

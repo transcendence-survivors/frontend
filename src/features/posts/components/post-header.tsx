@@ -30,7 +30,7 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 	const isOwner = user?.id === post.author.id;
 
 	function handleDelete() {
-		deletePost.mutate(post.id, {
+		deletePost.mutate(post, {
 			onSuccess: () => {
 				if (!isDetailView) return;
 				if (post.parentPostId && post.parent) {

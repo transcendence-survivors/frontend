@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { type FetchPostParams, fetchUserLikes } from '../api/posts';
+import { postKeys } from '../constants/query-keys';
 
 const initialPageParam = {
 	limit: 20,
@@ -8,7 +9,7 @@ const initialPageParam = {
 
 export function useUserLikes(username: string) {
 	return useInfiniteQuery({
-		queryKey: ['userLikes', username],
+		queryKey: postKeys.userLikes(username),
 		initialPageParam: { ...initialPageParam },
 		queryFn: ({ pageParam }) => fetchUserLikes(username, pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

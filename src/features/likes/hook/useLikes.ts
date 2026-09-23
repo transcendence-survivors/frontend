@@ -1,28 +1,14 @@
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import {
+	cancelPostQueries,
+	invalidatePostQueries,
+	restorePostCaches,
+	snapshotPostCaches,
+	updatePostInCaches,
+} from '@/features/posts/utils/post-cache';
+
 import { addLike, deleteLike } from '../api/likes';
-import { fetchPosts } from '@/features/posts/api/posts';
-
-type PostsPage = Awaited<ReturnType<typeof fetchPosts>>;
-
-function toggleLikeInCache(postId: string, isLiked: boolean, delta: number) {
-	return (old: InfiniteData<PostsPage> | undefined) => {
-		if (!old) return old;
-		return {
-			...old,
-			pages: old.pages.map((page) => ({
-				...page,
-				data: {
-					...page.data,
-					data: page.data.data.map((post) =>
-						post.id === postId
-							? { ...post, isLiked, likeCount: post.likeCount + delta }
-							: post,
-					),
-				},
-			})),
-		};
-	};
-}
 
 type LikeRequestAction = 'like' | 'unlike';
 
@@ -34,18 +20,26 @@ const requestActionFns: Record<LikeRequestAction, (postId: string) => Promise<un
 
 const useLikeAction = (action: LikeRequestAction) => {
 	const queryClient = useQueryClient();
+	const isLiked = action === 'like';
+
 	return useMutation({
 		mutationKey: ['likes', action],
 		mutationFn: requestActionFns[action],
-		onSuccess: (_data, postId) => {
-			queryClient.setQueriesData<InfiniteData<PostsPage>>(
-				{ queryKey: ['posts'] },
-				action === 'like'
-					? toggleLikeInCache(postId, true, 1)
-					: toggleLikeInCache(postId, false, -1),
-			);
-			//queryClient.invalidateQueries({ queryKey: ['userLikes', username] });
+		onMutate: async (postId: string) => {
+			await cancelPostQueries(queryClient);
+			const snapshot = snapshotPostCaches(queryClient);
+
+			updatePostInCaches(queryClient, postId, (post) => ({
+				...post,
+				isLiked,
+				likeCount: post.likeCount + (isLiked ? 1 : -1),
+			}));
+
+			return snapshot;
 		},
+		onError: (_error, _postId, snapshot) =>
+			restorePostCaches(queryClient, snapshot),
+		onSettled: () => invalidatePostQueries(queryClient, ['userLikes']),
 	});
 };
 

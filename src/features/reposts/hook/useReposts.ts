@@ -1,32 +1,14 @@
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import {
+	cancelPostQueries,
+	invalidatePostQueries,
+	restorePostCaches,
+	snapshotPostCaches,
+	updatePostInCaches,
+} from '@/features/posts/utils/post-cache';
+
 import { addRepost, deleteRepost } from '../api/reposts';
-import { fetchPosts } from '@/features/posts/api/posts';
-
-type PostsPage = Awaited<ReturnType<typeof fetchPosts>>;
-
-function toggleRepostInCache(postId: string, isReposted: boolean, delta: number) {
-	return (old: InfiniteData<PostsPage> | undefined) => {
-		if (!old) return old;
-		return {
-			...old,
-			pages: old.pages.map((page) => ({
-				...page,
-				data: {
-					...page.data,
-					data: page.data.data.map((post) =>
-						post.id === postId
-							? {
-									...post,
-									isReposted,
-									repostCount: post.repostCount + delta,
-								}
-							: post,
-					),
-				},
-			})),
-		};
-	};
-}
 
 type RepostRequestAction = 'repost' | 'unrepost';
 
@@ -40,17 +22,27 @@ const requestActionFns: Record<
 
 const useRepostAction = (action: RepostRequestAction) => {
 	const queryClient = useQueryClient();
+	const isReposted = action === 'repost';
+
 	return useMutation({
 		mutationKey: ['reposts', action],
 		mutationFn: requestActionFns[action],
-		onSuccess: (_data, postId) => {
-			queryClient.setQueriesData<InfiniteData<PostsPage>>(
-				{ queryKey: ['posts'] },
-				action === 'repost'
-					? toggleRepostInCache(postId, true, 1)
-					: toggleRepostInCache(postId, false, -1),
-			);
+		onMutate: async (postId: string) => {
+			await cancelPostQueries(queryClient);
+			const snapshot = snapshotPostCaches(queryClient);
+
+			updatePostInCaches(queryClient, postId, (post) => ({
+				...post,
+				isReposted,
+				repostCount: post.repostCount + (isReposted ? 1 : -1),
+			}));
+
+			return snapshot;
 		},
+		onError: (_error, _postId, snapshot) =>
+			restorePostCaches(queryClient, snapshot),
+		onSettled: () =>
+			invalidatePostQueries(queryClient, ['posts', 'userPosts', 'userReposts']),
 	});
 };
 

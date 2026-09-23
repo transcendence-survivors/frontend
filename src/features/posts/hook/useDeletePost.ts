@@ -1,35 +1,36 @@
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
-import { deletePost, fetchPosts } from '../api/posts';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-type PostsPage = Awaited<ReturnType<typeof fetchPosts>>;
-
-function removePostFromCache(postId: string) {
-	return (old: InfiniteData<PostsPage> | undefined) => {
-		if (!old) return old;
-		return {
-			...old,
-			pages: old.pages.map((page) => ({
-				...page,
-				data: {
-					...page.data,
-					data: page.data.data.filter((post) => post.id !== postId),
-				},
-			})),
-		};
-	};
-}
+import { deletePost } from '../api/posts';
+import { Post } from '../types/post';
+import {
+	invalidatePostQueries,
+	removePostFromCaches,
+	updatePostInCaches,
+} from '../utils/post-cache';
 
 export const useDeletePost = () => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['posts', 'delete'],
-		mutationFn: deletePost,
-		onSuccess: (_data, postId) => {
-			queryClient.setQueriesData<InfiniteData<PostsPage>>(
-				{ queryKey: ['posts'] },
-				removePostFromCache(postId),
-			);
+		mutationFn: (post: Post) => deletePost(post.id),
+		onSuccess: (_data, post) => {
+			removePostFromCaches(queryClient, post.id);
+
+			if (post.parentPostId) {
+				updatePostInCaches(queryClient, post.parentPostId, (parent) => ({
+					...parent,
+					commentCount: Math.max(parent.commentCount - 1, 0),
+				}));
+			}
+			if (post.quotedPostId) {
+				updatePostInCaches(queryClient, post.quotedPostId, (quoted) => ({
+					...quoted,
+					repostCount: Math.max(quoted.repostCount - 1, 0),
+				}));
+			}
+
+			invalidatePostQueries(queryClient);
 		},
 	});
 };

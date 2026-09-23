@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAddLike, useDeleteLike } from '../hook/useLikes';
 import { Heart } from 'lucide-react';
@@ -14,10 +14,6 @@ interface likeButtonProps {
 
 export default function LikeButton({ postId, likeCount, isLiked }: likeButtonProps) {
 	const t = useTranslations('posts.actions');
-	const [state, setState] = useState({
-		isLiked: isLiked,
-		likeCount: likeCount,
-	});
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
@@ -30,55 +26,24 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 		if (isPendingRef.current) return;
 		isPendingRef.current = true;
 
-		if (state.isLiked) {
-			setState((prev) => ({
-				...prev,
-				isLiked: false,
-				likeCount: prev.likeCount - 1,
-			}));
-			deleteLike.mutate(postId, {
-				onError: () => {
-					setState((prev) => ({
-						...prev,
-						isLiked: true,
-						likeCount: prev.likeCount + 1,
-					}));
-				},
-				onSettled: () => {
-					isPendingRef.current = false;
-				},
-			});
-		} else {
-			setState((prev) => ({
-				...prev,
-				isLiked: true,
-				likeCount: prev.likeCount + 1,
-			}));
-			addLike.mutate(postId, {
-				onError: () => {
-					setState((prev) => ({
-						...prev,
-						isLiked: false,
-						likeCount: prev.likeCount - 1,
-					}));
-				},
-				onSettled: () => {
-					isPendingRef.current = false;
-				},
-			});
-		}
+		const mutation = isLiked ? deleteLike : addLike;
+		mutation.mutate(postId, {
+			onSettled: () => {
+				isPendingRef.current = false;
+			},
+		});
 	};
 
 	return (
 		<Button
 			variant='ghost'
 			size='sm'
-			className={`relative z-10 ${state.isLiked ? 'text-primary' : ''}`}
+			className={`relative z-10 ${isLiked ? 'text-primary' : ''}`}
 			disabled={isMutating}
-			aria-label={state.isLiked ? t('unlike') : t('like')}
+			aria-label={isLiked ? t('unlike') : t('like')}
 			onClick={handleClick}>
-			<Heart className={state.isLiked ? 'fill-primary' : ''} />
-			{state.likeCount > 0 && state.likeCount}
+			<Heart className={isLiked ? 'fill-primary' : ''} />
+			{likeCount > 0 && likeCount}
 		</Button>
 	);
 }

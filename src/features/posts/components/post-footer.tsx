@@ -24,8 +24,6 @@ interface PostFooterProps {
 
 export default function PostFooter({ post }: PostFooterProps) {
 	const t = useTranslations('posts.actions');
-	const [reposted, setReposted] = useState(post.isReposted);
-	const [repostCount, setRepostCount] = useState(post.repostCount);
 	const [quoteOpen, setQuoteOpen] = useState(false);
 	const addRepost = useAddRepost();
 	const deleteRepost = useDeleteRepost();
@@ -34,15 +32,8 @@ export default function PostFooter({ post }: PostFooterProps) {
 
 	const handleRepostClick = () => {
 		if (isMutating) return;
-		if (reposted) {
-			deleteRepost.mutate(post.id);
-			setReposted(false);
-			setRepostCount((c) => c - 1);
-		} else {
-			addRepost.mutate(post.id);
-			setReposted(true);
-			setRepostCount((c) => c + 1);
-		}
+		if (post.isReposted) deleteRepost.mutate(post.id);
+		else addRepost.mutate(post.id);
 	};
 
 	return (
@@ -63,14 +54,14 @@ export default function PostFooter({ post }: PostFooterProps) {
 						variant='ghost'
 						size='sm'
 						aria-label={t('repost')}
-						className={cn('relative z-10', reposted && 'text-primary')}>
+						className={cn('relative z-10', post.isReposted && 'text-primary')}>
 						<Repeat2 />
-						{repostCount > 0 && repostCount}
+						{post.repostCount > 0 && post.repostCount}
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem onClick={handleRepostClick}>
-						{reposted ? t('undo_repost') : t('repost')}
+						{post.isReposted ? t('undo_repost') : t('repost')}
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setQuoteOpen(true)}>
 						{t('quote')}

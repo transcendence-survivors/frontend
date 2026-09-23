@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { getPostById } from '@/features/posts/api/posts';
 import CreatePost from '@/features/posts/components/create-post';
-import PostCard from '@/features/posts/components/post-card';
+import PostDetail from '@/features/posts/components/post-detail';
 import PostDetailHeader from '@/features/posts/components/post-page-header';
 import Posts from '@/features/posts/components/posts';
 import { isApiError } from '@/libs/api';
@@ -19,7 +19,7 @@ export default async function PostPage({ params }: PostPageProps) {
 	return (
 		<main className='max-w-2xl mx-auto pb-8'>
 			<PostDetailHeader />
-			<PostCard post={res.data} isDetailView={true} />
+			<PostDetail post={res.data} />
 			<div className='px-4 border-y border-border'>
 				<CreatePost parentPostId={postId} />
 			</div>

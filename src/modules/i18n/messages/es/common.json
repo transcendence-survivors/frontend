@@ -1,5 +1,9 @@
 {
 	"nav": {
+		"lore": "Universo",
+		"support": "Ayuda",
+		"enter_hub": "Entrar en el Hub →",
+		"menu": "Menú",
 		"home": "Home",
 		"game": "Game",
 		"leaderboard": "Leaderboard",
@@ -24,6 +28,94 @@
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
+	},
+
+	"posts": {
+		"create": {
+			"placeholder": "Empieza a escribir una publicación",
+			"submit": "Publicar",
+			"add_image": "Añadir una imagen",
+			"remove_image": "Quitar la imagen"
+		},
+		"card": {
+			"reposted_by": "{displayName} ha republicado",
+			"image_alt": "Imagen de la publicación de {username}",
+			"see_more": "Ver más",
+			"see_less": "Ver menos",
+			"replying_to": "En respuesta a",
+			"open_post": "Abrir la publicación"
+		},
+		"actions": {
+			"comment": "Comentar",
+			"repost": "Republicar",
+			"undo_repost": "Deshacer la republicación",
+			"quote": "Citar",
+			"like": "Me gusta",
+			"unlike": "Ya no me gusta",
+			"delete": "Eliminar"
+		},
+		"detail": {
+			"back": "Publicación"
+		},
+		"list": {
+			"loading": "Cargando publicaciones...",
+			"no_posts": "Aún no hay publicaciones.",
+			"no_posts_search": "No se ha encontrado ninguna publicación para tu búsqueda.",
+			"fetch_error": "Error al cargar las publicaciones. Inténtalo de nuevo más tarde."
+		},
+		"comments": {
+			"loading": "Cargando comentarios...",
+			"no_comments": "Aún no hay comentarios.",
+			"fetch_error": "Error al cargar los comentarios. Inténtalo de nuevo más tarde."
+		},
+		"likes": {
+			"loading": "Cargando me gusta...",
+			"no_likes": "Aún no hay publicaciones marcadas con me gusta.",
+			"fetch_error": "Error al cargar los me gusta. Inténtalo de nuevo más tarde."
+		},
+		"reposts": {
+			"loading": "Cargando republicaciones...",
+			"no_reposts": "Aún no hay republicaciones.",
+			"fetch_error": "Error al cargar las republicaciones. Inténtalo de nuevo más tarde."
+		}
+	},
+
+	"search": {
+		"title": "Búsqueda",
+		"subtitle": "Encuentra portadores y publicaciones",
+		"input_placeholder": "Busca una palabra clave o @usuario...",
+		"users_title": "Portadores",
+		"posts_title": "Publicaciones"
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Sigue la luz · o cae en el olvido",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Jugar ahora",
+			"trailer": "Ver el tráiler",
+			"video_fallback": "Tu navegador no admite la reproducción de vídeo."
+		},
+		"features": {
+			"kicker": "El sistema",
+			"title": "Un solo mecanismo, fusionado de tres. La luz lo es todo.",
+			"lantern": {
+				"name": "La Linterna",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "Los Estratos",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "Los Olvidados",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "La Vigilia",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
+		}
 	},
 
 	"auth": {

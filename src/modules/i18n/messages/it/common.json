@@ -1,5 +1,9 @@
 {
 	"nav": {
+		"lore": "Universo",
+		"support": "Assistenza",
+		"enter_hub": "Entra nell'Hub →",
+		"menu": "Menu",
 		"home": "Home",
 		"game": "Game",
 		"leaderboard": "Leaderboard",
@@ -24,6 +28,94 @@
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
+	},
+
+	"posts": {
+		"create": {
+			"placeholder": "Inizia a scrivere un post",
+			"submit": "Pubblica",
+			"add_image": "Aggiungi un'immagine",
+			"remove_image": "Rimuovi l'immagine"
+		},
+		"card": {
+			"reposted_by": "{displayName} ha ripubblicato",
+			"image_alt": "Immagine del post di {username}",
+			"see_more": "Mostra di più",
+			"see_less": "Mostra meno",
+			"replying_to": "In risposta a",
+			"open_post": "Apri il post"
+		},
+		"actions": {
+			"comment": "Commenta",
+			"repost": "Ripubblica",
+			"undo_repost": "Annulla la ripubblicazione",
+			"quote": "Cita",
+			"like": "Mi piace",
+			"unlike": "Non mi piace più",
+			"delete": "Elimina"
+		},
+		"detail": {
+			"back": "Post"
+		},
+		"list": {
+			"loading": "Caricamento dei post...",
+			"no_posts": "Ancora nessun post.",
+			"no_posts_search": "Nessun post trovato per la tua ricerca.",
+			"fetch_error": "Caricamento dei post non riuscito. Riprova più tardi."
+		},
+		"comments": {
+			"loading": "Caricamento dei commenti...",
+			"no_comments": "Ancora nessun commento.",
+			"fetch_error": "Caricamento dei commenti non riuscito. Riprova più tardi."
+		},
+		"likes": {
+			"loading": "Caricamento dei mi piace...",
+			"no_likes": "Ancora nessun post con mi piace.",
+			"fetch_error": "Caricamento dei mi piace non riuscito. Riprova più tardi."
+		},
+		"reposts": {
+			"loading": "Caricamento delle ripubblicazioni...",
+			"no_reposts": "Ancora nessuna ripubblicazione.",
+			"fetch_error": "Caricamento delle ripubblicazioni non riuscito. Riprova più tardi."
+		}
+	},
+
+	"search": {
+		"title": "Ricerca",
+		"subtitle": "Trova portatori e post",
+		"input_placeholder": "Cerca una parola chiave o @nomeutente...",
+		"users_title": "Portatori",
+		"posts_title": "Post"
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Segui la luce · o sarai dimenticato",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Gioca ora",
+			"trailer": "Guarda il trailer",
+			"video_fallback": "Il tuo browser non supporta la riproduzione video."
+		},
+		"features": {
+			"kicker": "Il sistema",
+			"title": "Un solo meccanismo, fuso da tre. La luce è tutto.",
+			"lantern": {
+				"name": "La Lanterna",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "Gli Strati",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "I Dimenticati",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "La Veglia",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
+		}
 	},
 
 	"auth": {

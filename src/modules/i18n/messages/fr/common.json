@@ -1,5 +1,9 @@
 {
 	"nav": {
+		"lore": "Univers",
+		"support": "Aide",
+		"enter_hub": "Entrer dans le Hub →",
+		"menu": "Menu",
 		"home": "Accueil",
 		"game": "Jeu",
 		"leaderboard": "Classement",
@@ -127,6 +131,7 @@
 		"list": {
 			"loading": "Chargement des posts...",
 			"no_posts": "Aucun post pour le moment.",
+			"no_posts_search": "Aucun post trouvé pour ta recherche.",
 			"fetch_error": "Échec du chargement des posts. Veuillez réessayer plus tard."
 		},
 		"comments": {
@@ -143,6 +148,44 @@
 			"loading": "Chargement des reposts...",
 			"no_reposts": "Aucun repost pour le moment.",
 			"fetch_error": "Échec du chargement des reposts. Veuillez réessayer plus tard."
+		}
+	},
+
+	"search": {
+		"title": "Recherche",
+		"subtitle": "Trouve des porteurs et des posts",
+		"input_placeholder": "Cherche un mot-clé, ou @pseudo...",
+		"users_title": "Porteurs",
+		"posts_title": "Posts"
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Suis la lumière · ou sois oublié",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Jouer maintenant",
+			"trailer": "Voir la bande-annonce",
+			"video_fallback": "Votre navigateur ne supporte pas la lecture de cette vidéo."
+		},
+		"features": {
+			"kicker": "Le système",
+			"title": "Un seul mécanisme, fusionné de trois. La lumière est tout.",
+			"lantern": {
+				"name": "La Lanterne",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "Les Strates",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "Les Oubliés",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "La Veille",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
 		}
 	},
 

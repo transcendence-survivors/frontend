@@ -1,26 +1,31 @@
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
+	const t = useTranslations('landing.hero');
+
 	return (
 		<>
 			<div className='text-center'>
-				<p className='text-sm tracking-[0.3em] text-primary mb-6 uppercase font-mono'>
-					Suis la lumière · ou sois oublié
+				<p className='text-xs sm:text-sm tracking-[0.3em] text-primary mb-6 uppercase font-mono'>
+					{t('kicker')}
 				</p>
-				<h1 className='heading-1 mb-6 text-foreground uppercase'>Lanternae</h1>
+				<h1 className='heading-1 mb-6 text-foreground uppercase'>
+					Light-Keepers
+				</h1>
 				<p className='text-muted-foreground max-w-xl mx-auto mb-10'>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco.
+					{t('description')}
 				</p>
-				<div className='flex gap-4 justify-center'>
-					<Button size='lg'>Jouer maintenant</Button>
-					<Button size='lg' variant='outline'>
-						Voir la bande-annonce
+				<div className='flex flex-col sm:flex-row gap-4 justify-center'>
+					<Button size='lg' className='w-full sm:w-auto'>
+						{t('play')}
+					</Button>
+					<Button size='lg' variant='outline' className='w-full sm:w-auto'>
+						{t('trailer')}
 					</Button>
 				</div>
 			</div>
-			<div className='video-container mb-40 mt-16'>
+			<div className='video-container mb-20 sm:mb-40 mt-12 sm:mt-16'>
 				<video
 					autoPlay
 					loop
@@ -29,7 +34,7 @@ export default function HeroSection() {
 					controls
 					className='w-full h-auto rounded-2xl border border-border'>
 					<source src='/Trailer_Zelda.mp4' type='video/mp4' />
-					Votre navigateur ne supporte pas la lecture de cette vidéo.
+					{t('video_fallback')}
 				</video>
 			</div>
 		</>

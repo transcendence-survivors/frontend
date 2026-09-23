@@ -188,7 +188,7 @@
 	}
 
 	.heading-1 {
-		@apply text-5xl font-bold;
+		@apply text-3xl sm:text-4xl md:text-5xl font-bold;
 	}
 
 	.main-header {

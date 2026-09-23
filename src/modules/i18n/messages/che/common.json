@@ -1,5 +1,9 @@
 {
 	"nav": {
+		"lore": "Lore",
+		"support": "Hilf",
+		"enter_hub": "Zum Hub →",
+		"menu": "Menü",
 		"home": "Home",
 		"game": "Game",
 		"leaderboard": "Leaderboard",
@@ -24,6 +28,94 @@
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
+	},
+
+	"posts": {
+		"create": {
+			"placeholder": "Fang a, en Poscht z'schriibe",
+			"submit": "Poschte",
+			"add_image": "Es Bild hinzuefüege",
+			"remove_image": "S Bild ewägnäh"
+		},
+		"card": {
+			"reposted_by": "{displayName} het gteilt",
+			"image_alt": "Bild vom Poscht vo {username}",
+			"see_more": "Meh aazeige",
+			"see_less": "Weniger aazeige",
+			"replying_to": "As Antwort a",
+			"open_post": "Poscht ufmache"
+		},
+		"actions": {
+			"comment": "Kommentiere",
+			"repost": "Teile",
+			"undo_repost": "Teile rückgängig mache",
+			"quote": "Zitiere",
+			"like": "Gfallt mer",
+			"unlike": "Gfallt mer nüm",
+			"delete": "Lösche"
+		},
+		"detail": {
+			"back": "Poscht"
+		},
+		"list": {
+			"loading": "D Poschts werded glade...",
+			"no_posts": "No kei Poschts.",
+			"no_posts_search": "Kei Poschts für dini Suech gfunde.",
+			"fetch_error": "D Poschts hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		},
+		"comments": {
+			"loading": "D Kommentär werded glade...",
+			"no_comments": "No kei Kommentär.",
+			"fetch_error": "D Kommentär hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		},
+		"likes": {
+			"loading": "D Likes werded glade...",
+			"no_likes": "No kei glikti Poschts.",
+			"fetch_error": "D Likes hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		},
+		"reposts": {
+			"loading": "D gteilte Poschts werded glade...",
+			"no_reposts": "No kei gteilti Poschts.",
+			"fetch_error": "D gteilte Poschts hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		}
+	},
+
+	"search": {
+		"title": "Suech",
+		"subtitle": "Find Träger und Poschts",
+		"input_placeholder": "Suech es Stichwort oder @Benutzername...",
+		"users_title": "Träger",
+		"posts_title": "Poschts"
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Folg em Liecht · oder wirsch vergässe",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Jetz spiele",
+			"trailer": "Trailer aaluege",
+			"video_fallback": "Din Browser cha kei Video abspiele."
+		},
+		"features": {
+			"kicker": "S Syschtem",
+			"title": "Ei einzige Mechanismus, us drü zämegschmolze. S Liecht isch alles.",
+			"lantern": {
+				"name": "D Laterne",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "D Schichte",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "D Vergässene",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "D Wacht",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
+		}
 	},
 
 	"auth": {

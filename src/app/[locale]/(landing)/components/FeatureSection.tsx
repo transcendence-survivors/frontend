@@ -1,47 +1,46 @@
+import { useTranslations } from 'next-intl';
 import { BentoGrid } from '@/components/ui/bento-grid';
 
-const features = [
-	{
-		name: 'La Lanterne',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		gradient: 'from-amber-500/40 via-amber-500/10 to-transparent',
-	},
-	{
-		name: 'Les Strates',
-		description:
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-		gradient: 'from-yellow-500/30 via-amber-500/10 to-transparent',
-	},
-	{
-		name: 'Les Oubliés',
-		description:
-			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-		gradient: 'from-neutral-500/30 via-stone-500/10 to-transparent',
-	},
-	{
-		name: 'La Veille',
-		description:
-			'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-		gradient: 'from-orange-400/40 via-amber-500/10 to-transparent',
-	},
-];
-
 export default function FeatureSection() {
+	const t = useTranslations('landing.features');
+
+	const features = [
+		{
+			name: t('lantern.name'),
+			description: t('lantern.description'),
+			gradient: 'from-amber-500/40 via-amber-500/10 to-transparent',
+		},
+		{
+			name: t('strata.name'),
+			description: t('strata.description'),
+			gradient: 'from-yellow-500/30 via-amber-500/10 to-transparent',
+		},
+		{
+			name: t('forgotten.name'),
+			description: t('forgotten.description'),
+			gradient: 'from-neutral-500/30 via-stone-500/10 to-transparent',
+		},
+		{
+			name: t('vigil.name'),
+			description: t('vigil.description'),
+			gradient: 'from-orange-400/40 via-amber-500/10 to-transparent',
+		},
+	];
+
 	return (
-		<div className='mb-20 mt-24'>
+		<div className='mb-20 mt-16 sm:mt-24'>
 			<p
 				className={
 					'font-mono text-xs tracking-[0.2em] ' + 'text-primary mb-4 uppercase'
 				}>
-				Le système
+				{t('kicker')}
 			</p>
-			<h2 className={'text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'}>
-				Un seul mécanisme, fusionné de trois. La lumière est tout.
+			<h2 className={'text-2xl sm:text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'}>
+				{t('title')}
 			</h2>
-			<BentoGrid className='md:grid-cols-2 auto-rows-auto gap-px bg-border border border-border'>
+			<BentoGrid className='grid-cols-1 md:grid-cols-2 auto-rows-auto gap-px bg-border border border-border'>
 				{features.map((feature) => (
-					<div key={feature.name} className='bg-background p-8'>
+					<div key={feature.name} className='bg-background p-6 sm:p-8'>
 						<div
 							className={'h-28 mb-6 bg-gradient-to-br ' + feature.gradient}
 						/>

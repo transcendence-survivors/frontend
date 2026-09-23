@@ -1,5 +1,9 @@
 {
 	"nav": {
+		"lore": "Lore",
+		"support": "Hilfe",
+		"enter_hub": "Zum Hub →",
+		"menu": "Menü",
 		"home": "Home",
 		"game": "Game",
 		"leaderboard": "Leaderboard",
@@ -24,6 +28,94 @@
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
+	},
+
+	"posts": {
+		"create": {
+			"placeholder": "Beginne, einen Beitrag zu schreiben",
+			"submit": "Posten",
+			"add_image": "Bild hinzufügen",
+			"remove_image": "Bild entfernen"
+		},
+		"card": {
+			"reposted_by": "{displayName} hat geteilt",
+			"image_alt": "Beitragsbild von {username}",
+			"see_more": "Mehr anzeigen",
+			"see_less": "Weniger anzeigen",
+			"replying_to": "Antwort an",
+			"open_post": "Beitrag öffnen"
+		},
+		"actions": {
+			"comment": "Kommentieren",
+			"repost": "Teilen",
+			"undo_repost": "Teilen rückgängig machen",
+			"quote": "Zitieren",
+			"like": "Gefällt mir",
+			"unlike": "Gefällt mir nicht mehr",
+			"delete": "Löschen"
+		},
+		"detail": {
+			"back": "Beitrag"
+		},
+		"list": {
+			"loading": "Beiträge werden geladen...",
+			"no_posts": "Noch keine Beiträge.",
+			"no_posts_search": "Keine Beiträge für deine Suche gefunden.",
+			"fetch_error": "Beiträge konnten nicht geladen werden. Bitte versuche es später erneut."
+		},
+		"comments": {
+			"loading": "Kommentare werden geladen...",
+			"no_comments": "Noch keine Kommentare.",
+			"fetch_error": "Kommentare konnten nicht geladen werden. Bitte versuche es später erneut."
+		},
+		"likes": {
+			"loading": "Likes werden geladen...",
+			"no_likes": "Noch keine gelikten Beiträge.",
+			"fetch_error": "Likes konnten nicht geladen werden. Bitte versuche es später erneut."
+		},
+		"reposts": {
+			"loading": "Geteilte Beiträge werden geladen...",
+			"no_reposts": "Noch keine geteilten Beiträge.",
+			"fetch_error": "Geteilte Beiträge konnten nicht geladen werden. Bitte versuche es später erneut."
+		}
+	},
+
+	"search": {
+		"title": "Suche",
+		"subtitle": "Finde Träger und Beiträge",
+		"input_placeholder": "Suche ein Stichwort oder @Benutzername...",
+		"users_title": "Träger",
+		"posts_title": "Beiträge"
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Folge dem Licht · oder werde vergessen",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Jetzt spielen",
+			"trailer": "Trailer ansehen",
+			"video_fallback": "Dein Browser unterstützt die Videowiedergabe nicht."
+		},
+		"features": {
+			"kicker": "Das System",
+			"title": "Ein einziger Mechanismus, aus dreien verschmolzen. Das Licht ist alles.",
+			"lantern": {
+				"name": "Die Laterne",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "Die Schichten",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "Die Vergessenen",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "Die Wacht",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
+		}
 	},
 
 	"auth": {

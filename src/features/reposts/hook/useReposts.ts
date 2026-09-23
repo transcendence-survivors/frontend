@@ -1,6 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
+	FEED_KEY,
+	USER_POSTS_KEY,
+	USER_REPOSTS_KEY,
+} from '@/features/posts/constants/query-keys';
+import {
 	cancelPostQueries,
 	invalidatePostQueries,
 	restorePostCaches,
@@ -42,7 +47,11 @@ const useRepostAction = (action: RepostRequestAction) => {
 		onError: (_error, _postId, snapshot) =>
 			restorePostCaches(queryClient, snapshot),
 		onSettled: () =>
-			invalidatePostQueries(queryClient, ['posts', 'userPosts', 'userReposts']),
+			invalidatePostQueries(queryClient, [
+				FEED_KEY,
+				USER_POSTS_KEY,
+				USER_REPOSTS_KEY,
+			]),
 	});
 };
 

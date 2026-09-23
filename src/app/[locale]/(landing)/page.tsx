@@ -8,7 +8,7 @@ export default function Page() {
 		<main>
 			<SiteHeader active='home' />
 
-			<div className='max-w-5xl w-full mx-auto py-20 px-4'>
+			<div className='max-w-5xl w-full mx-auto py-12 sm:py-20 px-4'>
 				<HeroSection />
 				<FeatureSection />
 			</div>

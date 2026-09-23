@@ -13,6 +13,13 @@ const roleRoutes = {
 	chat: ['USER'],
 	chatId: ['USER'],
 	friends: ['USER'],
+	search: ['USER'],
+	userName: ['USER'],
+	userNamePosts: ['USER'],
+	userNamePostsId: ['USER'],
+	userNameComments: ['USER'],
+	userNameLikes: ['USER'],
+	userNameReposts: ['USER'],
 } as const satisfies Partial<Record<RouteKey, UserRole[]>>;
 
 const hasRequiredRole = (userRole: UserRole, required: UserRole[]): boolean =>

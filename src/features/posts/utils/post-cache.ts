@@ -1,81 +1,98 @@
 import { InfiniteData, QueryClient, QueryKey } from '@tanstack/react-query';
 
 import { fetchPosts } from '../api/posts';
-import { POST_LIST_ROOTS, POST_QUERY_ROOTS, postKeys } from '../constants/query-keys';
+import {
+	ALL_POST_KEYS,
+	DETAIL_KEY,
+	POST_LIST_KEYS,
+	postKeys,
+} from '../constants/query-keys';
 import { Post } from '../types/post';
 
 type PostsPage = Awaited<ReturnType<typeof fetchPosts>>;
-type PostPatch = (post: Post) => Post;
-type PostCacheSnapshot = [QueryKey, unknown][];
 
-const hasRoot = (queryKey: QueryKey, roots: readonly string[]) =>
-	typeof queryKey[0] === 'string' && roots.includes(queryKey[0]);
+function patchPost(post: Post, postId: string, patch: (post: Post) => Post): Post {
+	if (post.id === postId) {
+		return patch(post);
+	}
 
-const listFilter = (roots: readonly string[] = POST_LIST_ROOTS) => ({
-	predicate: (query: { queryKey: QueryKey }) => hasRoot(query.queryKey, roots),
-});
+	if (post.quotedPost && post.quotedPost.id === postId) {
+		return { ...post, quotedPost: patch(post.quotedPost) };
+	}
 
-function patchPost(post: Post, postId: string, patch: PostPatch): Post {
-	const quotedPost = post.quotedPost
-		? patchPost(post.quotedPost, postId, patch)
-		: undefined;
-	const next = quotedPost === post.quotedPost ? post : { ...post, quotedPost };
-
-	return next.id === postId ? patch(next) : next;
+	return post;
 }
 
-function mapPage(page: PostsPage, map: (posts: Post[]) => Post[]): PostsPage {
-	return { ...page, data: { ...page.data, data: map(page.data.data) } };
-}
-
-function mapLists(
+function updateLists(
 	queryClient: QueryClient,
-	map: (posts: Post[]) => Post[],
-	roots?: readonly string[],
+	updatePosts: (posts: Post[]) => Post[],
 ) {
-	queryClient.setQueriesData<InfiniteData<PostsPage>>(
-		listFilter(roots),
-		(old) =>
-			old && { ...old, pages: old.pages.map((page) => mapPage(page, map)) },
-	);
+	for (const queryKey of POST_LIST_KEYS) {
+		queryClient.setQueriesData<InfiniteData<PostsPage>>({ queryKey }, (old) => {
+			if (!old) return old;
+
+			return {
+				...old,
+				pages: old.pages.map((page) => ({
+					...page,
+					data: { ...page.data, data: updatePosts(page.data.data) },
+				})),
+			};
+		});
+	}
 }
 
 export function updatePostInCaches(
 	queryClient: QueryClient,
 	postId: string,
-	patch: PostPatch,
+	patch: (post: Post) => Post,
 ) {
-	mapLists(queryClient, (posts) =>
+	updateLists(queryClient, (posts) =>
 		posts.map((post) => patchPost(post, postId, patch)),
 	);
-	queryClient.setQueriesData<Post>({ queryKey: postKeys.details() }, (old) =>
+
+	queryClient.setQueriesData<Post>({ queryKey: DETAIL_KEY }, (old) =>
 		old ? patchPost(old, postId, patch) : old,
 	);
 }
 
 export function removePostFromCaches(queryClient: QueryClient, postId: string) {
-	mapLists(queryClient, (posts) => posts.filter((post) => post.id !== postId));
+	updateLists(queryClient, (posts) => posts.filter((post) => post.id !== postId));
 	queryClient.removeQueries({ queryKey: postKeys.detail(postId) });
 }
 
-export function snapshotPostCaches(queryClient: QueryClient): PostCacheSnapshot {
-	return queryClient.getQueriesData(listFilter(POST_QUERY_ROOTS));
+export function snapshotPostCaches(queryClient: QueryClient) {
+	const snapshot: [QueryKey, unknown][] = [];
+
+	for (const queryKey of ALL_POST_KEYS) {
+		snapshot.push(...queryClient.getQueriesData({ queryKey }));
+	}
+
+	return snapshot;
 }
 
 export function restorePostCaches(
 	queryClient: QueryClient,
-	snapshot?: PostCacheSnapshot,
+	snapshot?: [QueryKey, unknown][],
 ) {
-	snapshot?.forEach(([queryKey, data]) => queryClient.setQueryData(queryKey, data));
+	if (!snapshot) return;
+
+	for (const [queryKey, data] of snapshot) {
+		queryClient.setQueryData(queryKey, data);
+	}
 }
 
-export function cancelPostQueries(queryClient: QueryClient) {
-	return queryClient.cancelQueries(listFilter(POST_QUERY_ROOTS));
+export async function cancelPostQueries(queryClient: QueryClient) {
+	for (const queryKey of ALL_POST_KEYS) {
+		await queryClient.cancelQueries({ queryKey });
+	}
 }
 
 export function invalidatePostQueries(
 	queryClient: QueryClient,
-	roots: readonly string[] = POST_QUERY_ROOTS,
+	queryKeys = ALL_POST_KEYS,
 ) {
-	return queryClient.invalidateQueries(listFilter(roots));
+	for (const queryKey of queryKeys) {
+		queryClient.invalidateQueries({ queryKey });
+	}
 }

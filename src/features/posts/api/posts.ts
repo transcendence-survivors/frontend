@@ -5,17 +5,22 @@ import { Post } from '../types/post';
 
 type FetchPostResponse = CursorResponse<Post[]>;
 
-export type FetchPostParams = CursorParams<'date-asc' | 'date-desc'>;
+export type PostFeed = 'friends' | 'all-not-blocked';
+
+export type FetchPostParams = CursorParams<'date-asc' | 'date-desc'> & {
+	feed?: PostFeed;
+};
 
 export async function fetchPosts(
 	parentPostId: string | undefined,
-	{ cursor, limit, orderBy, search }: FetchPostParams,
+	{ cursor, limit, orderBy, search, feed }: FetchPostParams,
 ) {
 	const urlParams = new URLSearchParams();
 	if (cursor) urlParams.append('cursor', cursor);
 	if (limit) urlParams.append('limit', limit.toString());
 	if (orderBy) urlParams.append('orderBy', orderBy);
 	if (search) urlParams.append('search', search);
+	if (feed) urlParams.append('feed', feed);
 
 	const path = parentPostId
 		? `${POST_ENDPOINTS.getPost}/${parentPostId}/replies`

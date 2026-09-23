@@ -13,6 +13,7 @@
 		"lore": "Lore",
 		"support": "Support",
 		"enter_hub": "Enter Hub →",
+		"menu": "Menu",
 
 		"feed": "Feed",
 		"friends": "Friends",
@@ -54,6 +55,14 @@
 		"no_users_search": "No users found for your search.",
 		"no_more_users": "No more users to load.",
 		"fetch_error": "Failed to load users. Please try again later."
+	},
+
+	"search": {
+		"title": "Search",
+		"subtitle": "Find bearers and posts",
+		"input_placeholder": "Search a keyword, or @username...",
+		"users_title": "Bearers",
+		"posts_title": "Posts"
 	},
 	"relationships": {
 		"title": "Friends & Moderation",
@@ -367,6 +376,7 @@
 		"list": {
 			"loading": "Loading posts...",
 			"no_posts": "No posts yet.",
+			"no_posts_search": "No posts found for your search.",
 			"fetch_error": "Failed to load posts. Please try again later."
 		},
 		"comments": {
@@ -383,6 +393,36 @@
 			"loading": "Loading reposts...",
 			"no_reposts": "No reposts yet.",
 			"fetch_error": "Failed to load reposts. Please try again later."
+		}
+	},
+
+	"landing": {
+		"hero": {
+			"kicker": "Follow the light · or be forgotten",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"play": "Play now",
+			"trailer": "Watch the trailer",
+			"video_fallback": "Your browser does not support video playback."
+		},
+		"features": {
+			"kicker": "The system",
+			"title": "A single mechanism, fused from three. The light is everything.",
+			"lantern": {
+				"name": "The Lantern",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},
+			"strata": {
+				"name": "The Strata",
+				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			},
+			"forgotten": {
+				"name": "The Forgotten",
+				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			},
+			"vigil": {
+				"name": "The Vigil",
+				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			}
 		}
 	},
 

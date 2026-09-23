@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { USER_LIKES_KEY } from '@/features/posts/constants/query-keys';
 import {
 	cancelPostQueries,
 	invalidatePostQueries,
@@ -39,7 +40,7 @@ const useLikeAction = (action: LikeRequestAction) => {
 		},
 		onError: (_error, _postId, snapshot) =>
 			restorePostCaches(queryClient, snapshot),
-		onSettled: () => invalidatePostQueries(queryClient, ['userLikes']),
+		onSettled: () => invalidatePostQueries(queryClient, [USER_LIKES_KEY]),
 	});
 };
 

@@ -8,7 +8,7 @@ export type UseFriendsCountParams = Omit<GetFriendIdsCountParams, 'cursor' | 'li
 
 export const useFriendsCount = (params: UseFriendsCountParams) => {
 	return useQuery({
-		queryKey: ['friends', params, 'count'],
+		queryKey: ['friends-count', params],
 		queryFn: () => getFriendsIdsCount(params),
 	});
 };

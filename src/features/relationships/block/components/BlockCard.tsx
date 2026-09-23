@@ -1,35 +1,27 @@
 import { UserCard, UserCardSkeleton } from '../../../user/components/UserCard';
-import { UseBlocksParams } from '../hooks/useBlocks';
 import { BlockDelete, BlockDeleteSkeleton } from './BlockDelete';
 import { memo } from 'react';
 
-type BlockCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user'> & {
-	params: UseBlocksParams;
-};
+type BlockCardProps = Pick<React.ComponentProps<typeof UserCard>, 'user'>;
 
-const BlockCard = memo(({ user, params }: BlockCardProps) => {
+export const BlockCard = memo(({ user }: BlockCardProps) => {
 	return (
 		<UserCard user={user}>
 			<div className='flex items-center gap-4'>
-				<BlockDelete
-					params={params}
-					blockedId={user.id}
-					blockedDisplayName={user.displayName}
-				/>
+				<BlockDelete blockedId={user.id} blockedDisplayName={user.displayName} />
 			</div>
 		</UserCard>
 	);
 });
 
+BlockCard.displayName = 'BlockCard';
+
 type BlockCardSkeletonProps = React.ComponentProps<typeof UserCardSkeleton>;
 
-const BlockCardSkeleton = ({ ...props }: BlockCardSkeletonProps) => {
+export const BlockCardSkeleton = ({ ...props }: BlockCardSkeletonProps) => {
 	return (
 		<UserCardSkeleton {...props}>
 			<BlockDeleteSkeleton />
 		</UserCardSkeleton>
 	);
 };
-
-BlockCard.displayName = 'BlockCard';
-export { BlockCard, BlockCardSkeleton };

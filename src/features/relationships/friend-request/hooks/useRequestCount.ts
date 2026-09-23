@@ -6,7 +6,7 @@ import { type UseRequestsParams } from '../types';
 
 const useRequestCount = ({ direction, search }: UseRequestsParams) => {
 	return useQuery({
-		queryKey: ['friend-requests', direction, search, 'count'],
+		queryKey: ['friend-requests-count', direction, search],
 		queryFn: () => getFriendRequestsCount({ direction, search }),
 	});
 };

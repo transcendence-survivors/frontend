@@ -69,7 +69,7 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 							<FriendRequestCard
 								user={friend}
 								since={since}
-								params={params}
+								direction={direction}
 							/>
 						</li>
 					))}

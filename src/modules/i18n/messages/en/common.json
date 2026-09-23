@@ -596,6 +596,13 @@
 	},
 	"common": {
 		"confirm": "Confirm",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+
+		"themes": {
+			"dark": "Dark",
+			"light": "Light",
+			"system": "System",
+			"neon": "Neon"
+		}
 	}
 }

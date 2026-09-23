@@ -8,7 +8,7 @@ type UseBlocksCountParams = GetBlocksCountParams;
 
 const useBlocksCount = (params: UseBlocksCountParams) => {
 	return useQuery({
-		queryKey: ['blocks', params, 'count'],
+		queryKey: ['blocks-count', params],
 		queryFn: () => getBlocksCount(params),
 	});
 };

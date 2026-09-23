@@ -55,7 +55,6 @@ const FriendsData = ({ getFriendStatus, params }: FriendsDataProps) => {
 							<FriendCard
 								user={friend}
 								badge={getFriendStatus(friend.id) || false}
-								params={params}
 							/>
 						</li>
 					))}

@@ -13,7 +13,7 @@ import { IconNavLink } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { SettingsIcon, User } from 'lucide-react';
 import LogoutDropDownItem from '../../../auth/components/LogoutDropDownItem';
-import { UserIdentity } from '../Identity/UserIdentity';
+import { UserIdentity, UserIdentitySkeleton } from '../Identity/UserIdentity';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { AppMessages } from '@/modules/i18n/messages/types';
 import { useUser } from '@/features/auth/stores/session';
@@ -36,7 +36,11 @@ const AvatarDropdown = ({}) => {
 	const status = usePresenceStatus();
 
 	if (!user) {
-		return null;
+		return (
+			<div className='py-2'>
+				<UserIdentitySkeleton />
+			</div>
+		);
 	}
 
 	return (

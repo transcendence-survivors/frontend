@@ -11,10 +11,10 @@ const initialFriendsParam = {
 
 export type UseFriendsParams = Omit<GetFriendIdsParams, 'cursor' | 'limit'>;
 
-export const useFriends = ({ search, friendIds, status }: UseFriendsParams) => {
+export const useFriends = (params: UseFriendsParams) => {
 	return useInfiniteQuery({
-		queryKey: ['friends', { search, friendIds, status }],
-		initialPageParam: { ...initialFriendsParam, search, friendIds, status },
+		queryKey: ['friends', params],
+		initialPageParam: { ...initialFriendsParam, ...params },
 		queryFn: ({ pageParam }) => getFriendsFromIds(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			if (!lastPage.meta.hasNextPage) return undefined;

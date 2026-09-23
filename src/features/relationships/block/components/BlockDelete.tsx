@@ -8,24 +8,20 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 import { Unban } from '@/components/icons/unban';
-
-import { UseBlocksParams } from '../hooks/useBlocks';
 import { useBlockDelete } from '../hooks/useBlockActions';
 
 interface BlockDeleteProps {
 	blockedId: string;
 	blockedDisplayName: string;
-	params: UseBlocksParams;
 }
 
-const BlockDelete = ({ blockedId, blockedDisplayName, params }: BlockDeleteProps) => {
+const BlockDelete = ({ blockedId, blockedDisplayName }: BlockDeleteProps) => {
 	const t = useTranslations('relationships.blocked.remove');
 
 	const { mutate, isPending, isError } = useBlockDelete({
 		blockedId,
 		successMessage: t('success_displayname', { displayName: blockedDisplayName }),
 		failureMessage: t('failure_displayname', { displayName: blockedDisplayName }),
-		params,
 	});
 
 	const label = t('tooltip');

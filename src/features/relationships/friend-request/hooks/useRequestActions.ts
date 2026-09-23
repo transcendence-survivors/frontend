@@ -1,7 +1,6 @@
 'use client';
 
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
-
+import { InfiniteData, useMutation } from '@tanstack/react-query';
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
 import { acceptFriendRequest } from '../api/accept';
@@ -16,7 +15,7 @@ interface UseRequestActionParams {
 	action: FriendRequestAction;
 	successMessage: string;
 	failureMessage: string;
-	params: UseRequestsParams;
+	direction: UseRequestsParams['direction'];
 }
 
 const requestActionFns: Record<
@@ -29,16 +28,17 @@ const requestActionFns: Record<
 
 const useRequestAction = ({
 	friendId,
-	params,
 	action,
 	successMessage,
 	failureMessage,
+	direction,
 }: UseRequestActionParams) => {
 	const { invalidate, queryClient } = useInvalidateQueries();
-	const queryKey = ['friend-requests', params];
+	const queryKey = ['friend-requests', direction];
+	const countQueryKey = ['friend-requests-count', direction];
 
 	return useMutation({
-		mutationKey: ['friends', action, friendId],
+		mutationKey: ['friend-requests', action, friendId],
 		mutationFn: () => requestActionFns[action](friendId),
 		onMutate: async () => {
 			await queryClient.cancelQueries({ queryKey });
@@ -55,7 +55,10 @@ const useRequestAction = ({
 			toast.error(failureMessage);
 		},
 		onSuccess: () => toast.success(successMessage),
-		onSettled: () => invalidate(queryKey, { mode: 'instant' }),
+		onSettled: () => {
+			invalidate(queryKey, { mode: 'instant' });
+			invalidate(countQueryKey, { mode: 'instant' });
+		},
 	});
 };
 

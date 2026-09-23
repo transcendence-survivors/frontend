@@ -35,6 +35,12 @@ interface NotificationReadPayload {
 	readAt: string;
 }
 
+interface NotificationMemberMutationPayload {
+	roomId: string;
+	userId: string;
+	type: 'JOIN' | 'LEAVE' | 'ROLE_UPDATE' | 'KICKED';
+}
+
 interface NotificationNewPayload {
 	roomId: string;
 }
@@ -49,8 +55,10 @@ export const createNotificationSlice: StateCreator<
 	[],
 	NotificationSlice
 > = (set, get) => {
-	let onRead: ((data: NotificationReadPayload) => void) | null = null;
-	let onNew: ((data: NotificationNewPayload) => void) | null = null;
+	let onMessageRead: ((data: NotificationReadPayload) => void) | null = null;
+	let onNewMessage: ((data: NotificationNewPayload) => void) | null = null;
+	let onMemberMutation: ((data: NotificationMemberMutationPayload) => void) | null =
+		null;
 
 	const invalidateUnreadCount = (queryClient: QueryClient): void => {
 		invalidateQueries(queryClient, ['chat-notifications', 'unread-count'], {
@@ -68,6 +76,14 @@ export const createNotificationSlice: StateCreator<
 
 	const invalidateMessages = (queryClient: QueryClient, roomId: string): void => {
 		invalidateQueries(queryClient, ['chat-messages', roomId], {
+			mode: 'debounce',
+			delay: 1000,
+			reset: true,
+		});
+	};
+
+	const invalidateMembers = (queryClient: QueryClient, roomId: string): void => {
+		invalidateQueries(queryClient, ['chat-members', roomId], {
 			mode: 'debounce',
 			delay: 1000,
 			reset: true,
@@ -172,7 +188,7 @@ export const createNotificationSlice: StateCreator<
 
 				get().notificationActions.destroyNotificationListeners();
 
-				onRead = (data: NotificationReadPayload) => {
+				onMessageRead = (data: NotificationReadPayload) => {
 					set((state) => {
 						const currentRoomUnread =
 							state.unreadCountsByRoom[data.roomId] ?? 0;
@@ -190,7 +206,7 @@ export const createNotificationSlice: StateCreator<
 					invalidateUnreadCount(queryClient);
 				};
 
-				onNew = (data: NotificationNewPayload) => {
+				onNewMessage = (data: NotificationNewPayload) => {
 					const activeRoomId = get().currentRoomId;
 					if (activeRoomId !== data.roomId) {
 						get().notificationActions.incrementRoomUnread(data.roomId);
@@ -200,22 +216,43 @@ export const createNotificationSlice: StateCreator<
 					}
 				};
 
-				socket.on(CHAT_EVENTS.RECEIVE.NOTIFICATION_READ, onRead);
-				socket.on(CHAT_EVENTS.RECEIVE.NOTIFICATION_MESSAGE_NEW, onNew);
+				onMemberMutation = (data: NotificationMemberMutationPayload) => {
+					const activeRoomId = get().currentRoomId;
+					if (activeRoomId !== data.roomId) {
+						invalidateMembers(queryClient, data.roomId);
+					}
+				};
+
+				socket.on(CHAT_EVENTS.RECEIVE.NOTIFICATION_READ, onMessageRead);
+				socket.on(CHAT_EVENTS.RECEIVE.NOTIFICATION_MESSAGE_NEW, onNewMessage);
+				socket.on(
+					CHAT_EVENTS.RECEIVE.NOTIFICATION_MEMBER_MUTATION,
+					onMemberMutation,
+				);
 			},
 
 			destroyNotificationListeners() {
 				const socket = get().socket;
 				if (!socket) return;
 
-				if (onRead) {
-					socket.off(CHAT_EVENTS.RECEIVE.NOTIFICATION_READ, onRead);
-					onRead = null;
+				if (onMessageRead) {
+					socket.off(CHAT_EVENTS.RECEIVE.NOTIFICATION_READ, onMessageRead);
+					onMessageRead = null;
 				}
 
-				if (onNew) {
-					socket.off(CHAT_EVENTS.RECEIVE.NOTIFICATION_MESSAGE_NEW, onNew);
-					onNew = null;
+				if (onNewMessage) {
+					socket.off(
+						CHAT_EVENTS.RECEIVE.NOTIFICATION_MESSAGE_NEW,
+						onNewMessage,
+					);
+					onNewMessage = null;
+				}
+				if (onMemberMutation) {
+					socket.off(
+						CHAT_EVENTS.RECEIVE.NOTIFICATION_MEMBER_MUTATION,
+						onMemberMutation,
+					);
+					onMemberMutation = null;
 				}
 			},
 		},
@@ -226,13 +263,15 @@ export const useNotificationActions = () => {
 };
 
 export const useTotalUnreadCount = (): number => {
-	return useWebsocketStore((state) => state.totalUnreadCount);
+	return useWebsocketStore(useShallow((state) => state.totalUnreadCount));
 };
 
 export const useRoomUnreadCount = (roomId: string): number => {
-	return useWebsocketStore((state) => state.unreadCountsByRoom[roomId] ?? -1);
+	return useWebsocketStore(
+		useShallow((state) => state.unreadCountsByRoom[roomId] ?? -1),
+	);
 };
 
 export const useCurrentRoomId = (): string | null => {
-	return useWebsocketStore((state) => state.currentRoomId);
+	return useWebsocketStore(useShallow((state) => state.currentRoomId));
 };

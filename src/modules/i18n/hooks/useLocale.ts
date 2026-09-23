@@ -1,6 +1,12 @@
 'use client';
 
-import { Locale, LOCALE_DATE_FNS, LOCALE_ICONS, LOCALES } from '../constants/locales';
+import {
+	Locale,
+	LOCALE_DATE_FNS,
+	LOCALE_ICONS,
+	LOCALE_LABELS,
+	LOCALES,
+} from '../constants/locales';
 import { usePathname, useRouter } from '../utils/navigation';
 import { useLocale } from 'next-intl';
 
@@ -18,6 +24,7 @@ const useLocaleParams = () => {
 	return {
 		localesIcon: LOCALE_ICONS,
 		locales: LOCALES,
+		localeLabels: LOCALE_LABELS,
 		currentLocale: locale,
 		nextLocale,
 		setLocale,

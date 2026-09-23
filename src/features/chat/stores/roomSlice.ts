@@ -300,28 +300,32 @@ export const useRoomActions = () => {
 };
 
 export const useRoom = () => {
-	return useWebsocketStore((state) => state.room);
+	return useWebsocketStore(useShallow((state) => state.room));
 };
 
 export const useRoomMemberIds = (): string[] => {
-	return useWebsocketStore((state) => {
-		const room = state.room;
-		if (!room) return [];
-		if (room.type === ChatRoomType.GROUP) {
-			return room.memberIds;
-		}
-		return [room.otherMember.id];
-	});
+	return useWebsocketStore(
+		useShallow((state) => {
+			const room = state.room;
+			if (!room) return [];
+			if (room.type === ChatRoomType.GROUP) {
+				return room.memberIds;
+			}
+			return [room.otherMember.id];
+		}),
+	);
 };
 
 export const useRoomRole = () => {
-	return useWebsocketStore((state) => state.role);
+	return useWebsocketStore(useShallow((state) => state.role));
 };
 
 export const useRoomType = (): ChatRoomType | null => {
-	return useWebsocketStore((state) => {
-		const room = state.room;
-		if (!room) return null;
-		return room.type;
-	});
+	return useWebsocketStore(
+		useShallow((state) => {
+			const room = state.room;
+			if (!room) return null;
+			return room.type;
+		}),
+	);
 };

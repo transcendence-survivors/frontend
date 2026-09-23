@@ -50,7 +50,7 @@ const BlocksData = ({ params }: BlocksDataProps) => {
 				<ul className='flex flex-col gap-2'>
 					{blocked.map(({ id, blocked }) => (
 						<li key={id}>
-							<BlockCard user={blocked} params={params} />
+							<BlockCard user={blocked} />
 						</li>
 					))}
 				</ul>

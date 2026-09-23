@@ -32,19 +32,19 @@ const translationKeys = {
 	outgoing: 'relationships.requests.cancel',
 } satisfies Record<FriendRequestDirection, NestedMessageKeys>;
 
-const FriendRequestDelete = ({
+export const FriendRequestDelete = ({
 	friendId,
 	successMessage,
 	failureMessage,
-	params,
+	direction,
 }: FriendRequestDeleteProps) => {
-	const t = useTranslations(translationKeys[params.direction]);
+	const t = useTranslations(translationKeys[direction]);
 
 	const { mutate, isPending, isError } = useRequestDelete({
 		friendId,
 		successMessage,
 		failureMessage,
-		params,
+		direction,
 	});
 
 	const label = t('tooltip');
@@ -71,7 +71,7 @@ const FriendRequestDelete = ({
 							{isPending ? (
 								<Spinner className='size-3.5' />
 							) : (
-								icons[params.direction]
+								icons[direction]
 							)}
 						</Button>
 					</TooltipTrigger>
@@ -84,8 +84,6 @@ const FriendRequestDelete = ({
 	);
 };
 
-const FriendRequestDeleteSkeleton = () => {
+export const FriendRequestDeleteSkeleton = () => {
 	return <Skeleton className='size-9 rounded-md' />;
 };
-
-export { FriendRequestDelete, FriendRequestDeleteSkeleton };

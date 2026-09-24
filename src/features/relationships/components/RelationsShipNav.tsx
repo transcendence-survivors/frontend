@@ -11,12 +11,19 @@ import { NavLink, usePathname } from '@/modules/i18n/utils/navigation';
 import { getBasePath } from '@/modules/i18n/utils/routing';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
+import { FriendRequestNotifications } from '../friend-request/components/FriendRequestNotifications';
 
 const links = [
 	{ key: 'friends', labelKey: 'friends' },
-	{ key: 'friendsRequests', labelKey: 'requests' },
+	{
+		key: 'friendsRequests',
+		labelKey: 'requests',
+		additional: <FriendRequestNotifications className='size-5 ml-2' />,
+	},
 	{ key: 'blocked', labelKey: 'blocked' },
-] as const satisfies NavLink<AppMessages['nav']['friend']>[];
+] as const satisfies (NavLink<AppMessages['nav']['friend']> & {
+	additional?: React.ReactNode;
+})[];
 
 type RelationShipNavProps = React.HTMLAttributes<HTMLElement>;
 
@@ -66,6 +73,7 @@ const RelationShipNav = ({ ...props }: RelationShipNavProps) => {
 							onClick={handleLinkClick}
 							onDragStart={preventNativeDrag}>
 							{t(link.labelKey)}
+							{'additional' in link && link.additional}
 						</I18nLink>
 					</Button>
 				</li>

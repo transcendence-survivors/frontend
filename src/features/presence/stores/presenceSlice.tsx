@@ -12,22 +12,26 @@ import { toast } from 'sonner';
 import { PresenceToast } from '../components/PresenceToast';
 import { emit } from '@/modules/websocket/helpers/emit';
 
-export interface PresenceSlice {
+export interface PresenceSliceState {
 	status: PresenceStatus;
 	globalOnlineCount: number;
 	onlineFriends: Map<string, PresenceFriend>;
-
 	onlineFriendsCount: number;
-	presenceActions: {
-		initPresenceListeners: () => void;
-		cleanupPresenceListeners: () => void;
-
-		goStatus: (status: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => void;
-
-		isFriendOnline: (friendId: string) => boolean;
-		getFriendStatus: (friendId: string) => PresenceStatus;
-	};
 }
+
+export interface PresenceSliceActions {
+	initPresenceListeners: () => void;
+	cleanupPresenceListeners: () => void;
+
+	goStatus: (status: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => Promise<void>;
+
+	isFriendOnline: (friendId: string) => boolean;
+	getFriendStatus: (friendId: string) => Exclude<PresenceStatus, 'INVISIBLE'>;
+}
+
+export type PresenceSlice = PresenceSliceState & {
+	presenceActions: PresenceSliceActions;
+};
 
 const statusEventMap = {
 	[PresenceStatus.ONLINE]: PRESENCE_EVENTS.SEND.GO_VISIBLE,
@@ -40,34 +44,41 @@ export const createPresenceSlice: StateCreator<
 	[],
 	[],
 	PresenceSlice
-> = (set, get) => ({
-	status: PresenceStatus.ONLINE,
-	globalOnlineCount: 0,
-	onlineFriendsCount: 0,
-	onlineFriends: new Map<string, PresenceFriend>(),
+> = (set, get) => {
+	let onGlobalCountHandler: ((data: { count: number }) => void) | null = null;
+	let onInitialStatusHandler: ((data: { status: PresenceStatus }) => void) | null =
+		null;
+	let onInitialFriendsHandler:
+		((payload: PresenceInitialFriendsPayload) => void) | null = null;
+	let onConnectedHandler: ((payload: PresenceFriendConnectedPayload) => void) | null =
+		null;
+	let onStatusChangeHandler:
+		((payload: PresenceFriendStatusChangePayload) => void) | null = null;
 
-	presenceActions: {
-		initPresenceListeners: () => {
-			const { socket } = get();
-			if (!socket) return;
+	return {
+		status: PresenceStatus.ONLINE,
+		globalOnlineCount: 0,
+		onlineFriendsCount: 0,
+		onlineFriends: new Map<string, PresenceFriend>(),
 
-			socket.on(
-				PRESENCE_EVENTS.RECEIVE.GLOBAL_COUNT,
-				({ count }: { count: number }) => {
+		presenceActions: {
+			initPresenceListeners: () => {
+				const socket = get().socket;
+				if (!socket) return;
+
+				get().presenceActions.cleanupPresenceListeners();
+
+				onGlobalCountHandler = ({ count }: { count: number }) => {
 					set({ globalOnlineCount: count });
-				},
-			);
+				};
 
-			socket.on(
-				PRESENCE_EVENTS.RECEIVE.INITIAL_STATUS,
-				({ status }: { status: PresenceStatus }) => {
+				onInitialStatusHandler = ({ status }: { status: PresenceStatus }) => {
 					set({ status });
-				},
-			);
+				};
 
-			socket.on(
-				PRESENCE_EVENTS.RECEIVE.INITIAL_FRIENDS,
-				({ friends }: PresenceInitialFriendsPayload) => {
+				onInitialFriendsHandler = ({
+					friends,
+				}: PresenceInitialFriendsPayload) => {
 					set({
 						onlineFriends: new Map(
 							friends.map((friend) => [
@@ -80,12 +91,9 @@ export const createPresenceSlice: StateCreator<
 						),
 						onlineFriendsCount: friends.length,
 					});
-				},
-			);
+				};
 
-			socket.on(
-				PRESENCE_EVENTS.RECEIVE.CONNECTED,
-				(payload: PresenceFriendConnectedPayload) => {
+				onConnectedHandler = (payload: PresenceFriendConnectedPayload) => {
 					const { id, status, username, displayName, avatarUrl } = payload;
 					const friend = get().onlineFriends.get(id);
 
@@ -108,12 +116,12 @@ export const createPresenceSlice: StateCreator<
 						}),
 						onlineFriendsCount: prev.onlineFriendsCount + 1,
 					}));
-				},
-			);
+				};
 
-			socket.on(
-				PRESENCE_EVENTS.RECEIVE.STATUS_CHANGE,
-				({ id, status }: PresenceFriendStatusChangePayload) => {
+				onStatusChangeHandler = ({
+					id,
+					status,
+				}: PresenceFriendStatusChangePayload) => {
 					const currentFriends = get().onlineFriends;
 					const friend = currentFriends.get(id);
 
@@ -144,47 +152,92 @@ export const createPresenceSlice: StateCreator<
 							onlineFriendsCount: prev.onlineFriendsCount,
 						}));
 					}
-				},
-			);
-		},
+				};
 
-		cleanupPresenceListeners: () => {
-			const { socket } = get();
-			if (!socket) return;
+				socket.on(PRESENCE_EVENTS.RECEIVE.GLOBAL_COUNT, onGlobalCountHandler);
+				socket.on(PRESENCE_EVENTS.RECEIVE.INITIAL_STATUS, onInitialStatusHandler);
+				socket.on(
+					PRESENCE_EVENTS.RECEIVE.INITIAL_FRIENDS,
+					onInitialFriendsHandler,
+				);
+				socket.on(PRESENCE_EVENTS.RECEIVE.CONNECTED, onConnectedHandler);
+				socket.on(PRESENCE_EVENTS.RECEIVE.STATUS_CHANGE, onStatusChangeHandler);
+			},
 
-			socket.off(PRESENCE_EVENTS.RECEIVE.GLOBAL_COUNT);
-			socket.off(PRESENCE_EVENTS.RECEIVE.INITIAL_FRIENDS);
-			socket.off(PRESENCE_EVENTS.RECEIVE.STATUS_CHANGE);
+			cleanupPresenceListeners: () => {
+				const socket = get().socket;
+				if (!socket) return;
 
-			set({
-				onlineFriends: new Map<string, PresenceFriend>(),
-				onlineFriendsCount: 0,
-				globalOnlineCount: 0,
-			});
-		},
+				if (onGlobalCountHandler) {
+					socket.off(
+						PRESENCE_EVENTS.RECEIVE.GLOBAL_COUNT,
+						onGlobalCountHandler,
+					);
+					onGlobalCountHandler = null;
+				}
+				if (onInitialStatusHandler) {
+					socket.off(
+						PRESENCE_EVENTS.RECEIVE.INITIAL_STATUS,
+						onInitialStatusHandler,
+					);
+					onInitialStatusHandler = null;
+				}
+				if (onInitialFriendsHandler) {
+					socket.off(
+						PRESENCE_EVENTS.RECEIVE.INITIAL_FRIENDS,
+						onInitialFriendsHandler,
+					);
+					onInitialFriendsHandler = null;
+				}
+				if (onConnectedHandler) {
+					socket.off(PRESENCE_EVENTS.RECEIVE.CONNECTED, onConnectedHandler);
+					onConnectedHandler = null;
+				}
+				if (onStatusChangeHandler) {
+					socket.off(
+						PRESENCE_EVENTS.RECEIVE.STATUS_CHANGE,
+						onStatusChangeHandler,
+					);
+					onStatusChangeHandler = null;
+				}
 
-		goStatus: async (newStatus: Exclude<PresenceStatus, PresenceStatus.OFFLINE>) => {
-			const { socket, status } = get();
-			if (!socket?.connected) return;
-			if (status === newStatus) return;
-
-			try {
-				await emit<void>({
-					socket,
-					event: statusEventMap[newStatus],
+				set({
+					onlineFriends: new Map<string, PresenceFriend>(),
+					onlineFriendsCount: 0,
+					globalOnlineCount: 0,
 				});
-				set({ status: newStatus });
-			} catch {}
-		},
+			},
 
-		isFriendOnline: (friendId: string) => {
-			const { onlineFriends } = get();
-			return onlineFriends.has(friendId);
+			goStatus: async (
+				newStatus: Exclude<PresenceStatus, PresenceStatus.OFFLINE>,
+			) => {
+				const { socket, status } = get();
+				if (!socket?.connected) return;
+				if (status === newStatus) return;
+
+				try {
+					await emit<void>({
+						socket,
+						event: statusEventMap[newStatus],
+					});
+					set({ status: newStatus });
+				} catch {}
+			},
+
+			isFriendOnline: (friendId: string) => {
+				const { onlineFriends } = get();
+				return onlineFriends.has(friendId);
+			},
+
+			getFriendStatus: (friendId: string) => {
+				const { onlineFriends } = get();
+				const friend = onlineFriends.get(friendId);
+				return friend
+					? friend.status === PresenceStatus.INVISIBLE
+						? PresenceStatus.OFFLINE
+						: friend.status
+					: PresenceStatus.OFFLINE;
+			},
 		},
-		getFriendStatus: (friendId: string) => {
-			const { onlineFriends } = get();
-			const friend = onlineFriends.get(friendId);
-			return friend ? friend.status : PresenceStatus.OFFLINE;
-		},
-	},
-});
+	};
+};

@@ -5,16 +5,16 @@ import { getFriendsFromIds } from '../api/get';
 import { GetFriendIdsParams, GetFriendsParams } from '../types';
 
 const initialFriendsParam = {
-	limit: 50,
+	limit: 25,
 	orderBy: 'username-asc',
 } satisfies GetFriendsParams;
 
 export type UseFriendsParams = Omit<GetFriendIdsParams, 'cursor' | 'limit'>;
 
-export const useFriends = ({ search, friendIds, status }: UseFriendsParams) => {
+export const useFriends = (params: UseFriendsParams) => {
 	return useInfiniteQuery({
-		queryKey: ['friends', { search, friendIds, status }],
-		initialPageParam: { ...initialFriendsParam, search, friendIds, status },
+		queryKey: ['friends', params],
+		initialPageParam: { ...initialFriendsParam, ...params },
 		queryFn: ({ pageParam }) => getFriendsFromIds(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			if (!lastPage.meta.hasNextPage) return undefined;

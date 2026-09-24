@@ -12,6 +12,8 @@ const CHAT_ENDPOINTS = {
 
 	directRoom: `${CHAT_ROOM_START_PATH}/direct`,
 
+	notificationsUnreadCount: `${CHAT_START_PATH}/notifications/unread-count`,
+
 	getRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,
 	patchRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,
 	deleteRoom: (id: string) => `${CHAT_ROOM_START_PATH}/${id}`,

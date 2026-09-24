@@ -50,7 +50,8 @@ export default function Form<T extends FieldValues>({
 
 	const getText = () => {
 		if (isSubmitting) return button.submittingText;
-		if (form.formState.isSubmitSuccessful) return button.submittedText;
+		if (form.formState.isSubmitSuccessful && !multipleSubmit)
+			return button.submittedText;
 		return button.submitText;
 	};
 

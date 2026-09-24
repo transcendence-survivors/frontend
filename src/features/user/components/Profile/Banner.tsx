@@ -2,7 +2,6 @@ import { HTMLAttributes } from 'react';
 import { cn } from '@/libs/utils';
 import { MediaModal } from '@/components/ui/media-modal';
 import { ImageProps } from '@/libs/types';
-import { Search } from 'lucide-react';
 
 interface BannerProps extends HTMLAttributes<HTMLDivElement> {
 	img: ImageProps;
@@ -21,6 +20,7 @@ const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 				alt={alt}
 				thumbnailClassName='w-full h-full absolute inset-0 rounded-none'
 				thumbnailFit='cover'
+				modalFit='cover'
 				modalClassName='aspect-3/1 max-h-[85vh] min-h-[min(300px,80vh)] h-auto w-auto rounded-none '
 				loading='eager'
 			/>

@@ -17,15 +17,20 @@ interface TypingUser {
 	displayName: string;
 }
 
-export interface TypingSlice {
+export interface TypingSliceState {
 	typingUsersByRoom: Record<string, Record<string, TypingUser>>;
-	typingActions: {
-		initTypingListeners: () => void;
-		destroyTypingListeners: () => void;
-		startTyping: (roomId: string) => void;
-		stopTyping: (roomId: string) => void;
-	};
 }
+
+export interface TypingSliceActions {
+	initTypingListeners: () => void;
+	destroyTypingListeners: () => void;
+	startTyping: (roomId: string) => Promise<void>;
+	stopTyping: (roomId: string) => Promise<void>;
+}
+
+export type TypingSlice = TypingSliceState & {
+	typingActions: TypingSliceActions;
+};
 
 type TimeoutTimer = ReturnType<typeof setTimeout> | null;
 
@@ -40,6 +45,7 @@ export const createTypingSlice: StateCreator<
 > = (set, get) => {
 	let debounceTimer: TimeoutTimer = null;
 	let autoStopTimer: TimeoutTimer = null;
+	let onUpdate: ((payload: TypingPayload) => void) | null = null;
 
 	return {
 		typingUsersByRoom: {},
@@ -49,36 +55,36 @@ export const createTypingSlice: StateCreator<
 				if (!socket) return;
 				get().typingActions.destroyTypingListeners();
 
-				socket.on(
-					CHAT_EVENTS.RECEIVE.TYPING_UPDATE,
-					({ userId, displayName, roomId, isTyping }: TypingPayload) => {
-						set((state) => {
-							const roomTypingMap = {
-								...(state.typingUsersByRoom[roomId] ?? {}),
-							};
+				onUpdate = ({ userId, displayName, roomId, isTyping }: TypingPayload) => {
+					set((state) => {
+						const roomTypingMap = {
+							...(state.typingUsersByRoom[roomId] ?? {}),
+						};
 
-							if (isTyping) {
-								roomTypingMap[userId] = {
-									id: userId,
-									displayName,
-								};
-							} else delete roomTypingMap[userId];
-
-							return {
-								typingUsersByRoom: {
-									...state.typingUsersByRoom,
-									[roomId]: roomTypingMap,
-								},
+						if (isTyping) {
+							roomTypingMap[userId] = {
+								id: userId,
+								displayName,
 							};
-						});
-					},
-				);
+						} else delete roomTypingMap[userId];
+
+						return {
+							typingUsersByRoom: {
+								...state.typingUsersByRoom,
+								[roomId]: roomTypingMap,
+							},
+						};
+					});
+				};
+
+				socket.on(CHAT_EVENTS.RECEIVE.TYPING_UPDATE, onUpdate);
 			},
 
 			destroyTypingListeners() {
 				const socket = get().socket;
-				if (socket) {
-					socket.off(CHAT_EVENTS.RECEIVE.TYPING_UPDATE);
+				if (socket && onUpdate) {
+					socket.off(CHAT_EVENTS.RECEIVE.TYPING_UPDATE, onUpdate);
+					onUpdate = null;
 				}
 				if (debounceTimer) clearTimeout(debounceTimer);
 				if (autoStopTimer) clearTimeout(autoStopTimer);
@@ -132,14 +138,7 @@ export const createTypingSlice: StateCreator<
 };
 
 export const useTypingActions = () => {
-	return useWebsocketStore(
-		useShallow((state) => ({
-			initTypingListeners: state.typingActions.initTypingListeners,
-			destroyTypingListeners: state.typingActions.destroyTypingListeners,
-			startTyping: state.typingActions.startTyping,
-			stopTyping: state.typingActions.stopTyping,
-		})),
-	);
+	return useWebsocketStore(useShallow((state) => state.typingActions));
 };
 
 export const useTypingUsers = (roomId: string): TypingUser[] => {

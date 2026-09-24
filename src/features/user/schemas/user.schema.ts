@@ -55,11 +55,12 @@ const userSchema = z.object({
 	username: userNameSchema,
 	firstName: userFirstNameSchema,
 	lastName: userLastNameSchema,
-	birthdate: userBirthdateSchema,
+	birthDate: userBirthdateSchema,
 	gender: userGenderSchema,
 	displayName: userDisplayNameSchema,
 	bio: userBioSchema.optional(),
 	password: userPasswordSchema,
+	localePreference: userLocaleSchema,
 });
 
 type UserSchema = z.infer<typeof userSchema>;

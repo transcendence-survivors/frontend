@@ -18,11 +18,11 @@ const getFriendsFromIds = async ({
 	status,
 	...params
 }: GetFriendIdsParams) => {
-	if (status === 'all') return getFriends({ ...params });
+	if (status === 'ALL') return getFriends({ ...params });
 
 	const res = await api.post<GetFriendsResponse>(FRIEND_ENDPOINTS.getfriendsIds, {
 		friendIds,
-		status: status === 'online' ? 'IN' : 'NOT_IN',
+		status,
 		...params,
 	});
 	if (isApiError(res)) {

@@ -1,30 +1,41 @@
 import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useMessageActions } from '../stores/messageSlice';
 import { useSocketState } from '@/modules/websocket/hooks/useSocketState';
+import { useMessageActions } from '../stores/messageSlice';
 import { useTypingActions } from '../stores/typingSlice';
+import { useRoomActions } from '../stores/roomSlice';
+import { useNotificationActions } from '../stores/notificationSlice';
 
 export function useChatInit() {
 	const queryClient = useQueryClient();
 	const { socket, isConnected } = useSocketState();
-	const { initMessageListeners, destroyMessageListeners } = useMessageActions();
-	const { initTypingListeners, destroyTypingListeners } = useTypingActions();
+
+	const messageActions = useMessageActions();
+	const typingActions = useTypingActions();
+	const roomActions = useRoomActions();
+	const notifActions = useNotificationActions();
 
 	useEffect(() => {
 		if (!socket || !isConnected) return;
-		initMessageListeners(queryClient);
-		initTypingListeners();
+
+		messageActions.initMessageListeners(queryClient);
+		typingActions.initTypingListeners();
+		roomActions.initRoomListeners(queryClient);
+		notifActions.initNotificationListeners(queryClient);
+
 		return () => {
-			destroyMessageListeners();
-			destroyTypingListeners();
+			messageActions.destroyMessageListeners();
+			typingActions.destroyTypingListeners();
+			roomActions.destroyRoomListeners();
+			notifActions.destroyNotificationListeners();
 		};
 	}, [
 		socket,
 		isConnected,
 		queryClient,
-		initMessageListeners,
-		destroyMessageListeners,
-		initTypingListeners,
-		destroyTypingListeners,
+		messageActions,
+		typingActions,
+		roomActions,
+		notifActions,
 	]);
 }

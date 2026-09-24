@@ -22,14 +22,14 @@ const getFriendsIdsCount = async ({
 	status,
 	...params
 }: GetFriendIdsCountParams) => {
-	if (status === 'all') {
+	if (status === 'ALL') {
 		return getFriendsCount({ ...params });
 	}
 	const res = await api.post<GetFriendsCountResponse>(
 		FRIEND_ENDPOINTS.getfriendsIdsCount,
 		{
 			friendIds,
-			status: status === 'online' ? 'IN' : 'NOT_IN',
+			status,
 			...params,
 		},
 	);

@@ -5,14 +5,23 @@ import FriendsHeader from './FriendsHeader';
 import FriendsData from './FriendsData';
 import { useOnlineFriends } from '@/features/presence/hooks/useOnlineFriends';
 import { useMemo } from 'react';
+import { UseFriendsParams } from '../hooks/useFriends';
 
 type FriendsProps = React.HTMLAttributes<HTMLElement>;
+
+const statusMap = {
+	all: 'ALL',
+	online: 'IN',
+	offline: 'NOT_IN',
+} as const satisfies Record<string, UseFriendsParams['status']>;
+
+const urlKeys = Object.keys(statusMap) as Array<keyof typeof statusMap>;
 
 const Friends = ({ ...props }: FriendsProps) => {
 	const [search] = useQueryState('search', { defaultValue: '' });
 	const [status, setStatus] = useQueryState(
 		'status',
-		parseAsStringLiteral(['all', 'online', 'offline']).withDefault('all'),
+		parseAsStringLiteral(urlKeys).withDefault('all'),
 	);
 
 	const { onlineFriends, getFriendStatus } = useOnlineFriends();
@@ -20,7 +29,7 @@ const Friends = ({ ...props }: FriendsProps) => {
 	const params = useMemo(
 		() => ({
 			search,
-			status,
+			status: statusMap[status],
 			friendIds,
 		}),
 		[search, status, friendIds],
@@ -28,7 +37,12 @@ const Friends = ({ ...props }: FriendsProps) => {
 
 	return (
 		<>
-			<FriendsHeader setStatus={setStatus} params={params} {...props} />
+			<FriendsHeader
+				setStatus={setStatus}
+				params={params}
+				value={status}
+				{...props}
+			/>
 			<FriendsData getFriendStatus={getFriendStatus} params={params} />
 		</>
 	);

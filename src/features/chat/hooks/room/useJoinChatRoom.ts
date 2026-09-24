@@ -1,19 +1,44 @@
 import { useWebsocketStore } from '@/modules/websocket/stores/rootStore';
 import { useEffect } from 'react';
-import { useMessageActions } from '../../stores/messageSlice';
+import { useRoomActions } from '../../stores/roomSlice';
+import { ChatRoom } from '../../types/room';
+import { ChatMemberRole } from '../../types/member';
+import { useUser } from '@/features/auth/stores/session';
+import { useNotificationActions } from '../../stores/notificationSlice';
+import { useQueryClient } from '@tanstack/react-query';
 
-export function useJoinChatRoom(roomId: string) {
-	const { joinRoom, leaveRoom } = useMessageActions();
+export const useJoinChatRoom = (room: ChatRoom, role: ChatMemberRole) => {
+	const queryClient = useQueryClient();
 	const socket = useWebsocketStore((s) => s.socket);
+	const roomActions = useRoomActions();
+	const notifActions = useNotificationActions();
+	const user = useUser();
+
+	const roomId = room.id;
+	const userId = user?.id || null;
 
 	useEffect(() => {
-		if (!socket || !roomId) return;
+		if (roomId) roomActions.setRoom(room);
+	}, [room, roomId, roomActions]);
 
-		joinRoom(roomId).catch((err) => console.error('Failed to join room', err));
+	useEffect(() => {
+		if (!roomId) return;
+
+		roomActions.setRoomRole(role);
+		roomActions.setUserId(userId);
+		notifActions.setCurrentRoomId(roomId);
+
+		if (socket) {
+			void notifActions.markRoomAsRead(roomId, queryClient);
+			void roomActions.joinRoom(roomId);
+		}
+
 		return () => {
-			leaveRoom(roomId).catch(() => {
-				console.error('Failed to leave room', roomId);
-			});
+			if (socket) {
+				void roomActions.leaveRoom(roomId);
+			}
+			roomActions.clearRoomState();
+			notifActions.setCurrentRoomId(null);
 		};
-	}, [socket, roomId, joinRoom, leaveRoom]);
-}
+	}, [socket, roomId, role, userId, roomActions, notifActions, queryClient]);
+};

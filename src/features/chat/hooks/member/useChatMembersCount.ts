@@ -8,7 +8,7 @@ interface UseChatMembersCountParams {
 
 export const useChatMembersCount = ({ roomId, search }: UseChatMembersCountParams) => {
 	return useQuery({
-		queryKey: ['chat-members-count', roomId, { search }],
+		queryKey: ['chat-members', roomId, 'count', { search }],
 		queryFn: () => getChatMembersCount(roomId, { search }),
 		enabled: Boolean(roomId),
 	});

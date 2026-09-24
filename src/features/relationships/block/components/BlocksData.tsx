@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { BlockCard, BlockCardSkeleton } from './BlockCard';
-import { Error } from '../../components/error';
+import { Error } from '../../../../components/ui/error';
 import { useBlocks, UseBlocksParams } from '../hooks/useBlocks';
 import { LoadingList } from '@/components/ui/loading-list';
 
@@ -50,7 +50,7 @@ const BlocksData = ({ params }: BlocksDataProps) => {
 				<ul className='flex flex-col gap-2'>
 					{blocked.map(({ id, blocked }) => (
 						<li key={id}>
-							<BlockCard user={blocked} params={params} />
+							<BlockCard user={blocked} />
 						</li>
 					))}
 				</ul>

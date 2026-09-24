@@ -80,14 +80,15 @@ const APP_ROUTES = defineRouteMap({
 		che: '/feed',
 		it: '/feed',
 	},
-	leaderboard: {
-		en: '/leaderboard',
-		de: '/rangliste',
-		fr: '/classement',
-		es: '/clasificacion',
-		che: '/rangliste',
-		it: '/classifica',
+	search: {
+		en: '/search',
+		de: '/suche',
+		fr: '/recherche',
+		es: '/buscar',
+		che: '/suche',
+		it: '/ricerca',
 	},
+
 	friends: {
 		en: '/friends',
 		de: '/freunde',
@@ -112,14 +113,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/blockiert',
 		it: '/bloccati',
 	},
-	search: {
-		en: '/search',
-		de: '/suche',
-		fr: '/recherche',
-		es: '/buscar',
-		che: '/suche',
-		it: '/ricerca',
-	},
+
 	chat: {
 		en: '/chat',
 		de: '/chat',
@@ -136,6 +130,7 @@ const APP_ROUTES = defineRouteMap({
 		che: '/chat/:id',
 		it: '/chat/:id',
 	},
+
 	userName: {
 		en: '/:username',
 		de: '/:username',
@@ -192,6 +187,38 @@ const APP_ROUTES = defineRouteMap({
 		es: '/configuracion',
 		che: '/einstellungen',
 		it: '/impostazioni',
+	},
+	settingsAccount: {
+		en: '/settings/account',
+		de: '/einstellungen/konto',
+		fr: '/parametres/compte',
+		es: '/configuracion/cuenta',
+		che: '/einstellungen/konto',
+		it: '/impostazioni/account',
+	},
+	settingsProfile: {
+		en: '/settings/profile',
+		de: '/einstellungen/profil',
+		fr: '/parametres/profil',
+		es: '/configuracion/perfil',
+		che: '/einstellungen/profil',
+		it: '/impostazioni/profilo',
+	},
+	settingsSecurity: {
+		en: '/settings/security',
+		de: '/einstellungen/sicherheit',
+		fr: '/parametres/securite',
+		es: '/configuracion/seguridad',
+		che: '/einstellungen/sicherheit',
+		it: '/impostazioni/sicurezza',
+	},
+	settingsDangerZone: {
+		en: '/settings/danger-zone',
+		de: '/einstellungen/gefahrzone',
+		fr: '/parametres/zone-de-danger',
+		es: '/configuracion/zona-de-peligro',
+		che: '/einstellungen/gefahrzone',
+		it: '/impostazioni/zona-di-pericolo',
 	},
 
 	postId: {

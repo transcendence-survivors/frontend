@@ -1,27 +1,25 @@
 'use client';
 
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { InfiniteData, useMutation } from '@tanstack/react-query';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
 import { deleteFriend } from '../api/delete';
-import { UseFriendsParams } from './useFriends';
 import { Friend, GetFriendsResponse } from '../types';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 interface UseFriendDeleteParams {
 	friendId: string;
 	successMessage: string;
 	failureMessage: string;
-	params: UseFriendsParams;
 }
 
 const useFriendDelete = ({
 	friendId,
 	successMessage,
 	failureMessage,
-	params,
 }: UseFriendDeleteParams) => {
-	const queryClient = useQueryClient();
-	const queryKey = ['friends', { ...params }];
+	const { invalidate, queryClient } = useInvalidateQueries();
+	const queryKey = ['friends'];
 
 	return useMutation({
 		mutationKey: ['friends', 'delete', friendId],
@@ -30,7 +28,7 @@ const useFriendDelete = ({
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendsResponse>>(queryKey);
-			updateInfiniteQuery<Friend>(queryClient, queryKey, {
+			updateInfiniteQueries<Friend>(queryClient, queryKey, {
 				type: 'filter',
 				callback: (req) => req.friend.id !== friendId,
 			});
@@ -42,8 +40,9 @@ const useFriendDelete = ({
 		},
 		onSuccess: () => toast.success(successMessage),
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey });
-			queryClient.invalidateQueries({ queryKey: ['users'] });
+			invalidate(queryKey, { mode: 'instant' });
+			invalidate(['friends-count'], { mode: 'instant' });
+			invalidate(['users'], { mode: 'instant', reset: true });
 		},
 	});
 };

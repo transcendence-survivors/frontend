@@ -9,7 +9,24 @@ interface ScrollSnapshot {
 	scrollTop: number;
 }
 
-export const useChatScroll = ({ messageCount }: UseChatScrollOptions) => {
+interface UseChatScrollOptions {
+	messageCount: number;
+	lastMessageSenderId?: string;
+	currentUserId?: string | null;
+}
+
+interface ScrollSnapshot {
+	scrollHeight: number;
+	scrollTop: number;
+}
+
+const NEAR_BOTTOM_THRESHOLD = 200;
+
+export const useChatScroll = ({
+	messageCount,
+	lastMessageSenderId,
+	currentUserId,
+}: UseChatScrollOptions) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const isInitialLoad = useRef<boolean>(true);
 	const pendingSnapshotRef = useRef<ScrollSnapshot | null>(null);
@@ -44,8 +61,25 @@ export const useChatScroll = ({ messageCount }: UseChatScrollOptions) => {
 			}
 
 			pendingSnapshotRef.current = null;
+			return;
 		}
-	}, [messageCount]);
+
+		const isOwnMessage =
+			Boolean(lastMessageSenderId) &&
+			Boolean(currentUserId) &&
+			lastMessageSenderId === currentUserId;
+
+		const isNearBottom =
+			container.scrollHeight - container.scrollTop - container.clientHeight <
+			NEAR_BOTTOM_THRESHOLD;
+
+		if (isOwnMessage || isNearBottom) {
+			container.scrollTo({
+				top: container.scrollHeight,
+				behavior: isOwnMessage ? 'auto' : 'smooth',
+			});
+		}
+	}, [messageCount, lastMessageSenderId, currentUserId]);
 
 	return { containerRef, isInitialLoad, snapshotScroll };
 };

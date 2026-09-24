@@ -1,7 +1,7 @@
 'use client';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateInfiniteQuery } from '@/libs/api/helpers/infiniteQuery';
+import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatRoom } from '../../types/room';
 import { isApiError } from '@/libs/api';
 import {
@@ -12,6 +12,7 @@ import {
 } from '../../api/rooms';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/modules/i18n/constants/routes';
+import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 type UseChatRoomCreateParams = {
 	onMutationSuccess?: () => void;
@@ -20,7 +21,7 @@ type UseChatRoomCreateParams = {
 };
 
 export const useChatRoomCreate = ({ usersIds, name }: UseChatRoomCreateParams) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 	const roomsQueryKeys = ['chat-rooms'];
 
 	return useMutation({
@@ -31,13 +32,13 @@ export const useChatRoomCreate = ({ usersIds, name }: UseChatRoomCreateParams) =
 		},
 		onSuccess: (data) => {
 			if (isApiError(data)) return;
-			queryClient.invalidateQueries({ queryKey: roomsQueryKeys });
+			invalidate(roomsQueryKeys, { mode: 'instant' });
 		},
 	});
 };
 
 export const useChatRoomDelete = (roomId: string) => {
-	const queryClient = useQueryClient();
+	const { invalidate, queryClient } = useInvalidateQueries();
 	const roomsQueryKeys = ['chat-rooms'];
 	const router = useRouter();
 
@@ -48,7 +49,7 @@ export const useChatRoomDelete = (roomId: string) => {
 			await queryClient.cancelQueries({ queryKey: roomsQueryKeys, exact: true });
 			const previous = queryClient.getQueryData(roomsQueryKeys);
 
-			updateInfiniteQuery<ChatRoom>(queryClient, roomsQueryKeys, {
+			updateInfiniteQueries<ChatRoom>(queryClient, roomsQueryKeys, {
 				type: 'filter',
 				callback: (room) => room.id !== roomId,
 			});
@@ -61,7 +62,7 @@ export const useChatRoomDelete = (roomId: string) => {
 			}
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey: roomsQueryKeys });
+			invalidate(roomsQueryKeys, { mode: 'instant' });
 		},
 		onSuccess: () => {
 			router.push(ROUTES.chat());
@@ -71,15 +72,8 @@ export const useChatRoomDelete = (roomId: string) => {
 };
 
 export const useChatRoomEdit = (roomId: string) => {
-	const queryClient = useQueryClient();
-	const router = useRouter();
-
 	return useMutation({
 		mutationKey: ['chat-rooms', 'edit', roomId],
 		mutationFn: (params: ChatRoomPatchPayload) => patchChatRoom(roomId, params),
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['chat-rooms'] });
-			router.refresh();
-		},
 	});
 };

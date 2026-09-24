@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { UserRoundMinus } from 'lucide-react';
-import { UseFriendsParams } from '../hooks/useFriends';
 import { useFriendDelete } from '../hooks/useFriendActions';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -13,13 +12,11 @@ import { useTranslations } from 'next-intl';
 interface FriendDeleteProps {
 	friendId: string;
 	friendDisplayName: string;
-	params: UseFriendsParams;
 }
 
 export const FriendDeleteButton = ({
 	friendId,
 	friendDisplayName,
-	params,
 }: FriendDeleteProps) => {
 	const t = useTranslations('relationships.friends.delete');
 
@@ -31,7 +28,6 @@ export const FriendDeleteButton = ({
 		failureMessage: t('failure_displayname', {
 			displayName: friendDisplayName,
 		}),
-		params,
 	});
 
 	const label = t('tooltip');

@@ -3,30 +3,17 @@ import { ChatDateDivider } from './ChatDateDivider';
 import { ChatMessageBubble } from './bubble/ChatMessageBubble';
 import { ChatMessage, ChatMessageType, TextChatMessage } from '../../types/message';
 import { ChatMessageSystem } from './bubble/ChatMessageSystem';
-import { ChatMemberRole } from '../../types/member';
 
 interface ChatMessageGroupProps {
 	date: string;
 	dayMessages: ChatMessage[];
-	currentUserId: string;
-	role: ChatMemberRole;
-	isGroup: boolean;
 	onEdit: (message: TextChatMessage) => void;
 	onDelete: (messageId: string) => void;
 	onReply: (message: TextChatMessage) => void;
 }
 
 export const ChatMessageGroup = React.memo(
-	({
-		date,
-		dayMessages,
-		currentUserId,
-		role,
-		isGroup,
-		onEdit,
-		onDelete,
-		onReply,
-	}: ChatMessageGroupProps) => (
+	({ date, dayMessages, onEdit, onDelete, onReply }: ChatMessageGroupProps) => (
 		<div className='flex flex-col gap-2'>
 			<ChatDateDivider date={date} />
 			<ul className='flex flex-col'>
@@ -50,9 +37,6 @@ export const ChatMessageGroup = React.memo(
 						<li key={message.id}>
 							<ChatMessageBubble
 								message={message}
-								isMe={currentUserId === message.sender?.id}
-								isGroup={isGroup}
-								role={role}
 								prevUserId={prevUserId}
 								onEdit={onEdit}
 								onDelete={onDelete}

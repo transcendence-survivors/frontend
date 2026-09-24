@@ -52,7 +52,7 @@ const ChatRoomsSidebar = ({ className, ...props }: ChatNavProps) => {
 			className={cn(
 				'flex flex-col bg-card h-full transition-all min-h-0 absolute inset-0 z-20 w-full min-w-full lg:static overflow-hidden',
 				isOpen || !id
-					? 'translate-x-0 md:w-72 md:min-w-72 opacity-100 border-r border-border'
+					? 'translate-x-0 md:w-80 md:min-w-80 opacity-100 border-r border-border'
 					: '-translate-x-full md:translate-x-0 md:w-0 md:min-w-0 opacity-0 border-none',
 				className,
 			)}

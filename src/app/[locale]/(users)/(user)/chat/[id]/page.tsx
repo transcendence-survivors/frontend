@@ -5,35 +5,48 @@ import { notFound } from 'next/navigation';
 import ChatContainer from '@/features/chat/components/ChatContainer';
 import { cookies } from 'next/headers';
 import { ChatMembersSidebar } from '@/features/chat/components/sidebar/ChatMembersSidebar';
+import { Suspense } from 'react';
+import { Spinner } from '@/components/ui/spinner';
 
-interface ChatRoomProps {
-	params: Promise<{
-		id: string;
-	}>;
+interface ChatRoomPageProps {
+	params: Promise<{ id: string }>;
 }
 
-export default async function ChatRoom({ params }: ChatRoomProps) {
+export default async function page({ params }: ChatRoomPageProps) {
 	const [{ id }, cookieStore] = await Promise.all([params, cookies()]);
-	const res = await getChatRoom(id, cookieStore.toString());
 
-	if (isApiError(res)) notFound();
-	const room = res.data;
+	return (
+		<Suspense
+			fallback={
+				<div className='flex flex-1 items-center justify-center h-full'>
+					<Spinner className='size-10' />
+				</div>
+			}>
+			<ChatRoom cookieString={cookieStore.toString()} roomId={id} />
+		</Suspense>
+	);
+}
+
+interface ChatRoomProps {
+	roomId: string;
+	cookieString: string;
+}
+
+async function ChatRoom({ cookieString, roomId }: ChatRoomProps) {
+	const res = await getChatRoom(roomId, cookieString);
+
+	if (isApiError(res)) {
+		console.error('Error fetching chat room:', res);
+		notFound();
+	}
+	const { currentUserRole: role, ...room } = res.data;
 
 	return (
 		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
-			<ChatRoomHeader room={room} role={room.currentUserRole} />
+			<ChatRoomHeader />
 			<div className='flex flex-1 min-h-0 relative'>
-				<ChatContainer
-					roomId={room.id}
-					roomType={room.type}
-					role={room.currentUserRole}
-				/>
-				{room.type === 'GROUP' && (
-					<ChatMembersSidebar
-						roomId={room.id}
-						currentUserRole={room.currentUserRole}
-					/>
-				)}
+				<ChatContainer room={room} role={role} />
+				{room.type === 'GROUP' && <ChatMembersSidebar roomId={room.id} />}
 			</div>
 		</main>
 	);

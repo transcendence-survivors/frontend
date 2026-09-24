@@ -5,14 +5,14 @@ import UserDisplayUsername from '../Identity/UserDisplayUsername';
 import ProfileNav from './ProfileNav';
 import { AvatarModal } from '../Avatar/AvatarModal';
 import { useTranslations } from 'next-intl';
-import EditProfile from './EditProfile';
+import ProfileHeaderAction from './ProfileHeaderAction';
 
 interface ProfileHeaderProps extends React.HTMLAttributes<HTMLElement> {
 	user: UserFacade;
 }
 
 const ProfileHeader = ({
-	user: { username, displayName, coverImageUrl, avatarUrl, bio },
+	user: { id, username, displayName, coverImageUrl, avatarUrl, bio },
 	...props
 }: ProfileHeaderProps) => {
 	const t = useTranslations('profile');
@@ -43,13 +43,7 @@ const ProfileHeader = ({
 							/>
 						</div>
 						<div className='py-4 absolute top-1/3 sm:top-1/2 right-0'>
-							<div className='flex items-center gap-x-2 ml-auto'>
-								<EditProfile>
-									<Button variant='default' size={'lg'}>
-										{t('edit.button')}
-									</Button>
-								</EditProfile>
-							</div>
+							<ProfileHeaderAction user={{ id, displayName }} />
 						</div>
 					</div>
 					{bio && (

@@ -11,7 +11,7 @@ const initialUserRequestsParam = {
 
 const useRequests = ({ direction, search }: UseRequestsParams) => {
 	return useInfiniteQuery({
-		queryKey: ['friend-requests', { direction, search }],
+		queryKey: ['friend-requests', direction, { search }],
 		initialPageParam: { ...initialUserRequestsParam, direction, search },
 		queryFn: ({ pageParam }) => getFriendRequests(pageParam),
 		getNextPageParam: (lastPage, _, lastPageParam) => {

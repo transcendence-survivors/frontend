@@ -45,6 +45,46 @@
 			"success": "Profile updated successfully."
 		}
 	},
+	"settings": {
+		"title": "Settings",
+		"error_loading": "Failed to load account settings. Please try again later.",
+		"page": {
+			"title": "Settings",
+			"description": "Manage all your settings by selecting a category from the left menu."
+		},
+		"profile": {
+			"title": "Profile Settings",
+			"subtitle": "Update your profile information and preferences.",
+
+			"description": "Manage your public profile information, avatar, and banner image.",
+			"display_name_label": "Display Name",
+			"display_name_placeholder": "Enter your display name",
+			"bio_label": "Bio",
+			"bio_placeholder": "Tell us a little bit about yourself...",
+			"cover_label": "Cover Image",
+			"no_cover": "No cover image uploaded",
+			"change_cover": "Change cover",
+			"remove_cover": "Remove cover",
+			"change_avatar": "Change avatar",
+			"remove_avatar": "Remove avatar",
+			"avatar_hint": "JPEG, PNG, GIF, or WebP. 5MB maximum.",
+			"save": "Save Changes"
+		},
+		"account": {
+			"title": "Account Settings",
+			"subtitle": "Manage your account information and preferences."
+		},
+		"security": {
+			"title": "Security Settings",
+			"subtitle": "Manage your security settings and preferences."
+		},
+		"nav": {
+			"profile": "Profile",
+			"account": "Account",
+			"security": "Security",
+			"danger_zone": "Danger Zone"
+		}
+	},
 
 	"users": {
 		"no_befriended_users": "No users found that you are not friends with.",
@@ -213,6 +253,10 @@
 				"ask_friends": "Ask your friends to play with you!",
 				"create_button": "Create Chat"
 			},
+			"type": {
+				"group": "Group",
+				"direct": "Direct"
+			},
 
 			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
 			"no_chat_rooms_search": "No chat rooms found for your search.",
@@ -225,6 +269,11 @@
 				"activity_asc": "Activity (oldest messages first)",
 				"created_desc": "Creation date (recent first)",
 				"created_asc": "Creation date (oldest first)"
+			},
+			"status": {
+				"online": "Online · in the dark together",
+				"offline": "Offline · in the dark alone",
+				"dnd": "Do Not Disturb · in the dark alone"
 			},
 
 			"group_settings": {
@@ -278,8 +327,8 @@
 			"system": {
 				"default_actor": "System",
 				"role_updated": "{actor} changed {target}'s role from {oldRole} to {newRole}.",
+				"added": "{actor} added {target} to the room.",
 				"kicked": "{actor} removed {target} from the room.",
-				"joined": "{user} joined the room.",
 				"left": "{user} left the room.",
 				"room_renamed": "{actor} renamed the room from \"{oldName}\" to \"{newName}\".",
 				"room_name_added": "{actor} set the room name to \"{newName}\".",
@@ -323,6 +372,7 @@
 			"leave_room": "Leave Room",
 			"view_profile": "View Profile",
 			"joined_at": "Joined",
+
 			"dialogs": {
 				"kick_title": "Kick member",
 				"kick_description": "Are you sure you want to kick this member from the chat room? They will no longer have access to messages.",
@@ -333,7 +383,18 @@
 				"transfer_title": "Transfer ownership",
 				"transfer_description": "Are you sure you want to transfer ownership of this room? You will be demoted to Admin and lose owner privilege.",
 				"leave_title": "Leave chat room",
-				"leave_description": "Are you sure you want to leave this chat room? You will need to be re-invited to join again."
+				"leave_description": "Are you sure you want to leave this chat room? You will need to be re-invited to join again.",
+				"add": {
+					"tooltip": "Add members",
+					"title": "Add Members",
+					"description": "Select friends to add to this group chat.",
+					"search_placeholder": "Search friends...",
+					"add": "Add Members",
+					"no_friends": "No friends available to add.",
+					"no_friends_found": "No friends match your search.",
+					"no_users_selected": "Select at least one friend to add to the chat.",
+					"fetch_error": "Failed to load friends. Please try again."
+				}
 			}
 		},
 		"title": "Chat",
@@ -518,7 +579,11 @@
 				"submit": "Submit",
 				"submitting": "Submitting",
 				"submitted": "Submitted",
-				"validating": "Validating"
+				"validating": "Validating",
+
+				"save": "Save",
+				"saving": "Saving",
+				"saved": "Saved"
 			},
 			"recap_title": "Review Your Information",
 
@@ -615,6 +680,13 @@
 	},
 	"common": {
 		"confirm": "Confirm",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+
+		"themes": {
+			"dark": "Dark",
+			"light": "Light",
+			"system": "System",
+			"neon": "Neon"
+		}
 	}
 }

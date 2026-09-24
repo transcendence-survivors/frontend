@@ -3,7 +3,7 @@
 import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Error } from '../../components/error';
+import { Error } from '../../../../components/ui/error';
 import { FriendRequestCard, FriendRequestCardSkeleton } from './FriendRequestCard';
 import { useTranslations } from 'next-intl';
 import { useRequests } from '../hooks/useRequest';
@@ -69,7 +69,7 @@ const FriendRequestsData = ({ params }: FriendRequestsProps) => {
 							<FriendRequestCard
 								user={friend}
 								since={since}
-								params={params}
+								direction={direction}
 							/>
 						</li>
 					))}

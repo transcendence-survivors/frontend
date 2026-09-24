@@ -16,7 +16,7 @@ type FriendOrderBy =
 
 type IdsParams = {
 	friendIds: string[];
-	status: FriendStatus;
+	status: 'IN' | 'NOT_IN' | 'ALL';
 };
 
 type GetFriendsParams = CursorParams<FriendOrderBy>;

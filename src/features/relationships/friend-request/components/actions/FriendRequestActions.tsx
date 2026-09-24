@@ -1,27 +1,27 @@
 import { useTranslations } from 'next-intl';
 import { FriendRequestAccept, FriendRequestAcceptSkeleton } from './FriendRequestAccept';
 import { FriendRequestDelete, FriendRequestDeleteSkeleton } from './FriendRequestDelete';
-import { FriendRequestDirection, UseRequestsParams } from '../../types';
+import { FriendRequestDirection } from '../../types';
 
 export interface FriendRequestActionsProps {
 	friendId: string;
 	friendDisplayName: string;
-	params: UseRequestsParams;
+	direction: FriendRequestDirection;
 }
 
 const FriendRequestActions = ({
 	friendId,
 	friendDisplayName,
-	params,
+	direction,
 }: FriendRequestActionsProps) => {
 	const t = useTranslations('relationships.requests');
 
 	return (
 		<div className='flex gap-2'>
-			{params.direction === 'incoming' && (
+			{direction === 'incoming' && (
 				<FriendRequestAccept
 					friendId={friendId}
-					params={params}
+					direction={direction}
 					successMessage={t('accept_success_from_displayname', {
 						displayName: friendDisplayName,
 					})}
@@ -36,15 +36,15 @@ const FriendRequestActions = ({
 			)}
 			<FriendRequestDelete
 				friendId={friendId}
-				params={params}
+				direction={direction}
 				successMessage={t(
-					params.direction === 'incoming'
+					direction === 'incoming'
 						? 'delete_success_from_displayname'
 						: 'delete_success_to_displayname',
 					{ displayName: friendDisplayName },
 				)}
 				failureMessage={t(
-					params.direction === 'incoming'
+					direction === 'incoming'
 						? 'delete_failure_from_displayname'
 						: 'delete_failure_to_displayname',
 					{ displayName: friendDisplayName },

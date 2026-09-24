@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { BaseUser } from '@/features/user/type';
 import ChatSelectedUsersPreview from './ChatSelectedUsersPreview';
-import ChatUsersSearch from './ChatUsersSearch';
+import ChatCreateUsersSearch from './ChatCreateUsersSearch';
 import ChatCreateButton from './ChatCreateButton';
 import { Input } from '@/components/ui/input';
 import { UseChatRoomsParams } from '@/features/chat/hooks/room/useChatRooms';
@@ -54,14 +54,17 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 						</DialogTitle>
 						<DialogDescription>{t('description')}</DialogDescription>
 					</DialogHeader>
-					<ChatUsersSearch
+					<ChatCreateUsersSearch
 						selectedUsers={selectedUsers}
 						onUserSelect={handleUserSelect}
 					/>
 					<DialogFooter>
 						<div className='flex flex-col justify-between gap-3 w-full pt-3 border-t border-border'>
 							<div className='flex gap-2'>
-								<ChatSelectedUsersPreview users={selectedUsers} />
+								<ChatSelectedUsersPreview
+									users={selectedUsers}
+									noUsersSelectedText={t('no_users_selected')}
+								/>
 								{selectedUsers.length > 1 && (
 									<Input
 										placeholder='Group Name'

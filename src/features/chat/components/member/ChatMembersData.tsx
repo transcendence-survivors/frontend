@@ -3,27 +3,19 @@
 import { Spinner } from '@/components/ui/spinner';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { LoadingList } from '@/components/ui/loading-list';
 import { ChatMemberCard, ChatMemberCardSkeleton } from './ChatMemberCard';
 import { useChatMembers, UseChatMembersParams } from '../../hooks/member/useChatMembers';
-import { ChatMemberRole } from '../../types/member';
 
 interface ChatMemberProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseChatMembersParams;
 	userId: string;
-	role: ChatMemberRole;
 }
 
-const ChatMembersData = ({
-	params,
-	userId,
-	role,
-	className,
-	...props
-}: ChatMemberProps) => {
+const ChatMembersData = ({ params, userId, className, ...props }: ChatMemberProps) => {
 	const t = useTranslations('chat.members');
 	const { ref, inView } = useInView({
 		threshold: 0,
@@ -45,8 +37,8 @@ const ChatMembersData = ({
 	if (isLoading) {
 		return (
 			<LoadingList
-				numberOfSkeletons={10}
-				className={className}
+				numberOfSkeletons={20}
+				className={'gap-0'}
 				SkeletonComponent={ChatMemberCardSkeleton}
 			/>
 		);
@@ -72,7 +64,6 @@ const ChatMembersData = ({
 								roomId={params.roomId}
 								member={member}
 								userId={userId}
-								role={role}
 								params={params}
 							/>
 						</li>

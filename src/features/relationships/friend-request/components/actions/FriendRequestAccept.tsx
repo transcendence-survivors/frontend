@@ -21,7 +21,7 @@ const FriendRequestAccept = ({
 	friendId,
 	successMessage,
 	failureMessage,
-	params,
+	direction,
 	ariaLabel,
 	label,
 }: FriendRequestAcceptProps) => {
@@ -29,7 +29,7 @@ const FriendRequestAccept = ({
 		friendId,
 		successMessage,
 		failureMessage,
-		params,
+		direction,
 	});
 
 	const onClick = () => mutate();

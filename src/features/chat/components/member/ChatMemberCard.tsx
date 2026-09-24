@@ -38,6 +38,7 @@ import { ChatMemberDemoteButton } from './actions/ChatMemberDemoteButton';
 import { ChatLeaveButton } from './actions/ChatLeaveButton';
 import { ChatMemberPromoteButton } from './actions/ChatMemberPromoteButton';
 import { UseChatMembersParams } from '../../hooks/member/useChatMembers';
+import { useRoomRole } from '../../stores/roomSlice';
 
 export interface ChatMemberCardProps {
 	roomId: string;
@@ -71,9 +72,9 @@ const ROLE_BADGE_STYLE: Record<ChatMemberRole, { icon?: ReactNode; className: st
 	};
 
 export const ChatMemberCard = memo(
-	({ roomId, member, userId, role, params }: ChatMemberCardProps) => {
+	({ roomId, member, userId, params }: ChatMemberCardProps) => {
 		const t = useTranslations('chat.members');
-
+		const role = useRoomRole();
 		const isSelf = userId === member.user.id;
 		const isOwner = role === 'OWNER';
 

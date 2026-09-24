@@ -7,6 +7,8 @@ type User = Omit<UserSchema, 'password'> & {
 	avatarUrl?: string;
 	coverImageUrl?: string;
 	role: UserRole;
+	createdAt: string;
+	updatedAt: string;
 };
 
 type BaseUser = Pick<User, 'id' | 'username' | 'displayName' | 'avatarUrl'>;
@@ -18,7 +20,7 @@ type UserFacade = Pick<
 	| 'displayName'
 	| 'coverImageUrl'
 	| 'avatarUrl'
-	| 'birthdate'
+	| 'birthDate'
 	| 'bio'
 >;
 type UserOrderBy = 'username-asc' | 'username-desc' | 'created-asc' | 'created-desc';
@@ -41,6 +43,30 @@ type GetUserFeedParams =
 			feedParams?: never;
 	  };
 
+type UserSettings = Pick<
+	User,
+	| 'id'
+	| 'username'
+	| 'email'
+	| 'gender'
+	| 'firstName'
+	| 'lastName'
+	| 'birthDate'
+	| 'displayName'
+	| 'bio'
+	| 'avatarUrl'
+	| 'coverImageUrl'
+	| 'localePreference'
+	| 'createdAt'
+>;
+
+type PatchUserSettingsParams = Partial<
+	Omit<UserSettings, 'id' | 'username' | 'email' | 'createdAt'>
+> & {
+	avatarFile?: File | null;
+	coverFile?: File | null;
+};
+
 export type {
 	User,
 	UserRole,
@@ -52,5 +78,7 @@ export type {
 	GetUsersParams,
 	GetUserFeedParams,
 	GetUsersFeedParams,
+	UserSettings,
+	PatchUserSettingsParams,
 };
 export type { UserSchema, UserGender, UserLocale } from './schemas/user.schema';

@@ -9,9 +9,16 @@ import { UseFriendsParams } from '../hooks/useFriends';
 interface FriendHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseFriendsParams;
 	setStatus: (status: FriendStatus) => void;
+	value: FriendStatus;
 }
 
-const FriendHeader = ({ params, setStatus, className, ...props }: FriendHeaderProps) => {
+const FriendHeader = ({
+	params,
+	setStatus,
+	value,
+	className,
+	...props
+}: FriendHeaderProps) => {
 	const { data, isLoading, isError } = useFriendsCount(params);
 	const t = useTranslations('relationships.friends');
 	const count = data?.count ?? 0;
@@ -22,7 +29,7 @@ const FriendHeader = ({ params, setStatus, className, ...props }: FriendHeaderPr
 			{...props}>
 			<h2 className='text-2xl font-bold text-center sr-only'>{t('title')}</h2>
 			<ButtonsState
-				value={params.status}
+				value={value}
 				setValue={setStatus}
 				buttons={[
 					{ node: t('all_button'), value: 'all' },

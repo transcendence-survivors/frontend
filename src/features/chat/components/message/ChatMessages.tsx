@@ -3,24 +3,19 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
-
 import { useChatMessages } from '../../hooks/message/useChatMessages';
 import { useChatScroll } from '../../hooks/useChatScroll';
 import { useGroupedMessages } from '../../hooks/message/useGroupedMessages';
-
 import { LoadingList } from '@/components/ui/loading-list';
-import { Error } from '@/features/relationships/components/error';
+import { Error } from '@/components/ui/error';
 import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
 import { TextChatMessage } from '../../types/message';
-import { ChatMemberRole } from '../../types/member';
+import { useUser } from '@/features/auth/stores/session';
 
 interface ChatMessagesProps {
 	roomId: string;
-	userId: string;
-	role: ChatMemberRole;
-	isGroup: boolean;
 	onEditMessage: (message: TextChatMessage) => void;
 	onDeleteMessage: (messageId: string) => void;
 	onReplyMessage: (message: TextChatMessage) => void;
@@ -28,22 +23,23 @@ interface ChatMessagesProps {
 
 const ChatMessages = ({
 	roomId,
-	userId,
-	role,
-	isGroup,
 	onEditMessage,
 	onDeleteMessage,
 	onReplyMessage,
 }: ChatMessagesProps) => {
 	const t = useTranslations('chat.messages');
+	const user = useUser();
 
 	const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useChatMessages({ roomId });
 
 	const { messages, messagePerDay } = useGroupedMessages(data?.pages);
-
+	const lastMessage = messages.length - 1 >= 0 ? messages[messages.length - 1] : null;
 	const { containerRef, isInitialLoad, snapshotScroll } = useChatScroll({
 		messageCount: messages.length,
+		lastMessageSenderId:
+			(lastMessage?.type === 'TEXT' && lastMessage?.sender?.id) || undefined,
+		currentUserId: user?.id,
 	});
 
 	const { ref: topIntersectionRef, inView } = useInView({
@@ -108,9 +104,6 @@ const ChatMessages = ({
 						key={date}
 						date={date}
 						dayMessages={dayMessages}
-						currentUserId={userId}
-						role={role}
-						isGroup={isGroup}
 						onEdit={onEditMessage}
 						onDelete={onDeleteMessage}
 						onReply={onReplyMessage}

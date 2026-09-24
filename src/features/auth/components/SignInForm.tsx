@@ -35,18 +35,16 @@ const SignInForm = () => {
 	}
 
 	return (
-		<>
-			<Form
-				form={form}
-				fields={translatedFields}
-				onSubmit={onSubmit}
-				button={{
-					submitText: t('submit'),
-					submittingText: t('submitting'),
-					submittedText: t('submitted'),
-				}}
-			/>
-		</>
+		<Form
+			form={form}
+			fields={translatedFields}
+			onSubmit={onSubmit}
+			button={{
+				submitText: t('submit'),
+				submittingText: t('submitting'),
+				submittedText: t('submitted'),
+			}}
+		/>
 	);
 };
 

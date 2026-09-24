@@ -44,6 +44,46 @@
 			"success": "Profile updated successfully."
 		}
 	},
+	"settings": {
+		"title": "Settings",
+		"error_loading": "Failed to load account settings. Please try again later.",
+		"page": {
+			"title": "Settings",
+			"description": "Manage all your settings by selecting a category from the left menu."
+		},
+		"profile": {
+			"title": "Profile Settings",
+			"subtitle": "Update your profile information and preferences.",
+
+			"description": "Manage your public profile information, avatar, and banner image.",
+			"display_name_label": "Display Name",
+			"display_name_placeholder": "Enter your display name",
+			"bio_label": "Bio",
+			"bio_placeholder": "Tell us a little bit about yourself...",
+			"cover_label": "Cover Image",
+			"no_cover": "No cover image uploaded",
+			"change_cover": "Change cover",
+			"remove_cover": "Remove cover",
+			"change_avatar": "Change avatar",
+			"remove_avatar": "Remove avatar",
+			"avatar_hint": "JPEG, PNG, GIF, or WebP. 5MB maximum.",
+			"save": "Save Changes"
+		},
+		"account": {
+			"title": "Account Settings",
+			"subtitle": "Manage your account information and preferences."
+		},
+		"security": {
+			"title": "Security Settings",
+			"subtitle": "Manage your security settings and preferences."
+		},
+		"nav": {
+			"profile": "Profile",
+			"account": "Account",
+			"security": "Security",
+			"danger_zone": "Danger Zone"
+		}
+	},
 
 	"users": {
 		"no_befriended_users": "No users found that you are not friends with.",
@@ -499,7 +539,11 @@
 				"submit": "Submit",
 				"submitting": "Submitting",
 				"submitted": "Submitted",
-				"validating": "Validating"
+				"validating": "Validating",
+
+				"save": "Save",
+				"saving": "Saving",
+				"saved": "Saved"
 			},
 			"recap_title": "Review Your Information",
 

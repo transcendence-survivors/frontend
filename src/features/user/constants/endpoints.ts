@@ -10,6 +10,9 @@ const USERS_ENDPOINTS = {
 	getUsers: `${USER_START_PATH}`,
 	getUsersCount: `${USER_START_PATH}/count`,
 
+	getMeSettings: `${USER_START_PATH}/me/settings`,
+	patchMeSettings: `${USER_START_PATH}/me/settings`,
+
 	feedGetUsers: `${USER_FEED_START_PATH}`,
 	feedGetUsersCount: `${USER_FEED_START_PATH}/count`,
 } as const satisfies Record<string, UsersEndpoint>;

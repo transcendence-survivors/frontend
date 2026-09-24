@@ -95,7 +95,7 @@ export const patchChatRoom = async (
 	if (removeAvatar) {
 		payload.avatarUrl = null;
 	} else if (file) {
-		const [uploadedUrl] = await uploadAttachments([file]);
+		const [uploadedUrl] = await uploadAttachments([file], 'chat');
 		payload.avatarUrl = uploadedUrl;
 	}
 

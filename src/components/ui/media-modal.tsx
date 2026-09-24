@@ -60,7 +60,7 @@ export const MediaModal = ({
 					type='button'
 					variant='secondary'
 					className={cn(
-						'relative z-10 p-0 max-h-full cursor-pointer focus:opacity-80 hover:opacity-80 transition-opacity group',
+						'relative z-10 p-0 max-h-full cursor-pointer focus:opacity-80 hover:opacity-80 transition-opacity group border-0',
 						thumbnailClassName,
 					)}>
 					{isVideo ? (

@@ -63,7 +63,7 @@ export function AvatarModal({
 						src={img.src}
 						alt={img.alt}
 						fill
-						className='object-contain'
+						className='object-cover'
 						priority
 					/>
 				</div>

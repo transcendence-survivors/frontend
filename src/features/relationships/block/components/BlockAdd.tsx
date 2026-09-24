@@ -9,19 +9,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 
-import { UseBlocksParams } from '../hooks/useBlocks';
 import { useBlockAdd } from '../hooks/useBlockActions';
 
 interface BlockAddButtonProps {
 	blockedId: string;
 	blockedDisplayName: string;
-	params: UseBlocksParams;
 }
 
 export const BlockAddButton = ({
 	blockedId,
 	blockedDisplayName,
-	params,
 }: BlockAddButtonProps) => {
 	const t = useTranslations('relationships.blocked.add');
 
@@ -29,21 +26,20 @@ export const BlockAddButton = ({
 		blockedId,
 		successMessage: t('success_displayname', { displayName: blockedDisplayName }),
 		failureMessage: t('failure_displayname', { displayName: blockedDisplayName }),
-		params,
 	});
 
 	const label = t('tooltip');
 
 	return (
-		<ActionConfirmDialog
-			title={t('title')}
-			description={t('description')}
-			confirmText={t('confirm')}
-			isDestructive
-			isPending={isPending}
-			onConfirm={() => mutate()}
-			trigger={
-				<Tooltip>
+		<Tooltip>
+			<ActionConfirmDialog
+				title={t('title')}
+				description={t('description')}
+				confirmText={t('confirm')}
+				isDestructive
+				isPending={isPending}
+				onConfirm={() => mutate()}
+				trigger={
 					<TooltipTrigger asChild>
 						<Button
 							type='button'
@@ -60,12 +56,12 @@ export const BlockAddButton = ({
 							)}
 						</Button>
 					</TooltipTrigger>
-					<TooltipContent>
-						<p>{label}</p>
-					</TooltipContent>
-				</Tooltip>
-			}
-		/>
+				}
+			/>
+			<TooltipContent>
+				<p>{label}</p>
+			</TooltipContent>
+		</Tooltip>
 	);
 };
 

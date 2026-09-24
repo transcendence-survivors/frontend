@@ -164,16 +164,14 @@ function DatePicker({
 				<PopoverTrigger asChild>
 					<Button
 						{...props}
-						variant='outline'
+						variant='ghost'
 						type='button'
 						disabled={disabled}
 						onClick={toggleOpen}
 						className={cn(
+							'focus-visible:bg-transparent aria-expanded:bg-transparent hover:bg-transparent hover:text-current focus-visible:text-current aria-expanded:text-current',
 							'w-full cursor-pointer pl-3 text-left font-normal justify-between',
-							'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-							'focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
 							!selectedDate && 'text-muted-foreground',
-							state.isOpen && 'ring-ring ring-2 ring-offset-2',
 						)}>
 						<span className='tabular-nums'>{displayValue}</span>
 						<span className='flex items-center gap-1 ml-auto z-10'>

@@ -22,7 +22,7 @@ export const useSendMessage = () => {
 			content,
 			files = [],
 		}: SendMessageInput) => {
-			const attachmentUrls = await uploadAttachments(files);
+			const attachmentUrls = await uploadAttachments(files, 'chat');
 			return sendMessage({
 				roomId,
 				replyToId,

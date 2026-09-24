@@ -48,6 +48,10 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 			return 'friends';
 		}
 
+		if (path.startsWith(getBasePath('settings'))) {
+			return 'userName';
+		}
+
 		const userName = user?.username ? `/@${user.username}` : '';
 		if (path.startsWith(userName)) {
 			return 'userName';

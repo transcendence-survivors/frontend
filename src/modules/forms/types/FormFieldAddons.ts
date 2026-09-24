@@ -1,5 +1,5 @@
-import { type RouteKey } from '@/modules/i18n/constants/routes';
 import { type FormAddonsTextKeys } from '../constants/addons';
+import { I18nLinkProps } from '@/modules/i18n/components/I18nLink';
 
 interface FormFieldLengthAddon {
 	type: 'length';
@@ -13,10 +13,9 @@ interface FormLabelExternalLinkAddon {
 	href: string;
 }
 
-interface FormLabelInternalLinkAddon {
+type FormLabelInternalLinkAddon = {
 	variant: 'internal';
-	href: RouteKey;
-}
+} & I18nLinkProps;
 
 type FormLabelLinkAddon = {
 	type: 'link';

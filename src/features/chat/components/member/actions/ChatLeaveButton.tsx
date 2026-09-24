@@ -6,12 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useLeaveRoom } from '../../../hooks/member/useChatMemberActions';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 import { UseChatMembersParams } from '../../../hooks/member/useChatMembers';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export interface LeaveRoomButtonProps extends React.ComponentProps<typeof Button> {
 	roomId: string;

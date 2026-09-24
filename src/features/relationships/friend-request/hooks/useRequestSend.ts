@@ -1,6 +1,6 @@
 'use client';
 
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
+import { InfiniteData, useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { sendFriendRequest } from '../api/send';
 import { UseUsersParams } from '@/features/user/hooks/useUsers';

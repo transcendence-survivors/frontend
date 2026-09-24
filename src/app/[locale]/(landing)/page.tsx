@@ -5,14 +5,15 @@ import SiteHeader from './components/SiteHeader';
 
 export default function Page() {
 	return (
-		<main>
+		<>
 			<SiteHeader active='home' />
-
-			<div className='max-w-5xl w-full mx-auto py-12 sm:py-20 px-4'>
-				<HeroSection />
-				<FeatureSection />
-			</div>
+			<main>
+				<div className='max-w-5xl w-full mx-auto py-12 sm:py-20 px-4'>
+					<HeroSection />
+					<FeatureSection />
+				</div>
+			</main>
 			<SiteFooter />
-		</main>
+		</>
 	);
 }

@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { createPost } from '../api/posts';
 import { invalidatePostQueries, updatePostInCaches } from '../utils/post-cache';
 

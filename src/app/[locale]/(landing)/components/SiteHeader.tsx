@@ -1,9 +1,7 @@
-import Header from '@/components/ui/header';
 import LogoLink from '@/components/ui/logo-link';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { useTranslations } from 'next-intl';
-import { KeyNavItem, navItems } from './navItems';
-import SiteNavDrawer from './SiteNavDrawer';
+import SiteNavDrawer, { KeyNavItem, navItems } from './SiteNavDrawer';
 
 interface SiteHeaderProps {
 	active: KeyNavItem;
@@ -13,10 +11,10 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
 	const t = useTranslations('nav');
 
 	return (
-		<Header
+		<header
 			className={
-				'sticky top-0 z-50 px-4 py-2 sm:px-8 sm:py-5 gap-2 ' +
-				'backdrop-blur-md bg-background/70'
+				'text-foreground flex items-center justify-between px-6\
+                border-b border-border sticky top-0 z-50 px-4 py-2 sm:px-8 sm:py-5 gap-2 backdrop-blur-md bg-background/70'
 			}>
 			<LogoLink page='home' />
 			<div className='flex items-center gap-2 md:gap-10'>
@@ -43,6 +41,6 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
 				</I18nLink>
 				<SiteNavDrawer active={active} />
 			</div>
-		</Header>
+		</header>
 	);
 }

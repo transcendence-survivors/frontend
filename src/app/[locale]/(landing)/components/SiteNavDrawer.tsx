@@ -1,5 +1,3 @@
-'use client';
-
 import { Menu } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -13,7 +11,17 @@ import {
 } from '@/components/ui/drawer';
 import LogoLink from '@/components/ui/logo-link';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { KeyNavItem, navItems } from './navItems';
+
+import { AppMessages } from '@/modules/i18n/messages/types';
+import { NavLink } from '@/modules/i18n/utils/navigation';
+
+export const navItems = [
+	{ key: 'home', labelKey: 'home' },
+	{ key: 'lore', labelKey: 'lore' },
+	{ key: 'support', labelKey: 'support' },
+] as const satisfies NavLink<AppMessages['nav']>[];
+
+export type KeyNavItem = (typeof navItems)[number]['key'];
 
 interface SiteNavDrawerProps {
 	active: KeyNavItem;

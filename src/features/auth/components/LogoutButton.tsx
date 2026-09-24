@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/button';
 
 const LogoutButton = () => {
 	const t = useTranslations('auth.signout');
-	const { isPending, mutate, isError } = useSignOut({
-		successMessage: t('success'),
-		errorMessage: t('error'),
-	});
+	const { isPending, mutate, isError } = useSignOut({ successMessage: t('success') });
 
 	const handleLogout = () => {
 		mutate();

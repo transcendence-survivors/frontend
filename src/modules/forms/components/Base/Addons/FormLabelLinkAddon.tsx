@@ -21,11 +21,11 @@ const FormLabelLinkAddon = ({ addon, ...props }: FormLabelLinkAddonProps) => {
 			className='p-0 h-auto text-muted-foreground text-xs select-auto'
 			asChild>
 			{addon.variant === 'internal' ? (
-				<I18nLink href={addon.href} {...props}>
+				<I18nLink {...addon} {...props}>
 					{t(addon.text)}
 				</I18nLink>
 			) : (
-				<Link href={addon.href} {...props}>
+				<Link href={addon.href} target={addon.target} {...props}>
 					{t(addon.text)}
 				</Link>
 			)}

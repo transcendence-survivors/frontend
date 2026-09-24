@@ -5,7 +5,6 @@ import { env } from '@env';
 import { UserRole } from '@user/type';
 import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN } from '../constants/cookies';
 import { AUTH_ENDPOINTS } from '../constants/endpoints';
-import { api } from '@/libs/api';
 
 const secret = new TextEncoder().encode(env.JWT_SECRET);
 type JWTPayload = {

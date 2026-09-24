@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Pencil, Reply, X } from 'lucide-react';
-import { ChatMessage } from '../../../types/message';
+import { ChatMessage, ChatMessageType } from '../../../types/message';
 
 interface ChatMessageModeBannerProps {
-	editingMessage?: ChatMessage | null;
-	replyingToMessage?: ChatMessage | null;
+	editingMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
+	replyingToMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
 	onCancel: () => void;
 }
 

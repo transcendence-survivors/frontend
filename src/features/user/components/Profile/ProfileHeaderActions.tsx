@@ -7,13 +7,15 @@ import { BlockAddButton } from '@/features/relationships/block/components/BlockA
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { useTranslations } from 'next-intl';
 import { UserFacade } from '../../type';
+import { cn } from '@/libs/utils';
 
 interface ProfileHeaderActionProps extends React.HTMLAttributes<HTMLDivElement> {
 	user: Pick<UserFacade, 'id' | 'displayName'>;
 }
 
-const ProfileHeaderAction = ({
+const ProfileHeaderActions = ({
 	user: { id, displayName },
+	className,
 	...props
 }: ProfileHeaderActionProps) => {
 	const user = useUser();
@@ -22,7 +24,7 @@ const ProfileHeaderAction = ({
 	if (!user) return null;
 
 	return (
-		<div className='flex items-center gap-x-2 ml-auto'>
+		<div className={cn('flex items-center gap-x-2 ml-auto', className)} {...props}>
 			{user.id === id && (
 				<Button variant='default' size={'lg'} asChild>
 					<I18nLink href='settingsProfile'>{t('edit.button')}</I18nLink>
@@ -38,4 +40,4 @@ const ProfileHeaderAction = ({
 	);
 };
 
-export default ProfileHeaderAction;
+export default ProfileHeaderActions;

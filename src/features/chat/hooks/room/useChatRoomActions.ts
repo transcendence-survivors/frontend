@@ -1,6 +1,6 @@
 'use client';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatRoom } from '../../types/room';
 import { isApiError } from '@/libs/api';

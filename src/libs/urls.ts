@@ -1,7 +1,7 @@
 export const urlDecode = (url: string): string => {
 	try {
 		return decodeURIComponent(url);
-	} catch (e) {
+	} catch {
 		return url;
 	}
 };
@@ -9,7 +9,7 @@ export const urlDecode = (url: string): string => {
 export const urlEncode = (url: string): string => {
 	try {
 		return encodeURIComponent(url);
-	} catch (e) {
+	} catch {
 		return url;
 	}
 };

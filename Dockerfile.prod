@@ -1,0 +1,73 @@
+# ==========================================
+# STAGE 1: Base Setup
+# ==========================================
+FROM node:20-alpine AS base
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
+
+WORKDIR /app
+
+# ==========================================
+# STAGE 2: Dependencies
+# ==========================================
+FROM base AS deps
+
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+COPY apps/network/server/package.json ./apps/network/server/package.json
+COPY apps/network/client/package.json ./apps/network/client/package.json
+COPY apps/game/ui/package.json ./apps/game/ui/package.json
+COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.json
+
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
+    pnpm install --frozen-lockfile
+
+# ==========================================
+# STAGE 3: Build (NestJS & Prisma)
+# ==========================================
+FROM base AS builder
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/network/server/node_modules ./apps/network/server/node_modules
+
+COPY . .
+
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+ENV NODE_ENV=production
+
+WORKDIR /app/apps/network/server
+
+# Generate Prisma Client if prisma schema is used
+RUN pnpm exec prisma generate 2>/dev/null || true
+
+# Build NestJS
+RUN pnpm run build
+
+# ==========================================
+# STAGE 4: Production Runner
+# ==========================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nestjs
+
+# Copy root & package node_modules + built dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/network/server/node_modules ./apps/network/server/node_modules
+COPY --from=builder --chown=nestjs:nodejs /app/apps/network/server/dist ./apps/network/server/dist
+COPY --from=builder --chown=nestjs:nodejs /app/apps/network/server/package.json ./apps/network/server/package.json
+
+USER nestjs
+
+EXPOSE 3001
+
+WORKDIR /app/apps/network/server
+
+CMD ["node", "dist/main.js"]

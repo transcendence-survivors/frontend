@@ -1,6 +1,6 @@
 'use client';
 
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
+import { InfiniteData, useMutation } from '@tanstack/react-query';
 import {
 	kickChatMember,
 	leaveChatRoom,

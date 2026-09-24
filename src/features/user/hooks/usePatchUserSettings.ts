@@ -54,16 +54,18 @@ export const usePatchUserSettings = () => {
 			}
 			queryClient.invalidateQueries({ queryKey });
 		},
-		onSuccess: () => {
+		onSuccess: (payload) => {
 			const currentSession = useSessionStore.getState().user;
-			const updatedSettings = queryClient.getQueryData<UserSettings>(queryKey);
 
-			if (currentSession && updatedSettings) {
+			if (currentSession && payload) {
 				setUser({
 					...currentSession,
-					displayName:
-						updatedSettings.displayName ?? currentSession.displayName,
-					avatarUrl: updatedSettings.avatarUrl ?? undefined,
+					...(payload.displayName !== undefined && {
+						displayName: payload.displayName,
+					}),
+					...(payload.avatarUrl !== undefined && {
+						avatarUrl: payload.avatarUrl,
+					}),
 				});
 			}
 		},

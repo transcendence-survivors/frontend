@@ -1,11 +1,10 @@
-import { Button } from '@/components/ui/button';
 import { UserFacade } from '../../type';
 import Banner from './Banner';
 import UserDisplayUsername from '../Identity/UserDisplayUsername';
 import ProfileNav from './ProfileNav';
 import { AvatarModal } from '../Avatar/AvatarModal';
 import { useTranslations } from 'next-intl';
-import ProfileHeaderAction from './ProfileHeaderAction';
+import ProfileHeaderActions from './ProfileHeaderActions';
 
 interface ProfileHeaderProps extends React.HTMLAttributes<HTMLElement> {
 	user: UserFacade;
@@ -43,7 +42,7 @@ const ProfileHeader = ({
 							/>
 						</div>
 						<div className='py-4 absolute top-1/3 sm:top-1/2 right-0'>
-							<ProfileHeaderAction user={{ id, displayName }} />
+							<ProfileHeaderActions user={{ id, displayName }} />
 						</div>
 					</div>
 					{bio && (

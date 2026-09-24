@@ -16,7 +16,7 @@ const Banner = ({ img: { src, alt }, className, ...props }: BannerProps) => {
 			)}
 			{...props}>
 			<MediaModal
-				src={src}
+				src={src ?? 'placeholder.png'}
 				alt={alt}
 				thumbnailClassName='w-full h-full absolute inset-0 rounded-none'
 				thumbnailFit='cover'

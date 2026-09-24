@@ -11,7 +11,7 @@ export const getSettings = async () => {
 	return res.data;
 };
 
-export const patchSettings = async (data: PatchUserSettingsParams): Promise<void> => {
+export const patchSettings = async (data: PatchUserSettingsParams) => {
 	const { avatarFile, coverFile, ...restData } = data;
 
 	let avatarUrl: string | null | undefined = undefined;
@@ -51,4 +51,5 @@ export const patchSettings = async (data: PatchUserSettingsParams): Promise<void
 	if (isApiError(res)) {
 		throw new Error(res.message);
 	}
+	return payload;
 };

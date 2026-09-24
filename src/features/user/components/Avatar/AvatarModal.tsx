@@ -48,7 +48,7 @@ export function AvatarModal({
 						}>
 						<AvatarImage
 							className={`object-cover rounded-full`}
-							src={img.src}
+							src={img.src ?? 'placeholder.png'}
 							alt={img.alt}
 						/>
 					</Button>
@@ -60,7 +60,7 @@ export function AvatarModal({
 				<DialogTitle className='sr-only'>Avatar Preview</DialogTitle>
 				<div className='relative w-full h-full'>
 					<Image
-						src={img.src}
+						src={img.src ?? 'placeholder.png'}
 						alt={img.alt}
 						fill
 						className='object-cover'

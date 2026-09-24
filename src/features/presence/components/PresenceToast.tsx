@@ -1,5 +1,4 @@
 import { BaseUser } from '@/features/user/type';
-import { AvatarProfile } from '@/features/user/components/Avatar/AvatarProfile';
 import { PresenceStatus } from '../types/status';
 import { UserIdentity } from '@/features/user/components/Identity/UserIdentity';
 import Kicker from '@/components/ui/kicker';

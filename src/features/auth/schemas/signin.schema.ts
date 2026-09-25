@@ -35,7 +35,9 @@ const signInFields = [
 				type: 'link',
 				variant: 'internal',
 				as: 'text',
-				href: 'forgotPassword',
+				params: {
+					href: 'forgotPassword',
+				},
 				text: FORM_ADDONS.forgot_password,
 			},
 		},

@@ -15,7 +15,8 @@ interface FormLabelExternalLinkAddon {
 
 type FormLabelInternalLinkAddon = {
 	variant: 'internal';
-} & I18nLinkProps;
+	params: I18nLinkProps;
+};
 
 type FormLabelLinkAddon = {
 	type: 'link';

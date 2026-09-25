@@ -12,6 +12,7 @@ const buildUrl = (path: string) =>
 
 const baseFetch = (path: string, init: RequestInit) => {
 	const url = buildUrl(path);
+	console.log('url', url);
 	return fetch(url, {
 		...init,
 		headers: { ...init.headers },

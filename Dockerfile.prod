@@ -1,22 +1,18 @@
-# ==========================================
-# STAGE 1: Base Setup
-# ==========================================
+# ---------------------------------------------------
+# 1. Base Stage: Install PNPM
+# ---------------------------------------------------
 FROM node:20-alpine AS base
+WORKDIR /app
+RUN npm install -g pnpm@10.15.0
+RUN pnpm config set store-dir /pnpm/store
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-
-RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
-
+# ---------------------------------------------------
+# 2. Dependencies Stage: Install node_modules
+# ---------------------------------------------------
+FROM base AS deps
 WORKDIR /app
 
-# ==========================================
-# STAGE 2: Dependencies
-# ==========================================
-FROM base AS deps
-
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
-COPY apps/network/server/package.json ./apps/network/server/package.json
 COPY apps/network/client/package.json ./apps/network/client/package.json
 COPY apps/game/ui/package.json ./apps/game/ui/package.json
 COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.json
@@ -24,50 +20,66 @@ COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.js
 RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
     pnpm install --frozen-lockfile
 
-# ==========================================
-# STAGE 3: Build (NestJS & Prisma)
-# ==========================================
+# ---------------------------------------------------
+# 3. Builder Stage: Build Next.js
+# ---------------------------------------------------
 FROM base AS builder
+WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/apps/network/server/node_modules ./apps/network/server/node_modules
+COPY --from=deps /app/apps/network/client/node_modules ./apps/network/client/node_modules
+COPY --from=deps /app/apps/game/ui/node_modules ./apps/game/ui/node_modules
+COPY --from=deps /app/apps/game/shared-package/node_modules ./apps/game/shared-package/node_modules
 
-COPY . .
+COPY apps/network/client ./apps/network/client
+COPY apps/game/ui ./apps/game/ui
+COPY apps/game/shared-package ./apps/game/shared-package
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 
-ARG DATABASE_URL
-ENV DATABASE_URL=$DATABASE_URL
+# Build arguments for Next.js static generation & env validation
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_SOCKET_URL
+ARG NEXT_PUBLIC_GAME_SOCKET_URL
+ARG NEXT_PUBLIC_CHAT_SOCKET_URL
+ARG JWT_SECRET
+ARG API_INTERNAL
+
+# Expose them as environment variables during build time
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
+ENV NEXT_PUBLIC_GAME_SOCKET_URL=$NEXT_PUBLIC_GAME_SOCKET_URL
+ENV NEXT_PUBLIC_CHAT_SOCKET_URL=$NEXT_PUBLIC_CHAT_SOCKET_URL
+ENV JWT_SECRET=$JWT_SECRET
+ENV API_INTERNAL=$API_INTERNAL
+
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
-WORKDIR /app/apps/network/server
+WORKDIR /app/apps/network/client
+RUN pnpm build
 
-# Generate Prisma Client if prisma schema is used
-RUN pnpm exec prisma generate 2>/dev/null || true
-
-# Build NestJS
-RUN pnpm run build
-
-# ==========================================
-# STAGE 4: Production Runner
-# ==========================================
+# ---------------------------------------------------
+# 4. Runner Stage: Lightweight Production Runtime
+# ---------------------------------------------------
 FROM node:20-alpine AS runner
-
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+ENV NEXT_TELEMETRY_DISABLED=1
 
+# Create non-root user for security
 RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nestjs
+    adduser --system --uid 1001 nextjs
 
-# Copy root & package node_modules + built dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/network/server/node_modules ./apps/network/server/node_modules
-COPY --from=builder --chown=nestjs:nodejs /app/apps/network/server/dist ./apps/network/server/dist
-COPY --from=builder --chown=nestjs:nodejs /app/apps/network/server/package.json ./apps/network/server/package.json
+# Copy standalone build server, public assets, and static files
+COPY --from=builder /app/apps/network/client/public ./apps/network/client/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/network/client/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/network/client/.next/static ./apps/network/client/.next/static
 
-USER nestjs
+USER nextjs
 
-EXPOSE 3001
+EXPOSE 3000
 
-WORKDIR /app/apps/network/server
-
-CMD ["node", "dist/main.js"]
+CMD ["node", "apps/network/client/server.js"]

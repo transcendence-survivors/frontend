@@ -23,6 +23,7 @@ export const createSocketSlice: StateCreator<SocketSlice, [], [], SocketSlice> =
 			if (get().socket?.connected) return;
 
 			const socket = io(env.NEXT_PUBLIC_SOCKET_URL, {
+				path: '/socket.io/',
 				withCredentials: true,
 				transports: ['websocket', 'polling'],
 				autoConnect: true,

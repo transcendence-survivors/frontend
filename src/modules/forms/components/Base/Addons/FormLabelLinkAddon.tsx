@@ -13,7 +13,6 @@ interface FormLabelLinkAddonProps extends Omit<
 
 const FormLabelLinkAddon = ({ addon, ...props }: FormLabelLinkAddonProps) => {
 	const t = useTranslations();
-
 	return (
 		<Button
 			variant={addon.as === 'text' ? 'link' : 'default'}
@@ -21,7 +20,7 @@ const FormLabelLinkAddon = ({ addon, ...props }: FormLabelLinkAddonProps) => {
 			className='p-0 h-auto text-muted-foreground text-xs select-auto'
 			asChild>
 			{addon.variant === 'internal' ? (
-				<I18nLink {...addon} {...props}>
+				<I18nLink {...addon.params} {...props}>
 					{t(addon.text)}
 				</I18nLink>
 			) : (

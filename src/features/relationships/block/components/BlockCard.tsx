@@ -8,7 +8,13 @@ export const BlockCard = memo(({ user }: BlockCardProps) => {
 	return (
 		<UserCard user={user}>
 			<div className='flex items-center gap-4'>
-				<BlockDelete blockedId={user.id} blockedDisplayName={user.displayName} />
+				<BlockDelete
+					user={{
+						displayName: user.displayName,
+						id: user.id,
+						username: user.username,
+					}}
+				/>
 			</div>
 		</UserCard>
 	);

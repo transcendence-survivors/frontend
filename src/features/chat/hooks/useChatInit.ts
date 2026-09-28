@@ -5,6 +5,8 @@ import { useMessageActions } from '../stores/messageSlice';
 import { useTypingActions } from '../stores/typingSlice';
 import { useRoomActions } from '../stores/roomSlice';
 import { useNotificationActions } from '../stores/notificationSlice';
+import { usePresenceActions } from '@/features/presence/hooks/usePresenceActions';
+import { usePresenceStatus } from '@/features/presence/hooks/usePresenceState';
 
 export function useChatInit() {
 	const queryClient = useQueryClient();
@@ -14,6 +16,11 @@ export function useChatInit() {
 	const typingActions = useTypingActions();
 	const roomActions = useRoomActions();
 	const notifActions = useNotificationActions();
+	const { status } = usePresenceStatus();
+
+	useEffect(() => {
+		notifActions.setStatus(status);
+	}, [status, notifActions]);
 
 	useEffect(() => {
 		if (!socket || !isConnected) return;

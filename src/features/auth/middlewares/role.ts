@@ -8,12 +8,18 @@ const hierarchy = {
 } as const satisfies Record<UserRole, number>;
 
 const roleRoutes = {
-	settings: ['USER'],
 	feed: ['USER'],
+
+	search: ['USER'],
+
+	friends: ['USER'],
+	blocked: ['USER'],
+	friendsRequests: ['USER'],
+
 	chat: ['USER'],
 	chatId: ['USER'],
-	friends: ['USER'],
-	search: ['USER'],
+
+	settings: ['USER'],
 	userName: ['USER'],
 	userNamePosts: ['USER'],
 	userNamePostsId: ['USER'],

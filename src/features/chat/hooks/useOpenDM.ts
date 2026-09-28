@@ -11,6 +11,9 @@ export const useOpenDM = (targetUserId: string) => {
 	return useMutation({
 		mutationKey: ['chat-rooms', 'open-direct', targetUserId],
 		mutationFn: () => getOrCreateDirectRoom(targetUserId),
+		onError: (error) => {
+			console.log('Error opening DM:', error);
+		},
 		onSuccess: (room) => {
 			invalidate(['chat-rooms'], { mode: 'instant' });
 			router.push(ROUTES.chatId({ id: room.id }));

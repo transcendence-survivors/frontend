@@ -2,25 +2,18 @@
 
 import { useTranslations } from 'next-intl';
 import { MailX, UserRoundX } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
-
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { useRequestDelete } from '../../hooks/useRequestActions';
 import { FriendRequestDirection } from '../../types';
-import { NestedMessageKeys } from '@/modules/i18n/messages/types';
+import { AppMessages } from '@/modules/i18n/messages/types';
+import { NestedMessageKeysHelper } from '@/libs/types';
 
-interface FriendRequestDeleteProps extends Omit<
-	FriendRequestActionsProps,
-	'friendDisplayName'
-> {
-	successMessage: string;
-	failureMessage: string;
-}
+type FriendRequestDeleteProps = FriendRequestActionsProps;
 
 const icons = {
 	incoming: <UserRoundX className='size-3.5' />,
@@ -28,33 +21,45 @@ const icons = {
 } satisfies Record<FriendRequestDirection, React.ReactNode>;
 
 const translationKeys = {
-	incoming: 'relationships.requests.reject',
-	outgoing: 'relationships.requests.cancel',
-} satisfies Record<FriendRequestDirection, NestedMessageKeys>;
+	incoming: 'reject',
+	outgoing: 'cancel',
+} satisfies Record<
+	FriendRequestDirection,
+	NestedMessageKeysHelper<AppMessages['relationships']['requests']>
+>;
 
 export const FriendRequestDelete = ({
-	friendId,
-	successMessage,
-	failureMessage,
+	user: { id, username, displayName },
 	direction,
 }: FriendRequestDeleteProps) => {
-	const t = useTranslations(translationKeys[direction]);
+	const t = useTranslations('relationships.requests');
 
 	const { mutate, isPending, isError } = useRequestDelete({
-		friendId,
-		successMessage,
-		failureMessage,
+		user: { id, username },
+		successMessage: t(
+			direction === 'incoming'
+				? 'delete_success_from_displayname'
+				: 'delete_success_to_displayname',
+			{ displayName },
+		),
+		failureMessage: t(
+			direction === 'incoming'
+				? 'delete_failure_from_displayname'
+				: 'delete_failure_to_displayname',
+			{ displayName: displayName },
+		),
 		direction,
 	});
 
-	const label = t('tooltip');
+	const startT = translationKeys[direction];
+	const label = t(`${startT}.tooltip`);
 
 	return (
 		<Tooltip>
 			<ActionConfirmDialog
-				title={t('title')}
-				description={t('description')}
-				confirmText={t('confirm')}
+				title={t(`${startT}.title`)}
+				description={t(`${startT}.description`)}
+				confirmText={t(`${startT}.confirm`)}
 				isDestructive
 				isPending={isPending}
 				onConfirm={() => mutate()}

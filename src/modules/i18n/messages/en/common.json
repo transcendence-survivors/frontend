@@ -99,14 +99,14 @@
 
 	"search": {
 		"title": "Search",
-		"subtitle": "Find bearers and posts",
+		"subtitle": "Find light-keepers and posts",
 		"input_placeholder": "Search a keyword, or @username...",
-		"users_title": "Bearers",
+		"users_title": "Light-keepers",
 		"posts_title": "Posts"
 	},
 	"relationships": {
 		"title": "Friends & Moderation",
-		"subtitle": "Bearers in your circle",
+		"subtitle": "Light-keepers in your circle",
 		"input_placeholder": "Search by @username or display name...",
 
 		"nav": {
@@ -116,10 +116,10 @@
 		},
 
 		"add": {
-			"title": "Add Bearer to your circle",
+			"title": "Add Keepers to your circle",
 			"button": "Add Friend",
 			"placeholder": "Search by @username or display name...",
-			"aria_label": "Add Friend",
+			"aria_label": "Send friend request",
 			"failed": "Failed to send friend request. Please try again.",
 			"success_accepted_displayname": "You are now friends with {displayName}.",
 			"success_pending_displayname": "Your friend request to {displayName} is sent."
@@ -239,7 +239,7 @@
 		"invisible": "Invisible",
 		"invisible_description": "You will appear offline to your friends, but you can still use the app normally.",
 
-		"count_online": "{count} bearers in the light",
+		"count_online": "{count} keepers in the light",
 		"count_online_friends": "{count} friends in the light"
 	},
 
@@ -404,7 +404,7 @@
 
 	"feed": {
 		"title": "Feed",
-		"subtitle": "Dispatches from the lantern-bearers"
+		"subtitle": "Dispatches from the light-keepers"
 	},
 
 	"posts": {

@@ -3,15 +3,16 @@
 import { InfiniteData, useMutation } from '@tanstack/react-query';
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
-import { acceptFriendRequest } from '../api/accept';
-import { deleteFriendRequest } from '../api/delete';
+import { acceptFriendRequest, deleteFriendRequest } from '../api/friend-request';
 import { GetFriendRequests, FriendRequest, UseRequestsParams } from '../types';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
+import { relationshipKeys } from '../../constants/keys';
+import { BaseUser } from '@/features/user/type';
 
 type FriendRequestAction = 'accept' | 'delete';
 
 interface UseRequestActionParams {
-	friendId: string;
+	user: Pick<BaseUser, 'id' | 'username'>;
 	action: FriendRequestAction;
 	successMessage: string;
 	failureMessage: string;
@@ -27,7 +28,7 @@ const requestActionFns: Record<
 };
 
 const useRequestAction = ({
-	friendId,
+	user,
 	action,
 	successMessage,
 	failureMessage,
@@ -38,15 +39,15 @@ const useRequestAction = ({
 	const countQueryKey = ['friend-requests-count', direction];
 
 	return useMutation({
-		mutationKey: ['friend-requests', action, friendId],
-		mutationFn: () => requestActionFns[action](friendId),
+		mutationKey: ['friend-requests', action, user.id],
+		mutationFn: () => requestActionFns[action](user.id),
 		onMutate: async () => {
 			await queryClient.cancelQueries({ queryKey });
 			const previous =
 				queryClient.getQueryData<InfiniteData<GetFriendRequests>>(queryKey);
 			updateInfiniteQueries<FriendRequest>(queryClient, queryKey, {
 				type: 'filter',
-				callback: (req) => req.friend.id !== friendId,
+				callback: (req) => req.friend.id !== user.id,
 			});
 			return { previous };
 		},
@@ -54,18 +55,20 @@ const useRequestAction = ({
 			if (ctx?.previous) queryClient.setQueryData(queryKey, ctx.previous);
 			toast.error(failureMessage);
 		},
-		onSuccess: () => toast.success(successMessage),
-		onSettled: () => {
-			invalidate(queryKey, { mode: 'instant' });
+		onSuccess: () => {
+			toast.success(successMessage);
+			if (action === 'delete') {
+				invalidate(['users'], { mode: 'debounce', delay: 1500, reset: true });
+			}
+			invalidate(queryKey, { mode: 'debounce', delay: 1500 });
 			invalidate(countQueryKey, { mode: 'instant' });
+			invalidate(relationshipKeys.status(user.username), { mode: 'instant' });
 		},
 	});
 };
 
-const useRequestAccept = (params: Omit<UseRequestActionParams, 'action'>) =>
+export const useRequestAccept = (params: Omit<UseRequestActionParams, 'action'>) =>
 	useRequestAction({ ...params, action: 'accept' });
 
-const useRequestDelete = (params: Omit<UseRequestActionParams, 'action'>) =>
+export const useRequestDelete = (params: Omit<UseRequestActionParams, 'action'>) =>
 	useRequestAction({ ...params, action: 'delete' });
-
-export { useRequestAccept, useRequestDelete };

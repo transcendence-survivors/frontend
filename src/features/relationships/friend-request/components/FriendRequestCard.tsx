@@ -30,8 +30,11 @@ const FriendRequestCard = memo(({ user, since, direction }: FriendRequestCardPro
 			}>
 			<div className='flex items-center gap-4'>
 				<FriendRequestActions
-					friendId={user.id}
-					friendDisplayName={user.displayName}
+					user={{
+						id: user.id,
+						username: user.username,
+						displayName: user.displayName,
+					}}
 					direction={direction}
 				/>
 			</div>

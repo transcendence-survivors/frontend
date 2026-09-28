@@ -14,6 +14,23 @@ interface ChatRoomPageProps {
 
 export default async function page({ params }: ChatRoomPageProps) {
 	const [{ id }, cookieStore] = await Promise.all([params, cookies()]);
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('cookieStore:', cookieStore);
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
+	console.log('----------------------------------------');
 
 	return (
 		<Suspense
@@ -34,13 +51,11 @@ interface ChatRoomProps {
 
 async function ChatRoom({ cookieString, roomId }: ChatRoomProps) {
 	const res = await getChatRoom(roomId, cookieString);
-
 	if (isApiError(res)) {
 		console.error('Error fetching chat room:', res);
 		notFound();
 	}
 	const { currentUserRole: role, ...room } = res.data;
-
 	return (
 		<main className='flex flex-col h-full overflow-clip min-w-0 max-w-full'>
 			<ChatRoomHeader />

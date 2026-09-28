@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getBlocks } from '../api/get';
+import { getBlocks } from '../api/block';
 import { GetBlocksParams } from '../types';
 
 const initialBlocksParam = {
@@ -9,9 +9,9 @@ const initialBlocksParam = {
 	orderBy: 'username-asc',
 } satisfies GetBlocksParams;
 
-type UseBlocksParams = Omit<GetBlocksParams, 'cursor' | 'limit' | 'orderBy'>;
+export type UseBlocksParams = Omit<GetBlocksParams, 'cursor' | 'limit' | 'orderBy'>;
 
-const useBlocks = ({ search }: UseBlocksParams) => {
+export const useBlocks = ({ search }: UseBlocksParams) => {
 	return useInfiniteQuery({
 		queryKey: ['blocks', { search }],
 		initialPageParam: { ...initialBlocksParam, search },
@@ -26,6 +26,3 @@ const useBlocks = ({ search }: UseBlocksParams) => {
 		},
 	});
 };
-
-export { useBlocks };
-export type { UseBlocksParams };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getFriendsFromIds } from '../api/get';
+import { getFriendsFromIds } from '../api/friend';
 import { GetFriendIdsParams, GetFriendsParams } from '../types';
 
 const initialFriendsParam = {

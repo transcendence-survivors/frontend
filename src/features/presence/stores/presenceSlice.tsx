@@ -99,15 +99,19 @@ export const createPresenceSlice: StateCreator<
 
 					if (friend) return;
 
-					toast.custom(() => (
-						<PresenceToast
-							id={id}
-							avatarUrl={avatarUrl}
-							username={username}
-							displayName={displayName}
-							status={status}
-						/>
-					));
+					const myStatus = get().status;
+
+					if (myStatus === PresenceStatus.ONLINE) {
+						toast.custom(() => (
+							<PresenceToast
+								id={id}
+								avatarUrl={avatarUrl}
+								username={username}
+								displayName={displayName}
+								status={status}
+							/>
+						));
+					}
 
 					set((prev) => ({
 						onlineFriends: new Map(prev.onlineFriends).set(id, {

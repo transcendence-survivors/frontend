@@ -1,4 +1,5 @@
 import { Spinner } from '@/components/ui/spinner';
+import { RelationshipProvider } from '@/features/relationships/components/RelationshipProvider';
 import ProfileHeaderServer from '@/features/user/components/Profile/ProfileHeaderServer';
 import { urlDecode } from '@/libs/urls';
 import { notFound } from 'next/navigation';
@@ -24,10 +25,12 @@ export default async function ProfileLayout({ params, children }: RootLayoutProp
 
 	return (
 		<main>
-			<Suspense fallback={fallback}>
-				<ProfileHeaderServer username={decodedUsername} />
-			</Suspense>
-			{children}
+			<RelationshipProvider username={decodedUsername}>
+				<Suspense fallback={fallback}>
+					<ProfileHeaderServer username={decodedUsername} />
+				</Suspense>
+				{children}
+			</RelationshipProvider>
 		</main>
 	);
 }

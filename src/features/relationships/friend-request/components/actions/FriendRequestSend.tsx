@@ -3,47 +3,54 @@
 import { Button } from '@/components/ui/button';
 import { UserRoundPlus } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
-import { useRequestSend, UseSendFriendRequestParams } from '../../hooks/useRequestSend';
+import { useRequestSend } from '../../hooks/useRequestSend';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTranslations } from 'next-intl';
+import { BaseUser } from '@/features/user/type';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-interface FriendRequestSendProps extends UseSendFriendRequestParams {
-	ariaLabel: string;
+interface FriendRequestSendProps {
+	user: Pick<BaseUser, 'id' | 'displayName'>;
 	label?: string;
 }
 
 const FriendRequestSend = ({
-	userId,
-	acceptedMessage,
-	failureMessage,
-	pendingMessage,
-	params,
-	ariaLabel,
+	user: { id, displayName },
 	label,
 }: FriendRequestSendProps) => {
+	const t = useTranslations('relationships.add');
+
+	const aria_label = t('aria_label');
 	const { mutate, isPending, isError, isSuccess } = useRequestSend({
-		userId,
-		acceptedMessage,
-		failureMessage,
-		pendingMessage,
-		params,
+		userId: id,
+		failureMessage: t('failed'),
+		acceptedMessage: t('success_accepted_displayname', { displayName }),
+		pendingMessage: t('success_pending_displayname', { displayName }),
 	});
 
 	const onClick = () => mutate();
 
 	return (
-		<Button
-			onClick={onClick}
-			disabled={isPending || isError || isSuccess}
-			variant={'default'}
-			aria-label={ariaLabel}
-			aria-invalid={isError}>
-			{isPending ? (
-				<Spinner className='size-3.5' />
-			) : (
-				<UserRoundPlus className='size-3.5' />
-			)}
-			{label && <span className='hidden sm:block'>{label}</span>}
-		</Button>
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<Button
+					onClick={onClick}
+					disabled={isPending || isError || isSuccess}
+					variant={'default'}
+					aria-label={aria_label}
+					aria-invalid={isError}>
+					{isPending ? (
+						<Spinner className='size-3.5' />
+					) : (
+						<UserRoundPlus className='size-3.5' />
+					)}
+					{label && <span className='hidden sm:block'>{label}</span>}
+				</Button>
+			</TooltipTrigger>
+			<TooltipContent>
+				<p>{aria_label}</p>
+			</TooltipContent>
+		</Tooltip>
 	);
 };
 

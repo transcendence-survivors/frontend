@@ -8,11 +8,15 @@ import { invalidateQueries } from '@/libs/api/helpers/queryInvalidator';
 import { emit } from '@/modules/websocket/helpers/emit';
 import { ChatRoom } from '../types/room';
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
+import { toast } from 'sonner';
+import { PresenceStatus } from '@/features/presence/types/status';
+import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
 
 export interface NotificationSliceState {
 	totalUnreadCount: number;
 	unreadCountsByRoom: Record<string, number>;
 	currentRoomId: string | null;
+	status: PresenceStatus;
 }
 
 export interface NotificationSliceActions {
@@ -20,6 +24,7 @@ export interface NotificationSliceActions {
 	setRoomUnreadCount: (roomId: string, count: number) => void;
 	mergeRoomUnreadCounts: (roomCounts: Record<string, number>) => void;
 	setCurrentRoomId: (roomId: string | null) => void;
+	setStatus: (status: PresenceStatus) => void;
 
 	markRoomAsRead: (roomId: string, queryClient: QueryClient) => Promise<void>;
 	incrementRoomUnread: (roomId: string) => void;
@@ -94,6 +99,7 @@ export const createNotificationSlice: StateCreator<
 		totalUnreadCount: 0,
 		unreadCountsByRoom: {},
 		currentRoomId: null,
+		status: PresenceStatus.OFFLINE,
 
 		notificationActions: {
 			setUnreadSummary(total, roomCounts = {}) {
@@ -174,6 +180,10 @@ export const createNotificationSlice: StateCreator<
 				}));
 			},
 
+			setStatus(status: PresenceStatus) {
+				set({ status });
+			},
+
 			clearNotificationState() {
 				set({
 					totalUnreadCount: 0,
@@ -209,6 +219,9 @@ export const createNotificationSlice: StateCreator<
 				onNewMessage = (data: NotificationNewPayload) => {
 					const activeRoomId = get().currentRoomId;
 					if (activeRoomId !== data.roomId) {
+						if (get().status === PresenceStatus.ONLINE) {
+							toast.info('You have a new chat message.');
+						}
 						get().notificationActions.incrementRoomUnread(data.roomId);
 						invalidateUnreadCount(queryClient);
 						invalidateRooms(queryClient);

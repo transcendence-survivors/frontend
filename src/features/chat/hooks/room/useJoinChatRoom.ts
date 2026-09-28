@@ -12,33 +12,27 @@ export const useJoinChatRoom = (room: ChatRoom, role: ChatMemberRole) => {
 	const socket = useWebsocketStore((s) => s.socket);
 	const roomActions = useRoomActions();
 	const notifActions = useNotificationActions();
-	const user = useUser();
 
-	const roomId = room.id;
+	const user = useUser();
 	const userId = user?.id || null;
 
 	useEffect(() => {
-		if (roomId) roomActions.setRoom(room);
-	}, [room, roomId, roomActions]);
-
-	useEffect(() => {
-		if (!roomId) return;
-
+		roomActions.setRoom(room);
 		roomActions.setRoomRole(role);
 		roomActions.setUserId(userId);
-		notifActions.setCurrentRoomId(roomId);
+		notifActions.setCurrentRoomId(room.id);
 
 		if (socket) {
-			void notifActions.markRoomAsRead(roomId, queryClient);
-			void roomActions.joinRoom(roomId);
+			void notifActions.markRoomAsRead(room.id, queryClient);
+			void roomActions.joinRoom(room.id);
 		}
 
 		return () => {
 			if (socket) {
-				void roomActions.leaveRoom(roomId);
+				void roomActions.leaveRoom(room.id);
 			}
 			roomActions.clearRoomState();
 			notifActions.setCurrentRoomId(null);
 		};
-	}, [socket, roomId, role, userId, roomActions, notifActions, queryClient]);
+	}, [socket, room, role, userId, roomActions, notifActions, queryClient]);
 };

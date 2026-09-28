@@ -18,7 +18,7 @@ export function GameRoot() {
 		
 		if (startedRef.current === false) {
 			startedRef.current = true;
-			initGame(canvas, user.displayName, user.id, locale.currentLocale, user.avatarUrl).then(() => {
+			initGame(canvas, user.displayName, user.id, locale.currentLocale, user.displayName, user.avatarUrl).then(() => {
 				if (cancelled) {
 					destroyGame();
 					startedRef.current = false;

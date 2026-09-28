@@ -91,29 +91,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Sigue la luz · o cae en el olvido",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "Un grupo de aventureros despierta en el corazón de un círculo de luz, casi sin equipo y sin saber nada de lo que los rodea. Más allá de la luz, los monstruos surgen por miles, sin fin. Sigue el círculo, ábrete paso entre la horda y hazte más fuerte con cada enemigo abatido. ¿Cuánto tiempo sobrevivirás?",
 			"play": "Jugar ahora",
 			"trailer": "Ver el tráiler",
 			"video_fallback": "Tu navegador no admite la reproducción de vídeo."
 		},
 		"features": {
-			"kicker": "El sistema",
-			"title": "Un solo mecanismo, fusionado de tres. La luz lo es todo.",
-			"lantern": {
-				"name": "La Linterna",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "Cómo sobrevivir",
+			"title": "Sigue la luz. Resiste la noche. Hazte más fuerte.",
+			"circle": {
+				"name": "El Círculo",
+				"description": "La luz es tu único refugio, y nunca se queda quieta. Sigue el círculo a través de una tierra desconocida: más allá de su borde, solo te esperan las tinieblas."
 			},
-			"strata": {
-				"name": "Los Estratos",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "La Horda",
+				"description": "Más allá de la luz, los monstruos surgen por miles, sin tregua. Cada oleada es más numerosa y más letal que la anterior."
 			},
-			"forgotten": {
-				"name": "Los Olvidados",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "El Ascenso",
+				"description": "Partes casi con las manos vacías. A medida que caen tus enemigos, tu poder crece: nuevas armas, nuevas habilidades, hasta convertirte tú mismo en la tormenta."
 			},
 			"vigil": {
 				"name": "La Vigilia",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"description": "No hay victoria, solo supervivencia. ¿Cuánto tiempo aguantarás en esta tierra hostil? Cada minuto arrancado a la noche cuenta."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Centro de ayuda",
+		"title": "¿Cómo seguir en la luz?",
+		"faq_title": "Preguntas frecuentes",
+		"articles": "{count, plural, one {# artículo} other {# artículos}} →",
+		"categories": {
+			"technical": {
+				"name": "Técnico",
+				"description": "Navegador, rendimiento, conexión"
+			},
+			"gameplay": {
+				"name": "Jugabilidad",
+				"description": "El círculo, la horda, la progresión"
+			},
+			"account": {
+				"name": "Cuenta",
+				"description": "Inicio de sesión, nombre de usuario, bloqueo, datos"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "¿Qué necesito para jugar?",
+				"answer": "Un navegador actualizado (Chrome, Firefox o Edge) y una conexión a Internet estable. El juego funciona directamente en el navegador, no hay nada que instalar."
+			},
+			"lag": {
+				"question": "Mi partida se entrecorta o se desincroniza.",
+				"answer": "Suele deberse a una conexión inestable o a un navegador sobrecargado. Cierra las pestañas que no uses, comprueba tu conexión y vuelve a iniciar la partida."
+			},
+			"circle": {
+				"question": "¿Por qué hay que seguir el círculo?",
+				"answer": "El círculo de luz es tu único refugio, y nunca deja de moverse. Más allá, quedas a merced de las tinieblas: mantente cerca de la luz y síguela."
+			},
+			"power": {
+				"question": "¿Cómo me hago más fuerte?",
+				"answer": "Abatiendo enemigos. Cada monstruo derrotado te hace progresar y te permite mejorar tus armas y habilidades a lo largo de la partida."
+			},
+			"win": {
+				"question": "¿Se puede ganar?",
+				"answer": "No: no hay final, solo supervivencia. El objetivo es resistir a la horda el mayor tiempo posible."
+			},
+			"block": {
+				"question": "¿Cómo bloqueo a otro jugador?",
+				"answer": "Desde su perfil, usa el botón de bloqueo. Puedes encontrar a los jugadores bloqueados, y desbloquearlos, en la página Amigos, pestaña «Usuarios bloqueados»."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "El lore · Light Keepers",
+		"title": "En el corazón del círculo, una sola regla: resistir.",
+		"intro": "Nadie recuerda haber llegado aquí. Está la luz, está el grupo y, alrededor, la noche que bulle de vida. Esto es lo que sabemos.",
+		"blocks": {
+			"awakening": {
+				"label": "EL DESPERTAR",
+				"title": "No saben cómo llegaron aquí.",
+				"body": "Un grupo de aventureros abre los ojos en el centro de un círculo de luz. Unas pocas armas improvisadas, casi ningún equipo y ningún recuerdo del camino que los llevó hasta allí. A su alrededor se extiende una tierra que ninguno reconoce."
+			},
+			"circle": {
+				"label": "EL CÍRCULO",
+				"title": "La luz no los espera.",
+				"body": "El círculo es el único lugar donde aún se puede respirar, y nunca se queda quieto. Se desliza lentamente por este mundo desconocido, y los aventureros no tienen más remedio que seguirlo, paso a paso, sin saber adónde los lleva."
+			},
+			"horde": {
+				"label": "LA HORDA",
+				"title": "Más allá de la luz, son miles.",
+				"body": "Los monstruos brotan de la oscuridad, sin fin y sin descanso. Cuanto más tiempo pasa, más numerosos y temibles se vuelven. Nadie sabe de dónde vienen; solo se sabe que no se detendrán."
+			},
+			"keepers": {
+				"label": "LOS GUARDIANES DE LA LUZ",
+				"title": "Cada enemigo abatido los hace más fuertes.",
+				"body": "Quienes sobreviven no siguen siendo los mismos. A medida que sus enemigos caen, los aventureros ganan poder, hasta plantar cara a oleadas que minutos antes los habrían arrasado. Solo queda una pregunta: ¿cuánto tiempo resistirán?"
 			}
 		}
 	},

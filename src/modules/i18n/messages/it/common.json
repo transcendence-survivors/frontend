@@ -91,29 +91,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Segui la luce · o sarai dimenticato",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "Un gruppo di avventurieri si risveglia nel cuore di un cerchio di luce, quasi senza equipaggiamento e senza sapere nulla di ciò che lo circonda. Oltre la luce, i mostri emergono a migliaia, senza fine. Segui il cerchio, fatti strada tra l'orda e diventa più forte a ogni nemico abbattuto. Quanto a lungo sopravvivrai?",
 			"play": "Gioca ora",
 			"trailer": "Guarda il trailer",
 			"video_fallback": "Il tuo browser non supporta la riproduzione video."
 		},
 		"features": {
-			"kicker": "Il sistema",
-			"title": "Un solo meccanismo, fuso da tre. La luce è tutto.",
-			"lantern": {
-				"name": "La Lanterna",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "Come sopravvivere",
+			"title": "Segui la luce. Resisti alla notte. Diventa più forte.",
+			"circle": {
+				"name": "Il Cerchio",
+				"description": "La luce è il tuo unico rifugio, e non resta mai ferma. Segui il cerchio attraverso una terra sconosciuta: oltre il suo confine, ti attendono solo le tenebre."
 			},
-			"strata": {
-				"name": "Gli Strati",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "L'Orda",
+				"description": "Oltre la luce, i mostri emergono a migliaia, senza tregua. Ogni ondata è più numerosa e letale della precedente."
 			},
-			"forgotten": {
-				"name": "I Dimenticati",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "L'Ascesa",
+				"description": "Parti quasi a mani vuote. Man mano che i tuoi nemici cadono, il tuo potere cresce: nuove armi, nuove abilità, finché non diventi tu stesso la tempesta."
 			},
 			"vigil": {
 				"name": "La Veglia",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"description": "Non c'è vittoria, solo sopravvivenza. Quanto a lungo resisterai in questa terra ostile? Ogni minuto strappato alla notte conta."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Centro assistenza",
+		"title": "Come restare nella luce?",
+		"faq_title": "Domande frequenti",
+		"articles": "{count, plural, one {# articolo} other {# articoli}} →",
+		"categories": {
+			"technical": {
+				"name": "Tecnico",
+				"description": "Browser, prestazioni, connessione"
+			},
+			"gameplay": {
+				"name": "Gameplay",
+				"description": "Il cerchio, l'orda, la progressione"
+			},
+			"account": {
+				"name": "Account",
+				"description": "Accesso, nome utente, blocco, dati"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "Di cosa ho bisogno per giocare?",
+				"answer": "Un browser aggiornato (Chrome, Firefox o Edge) e una connessione Internet stabile. Il gioco gira direttamente nel browser, non c'è nulla da installare."
+			},
+			"lag": {
+				"question": "La mia partita scatta o si desincronizza.",
+				"answer": "Di solito è colpa di una connessione instabile o di un browser sovraccarico. Chiudi le schede inutili, controlla la connessione e riavvia la partita."
+			},
+			"circle": {
+				"question": "Perché bisogna seguire il cerchio?",
+				"answer": "Il cerchio di luce è il tuo unico rifugio, e non smette mai di muoversi. Oltre, sei alla mercé delle tenebre: resta vicino alla luce e seguila."
+			},
+			"power": {
+				"question": "Come divento più forte?",
+				"answer": "Abbattendo nemici. Ogni mostro sconfitto ti fa progredire e ti permette di potenziare armi e abilità nel corso della partita."
+			},
+			"win": {
+				"question": "Si può vincere?",
+				"answer": "No: non c'è una fine, solo la sopravvivenza. L'obiettivo è resistere all'orda il più a lungo possibile."
+			},
+			"block": {
+				"question": "Come blocco un altro giocatore?",
+				"answer": "Dal suo profilo, usa il pulsante di blocco. Trovi i giocatori bloccati, e puoi sbloccarli, nella pagina Amici, scheda «Utenti bloccati»."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "Il lore · Light Keepers",
+		"title": "Nel cuore del cerchio, una sola regola: resistere.",
+		"intro": "Nessuno ricorda di essere arrivato qui. C'è la luce, c'è il gruppo e, tutt'intorno, la notte che brulica di vita. Ecco ciò che sappiamo.",
+		"blocks": {
+			"awakening": {
+				"label": "IL RISVEGLIO",
+				"title": "Non sanno come siano arrivati qui.",
+				"body": "Un gruppo di avventurieri apre gli occhi al centro di un cerchio di luce. Qualche arma di fortuna, quasi nessun equipaggiamento e nessun ricordo della strada che li ha portati fin lì. Intorno a loro si stende una terra che nessuno riconosce."
+			},
+			"circle": {
+				"label": "IL CERCHIO",
+				"title": "La luce non li aspetta.",
+				"body": "Il cerchio è l'unico luogo in cui si può ancora respirare, e non resta mai fermo. Scivola lentamente attraverso questo mondo sconosciuto, e agli avventurieri non resta che seguirlo, passo dopo passo, senza sapere dove li porterà."
+			},
+			"horde": {
+				"label": "L'ORDA",
+				"title": "Oltre la luce, sono migliaia.",
+				"body": "I mostri emergono dall'oscurità, senza fine e senza sosta. Più il tempo passa, più diventano numerosi e temibili. Nessuno sa da dove vengano; si sa solo che non si fermeranno."
+			},
+			"keepers": {
+				"label": "I CUSTODI DELLA LUCE",
+				"title": "Ogni nemico abbattuto li rende più forti.",
+				"body": "Chi sopravvive non resta lo stesso. Man mano che i loro nemici cadono, gli avventurieri crescono in potenza, fino a tenere testa a ondate che pochi minuti prima li avrebbero travolti. Resta una sola domanda: quanto a lungo resisteranno?"
 			}
 		}
 	},

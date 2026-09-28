@@ -91,29 +91,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Folge dem Licht · oder werde vergessen",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "Eine Gruppe von Abenteurern erwacht im Herzen eines Lichtkreises – kaum ausgerüstet und ohne zu wissen, wo sie sich befindet. Jenseits des Lichts strömen Monster zu Tausenden hervor, ohne Ende. Folge dem Kreis, kämpfe dich durch die Horde und werde mit jedem besiegten Feind stärker. Wie lange wirst du überleben?",
 			"play": "Jetzt spielen",
 			"trailer": "Trailer ansehen",
 			"video_fallback": "Dein Browser unterstützt die Videowiedergabe nicht."
 		},
 		"features": {
-			"kicker": "Das System",
-			"title": "Ein einziger Mechanismus, aus dreien verschmolzen. Das Licht ist alles.",
-			"lantern": {
-				"name": "Die Laterne",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "So überlebst du",
+			"title": "Folge dem Licht. Trotze der Nacht. Werde stärker.",
+			"circle": {
+				"name": "Der Kreis",
+				"description": "Das Licht ist dein einziger Schutz – und es bleibt nie stehen. Folge dem Kreis durch ein unbekanntes Land: Jenseits seines Randes wartet nur die Finsternis."
 			},
-			"strata": {
-				"name": "Die Schichten",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "Die Horde",
+				"description": "Jenseits des Lichts tauchen Monster zu Tausenden auf, unaufhörlich. Jede Welle ist größer und tödlicher als die vorherige."
 			},
-			"forgotten": {
-				"name": "Die Vergessenen",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "Der Aufstieg",
+				"description": "Du beginnst fast mit leeren Händen. Mit jedem gefallenen Feind wächst deine Macht: neue Waffen, neue Fähigkeiten – bis du selbst zum Sturm wirst."
 			},
 			"vigil": {
-				"name": "Die Wacht",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"name": "Die Wache",
+				"description": "Es gibt keinen Sieg, nur das Überleben. Wie lange hältst du in diesem feindlichen Land durch? Jede Minute, die du der Nacht abringst, zählt."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Hilfe-Center",
+		"title": "Wie bleibst du im Licht?",
+		"faq_title": "Häufige Fragen",
+		"articles": "{count, plural, one {# Artikel} other {# Artikel}} →",
+		"categories": {
+			"technical": {
+				"name": "Technik",
+				"description": "Browser, Leistung, Verbindung"
+			},
+			"gameplay": {
+				"name": "Gameplay",
+				"description": "Der Kreis, die Horde, der Fortschritt"
+			},
+			"account": {
+				"name": "Konto",
+				"description": "Anmeldung, Benutzername, Blockieren, Daten"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "Was brauche ich zum Spielen?",
+				"answer": "Einen aktuellen Browser (Chrome, Firefox oder Edge) und eine stabile Internetverbindung. Das Spiel läuft direkt im Browser, du musst nichts installieren."
+			},
+			"lag": {
+				"question": "Mein Spiel ruckelt oder ist nicht synchron.",
+				"answer": "Meistens liegt das an einer instabilen Verbindung oder einem überlasteten Browser. Schließe unnötige Tabs, prüfe deine Verbindung und starte das Spiel neu."
+			},
+			"circle": {
+				"question": "Warum muss ich dem Kreis folgen?",
+				"answer": "Der Lichtkreis ist dein einziger Schutz, und er bewegt sich ständig. Außerhalb bist du der Finsternis ausgeliefert: Bleib nah am Licht und folge ihm."
+			},
+			"power": {
+				"question": "Wie werde ich stärker?",
+				"answer": "Indem du Feinde besiegst. Jedes besiegte Monster bringt dich weiter und lässt dich im Laufe der Runde deine Waffen und Fähigkeiten verbessern."
+			},
+			"win": {
+				"question": "Kann man gewinnen?",
+				"answer": "Nein: Es gibt kein Ende, nur das Überleben. Ziel ist es, der Horde so lange wie möglich standzuhalten."
+			},
+			"block": {
+				"question": "Wie blockiere ich einen anderen Spieler?",
+				"answer": "Nutze auf seinem Profil den Blockieren-Button. Blockierte Spieler findest du auf der Freunde-Seite im Tab „Blockierte Nutzer“, dort kannst du sie auch wieder freigeben."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "Die Lore · Light Keepers",
+		"title": "Im Herzen des Kreises gilt nur eine Regel: durchhalten.",
+		"intro": "Niemand erinnert sich, wie er hierhergekommen ist. Da ist das Licht, da ist die Gruppe, und ringsum die Nacht, die vor Leben wimmelt. Das ist alles, was wir wissen.",
+		"blocks": {
+			"awakening": {
+				"label": "DAS ERWACHEN",
+				"title": "Sie wissen nicht, wie sie hierhergekommen sind.",
+				"body": "Eine Gruppe von Abenteurern öffnet die Augen in der Mitte eines Lichtkreises. Ein paar behelfsmäßige Waffen, kaum Ausrüstung und keine Erinnerung an den Weg, der sie hierher geführt hat. Um sie herum erstreckt sich ein Land, das keiner von ihnen kennt."
+			},
+			"circle": {
+				"label": "DER KREIS",
+				"title": "Das Licht wartet nicht auf sie.",
+				"body": "Der Kreis ist der einzige Ort, an dem man noch atmen kann, und er steht nie still. Langsam gleitet er durch diese unbekannte Welt, und den Abenteurern bleibt nichts anderes übrig, als ihm zu folgen, Schritt für Schritt, ohne zu wissen, wohin er sie führt."
+			},
+			"horde": {
+				"label": "DIE HORDE",
+				"title": "Jenseits des Lichts sind es Tausende.",
+				"body": "Monster strömen aus der Dunkelheit, endlos und unerbittlich. Je länger es dauert, desto zahlreicher und gefährlicher werden sie. Niemand weiß, woher sie kommen; man weiß nur, dass sie nicht aufhören werden."
+			},
+			"keepers": {
+				"label": "DIE LICHTHÜTER",
+				"title": "Jeder gefallene Feind macht sie stärker.",
+				"body": "Wer überlebt, bleibt nicht derselbe. Während ihre Feinde fallen, wachsen die Abenteurer an Macht, bis sie Wellen standhalten, die sie Minuten zuvor noch hinweggefegt hätten. Bleibt nur eine Frage: Wie lange werden sie durchhalten?"
 			}
 		}
 	},

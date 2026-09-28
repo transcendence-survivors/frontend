@@ -91,29 +91,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Folg em Liecht · oder wirsch vergässe",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "E Gruppe vo Abentürer erwacht mitten imne Liechtchreis – fascht ohni Usrüschtig und ohni z wüsse, wo si sind. Hinter em Liecht tauched Monschter z Tuusige uf, ohni Änd. Folg em Chreis, kämpf di dur d Horde und wird mit jedem Feind, wo fallt, stärcher. Wie lang überläbsch du?",
 			"play": "Jetz spiele",
 			"trailer": "Trailer aaluege",
 			"video_fallback": "Din Browser cha kei Video abspiele."
 		},
 		"features": {
-			"kicker": "S Syschtem",
-			"title": "Ei einzige Mechanismus, us drü zämegschmolze. S Liecht isch alles.",
-			"lantern": {
-				"name": "D Laterne",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "So überläbsch",
+			"title": "Folg em Liecht. Trotz de Nacht. Wird stärcher.",
+			"circle": {
+				"name": "De Chreis",
+				"description": "S Liecht isch din einzige Schutz – und es bliibt nie stah. Folg em Chreis dur es unbekannts Land: Hinter sim Rand wartet nume d Dunkelheit."
 			},
-			"strata": {
-				"name": "D Schichte",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "D Horde",
+				"description": "Hinter em Liecht tauched Monschter z Tuusige uf, ohni Pause. Jedi Welle isch grösser und gföhrlicher als die vorher."
 			},
-			"forgotten": {
-				"name": "D Vergässene",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "De Ufstieg",
+				"description": "Du startisch fascht mit leere Händ. Mit jedem Feind, wo fallt, wachst dini Macht: neui Waffe, neui Fähigkeite – bis du sälber de Sturm bisch."
 			},
 			"vigil": {
-				"name": "D Wacht",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"name": "D Wach",
+				"description": "Es git kei Sieg, nume s Überläbe. Wie lang haltisch du i däm feindliche Land dure? Jedi Minute, wo du de Nacht abringsch, zählt."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Hilf-Center",
+		"title": "Wie bliibsch im Liecht?",
+		"faq_title": "Hüüfigi Froge",
+		"articles": "{count, plural, one {# Artikel} other {# Artikel}} →",
+		"categories": {
+			"technical": {
+				"name": "Technik",
+				"description": "Browser, Leischtig, Verbindig"
+			},
+			"gameplay": {
+				"name": "Gameplay",
+				"description": "De Chreis, d Horde, de Fortschritt"
+			},
+			"account": {
+				"name": "Konto",
+				"description": "Aameldig, Benutzername, Blockiere, Date"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "Was bruuch ich zum Spiele?",
+				"answer": "En aktuelle Browser (Chrome, Firefox oder Edge) und e stabili Internetverbindig. S Spiel lauft diräkt im Browser, du muesch nüt installiere."
+			},
+			"lag": {
+				"question": "Mis Spiel ruckelt oder isch nöd synchron.",
+				"answer": "Meischtens liit das anere instabile Verbindig oder amne überlaschtete Browser. Mach unnötigi Tabs zue, prüef dini Verbindig und start s Spiel neu."
+			},
+			"circle": {
+				"question": "Wieso muess ich em Chreis folge?",
+				"answer": "De Liechtchreis isch din einzige Schutz, und er bewegt sich ständig. Usserhalb bisch de Dunkelheit usgliferet: Bliib nöch am Liecht und folg ihm."
+			},
+			"power": {
+				"question": "Wie wird ich stärcher?",
+				"answer": "Indem du Feind besiegsch. Jedes besiegte Monschter bringt di wiiter und laat di im Lauf vo de Rundi dini Waffe und Fähigkeite verbessere."
+			},
+			"win": {
+				"question": "Cha mer gwünne?",
+				"answer": "Nei: Es git kei Änd, nume s Überläbe. S Ziel isch, de Horde so lang wie möglich standzhalte."
+			},
+			"block": {
+				"question": "Wie blockier ich en andere Spieler?",
+				"answer": "Bruuch uf sim Profil de Blockiere-Chnopf. Blockierti Spieler findsch uf de Fründe-Siite im Tab „Blockierti Nutzer“, det chasch si au wieder freigeh."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "D Lore · Light Keepers",
+		"title": "Im Härz vom Chreis gilt nume ei Regle: durehalte.",
+		"intro": "Niemer weiss meh, wie er da ane cho isch. Es git s Liecht, es git d Gruppe, und rundume d Nacht, wo vo Läbe wimmlet. Das isch alles, wo mer wüsse.",
+		"blocks": {
+			"awakening": {
+				"label": "S ERWACHE",
+				"title": "Si wüsse nöd, wie si da ane cho sind.",
+				"body": "E Gruppe vo Abentürer macht d Auge uf, mitten imne Liechtchreis. Es paar Notwaffe, fascht kei Usrüschtig und kei Erinnerig an de Wäg, wo si da ane gfüehrt hät. Um si ume liit es Land, wo keine vo ihne kännt."
+			},
+			"circle": {
+				"label": "DE CHREIS",
+				"title": "S Liecht wartet nöd uf si.",
+				"body": "De Chreis isch de einzig Ort, wo mer no cha schnuufe, und er staht nie still. Langsam gleitet er dur die unbekannti Wält, und d Abentürer händ kei anderi Wahl, als ihm z folge, Schritt für Schritt, ohni z wüsse, wohii er si füehrt."
+			},
+			"horde": {
+				"label": "D HORDE",
+				"title": "Hinter em Liecht sind es Tuusigi.",
+				"body": "Monschter chömed us de Dunkelheit, ohni Änd und ohni Gnad. Je länger es gaht, desto meh und gföhrlicher wärded si. Niemer weiss, wohär si chömed; mer weiss nume, dass si nöd ufhöred."
+			},
+			"keepers": {
+				"label": "D LIECHTHÜETER",
+				"title": "Jede Feind, wo fallt, macht si stärcher.",
+				"body": "Wer überläbt, bliibt nöd de glich. Während ihri Feind falled, wachsed d Abentürer a Macht, bis si Welle standhalted, wo si Minute vorher no wäggfägt hettid. Bliibt nume ei Frog: Wie lang halted si dure?"
 			}
 		}
 	},

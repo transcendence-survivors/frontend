@@ -1,38 +1,28 @@
 import { Cpu, Gamepad2, UserCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const categories = [
-	{
-		Icon: Cpu,
-		name: 'Technical',
-		description: 'Specs, performance, réseau',
-		count: 3,
-	},
-	{
-		Icon: Gamepad2,
-		name: 'Gameplay',
-		description: 'La Veille, la lueur, les armes, les strates',
-		count: 3,
-	},
-	{
-		Icon: UserCircle,
-		name: 'Account',
-		description: 'Connexion, pseudo, blocage, données',
-		count: 3,
-	},
-];
+	{ key: 'technical', Icon: Cpu, count: 2 },
+	{ key: 'gameplay', Icon: Gamepad2, count: 3 },
+	{ key: 'account', Icon: UserCircle, count: 1 },
+] as const;
 
 export default function CategoryGrid() {
+	const t = useTranslations('support');
+
 	return (
 		<div className='grid md:grid-cols-3 border border-border divide-y md:divide-y-0 md:divide-x divide-border'>
-			{categories.map(({ Icon, name, description, count }) => (
-				<div key={name} className='bg-background p-8'>
+			{categories.map(({ key, Icon, count }) => (
+				<div key={key} className='bg-background p-8'>
 					<Icon className='size-6 text-primary mb-6' />
 					<h3 className='text-xl font-semibold text-foreground mb-2'>
-						{name}
+						{t(`categories.${key}.name`)}
 					</h3>
-					<p className='text-muted-foreground mb-6'>{description}</p>
+					<p className='text-muted-foreground mb-6'>
+						{t(`categories.${key}.description`)}
+					</p>
 					<p className='font-mono text-xs tracking-[0.15em] text-muted-foreground uppercase'>
-						{count} articles →
+						{t('articles', { count })}
 					</p>
 				</div>
 			))}

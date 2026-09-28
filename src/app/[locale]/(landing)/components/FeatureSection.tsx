@@ -6,18 +6,18 @@ export default function FeatureSection() {
 
 	const features = [
 		{
-			name: t('lantern.name'),
-			description: t('lantern.description'),
+			name: t('circle.name'),
+			description: t('circle.description'),
 			gradient: 'from-amber-500/40 via-amber-500/10 to-transparent',
 		},
 		{
-			name: t('strata.name'),
-			description: t('strata.description'),
+			name: t('horde.name'),
+			description: t('horde.description'),
 			gradient: 'from-yellow-500/30 via-amber-500/10 to-transparent',
 		},
 		{
-			name: t('forgotten.name'),
-			description: t('forgotten.description'),
+			name: t('ascent.name'),
+			description: t('ascent.description'),
 			gradient: 'from-neutral-500/30 via-stone-500/10 to-transparent',
 		},
 		{

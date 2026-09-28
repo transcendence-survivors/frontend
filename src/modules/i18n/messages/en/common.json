@@ -460,29 +460,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Follow the light · or be forgotten",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "A band of adventurers awakens at the heart of a circle of light, with barely any gear and no idea where they are. Beyond the light, monsters pour out by the thousands, without end. Follow the circle, carve your way through the horde and grow stronger with every fallen foe. How long can you survive?",
 			"play": "Play now",
 			"trailer": "Watch the trailer",
 			"video_fallback": "Your browser does not support video playback."
 		},
 		"features": {
-			"kicker": "The system",
-			"title": "A single mechanism, fused from three. The light is everything.",
-			"lantern": {
-				"name": "The Lantern",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "How to survive",
+			"title": "Follow the light. Hold back the night. Grow stronger.",
+			"circle": {
+				"name": "The Circle",
+				"description": "The light is your only shelter, and it never stays still. Follow the circle across an unknown land: beyond its edge, only darkness awaits."
 			},
-			"strata": {
-				"name": "The Strata",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "The Horde",
+				"description": "Beyond the light, monsters emerge by the thousands, relentlessly. Each wave is larger and deadlier than the last."
 			},
-			"forgotten": {
-				"name": "The Forgotten",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "The Ascent",
+				"description": "You set out with almost nothing. As your enemies fall, your power grows: new weapons, new abilities, until you become the storm yourself."
 			},
 			"vigil": {
 				"name": "The Vigil",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"description": "There is no victory, only survival. How long will you last in this hostile land? Every minute stolen from the night counts."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Help Center",
+		"title": "How do you stay in the light?",
+		"faq_title": "Common questions",
+		"articles": "{count, plural, one {# article} other {# articles}} →",
+		"categories": {
+			"technical": {
+				"name": "Technical",
+				"description": "Browser, performance, connection"
+			},
+			"gameplay": {
+				"name": "Gameplay",
+				"description": "The circle, the horde, progression"
+			},
+			"account": {
+				"name": "Account",
+				"description": "Login, username, blocking, data"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "What do I need to play?",
+				"answer": "An up-to-date browser (Chrome, Firefox or Edge) and a stable internet connection. The game runs right in your browser, nothing to install."
+			},
+			"lag": {
+				"question": "My game stutters or desyncs.",
+				"answer": "This is usually caused by an unstable connection or an overloaded browser. Close unused tabs, check your connection, then restart the game."
+			},
+			"circle": {
+				"question": "Why do I have to follow the circle?",
+				"answer": "The circle of light is your only shelter, and it never stops moving. Beyond it, you are at the mercy of the darkness: stay close to the light and follow it."
+			},
+			"power": {
+				"question": "How do I get stronger?",
+				"answer": "By cutting down enemies. Every monster you defeat makes you progress and lets you upgrade your weapons and abilities as the run goes on."
+			},
+			"win": {
+				"question": "Can you win?",
+				"answer": "No: there is no ending, only survival. The goal is to hold out against the horde for as long as possible."
+			},
+			"block": {
+				"question": "How do I block another player?",
+				"answer": "From their profile, use the block button. You can find blocked players, and unblock them, on the Friends page, under the \"Blocked Users\" tab."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "The Lore · Light Keepers",
+		"title": "At the heart of the circle, one rule: hold on.",
+		"intro": "No one remembers arriving here. There is the light, there is the group, and all around, the night crawling with life. Here is what we know.",
+		"blocks": {
+			"awakening": {
+				"label": "THE AWAKENING",
+				"title": "They don't know how they got here.",
+				"body": "A band of adventurers opens their eyes at the center of a circle of light. A few makeshift weapons, almost no gear, and no memory of the road that led them there. Around them stretches a land none of them recognizes."
+			},
+			"circle": {
+				"label": "THE CIRCLE",
+				"title": "The light does not wait for them.",
+				"body": "The circle is the only place where one can still breathe, and it never stays still. It drifts slowly across this unknown world, and the adventurers have no choice but to follow it, step after step, never knowing where it leads."
+			},
+			"horde": {
+				"label": "THE HORDE",
+				"title": "Beyond the light, there are thousands of them.",
+				"body": "Monsters pour out of the darkness, endlessly and relentlessly. The longer it lasts, the more numerous and dangerous they become. No one knows where they come from; all anyone knows is that they will not stop."
+			},
+			"keepers": {
+				"label": "THE LIGHT KEEPERS",
+				"title": "Every enemy felled makes them stronger.",
+				"body": "Those who survive do not stay the same. As their enemies fall, the adventurers grow in power, until they can stand against waves that would have swept them away minutes earlier. One question remains: how long will they last?"
 			}
 		}
 	},

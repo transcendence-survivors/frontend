@@ -162,29 +162,104 @@
 	"landing": {
 		"hero": {
 			"kicker": "Suis la lumière · ou sois oublié",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+			"description": "Un groupe d'aventuriers s'éveille au cœur d'un cercle de lumière, presque sans équipement et sans rien savoir de ce qui l'entoure. Par-delà la lumière, les monstres surgissent par milliers, sans fin. Suivez le cercle, taillez-vous un chemin à travers la horde et devenez plus forts à chaque ennemi vaincu. Combien de temps survivrez-vous ?",
 			"play": "Jouer maintenant",
 			"trailer": "Voir la bande-annonce",
 			"video_fallback": "Votre navigateur ne supporte pas la lecture de cette vidéo."
 		},
 		"features": {
-			"kicker": "Le système",
-			"title": "Un seul mécanisme, fusionné de trois. La lumière est tout.",
-			"lantern": {
-				"name": "La Lanterne",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			"kicker": "Comment survivre",
+			"title": "Suivre la lumière. Repousser la nuit. Devenir plus fort.",
+			"circle": {
+				"name": "Le Cercle",
+				"description": "La lumière est votre seul refuge, et elle ne tient jamais en place. Suivez le cercle à travers une terre inconnue : au-delà de ses limites, seules les ténèbres vous attendent."
 			},
-			"strata": {
-				"name": "Les Strates",
-				"description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"horde": {
+				"name": "La Horde",
+				"description": "Par-delà la lumière, les monstres surgissent par milliers, sans répit. Chaque vague est plus nombreuse et plus redoutable que la précédente."
 			},
-			"forgotten": {
-				"name": "Les Oubliés",
-				"description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+			"ascent": {
+				"name": "L'Ascension",
+				"description": "Vous partez presque les mains vides. À mesure que vos ennemis sombrent, votre puissance grandit : nouvelles armes, nouveaux pouvoirs, jusqu'à devenir vous-même la tempête."
 			},
 			"vigil": {
 				"name": "La Veille",
-				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"description": "Il n'y a pas de victoire, seulement la survie. Combien de temps tiendrez-vous dans ce milieu hostile ? Chaque minute arrachée à la nuit compte."
+			}
+		}
+	},
+
+	"support": {
+		"kicker": "Centre d'aide",
+		"title": "Comment rester dans la lumière ?",
+		"faq_title": "Questions fréquentes",
+		"articles": "{count, plural, one {# article} other {# articles}} →",
+		"categories": {
+			"technical": {
+				"name": "Technique",
+				"description": "Navigateur, performances, connexion"
+			},
+			"gameplay": {
+				"name": "Gameplay",
+				"description": "Le cercle, la horde, la progression"
+			},
+			"account": {
+				"name": "Compte",
+				"description": "Connexion, pseudo, blocage, données"
+			}
+		},
+		"faq": {
+			"requirements": {
+				"question": "De quoi ai-je besoin pour jouer ?",
+				"answer": "D'un navigateur récent et à jour (Chrome, Firefox ou Edge) et d'une connexion Internet stable. Le jeu tourne directement dans le navigateur, rien à installer."
+			},
+			"lag": {
+				"question": "Ma partie saccade ou se désynchronise.",
+				"answer": "C'est le plus souvent dû à une connexion instable ou à un navigateur surchargé. Ferme les onglets inutiles, vérifie ta connexion, puis relance la partie."
+			},
+			"circle": {
+				"question": "Pourquoi faut-il suivre le cercle ?",
+				"answer": "Le cercle de lumière est ton seul refuge, et il se déplace sans cesse. Au-delà, tu es à la merci des ténèbres : reste au plus près de la lumière et suis-la."
+			},
+			"power": {
+				"question": "Comment devenir plus fort ?",
+				"answer": "En abattant des ennemis. Chaque monstre vaincu te fait progresser et te permet d'améliorer tes armes et tes capacités au fil de la partie."
+			},
+			"win": {
+				"question": "Est-ce qu'on peut gagner ?",
+				"answer": "Non : il n'y a pas de fin, seulement la survie. Le but est de tenir le plus longtemps possible face à la horde."
+			},
+			"block": {
+				"question": "Comment bloquer un autre joueur ?",
+				"answer": "Depuis son profil, utilise le bouton de blocage. Tu retrouves les joueurs bloqués, et peux les débloquer, dans la page Amis, onglet « Utilisateurs bloqués »."
+			}
+		}
+	},
+
+	"lore": {
+		"kicker": "Le lore · Light Keepers",
+		"title": "Au cœur du cercle, une seule règle : tenir.",
+		"intro": "Personne ne se souvient d'être arrivé ici. Il y a la lumière, il y a le groupe, et tout autour, la nuit qui grouille. Voici ce que l'on sait.",
+		"blocks": {
+			"awakening": {
+				"label": "LE RÉVEIL",
+				"title": "Ils ne savent pas comment ils sont arrivés là.",
+				"body": "Un groupe d'aventuriers ouvre les yeux au centre d'un cercle de lumière. Quelques armes de fortune, presque aucun équipement, et aucun souvenir du chemin qui les a menés jusque-là. Autour d'eux s'étend une terre qu'aucun ne reconnaît."
+			},
+			"circle": {
+				"label": "LE CERCLE",
+				"title": "La lumière ne les attend pas.",
+				"body": "Le cercle est le seul endroit où l'on peut encore respirer, et il ne reste jamais immobile. Il glisse lentement à travers ce monde inconnu, et les aventuriers n'ont d'autre choix que de le suivre, pas après pas, sans savoir où il les mène."
+			},
+			"horde": {
+				"label": "LA HORDE",
+				"title": "Par-delà la lumière, ils sont des milliers.",
+				"body": "Des monstres surgissent de l'obscurité, sans fin et sans relâche. Plus le temps passe, plus ils sont nombreux et redoutables. Nul ne sait d'où ils viennent ; on sait seulement qu'ils ne s'arrêteront pas."
+			},
+			"keepers": {
+				"label": "LES GARDIENS DE LA LUMIÈRE",
+				"title": "Chaque ennemi abattu les rend plus forts.",
+				"body": "Ceux qui survivent ne restent pas les mêmes. À mesure que leurs ennemis sombrent, les aventuriers gagnent en puissance, jusqu'à tenir tête à des vagues qui les auraient balayés quelques minutes plus tôt. Reste une seule question : combien de temps tiendront-ils ?"
 			}
 		}
 	},

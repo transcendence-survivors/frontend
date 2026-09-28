@@ -2,11 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { deletePost } from '../api/posts';
 import { Post } from '../types/post';
-import {
-	invalidatePostQueries,
-	removePostFromCaches,
-	updatePostInCaches,
-} from '../utils/post-cache';
+import { removePostFromCaches, updatePostInCaches } from '../utils/post-cache';
 
 export const useDeletePost = () => {
 	const queryClient = useQueryClient();
@@ -29,8 +25,6 @@ export const useDeletePost = () => {
 					repostCount: Math.max(quoted.repostCount - 1, 0),
 				}));
 			}
-
-			invalidatePostQueries(queryClient);
 		},
 	});
 };

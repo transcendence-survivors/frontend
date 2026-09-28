@@ -1,10 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import {
-	FEED_KEY,
-	USER_POSTS_KEY,
-	USER_REPOSTS_KEY,
-} from '@/features/posts/constants/query-keys';
+import { useUser } from '@/features/auth/stores/session';
+import { postKeys } from '@/features/posts/constants/query-keys';
 import {
 	cancelPostQueries,
 	invalidatePostQueries,
@@ -27,6 +24,7 @@ const requestActionFns: Record<
 
 const useRepostAction = (action: RepostRequestAction) => {
 	const queryClient = useQueryClient();
+	const user = useUser();
 	const isReposted = action === 'repost';
 
 	return useMutation({
@@ -46,12 +44,11 @@ const useRepostAction = (action: RepostRequestAction) => {
 		},
 		onError: (_error, _postId, snapshot) =>
 			restorePostCaches(queryClient, snapshot),
-		onSettled: () =>
-			invalidatePostQueries(queryClient, [
-				FEED_KEY,
-				USER_POSTS_KEY,
-				USER_REPOSTS_KEY,
-			]),
+		onSettled: () => {
+			if (user) {
+				invalidatePostQueries(queryClient, [postKeys.userReposts(user.username)]);
+			}
+		},
 	});
 };
 

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { USER_LIKES_KEY } from '@/features/posts/constants/query-keys';
+import { useUser } from '@/features/auth/stores/session';
+import { postKeys } from '@/features/posts/constants/query-keys';
 import {
 	cancelPostQueries,
 	invalidatePostQueries,
@@ -21,6 +22,7 @@ const requestActionFns: Record<LikeRequestAction, (postId: string) => Promise<un
 
 const useLikeAction = (action: LikeRequestAction) => {
 	const queryClient = useQueryClient();
+	const user = useUser();
 	const isLiked = action === 'like';
 
 	return useMutation({
@@ -40,7 +42,11 @@ const useLikeAction = (action: LikeRequestAction) => {
 		},
 		onError: (_error, _postId, snapshot) =>
 			restorePostCaches(queryClient, snapshot),
-		onSettled: () => invalidatePostQueries(queryClient, [USER_LIKES_KEY]),
+		onSettled: () => {
+			if (user) {
+				invalidatePostQueries(queryClient, [postKeys.userLikes(user.username)]);
+			}
+		},
 	});
 };
 

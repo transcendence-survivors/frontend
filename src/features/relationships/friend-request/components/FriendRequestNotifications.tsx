@@ -3,6 +3,7 @@
 import NotificationBubble from '@/components/ui/notification-bubble';
 import { useRequestCount } from '../hooks/useRequestCount';
 import { Spinner } from '@/components/ui/spinner';
+import { cn } from '@/libs/utils';
 
 type FriendRequestNotificationsProps = Omit<
 	React.ComponentProps<typeof NotificationBubble>,
@@ -18,7 +19,9 @@ export function FriendRequestNotifications({
 	});
 
 	if (isLoading) {
-		return <Spinner className={'size-3.5 text-muted-foreground'} />;
+		return (
+			<Spinner className={cn('size-3.5 text-muted-foreground', props.className)} />
+		);
 	}
 	const count = data?.count ?? 0;
 	if (!count || count <= 0) {

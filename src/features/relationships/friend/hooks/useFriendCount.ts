@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getFriendsIdsCount } from '../api/count';
+import { getFriendsIdsCount } from '../api/friend';
 import { GetFriendIdsCountParams } from '../types';
 
 export type UseFriendsCountParams = Omit<GetFriendIdsCountParams, 'cursor' | 'limit'>;

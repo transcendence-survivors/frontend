@@ -2,18 +2,19 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { TooltipContent, TooltipTrigger, Tooltip } from '@/components/ui/tooltip';
 import { Pencil, Reply, Trash2 } from 'lucide-react';
-import { TextChatMessage } from '../../types/message';
+import { ChatMessageType, PostChatMessage, TextChatMessage } from '../../types/message';
 import { ChatMessageBubbleContent } from './bubble/ChatMessageBubbleContent';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 import { canManageMember, ChatMemberPermissionEnum } from '../../utils/role';
 import { useRoomRole, useRoomType } from '../../stores/roomSlice';
+import { SharedPostCard } from '@/features/posts/components/SharedPostCard';
 
 interface ChatMessageActionsProps {
-	message: TextChatMessage;
+	message: TextChatMessage | PostChatMessage;
 	isMe: boolean;
-	onEdit: (message: TextChatMessage) => void;
+	onEdit: (message: TextChatMessage | PostChatMessage) => void;
+	onReply: (message: TextChatMessage | PostChatMessage) => void;
 	onDelete: (messageId: string) => void;
-	onReply: (message: TextChatMessage) => void;
 }
 
 export const ChatMessageActions = ({
@@ -32,6 +33,7 @@ export const ChatMessageActions = ({
 	const canDelete =
 		isMe ||
 		(roomType === 'GROUP' &&
+			message.sender &&
 			canManageMember({
 				actorRole: userRole,
 				targetRole: message.sender.role,
@@ -104,8 +106,11 @@ export const ChatMessageActions = ({
 						<ChatMessageBubbleContent
 							message={message}
 							isMe={isMe}
-							showReplyPreview={false}
-						/>
+							showReplyPreview={false}>
+							{message.type === ChatMessageType.POST_SHARE && (
+								<SharedPostCard post={message.sharedPost} />
+							)}
+						</ChatMessageBubbleContent>
 					</ActionConfirmDialog>
 					<TooltipContent
 						side='top'

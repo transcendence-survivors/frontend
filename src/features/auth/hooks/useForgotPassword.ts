@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { forgotPassword } from '../api/forgot-passord.api';
+import { forgotPassword } from '../api/password.api';
 
 interface useForgotPasswordMessages {
 	successMessage: string;

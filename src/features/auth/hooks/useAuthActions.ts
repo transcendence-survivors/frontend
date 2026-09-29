@@ -50,7 +50,7 @@ const useAuthAction = <TAction extends AuthAction>({
 			router.replace(
 				callbackUrl
 					? stripLocale(callbackUrl)
-					: ROUTES.userName({ username: res.data.username }),
+					: ROUTES.userName({ username: `@${res.data.username}` }),
 			);
 		},
 	});

@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import ChatMessageForm from './message/form/ChatMessageForm';
-import { TextChatMessage } from '../types/message';
+import { PostChatMessage, TextChatMessage } from '../types/message';
 import ChatMessages from './message/ChatMessages';
 import { useJoinChatRoom } from '../hooks/room/useJoinChatRoom';
 import { useSoftDeleteMessage } from '../hooks/message/useMessageActions';
@@ -15,8 +15,8 @@ interface ChatContainerProps {
 }
 
 interface ChatContainerState {
-	editingMessage: TextChatMessage | null;
-	replyingToMessage: TextChatMessage | null;
+	editingMessage: TextChatMessage | PostChatMessage | null;
+	replyingToMessage: TextChatMessage | PostChatMessage | null;
 }
 
 export const ChatContainer = ({ room, role }: ChatContainerProps) => {
@@ -29,13 +29,19 @@ export const ChatContainer = ({ room, role }: ChatContainerProps) => {
 		replyingToMessage: null,
 	});
 
-	const handleEditMessage = useCallback((message: TextChatMessage) => {
-		setActionState({ editingMessage: message, replyingToMessage: null });
-	}, []);
+	const handleEditMessage = useCallback(
+		(message: TextChatMessage | PostChatMessage) => {
+			setActionState({ editingMessage: message, replyingToMessage: null });
+		},
+		[],
+	);
 
-	const handleReplyMessage = useCallback((message: TextChatMessage) => {
-		setActionState({ editingMessage: null, replyingToMessage: message });
-	}, []);
+	const handleReplyMessage = useCallback(
+		(message: TextChatMessage | PostChatMessage) => {
+			setActionState({ editingMessage: null, replyingToMessage: message });
+		},
+		[],
+	);
 
 	const handleCancelMode = useCallback(() => {
 		setActionState({ editingMessage: null, replyingToMessage: null });

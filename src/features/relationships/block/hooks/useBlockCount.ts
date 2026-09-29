@@ -2,16 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { GetBlocksCountParams } from '../types';
-import { getBlocksCount } from '../api/count';
+import { getBlocksCount } from '../api/block';
 
-type UseBlocksCountParams = GetBlocksCountParams;
+export type UseBlocksCountParams = GetBlocksCountParams;
 
-const useBlocksCount = (params: UseBlocksCountParams) => {
+export const useBlocksCount = (params: UseBlocksCountParams) => {
 	return useQuery({
 		queryKey: ['blocks-count', params],
 		queryFn: () => getBlocksCount(params),
 	});
 };
-
-export { useBlocksCount };
-export type { UseBlocksCountParams };

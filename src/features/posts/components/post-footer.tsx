@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageCircle, Repeat2 } from 'lucide-react';
+import { Copy, MessageCircle, Repeat2, Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -17,6 +17,7 @@ import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { Post } from '../types/post';
 import CreatePost from './create-post';
+import { SharePostDialog } from '@/features/chat/components/share/SharePostDialog';
 
 interface PostFooterProps {
 	post: Post;
@@ -34,6 +35,11 @@ export default function PostFooter({ post }: PostFooterProps) {
 		if (isMutating) return;
 		if (post.isReposted) deleteRepost.mutate(post.id);
 		else addRepost.mutate(post.id);
+	};
+
+	const handleCopyLink = () => {
+		const postLink = `${window.location.origin}/@${post.author.username}/posts/${post.id}`;
+		navigator.clipboard.writeText(postLink);
 	};
 
 	return (
@@ -54,7 +60,10 @@ export default function PostFooter({ post }: PostFooterProps) {
 						variant='ghost'
 						size='sm'
 						aria-label={t('repost')}
-						className={cn('relative z-10', post.isReposted && 'text-primary')}>
+						className={cn(
+							'relative z-10',
+							post.isReposted && 'text-primary',
+						)}>
 						<Repeat2 />
 						{post.repostCount > 0 && post.repostCount}
 					</Button>
@@ -74,6 +83,36 @@ export default function PostFooter({ post }: PostFooterProps) {
 				likeCount={post.likeCount}
 				isLiked={post.isLiked}
 			/>
+
+			<div className='ml-auto'>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button
+							variant='ghost'
+							size='sm'
+							aria-label={t('repost')}
+							className={cn(
+								'relative z-10',
+								post.isReposted && 'text-primary',
+							)}>
+							<Share2 />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align='end' className='w-[160px]'>
+						<SharePostDialog post={post}>
+							<DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+								<MessageCircle className='size-4 mr-2' />
+								{t('chat')}
+							</DropdownMenuItem>
+						</SharePostDialog>
+
+						<DropdownMenuItem onClick={handleCopyLink}>
+							<Copy className='size-4 mr-2' />
+							{t('copy_link')}
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
 
 			<Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
 				<DialogContent>

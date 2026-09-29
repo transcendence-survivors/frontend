@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 import LoreHero from './components/LoreHero';
 import StoryBlock from './components/StoryBlock';
-import SiteHeader from '../components/SiteHeader';
 
 const blocks = ['awakening', 'circle', 'horde', 'keepers'] as const;
 
@@ -10,7 +9,6 @@ export default function LorePage() {
 
 	return (
 		<main>
-			<SiteHeader active='lore' />
 			<LoreHero />
 			<div className='max-w-5xl mx-auto border border-border'>
 				{blocks.map((block, index) => (

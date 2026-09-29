@@ -4,15 +4,16 @@ import { InfiniteData, useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
-import { addBlock } from '../api/add';
-import { deleteBlock } from '../api/delete';
+import { addBlock, deleteBlock } from '../api/block';
 import { Block, GetBlocksResponse } from '../types';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
+import { relationshipKeys } from '../../constants/keys';
 
 type BlockAction = 'add' | 'delete';
 
 interface UseBlockActionParams {
 	blockedId: string;
+	blockedUsername: string;
 	action: BlockAction;
 	successMessage: string;
 	failureMessage: string;
@@ -25,6 +26,7 @@ const blockActionFns: Record<BlockAction, (blockedId: string) => Promise<unknown
 
 const useBlockAction = ({
 	blockedId,
+	blockedUsername,
 	action,
 	successMessage,
 	failureMessage,
@@ -67,10 +69,8 @@ const useBlockAction = ({
 			if (ctx?.previous) queryClient.setQueryData(blockKey, ctx.previous);
 			toast.error(failureMessage);
 		},
-		onSuccess: () => {
+		onSuccess: async () => {
 			toast.success(successMessage);
-		},
-		onSettled: async () => {
 			await Promise.all(
 				invalidateKeys.map((queryKey) =>
 					invalidate(queryKey, { mode: 'instant', reset: true }),
@@ -78,14 +78,17 @@ const useBlockAction = ({
 			);
 			invalidate(blockKey, { mode: 'instant' });
 			invalidate(blockCountKey, { mode: 'instant' });
+			invalidate(relationshipKeys.status(blockedUsername), { mode: 'instant' });
+
+			if (action === 'add') {
+				invalidate(['chat-rooms'], { mode: 'instant', reset: true });
+			}
 		},
 	});
 };
 
-const useBlockAdd = (params: Omit<UseBlockActionParams, 'action'>) =>
+export const useBlockAdd = (params: Omit<UseBlockActionParams, 'action'>) =>
 	useBlockAction({ ...params, action: 'add' });
 
-const useBlockDelete = (params: Omit<UseBlockActionParams, 'action'>) =>
+export const useBlockDelete = (params: Omit<UseBlockActionParams, 'action'>) =>
 	useBlockAction({ ...params, action: 'delete' });
-
-export { useBlockAdd, useBlockDelete };

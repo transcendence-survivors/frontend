@@ -8,22 +8,28 @@ import { createMessageSlice, MessageSlice } from '@/features/chat/stores/message
 import { createTypingSlice, TypingSlice } from '@/features/chat/stores/typingSlice';
 import { createRoomSlice, RoomSlice } from '@/features/chat/stores/roomSlice';
 import {
-	createNotificationSlice,
-	NotificationSlice,
-} from '@/features/chat/stores/notificationSlice';
+	createChatNotificationSlice,
+	ChatNotificationSlice,
+} from '@/features/chat/stores/chatNotificationSlice';
+import {
+	createRelationshipNotificationsSlice,
+	RelationshipNotificationSlice,
+} from '@/features/relationships/stores/relationshipNotificationSlice';
 
 type RootStoreState = SocketSlice &
 	PresenceSlice &
 	MessageSlice &
 	TypingSlice &
 	RoomSlice &
-	NotificationSlice;
+	ChatNotificationSlice &
+	RelationshipNotificationSlice;
 
 export const useWebsocketStore = create<RootStoreState>()((...a) => ({
 	...createSocketSlice(...a),
 	...createPresenceSlice(...a),
+	...createRelationshipNotificationsSlice(...a),
 	...createMessageSlice(...a),
 	...createTypingSlice(...a),
 	...createRoomSlice(...a),
-	...createNotificationSlice(...a),
+	...createChatNotificationSlice(...a),
 }));

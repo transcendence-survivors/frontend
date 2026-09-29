@@ -48,7 +48,7 @@ const AvatarDropdown = ({}) => {
 			<DropdownMenuTrigger asChild>
 				<Button variant={'ghost'} className={`w-full h-auto max-w-full`}>
 					<UserIdentity
-						className='py-2'
+						className='py-2 w-full'
 						avatar={{
 							img: {
 								src: user.avatarUrl ?? '',

@@ -1,13 +1,14 @@
+import { Endpoint } from '@/libs/api';
+
 const BLOCKS_START_PATH = '/blocks' as const;
 
 type StartPath = typeof BLOCKS_START_PATH;
-type BlocksEndpoint = `${StartPath}/${string}` | `${StartPath}`;
 
 const BLOCK_ENDPOINTS = {
 	getblocks: `${BLOCKS_START_PATH}`,
 	getblocksCount: `${BLOCKS_START_PATH}/count`,
-	deleteBlock: `${BLOCKS_START_PATH}`,
+	deleteBlock: (blockId: string) => `${BLOCKS_START_PATH}/${blockId}`,
 	addBlock: `${BLOCKS_START_PATH}`,
-} as const satisfies Record<string, BlocksEndpoint>;
+} as const satisfies Record<string, Endpoint<StartPath>>;
 
 export { BLOCK_ENDPOINTS };

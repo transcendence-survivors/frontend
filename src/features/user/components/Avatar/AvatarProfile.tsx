@@ -13,6 +13,7 @@ import { TooltipContent, TooltipTrigger, Tooltip } from '@/components/ui/tooltip
 import { BaseUser } from '../../type';
 import UserDisplayName from '../Identity/UserDisplayName';
 import Username from '../Identity/Username';
+import { useTranslations } from 'next-intl';
 
 export type AvatarProfileSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | '3xl';
 
@@ -116,18 +117,23 @@ const AvatarProfileLink = ({ avatar, username }: AvatarProfileLinkProps) => {
 };
 
 type AvatarProfileTooltipProps = {
-	user: BaseUser;
+	user: BaseUser | null;
 	isLink?: boolean;
 } & Pick<AvatarProfileProps, 'size' | 'badgeState'>;
 
 const AvatarProfileTooltip = ({
-	user: { displayName, username, avatarUrl },
+	user,
 	size = 'md',
 	isLink = true,
 	badgeState,
 }: AvatarProfileTooltipProps) => {
+	const t = useTranslations('chat.messages.system');
+
+	const displayName = user?.displayName || t('deleted_user_fallback');
+	const username = user?.username || t('deleted_user_fallback');
+
 	const img = {
-		src: avatarUrl ?? '',
+		src: user?.avatarUrl ?? 'placeholder-avatar.png',
 		alt: displayName,
 	} as const;
 

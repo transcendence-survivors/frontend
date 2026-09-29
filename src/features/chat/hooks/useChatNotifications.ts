@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useNotificationActions, useTotalUnreadCount } from '../stores/notificationSlice';
+import {
+	useChatNotificationActions,
+	useChatTotalUnreadCount,
+} from '../stores/chatNotificationSlice';
 import { getUnreadCount, UnreadCountResponse } from '../api/notification';
 
 export function useChatNotifications() {
-	const totalUnreadCount = useTotalUnreadCount();
-	const { setUnreadSummary } = useNotificationActions();
+	const totalUnreadCount = useChatTotalUnreadCount();
+	const { setUnreadSummary } = useChatNotificationActions();
 
 	const query = useQuery<UnreadCountResponse>({
 		queryKey: ['chat-notifications', 'unread-count'],

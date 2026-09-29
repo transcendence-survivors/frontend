@@ -35,7 +35,10 @@ export default function FeatureSection() {
 				}>
 				{t('kicker')}
 			</p>
-			<h2 className={'text-2xl sm:text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'}>
+			<h2
+				className={
+					'text-2xl sm:text-3xl font-bold text-foreground ' + 'max-w-xl mb-10'
+				}>
 				{t('title')}
 			</h2>
 			<BentoGrid className='grid-cols-1 md:grid-cols-2 auto-rows-auto gap-px bg-border border border-border'>

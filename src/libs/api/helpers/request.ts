@@ -12,7 +12,7 @@ const buildUrl = (path: string) =>
 
 const baseFetch = (path: string, init: RequestInit) => {
 	const url = buildUrl(path);
-	console.log('url', url);
+	console.log('baseFetch url:', url, 'init:', init);
 	return fetch(url, {
 		...init,
 		headers: { ...init.headers },
@@ -20,9 +20,12 @@ const baseFetch = (path: string, init: RequestInit) => {
 	});
 };
 
-const refreshAccessToken = async () => {
+const refreshAccessToken = async (init: RequestInit) => {
 	const res = await baseFetch('/auth/refresh', {
 		method: 'POST',
+		headers: {
+			...init.headers,
+		},
 	});
 	if (!res.ok) {
 		throw new Error('Failed to refresh access token');
@@ -37,7 +40,7 @@ export const request = async <T>(
 
 	if (res.status === 401 && !init.no_retry) {
 		try {
-			await refreshAccessToken();
+			await refreshAccessToken(init);
 			res = await baseFetch(path, init);
 		} catch {
 			throw new Error('unauthorized');

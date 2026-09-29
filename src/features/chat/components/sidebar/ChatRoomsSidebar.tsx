@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowUpDown, Plus } from 'lucide-react';
 import { cn } from '@/libs/utils';
 import { SearchParamsInput } from '@/components/ui/search-param-input';
-import ChatRoomsData from '../room/ChatRoomsData';
+import ChatRooms from '../room/ChatRooms';
 import { ChatRoomFeed, ChatRoomOrderBy } from '../../types/room';
 import { ButtonsState } from '@/components/ui/buttons-state';
 import { useChatRoomParams } from '../../hooks/room/useChatRoomParams';
@@ -132,7 +132,7 @@ const ChatRoomsSidebar = ({ className, ...props }: ChatNavProps) => {
 				/>
 			</div>
 			<div className='flex-1 min-h-0 overflow-y-auto no-scrollbar'>
-				<ChatRoomsData params={params} />
+				<ChatRooms params={params} />
 			</div>
 		</aside>
 	);

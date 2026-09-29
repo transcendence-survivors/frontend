@@ -4,7 +4,7 @@ import { useSocketState } from '@/modules/websocket/hooks/useSocketState';
 import { useMessageActions } from '../stores/messageSlice';
 import { useTypingActions } from '../stores/typingSlice';
 import { useRoomActions } from '../stores/roomSlice';
-import { useNotificationActions } from '../stores/notificationSlice';
+import { useChatNotificationActions } from '../stores/chatNotificationSlice';
 
 export function useChatInit() {
 	const queryClient = useQueryClient();
@@ -13,7 +13,7 @@ export function useChatInit() {
 	const messageActions = useMessageActions();
 	const typingActions = useTypingActions();
 	const roomActions = useRoomActions();
-	const notifActions = useNotificationActions();
+	const notifActions = useChatNotificationActions();
 
 	useEffect(() => {
 		if (!socket || !isConnected) return;

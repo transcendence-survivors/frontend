@@ -3,7 +3,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getChatRooms } from '../../api/rooms';
 import { ChatRoomOrderBy, GetChatRoomSearchParams } from '../../types/room';
-import { useCurrentRoomId, useNotificationActions } from '../../stores/notificationSlice';
+import {
+	useCurrentRoomId,
+	useChatNotificationActions,
+} from '../../stores/chatNotificationSlice';
 import { useEffect } from 'react';
 
 const initialChatRoomsParam = {
@@ -15,7 +18,7 @@ export type UseChatRoomsParams = Omit<GetChatRoomSearchParams, 'cursor' | 'limit
 
 export const useChatRooms = (params: UseChatRoomsParams) => {
 	const currentRoomId = useCurrentRoomId();
-	const { mergeRoomUnreadCounts } = useNotificationActions();
+	const { mergeRoomUnreadCounts } = useChatNotificationActions();
 
 	const query = useInfiniteQuery({
 		queryKey: ['chat-rooms', params],

@@ -3,7 +3,7 @@
 import { InfiniteData, useMutation } from '@tanstack/react-query';
 import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
-import { deleteFriend } from '../api/delete';
+import { deleteFriend } from '../api/friend';
 import { Friend, GetFriendsResponse } from '../types';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 

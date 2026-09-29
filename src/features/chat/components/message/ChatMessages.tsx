@@ -11,14 +11,14 @@ import { Error } from '@/components/ui/error';
 import { Spinner } from '@/components/ui/spinner';
 import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
-import { TextChatMessage } from '../../types/message';
+import { PostChatMessage, TextChatMessage } from '../../types/message';
 import { useUser } from '@/features/auth/stores/session';
 
 interface ChatMessagesProps {
 	roomId: string;
-	onEditMessage: (message: TextChatMessage) => void;
+	onEditMessage: (message: TextChatMessage | PostChatMessage) => void;
+	onReplyMessage: (message: TextChatMessage | PostChatMessage) => void;
 	onDeleteMessage: (messageId: string) => void;
-	onReplyMessage: (message: TextChatMessage) => void;
 }
 
 const ChatMessages = ({

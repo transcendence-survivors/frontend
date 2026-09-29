@@ -42,7 +42,7 @@ const ProfileHeader = ({
 							/>
 						</div>
 						<div className='py-4 absolute top-1/3 sm:top-1/2 right-0'>
-							<ProfileHeaderActions user={{ id, displayName }} />
+							<ProfileHeaderActions user={{ id, displayName, username }} />
 						</div>
 					</div>
 					{bio && (

@@ -15,80 +15,85 @@ export const getSystemMessage = (
 	message: SystemChatMessage,
 	t: RootTFunction,
 ): string | null => {
+	const deletedUserFallback = t('messages.system.deleted_user_fallback');
+
 	switch (message.type) {
 		case ChatMessageType.ROLE_UPDATED:
 			return t('messages.system.role_updated', {
-				actor: message.sender.displayName,
-				target: message.metadata.targetUser.displayName,
+				actor: message.sender?.displayName ?? deletedUserFallback,
+				target: message.metadata.targetUser?.displayName ?? deletedUserFallback,
 				oldRole: t(roleTranslationMap[message.metadata.oldRole]),
 				newRole: t(roleTranslationMap[message.metadata.newRole]),
 			});
 
 		case ChatMessageType.KICKED:
 			return t('messages.system.kicked', {
-				actor: message.sender.displayName,
-				target: message.metadata?.targetUser?.displayName,
+				actor: message.sender?.displayName ?? deletedUserFallback,
+				target: message.metadata.targetUser?.displayName ?? deletedUserFallback,
 			});
 
 		case ChatMessageType.JOINED:
 			return t('messages.system.added', {
-				actor: message?.sender?.displayName,
-				target: message.metadata?.targetUser?.displayName,
+				actor: message.sender?.displayName ?? deletedUserFallback,
+				target: message.metadata.targetUser?.displayName ?? deletedUserFallback,
 			});
 
 		case ChatMessageType.LEFT:
 			return t('messages.system.left', {
-				user: message.metadata?.targetUser?.displayName,
+				user: message.metadata.targetUser?.displayName ?? deletedUserFallback,
 			});
 
 		case ChatMessageType.OWNERSHIP_TRANSFERRED:
 			return t('messages.system.ownership_transferred', {
-				actor: message.sender.displayName,
-				target: message.metadata?.targetUser?.displayName,
+				actor: message.sender?.displayName ?? deletedUserFallback,
+				target: message.metadata.targetUser?.displayName ?? deletedUserFallback,
 			});
 
 		case ChatMessageType.ROOM_CREATED:
 			return t('messages.system.room_created', {
-				actor: message.sender?.displayName,
+				actor: message.sender?.displayName ?? deletedUserFallback,
 			});
 
 		case ChatMessageType.ROOM_RENAMED: {
 			const { oldValue, newValue } = message.metadata;
+			const actor = message.sender?.displayName ?? deletedUserFallback;
 
 			if (!oldValue && newValue) {
 				return t('messages.system.room_name_added', {
-					actor: message.sender.displayName,
+					actor,
 					newName: newValue,
 				});
 			}
 
 			if (oldValue && !newValue) {
 				return t('messages.system.room_name_removed', {
-					actor: message.sender.displayName,
+					actor,
 				});
 			}
 
 			return t('messages.system.room_renamed', {
-				actor: message.sender.displayName,
+				actor,
 				oldName: oldValue,
 				newName: newValue,
 			});
 		}
+
 		case ChatMessageType.ROOM_AVATAR_CHANGED: {
 			const { oldValue, newValue } = message.metadata;
+			const actor = message.sender?.displayName ?? deletedUserFallback;
 
 			if (!oldValue && newValue) {
 				return t('messages.system.room_avatar_added', {
-					actor: message.sender.displayName,
+					actor,
 				});
 			}
 			if (oldValue && !newValue) {
 				return t('messages.system.room_avatar_removed', {
-					actor: message.sender.displayName,
+					actor,
 				});
 			}
 			return t('messages.system.room_avatar_changed', {
-				actor: message.sender.displayName,
+				actor,
 			});
 		}
 
@@ -109,21 +114,30 @@ export const getMessagePreview = (
 		return t('messages.preview.deleted_message');
 	}
 
+	const deletedUserFallback = t('messages.system.deleted_user_fallback');
+
 	if (lastMessage.type === ChatMessageType.TEXT) {
 		const attachmentCount = lastMessage.attachmentUrls?.length ?? 0;
-		const senderPrefix = lastMessage.sender
-			? `${lastMessage.sender.displayName}: `
-			: '';
+		const senderDisplayName = lastMessage.sender?.displayName ?? deletedUserFallback;
+		const senderPrefix = `${senderDisplayName}: `;
 
 		if (lastMessage.content) {
 			return `${senderPrefix}${lastMessage.content}`;
 		}
 
 		if (attachmentCount > 0) {
-			return `${senderPrefix}${t('messages.preview.attachments', { count: attachmentCount })}`;
+			return `${senderPrefix}${t('messages.preview.attachments', {
+				count: attachmentCount,
+			})}`;
 		}
 
 		return t('messages.preview.no_messages');
+	}
+
+	if (lastMessage.type === ChatMessageType.POST_SHARE) {
+		const senderDisplayName = lastMessage.sender?.displayName ?? deletedUserFallback;
+		const senderPrefix = `${senderDisplayName}: `;
+		return `${senderPrefix}${t('messages.preview.post_shared')}`;
 	}
 
 	return getSystemMessage(lastMessage, t) ?? t('messages.preview.no_messages');

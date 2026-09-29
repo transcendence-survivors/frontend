@@ -1,15 +1,20 @@
 import React from 'react';
 import { ChatDateDivider } from './ChatDateDivider';
 import { ChatMessageBubble } from './bubble/ChatMessageBubble';
-import { ChatMessage, ChatMessageType, TextChatMessage } from '../../types/message';
+import {
+	ChatMessage,
+	ChatMessageType,
+	PostChatMessage,
+	TextChatMessage,
+} from '../../types/message';
 import { ChatMessageSystem } from './bubble/ChatMessageSystem';
 
 interface ChatMessageGroupProps {
 	date: string;
 	dayMessages: ChatMessage[];
-	onEdit: (message: TextChatMessage) => void;
+	onEdit: (message: TextChatMessage | PostChatMessage) => void;
+	onReply: (message: TextChatMessage | PostChatMessage) => void;
 	onDelete: (messageId: string) => void;
-	onReply: (message: TextChatMessage) => void;
 }
 
 export const ChatMessageGroup = React.memo(
@@ -18,7 +23,10 @@ export const ChatMessageGroup = React.memo(
 			<ChatDateDivider date={date} />
 			<ul className='flex flex-col'>
 				{dayMessages.map((message, index) => {
-					if (message.type !== ChatMessageType.TEXT) {
+					if (
+						message.type !== ChatMessageType.TEXT &&
+						message.type !== ChatMessageType.POST_SHARE
+					) {
 						return (
 							<li key={message.id}>
 								<ChatMessageSystem message={message} />

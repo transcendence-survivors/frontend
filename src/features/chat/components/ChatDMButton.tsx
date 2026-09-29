@@ -19,7 +19,7 @@ export const ChatDMButton = ({
 	...props
 }: ChatDMButtonProps) => {
 	const t = useTranslations('chat');
-	const { mutate: openDM, isPending } = useOpenDM(targetUserId);
+	const { mutate: openDM, isPending, isError } = useOpenDM(targetUserId);
 
 	const label = t('send_dm');
 
@@ -28,9 +28,9 @@ export const ChatDMButton = ({
 			<TooltipTrigger asChild>
 				<Button
 					type='button'
-					variant={variant}
+					variant={isError ? 'destructive' : variant}
 					size={size}
-					disabled={isPending}
+					disabled={isPending || isError}
 					onClick={() => openDM()}
 					aria-label={label}
 					className={className}

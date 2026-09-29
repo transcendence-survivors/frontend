@@ -46,7 +46,7 @@ const UserCard = ({
 					'flex flex-row items-center gap-x-4 justify-between ',
 					containerClassName,
 				)}>
-				<div className='flex flex-col gap-3 max-w-[60%]'>
+				<div className='flex flex-col gap-3 max-w-[60%] z-10'>
 					{useIdentityLink ? (
 						<UserIdentityLink
 							avatar={avatarProps}

@@ -6,33 +6,26 @@ import { Spinner } from '@/components/ui/spinner';
 import { FriendRequestActionsProps } from './FriendRequestActions';
 import { useRequestAccept } from '../../hooks/useRequestActions';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTranslations } from 'next-intl';
 
-interface FriendRequestAcceptProps extends Omit<
-	FriendRequestActionsProps,
-	'friendDisplayName'
-> {
-	successMessage: string;
-	failureMessage: string;
-	ariaLabel: string;
-	label?: string;
-}
+type FriendRequestAcceptProps = Omit<FriendRequestActionsProps, 'direction'>;
 
 const FriendRequestAccept = ({
-	friendId,
-	successMessage,
-	failureMessage,
-	direction,
-	ariaLabel,
-	label,
+	user: { id, username, displayName },
 }: FriendRequestAcceptProps) => {
+	const t = useTranslations('relationships.requests');
+
 	const { mutate, isPending, isError, isSuccess } = useRequestAccept({
-		friendId,
-		successMessage,
-		failureMessage,
-		direction,
+		user: { id, username },
+		successMessage: t('accept_success_from_displayname', { displayName }),
+		failureMessage: t('accept_failure_from_displayname', { displayName }),
+		direction: 'incoming',
 	});
 
 	const onClick = () => mutate();
+
+	const ariaLabel = t('accept_from_displayname', { displayName });
+	const label = t('accept_button');
 
 	return (
 		<Button

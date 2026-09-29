@@ -2,30 +2,26 @@
 
 import { useTranslations } from 'next-intl';
 import { Ban } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
-
 import { useBlockAdd } from '../hooks/useBlockActions';
+import { BaseUser } from '@/features/user/type';
 
 interface BlockAddButtonProps {
-	blockedId: string;
-	blockedDisplayName: string;
+	user: Omit<BaseUser, 'avatarUrl'>;
 }
 
-export const BlockAddButton = ({
-	blockedId,
-	blockedDisplayName,
-}: BlockAddButtonProps) => {
+export const BlockAddButton = ({ user }: BlockAddButtonProps) => {
 	const t = useTranslations('relationships.blocked.add');
 
 	const { mutate, isPending, isError } = useBlockAdd({
-		blockedId,
-		successMessage: t('success_displayname', { displayName: blockedDisplayName }),
-		failureMessage: t('failure_displayname', { displayName: blockedDisplayName }),
+		blockedId: user.id,
+		blockedUsername: user.username,
+		successMessage: t('success_displayname', { displayName: user.displayName }),
+		failureMessage: t('failure_displayname', { displayName: user.displayName }),
 	});
 
 	const label = t('tooltip');

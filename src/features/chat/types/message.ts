@@ -1,6 +1,7 @@
 import { BaseUser } from '@/features/user/type';
 import { CursorParams, CursorResponse } from '@/libs/api/helpers/types';
 import { ChatMemberRole } from './member';
+import { Post } from '@/features/posts/types/post';
 
 export enum ChatMessageType {
 	TEXT = 'TEXT',
@@ -12,11 +13,10 @@ export enum ChatMessageType {
 	ROOM_CREATED = 'ROOM_CREATED',
 	ROOM_RENAMED = 'ROOM_RENAMED',
 	ROOM_AVATAR_CHANGED = 'ROOM_AVATAR_CHANGED',
+	POST_SHARE = 'POST_SHARE',
 }
 
-type UserSummary = BaseUser & {
-	role: ChatMemberRole;
-};
+type UserSummary = (BaseUser & { role: ChatMemberRole }) | null;
 
 interface BaseChatMessage {
 	id: string;
@@ -34,6 +34,16 @@ export interface TextChatMessage extends BaseChatMessage {
 	sender: UserSummary;
 	metadata?: null;
 }
+export interface PostChatMessage extends BaseChatMessage {
+	type: Extract<ChatMessageType, 'POST_SHARE'>;
+	content: string;
+	sharedPost: Pick<Post, 'id' | 'content' | 'imageUrl' | 'author' | 'createdAt'>;
+	sender: UserSummary;
+	metadata: null;
+	replyToId: null;
+	attachmentUrls: null;
+}
+
 interface LeftChatMessage extends BaseChatMessage {
 	type: Extract<ChatMessageType, 'LEFT'>;
 	metadata: {
@@ -95,6 +105,7 @@ interface RoomCreatedChatMessage extends BaseChatMessage {
 
 export type ChatMessage =
 	| TextChatMessage
+	| PostChatMessage
 	| LeftChatMessage
 	| JoinedChatMessage
 	| RoleUpdatedChatMessage

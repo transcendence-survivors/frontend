@@ -2,14 +2,14 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { UseRequestsParams, type GetFriendRequestsParams } from '../types';
-import { getFriendRequests } from '../api/get';
+import { getFriendRequests } from '../api/friend-request';
 
 const initialUserRequestsParam = {
 	limit: 50,
 	orderBy: 'created-desc',
 } satisfies Omit<GetFriendRequestsParams, 'direction'>;
 
-const useRequests = ({ direction, search }: UseRequestsParams) => {
+export const useRequests = ({ direction, search }: UseRequestsParams) => {
 	return useInfiniteQuery({
 		queryKey: ['friend-requests', direction, { search }],
 		initialPageParam: { ...initialUserRequestsParam, direction, search },
@@ -24,5 +24,3 @@ const useRequests = ({ direction, search }: UseRequestsParams) => {
 		},
 	});
 };
-
-export { useRequests };

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { resetPassword } from '../api/reset-password.api.';
+import { resetPassword } from '../api/password.api';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 

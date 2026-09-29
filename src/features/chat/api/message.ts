@@ -12,3 +12,23 @@ export const getChatMessages = async (roomId: string, params: GetChatMessagesPar
 	}
 	return res.data;
 };
+
+export interface SharePostPayload {
+	postId: string;
+	roomIds: string[];
+	comment?: string;
+}
+
+interface SharePostResponse {
+	postId: string;
+	successfulRoomIds: string[];
+	failedRoomIds: string[];
+}
+
+export async function sharePostRequest(payload: SharePostPayload) {
+	const res = await api.post<SharePostResponse>(CHAT_ENDPOINTS.sharePost, payload);
+	if (isApiError(res)) {
+		throw new Error(res.message);
+	}
+	return res.data;
+}

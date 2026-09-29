@@ -1,5 +1,9 @@
 import { memo } from 'react';
-import { TextChatMessage } from '../../../types/message';
+import {
+	ChatMessageType,
+	PostChatMessage,
+	TextChatMessage,
+} from '../../../types/message';
 import { AvatarProfileTooltip } from '@/features/user/components/Avatar/AvatarProfile';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ChatMessageActions } from '../ChatMessageActions';
@@ -7,21 +11,22 @@ import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
 import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 import DisplayDate from '@/components/ui/date';
 import { useUser } from '@/features/auth/stores/session';
+import { SharedPostCard } from '@/features/posts/components/SharedPostCard';
 
 interface ChatMessageBubbleProps {
-	message: TextChatMessage;
+	message: TextChatMessage | PostChatMessage;
 	prevUserId?: string;
-	onEdit: (message: TextChatMessage) => void;
+	onEdit: (message: TextChatMessage | PostChatMessage) => void;
+	onReply: (message: TextChatMessage | PostChatMessage) => void;
 	onDelete: (messageId: string) => void;
-	onReply: (message: TextChatMessage) => void;
 }
 
 const ChatMessageBubble = memo(
 	({ message, prevUserId, onEdit, onDelete, onReply }: ChatMessageBubbleProps) => {
 		const user = useUser();
 		const isMe = user?.id === message.sender?.id;
-
-		const showAvatar = !isMe && message.sender.id !== prevUserId;
+		const showAvatar =
+			(!isMe && message.sender?.id !== prevUserId) || !message.sender?.id;
 
 		return (
 			<div
@@ -46,8 +51,11 @@ const ChatMessageBubble = memo(
 									isMe
 										? 'bg-primary text-primary-foreground rounded-br-xs group-hover:bg-chart-2 focus-within:bg-chart-2'
 										: 'bg-card border border-border text-card-foreground rounded-bl-xs group-hover:bg-muted focus-within:bg-muted'
-								}
-							/>
+								}>
+								{message.type === ChatMessageType.POST_SHARE && (
+									<SharedPostCard post={message.sharedPost} />
+								)}
+							</ChatMessageBubbleContent>
 							<ChatMessageActions
 								message={message}
 								isMe={isMe}

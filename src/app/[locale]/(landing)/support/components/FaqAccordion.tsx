@@ -23,7 +23,10 @@ export default function FaqAccordion() {
 			<p className='font-mono text-xs tracking-[0.2em] text-muted-foreground mb-4 uppercase'>
 				{t('faq_title')}
 			</p>
-			<Accordion type='single' collapsible className='border border-border rounded-sm px-6'>
+			<Accordion
+				type='single'
+				collapsible
+				className='border border-border rounded-sm px-6'>
 				{faqItems.map((item) => (
 					<AccordionItem key={item.key} value={item.key}>
 						<AccordionTrigger>

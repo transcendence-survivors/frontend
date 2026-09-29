@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import CategoryGrid from './components/CategoryGrid';
 import FaqAccordion from './components/FaqAccordion';
 

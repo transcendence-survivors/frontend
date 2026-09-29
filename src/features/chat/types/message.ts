@@ -16,9 +16,7 @@ export enum ChatMessageType {
 	POST_SHARE = 'POST_SHARE',
 }
 
-type UserSummary = BaseUser & {
-	role: ChatMemberRole;
-};
+type UserSummary = (BaseUser & { role: ChatMemberRole }) | null;
 
 interface BaseChatMessage {
 	id: string;

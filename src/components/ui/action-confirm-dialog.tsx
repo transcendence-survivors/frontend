@@ -13,15 +13,17 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { cn } from '@/libs/utils';
 
 export interface ActionConfirmDialogProps {
 	title: ReactNode;
 	description: ReactNode;
-	confirmText?: string;
+	confirmText?: ReactNode;
 	isDestructive?: boolean;
 	isPending?: boolean;
 	trigger: ReactNode;
 	children?: ReactNode;
+	childrenBoxClassName?: string;
 	onConfirm: () => void;
 }
 
@@ -33,6 +35,7 @@ export const ActionConfirmDialog = ({
 	isPending = false,
 	trigger,
 	children,
+	childrenBoxClassName,
 	onConfirm,
 }: ActionConfirmDialogProps) => {
 	const t = useTranslations('common');
@@ -46,7 +49,11 @@ export const ActionConfirmDialog = ({
 					<AlertDialogDescription>{description}</AlertDialogDescription>
 
 					{children && (
-						<div className='max-h-[65vh] overflow-y-auto rounded-lg border border-border/50 bg-background w-full'>
+						<div
+							className={cn(
+								'max-h-[65vh] overflow-y-auto rounded-lg border border-border/50 bg-background w-full',
+								childrenBoxClassName,
+							)}>
 							{children}
 						</div>
 					)}

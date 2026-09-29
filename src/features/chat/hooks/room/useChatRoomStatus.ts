@@ -12,7 +12,10 @@ export const useRoomStatus = (
 	const { getFriendStatus } = useOnlineFriends();
 
 	if (!room) return PresenceStatus.OFFLINE;
-	if (isDirectRoom(room)) return getFriendStatus(room.otherMember.id);
+	if (isDirectRoom(room))
+		return room.otherMember
+			? getFriendStatus(room.otherMember.id)
+			: PresenceStatus.OFFLINE;
 
 	return room.memberIds
 		.map((id) => getFriendStatus(id))

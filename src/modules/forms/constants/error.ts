@@ -26,6 +26,8 @@ export const FORM_ERRORS = {
 	password_lowercase: `${PREFIX_KEY}.password_lowercase`,
 	password_number: `${PREFIX_KEY}.password_number`,
 	password_special: `${PREFIX_KEY}.password_special`,
+	security_same_password: `${PREFIX_KEY}.security_same_password`,
+	security_incorrect_current_password: `${PREFIX_KEY}.security_incorrect_current_password`,
 
 	maxFilesCount: `${PREFIX_KEY}.maxFilesCount`,
 	fileSizeMB: `${PREFIX_KEY}.fileSizeMB`,

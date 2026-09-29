@@ -1,11 +1,9 @@
 import LoreHero from './components/LoreHero';
 import StoryBlock from './components/StoryBlock';
-import SiteHeader from '../components/SiteHeader';
 
 export default function LorePage() {
 	return (
 		<main>
-			<SiteHeader active='lore' />
 			<LoreHero />
 			<div className='max-w-5xl mx-auto border border-border'>
 				<StoryBlock

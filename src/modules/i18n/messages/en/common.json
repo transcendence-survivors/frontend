@@ -13,6 +13,7 @@
 		"lore": "Lore",
 		"support": "Support",
 		"enter_hub": "Enter Hub →",
+		"leave_hub": "Leave Hub →",
 		"player_hub": "Player Hub",
 		"menu": "Menu",
 
@@ -56,7 +57,6 @@
 		"profile": {
 			"title": "Profile Settings",
 			"subtitle": "Update your profile information and preferences.",
-
 			"description": "Manage your public profile information, avatar, and banner image.",
 			"display_name_label": "Display Name",
 			"display_name_placeholder": "Enter your display name",
@@ -77,7 +77,21 @@
 		},
 		"security": {
 			"title": "Security Settings",
-			"subtitle": "Manage your security settings and preferences."
+			"subtitle": "Manage your authentication settings."
+		},
+		"danger_zone": {
+			"title": "Danger Zone",
+			"subtitle": "Irreversible account actions and data privacy controls",
+			"export": {
+				"title": "Export Your Data",
+				"description": "Download a copy of your personal settings and profile data in JSON format.",
+				"format_placeholder": "Select format",
+				"button": "Export Personal Data"
+			},
+			"delete": {
+				"title": "Delete Account",
+				"description": "Permanently remove your account and all associated data from the platform. This action cannot be undone."
+			}
 		},
 		"nav": {
 			"profile": "Profile",
@@ -336,7 +350,8 @@
 				"no_messages": "No messages yet",
 				"deleted_message": "This message was deleted",
 				"attachments": "{count, plural, =1 {Sent 1 attachment} other {Sent {count} attachments}}",
-				"post_shared": "Post shared"
+				"post_shared": "Post shared",
+				"replying_to": "Replying to: <replyToId>#1s41</replyToId>"
 			},
 			"actions": {
 				"reply": "Reply",
@@ -376,7 +391,8 @@
 				"room_avatar_removed": "{actor} removed the room avatar.",
 				"ownership_transferred": "{actor} transferred room ownership to {target}.",
 				"room_created": "{actor} created the room.",
-				"deleted": "This message was deleted."
+				"deleted": "This message was deleted.",
+				"deleted_user_fallback": "Deleted User"
 			}
 		},
 		"members": {
@@ -459,7 +475,8 @@
 			"see_more": "See more",
 			"see_less": "See less",
 			"replying_to": "Replying to",
-			"open_post": "Open post"
+			"open_post": "Open post",
+			"must_be_deleted": "This post must have been deleted."
 		},
 		"actions": {
 			"comment": "Comment",
@@ -653,6 +670,31 @@
 			"submitted": "Password Reset",
 			"success": "Your password has been reset successfully!",
 			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+		},
+		"change_password": {
+			"title": "Change Password",
+			"description": "Ensure your account is using a strong and unique password to stay secure.",
+			"currentPassword": "Current Password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New Password",
+			"newPasswordPlaceholder": "Enter your new password",
+			"confirmPassword": "Confirm New Password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"submit": "Update Password",
+			"submitting": "Updating Password",
+			"submitted": "Password Updated",
+			"success": "Your password has been changed successfully!",
+			"error": "Failed to update password. Please check your current password and try again."
+		},
+		"delete_account": {
+			"trigger": "Delete Account",
+			"title": "Delete Account",
+			"description": "This action is permanent and cannot be undone. All your posts, messages, and personal data will be erased forever.",
+			"confirm_text": "Permanently Delete",
+			"password_label": "Confirm Password",
+			"password_placeholder": "Enter your password to confirm",
+			"success": "Your account has been deleted.",
+			"invalid_password": "The password you entered is incorrect."
 		}
 	},
 
@@ -688,6 +730,8 @@
 			"password_lowercase": "Password must contain at least one lowercase letter",
 			"password_number": "Password must contain at least one number",
 			"password_special": "Password must contain at least one special character",
+			"security_same_password": "New password must be different from the current password",
+			"security_incorrect_current_password": "The current password you entered is incorrect",
 
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
@@ -722,7 +766,32 @@
 	"common": {
 		"confirm": "Confirm",
 		"cancel": "Cancel",
-
+		"not_found": {
+			"main": {
+				"badge": "404 Error",
+				"title": "Page not found",
+				"description": "Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or never existed."
+			},
+			"user": {
+				"badge": "User Not Found",
+				"title": "User does not exist",
+				"description": "The user you are looking for may have deleted their account, changed their username, or never existed."
+			},
+			"chat": {
+				"badge": "Conversation Not Found",
+				"title": "Chat unavailable",
+				"description": "This chat room might have been deleted, or you don't have permission to access it."
+			},
+			"post": {
+				"badge": "Post Not Found",
+				"title": "Post unavailable",
+				"description": "This publication has been removed by its author or is no longer accessible."
+			},
+			"common": {
+				"go_back": "Go Back",
+				"back_home": "Back to Home"
+			}
+		},
 		"themes": {
 			"dark": "Dark",
 			"light": "Light",

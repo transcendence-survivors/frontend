@@ -1,22 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { resetPassword } from '../api/password.api';
-import { useRouter } from '@/modules/i18n/utils/navigation';
+import { deleteAccount } from '../api/password.api';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 
-interface useResetPasswordMessages {
+interface UseDeleteAccountProps {
 	successMessage: string;
 }
 
-const useResetPassword = ({ successMessage }: useResetPasswordMessages) => {
+export const useDeleteAccount = ({ successMessage }: UseDeleteAccountProps) => {
 	const router = useRouter();
+
 	return useMutation({
-		mutationFn: resetPassword,
+		mutationFn: deleteAccount,
 		onSuccess: () => {
 			toast.success(successMessage);
 			router.push(ROUTES.login());
+			router.refresh();
 		},
 	});
 };
-
-export default useResetPassword;

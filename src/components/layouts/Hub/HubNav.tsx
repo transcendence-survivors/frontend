@@ -13,7 +13,7 @@ import { useUser } from '@/features/auth/stores/session';
 import { ChatNotifications } from '@/features/chat/components/ChatNotifications';
 import { FriendRequestNotifications } from '@/features/relationships/friend-request/components/FriendRequestNotifications';
 
-interface DashboardNavProps extends React.HTMLAttributes<HTMLUListElement> {
+interface HubNavProps extends React.HTMLAttributes<HTMLUListElement> {
 	isDrawer?: boolean;
 }
 
@@ -40,7 +40,7 @@ const links = [
 	additional?: React.ReactNode;
 })[];
 
-const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
+const HubNav = ({ isDrawer, ...props }: HubNavProps) => {
 	const user = useUser();
 	const t = useTranslations('nav');
 	const path = usePathname();
@@ -108,4 +108,4 @@ const DashboardNav = ({ isDrawer, ...props }: DashboardNavProps) => {
 	);
 };
 
-export default DashboardNav;
+export default HubNav;

@@ -9,6 +9,7 @@ import {
 import { AvatarGroup } from '@/components/ui/avatar';
 import { getMemberPlusCount, getRoomAvatarUrl, getRoomName } from '../../utils/room';
 import { useRoomStatus } from '../../hooks/room/useChatRoomStatus';
+import { useTranslations } from 'next-intl';
 
 interface ChatRoomAvatarProps {
 	room: ChatRoom;
@@ -17,8 +18,9 @@ interface ChatRoomAvatarProps {
 const MAX_AVATARS = 2;
 
 const ChatRoomAvatar = ({ room }: ChatRoomAvatarProps) => {
+	const t = useTranslations('chat.messages.system');
 	const isDirect = room.type === ChatRoomType.DIRECT;
-	const name = getRoomName(room);
+	const name = getRoomName(room) ?? t('deleted_user_fallback');
 	const avatarUrl = getRoomAvatarUrl(room);
 	const status = useRoomStatus(room);
 

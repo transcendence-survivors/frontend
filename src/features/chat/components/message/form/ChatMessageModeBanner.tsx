@@ -14,7 +14,7 @@ const MAX_PREVIEW_LENGTH = 30;
 
 export const ChatMessageModeBanner = memo(
 	({ editingMessage, replyingToMessage, onCancel }: ChatMessageModeBannerProps) => {
-		const t = useTranslations('chat.messages.actions');
+		const t = useTranslations('chat.messages');
 
 		if (!editingMessage && !replyingToMessage) return null;
 
@@ -24,16 +24,17 @@ export const ChatMessageModeBanner = memo(
 					{editingMessage ? (
 						<>
 							<Pencil className='size-3.5 text-primary shrink-0' />
-							<span>{t('edditing')}</span>
+							<span>{t('actions.edditing')}</span>
 						</>
 					) : (
 						<>
 							<Reply className='size-3.5 text-primary shrink-0' />
 							<span>
-								{t.rich('rich_replying_to', {
+								{t.rich('actions.rich_replying_to', {
 									strong: () => (
 										<strong className='font-semibold'>
-											{replyingToMessage?.sender.displayName}
+											{replyingToMessage?.sender?.displayName ??
+												t('system.deleted_user_fallback')}
 										</strong>
 									),
 								})}

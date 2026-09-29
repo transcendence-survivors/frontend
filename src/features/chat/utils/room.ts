@@ -6,7 +6,7 @@ export const isDirectRoom = (room: ChatRoom): room is DirectChatRoom => {
 
 export const getRoomName = (room: ChatRoom) => {
 	if (isDirectRoom(room)) {
-		return room.otherMember.displayName;
+		return room.otherMember?.displayName || null;
 	}
 	return (
 		room.name || room.membersPreview.map((m) => m.displayName).join(', ') || 'Group'
@@ -15,7 +15,7 @@ export const getRoomName = (room: ChatRoom) => {
 
 export const getRoomAvatarUrl = (room: ChatRoom) => {
 	if (isDirectRoom(room)) {
-		return room.otherMember.avatarUrl;
+		return room.otherMember?.avatarUrl || null;
 	}
 	return room.avatarUrl;
 };

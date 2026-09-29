@@ -1,4 +1,4 @@
-export default function SiteFooter() {
+export default function LandingFooter() {
 	return (
 		<div
 			className={
@@ -10,7 +10,7 @@ export default function SiteFooter() {
 				LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D
 			</span>
 			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
-				BABYLON.JS
+				NEXT.JS
 			</span>
 		</div>
 	);

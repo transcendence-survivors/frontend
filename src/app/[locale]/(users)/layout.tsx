@@ -1,4 +1,4 @@
-import DashboardLayout from '@/components/layouts/Dashboard/DashboardLayout';
+import HubLayout from '@/components/layouts/Hub/HubLayout';
 import { ChatProvider } from '@/features/chat/components/ChatProvider';
 import PresenceProvider from '@/features/presence/components/PresenceProvider';
 import { RelationshipNotificationProvider } from '@/features/relationships/components/RelationshipNotificationProvider';
@@ -14,7 +14,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<PresenceProvider>
 				<RelationshipNotificationProvider>
 					<ChatProvider>
-						<DashboardLayout>{children}</DashboardLayout>
+						<HubLayout>{children}</HubLayout>
 					</ChatProvider>
 				</RelationshipNotificationProvider>
 			</PresenceProvider>

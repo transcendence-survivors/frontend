@@ -30,7 +30,7 @@ interface ChatRoomBase {
 
 export interface DirectChatRoom extends ChatRoomBase {
 	type: ChatRoomType.DIRECT;
-	otherMember: BaseUser;
+	otherMember: BaseUser | null;
 }
 
 export interface GroupChatRoom extends ChatRoomBase {

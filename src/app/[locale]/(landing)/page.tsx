@@ -1,19 +1,11 @@
 import HeroSection from './components/HeroSection';
 import FeatureSection from './components/FeatureSection';
-import SiteFooter from './components/SiteFooter';
-import SiteHeader from './components/SiteHeader';
 
 export default function Page() {
 	return (
-		<>
-			<SiteHeader active='home' />
-			<main>
-				<div className='max-w-5xl w-full mx-auto py-12 sm:py-20 px-4'>
-					<HeroSection />
-					<FeatureSection />
-				</div>
-			</main>
-			<SiteFooter />
-		</>
+		<div className='max-w-5xl w-full mx-auto py-12 sm:py-20 px-4'>
+			<HeroSection />
+			<FeatureSection />
+		</div>
 	);
 }

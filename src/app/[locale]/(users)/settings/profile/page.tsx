@@ -12,7 +12,11 @@ export default function Page() {
 	const t = useTranslations('settings');
 
 	if (isLoading) {
-		return <Spinner />;
+		return (
+			<div className='flex items-center justify-center h-main'>
+				<Spinner className='size-8' />
+			</div>
+		);
 	}
 
 	if (isError || !user) {

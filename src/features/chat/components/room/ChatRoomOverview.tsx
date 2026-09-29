@@ -11,20 +11,20 @@ import { useRoomStatus } from '../../hooks/room/useChatRoomStatus';
 
 const statusTradMap: Record<
 	Exclude<PresenceStatus, 'INVISIBLE'>,
-	DeepKeys<AppMessages['chat']['rooms']['status']>
+	DeepKeys<AppMessages['chat']>
 > = {
-	[PresenceStatus.ONLINE]: 'online',
-	[PresenceStatus.OFFLINE]: 'offline',
-	[PresenceStatus.DO_NOT_DISTURB]: 'dnd',
+	[PresenceStatus.ONLINE]: 'rooms.status.online',
+	[PresenceStatus.OFFLINE]: 'rooms.status.offline',
+	[PresenceStatus.DO_NOT_DISTURB]: 'rooms.status.dnd',
 };
 
 const ChatRoomOverview = () => {
 	const room = useRoom();
 	const status = useRoomStatus(room);
-	const t = useTranslations('chat.rooms.status');
+	const t = useTranslations('chat');
 	if (!room) return null;
 
-	const name = getRoomName(room);
+	const name = getRoomName(room) ?? t('messages.system.deleted_user_fallback');
 	const elipsisMembersCount = getMemberPlusCount(room, { showAllOnName: true });
 	const displayName =
 		`${name} ${elipsisMembersCount ? `(+${elipsisMembersCount})` : ''}`.trim();

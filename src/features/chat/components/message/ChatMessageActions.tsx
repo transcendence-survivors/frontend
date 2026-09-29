@@ -33,6 +33,7 @@ export const ChatMessageActions = ({
 	const canDelete =
 		isMe ||
 		(roomType === 'GROUP' &&
+			message.sender &&
 			canManageMember({
 				actorRole: userRole,
 				targetRole: message.sender.role,

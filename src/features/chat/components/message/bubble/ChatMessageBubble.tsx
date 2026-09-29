@@ -25,9 +25,8 @@ const ChatMessageBubble = memo(
 	({ message, prevUserId, onEdit, onDelete, onReply }: ChatMessageBubbleProps) => {
 		const user = useUser();
 		const isMe = user?.id === message.sender?.id;
-		const showAvatar = !isMe && message.sender.id !== prevUserId;
-
-		console.log('message', message);
+		const showAvatar =
+			(!isMe && message.sender?.id !== prevUserId) || !message.sender?.id;
 
 		return (
 			<div

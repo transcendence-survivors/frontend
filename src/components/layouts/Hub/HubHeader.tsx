@@ -10,14 +10,12 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
-import DashboardNav from './DashboardNav';
-import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownSubMenu';
-import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownSubMenu';
-import AvatarDropdown from '@/features/user/components/Avatar/AvatarDropDown';
+import DashboardNav from './HubNav';
+import HubFooter from './HubFooter';
 
-type DashboardHeaderProps = React.HTMLAttributes<HTMLElement>;
+type HubHeaderProps = React.HTMLAttributes<HTMLElement>;
 
-const DashboardHeader = ({ className }: DashboardHeaderProps) => {
+const HubHeader = ({ className }: HubHeaderProps) => {
 	return (
 		<header
 			className={cn(
@@ -43,14 +41,8 @@ const DashboardHeader = ({ className }: DashboardHeaderProps) => {
 						<div className='no-scrollbar overflow-y-auto '>
 							<DashboardNav isDrawer={true} className='w-full' />
 						</div>
-						<DrawerFooter>
-							<div className='flex items-center gap-2'>
-								<LocaleDropdownMenu className='flex-1' />
-								<ThemeDropdownMenu />
-							</div>
-							<div className='border-t border-sidebar-border py-5 max-w-full'>
-								<AvatarDropdown />
-							</div>
+						<DrawerFooter className='p-0'>
+							<HubFooter />
 						</DrawerFooter>
 					</DrawerContent>
 				</Drawer>
@@ -59,4 +51,4 @@ const DashboardHeader = ({ className }: DashboardHeaderProps) => {
 	);
 };
 
-export default DashboardHeader;
+export default HubHeader;

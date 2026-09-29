@@ -11,7 +11,7 @@ interface AuthPageProps {
 
 const AuthPage = ({ title, linkText, linkHref, children }: AuthPageProps) => {
 	return (
-		<main className='flex flex-col min-h-[85vh] py-12 items-center justify-center'>
+		<main className='flex flex-col min-h-[80vh] py-12 items-center justify-center'>
 			<section className='w-full max-w-lg px-8 space-y-4'>
 				<div>
 					<h1>{title}</h1>

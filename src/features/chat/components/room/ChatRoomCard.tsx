@@ -31,7 +31,8 @@ const ChatRoomCard = memo(({ room, params }: ChatRoomCardProps) => {
 	const isActive = currentRoomId === room.id;
 	const liveUnreadCount = useRoomUnreadCount(room.id);
 	const t = useTranslations('chat');
-	const name = getRoomName(room);
+	const name = getRoomName(room) ?? t('messages.system.deleted_user_fallback');
+
 	const messagePreview = getMessagePreview(room.lastMessage, t);
 	const unreadCount = isActive
 		? 0

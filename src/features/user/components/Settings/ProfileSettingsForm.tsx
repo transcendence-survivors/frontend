@@ -42,7 +42,7 @@ const ProfileCoverSection = ({
 
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium pl-1'>{t('cover_label')}</label>
+			<label className='text-sm font-medium pl-1 sr-only'>{t('cover_label')}</label>
 			<div className='relative aspect-3/1 max-h-96 w-full rounded-lg bg-muted border border-border/50 overflow-hidden group'>
 				{displayCoverUrl ? (
 					<Image

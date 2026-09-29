@@ -6,6 +6,7 @@ import { ChatRoom } from '../../types/room';
 import ChatRoomAvatar from '../room/ChatRoomAvatar';
 import { getRoomName } from '../../utils/room';
 import { cn } from '@/libs/utils';
+import { useTranslations } from 'next-intl';
 
 interface ShareRoomItemProps {
 	room: ChatRoom;
@@ -15,7 +16,8 @@ interface ShareRoomItemProps {
 
 export const ShareRoomItem = React.memo(
 	({ room, isSelected, onToggle }: ShareRoomItemProps) => {
-		const name = getRoomName(room);
+		const t = useTranslations('chat.messages.system');
+		const name = getRoomName(room) ?? t('deleted_user_fallback');
 
 		return (
 			<li>

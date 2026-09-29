@@ -264,6 +264,41 @@
 		}
 	},
 
+	"legal": {
+		"kicker": "Informations légales",
+		"title": "Mentions légales",
+		"updated": "Dernière mise à jour : 29 septembre 2026",
+		"sections": {
+			"editor": {
+				"title": "Éditeur du site",
+				"body": "Transcendence Survivors est un projet pédagogique à but non lucratif, réalisé dans le cadre du cursus de l'école 42 Lyon (projet ft_transcendence). Le site est édité par l'équipe d'étudiants suivante :"
+			},
+			"publisher": {
+				"title": "Directeur de la publication",
+				"body": "La direction de la publication est assurée collectivement par les membres de l'équipe Transcendence Survivors."
+			},
+			"hosting": {
+				"title": "Hébergement",
+				"body": "Le site est auto-hébergé par l'équipe du projet. L'application, sa base de données et le stockage des fichiers fonctionnent dans des conteneurs Docker administrés par ses membres."
+			},
+			"property": {
+				"title": "Propriété intellectuelle",
+				"body": "Les textes, visuels, logos, l'univers du jeu et le code source du site appartiennent à l'équipe Transcendence Survivors, sauf mention contraire. Toute reproduction, même partielle, sans autorisation préalable est interdite. Le jeu repose sur le moteur Babylon.js et sur des bibliothèques open source, utilisés dans le respect de leurs licences respectives. Les contenus publiés par les utilisateurs restent la propriété de leurs auteurs, qui en assument l'entière responsabilité."
+			},
+			"data": {
+				"title": "Données personnelles",
+				"body": "Lors de l'inscription, nous collectons votre adresse e-mail, votre nom d'utilisateur, vos nom et prénom, votre date de naissance ainsi que les informations de profil que vous choisissez de renseigner (nom d'affichage, biographie, genre…). Ces données servent uniquement au fonctionnement du service : elles ne sont jamais revendues ni utilisées à des fins commerciales. Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données, que vous pouvez exercer en contactant l'équipe."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "Le site n'utilise que des cookies techniques, indispensables à son fonctionnement : jetons d'authentification pour maintenir votre session et mémorisation de la langue choisie. Votre thème d'affichage est conservé dans le stockage local de votre navigateur. Aucun cookie publicitaire ni de mesure d'audience n'est déposé."
+			},
+			"contact": {
+				"title": "Contact",
+				"body": "Pour toute question concernant le site ou vos données, consultez le <support>centre d'aide</support> ou contactez l'équipe via son <github>organisation GitHub</github>."
+			}
+		}
+	},
 	"auth": {
 		"signout": {
 			"label": "Déconnexion",

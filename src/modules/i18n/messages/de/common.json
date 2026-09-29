@@ -13,7 +13,7 @@
 		"posts": "Posts",
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
-		"legal": "Legal Notice",
+		"legal": "Impressum",
 
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
@@ -193,6 +193,41 @@
 		}
 	},
 
+	"legal": {
+		"kicker": "Rechtliche Informationen",
+		"title": "Impressum",
+		"updated": "Zuletzt aktualisiert: 29. September 2026",
+		"sections": {
+			"editor": {
+				"title": "Herausgeber",
+				"body": "Transcendence Survivors ist ein nicht-kommerzielles Lernprojekt, das im Rahmen des Curriculums der 42 Lyon (Projekt ft_transcendence) entstanden ist. Die Website wird von folgendem Team aus Studierenden herausgegeben:"
+			},
+			"publisher": {
+				"title": "Verantwortlich für den Inhalt",
+				"body": "Die inhaltliche Verantwortung liegt gemeinsam bei den Mitgliedern des Teams Transcendence Survivors."
+			},
+			"hosting": {
+				"title": "Hosting",
+				"body": "Die Website wird vom Projektteam selbst gehostet. Die Anwendung, ihre Datenbank und der Dateispeicher laufen in Docker-Containern, die von den Teammitgliedern verwaltet werden."
+			},
+			"property": {
+				"title": "Urheberrecht",
+				"body": "Texte, Grafiken, Logos, die Spielwelt und der Quellcode dieser Website gehören, sofern nicht anders angegeben, dem Team Transcendence Survivors. Jede Vervielfältigung, auch auszugsweise, ist ohne vorherige Genehmigung untersagt. Das Spiel basiert auf der Engine Babylon.js sowie auf Open-Source-Bibliotheken, die gemäß ihren jeweiligen Lizenzen verwendet werden. Von Nutzern veröffentlichte Inhalte bleiben Eigentum ihrer Urheber, die dafür die volle Verantwortung tragen."
+			},
+			"data": {
+				"title": "Datenschutz",
+				"body": "Bei der Registrierung erfassen wir deine E-Mail-Adresse, deinen Benutzernamen, deinen Vor- und Nachnamen, dein Geburtsdatum sowie die Profilangaben, die du machst (Anzeigename, Bio, Geschlecht …). Diese Daten dienen ausschließlich dem Betrieb des Dienstes: Sie werden niemals verkauft oder zu kommerziellen Zwecken genutzt. Gemäß der Datenschutz-Grundverordnung (DSGVO) hast du das Recht auf Auskunft, Berichtigung, Widerspruch und Löschung deiner Daten. Wende dich dazu an das Team."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "Die Website verwendet ausschließlich technisch notwendige Cookies: Authentifizierungstoken, um dich angemeldet zu halten, sowie die Speicherung der gewählten Sprache. Dein Anzeigedesign wird im lokalen Speicher deines Browsers gesichert. Es werden keine Werbe- oder Analyse-Cookies gesetzt."
+			},
+			"contact": {
+				"title": "Kontakt",
+				"body": "Bei Fragen zur Website oder zu deinen Daten besuche das <support>Hilfe-Center</support> oder kontaktiere das Team über seine <github>GitHub-Organisation</github>."
+			}
+		}
+	},
 	"auth": {
 		"signout": {
 			"label": "Logout",

@@ -13,7 +13,7 @@
 		"posts": "Posts",
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
-		"legal": "Legal Notice",
+		"legal": "Impressum",
 
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
@@ -193,6 +193,41 @@
 		}
 	},
 
+	"legal": {
+		"kicker": "Rächtlichi Informatione",
+		"title": "Impressum",
+		"updated": "Zletscht aktualisiert: 29. September 2026",
+		"sections": {
+			"editor": {
+				"title": "Herusgeber",
+				"body": "Transcendence Survivors isch es nöd-kommerziells Lärnprojekt, wo im Rahme vom Curriculum vo de 42 Lyon (Projekt ft_transcendence) entstande isch. D Websiite wird vo dem Team us Studierende usegäh:"
+			},
+			"publisher": {
+				"title": "Verantwortlich für de Inhalt",
+				"body": "D Verantwortig für de Inhalt träged alli Mitglieder vom Team Transcendence Survivors gmeinsam."
+			},
+			"hosting": {
+				"title": "Hosting",
+				"body": "D Websiite wird vom Projektteam sälber ghostet. D Aawändig, iri Datebank und de Dateispeicher laufed i Docker-Container, wo d Teammitglieder sälber verwaltet."
+			},
+			"property": {
+				"title": "Urheberrächt",
+				"body": "Täxt, Grafike, Logos, d Spielwält und de Quellcode vo dere Websiite ghöred em Team Transcendence Survivors, wänn nüt anders aagäh isch. Jedi Vervielfältigung, au nur teilwiis, isch ohni vorherigi Erlaubnis verbote. S Spiel basiert uf de Engine Babylon.js und uf Open-Source-Bibliotheke, wo gmäss irne jewiilige Lizänze bruucht wärded. Inhält, wo Nutzer veröffentlichet, ghöred wiiterhin irne Urheber, wo di volli Verantwortig defür träged."
+			},
+			"data": {
+				"title": "Dateschutz",
+				"body": "Bi de Registrierig erfassed mir dini E-Mail-Adrässe, din Benutzername, din Vor- und Nachname, dis Geburtsdatum und d Profilaagabe, wo du machsch (Aazeigename, Bio, Gschlächt …). Die Date bruuched mir nur für de Betrieb vom Dienst: Si wärded nie verchauft oder für kommerzielli Zwäck bruucht. Gmäss de Dateschutz-Grundverordnig (DSGVO) häsch s Rächt uf Uskunft, Berichtigung, Widerspruch und Löschig vo dine Date. Mäld di defür bim Team."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "D Websiite bruucht nur technisch nötigi Cookies: Authentifizierigs-Token, damit du aagmäldet bliibsch, und d Speicherig vo de gwählte Sprach. Dis Aazeigedesign wird im lokale Speicher vo dim Browser gspicheret. Es wärded kei Wärbe- oder Analyse-Cookies gsetzt."
+			},
+			"contact": {
+				"title": "Kontakt",
+				"body": "Bi Frage zur Websiite oder zu dine Date bsuech s <support>Hilf-Center</support> oder kontaktier s Team über sini <github>GitHub-Organisation</github>."
+			}
+		}
+	},
 	"auth": {
 		"signout": {
 			"label": "Logout",

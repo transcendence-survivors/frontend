@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 import CategoryGrid from './components/CategoryGrid';
 import FaqAccordion from './components/FaqAccordion';
 
@@ -19,6 +20,7 @@ export default function SupportPage() {
 				<CategoryGrid />
 				<FaqAccordion />
 			</div>
+			<SiteFooter />
 		</main>
 	);
 }

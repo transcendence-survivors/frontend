@@ -24,7 +24,7 @@ export const navItems = [
 export type KeyNavItem = (typeof navItems)[number]['key'];
 
 interface SiteNavDrawerProps {
-	active: KeyNavItem;
+	active?: KeyNavItem;
 }
 
 export default function SiteNavDrawer({ active }: SiteNavDrawerProps) {

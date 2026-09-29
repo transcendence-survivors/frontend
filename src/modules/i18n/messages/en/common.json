@@ -562,6 +562,41 @@
 		}
 	},
 
+	"legal": {
+		"kicker": "Legal information",
+		"title": "Legal Notice",
+		"updated": "Last updated: September 29, 2026",
+		"sections": {
+			"editor": {
+				"title": "Site publisher",
+				"body": "Transcendence Survivors is a non-profit educational project built as part of the 42 Lyon curriculum (ft_transcendence project). The site is published by the following team of students:"
+			},
+			"publisher": {
+				"title": "Publication director",
+				"body": "Publication is directed collectively by the members of the Transcendence Survivors team."
+			},
+			"hosting": {
+				"title": "Hosting",
+				"body": "The site is self-hosted by the project team. The application, its database and file storage run in Docker containers managed by its members."
+			},
+			"property": {
+				"title": "Intellectual property",
+				"body": "The texts, visuals, logos, game universe and source code of this site belong to the Transcendence Survivors team unless stated otherwise. Any reproduction, even partial, without prior permission is prohibited. The game runs on the Babylon.js engine and on open-source libraries, used in accordance with their respective licenses. Content posted by users remains the property of its authors, who bear full responsibility for it."
+			},
+			"data": {
+				"title": "Personal data",
+				"body": "When you sign up, we collect your email address, username, first and last name, date of birth, and the profile information you choose to provide (display name, bio, gender…). This data is used solely to operate the service: it is never sold or used for commercial purposes. In accordance with the General Data Protection Regulation (GDPR), you have the right to access, rectify, object to and erase your data, which you can exercise by contacting the team."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "The site only uses technical cookies that are essential to its operation: authentication tokens to keep you signed in, and remembering your chosen language. Your display theme is kept in your browser's local storage. No advertising or analytics cookies are set."
+			},
+			"contact": {
+				"title": "Contact",
+				"body": "For any question about the site or your data, visit the <support>help center</support> or reach the team through its <github>GitHub organization</github>."
+			}
+		}
+	},
 	"auth": {
 		"signout": {
 			"label": "Logout",

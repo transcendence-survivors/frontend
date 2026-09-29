@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import LoreHero from './components/LoreHero';
 import StoryBlock from './components/StoryBlock';
 import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 
 const blocks = ['awakening', 'circle', 'horde', 'keepers'] as const;
 
@@ -24,6 +25,7 @@ export default function LorePage() {
 					/>
 				))}
 			</div>
+			<SiteFooter />
 		</main>
 	);
 }

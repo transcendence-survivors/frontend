@@ -96,22 +96,7 @@ export const createPresenceSlice: StateCreator<
 				onConnectedHandler = (payload: PresenceFriendConnectedPayload) => {
 					const { id, status, username, displayName, avatarUrl } = payload;
 					const friend = get().onlineFriends.get(id);
-
 					if (friend) return;
-
-					const myStatus = get().status;
-
-					if (myStatus === PresenceStatus.ONLINE) {
-						toast.custom(() => (
-							<PresenceToast
-								id={id}
-								avatarUrl={avatarUrl}
-								username={username}
-								displayName={displayName}
-								status={status}
-							/>
-						));
-					}
 
 					set((prev) => ({
 						onlineFriends: new Map(prev.onlineFriends).set(id, {
@@ -120,6 +105,18 @@ export const createPresenceSlice: StateCreator<
 						}),
 						onlineFriendsCount: prev.onlineFriendsCount + 1,
 					}));
+
+					const myStatus = get().status;
+					if (myStatus !== PresenceStatus.ONLINE) return;
+					toast.custom(() => (
+						<PresenceToast
+							id={id}
+							avatarUrl={avatarUrl}
+							username={username}
+							displayName={displayName}
+							status={status}
+						/>
+					));
 				};
 
 				onStatusChangeHandler = ({

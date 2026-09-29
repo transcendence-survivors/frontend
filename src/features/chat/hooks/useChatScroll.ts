@@ -20,7 +20,7 @@ interface ScrollSnapshot {
 	scrollTop: number;
 }
 
-const NEAR_BOTTOM_THRESHOLD = 200;
+const NEAR_BOTTOM_THRESHOLD = 600;
 
 export const useChatScroll = ({
 	messageCount,

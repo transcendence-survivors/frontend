@@ -88,6 +88,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/suche',
 		it: '/ricerca',
 	},
+	game: {
+		en: '/game',
+		de: '/spiel',
+		fr: '/jeu',
+		es: '/juego',
+		che: '/spiel',
+		it: '/gioco',
+	},
 
 	friends: {
 		en: '/friends',

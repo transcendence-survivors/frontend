@@ -12,6 +12,7 @@ export const useOpenDM = (targetUserId: string) => {
 		mutationKey: ['chat-rooms', 'open-direct', targetUserId],
 		mutationFn: () => getOrCreateDirectRoom(targetUserId),
 		onError: (error) => {
+			// !TODO
 			console.log('Error opening DM:', error);
 		},
 		onSuccess: (room) => {

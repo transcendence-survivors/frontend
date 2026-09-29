@@ -67,15 +67,15 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 							</QuerryProvider>
 						</NuqsProvider>
 					</ThemeProvider>
+					<Toaster
+						closeButton
+						expand={false}
+						theme='dark'
+						icons={{
+							close: <X className='size-3' />,
+						}}
+					/>
 				</NextIntlClientProvider>
-				<Toaster
-					closeButton
-					expand={false}
-					theme='dark'
-					icons={{
-						close: <X className='size-3' />,
-					}}
-				/>
 			</body>
 		</html>
 	);

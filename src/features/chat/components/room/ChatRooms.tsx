@@ -13,7 +13,7 @@ interface ChatRoomsDataProps extends React.HTMLAttributes<HTMLDivElement> {
 	params: UseChatRoomsParams;
 }
 
-const ChatRoomsData = ({ params }: ChatRoomsDataProps) => {
+const ChatRooms = ({ params }: ChatRoomsDataProps) => {
 	const t = useTranslations('chat.rooms');
 	const { ref, inView } = useInView({
 		threshold: 0,
@@ -72,4 +72,4 @@ const ChatRoomsData = ({ params }: ChatRoomsDataProps) => {
 	);
 };
 
-export default ChatRoomsData;
+export default ChatRooms;

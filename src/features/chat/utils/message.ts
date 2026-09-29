@@ -125,6 +125,12 @@ export const getMessagePreview = (
 
 		return t('messages.preview.no_messages');
 	}
+	if (lastMessage.type === ChatMessageType.POST_SHARE) {
+		const senderPrefix = lastMessage.sender
+			? `${lastMessage.sender.displayName}: `
+			: '';
+		return `${senderPrefix}${t('messages.preview.post_shared')}`;
+	}
 
 	return getSystemMessage(lastMessage, t) ?? t('messages.preview.no_messages');
 };

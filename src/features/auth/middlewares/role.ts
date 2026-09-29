@@ -9,8 +9,8 @@ const hierarchy = {
 
 const roleRoutes = {
 	feed: ['USER'],
-
 	search: ['USER'],
+	game: ['USER'],
 
 	friends: ['USER'],
 	blocked: ['USER'],

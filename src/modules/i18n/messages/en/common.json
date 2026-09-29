@@ -13,6 +13,7 @@
 		"lore": "Lore",
 		"support": "Support",
 		"enter_hub": "Enter Hub →",
+		"player_hub": "Player Hub",
 		"menu": "Menu",
 
 		"feed": "Feed",
@@ -227,6 +228,11 @@
 				"confirm": "Cancel request"
 			},
 
+			"toast": {
+				"received_displayname": "You have received a friend request from {displayName}.",
+				"accepted_displayname": "{displayName} accepted your friend request."
+			},
+
 			"fetch_error": "Failed to load friend requests. Please try again later."
 		}
 	},
@@ -240,10 +246,26 @@
 		"invisible_description": "You will appear offline to your friends, but you can still use the app normally.",
 
 		"count_online": "{count} keepers in the light",
-		"count_online_friends": "{count} friends in the light"
+		"count_online_friends": "{count} friends in the light",
+
+		"just_connected_displayname": "{displayName} just connected"
 	},
 
 	"chat": {
+		"share": {
+			"title": "Share Post",
+			"description": "Select one or multiple chat rooms to share this post with.",
+			"comment_placeholder": "Add an optional message...",
+			"search_placeholder": "Search rooms or friends...",
+			"selected_count": "{count, plural, =0 {No room selected} one {1 room selected} other {# rooms selected}}",
+			"cancel": "Cancel",
+			"submit": "Share",
+			"room_badge_fallback": "Room #{id}",
+			"success_count": "Post shared successfully to {count} chat room(s).",
+			"partial_count": "Failed to share post with {count} chat room(s).",
+			"error": "An error occurred while sharing the post."
+		},
+
 		"rooms": {
 			"title": "Chat Rooms",
 			"page": {
@@ -313,12 +335,28 @@
 			"preview": {
 				"no_messages": "No messages yet",
 				"deleted_message": "This message was deleted",
-				"attachments": "{count, plural, =1 {Sent 1 attachment} other {Sent {count} attachments}}"
+				"attachments": "{count, plural, =1 {Sent 1 attachment} other {Sent {count} attachments}}",
+				"post_shared": "Post shared"
 			},
 			"actions": {
 				"reply": "Reply",
 				"edit": "Edit",
 				"delete": "Delete",
+
+				"placeholder_create": "Send a message into the dark...",
+				"placeholder_reply": "Edit message...",
+				"label_textarea": "Message",
+				"button_send": "Send",
+				"button_save": "Save",
+
+				"rich_is_typing": "<strong>displayName</strong> is typing...",
+				"rich_are_typing": "<strong>displayName</strong> and {count, plural, =1 {1 other} other {# others}} are typing...",
+
+				"edditing": "Editing Message",
+				"rich_replying_to": "Replying to <strong>displayName</strong>",
+				"attach_images_videos": "Attach images or videos",
+				"choose_emoji": "Choose emoji",
+
 				"dialogs": {
 					"delete_title": "Delete message ?",
 					"delete_description": "This action cannot be undone. This message will be permanently removed from the conversation."
@@ -337,7 +375,8 @@
 				"room_avatar_added": "{actor} added a room avatar.",
 				"room_avatar_removed": "{actor} removed the room avatar.",
 				"ownership_transferred": "{actor} transferred room ownership to {target}.",
-				"room_created": "{actor} created the room."
+				"room_created": "{actor} created the room.",
+				"deleted": "This message was deleted."
 			}
 		},
 		"members": {
@@ -429,7 +468,9 @@
 			"quote": "Quote",
 			"like": "Like",
 			"unlike": "Unlike",
-			"delete": "Delete"
+			"delete": "Delete",
+			"chat": "Share to Chat",
+			"copy_link": "Copy link"
 		},
 		"detail": {
 			"back": "Post"

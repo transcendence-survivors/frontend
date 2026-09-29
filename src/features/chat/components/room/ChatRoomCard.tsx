@@ -14,7 +14,7 @@ import { getMessagePreview } from '../../utils/message';
 import NotificationBubble from '@/components/ui/notification-bubble';
 import { DeepKeys } from '@/libs/types';
 import { AppMessages } from '@/modules/i18n/messages/types';
-import { useCurrentRoomId, useRoomUnreadCount } from '../../stores/notificationSlice';
+import { useCurrentRoomId, useRoomUnreadCount } from '../../stores/chatNotificationSlice';
 
 interface ChatRoomCardProps {
 	room: ChatRoom;

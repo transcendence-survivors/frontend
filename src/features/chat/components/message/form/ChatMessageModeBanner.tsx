@@ -1,11 +1,12 @@
 import { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Pencil, Reply, X } from 'lucide-react';
-import { ChatMessage, ChatMessageType } from '../../../types/message';
+import { PostChatMessage, TextChatMessage } from '../../../types/message';
+import { useTranslations } from 'next-intl';
 
 interface ChatMessageModeBannerProps {
-	editingMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
-	replyingToMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
+	editingMessage?: TextChatMessage | PostChatMessage | null;
+	replyingToMessage?: TextChatMessage | PostChatMessage | null;
 	onCancel: () => void;
 }
 
@@ -13,6 +14,8 @@ const MAX_PREVIEW_LENGTH = 30;
 
 export const ChatMessageModeBanner = memo(
 	({ editingMessage, replyingToMessage, onCancel }: ChatMessageModeBannerProps) => {
+		const t = useTranslations('chat.messages.actions');
+
 		if (!editingMessage && !replyingToMessage) return null;
 
 		return (
@@ -21,16 +24,19 @@ export const ChatMessageModeBanner = memo(
 					{editingMessage ? (
 						<>
 							<Pencil className='size-3.5 text-primary shrink-0' />
-							<span>Editing message</span>
+							<span>{t('edditing')}</span>
 						</>
 					) : (
 						<>
 							<Reply className='size-3.5 text-primary shrink-0' />
 							<span>
-								Replying to&nbsp;
-								<strong className='text-foreground'>
-									{replyingToMessage?.sender.displayName}
-								</strong>
+								{t.rich('rich_replying_to', {
+									strong: () => (
+										<strong className='font-semibold'>
+											{replyingToMessage?.sender.displayName}
+										</strong>
+									),
+								})}
 								{replyingToMessage?.content && (
 									<span className='ml-1 text-muted-foreground'>
 										:&nbsp;

@@ -20,6 +20,7 @@ interface DashboardNavProps extends React.HTMLAttributes<HTMLUListElement> {
 const links = [
 	{ key: 'feed', labelKey: 'feed' },
 	{ key: 'search', labelKey: 'search' },
+	{ key: 'game', labelKey: 'game' },
 	{
 		key: 'friends',
 		labelKey: 'friends',

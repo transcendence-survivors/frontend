@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useCallback, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm, useWatch, FieldError as RHFFieldError } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Save, Send } from 'lucide-react';
 import { EmojiClickData } from 'emoji-picker-react';
@@ -12,7 +12,7 @@ import FormField from '@/modules/forms/components/Base/FormField';
 import { MediaAttachmentPreviews } from '@/components/ui/media-attachment-previews';
 
 import { useSendMessage, useEditMessage } from '../../../hooks/message/useMessageActions';
-import { ChatMessage, ChatMessageType } from '../../../types/message';
+import { PostChatMessage, TextChatMessage } from '../../../types/message';
 import { ChatMessageModeBanner } from './ChatMessageModeBanner';
 import { ChatTypingIndicator } from '../../ChatTypingIndicator';
 
@@ -23,12 +23,15 @@ import {
 import { useChatFormTyping } from '../../../hooks/useChatFormTyping';
 import { useFileAttachments } from '../../../../../modules/forms/hooks/useFileAttachments';
 import { ChatMessageFormControls } from './ChatMessageFormControls';
+import { useTranslations } from 'next-intl';
+import { FieldError } from '@/components/ui/field';
+import { translateError } from '@/modules/forms/utils/translate/errors';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
 	onCancelMode: () => void;
-	editingMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
-	replyingToMessage?: Extract<ChatMessage, { type: ChatMessageType.TEXT }> | null;
+	editingMessage?: TextChatMessage | PostChatMessage | null;
+	replyingToMessage?: TextChatMessage | PostChatMessage | null;
 }
 
 const EMPTY_ATTACHMENTS: File[] = [];
@@ -41,6 +44,8 @@ export const ChatMessageForm = ({
 	replyingToMessage,
 	...props
 }: ChatMessageFormProps) => {
+	const rootT = useTranslations();
+	const t = useTranslations('chat.messages.actions');
 	const { mutateAsync: sendMessage } = useSendMessage();
 	const { mutateAsync: editMessage } = useEditMessage();
 
@@ -166,6 +171,8 @@ export const ChatMessageForm = ({
 		}
 	};
 
+	const errorField = (errors.attachments || errors.text) as RHFFieldError | undefined;
+
 	return (
 		<form
 			onSubmit={handleSubmit(submit)}
@@ -203,9 +210,9 @@ export const ChatMessageForm = ({
 						component: 'textarea',
 						name: 'text',
 						placeholder: editingMessage
-							? 'Edit message…'
-							: 'Send a message into the dark…',
-						label: { text: 'Message', srOnly: true },
+							? t('placeholder_reply')
+							: t('placeholder_create'),
+						label: { text: t('label_textarea'), srOnly: true },
 						required: false,
 						hideError: true,
 						className:
@@ -225,16 +232,17 @@ export const ChatMessageForm = ({
 							<Send className='size-3.5' />
 						)}
 						<span className='sr-only sm:not-sr-only'>
-							{editingMessage ? 'Save' : 'Send'}
+							{t(editingMessage ? 'button_save' : 'button_send')}
 						</span>
 					</Button>
 				</div>
 			</div>
 
-			{(errors.attachments || errors.text) && (
-				<p role='alert' className='pb-2 text-center text-[11px] text-destructive'>
-					{errors.attachments?.message || errors.text?.message}
-				</p>
+			{errorField && (
+				<FieldError
+					className='text-center pb-2'
+					errors={[translateError(rootT, errorField)]}
+				/>
 			)}
 		</form>
 	);

@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { THEMES, DEFAULT_THEME } from '../constants/themes';
-import useThemeHotkey from '../hooks/useThemeHotkey';
 
 if (typeof window !== 'undefined' && process.env?.NODE_ENV === 'development') {
 	const orig = console.error;
@@ -20,11 +19,6 @@ type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider> & {
 	themes?: readonly string[];
 };
 
-const ThemeKey = () => {
-	useThemeHotkey();
-	return null;
-};
-
 const ThemeProvider = ({
 	children,
 	themes = themelList,
@@ -38,7 +32,6 @@ const ThemeProvider = ({
 			disableTransitionOnChange
 			themes={themes}
 			{...props}>
-			<ThemeKey />
 			{children}
 		</NextThemesProvider>
 	);

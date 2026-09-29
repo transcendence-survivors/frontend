@@ -5,10 +5,13 @@ import Kicker from '@/components/ui/kicker';
 import AvatarDropdown from '@/features/user/components/Avatar/AvatarDropDown';
 import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownSubMenu';
 import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownSubMenu';
+import { useTranslations } from 'next-intl';
 
 type DashboardSidebarProps = React.HTMLAttributes<HTMLElement>;
 
 const DashboardSidebar = ({ className, ...props }: DashboardSidebarProps) => {
+	const t = useTranslations('nav');
+
 	return (
 		<aside
 			className={cn(
@@ -24,7 +27,7 @@ const DashboardSidebar = ({ className, ...props }: DashboardSidebarProps) => {
 				</div>
 
 				<nav className='flex-1 overflow-y-auto py-1'>
-					<Kicker className='py-2 px-5'>Player Hub</Kicker>
+					<Kicker className='py-2 px-5'>{t('player_hub')}</Kicker>
 					<DashboardNav />
 					<div className='px-3 py-3 space-y-2 mt-auto'></div>
 				</nav>

@@ -12,19 +12,17 @@ import { toast } from 'sonner';
 import { PresenceStatus } from '@/features/presence/types/status';
 import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
 
-export interface NotificationSliceState {
+export interface ChatNotificationSliceState {
 	totalUnreadCount: number;
 	unreadCountsByRoom: Record<string, number>;
 	currentRoomId: string | null;
-	status: PresenceStatus;
 }
 
-export interface NotificationSliceActions {
+export interface ChatNotificationSliceActions {
 	setUnreadSummary: (total: number, roomCounts?: Record<string, number>) => void;
 	setRoomUnreadCount: (roomId: string, count: number) => void;
 	mergeRoomUnreadCounts: (roomCounts: Record<string, number>) => void;
 	setCurrentRoomId: (roomId: string | null) => void;
-	setStatus: (status: PresenceStatus) => void;
 
 	markRoomAsRead: (roomId: string, queryClient: QueryClient) => Promise<void>;
 	incrementRoomUnread: (roomId: string) => void;
@@ -35,34 +33,34 @@ export interface NotificationSliceActions {
 	destroyNotificationListeners: () => void;
 }
 
-interface NotificationReadPayload {
+interface ChatNotificationReadPayload {
 	roomId: string;
 	readAt: string;
 }
 
-interface NotificationMemberMutationPayload {
+interface ChatNotificationMemberMutationPayload {
 	roomId: string;
 	userId: string;
 	type: 'JOIN' | 'LEAVE' | 'ROLE_UPDATE' | 'KICKED';
 }
 
-interface NotificationNewPayload {
+interface ChatNotificationNewPayload {
 	roomId: string;
 }
 
-export type NotificationSlice = NotificationSliceState & {
-	notificationActions: NotificationSliceActions;
+export type ChatNotificationSlice = ChatNotificationSliceState & {
+	chatNotificationActions: ChatNotificationSliceActions;
 };
 
-export const createNotificationSlice: StateCreator<
-	SocketState & NotificationSlice,
+export const createChatNotificationSlice: StateCreator<
+	SocketState & PresenceSlice & ChatNotificationSlice,
 	[],
 	[],
-	NotificationSlice
+	ChatNotificationSlice
 > = (set, get) => {
-	let onMessageRead: ((data: NotificationReadPayload) => void) | null = null;
-	let onNewMessage: ((data: NotificationNewPayload) => void) | null = null;
-	let onMemberMutation: ((data: NotificationMemberMutationPayload) => void) | null =
+	let onMessageRead: ((data: ChatNotificationReadPayload) => void) | null = null;
+	let onNewMessage: ((data: ChatNotificationNewPayload) => void) | null = null;
+	let onMemberMutation: ((data: ChatNotificationMemberMutationPayload) => void) | null =
 		null;
 
 	const invalidateUnreadCount = (queryClient: QueryClient): void => {
@@ -101,7 +99,7 @@ export const createNotificationSlice: StateCreator<
 		currentRoomId: null,
 		status: PresenceStatus.OFFLINE,
 
-		notificationActions: {
+		chatNotificationActions: {
 			setUnreadSummary(total, roomCounts = {}) {
 				set((state) => ({
 					totalUnreadCount: total,
@@ -180,10 +178,6 @@ export const createNotificationSlice: StateCreator<
 				}));
 			},
 
-			setStatus(status: PresenceStatus) {
-				set({ status });
-			},
-
 			clearNotificationState() {
 				set({
 					totalUnreadCount: 0,
@@ -196,9 +190,9 @@ export const createNotificationSlice: StateCreator<
 				const socket = get().socket;
 				if (!socket) return;
 
-				get().notificationActions.destroyNotificationListeners();
+				get().chatNotificationActions.destroyNotificationListeners();
 
-				onMessageRead = (data: NotificationReadPayload) => {
+				onMessageRead = (data: ChatNotificationReadPayload) => {
 					set((state) => {
 						const currentRoomUnread =
 							state.unreadCountsByRoom[data.roomId] ?? 0;
@@ -216,20 +210,20 @@ export const createNotificationSlice: StateCreator<
 					invalidateUnreadCount(queryClient);
 				};
 
-				onNewMessage = (data: NotificationNewPayload) => {
+				onNewMessage = (data: ChatNotificationNewPayload) => {
 					const activeRoomId = get().currentRoomId;
 					if (activeRoomId !== data.roomId) {
 						if (get().status === PresenceStatus.ONLINE) {
 							toast.info('You have a new chat message.');
 						}
-						get().notificationActions.incrementRoomUnread(data.roomId);
+						get().chatNotificationActions.incrementRoomUnread(data.roomId);
 						invalidateUnreadCount(queryClient);
 						invalidateRooms(queryClient);
 						invalidateMessages(queryClient, data.roomId);
 					}
 				};
 
-				onMemberMutation = (data: NotificationMemberMutationPayload) => {
+				onMemberMutation = (data: ChatNotificationMemberMutationPayload) => {
 					const activeRoomId = get().currentRoomId;
 					if (activeRoomId !== data.roomId) {
 						invalidateMembers(queryClient, data.roomId);
@@ -271,11 +265,12 @@ export const createNotificationSlice: StateCreator<
 		},
 	};
 };
-export const useNotificationActions = () => {
-	return useWebsocketStore(useShallow((state) => state.notificationActions));
+
+export const useChatNotificationActions = () => {
+	return useWebsocketStore(useShallow((state) => state.chatNotificationActions));
 };
 
-export const useTotalUnreadCount = (): number => {
+export const useChatTotalUnreadCount = (): number => {
 	return useWebsocketStore(useShallow((state) => state.totalUnreadCount));
 };
 

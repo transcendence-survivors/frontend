@@ -16,6 +16,7 @@ import { ROUTES } from '@/modules/i18n/constants/routes';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useDeletePost } from '../hook/useDeletePost';
 import { Post } from '../types/post';
+import { PostAuthorHeader } from './PostAuthorHeader';
 
 interface PostHeaderProps {
 	post: Post;
@@ -49,22 +50,7 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 
 	return (
 		<div className='flex items-center gap-1 text-sm'>
-			<I18nLink
-				href='userName'
-				hrefParams={{ username: `@${post.author.username}` }}
-				className='group relative z-10 flex min-w-0 items-center gap-1'>
-				<span className='truncate font-semibold group-hover:underline'>
-					{post.author.displayName}
-				</span>
-				<span className='truncate text-muted-foreground'>
-					@{post.author.username}
-				</span>
-			</I18nLink>
-			<span className='text-muted-foreground'>·</span>
-			<DisplayDate
-				date={new Date(post.createdAt)}
-				className='shrink-0 text-muted-foreground'
-			/>
+			<PostAuthorHeader author={post.author} createdAt={post.createdAt} />
 
 			{isOwner && (
 				<DropdownMenu>

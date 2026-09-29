@@ -20,6 +20,7 @@ const CHAT_ENDPOINTS = {
 
 	getMessages: (roomId: string) => `${CHAT_START_PATH}/${roomId}/messages`,
 	getMessagesCount: (roomId: string) => `${CHAT_START_PATH}/${roomId}/messages/count`,
+	sharePost: `${CHAT_START_PATH}/messages/share/post`,
 
 	getMembers: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members`,
 	getMembersCount: (roomId: string) => `${CHAT_START_PATH}/${roomId}/members/count`,

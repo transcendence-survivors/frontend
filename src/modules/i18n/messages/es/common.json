@@ -13,7 +13,7 @@
 		"posts": "Posts",
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
-		"legal": "Legal Notice",
+		"legal": "Aviso legal",
 
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
@@ -193,6 +193,41 @@
 		}
 	},
 
+	"legal": {
+		"kicker": "Información legal",
+		"title": "Aviso legal",
+		"updated": "Última actualización: 29 de septiembre de 2026",
+		"sections": {
+			"editor": {
+				"title": "Editor del sitio",
+				"body": "Transcendence Survivors es un proyecto educativo sin ánimo de lucro, desarrollado en el marco del currículo de 42 Lyon (proyecto ft_transcendence). El sitio lo edita el siguiente equipo de estudiantes:"
+			},
+			"publisher": {
+				"title": "Director de la publicación",
+				"body": "La dirección de la publicación la asumen de forma colectiva los miembros del equipo Transcendence Survivors."
+			},
+			"hosting": {
+				"title": "Alojamiento",
+				"body": "El sitio está autoalojado por el equipo del proyecto. La aplicación, su base de datos y el almacenamiento de archivos funcionan en contenedores Docker administrados por sus miembros."
+			},
+			"property": {
+				"title": "Propiedad intelectual",
+				"body": "Los textos, imágenes, logotipos, el universo del juego y el código fuente de este sitio pertenecen al equipo Transcendence Survivors, salvo indicación contraria. Queda prohibida cualquier reproducción, total o parcial, sin autorización previa. El juego se basa en el motor Babylon.js y en bibliotecas de código abierto, utilizadas conforme a sus respectivas licencias. Los contenidos publicados por los usuarios siguen siendo propiedad de sus autores, que asumen toda la responsabilidad sobre ellos."
+			},
+			"data": {
+				"title": "Datos personales",
+				"body": "Al registrarte, recopilamos tu dirección de correo electrónico, tu nombre de usuario, tu nombre y apellidos, tu fecha de nacimiento y la información de perfil que decidas indicar (nombre visible, biografía, género…). Estos datos se utilizan únicamente para el funcionamiento del servicio: nunca se venden ni se utilizan con fines comerciales. De acuerdo con el Reglamento General de Protección de Datos (RGPD), tienes derecho a acceder, rectificar, oponerte y suprimir tus datos, y puedes ejercerlo contactando con el equipo."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "El sitio solo utiliza cookies técnicas, imprescindibles para su funcionamiento: tokens de autenticación para mantener tu sesión y el recuerdo del idioma elegido. Tu tema de visualización se guarda en el almacenamiento local de tu navegador. No se instalan cookies publicitarias ni de medición de audiencia."
+			},
+			"contact": {
+				"title": "Contacto",
+				"body": "Para cualquier pregunta sobre el sitio o tus datos, visita el <support>centro de ayuda</support> o contacta con el equipo a través de su <github>organización de GitHub</github>."
+			}
+		}
+	},
 	"auth": {
 		"signout": {
 			"label": "Logout",

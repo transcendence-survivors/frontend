@@ -1,9 +1,12 @@
 import { ChatMemberRole } from '@/features/chat/types/member';
 import { ChatMessage, ChatMessageType } from '@/features/chat/types/message';
 import { DeepKeys } from '@/libs/types';
-import { AppMessages, RootTFunction } from '@/modules/i18n/messages/types';
+import { AppMessages } from '@/modules/i18n/messages/types';
+import { useTranslations } from 'next-intl';
 
 export type SystemChatMessage = Exclude<ChatMessage, { type: ChatMessageType.TEXT }>;
+
+type ChatTFunction = ReturnType<typeof useTranslations<'chat'>>;
 
 const roleTranslationMap: Record<ChatMemberRole, DeepKeys<AppMessages['chat']>> = {
 	OWNER: 'members.roles.owner',
@@ -13,7 +16,7 @@ const roleTranslationMap: Record<ChatMemberRole, DeepKeys<AppMessages['chat']>> 
 
 export const getSystemMessage = (
 	message: SystemChatMessage,
-	t: RootTFunction,
+	t: ChatTFunction,
 ): string | null => {
 	const deletedUserFallback = t('messages.system.deleted_user_fallback');
 
@@ -104,7 +107,7 @@ export const getSystemMessage = (
 
 export const getMessagePreview = (
 	lastMessage: ChatMessage | null | undefined,
-	t: RootTFunction,
+	t: ChatTFunction,
 ): string => {
 	if (!lastMessage) {
 		return t('messages.preview.no_messages');

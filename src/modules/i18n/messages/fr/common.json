@@ -1,9 +1,5 @@
 {
 	"nav": {
-		"lore": "Univers",
-		"support": "Aide",
-		"enter_hub": "Entrer dans le Hub →",
-		"menu": "Menu",
 		"home": "Accueil",
 		"game": "Jeu",
 		"leaderboard": "Classement",
@@ -14,22 +10,30 @@
 		"privacy": "Politique de confidentialité",
 		"terms": "Conditions d'utilisation",
 		"legal": "Mentions légales",
-
+		"lore": "Univers",
+		"support": "Aide",
+		"enter_hub": "Entrer dans le Hub →",
+		"menu": "Menu",
 		"feed": "Fil",
 		"friends": "Amis",
 		"chat": "Discussion",
 		"search": "Recherche",
-
-		"profile_posts": "Publications",
-		"profile_comments": "Commentaires",
-		"profile_stats": "Statistiques",
-		"profile_likes": "J'aime",
-		"profile_favourites": "Favoris",
-
-		"profile_followers": "Abonnés",
-		"profile_following": "Abonnements",
-		"profile_blocked": "Utilisateurs bloqués",
-		"concept": "Concept"
+		"concept": "Concept",
+		"user": {
+			"posts": "Publications",
+			"comments": "Commentaires",
+			"stats": "Statistiques",
+			"likes": "J'aime",
+			"reposts": "Reposts"
+		},
+		"friend": {
+			"requests": "Demandes",
+			"friends": "Amis",
+			"blocked": "Utilisateurs bloqués"
+		},
+		"player_hub": "Hub des joueurs",
+		"cookies": "Cookies",
+		"accessibility": "Accessibilité"
 	},
 	"home": {},
 	"profile": {
@@ -40,73 +44,356 @@
 			"success": "Profil mis à jour avec succès."
 		}
 	},
-	"friend_page": {
-		"title": "Amis & Modération",
-		"subtitle": "Membres de votre cercle",
-		"input_placeholder": "Rechercher par nom d'utilisateur...",
-
-		"add_friend": {
-			"button": "Ajouter un ami",
-			"success": "Demande d'ami envoyée avec succès.",
-			"error": "Échec de l'envoi de la demande d'ami. Veuillez réessayer."
+	"settings": {
+		"title": "Paramètres",
+		"error_loading": "Échec du chargement des paramètres du compte. Veuillez réessayer plus tard.",
+		"page": {
+			"title": "Paramètres",
+			"description": "Gérez tous vos paramètres en sélectionnant une catégorie dans le menu de gauche."
 		},
-
+		"profile": {
+			"title": "Paramètres du profil",
+			"subtitle": "Mettez à jour les informations et les préférences de votre profil.",
+			"description": "Gérez les informations de votre profil public, votre avatar et votre bannière.",
+			"display_name_label": "Nom d'affichage",
+			"display_name_placeholder": "Entrez votre nom d'affichage",
+			"bio_label": "Bio",
+			"bio_placeholder": "Parlez-nous un peu de vous...",
+			"cover_label": "Image de couverture",
+			"no_cover": "Aucune image de couverture",
+			"change_cover": "Changer la couverture",
+			"remove_cover": "Retirer la couverture",
+			"change_avatar": "Changer l'avatar",
+			"remove_avatar": "Retirer l'avatar",
+			"avatar_hint": "JPEG, PNG, GIF ou WebP. 5 Mo maximum.",
+			"save": "Enregistrer les modifications"
+		},
+		"account": {
+			"title": "Paramètres du compte",
+			"subtitle": "Gérez les informations et les préférences de votre compte."
+		},
+		"security": {
+			"title": "Paramètres de sécurité",
+			"subtitle": "Gérez vos paramètres et préférences de sécurité."
+		},
+		"nav": {
+			"profile": "Profil",
+			"account": "Compte",
+			"security": "Sécurité",
+			"danger_zone": "Zone de danger"
+		}
+	},
+	"users": {
+		"no_befriended_users": "Aucun utilisateur trouvé parmi les personnes qui ne sont pas vos amis.",
+		"no_befriended_users_search": "Aucun utilisateur non ami trouvé pour votre recherche.",
+		"no_more_befriended_users": "Plus aucun utilisateur non ami à charger.",
+		"no_users": "Aucun utilisateur trouvé.",
+		"no_users_search": "Aucun utilisateur trouvé pour votre recherche.",
+		"no_more_users": "Plus aucun utilisateur à charger.",
+		"fetch_error": "Échec du chargement des utilisateurs. Veuillez réessayer plus tard."
+	},
+	"search": {
+		"title": "Recherche",
+		"subtitle": "Trouvez des Porte-Lanterne et des posts",
+		"input_placeholder": "Rechercher un mot-clé ou @pseudo...",
+		"users_title": "Porte-Lanterne",
+		"posts_title": "Posts"
+	},
+	"relationships": {
+		"title": "Amis & Modération",
+		"subtitle": "Les Porte-Lanterne de votre cercle",
+		"input_placeholder": "Rechercher par @pseudo ou nom d'affichage...",
 		"nav": {
 			"friends": "Amis",
 			"requests": "Demandes",
 			"blocked": "Utilisateurs bloqués"
 		},
-
+		"add": {
+			"title": "Ajouter un Porte-Lanterne à votre cercle",
+			"button": "Ajouter un ami",
+			"placeholder": "Rechercher par @pseudo ou nom d'affichage...",
+			"aria_label": "Ajouter un ami",
+			"failed": "Échec de l'envoi de la demande d'ami. Veuillez réessayer.",
+			"success_accepted_displayname": "Vous êtes maintenant ami avec {displayName}.",
+			"success_pending_displayname": "Votre demande d'ami a été envoyée à {displayName}."
+		},
 		"friends": {
 			"title": "Amis",
 			"count": "{count} ami(s).",
-			"delete_button": "Retirer l'ami",
-			"delete_success_displayname": "Vous avez retiré {displayName} de vos amis avec succès.",
-			"delete_failure_displayname": "Échec du retrait de {displayName}. Veuillez réessayer.",
+			"count_search": "{count} ami(s) trouvé(s) pour votre recherche.",
 			"no_friends": "Vous n'avez pas encore d'amis. Commencez à en ajouter !",
-			"no_friends_search": "Aucun ami trouvé pour votre recherche."
+			"no_friends_search": "Aucun ami trouvé pour votre recherche.",
+			"no_more_friends": "Plus aucun ami à charger.",
+			"fetch_error": "Échec du chargement des amis. Veuillez réessayer plus tard.",
+			"all_button": "Tous",
+			"online_button": "En ligne",
+			"offline_button": "Hors ligne",
+			"delete": {
+				"tooltip": "Retirer l'ami",
+				"title": "Retirer l'ami",
+				"description": "Voulez-vous vraiment retirer cet ami ? Cette action est irréversible.",
+				"confirm": "Retirer",
+				"success_displayname": "Vous avez retiré {displayName} de vos amis avec succès.",
+				"failure_displayname": "Échec du retrait de {displayName}. Veuillez réessayer."
+			}
 		},
-
+		"blocked": {
+			"title": "Utilisateurs bloqués",
+			"count": "{count} utilisateur(s) bloqué(s).",
+			"count_search": "{count} utilisateur(s) bloqué(s) trouvé(s) pour votre recherche.",
+			"add": {
+				"tooltip": "Bloquer l'utilisateur",
+				"title": "Bloquer l'utilisateur",
+				"description": "Voulez-vous vraiment bloquer cet utilisateur ? Il ne pourra plus vous envoyer de messages ni voir votre activité.",
+				"confirm": "Bloquer",
+				"success_displayname": "Vous avez bloqué {displayName} avec succès.",
+				"failure_displayname": "Échec du blocage de {displayName}. Veuillez réessayer."
+			},
+			"remove": {
+				"tooltip": "Débloquer l'utilisateur",
+				"title": "Débloquer l'utilisateur",
+				"description": "Voulez-vous vraiment débloquer cet utilisateur ? Il pourra de nouveau vous envoyer des messages et voir votre activité.",
+				"confirm": "Débloquer",
+				"success_displayname": "Vous avez débloqué {displayName} avec succès.",
+				"failure_displayname": "Échec du déblocage de {displayName}. Veuillez réessayer."
+			},
+			"no_blocked": "Vous n'avez bloqué personne pour l'instant.",
+			"no_blocked_search": "Aucun utilisateur bloqué trouvé pour votre recherche.",
+			"no_more_blocked": "Plus aucun utilisateur bloqué à charger.",
+			"fetch_error": "Échec du chargement des utilisateurs bloqués. Veuillez réessayer plus tard.",
+			"all_button": "Tous",
+			"online_button": "En ligne",
+			"offline_button": "Hors ligne"
+		},
 		"requests": {
 			"title": "Demandes d'amis",
-			"incoming_button": "Entrantes",
-			"outgoing_button": "Sortantes",
-
-			"incoming_count": "{count} demande(s) d'ami entrante(s).",
-			"incoming_count_search": "{count} demande(s) d'ami entrante(s) trouvée(s) pour votre recherche.",
-			"outgoing_count": "{count} demande(s) d'ami sortante(s).",
-			"outgoing_count_search": "{count} demande(s) d'ami sortante(s) trouvée(s) pour votre recherche.",
-
-			"delete_from_displayname": "Décliner la demande d'ami de {displayName}",
+			"incoming_button": "Reçues",
+			"outgoing_button": "Envoyées",
+			"incoming_count": "{count} demande(s) d'ami reçue(s).",
+			"incoming_count_search": "{count} demande(s) d'ami reçue(s) trouvée(s) pour votre recherche.",
+			"outgoing_count": "{count} demande(s) d'ami envoyée(s).",
+			"outgoing_count_search": "{count} demande(s) d'ami envoyée(s) trouvée(s) pour votre recherche.",
+			"delete_from_displayname": "Refuser la demande d'ami de {displayName}",
 			"delete_to_displayname": "Supprimer votre demande d'ami à {displayName}",
 			"delete_success_from_displayname": "La demande d'ami de {displayName} a été supprimée avec succès.",
 			"delete_success_to_displayname": "Votre demande d'ami à {displayName} a été supprimée avec succès.",
 			"delete_failure_from_displayname": "Échec de la suppression de la demande d'ami de {displayName}. Veuillez réessayer.",
 			"delete_failure_to_displayname": "Échec de la suppression de votre demande d'ami à {displayName}. Veuillez réessayer.",
-
 			"accept_button": "Accepter",
 			"accept_from_displayname": "Accepter la demande d'ami de {displayName}",
 			"accept_success_from_displayname": "La demande d'ami de {displayName} a été acceptée avec succès.",
 			"accept_failure_from_displayname": "Échec de l'acceptation de la demande d'ami de {displayName}. Veuillez réessayer.",
-
-			"no_incoming_requests": "Vous n'avez aucune demande d'ami entrante.",
-			"no_incoming_requests_search": "Aucune demande d'ami entrante trouvée pour votre recherche.",
-			"no_outgoing_requests": "Vous n'avez aucune demande d'ami sortante.",
-			"no_outgoing_requests_search": "Aucune demande d'ami sortante trouvée pour votre recherche.",
-
-			"no_more_incoming_requests": "Plus aucune demande d'ami entrante à charger.",
-			"no_more_outgoing_requests": "Plus aucune demande d'ami sortante à charger.",
-
+			"no_incoming_requests": "Vous n'avez aucune demande d'ami reçue.",
+			"no_incoming_requests_search": "Aucune demande d'ami reçue trouvée pour votre recherche.",
+			"no_outgoing_requests": "Vous n'avez aucune demande d'ami envoyée.",
+			"no_outgoing_requests_search": "Aucune demande d'ami envoyée trouvée pour votre recherche.",
+			"no_more_incoming_requests": "Plus aucune demande d'ami reçue à charger.",
+			"no_more_outgoing_requests": "Plus aucune demande d'ami envoyée à charger.",
+			"received": "Reçue",
+			"sent": "Envoyée",
+			"reject": {
+				"tooltip": "Refuser la demande",
+				"title": "Refuser la demande d'ami",
+				"description": "Voulez-vous vraiment refuser cette demande d'ami ?",
+				"confirm": "Refuser"
+			},
+			"cancel": {
+				"tooltip": "Annuler la demande",
+				"title": "Annuler la demande d'ami",
+				"description": "Voulez-vous vraiment annuler cette demande en attente ?",
+				"confirm": "Annuler la demande"
+			},
 			"fetch_error": "Échec du chargement des demandes d'amis. Veuillez réessayer plus tard."
 		}
 	},
-
+	"presence": {
+		"online": "En ligne",
+		"online_description": "Vous êtes visible par vos amis.",
+		"do_not_disturb": "Ne pas déranger",
+		"do_not_disturb_description": "Vous ne recevrez pas de notifications pour les nouveaux messages ni pour les demandes d'amis.",
+		"invisible": "Invisible",
+		"invisible_description": "Vous apparaîtrez hors ligne pour vos amis, mais vous pouvez continuer à utiliser l'application normalement.",
+		"count_online": "{count} Porte-Lanterne dans la lumière",
+		"count_online_friends": "{count, plural, one {# ami dans la lumière} other {# amis dans la lumière}}"
+	},
+	"chat": {
+		"rooms": {
+			"title": "Salons de discussion",
+			"page": {
+				"title": "Aucune discussion sélectionnée",
+				"subtitle": "Sélectionnez une discussion pour commencer à échanger.",
+				"not_created": "Pas encore de salon ?",
+				"ask_friends": "Invitez vos amis à jouer avec vous !",
+				"create_button": "Créer une discussion"
+			},
+			"type": {
+				"group": "Groupe",
+				"direct": "Privé"
+			},
+			"no_chat_rooms": "Vous n'avez encore aucun salon. Lancez une conversation avec vos amis !",
+			"no_chat_rooms_search": "Aucun salon trouvé pour votre recherche.",
+			"no_more_chat_rooms": "Plus aucun salon à charger.",
+			"fetch_error": "Échec du chargement des salons. Veuillez réessayer plus tard.",
+			"search_placeholder": "Rechercher un salon...",
+			"sort": {
+				"label": "Trier les salons",
+				"activity_desc": "Activité (messages récents d'abord)",
+				"activity_asc": "Activité (messages anciens d'abord)",
+				"created_desc": "Date de création (récents d'abord)",
+				"created_asc": "Date de création (anciens d'abord)"
+			},
+			"status": {
+				"online": "En ligne · ensemble dans le noir",
+				"offline": "Hors ligne · seul dans le noir",
+				"dnd": "Ne pas déranger · seul dans le noir"
+			},
+			"group_settings": {
+				"title": "Modifier le groupe",
+				"description": "Changez le nom du groupe ou mettez à jour son image.",
+				"group_name_label": "Nom du groupe",
+				"group_name_placeholder": "Entrez le nom du groupe",
+				"change_avatar_hint": "Cliquez sur l'image pour en téléverser une nouvelle",
+				"remove_avatar": "Retirer l'image",
+				"cancel": "Annuler",
+				"save": "Enregistrer les modifications",
+				"delete_group_button": "Supprimer le groupe",
+				"delete_group_title": "Supprimer le groupe",
+				"delete_group_description": "Voulez-vous vraiment supprimer ce salon ? Cette action est irréversible et tous les messages seront définitivement perdus.",
+				"delete_confirm": "Supprimer"
+			},
+			"create": {
+				"title": "Créer un salon",
+				"description": "Lancez une nouvelle conversation avec vos amis.",
+				"group_name_label": "Nom du groupe",
+				"group_name_placeholder": "Entrez le nom du groupe",
+				"button": "Créer le salon",
+				"success": "Salon créé avec succès.",
+				"failure": "Échec de la création du salon. Veuillez réessayer.",
+				"dm_exists": "Une conversation privée avec cet utilisateur existe déjà. Vous pouvez la poursuivre dans ce salon.",
+				"no_users_selected": "Sélectionnez au moins un utilisateur pour créer une discussion.",
+				"search_placeholder": "Rechercher des amis à ajouter à la discussion..."
+			}
+		},
+		"messages": {
+			"no_messages": "Aucun message pour le moment. Lancez la conversation !",
+			"no_messages_search": "Aucun message trouvé pour votre recherche.",
+			"no_more_messages": "Plus aucun message à charger.",
+			"fetch_error": "Échec du chargement des messages. Veuillez réessayer plus tard.",
+			"preview": {
+				"no_messages": "Aucun message pour le moment",
+				"deleted_message": "Ce message a été supprimé",
+				"attachments": "{count, plural, =1 {A envoyé 1 pièce jointe} other {A envoyé {count} pièces jointes}}"
+			},
+			"actions": {
+				"reply": "Répondre",
+				"edit": "Modifier",
+				"delete": "Supprimer",
+				"dialogs": {
+					"delete_title": "Supprimer le message ?",
+					"delete_description": "Cette action est irréversible. Ce message sera définitivement retiré de la conversation."
+				}
+			},
+			"system": {
+				"default_actor": "Système",
+				"role_updated": "{actor} a changé le rôle de {target} de {oldRole} à {newRole}.",
+				"added": "{actor} a ajouté {target} au salon.",
+				"kicked": "{actor} a retiré {target} du salon.",
+				"left": "{user} a quitté le salon.",
+				"room_renamed": "{actor} a renommé le salon de « {oldName} » en « {newName} ».",
+				"room_name_added": "{actor} a nommé le salon « {newName} ».",
+				"room_name_removed": "{actor} a supprimé le nom du salon.",
+				"room_avatar_changed": "{actor} a mis à jour l'image du salon.",
+				"room_avatar_added": "{actor} a ajouté une image au salon.",
+				"room_avatar_removed": "{actor} a supprimé l'image du salon.",
+				"ownership_transferred": "{actor} a transféré la propriété du salon à {target}.",
+				"room_created": "{actor} a créé le salon."
+			},
+			"mode": {
+				"editing": "Modification du message",
+				"replying_to": "Réponse à <strong>{name}</strong>",
+				"replying_to_message": "En réponse au message"
+			},
+			"form": {
+				"attach": "Joindre des images ou des vidéos",
+				"emoji": "Choisir un emoji"
+			},
+			"errors": {
+				"send": "Impossible d’envoyer le message",
+				"edit": "Impossible de modifier le message",
+				"delete": "Impossible de supprimer le message"
+			}
+		},
+		"members": {
+			"roles": {
+				"owner": "Propriétaire",
+				"admin": "Admin",
+				"member": "Membre"
+			},
+			"sort": {
+				"label": "Trier les membres",
+				"username_asc": "Nom d'utilisateur (A-Z)",
+				"username_desc": "Nom d'utilisateur (Z-A)",
+				"joined_desc": "Arrivés récemment",
+				"joined_asc": "Membres les plus anciens",
+				"displayname_asc": "Nom d'affichage (A-Z)",
+				"displayname_desc": "Nom d'affichage (Z-A)",
+				"role_asc": "Rôle (le plus élevé d'abord)",
+				"role_desc": "Rôle (le plus bas d'abord)"
+			},
+			"title": "Membres",
+			"search_placeholder": "Rechercher des membres...",
+			"count_label": "{count, plural, one {membre} other {membres}}",
+			"no_members": "Aucun membre dans ce salon pour le moment.",
+			"no_members_search": "Aucun membre trouvé pour votre recherche.",
+			"no_more_members": "Plus aucun membre à charger.",
+			"fetch_error": "Échec du chargement des membres. Veuillez réessayer plus tard.",
+			"actions": "Actions sur le membre",
+			"kick": "Exclure le membre",
+			"promote_to_admin": "Promouvoir admin",
+			"demote_to_member": "Rétrograder en membre",
+			"transfer_ownership": "Transférer la propriété",
+			"leave_room": "Quitter le salon",
+			"view_profile": "Voir le profil",
+			"joined_at": "Arrivé le",
+			"dialogs": {
+				"kick_title": "Exclure le membre",
+				"kick_description": "Voulez-vous vraiment exclure ce membre du salon ? Il n'aura plus accès aux messages.",
+				"promote_title": "Promouvoir le membre",
+				"promote_description": "Voulez-vous vraiment promouvoir ce membre admin ? Il obtiendra des droits d'administration dans ce salon.",
+				"demote_title": "Rétrograder le membre",
+				"demote_description": "Voulez-vous vraiment rétrograder cet admin en membre ? Il perdra ses droits d'administration.",
+				"transfer_title": "Transférer la propriété",
+				"transfer_description": "Voulez-vous vraiment transférer la propriété de ce salon ? Vous serez rétrogradé admin et perdrez vos droits de propriétaire.",
+				"leave_title": "Quitter le salon",
+				"leave_description": "Voulez-vous vraiment quitter ce salon ? Vous devrez être réinvité pour le rejoindre à nouveau.",
+				"add": {
+					"tooltip": "Ajouter des membres",
+					"title": "Ajouter des membres",
+					"description": "Sélectionnez des amis à ajouter à ce groupe.",
+					"search_placeholder": "Rechercher des amis...",
+					"add": "Ajouter des membres",
+					"no_friends": "Aucun ami disponible à ajouter.",
+					"no_friends_found": "Aucun ami ne correspond à votre recherche.",
+					"no_users_selected": "Sélectionnez au moins un ami à ajouter à la discussion.",
+					"fetch_error": "Échec du chargement des amis. Veuillez réessayer."
+				}
+			}
+		},
+		"title": "Discussion",
+		"subtitle": "Conversations avec vos amis",
+		"send_dm": "Envoyer un message privé"
+	},
+	"feed": {
+		"title": "Fil",
+		"subtitle": "Dépêches des Porte-Lanterne"
+	},
 	"posts": {
 		"create": {
 			"placeholder": "Commencer à écrire un post",
 			"submit": "Poster",
 			"add_image": "Ajouter une image",
-			"remove_image": "Retirer l'image"
+			"remove_image": "Retirer l'image",
+			"image_alt": "Aperçu de l’image"
 		},
 		"card": {
 			"reposted_by": "{displayName} a reposté",
@@ -131,7 +418,7 @@
 		"list": {
 			"loading": "Chargement des posts...",
 			"no_posts": "Aucun post pour le moment.",
-			"no_posts_search": "Aucun post trouvé pour ta recherche.",
+			"no_posts_search": "Aucun post trouvé pour votre recherche.",
 			"fetch_error": "Échec du chargement des posts. Veuillez réessayer plus tard."
 		},
 		"comments": {
@@ -150,22 +437,13 @@
 			"fetch_error": "Échec du chargement des reposts. Veuillez réessayer plus tard."
 		}
 	},
-
-	"search": {
-		"title": "Recherche",
-		"subtitle": "Trouve des porteurs et des posts",
-		"input_placeholder": "Cherche un mot-clé, ou @pseudo...",
-		"users_title": "Porteurs",
-		"posts_title": "Posts"
-	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Suis la lumière · ou sois oublié",
 			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
 			"play": "Jouer maintenant",
 			"trailer": "Voir la bande-annonce",
-			"video_fallback": "Votre navigateur ne supporte pas la lecture de cette vidéo."
+			"video_fallback": "Votre navigateur ne prend pas en charge la lecture de cette vidéo."
 		},
 		"features": {
 			"kicker": "Le système",
@@ -186,9 +464,134 @@
 				"name": "La Veille",
 				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 			}
+		},
+		"footer": {
+			"copyright": "LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D",
+			"engine": "BABYLON.JS"
+		},
+		"support": {
+			"kicker": "Centre d’aide",
+			"title": "Comment garder ta lumière allumée ?",
+			"articles_count": "{count} articles →",
+			"categories": {
+				"technical": {
+					"name": "Technique",
+					"description": "Specs, performance, réseau"
+				},
+				"gameplay": {
+					"name": "Gameplay",
+					"description": "La Veille, la lueur, les armes, les strates"
+				},
+				"account": {
+					"name": "Compte",
+					"description": "Connexion, pseudo, blocage, données"
+				}
+			},
+			"faq_title": "Questions fréquentes",
+			"faq": {
+				"min_specs": {
+					"category": "Technique",
+					"question": "Quelle est la configuration minimale ?",
+					"answer": "Une carte graphique compatible WebGPU et une connexion stable pour le mode co-op. Le jeu tourne aussi en solo hors ligne."
+				},
+				"too_dark": {
+					"category": "Technique",
+					"question": "Le jeu est trop sombre, je ne vois presque rien.",
+					"answer": "C'est voulu — ta lanterne est ta seule source de lumière. Si l'écran est vraiment illisible, vérifie la luminosité de ton moniteur plutôt que les réglages du jeu."
+				},
+				"desync": {
+					"category": "Technique",
+					"question": "Ma partie a désynchronisé en co-op.",
+					"answer": "Ça arrive surtout sur une connexion instable. Quitte et rejoins la partie, la Veille reprendra là où tu l'as laissée."
+				},
+				"glow": {
+					"category": "Gameplay",
+					"question": "Comment fonctionne la vie de la lanterne (lueur) ?",
+					"answer": "Pas de barre de vie classique : la lueur de ta lanterne EST ta vie. Pleine, tu vois loin ; faiblissante, le noir se referme autour de toi."
+				},
+				"standing_still": {
+					"category": "Gameplay",
+					"question": "Pourquoi je perds de la vie en restant immobile ?",
+					"answer": "Le seul sol sûr est le faisceau de la Veille, qui ne s'arrête jamais. Rester immobile, c'est laisser le noir te rattraper."
+				},
+				"block": {
+					"category": "Compte",
+					"question": "Comment bloquer un autre joueur ?",
+					"answer": "Depuis son profil ou une conversation, ouvre le menu et choisis \"Bloquer\". Il disparaîtra de ton feed, ton chat et ton matchmaking co-op."
+				}
+			}
+		},
+		"lore": {
+			"kicker": "Le Lore · La Veille",
+			"title": "Un monde que l'obscurité dévore encore.",
+			"intro": "Il fut un temps où un seul soleil baignait le monde. Puis il s'est éteint — pas couché, <em>éteint</em>. Voici ce qui a suivi.",
+			"stories": {
+				"extinction": {
+					"label": "L'EXTINCTION",
+					"title": "L'obscurité n'est pas une absence.",
+					"body": "Ce que nous appelons les Ténèbres n'est pas l'absence de lumière — c'est de la matière vivante. Une marée qui a recouvert le monde et digère lentement tout ce qu'elle touche : la pierre, la mémoire, les noms. Là où elle passe, le monde oublie qu'il a existé."
+				},
+				"vigil": {
+					"label": "LA VEILLE",
+					"title": "Du ciel mort, un dernier rayon.",
+					"body": "Un seul filet de lumière tombe encore — le dernier fragment du soleil mort, ou son fantôme. Les survivants l'appellent la Veille. Elle ne s'arrête jamais. On dit qu'elle cherche quelque chose à travers les terres noyées, et que tant qu'elle bouge, le monde n'est pas tout à fait mort. La suivre est la seule définition de « vivre » qui tienne encore."
+				},
+				"bearers": {
+					"label": "LES PORTE-LANTERNE",
+					"title": "Tu n'es pas un héros.",
+					"body": "Tu es l'un des rares à porter une lanterne allumée d'une étincelle de la Veille — une braise transmise de main en main, jamais recréée. Ta lanterne ne sauve pas le monde. Elle grignote juste assez de nuit autour de toi pour tenir un pas de plus. Sa lueur, c'est ta vie : pleine, tu vois loin ; faiblissante, le noir se referme."
+				},
+				"forgotten": {
+					"label": "LES OUBLIÉS",
+					"title": "Le monde, digéré puis recraché.",
+					"body": "Ce qui sort de l'obscurité n'est pas étranger au monde — c'est le monde, dissous et recomposé en armes contre les vivants. Plus tu descends, plus les Oubliés que tu croises sont anciens : noyés depuis plus longtemps, plus profondément transformés, plus puissants."
+				}
+			}
+		},
+		"legal": {
+			"kicker": "Informations légales",
+			"title": "Mentions légales",
+			"last_update": "Dernière mise à jour : {date}",
+			"sections": {
+				"publisher": {
+					"title": "Éditeur du site",
+					"body": "<p>Le site Light-Keepers est édité par la société Lanterne Noire Studio, société par actions simplifiée (SAS) au capital de 12 000 €, immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro 912 457 386.</p><p>Siège social : 96 boulevard Bessières, 75017 Paris, France.</p><p>Numéro de TVA intracommunautaire : FR 47 912 457 386.</p><p>Téléphone : 01 99 00 47 12 — Adresse électronique : contact@light-keepers.fr.</p>"
+				},
+				"director": {
+					"title": "Directeur de la publication",
+					"body": "<p>Le directeur de la publication est M. Antoine Bonneau, en sa qualité de Président de Lanterne Noire Studio.</p>"
+				},
+				"hosting": {
+					"title": "Hébergement",
+					"body": "<p>Le site est hébergé par la société Hexacloud SAS, au capital de 250 000 €, RCS Lille Métropole 834 512 907.</p><p>Siège social : 14 rue du Faubourg de Roubaix, 59800 Lille, France — Téléphone : 03 99 00 21 85.</p><p>Les données sont stockées sur des serveurs situés au sein de l’Union européenne.</p>"
+				},
+				"intellectual_property": {
+					"title": "Propriété intellectuelle",
+					"body": "<p>L’ensemble des éléments composant le site et le jeu Light-Keepers — notamment les textes, univers, personnages, illustrations, modèles 3D, logos, musiques, effets sonores et code source — est la propriété exclusive de Lanterne Noire Studio ou de ses partenaires, et est protégé par le Code de la propriété intellectuelle.</p><p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie de ces éléments, quel que soit le moyen ou le procédé utilisé, est interdite sans l’autorisation écrite préalable de Lanterne Noire Studio.</p><p>Le moteur de rendu Babylon.js est distribué sous licence Apache 2.0 et reste la propriété de ses auteurs respectifs.</p>"
+				},
+				"user_content": {
+					"title": "Contenus publiés par les utilisateurs",
+					"body": "<p>Les messages, publications, commentaires et avatars publiés par les joueurs relèvent de la seule responsabilité de leurs auteurs. En publiant un contenu, l’utilisateur concède à Lanterne Noire Studio une licence non exclusive et gratuite d’hébergement et d’affichage de ce contenu, pour la seule durée de sa mise en ligne.</p><p>Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique, tout contenu manifestement illicite peut être signalé à l’adresse moderation@light-keepers.fr. Lanterne Noire Studio s’engage à le retirer promptement dès qu’elle en a connaissance.</p>"
+				},
+				"personal_data": {
+					"title": "Données personnelles",
+					"body": "<p>Lanterne Noire Studio traite les données personnelles des utilisateurs (adresse électronique, nom d’utilisateur, statistiques de jeu, messages) dans le but de fournir le service, de gérer les comptes et d’assurer la sécurité de la plateforme, conformément au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés.</p><p>Ces données sont conservées pendant toute la durée d’activité du compte, puis supprimées dans un délai de trois ans après la dernière connexion. Elles ne sont jamais cédées ni vendues à des tiers.</p><p>Chaque utilisateur dispose d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de ses données. Ces droits peuvent être exercés depuis les paramètres du compte ou auprès de notre délégué à la protection des données : dpo@light-keepers.fr.</p><p>En cas de difficulté, l’utilisateur peut introduire une réclamation auprès de la Commission nationale de l’informatique et des libertés (CNIL).</p>"
+				},
+				"cookies": {
+					"title": "Cookies",
+					"body": "<p>Le site utilise uniquement des cookies strictement nécessaires à son fonctionnement : maintien de la session, préférences de langue et de thème. Aucun cookie publicitaire ni traceur tiers n’est déposé.</p><p>Ces cookies étant indispensables au service, ils ne nécessitent pas de consentement préalable. L’utilisateur peut toutefois les supprimer à tout moment depuis les réglages de son navigateur.</p>"
+				},
+				"liability": {
+					"title": "Responsabilité",
+					"body": "<p>Lanterne Noire Studio s’efforce d’assurer l’exactitude des informations diffusées et la disponibilité du service, sans pouvoir le garantir. L’accès au site peut être interrompu pour des opérations de maintenance ou en cas de force majeure.</p><p>Les liens hypertextes vers des sites tiers sont fournis à titre informatif. Lanterne Noire Studio n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>"
+				},
+				"governing_law": {
+					"title": "Droit applicable",
+					"body": "<p>Les présentes mentions légales sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux compétents de Paris seront seuls compétents.</p>"
+				}
+			}
 		}
 	},
-
 	"auth": {
 		"signout": {
 			"label": "Déconnexion",
@@ -200,16 +603,12 @@
 			"no_account": "Vous n'avez pas de compte ?",
 			"forgot_password": "Mot de passe oublié ?",
 			"reset_password": "Réinitialiser le mot de passe",
-
 			"username_or_email": "Nom d'utilisateur ou email",
 			"username_or_emailPlaceholder": "john_doe ou john.doe@example.com",
-
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
-
 			"password": "Mot de passe",
 			"passwordPlaceholder": "Entrez votre mot de passe",
-
 			"submit": "Se connecter",
 			"submitting": "Connexion en cours",
 			"submitted": "Connecté",
@@ -251,7 +650,9 @@
 					"label": "Préférences de langue",
 					"en": "Anglais",
 					"fr": "Français",
-					"de": "Allemand"
+					"de": "Allemand",
+					"es": "Espagnol",
+					"it": "Italien"
 				}
 			},
 			"profile": {
@@ -281,10 +682,12 @@
 				"submit": "Soumettre",
 				"submitting": "Soumission en cours",
 				"submitted": "Soumis",
-				"validating": "Validation en cours"
+				"validating": "Validation en cours",
+				"save": "Enregistrer",
+				"saving": "Enregistrement en cours",
+				"saved": "Enregistré"
 			},
 			"recap_title": "Vérifiez vos informations",
-
 			"success": "Compte créé avec succès !",
 			"error": "Échec de la création du compte. Veuillez réessayer."
 		},
@@ -312,11 +715,9 @@
 			"error": "Échec de la réinitialisation du mot de passe. Le lien est peut-être invalide ou expiré. Veuillez réessayer."
 		}
 	},
-
 	"forms": {
 		"error": {
 			"required": "Ce champ est obligatoire",
-
 			"email": "Veuillez entrer une adresse email valide",
 			"string": "Ce champ doit être une chaîne de caractères",
 			"number": "Ce champ doit être un nombre",
@@ -325,32 +726,31 @@
 			"enum": "Option sélectionnée invalide",
 			"phone": "Veuillez entrer un numéro de téléphone valide au format E.164",
 			"pattern": "Format invalide",
-
 			"lowercase": "Seules les lettres minuscules sont autorisées",
 			"uppercase": "Seules les lettres majuscules sont autorisées",
-
 			"minLength": "La longueur minimale est de {min} caractères",
 			"maxLength": "La longueur maximale est de {max} caractères",
-
+			"fileSizeMB": "La taille du fichier doit être inférieure à {maxSize} Mo",
+			"maxFilesCount": "Vous pouvez joindre jusqu'à {maxCount} fichiers",
+			"imageOnly": "Seules les images sont autorisées",
+			"imageVideoOnly": "Seules les images et les vidéos sont autorisées",
 			"select": "Veuillez sélectionner une option",
 			"mustAcceptTerms": "Vous devez accepter les conditions générales",
-
 			"password_match": "Les mots de passe doivent correspondre",
 			"password_uppercase": "Le mot de passe doit contenir au moins une majuscule",
 			"password_lowercase": "Le mot de passe doit contenir au moins une minuscule",
 			"password_number": "Le mot de passe doit contenir au moins un chiffre",
 			"password_special": "Le mot de passe doit contenir au moins un caractère spécial",
-
 			"email_already_in_use": "Cet email est déjà utilisé",
 			"username_already_in_use": "Ce nom d'utilisateur est déjà utilisé",
 			"user_already_exists": "Un utilisateur avec cet email ou ce nom d'utilisateur s'est inscrit pendant que vous remplissiez le formulaire. Veuillez réessayer avec des identifiants différents.",
-
 			"internal_server_error": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
 			"age_restriction": "Vous devez avoir au moins 13 ans pour vous inscrire",
-
 			"invalid_credentials": "Identifiants invalides. Veuillez vérifier vos informations et réessayer.",
 			"invalid_token": "Le lien de réinitialisation est invalide ou expiré. Veuillez en demander un nouveau.",
-			"invalid_email": "L'adresse email n'est pas enregistrée. Veuillez vérifier et réessayer."
+			"invalid_email": "L'adresse email n'est pas enregistrée. Veuillez vérifier et réessayer.",
+			"at_least_one": "Au moins un champ est obligatoire",
+			"message_empty_if_attachments": "Le message ne peut pas être vide sans pièce jointe"
 		},
 		"addons": {
 			"length": "{current} / {max} caractères max"
@@ -360,11 +760,38 @@
 		"today": "Aujourd'hui",
 		"yesterday": "Hier",
 		"just_now": "À l'instant",
-		"minutes_ago": "il y a {count} minute(s)",
-		"hours_ago": "il y a {count} heure(s)",
-		"days_ago": "il y a {count} jour(s)",
-		"weeks_ago": "il y a {count} semaine(s)",
+		"minutes_ago": "{count, plural, one {il y a # minute} other {il y a # minutes}}",
+		"hours_ago": "{count, plural, one {il y a # heure} other {il y a # heures}}",
+		"days_ago": "{count, plural, one {il y a # jour} other {il y a # jours}}",
+		"weeks_ago": "{count, plural, one {il y a # semaine} other {il y a # semaines}}",
 		"months_ago": "il y a {count} mois",
-		"years_ago": "il y a {count} an(s)"
+		"years_ago": "{count, plural, one {il y a # an} other {il y a # ans}}"
+	},
+	"common": {
+		"confirm": "Confirmer",
+		"cancel": "Annuler",
+		"themes": {
+			"dark": "Sombre",
+			"light": "Clair",
+			"system": "Système",
+			"neon": "Néon",
+			"emerald-dark": "Émeraude sombre",
+			"emerald-light": "Émeraude clair",
+			"synthwave-dark": "Synthwave sombre",
+			"synthwave-light": "Synthwave clair",
+			"crimson-dark": "Pourpre sombre",
+			"crimson-light": "Pourpre clair"
+		},
+		"close": "Fermer",
+		"language": "Langue",
+		"appearance": "Apparence",
+		"avatar_preview": "Aperçu de l’avatar",
+		"not_found": {
+			"resource": "La ressource que vous cherchez n’existe pas.",
+			"chat_room": "Le salon que vous cherchez n’existe pas."
+		},
+		"loading": "Chargement",
+		"go_top": "Retour en haut",
+		"form_steps": "Étapes du formulaire"
 	}
 }

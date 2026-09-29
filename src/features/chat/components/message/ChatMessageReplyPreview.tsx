@@ -1,4 +1,5 @@
 import { Reply } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface ChatMessageReplyPreviewProps {
 	replyToId: string;
@@ -9,6 +10,8 @@ export const ChatMessageReplyPreview = ({
 	replyToId,
 	isMe,
 }: ChatMessageReplyPreviewProps) => {
+	const t = useTranslations('chat.messages.mode');
+
 	return (
 		<div
 			className={`mb-1 flex items-center gap-1.5 rounded-md  px-2.5 py-1 text-xs border-l-2 
@@ -19,7 +22,7 @@ export const ChatMessageReplyPreview = ({
 				}`}>
 			<Reply className='size-3 shrink-0' />
 			<span className='truncate max-w-[180px]'>
-				Replying to message&nbsp;
+				{t('replying_to_message')}&nbsp;
 				<span className='font-mono text-[10px]'>#{replyToId.slice(-4)}</span>
 			</span>
 		</div>

@@ -1,4 +1,10 @@
+import { useTranslations } from 'next-intl';
+import I18nLink from '@/modules/i18n/components/I18nLink';
+
 export default function SiteFooter() {
+	const t = useTranslations('landing.footer');
+	const tNav = useTranslations('nav');
+
 	return (
 		<div
 			className={
@@ -7,10 +13,18 @@ export default function SiteFooter() {
 				'flex flex-col sm:flex-row gap-2 justify-between items-center text-center'
 			}>
 			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
-				LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D
+				{t('copyright')}
 			</span>
+			<I18nLink
+				href='legalNotice'
+				className={
+					'font-mono text-xs uppercase ' +
+					'text-muted-foreground hover:text-foreground'
+				}>
+				{tNav('legal')}
+			</I18nLink>
 			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
-				BABYLON.JS
+				{t('engine')}
 			</span>
 		</div>
 	);

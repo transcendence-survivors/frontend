@@ -10,15 +10,16 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { capitalize } from '@/libs/utils';
 import { Theme } from '@/modules/themes/constants/themes';
 import useTypedTheme from '@/modules/themes/hooks/useTypedTheme';
 import { PaletteIcon } from 'lucide-react';
 import { useIsMounted } from '@/hooks/useIsMounted';
+import { useTranslations } from 'next-intl';
 
 const ThemeDropdownMenu = () => {
 	const isMounted = useIsMounted();
 	const { current, setTheme, themes, themeIcons } = useTypedTheme();
+	const t = useTranslations('common');
 
 	const renderIcon = (theme: Theme) => {
 		const Icon = themeIcons[theme];
@@ -37,7 +38,7 @@ const ThemeDropdownMenu = () => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end' sideOffset={4} className='w-56'>
 				<DropdownMenuGroup>
-					<DropdownMenuLabel>Apparence</DropdownMenuLabel>
+					<DropdownMenuLabel>{t('appearance')}</DropdownMenuLabel>
 					<DropdownMenuRadioGroup
 						value={current}
 						onValueChange={(val) => setTheme(val as Theme)}>
@@ -47,7 +48,7 @@ const ThemeDropdownMenu = () => {
 								value={theme}
 								className='gap-2'>
 								{renderIcon(theme)}
-								<span>{capitalize(theme)}</span>
+								<span>{t(`themes.${theme}`)}</span>
 							</DropdownMenuRadioItem>
 						))}
 					</DropdownMenuRadioGroup>

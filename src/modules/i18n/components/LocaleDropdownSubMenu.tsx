@@ -13,12 +13,14 @@ import { Button } from '@/components/ui/button';
 import useLocaleParams from '@/modules/i18n/hooks/useLocale';
 import { Locale } from '../constants/locales';
 import { cn } from '@/libs/utils';
+import { useTranslations } from 'next-intl';
 
 type LocaleDropdownMenuProps = React.ComponentProps<typeof Button>;
 
 const LocaleDropdownMenu = ({ className, ...props }: LocaleDropdownMenuProps) => {
 	const { localesIcon, locales, localeLabels, setLocale, currentLocale } =
 		useLocaleParams();
+	const t = useTranslations('common');
 
 	const onValueChange = (value: string) => {
 		setLocale(value as Locale);
@@ -37,7 +39,7 @@ const LocaleDropdownMenu = ({ className, ...props }: LocaleDropdownMenuProps) =>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end'>
 				<DropdownMenuGroup>
-					<DropdownMenuLabel>Langue</DropdownMenuLabel>
+					<DropdownMenuLabel>{t('language')}</DropdownMenuLabel>
 					<DropdownMenuRadioGroup
 						value={currentLocale}
 						onValueChange={onValueChange}>

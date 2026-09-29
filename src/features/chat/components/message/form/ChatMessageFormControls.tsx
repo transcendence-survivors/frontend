@@ -1,4 +1,5 @@
 import { Paperclip, Smile } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -23,6 +24,8 @@ export const ChatMessageFormControls = ({
 	onFileChange,
 	onEmojiSelect,
 }: ChatMessageFormControlsProps) => {
+	const t = useTranslations('chat.messages.form');
+
 	return (
 		<div className='flex items-center gap-1'>
 			<Button
@@ -30,7 +33,7 @@ export const ChatMessageFormControls = ({
 				variant='ghost'
 				size='icon'
 				disabled={attachmentsCount >= MAX_FILES_COUNT || isEditing}
-				aria-label='Attach images or videos'
+				aria-label={t('attach')}
 				onClick={() => fileInputRef.current?.click()}
 				className='text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50'>
 				<Paperclip className='size-4' aria-hidden='true' />
@@ -43,7 +46,7 @@ export const ChatMessageFormControls = ({
 				accept='image/*,video/*'
 				tabIndex={-1}
 				className='sr-only'
-				aria-label='Attach images or videos'
+				aria-label={t('attach')}
 				onChange={onFileChange}
 			/>
 
@@ -53,7 +56,7 @@ export const ChatMessageFormControls = ({
 						type='button'
 						variant='ghost'
 						size='icon'
-						aria-label='Choose emoji'
+						aria-label={t('emoji')}
 						className='text-muted-foreground hover:bg-muted hover:text-foreground'>
 						<Smile className='size-4' aria-hidden='true' />
 					</Button>

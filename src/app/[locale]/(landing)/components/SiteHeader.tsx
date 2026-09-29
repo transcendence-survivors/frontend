@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import SiteNavDrawer, { KeyNavItem, navItems } from './SiteNavDrawer';
 
 interface SiteHeaderProps {
-	active: KeyNavItem;
+	active?: KeyNavItem;
 }
 
 export default function SiteHeader({ active }: SiteHeaderProps) {

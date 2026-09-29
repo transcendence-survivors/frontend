@@ -75,7 +75,7 @@ export default function CreatePost({
 						</Button>
 						<img
 							src={previewUrl}
-							alt='upload'
+							alt={t('image_alt')}
 							className='mt-2 w-full aspect-square rounded-2-xl border border-border object-cover'
 						/>
 					</>

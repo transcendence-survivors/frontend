@@ -1,41 +1,399 @@
 {
 	"nav": {
+		"home": "Startsiite",
+		"game": "Spiel",
+		"leaderboard": "Ranglischte",
+		"profile": "Profil",
+		"settings": "Iistellige",
+		"logout": "Abmälde",
+		"posts": "Poschts",
+		"privacy": "Dateschutz",
+		"terms": "Nutzigsbedingige",
+		"legal": "Impressum",
 		"lore": "Lore",
 		"support": "Hilf",
 		"enter_hub": "Zum Hub →",
 		"menu": "Menü",
-		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
-		"profile": "Profile",
-		"settings": "Settings",
-		"logout": "Logout",
-		"posts": "Posts",
-		"privacy": "Privacy Policy",
-		"terms": "Terms of Service",
-		"legal": "Legal Notice",
-
-		"profile_posts": "Posts",
-		"profile_comments": "Comments",
-		"profile_stats": "Stats",
-		"profile_likes": "Likes",
-		"profile_favourites": "Favourites",
-
-		"profile_followers": "Followers",
-		"profile_following": "Following",
-
-		"profile_blocked": "Blocked Users"
+		"feed": "Feed",
+		"friends": "Fründe",
+		"chat": "Chat",
+		"search": "Suech",
+		"concept": "Konzept",
+		"user": {
+			"posts": "Poschts",
+			"comments": "Kommentär",
+			"stats": "Statistike",
+			"likes": "Likes",
+			"reposts": "Gteilti Poschts"
+		},
+		"friend": {
+			"requests": "Aafroge",
+			"friends": "Fründe",
+			"blocked": "Blockierti Lüüt"
+		},
+		"player_hub": "Spieler-Hub",
+		"cookies": "Cookies",
+		"accessibility": "Barrierefreiheit"
 	},
-	"home": {
-		"welcome": "Welcome to Transcendence Survivor !"
+	"home": {},
+	"profile": {
+		"bio": "Biografie",
+		"edit": {
+			"button": "Profil bearbeite",
+			"title": "Profil bearbeite",
+			"success": "S Profil isch aktualisiert worde."
+		}
 	},
-
+	"settings": {
+		"title": "Iistellige",
+		"error_loading": "D Konto-Iistellige hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+		"page": {
+			"title": "Iistellige",
+			"description": "Verwalt all dini Iistellige, indem du links im Menü e Kategorie uswählsch."
+		},
+		"profile": {
+			"title": "Profil-Iistellige",
+			"subtitle": "Aktualisier dini Profilinfos und Vorliebe.",
+			"description": "Verwalt dis öffentliche Profil, dis Avatar-Bild und dis Titelbild.",
+			"display_name_label": "Aazeigename",
+			"display_name_placeholder": "Gib din Aazeigename ii",
+			"bio_label": "Bio",
+			"bio_placeholder": "Verzell üs es bitzli öppis über dich...",
+			"cover_label": "Titelbild",
+			"no_cover": "Kei Titelbild uneglade",
+			"change_cover": "Titelbild ändere",
+			"remove_cover": "Titelbild ewägnäh",
+			"change_avatar": "Avatar ändere",
+			"remove_avatar": "Avatar ewägnäh",
+			"avatar_hint": "JPEG, PNG, GIF oder WebP. Maximal 5 MB.",
+			"save": "Änderige speichere"
+		},
+		"account": {
+			"title": "Konto-Iistellige",
+			"subtitle": "Verwalt dini Kontoinfos und Vorliebe."
+		},
+		"security": {
+			"title": "Sicherheits-Iistellige",
+			"subtitle": "Verwalt dini Sicherheits-Iistellige und Vorliebe."
+		},
+		"nav": {
+			"profile": "Profil",
+			"account": "Konto",
+			"security": "Sicherheit",
+			"danger_zone": "Gfahrezone"
+		}
+	},
+	"users": {
+		"no_befriended_users": "Kei Lüüt gfunde, wo du nöd mit befründet bisch.",
+		"no_befriended_users_search": "Kei Lüüt für dini Suech gfunde, wo du nöd mit befründet bisch.",
+		"no_more_befriended_users": "Kei wiiteri Lüüt zum Lade, wo du nöd mit befründet bisch.",
+		"no_users": "Kei Lüüt gfunde.",
+		"no_users_search": "Kei Lüüt für dini Suech gfunde.",
+		"no_more_users": "Kei wiiteri Lüüt zum Lade.",
+		"fetch_error": "D Lüüt hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+	},
+	"search": {
+		"title": "Suech",
+		"subtitle": "Find Träger und Poschts",
+		"input_placeholder": "Suech es Stichwort oder @Benutzername...",
+		"users_title": "Träger",
+		"posts_title": "Poschts"
+	},
+	"relationships": {
+		"title": "Fründe & Moderation",
+		"subtitle": "Träger i dim Chreis",
+		"input_placeholder": "Suech nach @Benutzername oder Aazeigename...",
+		"nav": {
+			"friends": "Fründe",
+			"requests": "Aafroge",
+			"blocked": "Blockierti Lüüt"
+		},
+		"add": {
+			"title": "En Träger i din Chreis ufnäh",
+			"button": "Fründ hinzuefüege",
+			"placeholder": "Suech nach @Benutzername oder Aazeigename...",
+			"aria_label": "Fründ hinzuefüege",
+			"failed": "D Fründschaftsaafrog het nöd chöne gschickt werde. Bitte versuech s nomal.",
+			"success_accepted_displayname": "Du bisch jetz mit {displayName} befründet.",
+			"success_pending_displayname": "Dini Fründschaftsaafrog a {displayName} isch gschickt worde."
+		},
+		"friends": {
+			"title": "Fründe",
+			"count": "{count} Fründ(e).",
+			"count_search": "{count} Fründ(e) für dini Suech gfunde.",
+			"no_friends": "Du hesch no kei Fründe. Füeg doch es paar hinzue!",
+			"no_friends_search": "Kei Fründe für dini Suech gfunde.",
+			"no_more_friends": "Kei wiiteri Fründe zum Lade.",
+			"fetch_error": "D Fründe hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"all_button": "Alli",
+			"online_button": "Online",
+			"offline_button": "Offline",
+			"delete": {
+				"tooltip": "Fründ ewägnäh",
+				"title": "Fründ ewägnäh",
+				"description": "Bisch sicher, dass du dä Fründ wotsch ewägnäh? Das chan nöd rückgängig gmacht werde.",
+				"confirm": "Ewägnäh",
+				"success_displayname": "Du bisch nüm mit {displayName} befründet.",
+				"failure_displayname": "D Fründschaft mit {displayName} het nöd chöne beändet werde. Bitte versuech s nomal."
+			}
+		},
+		"blocked": {
+			"title": "Blockierti Lüüt",
+			"count": "{count} blockierti Person(e).",
+			"count_search": "{count} blockierti Person(e) für dini Suech gfunde.",
+			"add": {
+				"tooltip": "Blockiere",
+				"title": "Person blockiere",
+				"description": "Bisch sicher, dass du die Person wotsch blockiere? Si cha dir denn kei Nachrichte meh schicke und dini Aktivität nüm gseh.",
+				"confirm": "Blockiere",
+				"success_displayname": "Du hesch {displayName} blockiert.",
+				"failure_displayname": "{displayName} het nöd chöne blockiert werde. Bitte versuech s nomal."
+			},
+			"remove": {
+				"tooltip": "Blockierig ufhebe",
+				"title": "Blockierig ufhebe",
+				"description": "Bisch sicher, dass du d Blockierig wotsch ufhebe? Die Person cha dir denn wieder Nachrichte schicke und dini Aktivität gseh.",
+				"confirm": "Ufhebe",
+				"success_displayname": "Du hesch d Blockierig vo {displayName} ufghobe.",
+				"failure_displayname": "D Blockierig vo {displayName} het nöd chöne ufghobe werde. Bitte versuech s nomal."
+			},
+			"no_blocked": "Du hesch no niemer blockiert. Fang doch a!",
+			"no_blocked_search": "Kei blockierti Lüüt für dini Suech gfunde.",
+			"no_more_blocked": "Kei wiiteri blockierti Lüüt zum Lade.",
+			"fetch_error": "D blockierte Lüüt hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"all_button": "Alli",
+			"online_button": "Online",
+			"offline_button": "Offline"
+		},
+		"requests": {
+			"title": "Fründschaftsaafroge",
+			"incoming_button": "Iigange",
+			"outgoing_button": "Gschickt",
+			"incoming_count": "{count} iigangeni Fründschaftsaafrog(e).",
+			"incoming_count_search": "{count} iigangeni Fründschaftsaafrog(e) für dini Suech gfunde.",
+			"outgoing_count": "{count} gschickti Fründschaftsaafrog(e).",
+			"outgoing_count_search": "{count} gschickti Fründschaftsaafrog(e) für dini Suech gfunde.",
+			"delete_from_displayname": "D Fründschaftsaafrog vo {displayName} ablehne",
+			"delete_to_displayname": "Dini Fründschaftsaafrog a {displayName} lösche",
+			"delete_success_from_displayname": "D Fründschaftsaafrog vo {displayName} isch glöscht worde.",
+			"delete_success_to_displayname": "Dini Fründschaftsaafrog a {displayName} isch glöscht worde.",
+			"delete_failure_from_displayname": "D Fründschaftsaafrog vo {displayName} het nöd chöne glöscht werde. Bitte versuech s nomal.",
+			"delete_failure_to_displayname": "Dini Fründschaftsaafrog a {displayName} het nöd chöne glöscht werde. Bitte versuech s nomal.",
+			"accept_button": "Aanäh",
+			"accept_from_displayname": "D Fründschaftsaafrog vo {displayName} aanäh",
+			"accept_success_from_displayname": "D Fründschaftsaafrog vo {displayName} isch aagnoh worde.",
+			"accept_failure_from_displayname": "D Fründschaftsaafrog vo {displayName} het nöd chöne aagnoh werde. Bitte versuech s nomal.",
+			"no_incoming_requests": "Du hesch kei iigangeni Fründschaftsaafroge.",
+			"no_incoming_requests_search": "Kei iigangeni Fründschaftsaafroge für dini Suech gfunde.",
+			"no_outgoing_requests": "Du hesch kei gschickti Fründschaftsaafroge.",
+			"no_outgoing_requests_search": "Kei gschickti Fründschaftsaafroge für dini Suech gfunde.",
+			"no_more_incoming_requests": "Kei wiiteri iigangeni Fründschaftsaafroge zum Lade.",
+			"no_more_outgoing_requests": "Kei wiiteri gschickti Fründschaftsaafroge zum Lade.",
+			"received": "Übercho",
+			"sent": "Gschickt",
+			"reject": {
+				"tooltip": "Aafrog ablehne",
+				"title": "Fründschaftsaafrog ablehne",
+				"description": "Bisch sicher, dass du die Fründschaftsaafrog wotsch ablehne?",
+				"confirm": "Ablehne"
+			},
+			"cancel": {
+				"tooltip": "Aafrog zruggzieh",
+				"title": "Fründschaftsaafrog zruggzieh",
+				"description": "Bisch sicher, dass du die offeni Aafrog wotsch zruggzieh?",
+				"confirm": "Aafrog zruggzieh"
+			},
+			"fetch_error": "D Fründschaftsaafroge hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		}
+	},
+	"presence": {
+		"online": "Online",
+		"online_description": "Dini Fründe chönd dich gseh.",
+		"do_not_disturb": "Nöd störe",
+		"do_not_disturb_description": "Du überchunnsch kei Benachrichtigunge für neui Nachrichte oder Fründschaftsaafroge.",
+		"invisible": "Unsichtbar",
+		"invisible_description": "Für dini Fründe bisch du offline, aber du chasch d App ganz normal bruuche.",
+		"count_online": "{count} Träger im Liecht",
+		"count_online_friends": "{count} Fründe im Liecht"
+	},
+	"chat": {
+		"rooms": {
+			"title": "Chaträum",
+			"page": {
+				"title": "Kei Chat usgwählt",
+				"subtitle": "Wähl en Chat us, zum Nachrichte schicke.",
+				"not_created": "Chatruum no nöd erstellt?",
+				"ask_friends": "Frog dini Fründe, öb si mit dir spiele!",
+				"create_button": "Chat erstelle"
+			},
+			"type": {
+				"group": "Gruppe",
+				"direct": "Direkt"
+			},
+			"no_chat_rooms": "Du hesch no kei Chaträum. Fang es Gspröch mit dine Fründe a!",
+			"no_chat_rooms_search": "Kei Chaträum für dini Suech gfunde.",
+			"no_more_chat_rooms": "Kei wiiteri Chaträum zum Lade.",
+			"fetch_error": "D Chaträum hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"search_placeholder": "Chaträum dursueche...",
+			"sort": {
+				"label": "Chaträum sortiere",
+				"activity_desc": "Aktivität (neuschti Nachrichte zerscht)",
+				"activity_asc": "Aktivität (eltischti Nachrichte zerscht)",
+				"created_desc": "Erstelligsdatum (neuschti zerscht)",
+				"created_asc": "Erstelligsdatum (eltischti zerscht)"
+			},
+			"status": {
+				"online": "Online · zäme im Dunkel",
+				"offline": "Offline · elei im Dunkel",
+				"dnd": "Nöd störe · elei im Dunkel"
+			},
+			"group_settings": {
+				"title": "Gruppedetails bearbeite",
+				"description": "Änder de Gruppename oder aktualisier s Avatar-Bild.",
+				"group_name_label": "Gruppename",
+				"group_name_placeholder": "Gib en Gruppename ii",
+				"change_avatar_hint": "Klick ufs Bild, zum es neus Bild ufelade",
+				"remove_avatar": "Bild ewägnäh",
+				"cancel": "Abbräche",
+				"save": "Änderige speichere",
+				"delete_group_button": "Gruppe lösche",
+				"delete_group_title": "Gruppe lösche",
+				"delete_group_description": "Bisch sicher, dass du dä Chatruum wotsch lösche? Das chan nöd rückgängig gmacht werde und alli Nachrichte gönd für immer verlore.",
+				"delete_confirm": "Lösche"
+			},
+			"create": {
+				"title": "Chatruum erstelle",
+				"description": "Fang es neus Gspröch mit dine Fründe a.",
+				"group_name_label": "Gruppename",
+				"group_name_placeholder": "Gib en Gruppename ii",
+				"button": "Chatruum erstelle",
+				"success": "De Chatruum isch erstellt worde.",
+				"failure": "De Chatruum het nöd chöne erstellt werde. Bitte versuech s nomal.",
+				"dm_exists": "Mit dere Person gits scho en Direktchat. Du chasch s Gspröch det wiiterfüehre.",
+				"no_users_selected": "Wähl mindestens ei Person us, zum en Chat erstelle.",
+				"search_placeholder": "Suech Fründe, wo du zum Chat wotsch hinzuefüege..."
+			}
+		},
+		"messages": {
+			"no_messages": "No kei Nachrichte. Fang s Gspröch a!",
+			"no_messages_search": "Kei Nachrichte für dini Suech gfunde.",
+			"no_more_messages": "Kei wiiteri Nachrichte zum Lade.",
+			"fetch_error": "D Nachrichte hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"preview": {
+				"no_messages": "No kei Nachrichte",
+				"deleted_message": "Die Nachricht isch glöscht worde",
+				"attachments": "{count, plural, =1 {1 Aahang gschickt} other {{count} Aahäng gschickt}}"
+			},
+			"actions": {
+				"reply": "Antworte",
+				"edit": "Bearbeite",
+				"delete": "Lösche",
+				"dialogs": {
+					"delete_title": "Nachricht lösche?",
+					"delete_description": "Das chan nöd rückgängig gmacht werde. Die Nachricht wird für immer us em Gspröch glöscht."
+				}
+			},
+			"system": {
+				"default_actor": "Syschtem",
+				"role_updated": "{actor} het d Rolle vo {target} vo {oldRole} uf {newRole} gänderet.",
+				"added": "{actor} het {target} zum Ruum hinzuegfüegt.",
+				"kicked": "{actor} het {target} us em Ruum usegworfe.",
+				"left": "{user} het de Ruum verlah.",
+				"room_renamed": "{actor} het de Ruum vo \"{oldName}\" in \"{newName}\" umbenennt.",
+				"room_name_added": "{actor} het de Ruumname uf \"{newName}\" gsetzt.",
+				"room_name_removed": "{actor} het de Ruumname ewäggnoh.",
+				"room_avatar_changed": "{actor} het s Ruum-Avatar aktualisiert.",
+				"room_avatar_added": "{actor} het es Ruum-Avatar hinzuegfüegt.",
+				"room_avatar_removed": "{actor} het s Ruum-Avatar ewäggnoh.",
+				"ownership_transferred": "{actor} het de Ruum a {target} übergäh.",
+				"room_created": "{actor} het de Ruum erstellt."
+			},
+			"mode": {
+				"editing": "Nachricht wird bearbeitet",
+				"replying_to": "Antwort a <strong>{name}</strong>",
+				"replying_to_message": "Antwort uf Nachricht"
+			},
+			"form": {
+				"attach": "Bilder oder Videos aahänke",
+				"emoji": "Emoji uswähle"
+			},
+			"errors": {
+				"send": "Nachricht het nöd chöne gschickt werde",
+				"edit": "Nachricht het nöd chöne bearbeitet werde",
+				"delete": "Nachricht het nöd chöne glöscht werde"
+			}
+		},
+		"members": {
+			"roles": {
+				"owner": "Bsitzer",
+				"admin": "Admin",
+				"member": "Mitglied"
+			},
+			"sort": {
+				"label": "Mitglieder sortiere",
+				"username_asc": "Benutzername (A-Z)",
+				"username_desc": "Benutzername (Z-A)",
+				"joined_desc": "Zletscht biitrete",
+				"joined_asc": "Eltischti Mitglieder",
+				"displayname_asc": "Aazeigename (A-Z)",
+				"displayname_desc": "Aazeigename (Z-A)",
+				"role_asc": "Rolle (höchschti zerscht)",
+				"role_desc": "Rolle (tüüfschti zerscht)"
+			},
+			"title": "Mitglieder",
+			"search_placeholder": "Mitglieder dursueche...",
+			"count_label": "{count, plural, =1 {Mitglied} other {Mitglieder}}",
+			"no_members": "No kei Mitglieder i dem Chatruum.",
+			"no_members_search": "Kei Mitglieder für dini Suech gfunde.",
+			"no_more_members": "Kei wiiteri Mitglieder zum Lade.",
+			"fetch_error": "D Mitglieder hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"actions": "Mitglied-Aktione",
+			"kick": "Mitglied userüere",
+			"promote_to_admin": "Zum Admin mache",
+			"demote_to_member": "Zum Mitglied zruggstuefe",
+			"transfer_ownership": "Bsitz übergäh",
+			"leave_room": "Ruum verlah",
+			"view_profile": "Profil aaluege",
+			"joined_at": "Biitrete",
+			"dialogs": {
+				"kick_title": "Mitglied userüere",
+				"kick_description": "Bisch sicher, dass du das Mitglied us em Chatruum wotsch userüere? Es het denn kei Zuegriff meh uf d Nachrichte.",
+				"promote_title": "Mitglied befördere",
+				"promote_description": "Bisch sicher, dass du das Mitglied zum Admin wotsch mache? Es überchunnt denn Admin-Rächt i dem Ruum.",
+				"demote_title": "Mitglied zruggstuefe",
+				"demote_description": "Bisch sicher, dass du dä Admin zum Mitglied wotsch zruggstuefe? Er verlüürt denn sini Admin-Rächt.",
+				"transfer_title": "Bsitz übergäh",
+				"transfer_description": "Bisch sicher, dass du de Bsitz vo dem Ruum wotsch übergäh? Du wirsch denn zum Admin zruggstueft und verlüürsch dini Bsitzer-Rächt.",
+				"leave_title": "Chatruum verlah",
+				"leave_description": "Bisch sicher, dass du dä Chatruum wotsch verlah? Du muesch wieder iiglade werde, zum wieder biizträte.",
+				"add": {
+					"tooltip": "Mitglieder hinzuefüege",
+					"title": "Mitglieder hinzuefüege",
+					"description": "Wähl Fründe us, wo du zu dem Gruppechat wotsch hinzuefüege.",
+					"search_placeholder": "Fründe dursueche...",
+					"add": "Mitglieder hinzuefüege",
+					"no_friends": "Kei Fründe zum Hinzuefüege verfüegbar.",
+					"no_friends_found": "Kei Fründe passed zu dinere Suech.",
+					"no_users_selected": "Wähl mindestens ein Fründ us, zum en zum Chat hinzuefüege.",
+					"fetch_error": "D Fründe hend nöd chöne glade werde. Bitte versuech s nomal."
+				}
+			}
+		},
+		"title": "Chat",
+		"subtitle": "Gspröch mit dine Fründe",
+		"send_dm": "Direktnachricht schicke"
+	},
+	"feed": {
+		"title": "Feed",
+		"subtitle": "Nachrichte vo de Laternträger"
+	},
 	"posts": {
 		"create": {
 			"placeholder": "Fang a, en Poscht z'schriibe",
 			"submit": "Poschte",
 			"add_image": "Es Bild hinzuefüege",
-			"remove_image": "S Bild ewägnäh"
+			"remove_image": "S Bild ewägnäh",
+			"image_alt": "Bildvorschau"
 		},
 		"card": {
 			"reposted_by": "{displayName} het gteilt",
@@ -79,15 +437,6 @@
 			"fetch_error": "D gteilte Poschts hend nöd chöne glade werde. Bitte versuech s spöter nomal."
 		}
 	},
-
-	"search": {
-		"title": "Suech",
-		"subtitle": "Find Träger und Poschts",
-		"input_placeholder": "Suech es Stichwort oder @Benutzername...",
-		"users_title": "Träger",
-		"posts_title": "Poschts"
-	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Folg em Liecht · oder wirsch vergässe",
@@ -115,174 +464,334 @@
 				"name": "D Wacht",
 				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 			}
+		},
+		"footer": {
+			"copyright": "LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D",
+			"engine": "BABYLON.JS"
+		},
+		"support": {
+			"kicker": "Hilfecenter",
+			"title": "Wie haltisch dis Liecht am Brenne?",
+			"articles_count": "{count} Artikel →",
+			"categories": {
+				"technical": {
+					"name": "Technik",
+					"description": "Aaforderige, Leischtig, Netzwerk"
+				},
+				"gameplay": {
+					"name": "Gameplay",
+					"description": "D Wacht, s Glüe, Waffe, Schichte"
+				},
+				"account": {
+					"name": "Konto",
+					"description": "Aamälde, Benutzername, Blockiere, Date"
+				}
+			},
+			"faq_title": "Hüfigi Froge",
+			"faq": {
+				"min_specs": {
+					"category": "Technik",
+					"question": "Was sind d Mindestaaforderige?",
+					"answer": "E WebGPU-kompatibli Grafikcharte und e stabili Verbindig für de Koop-Modus. S Spiel lauft au solo und offline."
+				},
+				"too_dark": {
+					"category": "Technik",
+					"question": "S Spiel isch z dunkel, ich gseh fascht nüt.",
+					"answer": "Das isch Absicht — dini Laterne isch dini einzigi Liechtquelle. Wenn de Bildschirm würkli nüm lesbar isch, prüef lieber d Helligkeit vo dim Monitor statt d Spiel-Iistellige."
+				},
+				"desync": {
+					"category": "Technik",
+					"question": "Mis Spiel isch im Koop nüm synchron.",
+					"answer": "Das passiert meischtens bi ere instabile Verbindig. Verlah s Spiel und gang wieder ine — d Wacht macht det wiiter, wo du ufghört hesch."
+				},
+				"glow": {
+					"category": "Gameplay",
+					"question": "Wie funktioniert s Läbe vo de Laterne (s Glüe)?",
+					"answer": "Kei klassischi Läbesleischte: s Glüe vo dinere Laterne ISCH dis Läbe. Voll gsehsch wiit; wenn s verlöscht, chunnt s Dunkel immer nöcher."
+				},
+				"standing_still": {
+					"category": "Gameplay",
+					"question": "Werum verlüür ich Läbe, wenn ich still stah?",
+					"answer": "De einzig sicheri Bode isch de Strahl vo de Wacht, und dä blibt nie stah. Still stah heisst, s Dunkel la ufhole."
+				},
+				"block": {
+					"category": "Konto",
+					"question": "Wie chan ich en andere Spieler blockiere?",
+					"answer": "Mach uf sim Profil oder i some Gspröch s Menü uf und wähl \"Blockiere\". Er verschwindet denn us dim Feed, us dim Chat und us dim Koop-Matchmaking."
+				}
+			}
+		},
+		"lore": {
+			"kicker": "D Lore · D Wacht",
+			"title": "E Wält, wo d Dunkelheit immer no verschlingt.",
+			"intro": "Es het e Ziit geh, won e einzigi Sunne d Wält beschiine het. Denn isch si usgange — nöd undergange, <em>usgange</em>. Das isch, was druf gfolgt isch.",
+			"stories": {
+				"extinction": {
+					"label": "S ERLÖSCHE",
+					"title": "D Dunkelheit isch kei Abwäseheit.",
+					"body": "Was mir d Dunkelheit nänned, isch nöd s Fähle vo Liecht — es isch läbigi Materie. E Flut, wo d Wält überdeckt het und langsam alles verdaut, wo si berüert: Stei, Erinnerige, Näme. Wo si dure gaht, vergisst d Wält, dass es das je geh het."
+				},
+				"vigil": {
+					"label": "D WACHT",
+					"title": "Us em tote Himmel, en letschte Strahl.",
+					"body": "En einzige Liechtfade fallt no — s letschte Bruchstück vo de tote Sunne, oder ihre Geischt. D Überläbende nänned en d Wacht. Si blibt nie stah. Mer seit, si sueched öppis über di versunkene Länder, und solang si sich bewegt, isch d Wält nöd ganz tot. Ihre z folge isch di einzig Definition vo „läbe“, wo no gilt."
+				},
+				"bearers": {
+					"label": "D LATERNTRÄGER",
+					"title": "Du bisch kein Held.",
+					"body": "Du bisch eine vo de wenige, wo e Laterne treit, aazündt mit emne Funke vo de Wacht — e Glut, wo vo Hand zu Hand wiitergäh wird und nie neu entstaht. Dini Laterne rettet d Wält nöd. Si frisst nur grad gnueg Nacht um dich ume, dass du no ein Schritt chasch mache. Ihres Glüe isch dis Läbe: voll gsehsch wiit; wenn s verlöscht, chunnt s Dunkel nöcher."
+				},
+				"forgotten": {
+					"label": "D VERGÄSSENE",
+					"title": "D Wält, verdaut und wieder usgspeut.",
+					"body": "Was us de Dunkelheit usechunnt, isch de Wält nöd fremd — es isch d Wält sälber, ufglöst und umgformt zu Waffe gäge d Läbige. Je tüüfer du gasch, desto elter sind d Vergässene, wo du triffsch: länger versunke, tüüfer verwandlet, mächtiger."
+				}
+			}
+		},
+		"legal": {
+			"kicker": "Rechtlichi Informatione",
+			"title": "Impressum",
+			"last_update": "Zletscht aktualisiert: {date}",
+			"sections": {
+				"publisher": {
+					"title": "Herausgeberin der Website",
+					"body": "<p>Die Website Light-Keepers wird von der Lanterne Noire Studio herausgegeben, einer vereinfachten Aktiengesellschaft (SAS) mit einem Stammkapital von 12'000 €, eingetragen im Handels- und Gesellschaftsregister Paris unter der Nummer 912 457 386.</p><p>Sitz: 96 boulevard Bessières, 75017 Paris, Frankreich.</p><p>Innergemeinschaftliche Mehrwertsteuernummer: FR 47 912 457 386.</p><p>Telefon: +33 1 99 00 47 12 — E-Mail: contact@light-keepers.fr.</p>"
+				},
+				"director": {
+					"title": "Verantwortlich für den Inhalt",
+					"body": "<p>Verantwortlich für den Inhalt ist Herr Antoine Bonneau in seiner Eigenschaft als Präsident der Lanterne Noire Studio.</p>"
+				},
+				"hosting": {
+					"title": "Hosting",
+					"body": "<p>Die Website wird von der Hexacloud SAS gehostet, mit einem Stammkapital von 250'000 €, eingetragen im Handels- und Gesellschaftsregister Lille Métropole unter der Nummer 834 512 907.</p><p>Sitz: 14 rue du Faubourg de Roubaix, 59800 Lille, Frankreich — Telefon: +33 3 99 00 21 85.</p><p>Die Daten werden auf Servern innerhalb der Europäischen Union gespeichert.</p>"
+				},
+				"intellectual_property": {
+					"title": "Geistiges Eigentum",
+					"body": "<p>Sämtliche Bestandteile der Website und des Spiels Light-Keepers — insbesondere Texte, Universum, Figuren, Illustrationen, 3D-Modelle, Logos, Musik, Soundeffekte und Quellcode — sind ausschliessliches Eigentum der Lanterne Noire Studio oder ihrer Partner und durch das französische Gesetzbuch über geistiges Eigentum geschützt.</p><p>Jede vollständige oder teilweise Vervielfältigung, Darstellung, Änderung, Veröffentlichung oder Bearbeitung dieser Bestandteile, gleich mit welchen Mitteln oder Verfahren, ist ohne vorherige schriftliche Zustimmung der Lanterne Noire Studio untersagt.</p><p>Die Rendering-Engine Babylon.js wird unter der Apache-2.0-Lizenz vertrieben und bleibt Eigentum ihrer jeweiligen Urheber.</p>"
+				},
+				"user_content": {
+					"title": "Von Nutzerinnen und Nutzern erstellte Inhalte",
+					"body": "<p>Nachrichten, Beiträge, Kommentare und Avatare, die von Spielerinnen und Spielern veröffentlicht werden, liegen in der alleinigen Verantwortung ihrer Urheber. Mit der Veröffentlichung von Inhalten räumt die Nutzerin bzw. der Nutzer der Lanterne Noire Studio eine nicht ausschliessliche, unentgeltliche Lizenz ein, diese Inhalte zu hosten und anzuzeigen, und zwar ausschliesslich für die Dauer ihrer Veröffentlichung.</p><p>Gemäss dem französischen Gesetz Nr. 2004-575 vom 21. Juni 2004 über das Vertrauen in die digitale Wirtschaft können offensichtlich rechtswidrige Inhalte an moderation@light-keepers.fr gemeldet werden. Lanterne Noire Studio verpflichtet sich, diese umgehend zu entfernen, sobald sie davon Kenntnis erlangt.</p>"
+				},
+				"personal_data": {
+					"title": "Personendaten",
+					"body": "<p>Lanterne Noire Studio bearbeitet die Personendaten der Nutzerinnen und Nutzer (E-Mail-Adresse, Benutzername, Spielstatistiken, Nachrichten), um den Dienst bereitzustellen, die Konten zu verwalten und die Sicherheit der Plattform zu gewährleisten, gemäss der Verordnung (EU) 2016/679 (DSGVO) und dem französischen Datenschutzgesetz.</p><p>Diese Daten werden aufbewahrt, solange das Konto aktiv ist, und anschliessend innerhalb von drei Jahren nach der letzten Anmeldung gelöscht. Sie werden niemals an Dritte weitergegeben oder verkauft.</p><p>Alle Nutzerinnen und Nutzer haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Bearbeitung, Widerspruch und Datenübertragbarkeit. Diese Rechte können in den Kontoeinstellungen oder durch Kontaktaufnahme mit unserem Datenschutzbeauftragten ausgeübt werden: dpo@light-keepers.fr.</p><p>Bei Schwierigkeiten können Nutzerinnen und Nutzer eine Beschwerde bei der französischen Datenschutzbehörde (CNIL) einreichen.</p>"
+				},
+				"cookies": {
+					"title": "Cookies",
+					"body": "<p>Die Website verwendet ausschliesslich Cookies, die für ihren Betrieb unbedingt erforderlich sind: Sitzungsaufrechterhaltung, Sprach- und Designeinstellungen. Es werden keine Werbe-Cookies und keine Tracker von Dritten gesetzt.</p><p>Da diese Cookies für den Dienst unerlässlich sind, ist keine vorherige Einwilligung erforderlich. Nutzerinnen und Nutzer können sie jedoch jederzeit in den Einstellungen ihres Browsers löschen.</p>"
+				},
+				"liability": {
+					"title": "Haftung",
+					"body": "<p>Lanterne Noire Studio bemüht sich um die Richtigkeit der veröffentlichten Informationen und die Verfügbarkeit des Dienstes, kann diese jedoch nicht garantieren. Der Zugang zur Website kann für Wartungsarbeiten oder im Falle höherer Gewalt unterbrochen werden.</p><p>Hyperlinks zu Websites Dritter dienen ausschliesslich Informationszwecken. Lanterne Noire Studio hat keinen Einfluss auf diese Websites und übernimmt keine Haftung für deren Inhalte.</p>"
+				},
+				"governing_law": {
+					"title": "Anwendbares Recht",
+					"body": "<p>Dieses Impressum unterliegt französischem Recht. Im Streitfall und sofern keine gütliche Einigung zustande kommt, sind ausschliesslich die Gerichte von Paris zuständig.</p>"
+				}
+			}
 		}
 	},
-
 	"auth": {
 		"signout": {
-			"label": "Logout",
-			"success": "You have been logged out successfully.",
-			"error": "An error occurred while logging out. Please try again."
+			"label": "Abmälde",
+			"success": "Du bisch abgmäldet worde.",
+			"error": "Bim Abmälde isch en Fähler passiert. Bitte versuech s nomal."
 		},
 		"signin": {
-			"title": "Sign In",
-			"no_account": "Don't have an account ?",
-			"forgot_password": "Forgot your password ?",
-			"reset_password": "Reset Password",
-
-			"username_or_email": "Username or Email",
-			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
-
-			"email": "Email",
+			"title": "Aamälde",
+			"no_account": "Hesch no kei Konto?",
+			"forgot_password": "Passwort vergässe?",
+			"reset_password": "Passwort zruggsetze",
+			"username_or_email": "Benutzername oder E-Mail",
+			"username_or_emailPlaceholder": "john_doe oder john.doe@example.com",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-
-			"password": "Password",
-			"passwordPlaceholder": "Enter your password",
-
-			"submit": "Sign In",
-			"submitting": "Signing In",
-			"submitted": "Signed In",
-			"forgotPassword": "Forgot your password?",
-			"success": "You have been signed in successfully.",
-			"error": "An error occurred while signing in. Please check your credentials and try again."
+			"password": "Passwort",
+			"passwordPlaceholder": "Gib dis Passwort ii",
+			"submit": "Aamälde",
+			"submitting": "Am Aamälde",
+			"submitted": "Aagmäldet",
+			"forgotPassword": "Passwort vergässe?",
+			"success": "Du bisch aagmäldet worde.",
+			"error": "Bim Aamälde isch en Fähler passiert. Bitte prüef dini Aamäldedate und versuech s nomal."
 		},
 		"signup": {
-			"title": "Sign Up",
-			"already_account": "Already have an account ?",
+			"title": "Regischtriere",
+			"already_account": "Hesch scho es Konto?",
 			"account": {
-				"title": "Account Information",
-				"account_desc": "Create your account by filling in the information below.",
-				"email": "Email",
+				"title": "Kontoinformatione",
+				"account_desc": "Erstell dis Konto, indem du d Informatione unne uusfüllsch.",
+				"email": "E-Mail",
 				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
+				"username": "Benutzername",
 				"usernamePlaceholder": "john_doe"
 			},
 			"personal": {
-				"title": "Personal Information",
-				"desc": "Provide some personal details to complete your profile.",
-				"firstName": "First Name",
+				"title": "Persönlichi Informatione",
+				"desc": "Gib es paar persönlichi Aagabe aa, zum dis Profil vervollständige.",
+				"firstName": "Vorname",
 				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
+				"lastName": "Nachname",
 				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
-				"gender": "Gender",
-				"genderPlaceholder": "Select your gender",
+				"birthdate": "Geburtsdatum",
+				"gender": "Gschlächt",
+				"genderPlaceholder": "Wähl dis Gschlächt us",
 				"genderOptions": {
-					"label": "Gender Options",
-					"male": "Male",
-					"female": "Female",
-					"other": "Other",
-					"prefer_not_to_say": "Prefer not to say"
+					"label": "Gschlächt-Optione",
+					"male": "Männlich",
+					"female": "Wiiblich",
+					"other": "Anders",
+					"prefer_not_to_say": "Säg ich lieber nöd"
 				},
-				"locale": "Preferred Language",
-				"localePlaceholder": "Select your preferred language for email notifications",
+				"locale": "Bevorzugti Sprach",
+				"localePlaceholder": "Wähl dini bevorzugti Sprach für E-Mail-Benachrichtigunge us",
 				"localeOptions": {
-					"label": "Email Preference",
-					"en": "English",
-					"fr": "French",
-					"de": "German"
+					"label": "E-Mail-Vorliebe",
+					"en": "Änglisch",
+					"fr": "Französisch",
+					"de": "Tüütsch",
+					"es": "Spanisch",
+					"it": "Italiänisch"
 				}
 			},
 			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
+				"title": "Profil",
+				"desc": "Verzell üs meh über dich, zum dis Erlebnis z personalisiere.",
+				"displayName": "Aazeigename",
 				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself"
+				"bio": "Biografie",
+				"bioPlaceholder": "Verzell üs es bitzli öppis über dich"
 			},
 			"security": {
-				"title": "Security",
-				"desc": "Choose a strong password to protect your account.",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password"
+				"title": "Sicherheit",
+				"desc": "Wähl es starchs Passwort, zum dis Konto z schütze.",
+				"password": "Passwort",
+				"passwordPlaceholder": "Wähl es Passwort",
+				"confirmPassword": "Passwort bestätige",
+				"confirmPasswordPlaceholder": "Gib dis Passwort nomal ii"
 			},
 			"terms": {
-				"title": "Terms and Conditions",
-				"desc": "Please read and accept our Terms and Conditions to proceed.",
-				"acceptTerms": "I have read and accept the Terms and Conditions"
+				"title": "Nutzigsbedingige",
+				"desc": "Bitte lies und akzeptier üsi Nutzigsbedingige, zum wiiterzmache.",
+				"acceptTerms": "Ich ha d Nutzigsbedingige gläse und akzeptiere si"
 			},
 			"buttons": {
-				"back": "Go Back",
-				"continue": "Continue",
-				"submit": "Submit",
-				"submitting": "Submitting",
-				"submitted": "Submitted",
-				"validating": "Validating"
+				"back": "Zrugg",
+				"continue": "Wiiter",
+				"submit": "Abschicke",
+				"submitting": "Am Abschicke",
+				"submitted": "Abgschickt",
+				"validating": "Am Prüefe",
+				"save": "Speichere",
+				"saving": "Am Speichere",
+				"saved": "Gspeicheret"
 			},
-			"recap_title": "Review Your Information",
-
-			"success": "Account created successfully!",
-			"error": "Failed to create account. Please try again."
+			"recap_title": "Überprüef dini Aagabe",
+			"success": "Dis Konto isch erstellt worde!",
+			"error": "S Konto het nöd chöne erstellt werde. Bitte versuech s nomal."
 		},
 		"forgot_password": {
-			"title": "Reset Password",
-			"login": "Remember your password ?",
-			"email": "Email",
+			"title": "Passwort zruggsetze",
+			"login": "Weisch dis Passwort wieder?",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-			"submit": "Send Reset Link",
-			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent",
-			"success": "If an account with that email exists, a password reset link has been sent."
+			"submit": "Link zum Zruggsetze schicke",
+			"submitting": "Link wird gschickt",
+			"submitted": "Link gschickt",
+			"success": "Wenn es Konto mit dere E-Mail existiert, isch en Link zum s Passwort zruggsetze gschickt worde."
 		},
 		"reset_password": {
-			"title": "Set New Password",
-			"login": "Remember your password ?",
-			"password": "New Password",
-			"passwordPlaceholder": "Enter your new password",
-			"confirmPassword": "Confirm New Password",
-			"confirmPasswordPlaceholder": "Re-enter your new password",
-			"submit": "Reset Password",
-			"submitting": "Resetting Password",
-			"submitted": "Password Reset",
-			"success": "Your password has been reset successfully!",
-			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+			"title": "Neus Passwort setze",
+			"login": "Weisch dis Passwort wieder?",
+			"password": "Neus Passwort",
+			"passwordPlaceholder": "Gib dis neue Passwort ii",
+			"confirmPassword": "Neus Passwort bestätige",
+			"confirmPasswordPlaceholder": "Gib dis neue Passwort nomal ii",
+			"submit": "Passwort zruggsetze",
+			"submitting": "Passwort wird zruggsetzt",
+			"submitted": "Passwort zruggsetzt",
+			"success": "Dis Passwort isch zruggsetzt worde!",
+			"error": "S Passwort het nöd chöne zruggsetzt werde. De Link isch villicht ungültig oder abgloffe. Bitte versuech s nomal."
 		}
 	},
-
 	"forms": {
 		"error": {
-			"required": "This field is required",
-
-			"email": "Please enter a valid email address",
-			"string": "This field must be a string",
-			"number": "This field must be a number",
-			"date": "This field must be a valid date",
-			"boolean": "This field must be true or false",
-			"enum": "Invalid option selected",
-			"phone": "Please enter a valid phone number in E.164 format",
-			"pattern": "Invalid format",
-
-			"lowercase": "Only lowercase letters are allowed",
-			"uppercase": "Only uppercase letters are allowed",
-
-			"minLength": "Minimum length is {min} characters",
-			"maxLength": "Maximum length is {max} characters",
-
-			"select": "Please select an option",
-			"mustAcceptTerms": "You must accept the terms and conditions",
-
-			"password_match": "Passwords must match",
-			"password_uppercase": "Password must contain at least one uppercase letter",
-			"password_lowercase": "Password must contain at least one lowercase letter",
-			"password_number": "Password must contain at least one number",
-			"password_special": "Password must contain at least one special character",
-
-			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken",
-			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
-
-			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register",
-
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"required": "Das Fäld muess uusgfüllt werde",
+			"email": "Bitte gib e gültigi E-Mail-Adrässe ii",
+			"string": "Das Fäld muess en Text sii",
+			"number": "Das Fäld muess e Zahl sii",
+			"date": "Das Fäld muess es gültigs Datum sii",
+			"boolean": "Das Fäld muess wahr oder falsch sii",
+			"enum": "Ungültigi Uswahl",
+			"phone": "Bitte gib e gültigi Telefonnummere im E.164-Format ii",
+			"pattern": "Ungültigs Format",
+			"lowercase": "Nur Chliibuechstabe sind erlaubt",
+			"uppercase": "Nur Grossbuechstabe sind erlaubt",
+			"minLength": "Mindestlängi isch {min} Zeiche",
+			"maxLength": "Maximallängi isch {max} Zeiche",
+			"fileSizeMB": "D Datei muess chliiner als {maxSize} MB sii",
+			"maxFilesCount": "Du chasch bis zu {maxCount} Dateie aahänke",
+			"imageOnly": "Nur Bilddateie sind erlaubt",
+			"imageVideoOnly": "Nur Bild- und Videodateie sind erlaubt",
+			"select": "Bitte wähl e Option us",
+			"mustAcceptTerms": "Du muesch d Nutzigsbedingige akzeptiere",
+			"password_match": "D Passwörter müend übereistimme",
+			"password_uppercase": "S Passwort muess mindestens ein Grossbuechstabe enthalte",
+			"password_lowercase": "S Passwort muess mindestens ein Chliibuechstabe enthalte",
+			"password_number": "S Passwort muess mindestens ei Zahl enthalte",
+			"password_special": "S Passwort muess mindestens eis Sonderzeiche enthalte",
+			"email_already_in_use": "Die E-Mail wird scho bruucht",
+			"username_already_in_use": "Dä Benutzername isch scho vergäh",
+			"user_already_exists": "Während du s Formular uusgfüllt hesch, het sich öpper mit dere E-Mail oder dem Benutzername regischtriert. Bitte versuech s mit andere Aagabe nomal.",
+			"internal_server_error": "Es isch en unerwartete Fähler passiert. Bitte versuech s spöter nomal.",
+			"age_restriction": "Du muesch mindestens 13 Jahr alt sii, zum dich regischtriere",
+			"invalid_credentials": "Ungültigi Aamäldedate. Bitte prüef dini Aagabe und versuech s nomal.",
+			"invalid_token": "De Link zum Zruggsetze isch ungültig oder abgloffe. Bitte fordere en neue aa.",
+			"invalid_email": "Die E-Mail-Adrässe isch nöd regischtriert. Bitte prüef si und versuech s nomal.",
+			"at_least_one": "Mindestens eis Fäld muess uusgfüllt werde",
+			"message_empty_if_attachments": "De Nachrichtetext darf nur läär sii, wenn en Aahang debii isch"
 		},
 		"addons": {
-			"length": "{current} / {max} characters max"
+			"length": "{current} / {max} Zeiche max."
 		}
+	},
+	"date": {
+		"today": "Hüt",
+		"yesterday": "Geschter",
+		"just_now": "Grad äbe",
+		"minutes_ago": "vor {count} Minute",
+		"hours_ago": "vor {count} Stunde",
+		"days_ago": "vor {count} Täg",
+		"weeks_ago": "vor {count} Wuche",
+		"months_ago": "vor {count} Mönet",
+		"years_ago": "vor {count} Jahr"
+	},
+	"common": {
+		"confirm": "Bestätige",
+		"cancel": "Abbräche",
+		"themes": {
+			"dark": "Dunkel",
+			"light": "Hell",
+			"system": "Syschtem",
+			"neon": "Neon",
+			"emerald-dark": "Smaragd dunkel",
+			"emerald-light": "Smaragd hell",
+			"synthwave-dark": "Synthwave dunkel",
+			"synthwave-light": "Synthwave hell",
+			"crimson-dark": "Karmesin dunkel",
+			"crimson-light": "Karmesin hell"
+		},
+		"close": "Zuemache",
+		"language": "Sprach",
+		"appearance": "Darstellig",
+		"avatar_preview": "Avatar-Vorschau",
+		"not_found": {
+			"resource": "Das, wo du suechsch, gits nöd.",
+			"chat_room": "De Chatruum, wo du suechsch, gits nöd."
+		},
+		"loading": "Lade…",
+		"go_top": "Nach obe",
+		"form_steps": "Formularschritt"
 	}
 }

@@ -67,7 +67,7 @@ const ChatRoomCreateDialog = ({ children, params }: ChatRoomCreateDialogProps) =
 								/>
 								{selectedUsers.length > 1 && (
 									<Input
-										placeholder='Group Name'
+										placeholder={t('group_name_placeholder')}
 										value={groupName}
 										onChange={(e) => setGroupName(e.target.value)}
 									/>

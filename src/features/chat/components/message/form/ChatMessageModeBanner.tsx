@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Pencil, Reply, X } from 'lucide-react';
 import { ChatMessage, ChatMessageType } from '../../../types/message';
@@ -13,6 +14,8 @@ const MAX_PREVIEW_LENGTH = 30;
 
 export const ChatMessageModeBanner = memo(
 	({ editingMessage, replyingToMessage, onCancel }: ChatMessageModeBannerProps) => {
+		const t = useTranslations('chat.messages.mode');
+
 		if (!editingMessage && !replyingToMessage) return null;
 
 		return (
@@ -21,16 +24,20 @@ export const ChatMessageModeBanner = memo(
 					{editingMessage ? (
 						<>
 							<Pencil className='size-3.5 text-primary shrink-0' />
-							<span>Editing message</span>
+							<span>{t('editing')}</span>
 						</>
 					) : (
 						<>
 							<Reply className='size-3.5 text-primary shrink-0' />
 							<span>
-								Replying to&nbsp;
-								<strong className='text-foreground'>
-									{replyingToMessage?.sender.displayName}
-								</strong>
+								{t.rich('replying_to', {
+									name: replyingToMessage?.sender.displayName ?? '',
+									strong: (chunks) => (
+										<strong className='text-foreground'>
+											{chunks}
+										</strong>
+									),
+								})}
 								{replyingToMessage?.content && (
 									<span className='ml-1 text-muted-foreground'>
 										:&nbsp;

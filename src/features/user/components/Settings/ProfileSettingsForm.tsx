@@ -47,7 +47,7 @@ const ProfileCoverSection = ({
 				{displayCoverUrl ? (
 					<Image
 						src={displayCoverUrl}
-						alt='Cover'
+						alt={t('cover_label')}
 						fill
 						className='w-full h-full object-cover'
 					/>

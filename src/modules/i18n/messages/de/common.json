@@ -1,41 +1,399 @@
 {
 	"nav": {
+		"home": "Startseite",
+		"game": "Spiel",
+		"leaderboard": "Bestenliste",
+		"profile": "Profil",
+		"settings": "Einstellungen",
+		"logout": "Abmelden",
+		"posts": "Beiträge",
+		"privacy": "Datenschutzerklärung",
+		"terms": "Nutzungsbedingungen",
+		"legal": "Impressum",
 		"lore": "Lore",
 		"support": "Hilfe",
 		"enter_hub": "Zum Hub →",
 		"menu": "Menü",
-		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
-		"profile": "Profile",
-		"settings": "Settings",
-		"logout": "Logout",
-		"posts": "Posts",
-		"privacy": "Privacy Policy",
-		"terms": "Terms of Service",
-		"legal": "Legal Notice",
-
-		"profile_posts": "Posts",
-		"profile_comments": "Comments",
-		"profile_stats": "Stats",
-		"profile_likes": "Likes",
-		"profile_favourites": "Favourites",
-
-		"profile_followers": "Followers",
-		"profile_following": "Following",
-
-		"profile_blocked": "Blocked Users"
+		"feed": "Feed",
+		"friends": "Freunde",
+		"chat": "Chat",
+		"search": "Suche",
+		"concept": "Konzept",
+		"user": {
+			"posts": "Beiträge",
+			"comments": "Kommentare",
+			"stats": "Statistiken",
+			"likes": "Likes",
+			"reposts": "Geteilt"
+		},
+		"friend": {
+			"requests": "Anfragen",
+			"friends": "Freunde",
+			"blocked": "Blockierte Nutzer"
+		},
+		"player_hub": "Spieler-Hub",
+		"cookies": "Cookies",
+		"accessibility": "Barrierefreiheit"
 	},
-	"home": {
-		"welcome": "Welcome to Transcendence Survivor !"
+	"home": {},
+	"profile": {
+		"bio": "Biografie",
+		"edit": {
+			"button": "Profil bearbeiten",
+			"title": "Profil bearbeiten",
+			"success": "Profil erfolgreich aktualisiert."
+		}
 	},
-
+	"settings": {
+		"title": "Einstellungen",
+		"error_loading": "Kontoeinstellungen konnten nicht geladen werden. Bitte versuche es später erneut.",
+		"page": {
+			"title": "Einstellungen",
+			"description": "Verwalte alle deine Einstellungen, indem du links im Menü eine Kategorie auswählst."
+		},
+		"profile": {
+			"title": "Profileinstellungen",
+			"subtitle": "Aktualisiere deine Profilinformationen und Vorlieben.",
+			"description": "Verwalte dein öffentliches Profil, deinen Avatar und dein Bannerbild.",
+			"display_name_label": "Anzeigename",
+			"display_name_placeholder": "Gib deinen Anzeigenamen ein",
+			"bio_label": "Bio",
+			"bio_placeholder": "Erzähl uns ein wenig über dich...",
+			"cover_label": "Titelbild",
+			"no_cover": "Kein Titelbild hochgeladen",
+			"change_cover": "Titelbild ändern",
+			"remove_cover": "Titelbild entfernen",
+			"change_avatar": "Avatar ändern",
+			"remove_avatar": "Avatar entfernen",
+			"avatar_hint": "JPEG, PNG, GIF oder WebP. Maximal 5 MB.",
+			"save": "Änderungen speichern"
+		},
+		"account": {
+			"title": "Kontoeinstellungen",
+			"subtitle": "Verwalte deine Kontoinformationen und Vorlieben."
+		},
+		"security": {
+			"title": "Sicherheitseinstellungen",
+			"subtitle": "Verwalte deine Sicherheitseinstellungen und Vorlieben."
+		},
+		"nav": {
+			"profile": "Profil",
+			"account": "Konto",
+			"security": "Sicherheit",
+			"danger_zone": "Gefahrenzone"
+		}
+	},
+	"users": {
+		"no_befriended_users": "Keine Nutzer gefunden, mit denen du nicht befreundet bist.",
+		"no_befriended_users_search": "Keine Nutzer für deine Suche gefunden, mit denen du nicht befreundet bist.",
+		"no_more_befriended_users": "Keine weiteren Nutzer zum Laden, mit denen du nicht befreundet bist.",
+		"no_users": "Keine Nutzer gefunden.",
+		"no_users_search": "Keine Nutzer für deine Suche gefunden.",
+		"no_more_users": "Keine weiteren Nutzer zum Laden.",
+		"fetch_error": "Nutzer konnten nicht geladen werden. Bitte versuche es später erneut."
+	},
+	"search": {
+		"title": "Suche",
+		"subtitle": "Finde Laternenträger und Beiträge",
+		"input_placeholder": "Suche ein Stichwort oder @Benutzername...",
+		"users_title": "Laternenträger",
+		"posts_title": "Beiträge"
+	},
+	"relationships": {
+		"title": "Freunde & Moderation",
+		"subtitle": "Laternenträger in deinem Kreis",
+		"input_placeholder": "Suche nach @Benutzername oder Anzeigename...",
+		"nav": {
+			"friends": "Freunde",
+			"requests": "Anfragen",
+			"blocked": "Blockierte Nutzer"
+		},
+		"add": {
+			"title": "Laternenträger zu deinem Kreis hinzufügen",
+			"button": "Freund hinzufügen",
+			"placeholder": "Suche nach @Benutzername oder Anzeigename...",
+			"aria_label": "Freund hinzufügen",
+			"failed": "Freundschaftsanfrage konnte nicht gesendet werden. Bitte versuche es erneut.",
+			"success_accepted_displayname": "Du bist jetzt mit {displayName} befreundet.",
+			"success_pending_displayname": "Deine Freundschaftsanfrage an {displayName} wurde gesendet."
+		},
+		"friends": {
+			"title": "Freunde",
+			"count": "{count} Freund(e).",
+			"count_search": "{count} Freund(e) für deine Suche gefunden.",
+			"no_friends": "Du hast noch keine Freunde. Füge doch welche hinzu!",
+			"no_friends_search": "Keine Freunde für deine Suche gefunden.",
+			"no_more_friends": "Keine weiteren Freunde zum Laden.",
+			"fetch_error": "Freunde konnten nicht geladen werden. Bitte versuche es später erneut.",
+			"all_button": "Alle",
+			"online_button": "Online",
+			"offline_button": "Offline",
+			"delete": {
+				"tooltip": "Freund entfernen",
+				"title": "Freund entfernen",
+				"description": "Bist du sicher, dass du diesen Freund entfernen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+				"confirm": "Entfernen",
+				"success_displayname": "Du hast {displayName} erfolgreich als Freund entfernt.",
+				"failure_displayname": "{displayName} konnte nicht als Freund entfernt werden. Bitte versuche es erneut."
+			}
+		},
+		"blocked": {
+			"title": "Blockierte Nutzer",
+			"count": "{count} blockierte(r) Nutzer.",
+			"count_search": "{count} blockierte(r) Nutzer für deine Suche gefunden.",
+			"add": {
+				"tooltip": "Nutzer blockieren",
+				"title": "Nutzer blockieren",
+				"description": "Bist du sicher, dass du diesen Nutzer blockieren möchtest? Er kann dir dann keine Nachrichten mehr schreiben und deine Aktivitäten nicht mehr sehen.",
+				"confirm": "Blockieren",
+				"success_displayname": "Du hast {displayName} erfolgreich blockiert.",
+				"failure_displayname": "{displayName} konnte nicht blockiert werden. Bitte versuche es erneut."
+			},
+			"remove": {
+				"tooltip": "Blockierung aufheben",
+				"title": "Blockierung aufheben",
+				"description": "Bist du sicher, dass du die Blockierung dieses Nutzers aufheben möchtest? Er kann dir dann wieder Nachrichten schreiben und deine Aktivitäten sehen.",
+				"confirm": "Blockierung aufheben",
+				"success_displayname": "Du hast die Blockierung von {displayName} erfolgreich aufgehoben.",
+				"failure_displayname": "Die Blockierung von {displayName} konnte nicht aufgehoben werden. Bitte versuche es erneut."
+			},
+			"no_blocked": "Du hast noch niemanden blockiert.",
+			"no_blocked_search": "Keine blockierten Nutzer für deine Suche gefunden.",
+			"no_more_blocked": "Keine weiteren blockierten Nutzer zum Laden.",
+			"fetch_error": "Blockierte Nutzer konnten nicht geladen werden. Bitte versuche es später erneut.",
+			"all_button": "Alle",
+			"online_button": "Online",
+			"offline_button": "Offline"
+		},
+		"requests": {
+			"title": "Freundschaftsanfragen",
+			"incoming_button": "Eingehend",
+			"outgoing_button": "Ausgehend",
+			"incoming_count": "{count} eingehende Freundschaftsanfrage(n).",
+			"incoming_count_search": "{count} eingehende Freundschaftsanfrage(n) für deine Suche gefunden.",
+			"outgoing_count": "{count} ausgehende Freundschaftsanfrage(n).",
+			"outgoing_count_search": "{count} ausgehende Freundschaftsanfrage(n) für deine Suche gefunden.",
+			"delete_from_displayname": "Freundschaftsanfrage von {displayName} ablehnen",
+			"delete_to_displayname": "Deine Freundschaftsanfrage an {displayName} löschen",
+			"delete_success_from_displayname": "Freundschaftsanfrage von {displayName} erfolgreich gelöscht.",
+			"delete_success_to_displayname": "Deine Freundschaftsanfrage an {displayName} wurde erfolgreich gelöscht.",
+			"delete_failure_from_displayname": "Freundschaftsanfrage von {displayName} konnte nicht gelöscht werden. Bitte versuche es erneut.",
+			"delete_failure_to_displayname": "Deine Freundschaftsanfrage an {displayName} konnte nicht gelöscht werden. Bitte versuche es erneut.",
+			"accept_button": "Annehmen",
+			"accept_from_displayname": "Freundschaftsanfrage von {displayName} annehmen",
+			"accept_success_from_displayname": "Freundschaftsanfrage von {displayName} erfolgreich angenommen.",
+			"accept_failure_from_displayname": "Freundschaftsanfrage von {displayName} konnte nicht angenommen werden. Bitte versuche es erneut.",
+			"no_incoming_requests": "Du hast keine eingehenden Freundschaftsanfragen.",
+			"no_incoming_requests_search": "Keine eingehenden Freundschaftsanfragen für deine Suche gefunden.",
+			"no_outgoing_requests": "Du hast keine ausgehenden Freundschaftsanfragen.",
+			"no_outgoing_requests_search": "Keine ausgehenden Freundschaftsanfragen für deine Suche gefunden.",
+			"no_more_incoming_requests": "Keine weiteren eingehenden Freundschaftsanfragen zum Laden.",
+			"no_more_outgoing_requests": "Keine weiteren ausgehenden Freundschaftsanfragen zum Laden.",
+			"received": "Erhalten",
+			"sent": "Gesendet",
+			"reject": {
+				"tooltip": "Anfrage ablehnen",
+				"title": "Freundschaftsanfrage ablehnen",
+				"description": "Bist du sicher, dass du diese Freundschaftsanfrage ablehnen möchtest?",
+				"confirm": "Ablehnen"
+			},
+			"cancel": {
+				"tooltip": "Anfrage zurückziehen",
+				"title": "Freundschaftsanfrage zurückziehen",
+				"description": "Bist du sicher, dass du diese ausstehende Anfrage zurückziehen möchtest?",
+				"confirm": "Anfrage zurückziehen"
+			},
+			"fetch_error": "Freundschaftsanfragen konnten nicht geladen werden. Bitte versuche es später erneut."
+		}
+	},
+	"presence": {
+		"online": "Online",
+		"online_description": "Du bist für deine Freunde sichtbar.",
+		"do_not_disturb": "Nicht stören",
+		"do_not_disturb_description": "Du erhältst keine Benachrichtigungen über neue Nachrichten oder Freundschaftsanfragen.",
+		"invisible": "Unsichtbar",
+		"invisible_description": "Du wirst deinen Freunden als offline angezeigt, kannst die App aber ganz normal nutzen.",
+		"count_online": "{count} Laternenträger im Licht",
+		"count_online_friends": "{count} Freunde im Licht"
+	},
+	"chat": {
+		"rooms": {
+			"title": "Chaträume",
+			"page": {
+				"title": "Kein Chat ausgewählt",
+				"subtitle": "Wähle einen Chat aus, um Nachrichten zu schreiben.",
+				"not_created": "Noch kein Chatraum erstellt?",
+				"ask_friends": "Frag deine Freunde, ob sie mit dir spielen!",
+				"create_button": "Chat erstellen"
+			},
+			"type": {
+				"group": "Gruppe",
+				"direct": "Direkt"
+			},
+			"no_chat_rooms": "Du hast noch keine Chaträume. Starte eine Unterhaltung mit deinen Freunden!",
+			"no_chat_rooms_search": "Keine Chaträume für deine Suche gefunden.",
+			"no_more_chat_rooms": "Keine weiteren Chaträume zum Laden.",
+			"fetch_error": "Chaträume konnten nicht geladen werden. Bitte versuche es später erneut.",
+			"search_placeholder": "Chaträume durchsuchen...",
+			"sort": {
+				"label": "Chaträume sortieren",
+				"activity_desc": "Aktivität (neueste Nachrichten zuerst)",
+				"activity_asc": "Aktivität (älteste Nachrichten zuerst)",
+				"created_desc": "Erstellungsdatum (neueste zuerst)",
+				"created_asc": "Erstellungsdatum (älteste zuerst)"
+			},
+			"status": {
+				"online": "Online · gemeinsam im Dunkel",
+				"offline": "Offline · allein im Dunkel",
+				"dnd": "Nicht stören · allein im Dunkel"
+			},
+			"group_settings": {
+				"title": "Gruppendetails bearbeiten",
+				"description": "Ändere den Gruppennamen oder aktualisiere das Gruppenbild.",
+				"group_name_label": "Gruppenname",
+				"group_name_placeholder": "Gib einen Gruppennamen ein",
+				"change_avatar_hint": "Klicke auf das Bild, um ein neues hochzuladen",
+				"remove_avatar": "Bild entfernen",
+				"cancel": "Abbrechen",
+				"save": "Änderungen speichern",
+				"delete_group_button": "Gruppe löschen",
+				"delete_group_title": "Gruppe löschen",
+				"delete_group_description": "Bist du sicher, dass du diesen Chatraum löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden und alle Nachrichten gehen dauerhaft verloren.",
+				"delete_confirm": "Löschen"
+			},
+			"create": {
+				"title": "Chatraum erstellen",
+				"description": "Starte eine neue Unterhaltung mit deinen Freunden.",
+				"group_name_label": "Gruppenname",
+				"group_name_placeholder": "Gib einen Gruppennamen ein",
+				"button": "Chatraum erstellen",
+				"success": "Chatraum erfolgreich erstellt.",
+				"failure": "Chatraum konnte nicht erstellt werden. Bitte versuche es erneut.",
+				"dm_exists": "Mit diesem Nutzer existiert bereits eine Direktnachricht. Du kannst die Unterhaltung in diesem Chatraum fortsetzen.",
+				"no_users_selected": "Wähle mindestens einen Nutzer aus, um einen Chat zu erstellen.",
+				"search_placeholder": "Suche nach Freunden, die du zum Chat hinzufügen möchtest..."
+			}
+		},
+		"messages": {
+			"no_messages": "Noch keine Nachrichten. Beginne die Unterhaltung!",
+			"no_messages_search": "Keine Nachrichten für deine Suche gefunden.",
+			"no_more_messages": "Keine weiteren Nachrichten zum Laden.",
+			"fetch_error": "Nachrichten konnten nicht geladen werden. Bitte versuche es später erneut.",
+			"preview": {
+				"no_messages": "Noch keine Nachrichten",
+				"deleted_message": "Diese Nachricht wurde gelöscht",
+				"attachments": "{count, plural, =1 {1 Anhang gesendet} other {{count} Anhänge gesendet}}"
+			},
+			"actions": {
+				"reply": "Antworten",
+				"edit": "Bearbeiten",
+				"delete": "Löschen",
+				"dialogs": {
+					"delete_title": "Nachricht löschen?",
+					"delete_description": "Diese Aktion kann nicht rückgängig gemacht werden. Die Nachricht wird dauerhaft aus der Unterhaltung entfernt."
+				}
+			},
+			"system": {
+				"default_actor": "System",
+				"role_updated": "{actor} hat die Rolle von {target} von {oldRole} zu {newRole} geändert.",
+				"added": "{actor} hat {target} zum Raum hinzugefügt.",
+				"kicked": "{actor} hat {target} aus dem Raum entfernt.",
+				"left": "{user} hat den Raum verlassen.",
+				"room_renamed": "{actor} hat den Raum von „{oldName}“ in „{newName}“ umbenannt.",
+				"room_name_added": "{actor} hat den Raumnamen auf „{newName}“ festgelegt.",
+				"room_name_removed": "{actor} hat den Raumnamen entfernt.",
+				"room_avatar_changed": "{actor} hat das Raumbild aktualisiert.",
+				"room_avatar_added": "{actor} hat ein Raumbild hinzugefügt.",
+				"room_avatar_removed": "{actor} hat das Raumbild entfernt.",
+				"ownership_transferred": "{actor} hat die Raumleitung an {target} übertragen.",
+				"room_created": "{actor} hat den Raum erstellt."
+			},
+			"mode": {
+				"editing": "Nachricht wird bearbeitet",
+				"replying_to": "Antwort an <strong>{name}</strong>",
+				"replying_to_message": "Antwort auf Nachricht"
+			},
+			"form": {
+				"attach": "Bilder oder Videos anhängen",
+				"emoji": "Emoji auswählen"
+			},
+			"errors": {
+				"send": "Nachricht konnte nicht gesendet werden",
+				"edit": "Nachricht konnte nicht bearbeitet werden",
+				"delete": "Nachricht konnte nicht gelöscht werden"
+			}
+		},
+		"members": {
+			"roles": {
+				"owner": "Eigentümer",
+				"admin": "Admin",
+				"member": "Mitglied"
+			},
+			"sort": {
+				"label": "Mitglieder sortieren",
+				"username_asc": "Benutzername (A–Z)",
+				"username_desc": "Benutzername (Z–A)",
+				"joined_desc": "Zuletzt beigetreten",
+				"joined_asc": "Älteste Mitglieder",
+				"displayname_asc": "Anzeigename (A–Z)",
+				"displayname_desc": "Anzeigename (Z–A)",
+				"role_asc": "Rolle (höchste zuerst)",
+				"role_desc": "Rolle (niedrigste zuerst)"
+			},
+			"title": "Mitglieder",
+			"search_placeholder": "Mitglieder durchsuchen...",
+			"count_label": "{count, plural, =1 {Mitglied} other {Mitglieder}}",
+			"no_members": "Noch keine Mitglieder in diesem Chatraum.",
+			"no_members_search": "Keine Mitglieder für deine Suche gefunden.",
+			"no_more_members": "Keine weiteren Mitglieder zum Laden.",
+			"fetch_error": "Mitglieder konnten nicht geladen werden. Bitte versuche es später erneut.",
+			"actions": "Mitgliederaktionen",
+			"kick": "Mitglied entfernen",
+			"promote_to_admin": "Zum Admin befördern",
+			"demote_to_member": "Zum Mitglied herabstufen",
+			"transfer_ownership": "Eigentum übertragen",
+			"leave_room": "Raum verlassen",
+			"view_profile": "Profil ansehen",
+			"joined_at": "Beigetreten",
+			"dialogs": {
+				"kick_title": "Mitglied entfernen",
+				"kick_description": "Bist du sicher, dass du dieses Mitglied aus dem Chatraum entfernen möchtest? Es hat dann keinen Zugriff mehr auf die Nachrichten.",
+				"promote_title": "Mitglied befördern",
+				"promote_description": "Bist du sicher, dass du dieses Mitglied zum Admin befördern möchtest? Es erhält dann Administratorrechte in diesem Raum.",
+				"demote_title": "Mitglied herabstufen",
+				"demote_description": "Bist du sicher, dass du diesen Admin zum Mitglied herabstufen möchtest? Er verliert dann seine Administratorrechte.",
+				"transfer_title": "Eigentum übertragen",
+				"transfer_description": "Bist du sicher, dass du das Eigentum an diesem Raum übertragen möchtest? Du wirst zum Admin herabgestuft und verlierst deine Eigentümerrechte.",
+				"leave_title": "Chatraum verlassen",
+				"leave_description": "Bist du sicher, dass du diesen Chatraum verlassen möchtest? Du musst erneut eingeladen werden, um wieder beizutreten.",
+				"add": {
+					"tooltip": "Mitglieder hinzufügen",
+					"title": "Mitglieder hinzufügen",
+					"description": "Wähle Freunde aus, die du zu diesem Gruppenchat hinzufügen möchtest.",
+					"search_placeholder": "Freunde durchsuchen...",
+					"add": "Mitglieder hinzufügen",
+					"no_friends": "Keine Freunde zum Hinzufügen verfügbar.",
+					"no_friends_found": "Keine Freunde passen zu deiner Suche.",
+					"no_users_selected": "Wähle mindestens einen Freund aus, den du zum Chat hinzufügen möchtest.",
+					"fetch_error": "Freunde konnten nicht geladen werden. Bitte versuche es erneut."
+				}
+			}
+		},
+		"title": "Chat",
+		"subtitle": "Unterhaltungen mit deinen Freunden",
+		"send_dm": "Direktnachricht senden"
+	},
+	"feed": {
+		"title": "Feed",
+		"subtitle": "Botschaften der Laternenträger"
+	},
 	"posts": {
 		"create": {
 			"placeholder": "Beginne, einen Beitrag zu schreiben",
 			"submit": "Posten",
 			"add_image": "Bild hinzufügen",
-			"remove_image": "Bild entfernen"
+			"remove_image": "Bild entfernen",
+			"image_alt": "Bildvorschau"
 		},
 		"card": {
 			"reposted_by": "{displayName} hat geteilt",
@@ -79,15 +437,6 @@
 			"fetch_error": "Geteilte Beiträge konnten nicht geladen werden. Bitte versuche es später erneut."
 		}
 	},
-
-	"search": {
-		"title": "Suche",
-		"subtitle": "Finde Träger und Beiträge",
-		"input_placeholder": "Suche ein Stichwort oder @Benutzername...",
-		"users_title": "Träger",
-		"posts_title": "Beiträge"
-	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Folge dem Licht · oder werde vergessen",
@@ -115,174 +464,334 @@
 				"name": "Die Wacht",
 				"description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 			}
+		},
+		"footer": {
+			"copyright": "LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D",
+			"engine": "BABYLON.JS"
+		},
+		"support": {
+			"kicker": "Hilfe-Center",
+			"title": "Wie hältst du dein Licht am Brennen?",
+			"articles_count": "{count} Artikel →",
+			"categories": {
+				"technical": {
+					"name": "Technik",
+					"description": "Anforderungen, Leistung, Netzwerk"
+				},
+				"gameplay": {
+					"name": "Gameplay",
+					"description": "Die Wacht, der Schein, Waffen, Schichten"
+				},
+				"account": {
+					"name": "Konto",
+					"description": "Anmeldung, Benutzername, Blockieren, Daten"
+				}
+			},
+			"faq_title": "Häufige Fragen",
+			"faq": {
+				"min_specs": {
+					"category": "Technik",
+					"question": "Was sind die Mindestanforderungen?",
+					"answer": "Eine WebGPU-kompatible Grafikkarte und eine stabile Verbindung für den Koop-Modus. Solo läuft das Spiel auch offline."
+				},
+				"too_dark": {
+					"category": "Technik",
+					"question": "Das Spiel ist zu dunkel, ich sehe kaum etwas.",
+					"answer": "Das ist Absicht — deine Laterne ist deine einzige Lichtquelle. Wenn der Bildschirm wirklich nicht lesbar ist, prüfe lieber die Helligkeit deines Monitors als die Spieleinstellungen."
+				},
+				"desync": {
+					"category": "Technik",
+					"question": "Mein Spiel ist im Koop desynchronisiert.",
+					"answer": "Das passiert meist bei einer instabilen Verbindung. Verlasse das Spiel und tritt erneut bei — die Wacht setzt dort fort, wo du sie verlassen hast."
+				},
+				"glow": {
+					"category": "Gameplay",
+					"question": "Wie funktioniert das Leben der Laterne (der Schein)?",
+					"answer": "Keine klassische Lebensleiste: Der Schein deiner Laterne IST dein Leben. Ist er voll, siehst du weit; schwindet er, schließt sich das Dunkel um dich."
+				},
+				"standing_still": {
+					"category": "Gameplay",
+					"question": "Warum verliere ich Leben, wenn ich stillstehe?",
+					"answer": "Der einzige sichere Boden ist der Strahl der Wacht, und die hält niemals an. Stillstehen heißt, das Dunkel zu dir aufholen zu lassen."
+				},
+				"block": {
+					"category": "Konto",
+					"question": "Wie blockiere ich einen anderen Spieler?",
+					"answer": "Öffne in seinem Profil oder in einer Unterhaltung das Menü und wähle „Blockieren“. Er verschwindet dann aus deinem Feed, deinem Chat und deinem Koop-Matchmaking."
+				}
+			}
+		},
+		"lore": {
+			"kicker": "Die Lore · Die Wacht",
+			"title": "Eine Welt, die die Finsternis noch immer verschlingt.",
+			"intro": "Es gab eine Zeit, in der eine einzige Sonne die Welt erhellte. Dann erlosch sie — sie ging nicht unter, sie <em>erlosch</em>. Das hier ist, was folgte.",
+			"stories": {
+				"extinction": {
+					"label": "DAS ERLÖSCHEN",
+					"title": "Die Finsternis ist keine Abwesenheit.",
+					"body": "Was wir die Finsternis nennen, ist nicht die Abwesenheit von Licht — sie ist lebendige Materie. Eine Flut, die die Welt bedeckt hat und langsam alles verdaut, was sie berührt: Stein, Erinnerung, Namen. Wo sie vorüberzieht, vergisst die Welt, dass es sie je gab."
+				},
+				"vigil": {
+					"label": "DIE WACHT",
+					"title": "Aus dem toten Himmel ein letzter Strahl.",
+					"body": "Ein einziger Lichtfaden fällt noch herab — das letzte Bruchstück der toten Sonne, oder ihr Geist. Die Überlebenden nennen ihn die Wacht. Sie hält niemals an. Man sagt, sie suche etwas in den ertrunkenen Landen, und solange sie sich bewegt, sei die Welt nicht ganz tot. Ihr zu folgen ist die einzige Bedeutung von „leben“, die noch Bestand hat."
+				},
+				"bearers": {
+					"label": "DIE LATERNENTRÄGER",
+					"title": "Du bist kein Held.",
+					"body": "Du bist einer der wenigen, die eine Laterne tragen, entzündet an einem Funken der Wacht — eine Glut, von Hand zu Hand weitergereicht, niemals neu entfacht. Deine Laterne rettet die Welt nicht. Sie zehrt nur gerade genug Nacht um dich herum auf, um noch einen Schritt zu tun. Ihr Schein ist dein Leben: Ist er voll, siehst du weit; schwindet er, schließt sich das Dunkel."
+				},
+				"forgotten": {
+					"label": "DIE VERGESSENEN",
+					"title": "Die Welt, verdaut und wieder ausgespien.",
+					"body": "Was aus der Finsternis kommt, ist der Welt nicht fremd — es ist die Welt selbst, aufgelöst und neu geformt zu Waffen gegen die Lebenden. Je tiefer du hinabsteigst, desto älter sind die Vergessenen, denen du begegnest: länger ertrunken, tiefer verwandelt, mächtiger."
+				}
+			}
+		},
+		"legal": {
+			"kicker": "Rechtliche Hinweise",
+			"title": "Impressum",
+			"last_update": "Zuletzt aktualisiert: {date}",
+			"sections": {
+				"publisher": {
+					"title": "Herausgeber der Website",
+					"body": "<p>Die Website Light-Keepers wird herausgegeben von Lanterne Noire Studio, einer vereinfachten Aktiengesellschaft (SAS) mit einem Stammkapital von 12.000 €, eingetragen im Handels- und Gesellschaftsregister Paris unter der Nummer 912 457 386.</p><p>Sitz der Gesellschaft: 96 boulevard Bessières, 75017 Paris, Frankreich.</p><p>Umsatzsteuer-Identifikationsnummer: FR 47 912 457 386.</p><p>Telefon: +33 1 99 00 47 12 — E-Mail: contact@light-keepers.fr.</p>"
+				},
+				"director": {
+					"title": "Verantwortlich für den Inhalt",
+					"body": "<p>Verantwortlich für den Inhalt ist Herr Antoine Bonneau in seiner Eigenschaft als Präsident von Lanterne Noire Studio.</p>"
+				},
+				"hosting": {
+					"title": "Hosting",
+					"body": "<p>Die Website wird gehostet von Hexacloud SAS mit einem Stammkapital von 250.000 €, eingetragen im Handels- und Gesellschaftsregister Lille Métropole unter der Nummer 834 512 907.</p><p>Sitz der Gesellschaft: 14 rue du Faubourg de Roubaix, 59800 Lille, Frankreich — Telefon: +33 3 99 00 21 85.</p><p>Die Daten werden auf Servern innerhalb der Europäischen Union gespeichert.</p>"
+				},
+				"intellectual_property": {
+					"title": "Geistiges Eigentum",
+					"body": "<p>Alle Bestandteile der Website und des Spiels Light-Keepers — insbesondere Texte, Welt, Figuren, Illustrationen, 3D-Modelle, Logos, Musik, Soundeffekte und Quellcode — sind ausschließliches Eigentum von Lanterne Noire Studio oder seinen Partnern und durch das französische Gesetzbuch über geistiges Eigentum (Code de la propriété intellectuelle) geschützt.</p><p>Jede Vervielfältigung, Darstellung, Änderung, Veröffentlichung oder Bearbeitung dieser Bestandteile, ganz oder teilweise, gleich mit welchen Mitteln oder Verfahren, ist ohne vorherige schriftliche Zustimmung von Lanterne Noire Studio untersagt.</p><p>Die Rendering-Engine Babylon.js wird unter der Apache-2.0-Lizenz vertrieben und bleibt Eigentum ihrer jeweiligen Urheber.</p>"
+				},
+				"user_content": {
+					"title": "Nutzergenerierte Inhalte",
+					"body": "<p>Von Spielern veröffentlichte Nachrichten, Beiträge, Kommentare und Avatare liegen in der alleinigen Verantwortung ihrer Urheber. Mit der Veröffentlichung von Inhalten räumt der Nutzer Lanterne Noire Studio eine nicht ausschließliche, unentgeltliche Lizenz ein, diese Inhalte zu hosten und anzuzeigen, und zwar ausschließlich für die Dauer ihrer Veröffentlichung.</p><p>Gemäß dem französischen Gesetz Nr. 2004-575 vom 21. Juni 2004 über das Vertrauen in die digitale Wirtschaft können offensichtlich rechtswidrige Inhalte an moderation@light-keepers.fr gemeldet werden. Lanterne Noire Studio verpflichtet sich, diese umgehend zu entfernen, sobald es davon Kenntnis erlangt.</p>"
+				},
+				"personal_data": {
+					"title": "Personenbezogene Daten",
+					"body": "<p>Lanterne Noire Studio verarbeitet personenbezogene Daten der Nutzer (E-Mail-Adresse, Benutzername, Spielstatistiken, Nachrichten), um den Dienst bereitzustellen, die Konten zu verwalten und die Sicherheit der Plattform zu gewährleisten, im Einklang mit der Verordnung (EU) 2016/679 (DSGVO) und dem französischen Datenschutzgesetz (Loi Informatique et Libertés).</p><p>Diese Daten werden aufbewahrt, solange das Konto aktiv ist, und anschließend innerhalb von drei Jahren nach der letzten Anmeldung gelöscht. Sie werden niemals an Dritte weitergegeben oder verkauft.</p><p>Jeder Nutzer hat das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit. Diese Rechte können in den Kontoeinstellungen oder über unseren Datenschutzbeauftragten ausgeübt werden: dpo@light-keepers.fr.</p><p>Bei Schwierigkeiten können Nutzer Beschwerde bei der französischen Datenschutzbehörde (CNIL) einlegen.</p>"
+				},
+				"cookies": {
+					"title": "Cookies",
+					"body": "<p>Die Website verwendet ausschließlich Cookies, die für ihren Betrieb unbedingt erforderlich sind: Sitzungserhaltung sowie Sprach- und Designeinstellungen. Es werden keine Werbe-Cookies oder Tracker von Drittanbietern gesetzt.</p><p>Da diese Cookies für den Dienst unerlässlich sind, ist keine vorherige Einwilligung erforderlich. Nutzer können sie dennoch jederzeit in den Einstellungen ihres Browsers löschen.</p>"
+				},
+				"liability": {
+					"title": "Haftung",
+					"body": "<p>Lanterne Noire Studio ist um die Richtigkeit der veröffentlichten Informationen und die Verfügbarkeit des Dienstes bemüht, kann diese jedoch nicht garantieren. Der Zugang zur Website kann für Wartungsarbeiten oder im Fall höherer Gewalt unterbrochen werden.</p><p>Links zu Websites Dritter dienen ausschließlich der Information. Lanterne Noire Studio hat keinen Einfluss auf diese Websites und übernimmt keine Haftung für deren Inhalte.</p>"
+				},
+				"governing_law": {
+					"title": "Anwendbares Recht",
+					"body": "<p>Dieses Impressum unterliegt französischem Recht. Im Streitfall sind, sofern keine gütliche Einigung erzielt wird, ausschließlich die Gerichte von Paris zuständig.</p>"
+				}
+			}
 		}
 	},
-
 	"auth": {
 		"signout": {
-			"label": "Logout",
-			"success": "You have been logged out successfully.",
-			"error": "An error occurred while logging out. Please try again."
+			"label": "Abmelden",
+			"success": "Du wurdest erfolgreich abgemeldet.",
+			"error": "Beim Abmelden ist ein Fehler aufgetreten. Bitte versuche es erneut."
 		},
 		"signin": {
-			"title": "Sign In",
-			"no_account": "Don't have an account ?",
-			"forgot_password": "Forgot your password ?",
-			"reset_password": "Reset Password",
-
-			"username_or_email": "Username or Email",
-			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
-
-			"email": "Email",
+			"title": "Anmelden",
+			"no_account": "Noch kein Konto?",
+			"forgot_password": "Passwort vergessen?",
+			"reset_password": "Passwort zurücksetzen",
+			"username_or_email": "Benutzername oder E-Mail",
+			"username_or_emailPlaceholder": "john_doe oder john.doe@example.com",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-
-			"password": "Password",
-			"passwordPlaceholder": "Enter your password",
-
-			"submit": "Sign In",
-			"submitting": "Signing In",
-			"submitted": "Signed In",
-			"forgotPassword": "Forgot your password?",
-			"success": "You have been signed in successfully.",
-			"error": "An error occurred while signing in. Please check your credentials and try again."
+			"password": "Passwort",
+			"passwordPlaceholder": "Gib dein Passwort ein",
+			"submit": "Anmelden",
+			"submitting": "Anmeldung läuft",
+			"submitted": "Angemeldet",
+			"forgotPassword": "Passwort vergessen?",
+			"success": "Du wurdest erfolgreich angemeldet.",
+			"error": "Bei der Anmeldung ist ein Fehler aufgetreten. Bitte überprüfe deine Zugangsdaten und versuche es erneut."
 		},
 		"signup": {
-			"title": "Sign Up",
-			"already_account": "Already have an account ?",
+			"title": "Registrieren",
+			"already_account": "Schon ein Konto?",
 			"account": {
-				"title": "Account Information",
-				"account_desc": "Create your account by filling in the information below.",
-				"email": "Email",
+				"title": "Kontoinformationen",
+				"account_desc": "Erstelle dein Konto, indem du die folgenden Angaben ausfüllst.",
+				"email": "E-Mail",
 				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
+				"username": "Benutzername",
 				"usernamePlaceholder": "john_doe"
 			},
 			"personal": {
-				"title": "Personal Information",
-				"desc": "Provide some personal details to complete your profile.",
-				"firstName": "First Name",
+				"title": "Persönliche Angaben",
+				"desc": "Gib ein paar persönliche Angaben an, um dein Profil zu vervollständigen.",
+				"firstName": "Vorname",
 				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
+				"lastName": "Nachname",
 				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
-				"gender": "Gender",
-				"genderPlaceholder": "Select your gender",
+				"birthdate": "Geburtsdatum",
+				"gender": "Geschlecht",
+				"genderPlaceholder": "Wähle dein Geschlecht",
 				"genderOptions": {
-					"label": "Gender Options",
-					"male": "Male",
-					"female": "Female",
-					"other": "Other",
-					"prefer_not_to_say": "Prefer not to say"
+					"label": "Geschlechtsoptionen",
+					"male": "Männlich",
+					"female": "Weiblich",
+					"other": "Divers",
+					"prefer_not_to_say": "Keine Angabe"
 				},
-				"locale": "Preferred Language",
-				"localePlaceholder": "Select your preferred language for email notifications",
+				"locale": "Bevorzugte Sprache",
+				"localePlaceholder": "Wähle deine bevorzugte Sprache für E-Mail-Benachrichtigungen",
 				"localeOptions": {
-					"label": "Email Preference",
-					"en": "English",
-					"fr": "French",
-					"de": "German"
+					"label": "E-Mail-Sprache",
+					"en": "Englisch",
+					"fr": "Französisch",
+					"de": "Deutsch",
+					"es": "Spanisch",
+					"it": "Italienisch"
 				}
 			},
 			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
+				"title": "Profil",
+				"desc": "Erzähl uns mehr über dich, um dein Erlebnis zu personalisieren.",
+				"displayName": "Anzeigename",
 				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself"
+				"bio": "Biografie",
+				"bioPlaceholder": "Erzähl uns ein wenig über dich"
 			},
 			"security": {
-				"title": "Security",
-				"desc": "Choose a strong password to protect your account.",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password"
+				"title": "Sicherheit",
+				"desc": "Wähle ein starkes Passwort, um dein Konto zu schützen.",
+				"password": "Passwort",
+				"passwordPlaceholder": "Wähle ein Passwort",
+				"confirmPassword": "Passwort bestätigen",
+				"confirmPasswordPlaceholder": "Gib dein Passwort erneut ein"
 			},
 			"terms": {
-				"title": "Terms and Conditions",
-				"desc": "Please read and accept our Terms and Conditions to proceed.",
-				"acceptTerms": "I have read and accept the Terms and Conditions"
+				"title": "Nutzungsbedingungen",
+				"desc": "Bitte lies und akzeptiere unsere Nutzungsbedingungen, um fortzufahren.",
+				"acceptTerms": "Ich habe die Nutzungsbedingungen gelesen und akzeptiere sie"
 			},
 			"buttons": {
-				"back": "Go Back",
-				"continue": "Continue",
-				"submit": "Submit",
-				"submitting": "Submitting",
-				"submitted": "Submitted",
-				"validating": "Validating"
+				"back": "Zurück",
+				"continue": "Weiter",
+				"submit": "Absenden",
+				"submitting": "Wird gesendet",
+				"submitted": "Gesendet",
+				"validating": "Wird überprüft",
+				"save": "Speichern",
+				"saving": "Wird gespeichert",
+				"saved": "Gespeichert"
 			},
-			"recap_title": "Review Your Information",
-
-			"success": "Account created successfully!",
-			"error": "Failed to create account. Please try again."
+			"recap_title": "Überprüfe deine Angaben",
+			"success": "Konto erfolgreich erstellt!",
+			"error": "Konto konnte nicht erstellt werden. Bitte versuche es erneut."
 		},
 		"forgot_password": {
-			"title": "Reset Password",
-			"login": "Remember your password ?",
-			"email": "Email",
+			"title": "Passwort zurücksetzen",
+			"login": "Passwort wieder eingefallen?",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-			"submit": "Send Reset Link",
-			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent",
-			"success": "If an account with that email exists, a password reset link has been sent."
+			"submit": "Link zum Zurücksetzen senden",
+			"submitting": "Link wird gesendet",
+			"submitted": "Link gesendet",
+			"success": "Falls ein Konto mit dieser E-Mail-Adresse existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet."
 		},
 		"reset_password": {
-			"title": "Set New Password",
-			"login": "Remember your password ?",
-			"password": "New Password",
-			"passwordPlaceholder": "Enter your new password",
-			"confirmPassword": "Confirm New Password",
-			"confirmPasswordPlaceholder": "Re-enter your new password",
-			"submit": "Reset Password",
-			"submitting": "Resetting Password",
-			"submitted": "Password Reset",
-			"success": "Your password has been reset successfully!",
-			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+			"title": "Neues Passwort festlegen",
+			"login": "Passwort wieder eingefallen?",
+			"password": "Neues Passwort",
+			"passwordPlaceholder": "Gib dein neues Passwort ein",
+			"confirmPassword": "Neues Passwort bestätigen",
+			"confirmPasswordPlaceholder": "Gib dein neues Passwort erneut ein",
+			"submit": "Passwort zurücksetzen",
+			"submitting": "Passwort wird zurückgesetzt",
+			"submitted": "Passwort zurückgesetzt",
+			"success": "Dein Passwort wurde erfolgreich zurückgesetzt!",
+			"error": "Passwort konnte nicht zurückgesetzt werden. Der Link ist möglicherweise ungültig oder abgelaufen. Bitte versuche es erneut."
 		}
 	},
-
 	"forms": {
 		"error": {
-			"required": "This field is required",
-
-			"email": "Please enter a valid email address",
-			"string": "This field must be a string",
-			"number": "This field must be a number",
-			"date": "This field must be a valid date",
-			"boolean": "This field must be true or false",
-			"enum": "Invalid option selected",
-			"phone": "Please enter a valid phone number in E.164 format",
-			"pattern": "Invalid format",
-
-			"lowercase": "Only lowercase letters are allowed",
-			"uppercase": "Only uppercase letters are allowed",
-
-			"minLength": "Minimum length is {min} characters",
-			"maxLength": "Maximum length is {max} characters",
-
-			"select": "Please select an option",
-			"mustAcceptTerms": "You must accept the terms and conditions",
-
-			"password_match": "Passwords must match",
-			"password_uppercase": "Password must contain at least one uppercase letter",
-			"password_lowercase": "Password must contain at least one lowercase letter",
-			"password_number": "Password must contain at least one number",
-			"password_special": "Password must contain at least one special character",
-
-			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken",
-			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
-
-			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register",
-
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"required": "Dieses Feld ist erforderlich",
+			"email": "Bitte gib eine gültige E-Mail-Adresse ein",
+			"string": "Dieses Feld muss ein Text sein",
+			"number": "Dieses Feld muss eine Zahl sein",
+			"date": "Dieses Feld muss ein gültiges Datum sein",
+			"boolean": "Dieses Feld muss wahr oder falsch sein",
+			"enum": "Ungültige Option ausgewählt",
+			"phone": "Bitte gib eine gültige Telefonnummer im E.164-Format ein",
+			"pattern": "Ungültiges Format",
+			"lowercase": "Nur Kleinbuchstaben sind erlaubt",
+			"uppercase": "Nur Großbuchstaben sind erlaubt",
+			"minLength": "Die Mindestlänge beträgt {min} Zeichen",
+			"maxLength": "Die maximale Länge beträgt {max} Zeichen",
+			"fileSizeMB": "Die Datei muss kleiner als {maxSize} MB sein",
+			"maxFilesCount": "Du kannst bis zu {maxCount} Dateien anhängen",
+			"imageOnly": "Nur Bilddateien sind erlaubt",
+			"imageVideoOnly": "Nur Bild- und Videodateien sind erlaubt",
+			"select": "Bitte wähle eine Option aus",
+			"mustAcceptTerms": "Du musst die Nutzungsbedingungen akzeptieren",
+			"password_match": "Die Passwörter müssen übereinstimmen",
+			"password_uppercase": "Das Passwort muss mindestens einen Großbuchstaben enthalten",
+			"password_lowercase": "Das Passwort muss mindestens einen Kleinbuchstaben enthalten",
+			"password_number": "Das Passwort muss mindestens eine Ziffer enthalten",
+			"password_special": "Das Passwort muss mindestens ein Sonderzeichen enthalten",
+			"email_already_in_use": "Diese E-Mail-Adresse wird bereits verwendet",
+			"username_already_in_use": "Dieser Benutzername ist bereits vergeben",
+			"user_already_exists": "Während du das Formular ausgefüllt hast, hat sich ein Nutzer mit dieser E-Mail-Adresse oder diesem Benutzernamen registriert. Bitte versuche es mit anderen Zugangsdaten erneut.",
+			"internal_server_error": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später erneut.",
+			"age_restriction": "Du musst mindestens 13 Jahre alt sein, um dich zu registrieren",
+			"invalid_credentials": "Ungültige Zugangsdaten. Bitte überprüfe deine Angaben und versuche es erneut.",
+			"invalid_token": "Der Link zum Zurücksetzen ist ungültig oder abgelaufen. Bitte fordere einen neuen an.",
+			"invalid_email": "Diese E-Mail-Adresse ist nicht registriert. Bitte überprüfe sie und versuche es erneut.",
+			"at_least_one": "Mindestens ein Feld ist erforderlich",
+			"message_empty_if_attachments": "Der Nachrichtentext darf nur leer sein, wenn ein Anhang beigefügt ist"
 		},
 		"addons": {
-			"length": "{current} / {max} characters max"
+			"length": "{current} / {max} Zeichen max."
 		}
+	},
+	"date": {
+		"today": "Heute",
+		"yesterday": "Gestern",
+		"just_now": "Gerade eben",
+		"minutes_ago": "{count, plural, =1 {vor einer Minute} other {vor # Minuten}}",
+		"hours_ago": "{count, plural, =1 {vor einer Stunde} other {vor # Stunden}}",
+		"days_ago": "{count, plural, =1 {vor einem Tag} other {vor # Tagen}}",
+		"weeks_ago": "{count, plural, =1 {vor einer Woche} other {vor # Wochen}}",
+		"months_ago": "{count, plural, =1 {vor einem Monat} other {vor # Monaten}}",
+		"years_ago": "{count, plural, =1 {vor einem Jahr} other {vor # Jahren}}"
+	},
+	"common": {
+		"confirm": "Bestätigen",
+		"cancel": "Abbrechen",
+		"themes": {
+			"dark": "Dunkel",
+			"light": "Hell",
+			"system": "System",
+			"neon": "Neon",
+			"emerald-dark": "Smaragd dunkel",
+			"emerald-light": "Smaragd hell",
+			"synthwave-dark": "Synthwave dunkel",
+			"synthwave-light": "Synthwave hell",
+			"crimson-dark": "Karmesin dunkel",
+			"crimson-light": "Karmesin hell"
+		},
+		"close": "Schließen",
+		"language": "Sprache",
+		"appearance": "Darstellung",
+		"avatar_preview": "Avatar-Vorschau",
+		"not_found": {
+			"resource": "Die gesuchte Seite existiert nicht.",
+			"chat_room": "Der gesuchte Chatraum existiert nicht."
+		},
+		"loading": "Wird geladen",
+		"go_top": "Nach oben",
+		"form_steps": "Formularschritte"
 	}
 }

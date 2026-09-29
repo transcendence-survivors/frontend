@@ -38,6 +38,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/support',
 		it: '/support',
 	},
+	legalNotice: {
+		en: '/legal-notice',
+		de: '/impressum',
+		fr: '/mentions-legales',
+		es: '/aviso-legal',
+		che: '/impressum',
+		it: '/note-legali',
+	},
 
 	register: {
 		en: '/register',

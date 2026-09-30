@@ -7,38 +7,31 @@ import useLocaleParams from '@/modules/i18n/hooks/useLocale';
 
 export function GameRoot() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
-	const startedRef = useRef(false);
 
 	const user = useUser();
 	const locale = useLocaleParams();
+
+	const username = user?.username;
+	const userId = user?.id;
+	const displayName = user?.displayName;
+	const avatarUrl = user?.avatarUrl;
+	const currentLocale = locale.currentLocale;
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
-		if (!canvas || startedRef.current || !user) return;
+		if (!canvas || !username || !userId || !displayName) return;
 
-		let cancelled = false;
-
-		if (startedRef.current === false) {
-			startedRef.current = true;
 			initGame(
 				canvas,
-				user.username,
-				user.id,
-				locale.currentLocale,
-				user.displayName,
-				user.avatarUrl,
-			).then(() => {
-				if (cancelled) {
-					destroyGame();
-					startedRef.current = false;
-				}
-			});
-		}
-		return () => {
-			cancelled = true;
-			destroyGame();
-			startedRef.current = false;
-		};
-	}, [user, locale]);
+				username,
+				userId,
+				currentLocale,
+				displayName,
+				avatarUrl,
+			);
+
+		return () => destroyGame();
+	}, [username, userId, displayName, avatarUrl, currentLocale]);
 
 	return <canvas ref={canvasRef} className='w-full h-full' />;
 }

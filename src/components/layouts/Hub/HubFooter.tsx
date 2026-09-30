@@ -1,8 +1,8 @@
 import AvatarDropdown from '@/features/user/components/Avatar/AvatarDropDown';
 import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownSubMenu';
-import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownSubMenu';
+import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownMenu';
+import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownMenu';
 import { useTranslations } from 'next-intl';
 
 type HubFooterProps = React.HTMLAttributes<HTMLElement>;

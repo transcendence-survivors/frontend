@@ -3,8 +3,8 @@ import I18nLink from '@/modules/i18n/components/I18nLink';
 import { useTranslations } from 'next-intl';
 import LandingNavDrawer from './LandingNavDrawer';
 import LandingNav from './LandingNav';
-import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownSubMenu';
-import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownSubMenu';
+import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownMenu';
+import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownMenu';
 
 export default function LandingHeader() {
 	const t = useTranslations('nav');

@@ -11,8 +11,8 @@ import {
 } from '@/components/ui/drawer';
 import LogoLink from '@/components/ui/logo-link';
 import LandingNav from './LandingNav';
-import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownSubMenu';
-import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownSubMenu';
+import LocaleDropdownMenu from '@/modules/i18n/components/LocaleDropdownMenu';
+import ThemeDropdownMenu from '@/modules/themes/components/ThemeDropdownMenu';
 
 type LandingNavDrawerProps = React.ComponentProps<typeof Button>;
 

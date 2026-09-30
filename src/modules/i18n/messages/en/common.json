@@ -7,6 +7,7 @@
 		"settings": "Settings",
 		"logout": "Logout",
 		"posts": "Posts",
+		"wiki": "Wiki",
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
 		"legal": "Legal Notice",
@@ -907,6 +908,261 @@
 			"light": "Light",
 			"system": "System",
 			"neon": "Neon"
+		}
+	},
+	"wiki": {
+		"title": "Arsenal & Tome Compendium",
+		"subtitle": "Comprehensive guide to combat mechanics, stats scaling, weapons, and optimal tome synergies.",
+		"tabs": {
+			"mechanics": "Game Mechanics & Stats",
+			"weapons": "Weapons",
+			"tomes": "Tomes",
+			"synergies": "Optimal Builds & Synergies"
+		},
+		"notes": {
+			"title": "Core Rules & Combat Notes",
+			"affinity": "Affinity determines stat scaling: 1.0 is 100% effectiveness, 0.5 is half, and >1.0 amplifies the stat.",
+			"global": "Tomes grant global bonuses to player stats or scaling across all equipped weapons simultaneously.",
+			"limits": "You can carry a maximum of 4 Tomes (max level 99 per tome). Weapon attack rates are subject to max caps.",
+			"weaponsLimit": "You can carry a maximum of 3 weapons at the same time during a run."
+		},
+		"labels": {
+			"behavior": "Attack Behavior",
+			"affinities": "Stat Scaling & Affinity",
+			"affectedWeapons": "Affected Weapons",
+			"bestFor": "Best Used For",
+			"bestTomes": "Recommended Tomes",
+			"rarityValues": "Rarity Scaling",
+			"target": "Target",
+			"baseValue": "Base Value",
+			"key": "Key",
+			"formula": "Formula / Limit"
+		},
+		"targets": {
+			"weapons": "weapons",
+			"player": "player",
+			"upgrades": "upgrades"
+		},
+		"rarities": {
+			"common": "Common",
+			"uncommon": "Uncommon",
+			"rare": "Rare",
+			"epic": "Epic",
+			"legendary": "Legendary"
+		},
+		"stats": {
+			"title": "Stat Mechanics & Formulas",
+			"attackDamage": "Damage",
+			"attackSpeed": "Attack Speed",
+			"range": "Range",
+			"size": "Size",
+			"duration": "Duration",
+			"quantity": "Quantity",
+			"penetration": "Penetration",
+			"moveSpeed": "Move Speed",
+			"maxHealth": "Max Health",
+			"armor": "Armor",
+			"lifesteal": "Lifesteal",
+			"luck": "Luck",
+			"explanations": {
+				"attackDamage": {
+					"desc": "Base value is 100 (100%). Multiplies base attack output per hit across all carried weapons modified by affinity.",
+					"formula": "Final Damage = Base Damage × (1 + Stat Bonus × Affinity)"
+				},
+				"attackSpeed": {
+					"desc": "Base value is 1.0. Increases attack frequency and lowers tick intervals between attacks.",
+					"formula": "Capped globally by COMBAT_LIMITS.maxFinalAttackRate"
+				},
+				"range": {
+					"desc": "Base value is 8. Extends projectile travel distance, target acquisition radii, and throwing reach.",
+					"formula": "Global Range Multiplier = 1 + (Range − 8) / 8"
+				},
+				"size": {
+					"desc": "Base value is 1.0. Increases physical collision hitboxes, slash arcs, and aura radius of weapons.",
+					"formula": "Hitbox Scale = Base Size × Size Multiplier"
+				},
+				"duration": {
+					"desc": "Base value is 1.0. Keeps active spell effects, slash arcs, and spinning axes alive on the battlefield longer.",
+					"formula": "Applies at 100% scaling with no affinity penalty"
+				},
+				"quantity": {
+					"desc": "Base value is 0. Adds extra physical projectiles per volley cast.",
+					"formula": "Hard capped at COMBAT_LIMITS.maxProjectilesPerPlayer (32)"
+				},
+				"penetration": {
+					"desc": "Base value is 0. Allows projectiles to pierce through targets without disappearing on impact.",
+					"formula": "Only upgraded through Staff and Bow perks"
+				},
+				"moveSpeed": {
+					"desc": "Base value is 30. Direct movement speed modifier to outrun hordes and maintain spatial positioning.",
+					"formula": "Player-only stat (0% weapon affinity)"
+				},
+				"maxHealth": {
+					"desc": "Base value is 100. Raises maximum health pool while dynamically rescaling current health percentage.",
+					"formula": "Current HP% is preserved upon upgrade"
+				},
+				"armor": {
+					"desc": "Base value is 1. Direct damage reduction against all incoming monster attacks.",
+					"formula": "Damage Taken = Raw Damage × 100 / (100 + Armor)"
+				},
+				"lifesteal": {
+					"desc": "Base value is 1 (1%). Converts actual damage dealt into immediate player healing.",
+					"formula": "Heal = Damage Dealt × Lifesteal %"
+				},
+				"luck": {
+					"desc": "Base value is 1.0. Multiplies weight rolls for Uncommon, Rare, Epic, and Legendary upgrade choices.",
+					"formula": "Weights = Base Weight × Luck (Common stays fixed)"
+				}
+			}
+		},
+		"combatRules": {
+			"title": "Combat Pipeline & System Mechanics",
+			"affinityTitle": "Affinity Scaling Logic",
+			"affinityDesc": "A weapon affinity of 1.0 applies a stat bonus at standard value. An affinity of 0.5 reduces efficiency by half, while 1.25 amplifies the bonus strength by 25%.",
+			"armorTitle": "Diminishing Armor Returns",
+			"armorDesc": "Armor uses a hyperbolic formula, meaning every point guarantees effective health scaling without granting total invincibility.",
+			"tomeLimitTitle": "Slot Restrictions & Capping",
+			"tomeLimitDesc": "You can select up to 4 Tomes per run (capped at level 99 each). Once all 4 slots are occupied, drafting will only offer copies of held tomes."
+		},
+		"synergies": {
+			"axeSize": {
+				"title": "Axe + Tome of Growth (Size Multiplier)",
+				"description": "The Axe possesses a unique 1.25x affinity for Size. Equipping the Tome of Growth expands its spinning contact cylinder significantly more than standard weapons, turning planted axes into massive stationary blender zones."
+			},
+			"staffRange": {
+				"title": "Staff + Tome of Quantity & Range",
+				"description": "The Staff has long acquisition range (1.25x affinity) but low fire rate. Pairing it with Tome of Quantity and Tome of Range transforms single-target homing fireballs into long-distance homing swarms."
+			},
+			"bowHaste": {
+				"title": "Bow + Tome of Haste (Attack Speed)",
+				"description": "With a 1.2x Attack Speed affinity, the Bow scales rapidly with Tome of Haste, firing dense streams of arrows capable of holding off incoming hordes."
+			}
+		},
+		"weapons": {
+			"aura": {
+				"name": "Aura",
+				"type": "Area Aura",
+				"description": "A permanent ring of energy centred on the player. It is never aimed and picks no target: it simply burns whatever comes close.",
+				"behavior": "On every tick the ring is swept as a cylinder around the player, damaging all enemies inside without projectiles or cooldown per target.",
+				"bestFor": "Close-quarters swarm control, AFK/low-effort mob clearing, and providing a defensive perimeter against fast runners.",
+				"synergyTip": "Scales best with Size and Attack Speed to expand the burning zone and increase tick frequency.",
+				"effects": {
+					"attackDamage": "Raises the damage dealt on each tick.",
+					"attackSpeed": "Raises how often the ring ticks.",
+					"range": "Widens the radius of the ring.",
+					"size": "Widens the radius of the ring, on top of range."
+				}
+			},
+			"sword": {
+				"name": "Sword",
+				"type": "Melee Arc",
+				"description": "A melee blade swung in front of the player. It hits hard in a wide arc, but only reaches what stands ahead.",
+				"behavior": "Slashes a 180-degree arc forward, damaging and knocking back enemies. Does not travel.",
+				"bestFor": "Frontal burst defense, pushing through dense enemy walls, and directional crowd control.",
+				"synergyTip": "Combines high base damage with Duration and Size to keep the knockback zone active longer.",
+				"effects": {
+					"attackDamage": "Raises the damage of each slash.",
+					"attackSpeed": "Raises how often the slash triggers.",
+					"range": "Extends the reach of the arc.",
+					"size": "Extends the reach of the arc, on top of the range stat.",
+					"duration": "Keeps the slash effect alive longer."
+				}
+			},
+			"axe": {
+				"name": "Axe",
+				"type": "Zone Control",
+				"description": "A thrown axe that plants itself in the ground and keeps spinning. An area control weapon rather than a burst one.",
+				"behavior": "Flies to the nearest enemy within range, then spins in place for its duration, damaging everything within its cylinder.",
+				"bestFor": "Choke-point defense, stationary boss damage, and zone denial.",
+				"synergyTip": "Massive 1.25x Size affinity makes Tome of Growth expand its spinning radius exponentially.",
+				"effects": {
+					"attackDamage": "Raises the damage of each contact.",
+					"attackSpeed": "Raises how often an axe is thrown.",
+					"range": "Extends how far the axe can be thrown.",
+					"size": "Widens the contact cylinder of the spinning axe.",
+					"duration": "Keeps the axe spinning longer."
+				}
+			},
+			"staff": {
+				"name": "Staff",
+				"type": "Homing Ranged",
+				"description": "A caster weapon that launches homing fireballs. The longest reach and the highest damage per hit, but the slowest rhythm.",
+				"behavior": "Fires homing fireballs at the nearest target within range that track until contact, expiration, or pierce limit.",
+				"bestFor": "Single-target boss melting, long-range sniper plays, and high burst damage.",
+				"synergyTip": "Benefits immensely from Quantity and Range, turning slow single casts into homing volleys.",
+				"effects": {
+					"attackDamage": "Raises the damage of each fireball.",
+					"attackSpeed": "Raises how often a volley is cast.",
+					"range": "Extends the acquisition range used to pick a target.",
+					"size": "Widens the hit area of the fireball.",
+					"duration": "Lets a fireball live longer before it expires.",
+					"quantity": "Adds extra fireballs to the volley.",
+					"penetration": "Lets a fireball pass through extra monsters."
+				}
+			},
+			"bow": {
+				"name": "Bow",
+				"type": "Spread Ranged",
+				"description": "A ranged weapon firing a fan of arrows forward. Each arrow is weak on its own; the weapon lives on volume and rate of fire.",
+				"behavior": "Fires a wide spread of arrows straight ahead. Each arrow disappears on contact unless penetration is granted.",
+				"bestFor": "Directional horde suppression, high-rate-of-fire builds, and screen clearing with penetration upgrades.",
+				"synergyTip": "Leverages 1.2x Attack Speed affinity and extra Quantity to create an impenetrable arrow wall.",
+				"effects": {
+					"attackDamage": "Raises the damage of each arrow.",
+					"attackSpeed": "Raises how often a volley is fired.",
+					"range": "Extends how far an arrow travels before it expires.",
+					"size": "Widens the hit area of the arrow.",
+					"duration": "Lets an arrow live longer before it expires.",
+					"quantity": "Adds extra arrows to the spread.",
+					"penetration": "Lets an arrow pass through extra monsters."
+				}
+			}
+		},
+		"tomes": {
+			"damage": {
+				"name": "Tome of Power",
+				"description": "Raises the damage of every weapon the player carries."
+			},
+			"cooldown": {
+				"name": "Tome of Haste",
+				"description": "Makes every weapon attack more often."
+			},
+			"agility": {
+				"name": "Tome of Agility",
+				"description": "Makes the player move faster to outrun the horde and maintain positioning."
+			},
+			"vitality": {
+				"name": "Tome of Vitality",
+				"description": "Raises maximum player health and rescales current health."
+			},
+			"armor": {
+				"name": "Tome of Armor",
+				"description": "Reduces incoming damage via standard defense formulas."
+			},
+			"blood": {
+				"name": "Blood Tome",
+				"description": "Heals the player from a percentage of damage dealt across all weapons."
+			},
+			"range": {
+				"name": "Tome of Range",
+				"description": "Extends target acquisition distance and travel ranges for all attacks."
+			},
+			"size": {
+				"name": "Tome of Growth",
+				"description": "Enlarges attack hitboxes, arcs, and effect radii."
+			},
+			"duration": {
+				"name": "Tome of Duration",
+				"description": "Extends the active uptime of slashes, spinning axes, and projectile lifetimes."
+			},
+			"quantity": {
+				"name": "Tome of Quantity",
+				"description": "Adds extra projectiles per volley to multi-projectile weapons (Staff and Bow)."
+			},
+			"fortune": {
+				"name": "Tome of Fortune",
+				"description": "Increases luck stat to boost the drop rates of higher-rarity upgrades."
+			}
 		}
 	}
 }

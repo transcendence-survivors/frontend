@@ -16,6 +16,7 @@ interface LandingNavProps extends React.HTMLAttributes<HTMLUListElement> {
 export const navItems = [
 	{ key: 'home', labelKey: 'home' },
 	{ key: 'lore', labelKey: 'lore' },
+	{ key: 'wiki', labelKey: 'wiki' },
 	{ key: 'support', labelKey: 'support' },
 ] as const satisfies NavLink<AppMessages['nav']>[];
 

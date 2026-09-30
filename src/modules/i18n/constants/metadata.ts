@@ -1,116 +1,59 @@
-import { type Locale } from './locales';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
+import { Locale } from './locales';
 
-const SITE_NAME = 'Transcendence Survivors';
+const SITE_NAME = 'Light Keepers';
+const SITE_URL = 'https://example.com'; // Replace with your actual domain
 
-const metaTest = {
-	title: SITE_NAME,
-	description:
-		'The ultimate survival social network for gaming and adventure enthusiasts.',
-	keywords: [
-		'social network',
-		'gaming community',
-		'adventure',
-		'survival',
-		'video games',
-		'content sharing',
-		'social interaction',
-		'gaming',
-		'game enthusiasts',
-		'online community',
-		'sharing experiences',
-		'survival tips',
-		'game strategies',
-		'gaming news',
-		'video game events',
-		'game discussion groups',
-	],
-	openGraph: {
-		title: SITE_NAME,
-		description:
-			'The ultimate survival social network for gaming and adventure enthusiasts.',
-		url: 'https://example.com/en',
-		siteName: SITE_NAME,
-		type: 'website',
-		images: [
-			{
-				url: 'https://example.com/static/og-image-en.jpg',
-				secureUrl: 'https://example.com/static/og-image-en.jpg',
-				width: 1200,
-				height: 630,
-				alt: 'Preview of Transcendence Survivors',
-				type: 'image/jpg',
-			},
-		],
-	},
-	twitter: {
-		card: 'summary_large_image',
-		site: '@transcendence_survivors',
-		title: SITE_NAME,
-		description:
-			'The ultimate survival social network for gaming and adventure enthusiasts.',
-		creator: '@transcendence_survivors',
-		images: [
-			{
-				url: 'https://example.com/static/og-image-en.jpg',
-				alt: 'Preview of Transcendence Survivors',
-			},
-		],
-	},
-};
-
-const METADATA = {
+export const METADATA = {
 	fr: {
-		title: SITE_NAME,
+		title: {
+			default: `${SITE_NAME} | Réseau Social & Compendium de Survie`,
+			template: `%s | ${SITE_NAME}`,
+		},
 		description:
-			"Le réseau social de survie ultime pour les passionnés de jeux vidéo et d'aventure.",
+			'Rejoignez la communauté Light Keepers : partagez vos posts, discutez en salons de chat (MP & groupes), inspectez les profils et stats des joueurs, et consultez le wiki des armes et tomes.',
 		keywords: [
-			'reseau social',
+			'Light Keepers',
+			'réseau social gaming',
 			'communauté de joueurs',
-			'aventure',
-			'survie',
-			'jeux vidéo',
-			'partage de contenu',
-			'interaction sociale',
-			'gaming',
-			'passionnés de jeux',
-			'communauté en ligne',
-			"partage d'expériences",
-			'conseils de survie',
-			'stratégies de jeu',
-			'actualités du gaming',
-			'événements de jeux vidéo',
-			'groupes de discussion sur les jeux',
+			'compendium armes et tomes',
+			'wiki jeu de survie',
+			'salons de chat gaming',
+			'profils et statistiques joueurs',
+			'synergies armes',
+			'stratégies de survie',
+			'partage de builds',
 		],
 		openGraph: {
-			title: SITE_NAME,
+			title: `${SITE_NAME} - Communauté, Stats & Wiki de Survie`,
 			description:
-				"Le réseau social de survie ultime pour les passionnés de jeux vidéo et d'aventure.",
-			url: 'https://example.com/fr',
+				'Échangez avec les joueurs, créez des salons de chat, analysez les statistiques de profil et maîtrisez le compendium des armes et tomes.',
+			url: `${SITE_URL}/fr`,
 			siteName: SITE_NAME,
+			locale: 'fr_FR',
 			type: 'website',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-fr.jpg',
-					secureUrl: 'https://example.com/static/og-image-fr.jpg',
+					url: `${SITE_URL}/static/og-image-fr.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-fr.jpg`,
 					width: 1200,
 					height: 630,
-					alt: 'Aperçu de Transcendence Survivors',
+					alt: 'Aperçu de Light Keepers',
 					type: 'image/jpg',
 				},
 			],
 		},
 		twitter: {
 			card: 'summary_large_image',
-			site: '@transcendence_survivors',
-			title: SITE_NAME,
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Réseau Social & Guide de Survie`,
 			description:
-				"Le réseau social de survie ultime pour les passionnés de jeux vidéo et d'aventure.",
-			creator: '@transcendence_survivors',
+				'Échangez avec les joueurs, créez des salons de chat, analysez les profils et maîtrisez le compendium des armes.',
+			creator: '@lightkeepers',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-fr.jpg',
-					alt: 'Aperçu de Transcendence Survivors',
+					url: `${SITE_URL}/static/og-image-fr.jpg`,
+					alt: 'Aperçu de Light Keepers',
 					width: 1200,
 					height: 630,
 				},
@@ -118,118 +61,271 @@ const METADATA = {
 		},
 	},
 	en: {
-		title: SITE_NAME,
+		title: {
+			default: `${SITE_NAME} | Player Network & Survival Compendium`,
+			template: `%s | ${SITE_NAME}`,
+		},
 		description:
-			'The ultimate survival social network for gaming and adventure enthusiasts.',
+			'Join the Light Keepers community: share posts, chat in custom rooms (DMs & group channels with roles), inspect player stats, and master the weapon and tome wiki.',
 		keywords: [
-			'social network',
-			'gaming community',
-			'adventure',
-			'survival',
-			'video games',
-			'content sharing',
-			'social interaction',
-			'gaming',
-			'game enthusiasts',
-			'online community',
-			'sharing experiences',
-			'survival tips',
-			'game strategies',
-			'gaming news',
-			'video game events',
-			'game discussion groups',
+			'Light Keepers',
+			'gaming social network',
+			'survival game community',
+			'weapon and tome wiki',
+			'player stats and profiles',
+			'gaming chat rooms',
+			'weapon synergies',
+			'build strategies',
+			'co-op gaming network',
 		],
 		openGraph: {
-			title: SITE_NAME,
+			title: `${SITE_NAME} - Community, Stats & Game Wiki`,
 			description:
-				'The ultimate survival social network for gaming and adventure enthusiasts.',
-			url: 'https://example.com/en',
+				'Connect with players, chat in dedicated rooms, inspect profile stats, and master weapon synergies.',
+			url: `${SITE_URL}/en`,
 			siteName: SITE_NAME,
+			locale: 'en_US',
 			type: 'website',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-en.jpg',
-					secureUrl: 'https://example.com/static/og-image-en.jpg',
+					url: `${SITE_URL}/static/og-image-en.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-en.jpg`,
 					width: 1200,
 					height: 630,
-					alt: 'Preview of Transcendence Survivors',
+					alt: 'Preview of Light Keepers',
 					type: 'image/jpg',
 				},
 			],
 		},
 		twitter: {
 			card: 'summary_large_image',
-			site: '@transcendence_survivors',
-			title: SITE_NAME,
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Player Network & Game Guide`,
 			description:
-				'The ultimate survival social network for gaming and adventure enthusiasts.',
-			creator: '@transcendence_survivors',
+				'Connect with players, chat in dedicated rooms, inspect profile stats, and master weapon synergies.',
+			creator: '@lightkeepers',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-en.jpg',
-					alt: 'Preview of Transcendence Survivors',
+					url: `${SITE_URL}/static/og-image-en.jpg`,
+					alt: 'Preview of Light Keepers',
+					width: 1200,
+					height: 630,
 				},
 			],
 		},
 	},
 	de: {
-		title: SITE_NAME,
+		title: {
+			default: `${SITE_NAME} | Spieler-Netzwerk & Überlebens-Kompendium`,
+			template: `%s | ${SITE_NAME}`,
+		},
 		description:
-			'Das ultimative Überlebensnetzwerk für Gaming- und Abenteuer-Enthusiasten.',
+			'Werde Teil der Light Keepers Community: Teile Beiträge, chatte in Gruppenräumen, analysiere Spieler-Statistiken und entdecke das Waffen- und Buch-Wiki.',
 		keywords: [
-			'social network',
-			'gaming community',
-			'adventure',
-			'survival',
-			'video games',
-			'content sharing',
-			'social interaction',
-			'gaming',
-			'game enthusiasts',
-			'online community',
-			'sharing experiences',
-			'survival tips',
-			'game strategies',
-			'gaming news',
-			'video game events',
-			'game discussion groups',
+			'Light Keepers',
+			'Gaming Soziales Netzwerk',
+			'Survival Gaming Community',
+			'Waffen und Buch Wiki',
+			'Spieler Statistiken',
+			'Gaming Chaträume',
+			'Waffen Synergien',
+			'Überlebensstrategien',
 		],
 		openGraph: {
-			title: SITE_NAME,
+			title: `${SITE_NAME} - Community, Stats & Spiel-Wiki`,
 			description:
-				'Das ultimative Überlebensnetzwerk für Gaming- und Abenteuer-Enthusiasten.',
-			url: 'https://example.com/de',
+				'Verbinde dich mit Spielern, chatte in eigenen Räumen, vergleiche Statistiken und meistere das Waffen-Kompendium.',
+			url: `${SITE_URL}/de`,
 			siteName: SITE_NAME,
+			locale: 'de_DE',
 			type: 'website',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-de.jpg',
-					secureUrl: 'https://example.com/static/og-image-de.jpg',
+					url: `${SITE_URL}/static/og-image-de.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-de.jpg`,
 					width: 1200,
 					height: 630,
-					alt: 'Vorschau von Transcendence Survivors',
+					alt: 'Vorschau von Light Keepers',
 					type: 'image/jpg',
 				},
 			],
 		},
 		twitter: {
 			card: 'summary_large_image',
-			site: '@transcendence_survivors',
-			title: SITE_NAME,
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Spieler-Netzwerk & Spiel-Wiki`,
 			description:
-				'Das ultimative Überlebensnetzwerk für Gaming- und Abenteuer-Enthusiasten.',
-			creator: '@transcendence_survivors',
+				'Verbinde dich mit Spielern, chatte in eigenen Räumen, vergleiche Statistiken und meistere das Waffen-Kompendium.',
+			creator: '@lightkeepers',
 			images: [
 				{
-					url: 'https://example.com/static/og-image-de.jpg',
-					alt: 'Vorschau von Transcendence Survivors',
+					url: `${SITE_URL}/static/og-image-de.jpg`,
+					alt: 'Vorschau von Light Keepers',
+					width: 1200,
+					height: 630,
 				},
 			],
 		},
 	},
-	che: metaTest,
-	es: metaTest,
-	it: metaTest,
+	che: {
+		title: {
+			default: `${SITE_NAME} | Spieler-Netzwerk & Überlebens-Kompendium`,
+			template: `%s | ${SITE_NAME}`,
+		},
+		description:
+			'Werde Teil der Light Keepers Community: Teile Beiträge, chatte in Gruppenräumen, analysiere Spieler-Statistiken und entdecke das Waffen- und Buch-Wiki.',
+		keywords: [
+			'Light Keepers',
+			'Gaming Soziales Netzwerk',
+			'Survival Gaming Community',
+			'Waffen und Buch Wiki',
+			'Spieler Statistiken',
+			'Gaming Chaträume',
+			'Waffen Synergien',
+			'Überlebensstrategien',
+		],
+		openGraph: {
+			title: `${SITE_NAME} - Community, Stats & Spiel-Wiki`,
+			description:
+				'Verbinde dich mit Spielern, chatte in eigenen Räumen, vergleiche Statistiken und meistere das Waffen-Kompendium.',
+			url: `${SITE_URL}/che`,
+			siteName: SITE_NAME,
+			locale: 'de_CH',
+			type: 'website',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-de.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-de.jpg`,
+					width: 1200,
+					height: 630,
+					alt: 'Vorschau von Light Keepers',
+					type: 'image/jpg',
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Spieler-Netzwerk & Spiel-Wiki`,
+			description:
+				'Verbinde dich mit Spielern, chatte in eigenen Räumen, vergleiche Statistiken und meistere das Waffen-Kompendium.',
+			creator: '@lightkeepers',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-de.jpg`,
+					alt: 'Vorschau von Light Keepers',
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	},
+	es: {
+		title: {
+			default: `${SITE_NAME} | Red Social y Compendio de Supervivencia`,
+			template: `%s | ${SITE_NAME}`,
+		},
+		description:
+			'Únete a la comunidad de Light Keepers: comparte publicaciones, chatea en salas de grupo o DMs, inspecciona estadísticas de jugadores y explora la wiki de armas y tomos.',
+		keywords: [
+			'Light Keepers',
+			'red social de videojuegos',
+			'comunidad de supervivencia',
+			'wiki de armas y tomos',
+			'estadísticas de jugadores',
+			'salas de chat de juegos',
+			'sinergias de armas',
+			'estrategias de juego',
+		],
+		openGraph: {
+			title: `${SITE_NAME} - Comunidad, Stats y Wiki`,
+			description:
+				'Conecta con otros jugadores, chatea en salas con roles, analiza perfiles y domina las sinergias de armas.',
+			url: `${SITE_URL}/es`,
+			siteName: SITE_NAME,
+			locale: 'es_ES',
+			type: 'website',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-es.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-es.jpg`,
+					width: 1200,
+					height: 630,
+					alt: 'Vista previa de Light Keepers',
+					type: 'image/jpg',
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Red Social y Guía de Supervivencia`,
+			description:
+				'Conecta con otros jugadores, chatea en salas con roles, analiza perfiles y domina las sinergias de armas.',
+			creator: '@lightkeepers',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-es.jpg`,
+					alt: 'Vista previa de Light Keepers',
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	},
+	it: {
+		title: {
+			default: `${SITE_NAME} | Social Network e Compendio di Sopravvivenza`,
+			template: `%s | ${SITE_NAME}`,
+		},
+		description:
+			'Unisciti alla community di Light Keepers: condividi post, chatta in stanze dedicate (DM e gruppi con ruoli), analizza le statistiche dei giocatori ed esplora il wiki di armi e tomi.',
+		keywords: [
+			'Light Keepers',
+			'social network gaming',
+			'community di sopravvivenza',
+			'wiki armi e tomi',
+			'statistiche giocatori',
+			'stanze di chat gaming',
+			'sinergie armi',
+			'strategie di gioco',
+		],
+		openGraph: {
+			title: `${SITE_NAME} - Community, Stats e Wiki`,
+			description:
+				'Connettiti con gli altri giocatori, chatta in stanze con ruoli, analizza i profili e domina il compendio delle armi.',
+			url: `${SITE_URL}/it`,
+			siteName: SITE_NAME,
+			locale: 'it_IT',
+			type: 'website',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-it.jpg`,
+					secureUrl: `${SITE_URL}/static/og-image-it.jpg`,
+					width: 1200,
+					height: 630,
+					alt: 'Anteprima di Light Keepers',
+					type: 'image/jpg',
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			site: '@lightkeepers',
+			title: `${SITE_NAME} | Social Network e Guida di Gioco`,
+			description:
+				'Connettiti con gli altri giocatori, chatta in stanze con ruoli, analizza i profili e domina il compendio delle armi.',
+			creator: '@lightkeepers',
+			images: [
+				{
+					url: `${SITE_URL}/static/og-image-it.jpg`,
+					alt: 'Anteprima di Light Keepers',
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	},
 } as const satisfies Record<Locale, Metadata>;
 
 export default METADATA;

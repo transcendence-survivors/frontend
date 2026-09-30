@@ -38,6 +38,14 @@ const APP_ROUTES = defineRouteMap({
 		che: '/support',
 		it: '/support',
 	},
+	wiki: {
+		en: '/wiki',
+		de: '/wiki',
+		fr: '/wiki',
+		es: '/wiki',
+		che: '/wiki',
+		it: '/wiki',
+	},
 	legal: {
 		en: '/legal-notice',
 		de: '/impressum',

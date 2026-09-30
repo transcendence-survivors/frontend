@@ -14,8 +14,10 @@ export default function LandingHeader() {
 			className={
 				'text-foreground backdrop-blur-md bg-background/70 flex border-b border-border sticky top-0 z-50 px-4 py-5'
 			}>
-			<div className='flex items-center justify-between gap-2 md:gap-10 w-full mx-auto max-w-5xl'>
-				<LogoLink page='home' />
+			<div className='flex items-center justify-between gap-2  w-full mx-auto max-w-5xl'>
+				<div>
+					<LogoLink page='home' />
+				</div>
 				<div className='flex items-center gap-2 md:gap-4'>
 					<LandingNav
 						isDrawer={false}

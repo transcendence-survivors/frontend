@@ -1,19 +1,4 @@
-export type WeaponIconType = 'aura' | 'sword' | 'axe' | 'staff' | 'bow';
-
-export type TomeIconType =
-	| 'damage'
-	| 'cooldown'
-	| 'agility'
-	| 'vitality'
-	| 'armor'
-	| 'blood'
-	| 'range'
-	| 'size'
-	| 'duration'
-	| 'quantity'
-	| 'fortune';
-
-export type IconType = WeaponIconType | TomeIconType;
+import { TomeIconType, WeaponIconType } from './icons';
 
 export type StatType =
 	| 'attackDamage'

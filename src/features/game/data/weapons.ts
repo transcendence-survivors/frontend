@@ -1,4 +1,4 @@
-import { WeaponCardProps } from '../types';
+import { WeaponCardProps } from '../types/wiki';
 
 export const WEAPONS: WeaponCardProps[] = [
 	{

@@ -628,11 +628,11 @@
 		"sections": {
 			"editor": {
 				"title": "Site publisher",
-				"body": "Transcendence Survivors is a non-profit educational project built as part of the 42 Lyon curriculum (ft_transcendence project). The site is published by the following team of students:"
+				"body": "Light Keepers is a non-profit educational project built as part of the 42 Lyon curriculum (ft_transcendence project). The site is published by the following team of students:"
 			},
 			"publisher": {
 				"title": "Publication director",
-				"body": "Publication is directed collectively by the members of the Transcendence Survivors team."
+				"body": "Publication is directed collectively by the members of the Light Keepers team."
 			},
 			"hosting": {
 				"title": "Hosting",
@@ -640,7 +640,7 @@
 			},
 			"property": {
 				"title": "Intellectual property",
-				"body": "The texts, visuals, logos, game universe and source code of this site belong to the Transcendence Survivors team unless stated otherwise. Any reproduction, even partial, without prior permission is prohibited. The game runs on the Babylon.js engine and on open-source libraries, used in accordance with their respective licenses. Content posted by users remains the property of its authors, who bear full responsibility for it."
+				"body": "The texts, visuals, logos, game universe and source code of this site belong to the Light Keepers team unless stated otherwise. Any reproduction, even partial, without prior permission is prohibited. The game runs on the Babylon.js engine and on open-source libraries, used in accordance with their respective licenses. Content posted by users remains the property of its authors, who bear full responsibility for it."
 			},
 			"data": {
 				"title": "Personal data",
@@ -1163,6 +1163,23 @@
 				"name": "Tome of Fortune",
 				"description": "Increases luck stat to boost the drop rates of higher-rarity upgrades."
 			}
+		}
+	},
+
+	"userSummary": {
+		"title": "Player Stats Overview",
+		"lastPlayed": "Last played",
+		"gamesPlayed": "Games played",
+		"totalKills": "Total Kills",
+		"totalSurvivalTime": "Total Survival Time",
+		"highestSurvivalTime": "Best Survival",
+		"highestKills": "Most Kills",
+		"weaponsUsed": "Weapons & Mastery",
+		"noWeapons": "No weapon stats available for this player.",
+		"labels": {
+			"timesUsed": "Times Used",
+			"highestLevel": "Max Level",
+			"levelFormat": "Lvl {level}"
 		}
 	}
 }

@@ -9,7 +9,7 @@ import {
 	TooltipTrigger,
 } from '@/components/ui/tooltip';
 import GameIcon from '@/features/game/components/GameIcons';
-import { WeaponCardProps } from '../types';
+import { WeaponCardProps } from '../../types/wiki';
 
 export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps) => {
 	const t = useTranslations('wiki');

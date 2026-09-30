@@ -18,16 +18,17 @@ const fallback = (
 
 export default async function ProfileLayout({ params, children }: RootLayoutProps) {
 	const { username } = await params;
-	if (!urlDecode(username).startsWith('@')) {
+	const decodedUsername = urlDecode(username);
+	if (!decodedUsername.startsWith('@')) {
 		notFound();
 	}
-	const decodedUsername = urlDecode(username).substring(1);
+	const cleanUsername = decodedUsername.substring(1);
 
 	return (
 		<main>
-			<RelationshipProvider username={decodedUsername}>
+			<RelationshipProvider username={cleanUsername}>
 				<Suspense fallback={fallback}>
-					<ProfileHeaderServer username={decodedUsername} />
+					<ProfileHeaderServer username={cleanUsername} />
 				</Suspense>
 				{children}
 			</RelationshipProvider>

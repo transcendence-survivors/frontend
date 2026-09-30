@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import GameIcon from '@/features/game/components/GameIcons';
-import { TomeCardProps } from '../types';
+import { TomeCardProps } from '../../types/wiki';
 
 export const TomeCard = ({
 	id,

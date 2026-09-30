@@ -1,5 +1,5 @@
 import { isApiError } from '@/libs/api';
-import profileByUsername from '../../api/profile';
+import { profileByUsername } from '../../api/profile';
 import ProfileHeader from './ProfileHeader';
 import { notFound } from 'next/navigation';
 

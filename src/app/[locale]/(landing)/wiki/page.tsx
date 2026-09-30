@@ -3,12 +3,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Info } from 'lucide-react';
 import GameIcon from '@/features/game/components/GameIcons';
-import { WeaponCard } from '@/features/game/components/WeaponCard';
-import { TomeCard } from '@/features/game/components/TomeCard';
+import { WeaponCard } from '@/features/game/components/wiki/WeaponCard';
+import { TomeCard } from '@/features/game/components/wiki/TomeCard';
 import { WEAPONS } from '@/features/game/data/weapons';
 import { TOMES } from '@/features/game/data/tomes';
-import { WikiSynergies } from '@/features/game/components/sections/WikiSynergies';
-import { WikiMechanics } from '@/features/game/components/sections/WikiMechanics';
+import { WikiSynergies } from '@/features/game/components/wiki/sections/WikiSynergies';
+import { WikiMechanics } from '@/features/game/components/wiki/sections/WikiMechanics';
 
 const tabs = [
 	{ value: 'weapons', labelKey: 'tabs.weapons' },

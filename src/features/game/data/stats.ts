@@ -1,4 +1,4 @@
-import { StatType } from '../types';
+import { StatType } from '../types/wiki';
 
 export const STAT_KEYS: StatType[] = [
 	'attackDamage',

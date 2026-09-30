@@ -1,4 +1,4 @@
-import { TomeCardProps } from '../types';
+import { TomeCardProps } from '../types/wiki';
 
 export const TOMES: TomeCardProps[] = [
 	// --- WEAPONS TARGETED TOMES ---
@@ -81,6 +81,7 @@ export const TOMES: TomeCardProps[] = [
 		],
 	},
 
+	// --- PLAYER TARGETED TOMES ---
 	{
 		id: 'agility',
 		target: 'player',

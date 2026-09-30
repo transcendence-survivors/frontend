@@ -21,16 +21,11 @@ export function GameRoot() {
 		const canvas = canvasRef.current;
 		if (!canvas || !username || !userId || !displayName) return;
 
-			initGame(
-				canvas,
-				username,
-				userId,
-				currentLocale,
-				displayName,
-				avatarUrl,
-			);
+		initGame(canvas, username, userId, currentLocale, displayName, avatarUrl);
 
-		return () => destroyGame();
+		return () => {
+			destroyGame();
+		};
 	}, [username, userId, displayName, avatarUrl, currentLocale]);
 
 	return <canvas ref={canvasRef} className='w-full h-full' />;

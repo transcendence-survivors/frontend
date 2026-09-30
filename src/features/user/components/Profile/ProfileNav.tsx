@@ -16,6 +16,7 @@ const getHrefParams = (username: string) => ({ username: `@${username}` });
 
 const profileLinks = [
 	{ key: 'userName', labelKey: 'stats', getHrefParams },
+	{ key: 'userNameGamesHistory', labelKey: 'gamesHistory', getHrefParams },
 	{ key: 'userNameComments', labelKey: 'comments', getHrefParams },
 	{ key: 'userNamePosts', labelKey: 'posts', getHrefParams },
 	{ key: 'userNameLikes', labelKey: 'likes', getHrefParams },

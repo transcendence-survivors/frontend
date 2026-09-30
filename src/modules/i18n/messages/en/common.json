@@ -1,8 +1,8 @@
 {
 	"nav": {
 		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
+		"game_history": "Game History",
+		"game_leaderboard": "Game Leaderboard",
 		"profile": "Profile",
 		"settings": "Settings",
 		"logout": "Logout",
@@ -26,6 +26,7 @@
 			"posts": "Posts",
 			"comments": "Comments",
 			"stats": "Stats",
+			"gamesHistory": "Games History",
 			"likes": "Likes",
 			"reposts": "Reposts"
 		},
@@ -1111,21 +1112,79 @@
 			}
 		}
 	},
-	"userSummary": {
-		"title": "Player Stats Overview",
-		"lastPlayed": "Last played",
-		"gamesPlayed": "Games played",
-		"totalKills": "Total Kills",
-		"totalSurvivalTime": "Total Survival Time",
-		"highestSurvivalTime": "Best Survival",
-		"highestKills": "Most Kills",
-		"weaponsUsed": "Weapons & Mastery",
-		"noWeapons": "No weapon stats available for this player.",
-		"labels": {
-			"timesUsed": "Times Used",
-			"highestLevel": "Max Level",
-			"levelFormat": "Lvl {level}"
+
+	"game": {
+		"title": "Games History",
+		"play": "Play Game",
+		"recent_matches_label": "All Recent Games",
+		"subtitle_username": "All game performance of @{username}",
+		"global": {
+			"title": "Global Game History",
+			"subtitle": "Explore recent player runs"
 		},
-		"fetch_error": "Failed to load the game summary."
+		"playerStatsTitle": "Player Performance",
+		"player": "Player",
+		"playerCount": "{count, plural, =1 {1 Player} other {# Players}}",
+		"playerFallback": "Player #{index}",
+		"playerBuild": "Attributes & Scaling",
+		"weaponsUsed": "Equipped Weapons",
+		"noWeapons": "No weapons equipped during this run.",
+		"fetch_error": "Failed to load game history.",
+		"no_games": "No games found.",
+		"no_user_games": "No games found for this player.",
+		"no_more_games": "No more games to load.",
+		"gameIdTitle": "Game #{gameId}",
+		"leaderboard": {
+			"title": "Leaderboard",
+			"subtitle": "Top players by survival time, kills or game play count.",
+			"no_leaderboard": "No leaderboard entries found.",
+			"no_more_leaderboard": "No more leaderboard entries to load.",
+			"fetch_error": "Failed to load leaderboard data."
+		},
+		"sort": {
+			"label": "Sort games",
+			"created_desc": "Newest first",
+			"created_asc": "Oldest first",
+			"survival_desc": "Longest duration",
+			"survival_asc": "Shortest duration",
+			"kills_desc": "Most kills",
+			"kills_asc": "Fewest kills"
+		},
+		"labels": {
+			"level": "Lvl {level}",
+			"survivalTime": "Game Duration",
+			"matchKills": "Total Game Kills",
+			"playerKills": "Kills",
+			"health": "Max HP",
+			"damage": "Damage",
+			"attackSpeed": "Attack Speed",
+			"moveSpeed": "Move Speed",
+			"armor": "Armor",
+			"luck": "Luck",
+			"lifesteal": "Lifesteal",
+			"range": "Range",
+			"size": "Area Size",
+			"duration": "Duration",
+			"quantity": "Quantity",
+			"penetration": "Penetration"
+		},
+
+		"summary": {
+			"title": "Player Stats Overview",
+			"lastPlayed": "Last played",
+			"gamesPlayed": "Games played",
+			"totalKills": "Total Kills",
+			"totalSurvivalTime": "Total Survival Time",
+			"highestSurvivalTime": "Best Survival",
+			"highestKills": "Most Kills",
+			"weaponsUsed": "Weapons Mastery",
+			"noWeapons": "No weapon stats available for this player.",
+			"labels": {
+				"timesUsed": "Times Used",
+				"highestLevel": "Max Level",
+				"levelFormat": "Lvl {level}"
+			},
+			"fetch_error": "Failed to load the game summary."
+		}
 	}
 }

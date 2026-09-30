@@ -26,15 +26,15 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 
 type ChatNavProps = React.HTMLAttributes<HTMLElement>;
 
-const orderByOptions: {
-	value: ChatRoomOrderBy;
-	labelKey: DeepKeys<AppMessages['chat']['rooms']>;
-}[] = [
+const orderByOptions = [
 	{ value: ChatRoomOrderBy.ACTIVITY_DESC, labelKey: 'sort.activity_desc' },
 	{ value: ChatRoomOrderBy.ACTIVITY_ASC, labelKey: 'sort.activity_asc' },
 	{ value: ChatRoomOrderBy.CREATED_DESC, labelKey: 'sort.created_desc' },
 	{ value: ChatRoomOrderBy.CREATED_ASC, labelKey: 'sort.created_asc' },
-] as const;
+] as const satisfies {
+	value: ChatRoomOrderBy;
+	labelKey: DeepKeys<AppMessages['chat']['rooms']>;
+}[];
 
 const ChatRoomsSidebar = ({ className, ...props }: ChatNavProps) => {
 	const { params, setFilters } = useChatRoomParams();

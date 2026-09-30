@@ -22,20 +22,14 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
 	color?: string;
 }
 
-const SvgBase: React.FC<IconProps> = ({
-	size = 64,
-	color = '#F5C158',
-	children,
-	style,
-	...props
-}) => (
+const SvgBase: React.FC<IconProps> = ({ size = 64, children, style, ...props }) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width={size}
 		height={size}
 		viewBox='0 0 64 64'
 		fill='none'
-		stroke={color}
+		stroke='currentColor'
 		strokeWidth='3.8'
 		strokeLinecap='round'
 		strokeLinejoin='round'

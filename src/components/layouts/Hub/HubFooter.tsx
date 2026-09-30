@@ -1,3 +1,4 @@
+import PlayButton from '@/features/game/components/PlayButton';
 import AvatarDropdown from '@/features/user/components/Avatar/AvatarDropDown';
 import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
@@ -12,6 +13,7 @@ const HubFooter = ({ className, ...props }: HubFooterProps) => {
 
 	return (
 		<footer className={cn('px-3 py-3 space-y-2', className)} {...props}>
+			<PlayButton className='w-full' hideMobileText={false} />
 			<I18nLink
 				href='home'
 				className={

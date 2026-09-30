@@ -96,7 +96,6 @@ export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps
 					</TooltipProvider>
 				</div>
 
-				{/* Best Tomes Section */}
 				<div className='space-y-2 pt-2 border-t border-border'>
 					<span className='text-xs font-semibold uppercase text-primary block'>
 						{t('labels.bestTomes')}

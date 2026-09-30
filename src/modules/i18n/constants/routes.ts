@@ -104,14 +104,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/suche',
 		it: '/ricerca',
 	},
-	game: {
-		en: '/game',
-		de: '/spiel',
-		fr: '/jeu',
-		es: '/juego',
-		che: '/spiel',
-		it: '/gioco',
-	},
 
 	friends: {
 		en: '/friends',
@@ -155,6 +147,39 @@ const APP_ROUTES = defineRouteMap({
 		it: '/chat/:id',
 	},
 
+	game: {
+		en: '/game',
+		de: '/spiel',
+		fr: '/jeu',
+		es: '/juego',
+		che: '/spiel',
+		it: '/gioco',
+	},
+	gamePlay: {
+		en: '/game/play',
+		de: '/spiel/spielstart',
+		fr: '/jeu/jouer',
+		es: '/juego/jugar',
+		che: '/spiel/spielstart',
+		it: '/gioco/giocare',
+	},
+	gameLeaderboard: {
+		en: '/game/leaderboard',
+		de: '/spiel/rangliste',
+		fr: '/jeu/classement',
+		es: '/juego/clasificacion',
+		che: '/spiel/rangliste',
+		it: '/gioco/classifica',
+	},
+	gameDetails: {
+		en: '/game/:id',
+		de: '/spiel/:id',
+		fr: '/jeu/:id',
+		es: '/juego/:id',
+		che: '/spiel/:id',
+		it: '/gioco/:id',
+	},
+
 	userName: {
 		en: '/:username',
 		de: '/:username',
@@ -162,6 +187,14 @@ const APP_ROUTES = defineRouteMap({
 		es: '/:username',
 		che: '/:username',
 		it: '/:username',
+	},
+	userNameGamesHistory: {
+		en: '/:username/games-history',
+		de: '/:username/spielverlauf',
+		fr: '/:username/historique-de-jeux',
+		es: '/:username/historial-de-juegos',
+		che: '/:username/spielverlauf',
+		it: '/:username/storia-dei-giochi',
 	},
 	userNamePosts: {
 		en: '/:username/posts',

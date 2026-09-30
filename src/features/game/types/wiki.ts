@@ -1,18 +1,5 @@
 import { TomeIconType, WeaponIconType } from './icons';
-
-export type StatType =
-	| 'attackDamage'
-	| 'attackSpeed'
-	| 'range'
-	| 'size'
-	| 'duration'
-	| 'quantity'
-	| 'penetration'
-	| 'moveSpeed'
-	| 'maxHealth'
-	| 'armor'
-	| 'lifesteal'
-	| 'luck';
+import { StatType } from './stats';
 
 export interface StatAffinity {
 	stat: StatType;

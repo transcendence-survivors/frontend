@@ -20,7 +20,8 @@ interface HubNavProps extends React.HTMLAttributes<HTMLUListElement> {
 const links = [
 	{ key: 'feed', labelKey: 'feed' },
 	{ key: 'search', labelKey: 'search' },
-	{ key: 'game', labelKey: 'game' },
+	{ key: 'game', labelKey: 'game_history' },
+	{ key: 'gameLeaderboard', labelKey: 'game_leaderboard' },
 	{
 		key: 'friends',
 		labelKey: 'friends',
@@ -44,6 +45,7 @@ const HubNav = ({ isDrawer, ...props }: HubNavProps) => {
 	const user = useUser();
 	const t = useTranslations('nav');
 	const path = usePathname();
+
 	const activeKey = useMemo(() => {
 		if (path.startsWith(getBasePath('blocked'))) {
 			return 'friends';
@@ -58,8 +60,16 @@ const HubNav = ({ isDrawer, ...props }: HubNavProps) => {
 			return 'userName';
 		}
 
-		const matchedLink = links.find((link) => path.startsWith(getBasePath(link.key)));
-		return matchedLink ? matchedLink.key : 'search';
+		const bestMatch = links
+			.filter((link) => path.startsWith(getBasePath(link.key)))
+			.reduce<(typeof links)[number] | null>((longest, link) => {
+				if (!longest) return link;
+				return getBasePath(link.key).length > getBasePath(longest.key).length
+					? link
+					: longest;
+			}, null);
+
+		return bestMatch ? bestMatch.key : 'search';
 	}, [path, user?.username]);
 
 	const { Tag, tagProps } = useMemo(() => {

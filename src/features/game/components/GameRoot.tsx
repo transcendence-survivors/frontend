@@ -21,7 +21,7 @@ export function GameRoot() {
 			startedRef.current = true;
 			initGame(
 				canvas,
-				user.displayName,
+				user.username,
 				user.id,
 				locale.currentLocale,
 				user.displayName,

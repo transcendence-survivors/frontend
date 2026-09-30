@@ -17,14 +17,11 @@
 		"leave_hub": "Leave Hub →",
 		"player_hub": "Player Hub",
 		"menu": "Menu",
-
 		"feed": "Feed",
 		"friends": "Friends",
 		"chat": "Chat",
 		"search": "Search",
-
 		"concept": "Concept",
-
 		"user": {
 			"posts": "Posts",
 			"comments": "Comments",
@@ -32,7 +29,6 @@
 			"likes": "Likes",
 			"reposts": "Reposts"
 		},
-
 		"friend": {
 			"requests": "Requests",
 			"friends": "Friends",
@@ -101,18 +97,15 @@
 			"danger_zone": "Danger Zone"
 		}
 	},
-
 	"users": {
 		"no_befriended_users": "No users found that you are not friends with.",
 		"no_befriended_users_search": "No users found that you are not friends with for your search.",
 		"no_more_befriended_users": "No more users to load that you are not friends with.",
-
 		"no_users": "No users found.",
 		"no_users_search": "No users found for your search.",
 		"no_more_users": "No more users to load.",
 		"fetch_error": "Failed to load users. Please try again later."
 	},
-
 	"search": {
 		"title": "Search",
 		"subtitle": "Find light-keepers and posts",
@@ -124,13 +117,11 @@
 		"title": "Friends & Moderation",
 		"subtitle": "Light-keepers in your circle",
 		"input_placeholder": "Search by @username or display name...",
-
 		"nav": {
 			"friends": "Friends",
 			"requests": "Requests",
 			"blocked": "Blocked Users"
 		},
-
 		"add": {
 			"title": "Add Keepers to your circle",
 			"button": "Add Friend",
@@ -140,7 +131,6 @@
 			"success_accepted_displayname": "You are now friends with {displayName}.",
 			"success_pending_displayname": "Your friend request to {displayName} is sent."
 		},
-
 		"friends": {
 			"title": "Friends",
 			"count": "{count} friend(s).",
@@ -149,11 +139,9 @@
 			"no_friends_search": "No friends found for your search.",
 			"no_more_friends": "No more friends to load.",
 			"fetch_error": "Failed to load friends. Please try again later.",
-
 			"all_button": "All",
 			"online_button": "Online",
 			"offline_button": "Offline",
-
 			"delete": {
 				"tooltip": "Remove friend",
 				"title": "Remove friend",
@@ -163,7 +151,6 @@
 				"failure_displayname": "Failed to unfriend {displayName}. Please try again."
 			}
 		},
-
 		"blocked": {
 			"title": "Blocked Users",
 			"count": "{count} blocked user(s).",
@@ -176,7 +163,6 @@
 				"success_displayname": "You have blocked {displayName} successfully.",
 				"failure_displayname": "Failed to block {displayName}. Please try again."
 			},
-
 			"remove": {
 				"tooltip": "Unblock user",
 				"title": "Unblock user",
@@ -185,51 +171,40 @@
 				"success_displayname": "You have unblocked {displayName} successfully.",
 				"failure_displayname": "Failed to unblock {displayName}. Please try again."
 			},
-
 			"no_blocked": "You have no blocked users yet. Start blocking some!",
 			"no_blocked_search": "No blocked users found for your search.",
 			"no_more_blocked": "No more blocked users to load.",
 			"fetch_error": "Failed to load blocked users. Please try again later.",
-
 			"all_button": "All",
 			"online_button": "Online",
 			"offline_button": "Offline"
 		},
-
 		"requests": {
 			"title": "Friend Requests",
 			"incoming_button": "Incoming",
 			"outgoing_button": "Outgoing",
-
 			"incoming_count": "{count} incoming friend request(s).",
 			"incoming_count_search": "{count} incoming friend request(s) found for your search.",
 			"outgoing_count": "{count} outgoing friend request(s).",
 			"outgoing_count_search": "{count} outgoing friend request(s) found for your search.",
-
 			"delete_from_displayname": "Decline {displayName}'s friend request",
-
 			"delete_to_displayname": "Delete your friend request to {displayName}",
 			"delete_success_from_displayname": "{displayName}'s friend request deleted successfully.",
 			"delete_success_to_displayname": "Your friend request to {displayName} has been deleted successfully.",
 			"delete_failure_from_displayname": "Failed to delete {displayName}'s friend request. Please try again.",
 			"delete_failure_to_displayname": "Failed to delete your friend request to {displayName}. Please try again.",
-
 			"accept_button": "Accept",
 			"accept_from_displayname": "Accept {displayName}'s friend request",
 			"accept_success_from_displayname": "{displayName}'s friend request accepted successfully.",
 			"accept_failure_from_displayname": "Failed to accept {displayName}'s friend request. Please try again.",
-
 			"no_incoming_requests": "You have no incoming friend requests.",
 			"no_incoming_requests_search": "No incoming friend requests found for your search.",
 			"no_outgoing_requests": "You have no outgoing friend requests.",
 			"no_outgoing_requests_search": "No outgoing friend requests found for your search.",
-
 			"no_more_incoming_requests": "No more incoming friend requests to load.",
 			"no_more_outgoing_requests": "No more outgoing friend requests to load.",
-
 			"received": "Received",
 			"sent": "Sent",
-
 			"reject": {
 				"tooltip": "Decline request",
 				"title": "Decline friend request",
@@ -242,16 +217,19 @@
 				"description": "Are you sure you want to cancel this pending request?",
 				"confirm": "Cancel request"
 			},
-
 			"toast": {
 				"received_displayname": "You have received a friend request from {displayName}.",
 				"accepted_displayname": "{displayName} accepted your friend request."
 			},
-
 			"fetch_error": "Failed to load friend requests. Please try again later."
+		},
+		"gate": {
+			"blocked_title": "You’ve blocked this profile",
+			"blocked_description": "You won’t see their posts, messages, or activity. Unblock them anytime to restore full interaction.",
+			"unavailable_title": "Content unavailable",
+			"unavailable_description": "This profile or content is not available right now."
 		}
 	},
-
 	"presence": {
 		"online": "Online",
 		"online_description": "You are visible to your friends.",
@@ -259,13 +237,10 @@
 		"do_not_disturb_description": "You will not receive notifications for new messages or friend requests.",
 		"invisible": "Invisible",
 		"invisible_description": "You will appear offline to your friends, but you can still use the app normally.",
-
 		"count_online": "{count} keepers in the light",
 		"count_online_friends": "{count} friends in the light",
-
 		"just_connected_displayname": "{displayName} just connected"
 	},
-
 	"chat": {
 		"share": {
 			"title": "Share Post",
@@ -280,7 +255,6 @@
 			"partial_count": "Failed to share post with {count} chat room(s).",
 			"error": "An error occurred while sharing the post."
 		},
-
 		"rooms": {
 			"title": "Chat Rooms",
 			"page": {
@@ -294,7 +268,6 @@
 				"group": "Group",
 				"direct": "Direct"
 			},
-
 			"no_chat_rooms": "You have no chat rooms yet. Start a conversation with your friends!",
 			"no_chat_rooms_search": "No chat rooms found for your search.",
 			"no_more_chat_rooms": "No more chat rooms to load.",
@@ -312,7 +285,6 @@
 				"offline": "Offline · in the dark alone",
 				"dnd": "Do Not Disturb · in the dark alone"
 			},
-
 			"group_settings": {
 				"title": "Edit Group Details",
 				"description": "Change the group name or update the avatar picture.",
@@ -322,11 +294,11 @@
 				"remove_avatar": "Remove picture",
 				"cancel": "Cancel",
 				"save": "Save changes",
-
 				"delete_group_button": "Delete group",
 				"delete_group_title": "Delete group",
 				"delete_group_description": "Are you sure you want to delete this chat room ? This action cannot be undone and all messages will be permanently lost.",
-				"delete_confirm": "Delete"
+				"delete_confirm": "Delete",
+				"tooltip": "Edit group details"
 			},
 			"create": {
 				"title": "Create Chat Room",
@@ -346,7 +318,6 @@
 			"no_messages_search": "No messages found for your search.",
 			"no_more_messages": "No more messages to load.",
 			"fetch_error": "Failed to load messages. Please try again later.",
-
 			"preview": {
 				"no_messages": "No messages yet",
 				"deleted_message": "This message was deleted",
@@ -358,21 +329,17 @@
 				"reply": "Reply",
 				"edit": "Edit",
 				"delete": "Delete",
-
 				"placeholder_create": "Send a message into the dark...",
 				"placeholder_reply": "Edit message...",
 				"label_textarea": "Message",
 				"button_send": "Send",
 				"button_save": "Save",
-
 				"rich_is_typing": "<strong>displayName</strong> is typing...",
 				"rich_are_typing": "<strong>displayName</strong> and {count, plural, =1 {1 other} other {# others}} are typing...",
-
 				"edditing": "Editing Message",
 				"rich_replying_to": "Replying to <strong>displayName</strong>",
 				"attach_images_videos": "Attach images or videos",
 				"choose_emoji": "Choose emoji",
-
 				"dialogs": {
 					"delete_title": "Delete message ?",
 					"delete_description": "This action cannot be undone. This message will be permanently removed from the conversation."
@@ -428,7 +395,6 @@
 			"leave_room": "Leave Room",
 			"view_profile": "View Profile",
 			"joined_at": "Joined",
-
 			"dialogs": {
 				"kick_title": "Kick member",
 				"kick_description": "Are you sure you want to kick this member from the chat room? They will no longer have access to messages.",
@@ -457,12 +423,10 @@
 		"subtitle": "Conversations with your friends",
 		"send_dm": "Send a DM"
 	},
-
 	"feed": {
 		"title": "Feed",
 		"subtitle": "Dispatches from the light-keepers"
 	},
-
 	"posts": {
 		"create": {
 			"placeholder": "Start writing a post",
@@ -515,7 +479,6 @@
 			"fetch_error": "Failed to load reposts. Please try again later."
 		}
 	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Follow the light · or be forgotten",
@@ -545,7 +508,6 @@
 			}
 		}
 	},
-
 	"support": {
 		"kicker": "Help Center",
 		"title": "How do you stay in the light?",
@@ -592,7 +554,6 @@
 			}
 		}
 	},
-
 	"lore": {
 		"kicker": "The Lore · Light Keepers",
 		"title": "At the heart of the circle, one rule: hold on.",
@@ -620,7 +581,6 @@
 			}
 		}
 	},
-
 	"legal": {
 		"kicker": "Legal information",
 		"title": "Legal Notice",
@@ -667,16 +627,12 @@
 			"no_account": "Don't have an account ?",
 			"forgot_password": "Forgot your password ?",
 			"reset_password": "Reset Password",
-
 			"username_or_email": "Username or Email",
 			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
-
 			"email": "Email",
 			"emailPlaceholder": "john.doe@example.com",
-
 			"password": "Password",
 			"passwordPlaceholder": "Enter your password",
-
 			"submit": "Sign In",
 			"submitting": "Signing In",
 			"submitted": "Signed In",
@@ -749,13 +705,11 @@
 				"submitting": "Submitting",
 				"submitted": "Submitted",
 				"validating": "Validating",
-
 				"save": "Save",
 				"saving": "Saving",
 				"saved": "Saved"
 			},
 			"recap_title": "Review Your Information",
-
 			"success": "Account created successfully!",
 			"error": "Failed to create account. Please try again."
 		},
@@ -808,11 +762,9 @@
 			"invalid_password": "The password you entered is incorrect."
 		}
 	},
-
 	"forms": {
 		"error": {
 			"required": "This field is required",
-
 			"email": "Please enter a valid email address",
 			"string": "This field must be a string",
 			"number": "This field must be a number",
@@ -821,21 +773,16 @@
 			"enum": "Invalid option selected",
 			"phone": "Please enter a valid phone number in E.164 format",
 			"pattern": "Invalid format",
-
 			"lowercase": "Only lowercase letters are allowed",
 			"uppercase": "Only uppercase letters are allowed",
-
 			"minLength": "Minimum length is {min} characters",
 			"maxLength": "Maximum length is {max} characters",
 			"fileSizeMB": "File size must be less than {maxSize} MB",
 			"maxFilesCount": "You can attach up to {maxCount} files",
-
 			"imageOnly": "Only image files are allowed",
 			"imageVideoOnly": "Only image and video files are allowed",
-
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
-
 			"password_match": "Passwords must match",
 			"password_uppercase": "Password must contain at least one uppercase letter",
 			"password_lowercase": "Password must contain at least one lowercase letter",
@@ -843,20 +790,15 @@
 			"password_special": "Password must contain at least one special character",
 			"security_same_password": "New password must be different from the current password",
 			"security_incorrect_current_password": "The current password you entered is incorrect",
-
 			"email_already_in_use": "This email is already taken",
 			"username_already_in_use": "This username is already taken",
 			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
-
 			"internal_server_error": "An unexpected error occurred. Please try again later.",
 			"age_restriction": "You must be at least 13 years old to register",
-
 			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
 			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
 			"invalid_email": "The email address is not registered. Please check and try again.",
-
 			"at_least_one": "At least one field is required",
-
 			"message_empty_if_attachments": "Message text cannot be empty unless an attachment is provided"
 		},
 		"addons": {
@@ -908,7 +850,11 @@
 			"light": "Light",
 			"system": "System",
 			"neon": "Neon"
-		}
+		},
+		"back": "Go Back",
+		"close": "Close",
+		"appearance": "Appearance",
+		"avatar_preview": "Avatar preview"
 	},
 	"wiki": {
 		"title": "Arsenal & Tome Compendium",
@@ -1165,7 +1111,6 @@
 			}
 		}
 	},
-
 	"userSummary": {
 		"title": "Player Stats Overview",
 		"lastPlayed": "Last played",
@@ -1180,6 +1125,7 @@
 			"timesUsed": "Times Used",
 			"highestLevel": "Max Level",
 			"levelFormat": "Lvl {level}"
-		}
+		},
+		"fetch_error": "Failed to load the game summary."
 	}
 }

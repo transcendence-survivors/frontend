@@ -15,9 +15,11 @@ import { Theme } from '@/modules/themes/constants/themes';
 import useTypedTheme from '@/modules/themes/hooks/useTypedTheme';
 import { PaletteIcon } from 'lucide-react';
 import { useIsMounted } from '@/hooks/useIsMounted';
+import { useTranslations } from 'next-intl';
 
 const ThemeDropdownMenu = () => {
 	const isMounted = useIsMounted();
+	const t = useTranslations('common');
 	const { current, setTheme, themes, themeIcons } = useTypedTheme();
 
 	const renderIcon = (theme: Theme) => {
@@ -37,7 +39,7 @@ const ThemeDropdownMenu = () => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end' sideOffset={4} className='w-56'>
 				<DropdownMenuGroup>
-					<DropdownMenuLabel>Apparence</DropdownMenuLabel>
+					<DropdownMenuLabel>{t('appearance')}</DropdownMenuLabel>
 					<DropdownMenuRadioGroup
 						value={current}
 						onValueChange={(val) => setTheme(val as Theme)}>

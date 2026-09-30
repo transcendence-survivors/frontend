@@ -246,7 +246,7 @@ export const ChatRoomEditForm = ({
 				</DialogContent>
 			</Dialog>
 			<TooltipContent side='bottom' className='text-xs'>
-				Edit group details
+				{t('tooltip')}
 			</TooltipContent>
 		</Tooltip>
 	);

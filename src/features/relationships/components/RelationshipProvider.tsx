@@ -9,6 +9,7 @@ import { RelationshipStatus } from '../types';
 import { BlockDelete } from '../block/components/BlockDelete';
 import { Unban } from '@/components/icons/unban';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { BaseUser } from '@/features/user/type';
 
 interface RelationshipProviderProps {
@@ -62,6 +63,7 @@ interface BlockedByYouCardProps {
 
 const BlockedByYouCard = ({ user }: BlockedByYouCardProps) => {
 	const router = useRouter();
+	const t = useTranslations();
 
 	return (
 		<div className='flex min-h-[360px] w-full flex-col items-center justify-center rounded-xl border border-border bg-card p-8 text-center text-card-foreground shadow-xs'>
@@ -70,12 +72,11 @@ const BlockedByYouCard = ({ user }: BlockedByYouCardProps) => {
 			</div>
 
 			<h1 className='text-lg font-semibold tracking-tight'>
-				You’ve blocked this profile
+				{t('relationships.gate.blocked_title')}
 			</h1>
 
 			<p className='mt-1.5 max-w-sm text-sm leading-relaxed text-muted-foreground'>
-				You won’t see their posts, messages, or activity. Unblock them anytime to
-				restore full interaction.
+				{t('relationships.gate.blocked_description')}
 			</p>
 
 			<div className='mt-6 flex items-center gap-3'>
@@ -84,13 +85,13 @@ const BlockedByYouCard = ({ user }: BlockedByYouCardProps) => {
 					onClick={() => router.back()}
 					className='gap-2 rounded-xl'>
 					<ArrowLeft className='h-4 w-4' />
-					Go Back
+					{t('common.back')}
 				</Button>
 
 				<BlockDelete user={user}>
 					<Button variant='default' className='gap-2 rounded-xl'>
 						<Unban className='size-3.5' />
-						Unblock User
+						{t('relationships.blocked.remove.tooltip')}
 					</Button>
 				</BlockDelete>
 			</div>
@@ -99,14 +100,18 @@ const BlockedByYouCard = ({ user }: BlockedByYouCardProps) => {
 };
 
 const BlockedByThemCard = () => {
+	const t = useTranslations('relationships.gate');
+
 	return (
 		<div className='flex min-h-[360px] w-full flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 p-8 text-center'>
 			<div className='mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted text-muted-foreground'>
 				<ShieldAlert className='h-7 w-7' />
 			</div>
-			<h1 className='text-lg font-semibold tracking-tight'>Content Unavailable</h1>
+			<h1 className='text-lg font-semibold tracking-tight'>
+				{t('unavailable_title')}
+			</h1>
 			<p className='mt-1.5 max-w-xs text-sm text-muted-foreground'>
-				This profile or content is not available right now.
+				{t('unavailable_description')}
 			</p>
 		</div>
 	);

@@ -1,35 +1,442 @@
 {
 	"nav": {
+		"home": "Home",
+		"game": "Game",
+		"leaderboard": "Rangliste",
+		"profile": "Profil",
+		"settings": "Iistellige",
+		"logout": "Uslogge",
+		"posts": "Poschts",
+		"wiki": "Wiki",
+		"privacy": "Dateschutz",
+		"terms": "Nutzigsbedingige",
+		"legal": "Impressum",
 		"lore": "Lore",
 		"support": "Hilf",
 		"enter_hub": "Zum Hub →",
+		"leave_hub": "Hub verlah →",
+		"player_hub": "Spieler-Hub",
 		"menu": "Menü",
-		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
-		"profile": "Profile",
-		"settings": "Settings",
-		"logout": "Logout",
-		"posts": "Posts",
-		"privacy": "Privacy Policy",
-		"terms": "Terms of Service",
-		"legal": "Impressum",
-
+		"feed": "Feed",
+		"friends": "Fründe",
+		"chat": "Chat",
+		"search": "Suech",
+		"concept": "Konzept",
+		"user": {
+			"posts": "Poschts",
+			"comments": "Kommentär",
+			"stats": "Stats",
+			"likes": "Likes",
+			"reposts": "Gteilti"
+		},
+		"friend": {
+			"requests": "Aafroge",
+			"friends": "Fründe",
+			"blocked": "Blockierti Träger"
+		},
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
 		"profile_stats": "Stats",
 		"profile_likes": "Likes",
 		"profile_favourites": "Favourites",
-
 		"profile_followers": "Followers",
 		"profile_following": "Following",
-
 		"profile_blocked": "Blocked Users"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
 	},
-
+	"profile": {
+		"bio": "Biografie",
+		"edit": {
+			"button": "Profil bearbeite",
+			"title": "Profil bearbeite",
+			"success": "S Profil isch aktualisiert worde."
+		}
+	},
+	"settings": {
+		"title": "Iistellige",
+		"error_loading": "D Konto-Iistellige hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+		"page": {
+			"title": "Iistellige",
+			"description": "Verwalt all dini Iistellige, indem du links im Menü e Kategorie uswählsch."
+		},
+		"profile": {
+			"title": "Profil-Iistellige",
+			"subtitle": "Aktualisier dini Profilinfos und Vorliebe.",
+			"description": "Verwalt dini öffentliche Profilinfos, dis Avatar und dis Bannerbild.",
+			"display_name_label": "Aazeigename",
+			"display_name_placeholder": "Gib dini Aazeigename ii",
+			"bio_label": "Bio",
+			"bio_placeholder": "Verzell üs es bitzli öppis über dich...",
+			"cover_label": "Titelbild",
+			"no_cover": "Kei Titelbild uffeglade",
+			"change_cover": "Titelbild ändere",
+			"remove_cover": "Titelbild ewägnäh",
+			"change_avatar": "Avatar ändere",
+			"remove_avatar": "Avatar ewägnäh",
+			"avatar_hint": "JPEG, PNG, GIF oder WebP. Maximal 5MB.",
+			"save": "Änderige speichere"
+		},
+		"account": {
+			"title": "Konto-Iistellige",
+			"subtitle": "Verwalt dini Kontoinfos und Vorliebe."
+		},
+		"security": {
+			"title": "Sicherheits-Iistellige",
+			"subtitle": "Verwalt dini Aamelde-Iistellige."
+		},
+		"danger_zone": {
+			"title": "Gfahrezone",
+			"subtitle": "Unwiderruefliche Konto-Aktione und Dateschutz-Iistellige",
+			"export": {
+				"title": "Dini Date exportiere",
+				"description": "Lad e Kopie vo dine persönliche Iistellige und Profildate im JSON-Format abe.",
+				"format_placeholder": "Format uswähle",
+				"button": "Persönlichi Date exportiere"
+			},
+			"delete": {
+				"title": "Konto lösche",
+				"description": "Lösch dis Konto und all zuegehörige Date für immer vo de Plattform. Das chasch nöd rückgängig mache."
+			}
+		},
+		"nav": {
+			"profile": "Profil",
+			"account": "Konto",
+			"security": "Sicherheit",
+			"danger_zone": "Gfahrezone"
+		}
+	},
+	"users": {
+		"no_befriended_users": "Kei Träger gfunde, mit dene du nonig befründet bisch.",
+		"no_befriended_users_search": "Kei Träger für dini Suech gfunde, mit dene du nonig befründet bisch.",
+		"no_more_befriended_users": "Kei wiiteri Träger zum Lade, mit dene du nonig befründet bisch.",
+		"no_users": "Kei Träger gfunde.",
+		"no_users_search": "Kei Träger für dini Suech gfunde.",
+		"no_more_users": "Kei wiiteri Träger zum Lade.",
+		"fetch_error": "D Träger hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+	},
+	"search": {
+		"title": "Suech",
+		"subtitle": "Find Träger und Poschts",
+		"input_placeholder": "Suech es Stichwort oder @Benutzername...",
+		"users_title": "Träger",
+		"posts_title": "Poschts"
+	},
+	"relationships": {
+		"title": "Fründe & Moderation",
+		"subtitle": "Liechthüeter i dim Chreis",
+		"input_placeholder": "Suech nach @Benutzername oder Aazeigename...",
+		"nav": {
+			"friends": "Fründe",
+			"requests": "Aafroge",
+			"blocked": "Blockierti Träger"
+		},
+		"add": {
+			"title": "Hüeter zu dim Chreis hinzuefüege",
+			"button": "Fründ hinzuefüege",
+			"placeholder": "Suech nach @Benutzername oder Aazeigename...",
+			"aria_label": "Fründschaftsaafrog schicke",
+			"failed": "D Fründschaftsaafrog het nöd chöne gschickt werde. Bitte versuech s nomal.",
+			"success_accepted_displayname": "Du bisch jetzt mit {displayName} befründet.",
+			"success_pending_displayname": "Dini Fründschaftsaafrog a {displayName} isch gschickt."
+		},
+		"friends": {
+			"title": "Fründe",
+			"count": "{count} Fründ(e).",
+			"count_search": "{count} Fründ(e) für dini Suech gfunde.",
+			"no_friends": "Du hesch no kei Fründe. Füeg doch es paar hinzue!",
+			"no_friends_search": "Kei Fründe für dini Suech gfunde.",
+			"no_more_friends": "Kei wiiteri Fründe zum Lade.",
+			"fetch_error": "D Fründe hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"all_button": "Alli",
+			"online_button": "Online",
+			"offline_button": "Offline",
+			"delete": {
+				"tooltip": "Fründ ewägnäh",
+				"title": "Fründ ewägnäh",
+				"description": "Bisch sicher, dass du dä Fründ wotsch ewägnäh? Das chasch nöd rückgängig mache.",
+				"confirm": "Ewägnäh",
+				"success_displayname": "Du bisch mit {displayName} nüm befründet.",
+				"failure_displayname": "{displayName} het nöd chöne entfründet werde. Bitte versuech s nomal."
+			}
+		},
+		"blocked": {
+			"title": "Blockierti Träger",
+			"count": "{count} blockierti Träger.",
+			"count_search": "{count} blockierti Träger für dini Suech gfunde.",
+			"add": {
+				"tooltip": "Träger blockiere",
+				"title": "Träger blockiere",
+				"description": "Bisch sicher, dass du dä Träger wotsch blockiere? Er cha dir denn kei Nachrichte meh schicke und dini Aktivität nüm gseh.",
+				"confirm": "Blockiere",
+				"success_displayname": "Du hesch {displayName} blockiert.",
+				"failure_displayname": "{displayName} het nöd chöne blockiert werde. Bitte versuech s nomal."
+			},
+			"remove": {
+				"tooltip": "Blockierig ufhebe",
+				"title": "Blockierig ufhebe",
+				"description": "Bisch sicher, dass du d Blockierig vo dem Träger wotsch ufhebe? Er cha dir denn wieder Nachrichte schicke und dini Aktivität gseh.",
+				"confirm": "Ufhebe",
+				"success_displayname": "Du hesch d Blockierig vo {displayName} ufghobe.",
+				"failure_displayname": "D Blockierig vo {displayName} het nöd chöne ufghobe werde. Bitte versuech s nomal."
+			},
+			"no_blocked": "Du hesch no kei blockierti Träger. Fang doch a blockiere!",
+			"no_blocked_search": "Kei blockierti Träger für dini Suech gfunde.",
+			"no_more_blocked": "Kei wiiteri blockierti Träger zum Lade.",
+			"fetch_error": "D blockierte Träger hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"all_button": "Alli",
+			"online_button": "Online",
+			"offline_button": "Offline"
+		},
+		"requests": {
+			"title": "Fründschaftsaafroge",
+			"incoming_button": "Iigehend",
+			"outgoing_button": "Usgehend",
+			"incoming_count": "{count} iigehendi Fründschaftsaafrog(e).",
+			"incoming_count_search": "{count} iigehendi Fründschaftsaafrog(e) für dini Suech gfunde.",
+			"outgoing_count": "{count} usgehendi Fründschaftsaafrog(e).",
+			"outgoing_count_search": "{count} usgehendi Fründschaftsaafrog(e) für dini Suech gfunde.",
+			"delete_from_displayname": "D Fründschaftsaafrog vo {displayName} ablehne",
+			"delete_to_displayname": "Dini Fründschaftsaafrog a {displayName} lösche",
+			"delete_success_from_displayname": "D Fründschaftsaafrog vo {displayName} isch glöscht worde.",
+			"delete_success_to_displayname": "Dini Fründschaftsaafrog a {displayName} isch glöscht worde.",
+			"delete_failure_from_displayname": "D Fründschaftsaafrog vo {displayName} het nöd chöne glöscht werde. Bitte versuech s nomal.",
+			"delete_failure_to_displayname": "Dini Fründschaftsaafrog a {displayName} het nöd chöne glöscht werde. Bitte versuech s nomal.",
+			"accept_button": "Aanäh",
+			"accept_from_displayname": "D Fründschaftsaafrog vo {displayName} aanäh",
+			"accept_success_from_displayname": "D Fründschaftsaafrog vo {displayName} isch aagnoh worde.",
+			"accept_failure_from_displayname": "D Fründschaftsaafrog vo {displayName} het nöd chöne aagnoh werde. Bitte versuech s nomal.",
+			"no_incoming_requests": "Du hesch kei iigehendi Fründschaftsaafroge.",
+			"no_incoming_requests_search": "Kei iigehendi Fründschaftsaafroge für dini Suech gfunde.",
+			"no_outgoing_requests": "Du hesch kei usgehendi Fründschaftsaafroge.",
+			"no_outgoing_requests_search": "Kei usgehendi Fründschaftsaafroge für dini Suech gfunde.",
+			"no_more_incoming_requests": "Kei wiiteri iigehendi Fründschaftsaafroge zum Lade.",
+			"no_more_outgoing_requests": "Kei wiiteri usgehendi Fründschaftsaafroge zum Lade.",
+			"received": "Übercho",
+			"sent": "Gschickt",
+			"reject": {
+				"tooltip": "Aafrog ablehne",
+				"title": "Fründschaftsaafrog ablehne",
+				"description": "Bisch sicher, dass du die Fründschaftsaafrog wotsch ablehne?",
+				"confirm": "Ablehne"
+			},
+			"cancel": {
+				"tooltip": "Aafrog zruggzieh",
+				"title": "Fründschaftsaafrog zruggzieh",
+				"description": "Bisch sicher, dass du die offeni Aafrog wotsch zruggzieh?",
+				"confirm": "Aafrog zruggzieh"
+			},
+			"toast": {
+				"received_displayname": "Du hesch e Fründschaftsaafrog vo {displayName} übercho.",
+				"accepted_displayname": "{displayName} het dini Fründschaftsaafrog aagnoh."
+			},
+			"fetch_error": "D Fründschaftsaafroge hend nöd chöne glade werde. Bitte versuech s spöter nomal."
+		},
+		"gate": {
+			"blocked_title": "Du hesch das Profil blockiert",
+			"blocked_description": "Du gsehsch kei Biiträg, Nachrichte oder Aktivitäte meh vo dere Person. Du chasch d Blockierig jederziit ufhebe.",
+			"unavailable_title": "Inhalt nid verfüegbar",
+			"unavailable_description": "Das Profil oder dä Inhalt isch grad nid verfüegbar."
+		}
+	},
+	"presence": {
+		"online": "Online",
+		"online_description": "Dini Fründe chönd dich gseh.",
+		"do_not_disturb": "Nöd störe",
+		"do_not_disturb_description": "Du überchunsch kei Benachrichtigunge für neui Nachrichte oder Fründschaftsaafroge.",
+		"invisible": "Unsichtbar",
+		"invisible_description": "Für dini Fründe bisch offline, aber du chasch d App ganz normal bruuche.",
+		"count_online": "{count} Hüeter im Liecht",
+		"count_online_friends": "{count} Fründe im Liecht",
+		"just_connected_displayname": "{displayName} isch grad online cho"
+	},
+	"chat": {
+		"share": {
+			"title": "Poscht teile",
+			"description": "Wähl eine oder mehreri Chaträim us, zum dä Poscht teile.",
+			"comment_placeholder": "Füeg e optionali Nachricht hinzue...",
+			"search_placeholder": "Räim oder Fründe sueche...",
+			"selected_count": "{count, plural, =0 {Kei Ruum usgwählt} one {1 Ruum usgwählt} other {# Räim usgwählt}}",
+			"cancel": "Abbräche",
+			"submit": "Teile",
+			"room_badge_fallback": "Ruum #{id}",
+			"success_count": "Poscht isch i {count} Chatruum/Chaträim teilt worde.",
+			"partial_count": "Poscht het i {count} Chatruum/Chaträim nöd chöne teilt werde.",
+			"error": "Bim Teile vom Poscht isch en Fehler passiert."
+		},
+		"rooms": {
+			"title": "Chaträim",
+			"page": {
+				"title": "Kei Chat usgwählt",
+				"subtitle": "Wähl en Chat us, zum afange schriibe.",
+				"not_created": "Chatruum no nöd erstellt?",
+				"ask_friends": "Frog dini Fründe, öb sie mit dir spiele wend!",
+				"create_button": "Chat erstelle"
+			},
+			"type": {
+				"group": "Gruppe",
+				"direct": "Direkt"
+			},
+			"no_chat_rooms": "Du hesch no kei Chaträim. Fang es Gspröch mit dine Fründe a!",
+			"no_chat_rooms_search": "Kei Chaträim für dini Suech gfunde.",
+			"no_more_chat_rooms": "Kei wiiteri Chaträim zum Lade.",
+			"fetch_error": "D Chaträim hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"search_placeholder": "Chaträim sueche...",
+			"sort": {
+				"label": "Chaträim sortiere",
+				"activity_desc": "Aktivität (neusti Nachrichte zerscht)",
+				"activity_asc": "Aktivität (ältisti Nachrichte zerscht)",
+				"created_desc": "Erstelligsdatum (neusti zerscht)",
+				"created_asc": "Erstelligsdatum (ältisti zerscht)"
+			},
+			"status": {
+				"online": "Online · zäme im Dunkle",
+				"offline": "Offline · elei im Dunkle",
+				"dnd": "Nöd störe · elei im Dunkle"
+			},
+			"group_settings": {
+				"title": "Gruppedetails bearbeite",
+				"description": "Änder de Gruppename oder s Avatarbild.",
+				"group_name_label": "Gruppename",
+				"group_name_placeholder": "Gruppename iigeh",
+				"change_avatar_hint": "Klick ufs Bild, zum es neus uffelade",
+				"remove_avatar": "Bild ewägnäh",
+				"cancel": "Abbräche",
+				"save": "Änderige speichere",
+				"delete_group_button": "Gruppe lösche",
+				"delete_group_title": "Gruppe lösche",
+				"delete_group_description": "Bisch sicher, dass du dä Chatruum wotsch lösche? Das chasch nöd rückgängig mache und alli Nachrichte gönd für immer verlore.",
+				"delete_confirm": "Lösche",
+				"tooltip": "Gruppedetails bearbeite"
+			},
+			"create": {
+				"title": "Chatruum erstelle",
+				"description": "Fang es neus Gspröch mit dine Fründe a.",
+				"group_name_label": "Gruppename",
+				"group_name_placeholder": "Gruppename iigeh",
+				"button": "Chatruum erstelle",
+				"success": "Chatruum isch erstellt worde.",
+				"failure": "De Chatruum het nöd chöne erstellt werde. Bitte versuech s nomal.",
+				"dm_exists": "Mit dem Träger gits scho en Direktchat. Du chasch s Gspröch det wiiterfüehre.",
+				"no_users_selected": "Wähl mindestens ei Träger us, zum en Chat erstelle.",
+				"search_placeholder": "Fründe sueche, zum sie im Chat hinzuefüege..."
+			}
+		},
+		"messages": {
+			"no_messages": "No kei Nachrichte. Fang s Gspröch a!",
+			"no_messages_search": "Kei Nachrichte für dini Suech gfunde.",
+			"no_more_messages": "Kei wiiteri Nachrichte zum Lade.",
+			"fetch_error": "D Nachrichte hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"preview": {
+				"no_messages": "No kei Nachrichte",
+				"deleted_message": "Die Nachricht isch glöscht worde",
+				"attachments": "{count, plural, =1 {1 Aahang gschickt} other {{count} Aahäng gschickt}}",
+				"post_shared": "Poscht teilt",
+				"replying_to": "Antwort uf: <replyToId>#1s41</replyToId>"
+			},
+			"actions": {
+				"reply": "Antworte",
+				"edit": "Bearbeite",
+				"delete": "Lösche",
+				"placeholder_create": "Schick e Nachricht is Dunkle...",
+				"placeholder_reply": "Nachricht bearbeite...",
+				"label_textarea": "Nachricht",
+				"button_send": "Schicke",
+				"button_save": "Speichere",
+				"rich_is_typing": "<strong>displayName</strong> schriibt grad...",
+				"rich_are_typing": "<strong>displayName</strong> und {count, plural, =1 {1 anderi Person} other {# anderi}} schriibed grad...",
+				"edditing": "Nachricht bearbeite",
+				"rich_replying_to": "Antwort a <strong>displayName</strong>",
+				"attach_images_videos": "Bilder oder Videos aahänke",
+				"choose_emoji": "Emoji uswähle",
+				"dialogs": {
+					"delete_title": "Nachricht lösche?",
+					"delete_description": "Das chasch nöd rückgängig mache. Die Nachricht wird für immer usem Gspröch glöscht."
+				}
+			},
+			"system": {
+				"default_actor": "System",
+				"role_updated": "{actor} het d Rolle vo {target} vo {oldRole} uf {newRole} gänderet.",
+				"added": "{actor} het {target} zum Ruum hinzuegfüegt.",
+				"kicked": "{actor} het {target} usem Ruum gnoh.",
+				"left": "{user} het de Ruum verlah.",
+				"room_renamed": "{actor} het de Ruum vo \"{oldName}\" in \"{newName}\" umbenannt.",
+				"room_name_added": "{actor} het de Ruumname uf \"{newName}\" gsetzt.",
+				"room_name_removed": "{actor} het de Ruumname ewäggnoh.",
+				"room_avatar_changed": "{actor} het de Ruum-Avatar aktualisiert.",
+				"room_avatar_added": "{actor} het en Ruum-Avatar hinzuegfüegt.",
+				"room_avatar_removed": "{actor} het de Ruum-Avatar ewäggnoh.",
+				"ownership_transferred": "{actor} het de Ruum a {target} übergeh.",
+				"room_created": "{actor} het de Ruum erstellt.",
+				"deleted": "Die Nachricht isch glöscht worde.",
+				"deleted_user_fallback": "Glöschte Träger"
+			}
+		},
+		"members": {
+			"roles": {
+				"owner": "Bsitzer",
+				"admin": "Admin",
+				"member": "Mitglied"
+			},
+			"sort": {
+				"label": "Mitglieder sortiere",
+				"username_asc": "Benutzername (A-Z)",
+				"username_desc": "Benutzername (Z-A)",
+				"joined_desc": "Churzlich biitrete",
+				"joined_asc": "Ältisti Mitglieder",
+				"displayname_asc": "Aazeigename (A-Z)",
+				"displayname_desc": "Aazeigename (Z-A)",
+				"role_asc": "Rolle (höchsti zerscht)",
+				"role_desc": "Rolle (tüüfsti zerscht)"
+			},
+			"title": "Mitglieder",
+			"search_placeholder": "Mitglieder sueche...",
+			"count_label": "{count, plural, =1 {Mitglied} other {Mitglieder}}",
+			"no_members": "No kei Mitglieder i dem Chatruum.",
+			"no_members_search": "Kei Mitglieder für dini Suech gfunde.",
+			"no_more_members": "Kei wiiteri Mitglieder zum Lade.",
+			"fetch_error": "D Mitglieder hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+			"actions": "Mitglieder-Aktione",
+			"kick": "Mitglied usegheie",
+			"promote_to_admin": "Zum Admin mache",
+			"demote_to_member": "Zum Mitglied zruggstuefe",
+			"transfer_ownership": "Bsitz übergeh",
+			"leave_room": "Ruum verlah",
+			"view_profile": "Profil aaluege",
+			"joined_at": "Biitrete",
+			"dialogs": {
+				"kick_title": "Mitglied usegheie",
+				"kick_description": "Bisch sicher, dass du das Mitglied usem Chatruum wotsch usegheie? Es het denn kei Zuegriff meh uf d Nachrichte.",
+				"promote_title": "Mitglied befördere",
+				"promote_description": "Bisch sicher, dass du das Mitglied zum Admin wotsch mache? Es überchunt Admin-Rächt i dem Ruum.",
+				"demote_title": "Mitglied zruggstuefe",
+				"demote_description": "Bisch sicher, dass du dä Admin zum Mitglied wotsch zruggstuefe? Er verlüürt sini Admin-Rächt.",
+				"transfer_title": "Bsitz übergeh",
+				"transfer_description": "Bisch sicher, dass du de Bsitz vo dem Ruum wotsch übergeh? Du wirsch zum Admin zruggstuft und verlüürsch dini Bsitzer-Rächt.",
+				"leave_title": "Chatruum verlah",
+				"leave_description": "Bisch sicher, dass du dä Chatruum wotsch verlah? Du muesch denn wieder iiglade werde, zum biiträte.",
+				"add": {
+					"tooltip": "Mitglieder hinzuefüege",
+					"title": "Mitglieder hinzuefüege",
+					"description": "Wähl Fründe us, wo du i dä Gruppechat wotsch hinzuefüege.",
+					"search_placeholder": "Fründe sueche...",
+					"add": "Mitglieder hinzuefüege",
+					"no_friends": "Kei Fründe verfüegbar zum Hinzuefüege.",
+					"no_friends_found": "Kei Fründe passed zu dinere Suech.",
+					"no_users_selected": "Wähl mindestens ei Fründ us, zum ihn im Chat hinzuefüege.",
+					"fetch_error": "D Fründe hend nöd chöne glade werde. Bitte versuech s nomal."
+				}
+			}
+		},
+		"title": "Chat",
+		"subtitle": "Gspröch mit dine Fründe",
+		"send_dm": "E DM schicke"
+	},
+	"feed": {
+		"title": "Feed",
+		"subtitle": "Nachrichte vo de Liechthüeter"
+	},
 	"posts": {
 		"create": {
 			"placeholder": "Fang a, en Poscht z'schriibe",
@@ -43,7 +450,8 @@
 			"see_more": "Meh aazeige",
 			"see_less": "Weniger aazeige",
 			"replying_to": "As Antwort a",
-			"open_post": "Poscht ufmache"
+			"open_post": "Poscht ufmache",
+			"must_be_deleted": "Dä Poscht isch wohl glöscht worde."
 		},
 		"actions": {
 			"comment": "Kommentiere",
@@ -52,7 +460,9 @@
 			"quote": "Zitiere",
 			"like": "Gfallt mer",
 			"unlike": "Gfallt mer nüm",
-			"delete": "Lösche"
+			"delete": "Lösche",
+			"chat": "Im Chat teile",
+			"copy_link": "Link kopiere"
 		},
 		"detail": {
 			"back": "Poscht"
@@ -79,15 +489,6 @@
 			"fetch_error": "D gteilte Poschts hend nöd chöne glade werde. Bitte versuech s spöter nomal."
 		}
 	},
-
-	"search": {
-		"title": "Suech",
-		"subtitle": "Find Träger und Poschts",
-		"input_placeholder": "Suech es Stichwort oder @Benutzername...",
-		"users_title": "Träger",
-		"posts_title": "Poschts"
-	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Folg em Liecht · oder wirsch vergässe",
@@ -117,7 +518,6 @@
 			}
 		}
 	},
-
 	"support": {
 		"kicker": "Hilf-Center",
 		"title": "Wie bliibsch im Liecht?",
@@ -164,7 +564,6 @@
 			}
 		}
 	},
-
 	"lore": {
 		"kicker": "D Lore · Light Keepers",
 		"title": "Im Härz vom Chreis gilt nume ei Regle: durehalte.",
@@ -192,7 +591,6 @@
 			}
 		}
 	},
-
 	"legal": {
 		"kicker": "Rächtlichi Informatione",
 		"title": "Impressum",
@@ -230,169 +628,514 @@
 	},
 	"auth": {
 		"signout": {
-			"label": "Logout",
-			"success": "You have been logged out successfully.",
-			"error": "An error occurred while logging out. Please try again."
+			"label": "Uslogge",
+			"success": "Du bisch usgloggt worde.",
+			"error": "Bim Uslogge isch en Fehler passiert. Bitte versuech s nomal."
 		},
 		"signin": {
-			"title": "Sign In",
-			"no_account": "Don't have an account ?",
-			"forgot_password": "Forgot your password ?",
-			"reset_password": "Reset Password",
-
-			"username_or_email": "Username or Email",
-			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
-
-			"email": "Email",
+			"title": "Iilogge",
+			"no_account": "No kei Konto?",
+			"forgot_password": "Passwort vergässe?",
+			"reset_password": "Passwort zruggsetze",
+			"username_or_email": "Benutzername oder E-Mail",
+			"username_or_emailPlaceholder": "john_doe oder john.doe@example.com",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-
-			"password": "Password",
-			"passwordPlaceholder": "Enter your password",
-
-			"submit": "Sign In",
-			"submitting": "Signing In",
-			"submitted": "Signed In",
-			"forgotPassword": "Forgot your password?",
-			"success": "You have been signed in successfully.",
-			"error": "An error occurred while signing in. Please check your credentials and try again."
+			"password": "Passwort",
+			"passwordPlaceholder": "Gib dis Passwort ii",
+			"submit": "Iilogge",
+			"submitting": "Wird iigloggt",
+			"submitted": "Iigloggt",
+			"forgotPassword": "Passwort vergässe?",
+			"success": "Du bisch iigloggt worde.",
+			"error": "Bim Iilogge isch en Fehler passiert. Bitte prüef dini Aamelde-Date und versuech s nomal."
 		},
 		"signup": {
-			"title": "Sign Up",
-			"already_account": "Already have an account ?",
+			"title": "Registriere",
+			"already_account": "Hesch scho es Konto?",
 			"account": {
-				"title": "Account Information",
-				"account_desc": "Create your account by filling in the information below.",
-				"email": "Email",
+				"title": "Kontoinfos",
+				"account_desc": "Erstell dis Konto, indem du d Infos unne usfüllsch.",
+				"email": "E-Mail",
 				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
+				"username": "Benutzername",
 				"usernamePlaceholder": "john_doe"
 			},
 			"personal": {
-				"title": "Personal Information",
-				"desc": "Provide some personal details to complete your profile.",
-				"firstName": "First Name",
+				"title": "Persönlichi Infos",
+				"desc": "Gib es paar persönlichi Aagabe aa, zum dis Profil vervollständige.",
+				"firstName": "Vorname",
 				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
+				"lastName": "Nachname",
 				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
-				"gender": "Gender",
-				"genderPlaceholder": "Select your gender",
+				"birthdate": "Geburtsdatum",
+				"gender": "Gschlächt",
+				"genderPlaceholder": "Wähl dis Gschlächt us",
 				"genderOptions": {
-					"label": "Gender Options",
+					"label": "Gschlächt-Optione",
 					"male": "Male",
-					"female": "Female",
-					"other": "Other",
-					"prefer_not_to_say": "Prefer not to say"
+					"female": "Wiiblich",
+					"other": "Anders",
+					"prefer_not_to_say": "Sägs lieber nöd"
 				},
-				"locale": "Preferred Language",
-				"localePlaceholder": "Select your preferred language for email notifications",
+				"locale": "Bevorzugti Sprach",
+				"localePlaceholder": "Wähl dini bevorzugti Sprach für E-Mail-Benachrichtigunge us",
 				"localeOptions": {
-					"label": "Email Preference",
-					"en": "English",
-					"fr": "French",
-					"de": "German"
+					"label": "E-Mail-Vorliebe",
+					"en": "Englisch",
+					"fr": "Französisch",
+					"de": "Dütsch"
 				}
 			},
 			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
+				"title": "Profil",
+				"desc": "Verzell üs meh über dich, zum dini Erfahrig persönlich z mache.",
+				"displayName": "Aazeigename",
 				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself"
+				"bio": "Biografie",
+				"bioPlaceholder": "Verzell üs es bitzli über dich"
 			},
 			"security": {
-				"title": "Security",
-				"desc": "Choose a strong password to protect your account.",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password"
+				"title": "Sicherheit",
+				"desc": "Wähl es starchs Passwort, zum dis Konto z schütze.",
+				"password": "Passwort",
+				"passwordPlaceholder": "Wähl es Passwort",
+				"confirmPassword": "Passwort bestätige",
+				"confirmPasswordPlaceholder": "Gib dis Passwort nomal ii"
 			},
 			"terms": {
-				"title": "Terms and Conditions",
-				"desc": "Please read and accept our Terms and Conditions to proceed.",
-				"acceptTerms": "I have read and accept the Terms and Conditions"
+				"title": "Gschäftsbedingige",
+				"desc": "Bitte lies und akzeptier üsi Gschäftsbedingige, zum wiiterzmache.",
+				"acceptTerms": "Ich ha d Gschäftsbedingige gläse und akzeptier sie"
 			},
 			"buttons": {
-				"back": "Go Back",
-				"continue": "Continue",
-				"submit": "Submit",
-				"submitting": "Submitting",
-				"submitted": "Submitted",
-				"validating": "Validating"
+				"back": "Zrugg",
+				"continue": "Wiiter",
+				"submit": "Abschicke",
+				"submitting": "Wird abgschickt",
+				"submitted": "Abgschickt",
+				"validating": "Wird prüeft",
+				"save": "Speichere",
+				"saving": "Wird gspeicheret",
+				"saved": "Gspeicheret"
 			},
-			"recap_title": "Review Your Information",
-
-			"success": "Account created successfully!",
-			"error": "Failed to create account. Please try again."
+			"recap_title": "Prüef dini Aagabe",
+			"success": "Konto isch erstellt worde!",
+			"error": "S Konto het nöd chöne erstellt werde. Bitte versuech s nomal."
 		},
 		"forgot_password": {
-			"title": "Reset Password",
-			"login": "Remember your password ?",
-			"email": "Email",
+			"title": "Passwort zruggsetze",
+			"login": "Weisch dis Passwort wieder?",
+			"email": "E-Mail",
 			"emailPlaceholder": "john.doe@example.com",
-			"submit": "Send Reset Link",
-			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent",
-			"success": "If an account with that email exists, a password reset link has been sent."
+			"submit": "Zruggsetz-Link schicke",
+			"submitting": "Zruggsetz-Link wird gschickt",
+			"submitted": "Zruggsetz-Link gschickt",
+			"success": "Wenns es Konto mit dere E-Mail git, isch en Link zum s Passwort zruggsetze gschickt worde."
 		},
 		"reset_password": {
-			"title": "Set New Password",
-			"login": "Remember your password ?",
-			"password": "New Password",
-			"passwordPlaceholder": "Enter your new password",
-			"confirmPassword": "Confirm New Password",
-			"confirmPasswordPlaceholder": "Re-enter your new password",
-			"submit": "Reset Password",
-			"submitting": "Resetting Password",
-			"submitted": "Password Reset",
-			"success": "Your password has been reset successfully!",
-			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+			"title": "Neus Passwort setze",
+			"login": "Weisch dis Passwort wieder?",
+			"password": "Neus Passwort",
+			"passwordPlaceholder": "Gib dis neue Passwort ii",
+			"confirmPassword": "Neus Passwort bestätige",
+			"confirmPasswordPlaceholder": "Gib dis neue Passwort nomal ii",
+			"submit": "Passwort zruggsetze",
+			"submitting": "Passwort wird zruggsetzt",
+			"submitted": "Passwort zruggsetzt",
+			"success": "Dis Passwort isch zruggsetzt worde!",
+			"error": "S Passwort het nöd chöne zruggsetzt werde. De Link isch vilicht ungültig oder abgloffe. Bitte versuech s nomal."
+		},
+		"change_password": {
+			"title": "Passwort ändere",
+			"description": "Lueg, dass dis Konto es starchs und eimaligs Passwort bruucht, damit s sicher bliibt.",
+			"currentPassword": "Aktuells Passwort",
+			"currentPasswordPlaceholder": "Gib dis aktuelle Passwort ii",
+			"newPassword": "Neus Passwort",
+			"newPasswordPlaceholder": "Gib dis neue Passwort ii",
+			"confirmPassword": "Neus Passwort bestätige",
+			"confirmPasswordPlaceholder": "Gib dis neue Passwort nomal ii",
+			"submit": "Passwort aktualisiere",
+			"submitting": "Passwort wird aktualisiert",
+			"submitted": "Passwort aktualisiert",
+			"success": "Dis Passwort isch gänderet worde!",
+			"error": "S Passwort het nöd chöne aktualisiert werde. Bitte prüef dis aktuelle Passwort und versuech s nomal."
+		},
+		"delete_account": {
+			"trigger": "Konto lösche",
+			"title": "Konto lösche",
+			"description": "Die Aktion isch endgültig und chan nöd rückgängig gmacht werde. All dini Poschts, Nachrichte und persönliche Date werded für immer glöscht.",
+			"confirm_text": "Endgültig lösche",
+			"password_label": "Passwort bestätige",
+			"password_placeholder": "Gib dis Passwort ii zum Bestätige",
+			"success": "Dis Konto isch glöscht worde.",
+			"invalid_password": "S Passwort, wo du iigeh hesch, isch falsch."
 		}
 	},
-
 	"forms": {
 		"error": {
-			"required": "This field is required",
-
-			"email": "Please enter a valid email address",
-			"string": "This field must be a string",
-			"number": "This field must be a number",
-			"date": "This field must be a valid date",
-			"boolean": "This field must be true or false",
-			"enum": "Invalid option selected",
-			"phone": "Please enter a valid phone number in E.164 format",
-			"pattern": "Invalid format",
-
-			"lowercase": "Only lowercase letters are allowed",
-			"uppercase": "Only uppercase letters are allowed",
-
-			"minLength": "Minimum length is {min} characters",
-			"maxLength": "Maximum length is {max} characters",
-
-			"select": "Please select an option",
-			"mustAcceptTerms": "You must accept the terms and conditions",
-
-			"password_match": "Passwords must match",
-			"password_uppercase": "Password must contain at least one uppercase letter",
-			"password_lowercase": "Password must contain at least one lowercase letter",
-			"password_number": "Password must contain at least one number",
-			"password_special": "Password must contain at least one special character",
-
-			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken",
-			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
-
-			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register",
-
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"required": "Das Fäld muess usgfüllt werde",
+			"email": "Bitte gib e gültigi E-Mail-Adrässe ii",
+			"string": "Das Fäld muess en Text sii",
+			"number": "Das Fäld muess e Zahl sii",
+			"date": "Das Fäld muess es gültigs Datum sii",
+			"boolean": "Das Fäld muess wahr oder falsch sii",
+			"enum": "Ungültigi Option usgwählt",
+			"phone": "Bitte gib e gültigi Telefonnummere im E.164-Format ii",
+			"pattern": "Ungültigs Format",
+			"lowercase": "Nur Chliibuechstabe sind erlaubt",
+			"uppercase": "Nur Grossbuechstabe sind erlaubt",
+			"minLength": "Mindestens {min} Zeiche",
+			"maxLength": "Maximal {max} Zeiche",
+			"fileSizeMB": "D Datei muess chliiner als {maxSize} MB sii",
+			"maxFilesCount": "Du chasch bis zu {maxCount} Dateie aahänke",
+			"imageOnly": "Nur Bilddateie sind erlaubt",
+			"imageVideoOnly": "Nur Bild- und Videodateie sind erlaubt",
+			"select": "Bitte wähl e Option us",
+			"mustAcceptTerms": "Du muesch d Gschäftsbedingige akzeptiere",
+			"password_match": "D Passwörter müend übereistimme",
+			"password_uppercase": "S Passwort muess mindestens ein Grossbuechstabe ha",
+			"password_lowercase": "S Passwort muess mindestens ein Chliibuechstabe ha",
+			"password_number": "S Passwort muess mindestens ei Zahl ha",
+			"password_special": "S Passwort muess mindestens eis Sonderzeiche ha",
+			"security_same_password": "S neue Passwort muess anders sii als s aktuelle",
+			"security_incorrect_current_password": "S aktuelle Passwort, wo du iigeh hesch, isch falsch",
+			"email_already_in_use": "Die E-Mail isch scho vergeh",
+			"username_already_in_use": "Dä Benutzername isch scho vergeh",
+			"user_already_exists": "Während du s Formular usgfüllt hesch, het sich öpper mit dere E-Mail oder dem Benutzername registriert. Bitte versuech s mit andere Aagabe nomal.",
+			"internal_server_error": "En unerwartete Fehler isch passiert. Bitte versuech s spöter nomal.",
+			"age_restriction": "Du muesch mindestens 13 Jahr alt sii, zum di registriere",
+			"invalid_credentials": "Ungültigi Aamelde-Date. Bitte prüef dini Aagabe und versuech s nomal.",
+			"invalid_token": "De Zruggsetz-Link isch ungültig oder abgloffe. Bitte fordere en neue aa.",
+			"invalid_email": "Die E-Mail-Adrässe isch nöd registriert. Bitte prüef sie und versuech s nomal.",
+			"at_least_one": "Mindestens eis Fäld muess usgfüllt sii",
+			"message_empty_if_attachments": "De Nachrichtetext dörf nume leer sii, wenn en Aahang debii isch"
 		},
 		"addons": {
-			"length": "{current} / {max} characters max"
+			"length": "{current} / {max} Zeiche max"
 		}
+	},
+	"date": {
+		"today": "Hüt",
+		"yesterday": "Geschter",
+		"just_now": "Grad äbe",
+		"minutes_ago": "vor {count} Minute",
+		"hours_ago": "vor {count} Stund",
+		"days_ago": "vor {count} Täg",
+		"weeks_ago": "vor {count} Wuche",
+		"months_ago": "vor {count} Mönet",
+		"years_ago": "vor {count} Jahr"
+	},
+	"common": {
+		"confirm": "Bestätige",
+		"cancel": "Abbräche",
+		"not_found": {
+			"main": {
+				"badge": "404-Fehler",
+				"title": "Siite nöd gfunde",
+				"description": "Sorry, mir hend d Siite, wo du suechsch, nöd gfunde. Sie isch vilicht verschobe oder glöscht worde, oder het nie existiert."
+			},
+			"user": {
+				"badge": "Träger nöd gfunde",
+				"title": "Dä Träger gits nöd",
+				"description": "De Träger, wo du suechsch, het vilicht sis Konto glöscht, sin Benutzername gänderet oder het nie existiert."
+			},
+			"chat": {
+				"badge": "Gspröch nöd gfunde",
+				"title": "Chat nöd verfüegbar",
+				"description": "Dä Chatruum isch vilicht glöscht worde, oder du hesch kei Berechtigung, zum druf zuegriife."
+			},
+			"post": {
+				"badge": "Poscht nöd gfunde",
+				"title": "Poscht nöd verfüegbar",
+				"description": "Dä Biitrag isch vom Autor ewäggnoh worde oder isch nüm erreichbar."
+			},
+			"common": {
+				"go_back": "Zrugg",
+				"back_home": "Zrugg zur Startsiite"
+			}
+		},
+		"themes": {
+			"dark": "Dunkel",
+			"light": "Hell",
+			"system": "System",
+			"neon": "Neon"
+		},
+		"back": "Zrugg",
+		"close": "Zuemache",
+		"appearance": "Uusgseh",
+		"avatar_preview": "Avatar-Vorschau"
+	},
+	"wiki": {
+		"title": "Arsenal- & Tome-Kompendium",
+		"subtitle": "Umfassende Guide zu Kampfmechanik, Stat-Skalierig, Waffe und optimale Tome-Synergie.",
+		"tabs": {
+			"mechanics": "Spielmechanik & Stats",
+			"weapons": "Waffe",
+			"tomes": "Tomes",
+			"synergies": "Optimali Builds & Synergie"
+		},
+		"notes": {
+			"title": "Grundregle & Kampfnotize",
+			"affinity": "D Affinität bestimmt d Stat-Skalierig: 1.0 isch 100% Wirkig, 0.5 isch d Hälfti, und >1.0 verstärkt de Stat.",
+			"global": "Tomes geh globali Boni uf Spieler-Stats oder uf d Skalierig vo allne usgrüschtete Waffe gliichziitig.",
+			"limits": "Du chasch maximal 4 Tomes träge (maximal Level 99 pro Tome). D Angriffsrate vo de Waffe hend e Obergränze.",
+			"weaponsLimit": "Du chasch während emne Run maximal 3 Waffe gliichziitig träge."
+		},
+		"labels": {
+			"behavior": "Angriffsverhalte",
+			"affinities": "Stat-Skalierig & Affinität",
+			"affectedWeapons": "Betroffeni Waffe",
+			"bestFor": "Am beschte für",
+			"bestTomes": "Empfohleni Tomes",
+			"rarityValues": "Seltenheits-Skalierig",
+			"target": "Ziel",
+			"baseValue": "Basiswert",
+			"key": "Schlüssel",
+			"formula": "Formle / Limit"
+		},
+		"targets": {
+			"weapons": "Waffe",
+			"player": "Spieler",
+			"upgrades": "Upgrades"
+		},
+		"rarities": {
+			"common": "Gwöhnlich",
+			"uncommon": "Ungwöhnlich",
+			"rare": "Selte",
+			"epic": "Episch",
+			"legendary": "Legendär"
+		},
+		"stats": {
+			"title": "Stat-Mechanik & Formle",
+			"attackDamage": "Schade",
+			"attackSpeed": "Angriffstempo",
+			"range": "Riichwiti",
+			"size": "Grössi",
+			"duration": "Dauer",
+			"quantity": "Aazahl",
+			"penetration": "Durchschlag",
+			"moveSpeed": "Laufgschwindigkeit",
+			"maxHealth": "Max. Läbe",
+			"armor": "Rüschtig",
+			"lifesteal": "Läbesraub",
+			"luck": "Glück",
+			"explanations": {
+				"attackDamage": {
+					"desc": "Basiswert isch 100 (100%). Multipliziert de Grundschade pro Treffer vo allne Waffe, aapasst dur d Affinität.",
+					"formula": "Endschade = Grundschade × (1 + Stat-Bonus × Affinität)"
+				},
+				"attackSpeed": {
+					"desc": "Basiswert isch 1.0. Erhöht d Angriffsfrequenz und verchürzt d Abständ zwüsche de Angriff.",
+					"formula": "Global begränzt dur COMBAT_LIMITS.maxFinalAttackRate"
+				},
+				"range": {
+					"desc": "Basiswert isch 8. Verlängeret d Flugdistanz vo Projektil, de Zielerfassigs-Radius und d Wurfwiti.",
+					"formula": "Globale Riichwiti-Multiplikator = 1 + (Riichwiti − 8) / 8"
+				},
+				"size": {
+					"desc": "Basiswert isch 1.0. Vergrösseret d Hitboxe, d Schlagböge und de Aura-Radius vo de Waffe.",
+					"formula": "Hitbox-Skalierig = Grundgrössi × Grössi-Multiplikator"
+				},
+				"duration": {
+					"desc": "Basiswert isch 1.0. Haltet aktivi Zaubereffekt, Schlagböge und drehendi Äxt länger uf em Schlachtfäld.",
+					"formula": "Wirkt mit 100% Skalierig ohni Affinitäts-Abzug"
+				},
+				"quantity": {
+					"desc": "Basiswert isch 0. Füegt pro Salve zuesätzlichi Projektil hinzue.",
+					"formula": "Fix begränzt uf COMBAT_LIMITS.maxProjectilesPerPlayer (32)"
+				},
+				"penetration": {
+					"desc": "Basiswert isch 0. Laht Projektil dur Ziel durefliege, ohni dass sie bim Ufprall verschwinded.",
+					"formula": "Nur über Stab- und Boge-Perks verbesserbar"
+				},
+				"moveSpeed": {
+					"desc": "Basiswert isch 30. Direkte Modifikator für d Laufgschwindigkeit, zum de Horde devozrenne und d Position z halte.",
+					"formula": "Nur Spieler-Stat (0% Waffe-Affinität)"
+				},
+				"maxHealth": {
+					"desc": "Basiswert isch 100. Erhöht s maximale Läbe und skaliert s aktuelle Läbe prozentual mit.",
+					"formula": "Aktuelli HP% bliibed bim Upgrade erhalte"
+				},
+				"armor": {
+					"desc": "Basiswert isch 1. Direkti Schadesreduktion gäg alli Angriff vo Monster.",
+					"formula": "Erlittene Schade = Rohschade × 100 / (100 + Rüschtig)"
+				},
+				"lifesteal": {
+					"desc": "Basiswert isch 1 (1%). Wandlet usteilte Schade direkt i Heilig für de Spieler um.",
+					"formula": "Heilig = Usteilte Schade × Läbesraub %"
+				},
+				"luck": {
+					"desc": "Basiswert isch 1.0. Multipliziert d Gwichtig für ungwöhnlichi, selteni, epischi und legendäri Upgrade-Uswahle.",
+					"formula": "Gwichtig = Grundgwichtig × Glück (Gwöhnlich bliibt fix)"
+				}
+			}
+		},
+		"combatRules": {
+			"title": "Kampfablauf & Systemmechanik",
+			"affinityTitle": "Logik vo de Affinitäts-Skalierig",
+			"affinityDesc": "E Waffe-Affinität vo 1.0 wendet en Stat-Bonus zum Standardwert aa. E Affinität vo 0.5 halbiert d Wirkig, während 1.25 de Bonus um 25% verstärkt.",
+			"armorTitle": "Abnehmende Rüschtigs-Ertrag",
+			"armorDesc": "D Rüschtig bruucht e hyperbolischi Formle: Jede Punkt bringt garantiert meh effektivs Läbe, ohni dass du je ganz unverwundbar wirsch.",
+			"tomeLimitTitle": "Slot-Limite & Obergränze",
+			"tomeLimitDesc": "Du chasch pro Run bis zu 4 Tomes uswähle (jedes maximal Level 99). Sobald alli 4 Slots bsetzt sind, wärded nur no Kopie vo dine Tomes aabote."
+		},
+		"synergies": {
+			"axeSize": {
+				"title": "Axt + Tome of Growth (Grössi-Multiplikator)",
+				"description": "D Axt het e einzigartigi 1.25x-Affinität für Grössi. Mit em Tome of Growth wird ihre drehende Kontaktzylinder vil meh vergrösseret als bi normale Waffe, und iigrammti Äxt wärded zu riesige, stationäre Mixer-Zone."
+			},
+			"staffRange": {
+				"title": "Stab + Tome of Quantity & Range",
+				"description": "De Stab het e langi Zielerfassig (1.25x-Affinität), aber e tüüfi Feuerrate. Zäme mit Tome of Quantity und Tome of Range wärded einzelni zielsuechendi Füürbälle zu wiitreichende, zielsuechende Schwärm."
+			},
+			"bowHaste": {
+				"title": "Boge + Tome of Haste (Angriffstempo)",
+				"description": "Mit ere 1.2x-Affinität für Angriffstempo skaliert de Boge schnell mit em Tome of Haste und schüsst dichti Pfilsalve, wo aagriffendi Horde ufhalte chönd."
+			}
+		},
+		"weapons": {
+			"aura": {
+				"name": "Aura",
+				"type": "Flächeaura",
+				"description": "En ständige Energiering um de Spieler ume. Er wird nie gzielt und suecht kei Ziel: Er verbrönnt eifach alles, wo z nöch chunt.",
+				"behavior": "Bi jedem Tick wird de Ring als Zylinder um de Spieler abgfahre und macht allne Gegner drin Schade, ohni Projektil und ohni Abklingziit pro Ziel.",
+				"bestFor": "Schwärm uf churzi Distanz kontrolliere, Mobs mit wenig Ufwand wegputze (AFK), und e Schutzzone gäg schnelli Renner.",
+				"synergyTip": "Skaliert am beschte mit Grössi und Angriffstempo, zum d Brönnzone z vergrössere und d Tick-Frequenz z erhöhe.",
+				"effects": {
+					"attackDamage": "Erhöht de Schade pro Tick.",
+					"attackSpeed": "Erhöht, wie oft de Ring tickt.",
+					"range": "Vergrösseret de Radius vom Ring.",
+					"size": "Vergrösseret de Radius vom Ring, zuesätzlich zur Riichwiti."
+				}
+			},
+			"sword": {
+				"name": "Schwert",
+				"type": "Nahkampf-Boge",
+				"description": "E Klinge, wo vor em Spieler gschwunge wird. Si trifft hert in eme breite Boge, aber nur das, wo vorne staht.",
+				"behavior": "Schlaht en 180-Grad-Boge nach vorne, macht Schade und stosst Gegner zrugg. Fliegt nöd.",
+				"bestFor": "Frontali Burst-Verteidigung, dur dichti Gegnerwänd drucke und gzielti Masse-Kontrolle.",
+				"synergyTip": "Kombiniert hohe Grundschade mit Dauer und Grössi, damit d Rückstoss-Zone länger aktiv bliibt.",
+				"effects": {
+					"attackDamage": "Erhöht de Schade vo jedem Schlag.",
+					"attackSpeed": "Erhöht, wie oft de Schlag uslöst.",
+					"range": "Verlängeret d Riichwiti vom Boge.",
+					"size": "Verlängeret d Riichwiti vom Boge, zuesätzlich zum Riichwiti-Stat.",
+					"duration": "Haltet de Schlageffekt länger aktiv."
+				}
+			},
+			"axe": {
+				"name": "Axt",
+				"type": "Zonekontrolle",
+				"description": "E Wurfaxt, wo sich in Bode ramme tuet und wiiterdreiht. E Waffe für Zonekontrolle, nöd für Burst.",
+				"behavior": "Fliegt zum nächste Gegner i de Riichwiti und dreiht sich denn für ihri Dauer a Ort und Stell, und macht allem i ihrem Zylinder Schade.",
+				"bestFor": "Engpäss verteidige, Schade uf stillstehendi Bosse und Zone sperre.",
+				"synergyTip": "Di massivi 1.25x-Grössi-Affinität laht s Tome of Growth de Dreih-Radius exponentiell vergrössere.",
+				"effects": {
+					"attackDamage": "Erhöht de Schade pro Kontakt.",
+					"attackSpeed": "Erhöht, wie oft e Axt gworfe wird.",
+					"range": "Verlängeret, wie wiit d Axt gworfe werde cha.",
+					"size": "Vergrösseret de Kontaktzylinder vo de drehende Axt.",
+					"duration": "Laht d Axt länger drähe."
+				}
+			},
+			"staff": {
+				"name": "Stab",
+				"type": "Zielsuechend Fernkampf",
+				"description": "E Zauberwaffe, wo zielsuechendi Füürbälle abschüsst. Di gröscht Riichwiti und de höchscht Schade pro Treffer, aber de langsamscht Rhythmus.",
+				"behavior": "Schüsst zielsuechendi Füürbälle uf s nächste Ziel i de Riichwiti, wo verfolged, bis sie treffed, ablaufed oder s Durchschlag-Limit erreiched.",
+				"bestFor": "Bosse eizeln wegschmelze, Sniper-Plays uf wiiti Distanz und hohe Burst-Schade.",
+				"synergyTip": "Profitiert extrem vo Aazahl und Riichwiti und macht us langsame Einzelzauber zielsuechendi Salve.",
+				"effects": {
+					"attackDamage": "Erhöht de Schade vo jedem Füürball.",
+					"attackSpeed": "Erhöht, wie oft e Salve gwirkt wird.",
+					"range": "Verlängeret d Erfassigsriichwiti für d Zieluswahl.",
+					"size": "Vergrösseret d Trefferflächi vom Füürball.",
+					"duration": "Laht en Füürball länger läbe, bevor er abläuft.",
+					"quantity": "Füegt de Salve zuesätzlichi Füürbälle hinzue.",
+					"penetration": "Laht en Füürball dur zuesätzlichi Monster dure."
+				}
+			},
+			"bow": {
+				"name": "Boge",
+				"type": "Streu-Fernkampf",
+				"description": "E Fernkampfwaffe, wo en Fächer vo Pfil nach vorne schüsst. Jede Pfil isch elei schwach; d Waffe läbt vo de Mängi und de Feuerrate.",
+				"behavior": "Schüsst e breiti Streuig vo Pfil grad nach vorne. Jede Pfil verschwindet bim Kontakt, ussert er het Durchschlag.",
+				"bestFor": "Horde i eini Richtig zruggdränge, Builds mit hoher Feuerrate und Bildschirm-Putze mit Durchschlag-Upgrades.",
+				"synergyTip": "Nutzt d 1.2x-Affinität für Angriffstempo und zuesätzlichi Aazahl für e undurchdringlichi Pfilwand.",
+				"effects": {
+					"attackDamage": "Erhöht de Schade vo jedem Pfil.",
+					"attackSpeed": "Erhöht, wie oft e Salve gschosse wird.",
+					"range": "Verlängeret, wie wiit en Pfil fliegt, bevor er abläuft.",
+					"size": "Vergrösseret d Trefferflächi vom Pfil.",
+					"duration": "Laht en Pfil länger läbe, bevor er abläuft.",
+					"quantity": "Füegt de Streuig zuesätzlichi Pfil hinzue.",
+					"penetration": "Laht en Pfil dur zuesätzlichi Monster dure."
+				}
+			}
+		},
+		"tomes": {
+			"damage": {
+				"name": "Tome of Power",
+				"description": "Erhöht de Schade vo jeder Waffe, wo de Spieler treit."
+			},
+			"cooldown": {
+				"name": "Tome of Haste",
+				"description": "Laht jedi Waffe öfter aagriife."
+			},
+			"agility": {
+				"name": "Tome of Agility",
+				"description": "Laht de Spieler schneller laufe, zum de Horde devozrenne und d Position z halte."
+			},
+			"vitality": {
+				"name": "Tome of Vitality",
+				"description": "Erhöht s maximale Läbe vom Spieler und skaliert s aktuelle Läbe mit."
+			},
+			"armor": {
+				"name": "Tome of Armor",
+				"description": "Reduziert erlittene Schade über d Standard-Verteidigungsformle."
+			},
+			"blood": {
+				"name": "Blood Tome",
+				"description": "Heilt de Spieler um en Prozentsatz vom Schade, wo alli Waffe usteiled."
+			},
+			"range": {
+				"name": "Tome of Range",
+				"description": "Verlängeret d Zielerfassigsdistanz und d Riichwiti vo allne Angriff."
+			},
+			"size": {
+				"name": "Tome of Growth",
+				"description": "Vergrösseret Hitboxe, Böge und Effekt-Radie."
+			},
+			"duration": {
+				"name": "Tome of Duration",
+				"description": "Verlängeret d aktivi Dauer vo Schläg, drehende Äxt und Projektil."
+			},
+			"quantity": {
+				"name": "Tome of Quantity",
+				"description": "Füegt Mehrfach-Projektil-Waffe (Stab und Boge) pro Salve zuesätzlichi Projektil hinzue."
+			},
+			"fortune": {
+				"name": "Tome of Fortune",
+				"description": "Erhöht de Glücks-Stat, damit seltneri Upgrades öfter chömed."
+			}
+		}
+	},
+	"userSummary": {
+		"title": "Spieler-Stats Übersicht",
+		"lastPlayed": "Zletscht gspielt",
+		"gamesPlayed": "Gspielti Games",
+		"totalKills": "Kills total",
+		"totalSurvivalTime": "Überläbensziit total",
+		"highestSurvivalTime": "Längschts Überläbe",
+		"highestKills": "Meischti Kills",
+		"weaponsUsed": "Waffe & Meisterschaft",
+		"noWeapons": "Für dä Spieler sind kei Waffe-Stats verfüegbar.",
+		"labels": {
+			"timesUsed": "Mal bruucht",
+			"highestLevel": "Max. Level",
+			"levelFormat": "Lvl {level}"
+		},
+		"fetch_error": "D Spielübersicht het nid chönne glade wärde."
 	}
 }

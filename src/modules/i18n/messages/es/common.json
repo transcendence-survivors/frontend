@@ -1,35 +1,442 @@
 {
 	"nav": {
+		"home": "Home",
+		"game": "Game",
+		"leaderboard": "Clasificación",
+		"profile": "Perfil",
+		"settings": "Ajustes",
+		"logout": "Cerrar sesión",
+		"posts": "Publicaciones",
+		"wiki": "Wiki",
+		"privacy": "Política de privacidad",
+		"terms": "Condiciones del servicio",
+		"legal": "Aviso legal",
 		"lore": "Universo",
 		"support": "Ayuda",
 		"enter_hub": "Entrar en el Hub →",
+		"leave_hub": "Salir del Hub →",
+		"player_hub": "Hub del jugador",
 		"menu": "Menú",
-		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Leaderboard",
-		"profile": "Profile",
-		"settings": "Settings",
-		"logout": "Logout",
-		"posts": "Posts",
-		"privacy": "Privacy Policy",
-		"terms": "Terms of Service",
-		"legal": "Aviso legal",
-
+		"feed": "Feed",
+		"friends": "Amigos",
+		"chat": "Chat",
+		"search": "Buscar",
+		"concept": "Concepto",
+		"user": {
+			"posts": "Publicaciones",
+			"comments": "Comentarios",
+			"stats": "Estadísticas",
+			"likes": "Me gusta",
+			"reposts": "Republicaciones"
+		},
+		"friend": {
+			"requests": "Solicitudes",
+			"friends": "Amigos",
+			"blocked": "Usuarios bloqueados"
+		},
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
 		"profile_stats": "Stats",
 		"profile_likes": "Likes",
 		"profile_favourites": "Favourites",
-
 		"profile_followers": "Followers",
 		"profile_following": "Following",
-
 		"profile_blocked": "Blocked Users"
 	},
 	"home": {
 		"welcome": "Welcome to Transcendence Survivor !"
 	},
-
+	"profile": {
+		"bio": "Biografía",
+		"edit": {
+			"button": "Editar perfil",
+			"title": "Editar perfil",
+			"success": "Perfil actualizado correctamente."
+		}
+	},
+	"settings": {
+		"title": "Ajustes",
+		"error_loading": "Error al cargar los ajustes de la cuenta. Inténtalo de nuevo más tarde.",
+		"page": {
+			"title": "Ajustes",
+			"description": "Gestiona todos tus ajustes seleccionando una categoría en el menú de la izquierda."
+		},
+		"profile": {
+			"title": "Ajustes del perfil",
+			"subtitle": "Actualiza la información y las preferencias de tu perfil.",
+			"description": "Gestiona la información pública de tu perfil, tu avatar y tu imagen de portada.",
+			"display_name_label": "Nombre visible",
+			"display_name_placeholder": "Introduce tu nombre visible",
+			"bio_label": "Biografía",
+			"bio_placeholder": "Cuéntanos un poco sobre ti...",
+			"cover_label": "Imagen de portada",
+			"no_cover": "No se ha subido ninguna imagen de portada",
+			"change_cover": "Cambiar portada",
+			"remove_cover": "Eliminar portada",
+			"change_avatar": "Cambiar avatar",
+			"remove_avatar": "Eliminar avatar",
+			"avatar_hint": "JPEG, PNG, GIF o WebP. 5 MB como máximo.",
+			"save": "Guardar cambios"
+		},
+		"account": {
+			"title": "Ajustes de la cuenta",
+			"subtitle": "Gestiona la información y las preferencias de tu cuenta."
+		},
+		"security": {
+			"title": "Ajustes de seguridad",
+			"subtitle": "Gestiona tus ajustes de autenticación."
+		},
+		"danger_zone": {
+			"title": "Zona de peligro",
+			"subtitle": "Acciones irreversibles sobre la cuenta y controles de privacidad de los datos",
+			"export": {
+				"title": "Exportar tus datos",
+				"description": "Descarga una copia de tus ajustes personales y de los datos de tu perfil en formato JSON.",
+				"format_placeholder": "Selecciona un formato",
+				"button": "Exportar datos personales"
+			},
+			"delete": {
+				"title": "Eliminar cuenta",
+				"description": "Elimina de forma permanente tu cuenta y todos los datos asociados de la plataforma. Esta acción no se puede deshacer."
+			}
+		},
+		"nav": {
+			"profile": "Perfil",
+			"account": "Cuenta",
+			"security": "Seguridad",
+			"danger_zone": "Zona de peligro"
+		}
+	},
+	"users": {
+		"no_befriended_users": "No se han encontrado usuarios que no sean tus amigos.",
+		"no_befriended_users_search": "No se han encontrado usuarios que no sean tus amigos para tu búsqueda.",
+		"no_more_befriended_users": "No hay más usuarios que no sean tus amigos para cargar.",
+		"no_users": "No se han encontrado usuarios.",
+		"no_users_search": "No se han encontrado usuarios para tu búsqueda.",
+		"no_more_users": "No hay más usuarios para cargar.",
+		"fetch_error": "Error al cargar los usuarios. Inténtalo de nuevo más tarde."
+	},
+	"search": {
+		"title": "Búsqueda",
+		"subtitle": "Encuentra portadores y publicaciones",
+		"input_placeholder": "Busca una palabra clave o @usuario...",
+		"users_title": "Portadores",
+		"posts_title": "Publicaciones"
+	},
+	"relationships": {
+		"title": "Amigos y moderación",
+		"subtitle": "Portadores de luz de tu círculo",
+		"input_placeholder": "Buscar por @usuario o nombre visible...",
+		"nav": {
+			"friends": "Amigos",
+			"requests": "Solicitudes",
+			"blocked": "Usuarios bloqueados"
+		},
+		"add": {
+			"title": "Añade portadores a tu círculo",
+			"button": "Añadir amigo",
+			"placeholder": "Buscar por @usuario o nombre visible...",
+			"aria_label": "Enviar solicitud de amistad",
+			"failed": "Error al enviar la solicitud de amistad. Inténtalo de nuevo.",
+			"success_accepted_displayname": "Ahora eres amigo de {displayName}.",
+			"success_pending_displayname": "Se ha enviado tu solicitud de amistad a {displayName}."
+		},
+		"friends": {
+			"title": "Amigos",
+			"count": "{count} amigo(s).",
+			"count_search": "{count} amigo(s) encontrado(s) para tu búsqueda.",
+			"no_friends": "Aún no tienes amigos. ¡Empieza a añadir algunos!",
+			"no_friends_search": "No se han encontrado amigos para tu búsqueda.",
+			"no_more_friends": "No hay más amigos para cargar.",
+			"fetch_error": "Error al cargar los amigos. Inténtalo de nuevo más tarde.",
+			"all_button": "Todos",
+			"online_button": "En línea",
+			"offline_button": "Desconectados",
+			"delete": {
+				"tooltip": "Eliminar amigo",
+				"title": "Eliminar amigo",
+				"description": "¿Seguro que quieres eliminar a este amigo? Esta acción no se puede deshacer.",
+				"confirm": "Eliminar",
+				"success_displayname": "Has eliminado a {displayName} de tus amigos correctamente.",
+				"failure_displayname": "Error al eliminar a {displayName} de tus amigos. Inténtalo de nuevo."
+			}
+		},
+		"blocked": {
+			"title": "Usuarios bloqueados",
+			"count": "{count} usuario(s) bloqueado(s).",
+			"count_search": "{count} usuario(s) bloqueado(s) encontrado(s) para tu búsqueda.",
+			"add": {
+				"tooltip": "Bloquear usuario",
+				"title": "Bloquear usuario",
+				"description": "¿Seguro que quieres bloquear a este usuario? No podrá enviarte mensajes ni ver tu actividad.",
+				"confirm": "Bloquear",
+				"success_displayname": "Has bloqueado a {displayName} correctamente.",
+				"failure_displayname": "Error al bloquear a {displayName}. Inténtalo de nuevo."
+			},
+			"remove": {
+				"tooltip": "Desbloquear usuario",
+				"title": "Desbloquear usuario",
+				"description": "¿Seguro que quieres desbloquear a este usuario? Podrá volver a enviarte mensajes y ver tu actividad.",
+				"confirm": "Desbloquear",
+				"success_displayname": "Has desbloqueado a {displayName} correctamente.",
+				"failure_displayname": "Error al desbloquear a {displayName}. Inténtalo de nuevo."
+			},
+			"no_blocked": "Aún no has bloqueado a ningún usuario. ¡Empieza a bloquear!",
+			"no_blocked_search": "No se han encontrado usuarios bloqueados para tu búsqueda.",
+			"no_more_blocked": "No hay más usuarios bloqueados para cargar.",
+			"fetch_error": "Error al cargar los usuarios bloqueados. Inténtalo de nuevo más tarde.",
+			"all_button": "Todos",
+			"online_button": "En línea",
+			"offline_button": "Desconectados"
+		},
+		"requests": {
+			"title": "Solicitudes de amistad",
+			"incoming_button": "Recibidas",
+			"outgoing_button": "Enviadas",
+			"incoming_count": "{count} solicitud(es) de amistad recibida(s).",
+			"incoming_count_search": "{count} solicitud(es) de amistad recibida(s) encontrada(s) para tu búsqueda.",
+			"outgoing_count": "{count} solicitud(es) de amistad enviada(s).",
+			"outgoing_count_search": "{count} solicitud(es) de amistad enviada(s) encontrada(s) para tu búsqueda.",
+			"delete_from_displayname": "Rechazar la solicitud de amistad de {displayName}",
+			"delete_to_displayname": "Eliminar tu solicitud de amistad a {displayName}",
+			"delete_success_from_displayname": "Solicitud de amistad de {displayName} eliminada correctamente.",
+			"delete_success_to_displayname": "Tu solicitud de amistad a {displayName} se ha eliminado correctamente.",
+			"delete_failure_from_displayname": "Error al eliminar la solicitud de amistad de {displayName}. Inténtalo de nuevo.",
+			"delete_failure_to_displayname": "Error al eliminar tu solicitud de amistad a {displayName}. Inténtalo de nuevo.",
+			"accept_button": "Aceptar",
+			"accept_from_displayname": "Aceptar la solicitud de amistad de {displayName}",
+			"accept_success_from_displayname": "Solicitud de amistad de {displayName} aceptada correctamente.",
+			"accept_failure_from_displayname": "Error al aceptar la solicitud de amistad de {displayName}. Inténtalo de nuevo.",
+			"no_incoming_requests": "No tienes solicitudes de amistad recibidas.",
+			"no_incoming_requests_search": "No se han encontrado solicitudes de amistad recibidas para tu búsqueda.",
+			"no_outgoing_requests": "No tienes solicitudes de amistad enviadas.",
+			"no_outgoing_requests_search": "No se han encontrado solicitudes de amistad enviadas para tu búsqueda.",
+			"no_more_incoming_requests": "No hay más solicitudes de amistad recibidas para cargar.",
+			"no_more_outgoing_requests": "No hay más solicitudes de amistad enviadas para cargar.",
+			"received": "Recibida",
+			"sent": "Enviada",
+			"reject": {
+				"tooltip": "Rechazar solicitud",
+				"title": "Rechazar solicitud de amistad",
+				"description": "¿Seguro que quieres rechazar esta solicitud de amistad?",
+				"confirm": "Rechazar"
+			},
+			"cancel": {
+				"tooltip": "Cancelar solicitud",
+				"title": "Cancelar solicitud de amistad",
+				"description": "¿Seguro que quieres cancelar esta solicitud pendiente?",
+				"confirm": "Cancelar solicitud"
+			},
+			"toast": {
+				"received_displayname": "Has recibido una solicitud de amistad de {displayName}.",
+				"accepted_displayname": "{displayName} ha aceptado tu solicitud de amistad."
+			},
+			"fetch_error": "Error al cargar las solicitudes de amistad. Inténtalo de nuevo más tarde."
+		},
+		"gate": {
+			"blocked_title": "Has bloqueado este perfil",
+			"blocked_description": "No verás sus publicaciones, mensajes ni actividad. Desbloquéalo cuando quieras para restablecer toda la interacción.",
+			"unavailable_title": "Contenido no disponible",
+			"unavailable_description": "Este perfil o contenido no está disponible en este momento."
+		}
+	},
+	"presence": {
+		"online": "En línea",
+		"online_description": "Tus amigos pueden verte.",
+		"do_not_disturb": "No molestar",
+		"do_not_disturb_description": "No recibirás notificaciones de nuevos mensajes ni de solicitudes de amistad.",
+		"invisible": "Invisible",
+		"invisible_description": "Aparecerás desconectado para tus amigos, pero podrás seguir usando la aplicación con normalidad.",
+		"count_online": "{count} portadores en la luz",
+		"count_online_friends": "{count} amigos en la luz",
+		"just_connected_displayname": "{displayName} acaba de conectarse"
+	},
+	"chat": {
+		"share": {
+			"title": "Compartir publicación",
+			"description": "Selecciona una o varias salas de chat con las que compartir esta publicación.",
+			"comment_placeholder": "Añade un mensaje opcional...",
+			"search_placeholder": "Buscar salas o amigos...",
+			"selected_count": "{count, plural, =0 {Ninguna sala seleccionada} one {1 sala seleccionada} other {# salas seleccionadas}}",
+			"cancel": "Cancelar",
+			"submit": "Compartir",
+			"room_badge_fallback": "Sala #{id}",
+			"success_count": "Publicación compartida correctamente en {count} sala(s) de chat.",
+			"partial_count": "Error al compartir la publicación en {count} sala(s) de chat.",
+			"error": "Se ha producido un error al compartir la publicación."
+		},
+		"rooms": {
+			"title": "Salas de chat",
+			"page": {
+				"title": "Ningún chat seleccionado",
+				"subtitle": "Selecciona un chat para empezar a enviar mensajes.",
+				"not_created": "¿No has creado ninguna sala de chat?",
+				"ask_friends": "¡Invita a tus amigos a jugar contigo!",
+				"create_button": "Crear chat"
+			},
+			"type": {
+				"group": "Grupo",
+				"direct": "Directo"
+			},
+			"no_chat_rooms": "Aún no tienes salas de chat. ¡Empieza una conversación con tus amigos!",
+			"no_chat_rooms_search": "No se han encontrado salas de chat para tu búsqueda.",
+			"no_more_chat_rooms": "No hay más salas de chat para cargar.",
+			"fetch_error": "Error al cargar las salas de chat. Inténtalo de nuevo más tarde.",
+			"search_placeholder": "Buscar salas de chat...",
+			"sort": {
+				"label": "Ordenar salas de chat",
+				"activity_desc": "Actividad (mensajes recientes primero)",
+				"activity_asc": "Actividad (mensajes más antiguos primero)",
+				"created_desc": "Fecha de creación (recientes primero)",
+				"created_asc": "Fecha de creación (más antiguas primero)"
+			},
+			"status": {
+				"online": "En línea · juntos en la oscuridad",
+				"offline": "Desconectado · solo en la oscuridad",
+				"dnd": "No molestar · solo en la oscuridad"
+			},
+			"group_settings": {
+				"title": "Editar detalles del grupo",
+				"description": "Cambia el nombre del grupo o actualiza su imagen de avatar.",
+				"group_name_label": "Nombre del grupo",
+				"group_name_placeholder": "Introduce el nombre del grupo",
+				"change_avatar_hint": "Haz clic en la imagen para subir una nueva",
+				"remove_avatar": "Eliminar imagen",
+				"cancel": "Cancelar",
+				"save": "Guardar cambios",
+				"delete_group_button": "Eliminar grupo",
+				"delete_group_title": "Eliminar grupo",
+				"delete_group_description": "¿Seguro que quieres eliminar esta sala de chat? Esta acción no se puede deshacer y todos los mensajes se perderán de forma permanente.",
+				"delete_confirm": "Eliminar",
+				"tooltip": "Editar detalles del grupo"
+			},
+			"create": {
+				"title": "Crear sala de chat",
+				"description": "Empieza una nueva conversación con tus amigos.",
+				"group_name_label": "Nombre del grupo",
+				"group_name_placeholder": "Introduce el nombre del grupo",
+				"button": "Crear sala de chat",
+				"success": "Sala de chat creada correctamente.",
+				"failure": "Error al crear la sala de chat. Inténtalo de nuevo.",
+				"dm_exists": "Ya existe un mensaje directo con este usuario. Puedes continuar la conversación en esa sala de chat.",
+				"no_users_selected": "Selecciona al menos un usuario para crear un chat.",
+				"search_placeholder": "Busca amigos para añadir al chat..."
+			}
+		},
+		"messages": {
+			"no_messages": "Aún no hay mensajes. ¡Empieza la conversación!",
+			"no_messages_search": "No se han encontrado mensajes para tu búsqueda.",
+			"no_more_messages": "No hay más mensajes para cargar.",
+			"fetch_error": "Error al cargar los mensajes. Inténtalo de nuevo más tarde.",
+			"preview": {
+				"no_messages": "Aún no hay mensajes",
+				"deleted_message": "Este mensaje se ha eliminado",
+				"attachments": "{count, plural, =1 {Ha enviado 1 archivo adjunto} other {Ha enviado {count} archivos adjuntos}}",
+				"post_shared": "Publicación compartida",
+				"replying_to": "En respuesta a: <replyToId>#1s41</replyToId>"
+			},
+			"actions": {
+				"reply": "Responder",
+				"edit": "Editar",
+				"delete": "Eliminar",
+				"placeholder_create": "Envía un mensaje a la oscuridad...",
+				"placeholder_reply": "Editar mensaje...",
+				"label_textarea": "Mensaje",
+				"button_send": "Enviar",
+				"button_save": "Guardar",
+				"rich_is_typing": "<strong>displayName</strong> está escribiendo...",
+				"rich_are_typing": "<strong>displayName</strong> y {count, plural, =1 {1 persona más} other {# personas más}} están escribiendo...",
+				"edditing": "Editando mensaje",
+				"rich_replying_to": "Respondiendo a <strong>displayName</strong>",
+				"attach_images_videos": "Adjuntar imágenes o vídeos",
+				"choose_emoji": "Elegir emoji",
+				"dialogs": {
+					"delete_title": "¿Eliminar mensaje?",
+					"delete_description": "Esta acción no se puede deshacer. Este mensaje se eliminará de la conversación de forma permanente."
+				}
+			},
+			"system": {
+				"default_actor": "Sistema",
+				"role_updated": "{actor} ha cambiado el rol de {target} de {oldRole} a {newRole}.",
+				"added": "{actor} ha añadido a {target} a la sala.",
+				"kicked": "{actor} ha expulsado a {target} de la sala.",
+				"left": "{user} ha salido de la sala.",
+				"room_renamed": "{actor} ha cambiado el nombre de la sala de \"{oldName}\" a \"{newName}\".",
+				"room_name_added": "{actor} ha puesto a la sala el nombre \"{newName}\".",
+				"room_name_removed": "{actor} ha eliminado el nombre de la sala.",
+				"room_avatar_changed": "{actor} ha actualizado el avatar de la sala.",
+				"room_avatar_added": "{actor} ha añadido un avatar a la sala.",
+				"room_avatar_removed": "{actor} ha eliminado el avatar de la sala.",
+				"ownership_transferred": "{actor} ha transferido la propiedad de la sala a {target}.",
+				"room_created": "{actor} ha creado la sala.",
+				"deleted": "Este mensaje se ha eliminado.",
+				"deleted_user_fallback": "Usuario eliminado"
+			}
+		},
+		"members": {
+			"roles": {
+				"owner": "Propietario",
+				"admin": "Administrador",
+				"member": "Miembro"
+			},
+			"sort": {
+				"label": "Ordenar miembros",
+				"username_asc": "Nombre de usuario (A-Z)",
+				"username_desc": "Nombre de usuario (Z-A)",
+				"joined_desc": "Unidos recientemente",
+				"joined_asc": "Miembros más antiguos",
+				"displayname_asc": "Nombre visible (A-Z)",
+				"displayname_desc": "Nombre visible (Z-A)",
+				"role_asc": "Rol (más alto primero)",
+				"role_desc": "Rol (más bajo primero)"
+			},
+			"title": "Miembros",
+			"search_placeholder": "Buscar miembros...",
+			"count_label": "{count, plural, =1 {miembro} other {miembros}}",
+			"no_members": "Aún no hay miembros en esta sala de chat.",
+			"no_members_search": "No se han encontrado miembros para tu búsqueda.",
+			"no_more_members": "No hay más miembros para cargar.",
+			"fetch_error": "Error al cargar los miembros. Inténtalo de nuevo más tarde.",
+			"actions": "Acciones del miembro",
+			"kick": "Expulsar miembro",
+			"promote_to_admin": "Ascender a administrador",
+			"demote_to_member": "Degradar a miembro",
+			"transfer_ownership": "Transferir propiedad",
+			"leave_room": "Salir de la sala",
+			"view_profile": "Ver perfil",
+			"joined_at": "Se unió",
+			"dialogs": {
+				"kick_title": "Expulsar miembro",
+				"kick_description": "¿Seguro que quieres expulsar a este miembro de la sala de chat? Ya no tendrá acceso a los mensajes.",
+				"promote_title": "Ascender miembro",
+				"promote_description": "¿Seguro que quieres ascender a este miembro a administrador? Obtendrá privilegios de administración en esta sala.",
+				"demote_title": "Degradar miembro",
+				"demote_description": "¿Seguro que quieres degradar a este administrador a miembro? Perderá sus privilegios de administración.",
+				"transfer_title": "Transferir propiedad",
+				"transfer_description": "¿Seguro que quieres transferir la propiedad de esta sala? Pasarás a ser administrador y perderás los privilegios de propietario.",
+				"leave_title": "Salir de la sala de chat",
+				"leave_description": "¿Seguro que quieres salir de esta sala de chat? Tendrán que volver a invitarte para unirte de nuevo.",
+				"add": {
+					"tooltip": "Añadir miembros",
+					"title": "Añadir miembros",
+					"description": "Selecciona amigos para añadirlos a este chat de grupo.",
+					"search_placeholder": "Buscar amigos...",
+					"add": "Añadir miembros",
+					"no_friends": "No hay amigos disponibles para añadir.",
+					"no_friends_found": "Ningún amigo coincide con tu búsqueda.",
+					"no_users_selected": "Selecciona al menos un amigo para añadirlo al chat.",
+					"fetch_error": "Error al cargar los amigos. Inténtalo de nuevo."
+				}
+			}
+		},
+		"title": "Chat",
+		"subtitle": "Conversaciones con tus amigos",
+		"send_dm": "Enviar un MD"
+	},
+	"feed": {
+		"title": "Feed",
+		"subtitle": "Crónicas de los portadores de luz"
+	},
 	"posts": {
 		"create": {
 			"placeholder": "Empieza a escribir una publicación",
@@ -43,7 +450,8 @@
 			"see_more": "Ver más",
 			"see_less": "Ver menos",
 			"replying_to": "En respuesta a",
-			"open_post": "Abrir la publicación"
+			"open_post": "Abrir la publicación",
+			"must_be_deleted": "Es posible que esta publicación se haya eliminado."
 		},
 		"actions": {
 			"comment": "Comentar",
@@ -52,7 +460,9 @@
 			"quote": "Citar",
 			"like": "Me gusta",
 			"unlike": "Ya no me gusta",
-			"delete": "Eliminar"
+			"delete": "Eliminar",
+			"chat": "Compartir en el chat",
+			"copy_link": "Copiar enlace"
 		},
 		"detail": {
 			"back": "Publicación"
@@ -79,15 +489,6 @@
 			"fetch_error": "Error al cargar las republicaciones. Inténtalo de nuevo más tarde."
 		}
 	},
-
-	"search": {
-		"title": "Búsqueda",
-		"subtitle": "Encuentra portadores y publicaciones",
-		"input_placeholder": "Busca una palabra clave o @usuario...",
-		"users_title": "Portadores",
-		"posts_title": "Publicaciones"
-	},
-
 	"landing": {
 		"hero": {
 			"kicker": "Sigue la luz · o cae en el olvido",
@@ -117,7 +518,6 @@
 			}
 		}
 	},
-
 	"support": {
 		"kicker": "Centro de ayuda",
 		"title": "¿Cómo seguir en la luz?",
@@ -164,7 +564,6 @@
 			}
 		}
 	},
-
 	"lore": {
 		"kicker": "El lore · Light Keepers",
 		"title": "En el corazón del círculo, una sola regla: resistir.",
@@ -192,7 +591,6 @@
 			}
 		}
 	},
-
 	"legal": {
 		"kicker": "Información legal",
 		"title": "Aviso legal",
@@ -230,169 +628,514 @@
 	},
 	"auth": {
 		"signout": {
-			"label": "Logout",
-			"success": "You have been logged out successfully.",
-			"error": "An error occurred while logging out. Please try again."
+			"label": "Cerrar sesión",
+			"success": "Has cerrado sesión correctamente.",
+			"error": "Se ha producido un error al cerrar sesión. Inténtalo de nuevo."
 		},
 		"signin": {
-			"title": "Sign In",
-			"no_account": "Don't have an account ?",
-			"forgot_password": "Forgot your password ?",
-			"reset_password": "Reset Password",
-
-			"username_or_email": "Username or Email",
-			"username_or_emailPlaceholder": "john_doe or john.doe@example.com",
-
-			"email": "Email",
+			"title": "Iniciar sesión",
+			"no_account": "¿No tienes una cuenta?",
+			"forgot_password": "¿Has olvidado tu contraseña?",
+			"reset_password": "Restablecer contraseña",
+			"username_or_email": "Nombre de usuario o correo electrónico",
+			"username_or_emailPlaceholder": "john_doe o john.doe@example.com",
+			"email": "Correo electrónico",
 			"emailPlaceholder": "john.doe@example.com",
-
-			"password": "Password",
-			"passwordPlaceholder": "Enter your password",
-
-			"submit": "Sign In",
-			"submitting": "Signing In",
-			"submitted": "Signed In",
-			"forgotPassword": "Forgot your password?",
-			"success": "You have been signed in successfully.",
-			"error": "An error occurred while signing in. Please check your credentials and try again."
+			"password": "Contraseña",
+			"passwordPlaceholder": "Introduce tu contraseña",
+			"submit": "Iniciar sesión",
+			"submitting": "Iniciando sesión",
+			"submitted": "Sesión iniciada",
+			"forgotPassword": "¿Has olvidado tu contraseña?",
+			"success": "Has iniciado sesión correctamente.",
+			"error": "Se ha producido un error al iniciar sesión. Comprueba tus credenciales e inténtalo de nuevo."
 		},
 		"signup": {
-			"title": "Sign Up",
-			"already_account": "Already have an account ?",
+			"title": "Registrarse",
+			"already_account": "¿Ya tienes una cuenta?",
 			"account": {
-				"title": "Account Information",
-				"account_desc": "Create your account by filling in the information below.",
-				"email": "Email",
+				"title": "Información de la cuenta",
+				"account_desc": "Crea tu cuenta rellenando la información siguiente.",
+				"email": "Correo electrónico",
 				"emailPlaceholder": "john.doe@example.com",
-				"username": "Username",
+				"username": "Nombre de usuario",
 				"usernamePlaceholder": "john_doe"
 			},
 			"personal": {
-				"title": "Personal Information",
-				"desc": "Provide some personal details to complete your profile.",
-				"firstName": "First Name",
+				"title": "Información personal",
+				"desc": "Proporciona algunos datos personales para completar tu perfil.",
+				"firstName": "Nombre",
 				"firstNamePlaceholder": "John",
-				"lastName": "Last Name",
+				"lastName": "Apellidos",
 				"lastNamePlaceholder": "Doe",
-				"birthdate": "Birthdate",
-				"gender": "Gender",
-				"genderPlaceholder": "Select your gender",
+				"birthdate": "Fecha de nacimiento",
+				"gender": "Género",
+				"genderPlaceholder": "Selecciona tu género",
 				"genderOptions": {
-					"label": "Gender Options",
+					"label": "Opciones de género",
 					"male": "Male",
-					"female": "Female",
-					"other": "Other",
-					"prefer_not_to_say": "Prefer not to say"
+					"female": "Mujer",
+					"other": "Otro",
+					"prefer_not_to_say": "Prefiero no decirlo"
 				},
-				"locale": "Preferred Language",
-				"localePlaceholder": "Select your preferred language for email notifications",
+				"locale": "Idioma preferido",
+				"localePlaceholder": "Selecciona tu idioma preferido para las notificaciones por correo electrónico",
 				"localeOptions": {
-					"label": "Email Preference",
-					"en": "English",
-					"fr": "French",
-					"de": "German"
+					"label": "Preferencia de correo electrónico",
+					"en": "Inglés",
+					"fr": "Francés",
+					"de": "Alemán"
 				}
 			},
 			"profile": {
-				"title": "Profile",
-				"desc": "Tell us more about you to personalize your experience.",
-				"displayName": "Display Name",
+				"title": "Perfil",
+				"desc": "Cuéntanos más sobre ti para personalizar tu experiencia.",
+				"displayName": "Nombre visible",
 				"displayNamePlaceholder": "John Doe",
-				"bio": "Biography",
-				"bioPlaceholder": "Tell us a bit about yourself"
+				"bio": "Biografía",
+				"bioPlaceholder": "Cuéntanos un poco sobre ti"
 			},
 			"security": {
-				"title": "Security",
-				"desc": "Choose a strong password to protect your account.",
-				"password": "Password",
-				"passwordPlaceholder": "Choose a password",
-				"confirmPassword": "Confirm Password",
-				"confirmPasswordPlaceholder": "Re-enter your password"
+				"title": "Seguridad",
+				"desc": "Elige una contraseña segura para proteger tu cuenta.",
+				"password": "Contraseña",
+				"passwordPlaceholder": "Elige una contraseña",
+				"confirmPassword": "Confirmar contraseña",
+				"confirmPasswordPlaceholder": "Vuelve a introducir tu contraseña"
 			},
 			"terms": {
-				"title": "Terms and Conditions",
-				"desc": "Please read and accept our Terms and Conditions to proceed.",
-				"acceptTerms": "I have read and accept the Terms and Conditions"
+				"title": "Términos y condiciones",
+				"desc": "Lee y acepta nuestros Términos y condiciones para continuar.",
+				"acceptTerms": "He leído y acepto los Términos y condiciones"
 			},
 			"buttons": {
-				"back": "Go Back",
-				"continue": "Continue",
-				"submit": "Submit",
-				"submitting": "Submitting",
-				"submitted": "Submitted",
-				"validating": "Validating"
+				"back": "Volver",
+				"continue": "Continuar",
+				"submit": "Enviar",
+				"submitting": "Enviando",
+				"submitted": "Enviado",
+				"validating": "Validando",
+				"save": "Guardar",
+				"saving": "Guardando",
+				"saved": "Guardado"
 			},
-			"recap_title": "Review Your Information",
-
-			"success": "Account created successfully!",
-			"error": "Failed to create account. Please try again."
+			"recap_title": "Revisa tu información",
+			"success": "¡Cuenta creada correctamente!",
+			"error": "Error al crear la cuenta. Inténtalo de nuevo."
 		},
 		"forgot_password": {
-			"title": "Reset Password",
-			"login": "Remember your password ?",
-			"email": "Email",
+			"title": "Restablecer contraseña",
+			"login": "¿Recuerdas tu contraseña?",
+			"email": "Correo electrónico",
 			"emailPlaceholder": "john.doe@example.com",
-			"submit": "Send Reset Link",
-			"submitting": "Sending Reset Link",
-			"submitted": "Reset Link Sent",
-			"success": "If an account with that email exists, a password reset link has been sent."
+			"submit": "Enviar enlace de restablecimiento",
+			"submitting": "Enviando enlace de restablecimiento",
+			"submitted": "Enlace de restablecimiento enviado",
+			"success": "Si existe una cuenta con ese correo electrónico, se ha enviado un enlace para restablecer la contraseña."
 		},
 		"reset_password": {
-			"title": "Set New Password",
-			"login": "Remember your password ?",
-			"password": "New Password",
-			"passwordPlaceholder": "Enter your new password",
-			"confirmPassword": "Confirm New Password",
-			"confirmPasswordPlaceholder": "Re-enter your new password",
-			"submit": "Reset Password",
-			"submitting": "Resetting Password",
-			"submitted": "Password Reset",
-			"success": "Your password has been reset successfully!",
-			"error": "Failed to reset password. The reset link may be invalid or expired. Please try again."
+			"title": "Establecer nueva contraseña",
+			"login": "¿Recuerdas tu contraseña?",
+			"password": "Nueva contraseña",
+			"passwordPlaceholder": "Introduce tu nueva contraseña",
+			"confirmPassword": "Confirmar nueva contraseña",
+			"confirmPasswordPlaceholder": "Vuelve a introducir tu nueva contraseña",
+			"submit": "Restablecer contraseña",
+			"submitting": "Restableciendo contraseña",
+			"submitted": "Contraseña restablecida",
+			"success": "¡Tu contraseña se ha restablecido correctamente!",
+			"error": "Error al restablecer la contraseña. Es posible que el enlace no sea válido o haya caducado. Inténtalo de nuevo."
+		},
+		"change_password": {
+			"title": "Cambiar contraseña",
+			"description": "Asegúrate de que tu cuenta utiliza una contraseña segura y única para mantenerla protegida.",
+			"currentPassword": "Contraseña actual",
+			"currentPasswordPlaceholder": "Introduce tu contraseña actual",
+			"newPassword": "Nueva contraseña",
+			"newPasswordPlaceholder": "Introduce tu nueva contraseña",
+			"confirmPassword": "Confirmar nueva contraseña",
+			"confirmPasswordPlaceholder": "Vuelve a introducir tu nueva contraseña",
+			"submit": "Actualizar contraseña",
+			"submitting": "Actualizando contraseña",
+			"submitted": "Contraseña actualizada",
+			"success": "¡Tu contraseña se ha cambiado correctamente!",
+			"error": "Error al actualizar la contraseña. Comprueba tu contraseña actual e inténtalo de nuevo."
+		},
+		"delete_account": {
+			"trigger": "Eliminar cuenta",
+			"title": "Eliminar cuenta",
+			"description": "Esta acción es permanente y no se puede deshacer. Todas tus publicaciones, mensajes y datos personales se borrarán para siempre.",
+			"confirm_text": "Eliminar definitivamente",
+			"password_label": "Confirmar contraseña",
+			"password_placeholder": "Introduce tu contraseña para confirmar",
+			"success": "Tu cuenta se ha eliminado.",
+			"invalid_password": "La contraseña introducida es incorrecta."
 		}
 	},
-
 	"forms": {
 		"error": {
-			"required": "This field is required",
-
-			"email": "Please enter a valid email address",
-			"string": "This field must be a string",
-			"number": "This field must be a number",
-			"date": "This field must be a valid date",
-			"boolean": "This field must be true or false",
-			"enum": "Invalid option selected",
-			"phone": "Please enter a valid phone number in E.164 format",
-			"pattern": "Invalid format",
-
-			"lowercase": "Only lowercase letters are allowed",
-			"uppercase": "Only uppercase letters are allowed",
-
-			"minLength": "Minimum length is {min} characters",
-			"maxLength": "Maximum length is {max} characters",
-
-			"select": "Please select an option",
-			"mustAcceptTerms": "You must accept the terms and conditions",
-
-			"password_match": "Passwords must match",
-			"password_uppercase": "Password must contain at least one uppercase letter",
-			"password_lowercase": "Password must contain at least one lowercase letter",
-			"password_number": "Password must contain at least one number",
-			"password_special": "Password must contain at least one special character",
-
-			"email_already_in_use": "This email is already taken",
-			"username_already_in_use": "This username is already taken",
-			"user_already_exists": "A user with this email or username registered while you were filling the form. Please try again with different credentials.",
-
-			"internal_server_error": "An unexpected error occurred. Please try again later.",
-			"age_restriction": "You must be at least 13 years old to register",
-
-			"invalid_credentials": "Invalid credentials. Please verify your information and try again.",
-			"invalid_token": "The reset link is invalid or has expired. Please request a new one.",
-			"invalid_email": "The email address is not registered. Please check and try again."
+			"required": "Este campo es obligatorio",
+			"email": "Introduce una dirección de correo electrónico válida",
+			"string": "Este campo debe ser una cadena de texto",
+			"number": "Este campo debe ser un número",
+			"date": "Este campo debe ser una fecha válida",
+			"boolean": "Este campo debe ser verdadero o falso",
+			"enum": "Opción seleccionada no válida",
+			"phone": "Introduce un número de teléfono válido en formato E.164",
+			"pattern": "Formato no válido",
+			"lowercase": "Solo se permiten letras minúsculas",
+			"uppercase": "Solo se permiten letras mayúsculas",
+			"minLength": "La longitud mínima es de {min} caracteres",
+			"maxLength": "La longitud máxima es de {max} caracteres",
+			"fileSizeMB": "El tamaño del archivo debe ser inferior a {maxSize} MB",
+			"maxFilesCount": "Puedes adjuntar hasta {maxCount} archivos",
+			"imageOnly": "Solo se permiten archivos de imagen",
+			"imageVideoOnly": "Solo se permiten archivos de imagen y vídeo",
+			"select": "Selecciona una opción",
+			"mustAcceptTerms": "Debes aceptar los términos y condiciones",
+			"password_match": "Las contraseñas deben coincidir",
+			"password_uppercase": "La contraseña debe contener al menos una letra mayúscula",
+			"password_lowercase": "La contraseña debe contener al menos una letra minúscula",
+			"password_number": "La contraseña debe contener al menos un número",
+			"password_special": "La contraseña debe contener al menos un carácter especial",
+			"security_same_password": "La nueva contraseña debe ser diferente de la actual",
+			"security_incorrect_current_password": "La contraseña actual introducida es incorrecta",
+			"email_already_in_use": "Este correo electrónico ya está en uso",
+			"username_already_in_use": "Este nombre de usuario ya está en uso",
+			"user_already_exists": "Un usuario con este correo electrónico o nombre de usuario se ha registrado mientras rellenabas el formulario. Inténtalo de nuevo con otras credenciales.",
+			"internal_server_error": "Se ha producido un error inesperado. Inténtalo de nuevo más tarde.",
+			"age_restriction": "Debes tener al menos 13 años para registrarte",
+			"invalid_credentials": "Credenciales no válidas. Comprueba tu información e inténtalo de nuevo.",
+			"invalid_token": "El enlace de restablecimiento no es válido o ha caducado. Solicita uno nuevo.",
+			"invalid_email": "La dirección de correo electrónico no está registrada. Compruébala e inténtalo de nuevo.",
+			"at_least_one": "Se requiere al menos un campo",
+			"message_empty_if_attachments": "El texto del mensaje no puede estar vacío salvo que se incluya un archivo adjunto"
 		},
 		"addons": {
-			"length": "{current} / {max} characters max"
+			"length": "{current} / {max} caracteres como máximo"
 		}
+	},
+	"date": {
+		"today": "Hoy",
+		"yesterday": "Ayer",
+		"just_now": "Ahora mismo",
+		"minutes_ago": "Hace {count} minutos",
+		"hours_ago": "Hace {count} horas",
+		"days_ago": "Hace {count} días",
+		"weeks_ago": "Hace {count} semanas",
+		"months_ago": "Hace {count} meses",
+		"years_ago": "Hace {count} años"
+	},
+	"common": {
+		"confirm": "Confirmar",
+		"cancel": "Cancelar",
+		"not_found": {
+			"main": {
+				"badge": "Error 404",
+				"title": "Página no encontrada",
+				"description": "Lo sentimos, no hemos encontrado la página que buscas. Puede que se haya movido, eliminado o que nunca haya existido."
+			},
+			"user": {
+				"badge": "Usuario no encontrado",
+				"title": "El usuario no existe",
+				"description": "Es posible que el usuario que buscas haya eliminado su cuenta, cambiado su nombre de usuario o que nunca haya existido."
+			},
+			"chat": {
+				"badge": "Conversación no encontrada",
+				"title": "Chat no disponible",
+				"description": "Es posible que esta sala de chat se haya eliminado o que no tengas permiso para acceder a ella."
+			},
+			"post": {
+				"badge": "Publicación no encontrada",
+				"title": "Publicación no disponible",
+				"description": "Su autor ha eliminado esta publicación o ya no está accesible."
+			},
+			"common": {
+				"go_back": "Volver",
+				"back_home": "Volver al inicio"
+			}
+		},
+		"themes": {
+			"dark": "Oscuro",
+			"light": "Claro",
+			"system": "Sistema",
+			"neon": "Neón"
+		},
+		"back": "Volver",
+		"close": "Cerrar",
+		"appearance": "Apariencia",
+		"avatar_preview": "Vista previa del avatar"
+	},
+	"wiki": {
+		"title": "Compendio de arsenal y tomos",
+		"subtitle": "Guía completa de las mecánicas de combate, el escalado de estadísticas, las armas y las sinergias óptimas de tomos.",
+		"tabs": {
+			"mechanics": "Mecánicas y estadísticas",
+			"weapons": "Armas",
+			"tomes": "Tomos",
+			"synergies": "Builds y sinergias óptimas"
+		},
+		"notes": {
+			"title": "Reglas básicas y notas de combate",
+			"affinity": "La afinidad determina el escalado de las estadísticas: 1.0 es un 100 % de eficacia, 0.5 es la mitad y >1.0 amplifica la estadística.",
+			"global": "Los tomos otorgan bonificaciones globales a las estadísticas del jugador o al escalado de todas las armas equipadas a la vez.",
+			"limits": "Puedes llevar un máximo de 4 tomos (nivel máximo 99 por tomo). Las cadencias de ataque de las armas tienen un límite máximo.",
+			"weaponsLimit": "Puedes llevar un máximo de 3 armas a la vez durante una partida."
+		},
+		"labels": {
+			"behavior": "Comportamiento de ataque",
+			"affinities": "Escalado de estadísticas y afinidad",
+			"affectedWeapons": "Armas afectadas",
+			"bestFor": "Ideal para",
+			"bestTomes": "Tomos recomendados",
+			"rarityValues": "Escalado por rareza",
+			"target": "Objetivo",
+			"baseValue": "Valor base",
+			"key": "Clave",
+			"formula": "Fórmula / límite"
+		},
+		"targets": {
+			"weapons": "armas",
+			"player": "jugador",
+			"upgrades": "mejoras"
+		},
+		"rarities": {
+			"common": "Común",
+			"uncommon": "Poco común",
+			"rare": "Raro",
+			"epic": "Épico",
+			"legendary": "Legendario"
+		},
+		"stats": {
+			"title": "Mecánicas y fórmulas de las estadísticas",
+			"attackDamage": "Daño",
+			"attackSpeed": "Velocidad de ataque",
+			"range": "Alcance",
+			"size": "Tamaño",
+			"duration": "Duración",
+			"quantity": "Cantidad",
+			"penetration": "Penetración",
+			"moveSpeed": "Velocidad de movimiento",
+			"maxHealth": "Salud máxima",
+			"armor": "Armadura",
+			"lifesteal": "Robo de vida",
+			"luck": "Suerte",
+			"explanations": {
+				"attackDamage": {
+					"desc": "El valor base es 100 (100 %). Multiplica el daño base por golpe de todas las armas que llevas, modificado por la afinidad.",
+					"formula": "Daño final = Daño base × (1 + Bonificación de estadística × Afinidad)"
+				},
+				"attackSpeed": {
+					"desc": "El valor base es 1.0. Aumenta la frecuencia de ataque y reduce el intervalo entre ataques.",
+					"formula": "Limitada globalmente por COMBAT_LIMITS.maxFinalAttackRate"
+				},
+				"range": {
+					"desc": "El valor base es 8. Amplía la distancia recorrida por los proyectiles, el radio de adquisición de objetivos y el alcance de los lanzamientos.",
+					"formula": "Multiplicador global de alcance = 1 + (Alcance − 8) / 8"
+				},
+				"size": {
+					"desc": "El valor base es 1.0. Aumenta las hitboxes de colisión, los arcos de tajo y el radio de aura de las armas.",
+					"formula": "Escala de hitbox = Tamaño base × Multiplicador de tamaño"
+				},
+				"duration": {
+					"desc": "El valor base es 1.0. Mantiene activos durante más tiempo en el campo de batalla los efectos de hechizos, los arcos de tajo y las hachas giratorias.",
+					"formula": "Se aplica con un escalado del 100 % sin penalización de afinidad"
+				},
+				"quantity": {
+					"desc": "El valor base es 0. Añade proyectiles adicionales a cada ráfaga.",
+					"formula": "Límite estricto de COMBAT_LIMITS.maxProjectilesPerPlayer (32)"
+				},
+				"penetration": {
+					"desc": "El valor base es 0. Permite que los proyectiles atraviesen a los objetivos sin desaparecer al impactar.",
+					"formula": "Solo se mejora con las ventajas del Bastón y del Arco"
+				},
+				"moveSpeed": {
+					"desc": "El valor base es 30. Modificador directo de la velocidad de movimiento para escapar de las hordas y mantener tu posición.",
+					"formula": "Estadística exclusiva del jugador (0 % de afinidad de arma)"
+				},
+				"maxHealth": {
+					"desc": "El valor base es 100. Aumenta la salud máxima y reajusta dinámicamente el porcentaje de salud actual.",
+					"formula": "El % de PS actual se conserva al mejorar"
+				},
+				"armor": {
+					"desc": "El valor base es 1. Reducción directa del daño contra todos los ataques de los monstruos.",
+					"formula": "Daño recibido = Daño bruto × 100 / (100 + Armadura)"
+				},
+				"lifesteal": {
+					"desc": "El valor base es 1 (1 %). Convierte el daño infligido real en curación inmediata del jugador.",
+					"formula": "Curación = Daño infligido × % de robo de vida"
+				},
+				"luck": {
+					"desc": "El valor base es 1.0. Multiplica el peso de las tiradas para las mejoras Poco comunes, Raras, Épicas y Legendarias.",
+					"formula": "Pesos = Peso base × Suerte (Común se mantiene fijo)"
+				}
+			}
+		},
+		"combatRules": {
+			"title": "Flujo de combate y mecánicas del sistema",
+			"affinityTitle": "Lógica de escalado por afinidad",
+			"affinityDesc": "Una afinidad de arma de 1.0 aplica la bonificación de estadística en su valor estándar. Una afinidad de 0.5 reduce la eficacia a la mitad, mientras que 1.25 amplifica la bonificación un 25 %.",
+			"armorTitle": "Rendimiento decreciente de la armadura",
+			"armorDesc": "La armadura usa una fórmula hiperbólica: cada punto garantiza un aumento de la salud efectiva sin llegar a otorgar invencibilidad total.",
+			"tomeLimitTitle": "Restricciones de ranuras y límites",
+			"tomeLimitDesc": "Puedes elegir hasta 4 tomos por partida (nivel máximo 99 cada uno). Una vez ocupadas las 4 ranuras, solo se ofrecerán copias de los tomos que ya tienes."
+		},
+		"synergies": {
+			"axeSize": {
+				"title": "Hacha + Tomo de Crecimiento (multiplicador de tamaño)",
+				"description": "El Hacha tiene una afinidad única de 1.25x con el Tamaño. Equipar el Tomo de Crecimiento amplía su cilindro de contacto giratorio mucho más que en las armas normales, convirtiendo las hachas clavadas en enormes trituradoras inmóviles."
+			},
+			"staffRange": {
+				"title": "Bastón + Tomo de Cantidad y Alcance",
+				"description": "El Bastón tiene un gran alcance de adquisición (afinidad de 1.25x) pero una cadencia baja. Combinarlo con el Tomo de Cantidad y el Tomo de Alcance transforma sus bolas de fuego teledirigidas de objetivo único en enjambres teledirigidos de largo alcance."
+			},
+			"bowHaste": {
+				"title": "Arco + Tomo de Celeridad (velocidad de ataque)",
+				"description": "Con una afinidad de 1.2x con la Velocidad de ataque, el Arco escala rápidamente con el Tomo de Celeridad y dispara densas ráfagas de flechas capaces de contener a las hordas."
+			}
+		},
+		"weapons": {
+			"aura": {
+				"name": "Aura",
+				"type": "Aura de área",
+				"description": "Un anillo permanente de energía centrado en el jugador. No se apunta ni elige objetivo: simplemente quema todo lo que se acerca.",
+				"behavior": "En cada tick, el anillo barre un cilindro alrededor del jugador y daña a todos los enemigos que haya dentro, sin proyectiles ni tiempo de recarga por objetivo.",
+				"bestFor": "Control de enjambres a corta distancia, limpieza de hordas con poco esfuerzo y perímetro defensivo contra enemigos rápidos.",
+				"synergyTip": "Escala mejor con Tamaño y Velocidad de ataque, que amplían la zona de quemadura y aumentan la frecuencia de ticks.",
+				"effects": {
+					"attackDamage": "Aumenta el daño infligido en cada tick.",
+					"attackSpeed": "Aumenta la frecuencia de los ticks del anillo.",
+					"range": "Amplía el radio del anillo.",
+					"size": "Amplía el radio del anillo, además del alcance."
+				}
+			},
+			"sword": {
+				"name": "Espada",
+				"type": "Arco cuerpo a cuerpo",
+				"description": "Una hoja cuerpo a cuerpo que se blande frente al jugador. Golpea fuerte en un arco amplio, pero solo alcanza lo que tiene delante.",
+				"behavior": "Traza un tajo en arco de 180 grados hacia delante que daña y repele a los enemigos. No se desplaza.",
+				"bestFor": "Defensa frontal explosiva, abrirse paso entre muros densos de enemigos y control de masas direccional.",
+				"synergyTip": "Combina su alto daño base con Duración y Tamaño para mantener activa más tiempo la zona de repulsión.",
+				"effects": {
+					"attackDamage": "Aumenta el daño de cada tajo.",
+					"attackSpeed": "Aumenta la frecuencia de los tajos.",
+					"range": "Amplía el alcance del arco.",
+					"size": "Amplía el alcance del arco, además de la estadística de alcance.",
+					"duration": "Mantiene activo el efecto del tajo durante más tiempo."
+				}
+			},
+			"axe": {
+				"name": "Hacha",
+				"type": "Control de zona",
+				"description": "Un hacha arrojadiza que se clava en el suelo y sigue girando. Un arma de control de área más que de daño explosivo.",
+				"behavior": "Vuela hacia el enemigo más cercano dentro del alcance y luego gira en el sitio durante su duración, dañando todo lo que hay dentro de su cilindro.",
+				"bestFor": "Defensa de cuellos de botella, daño a jefes inmóviles y negación de zonas.",
+				"synergyTip": "Su enorme afinidad de 1.25x con el Tamaño hace que el Tomo de Crecimiento amplíe su radio de giro de forma exponencial.",
+				"effects": {
+					"attackDamage": "Aumenta el daño de cada contacto.",
+					"attackSpeed": "Aumenta la frecuencia con la que se lanza un hacha.",
+					"range": "Aumenta la distancia a la que se puede lanzar el hacha.",
+					"size": "Amplía el cilindro de contacto del hacha giratoria.",
+					"duration": "Mantiene el hacha girando durante más tiempo."
+				}
+			},
+			"staff": {
+				"name": "Bastón",
+				"type": "A distancia teledirigido",
+				"description": "Un arma de lanzador de hechizos que dispara bolas de fuego teledirigidas. El mayor alcance y el mayor daño por golpe, pero el ritmo más lento.",
+				"behavior": "Dispara bolas de fuego teledirigidas al objetivo más cercano dentro del alcance, que lo persiguen hasta impactar, expirar o alcanzar su límite de penetración.",
+				"bestFor": "Derretir jefes de objetivo único, jugadas de francotirador a larga distancia y gran daño explosivo.",
+				"synergyTip": "Se beneficia enormemente de la Cantidad y el Alcance, que convierten sus lentos disparos únicos en ráfagas teledirigidas.",
+				"effects": {
+					"attackDamage": "Aumenta el daño de cada bola de fuego.",
+					"attackSpeed": "Aumenta la frecuencia con la que se lanza una ráfaga.",
+					"range": "Amplía el alcance de adquisición utilizado para elegir un objetivo.",
+					"size": "Amplía la zona de impacto de la bola de fuego.",
+					"duration": "Permite que una bola de fuego dure más antes de expirar.",
+					"quantity": "Añade bolas de fuego adicionales a la ráfaga.",
+					"penetration": "Permite que una bola de fuego atraviese más monstruos."
+				}
+			},
+			"bow": {
+				"name": "Arco",
+				"type": "A distancia en abanico",
+				"description": "Un arma a distancia que dispara un abanico de flechas hacia delante. Cada flecha es débil por sí sola; el arma vive del volumen y de la cadencia de disparo.",
+				"behavior": "Dispara un amplio abanico de flechas hacia delante. Cada flecha desaparece al impactar, salvo que tenga penetración.",
+				"bestFor": "Contención direccional de hordas, builds de alta cadencia y limpieza de pantalla con mejoras de penetración.",
+				"synergyTip": "Aprovecha su afinidad de 1.2x con la Velocidad de ataque y la Cantidad adicional para crear un muro de flechas infranqueable.",
+				"effects": {
+					"attackDamage": "Aumenta el daño de cada flecha.",
+					"attackSpeed": "Aumenta la frecuencia con la que se dispara una ráfaga.",
+					"range": "Aumenta la distancia que recorre una flecha antes de expirar.",
+					"size": "Amplía la zona de impacto de la flecha.",
+					"duration": "Permite que una flecha dure más antes de expirar.",
+					"quantity": "Añade flechas adicionales al abanico.",
+					"penetration": "Permite que una flecha atraviese más monstruos."
+				}
+			}
+		},
+		"tomes": {
+			"damage": {
+				"name": "Tomo de Poder",
+				"description": "Aumenta el daño de todas las armas que lleva el jugador."
+			},
+			"cooldown": {
+				"name": "Tomo de Celeridad",
+				"description": "Hace que todas las armas ataquen con más frecuencia."
+			},
+			"agility": {
+				"name": "Tomo de Agilidad",
+				"description": "Hace que el jugador se mueva más rápido para escapar de la horda y mantener su posición."
+			},
+			"vitality": {
+				"name": "Tomo de Vitalidad",
+				"description": "Aumenta la salud máxima del jugador y reajusta la salud actual."
+			},
+			"armor": {
+				"name": "Tomo de Armadura",
+				"description": "Reduce el daño recibido mediante las fórmulas de defensa estándar."
+			},
+			"blood": {
+				"name": "Tomo de Sangre",
+				"description": "Cura al jugador con un porcentaje del daño infligido por todas sus armas."
+			},
+			"range": {
+				"name": "Tomo de Alcance",
+				"description": "Amplía la distancia de adquisición de objetivos y el recorrido de todos los ataques."
+			},
+			"size": {
+				"name": "Tomo de Crecimiento",
+				"description": "Agranda las hitboxes de ataque, los arcos y los radios de efecto."
+			},
+			"duration": {
+				"name": "Tomo de Duración",
+				"description": "Prolonga el tiempo activo de los tajos, las hachas giratorias y la vida de los proyectiles."
+			},
+			"quantity": {
+				"name": "Tomo de Cantidad",
+				"description": "Añade proyectiles adicionales por ráfaga a las armas de proyectiles múltiples (Bastón y Arco)."
+			},
+			"fortune": {
+				"name": "Tomo de Fortuna",
+				"description": "Aumenta la estadística de suerte para mejorar la probabilidad de obtener mejoras de mayor rareza."
+			}
+		}
+	},
+	"userSummary": {
+		"title": "Resumen de estadísticas del jugador",
+		"lastPlayed": "Última partida",
+		"gamesPlayed": "Partidas jugadas",
+		"totalKills": "Bajas totales",
+		"totalSurvivalTime": "Tiempo total de supervivencia",
+		"highestSurvivalTime": "Mejor supervivencia",
+		"highestKills": "Más bajas",
+		"weaponsUsed": "Armas y maestría",
+		"noWeapons": "No hay estadísticas de armas disponibles para este jugador.",
+		"labels": {
+			"timesUsed": "Veces usada",
+			"highestLevel": "Nivel máximo",
+			"levelFormat": "Nv. {level}"
+		},
+		"fetch_error": "No se pudo cargar el resumen de juego."
 	}
 }

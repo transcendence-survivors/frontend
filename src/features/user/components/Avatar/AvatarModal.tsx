@@ -11,6 +11,7 @@ import {
 import { ImageProps } from '@/libs/types';
 import { Button } from '@/components/ui/button';
 import { AvatarProfileFallback } from './AvatarProfile';
+import { useTranslations } from 'next-intl';
 
 interface AvatarModalProps extends HTMLAttributes<HTMLDivElement> {
 	img: ImageProps;
@@ -30,6 +31,7 @@ export function AvatarModal({
 	size = 'default',
 	...props
 }: AvatarModalProps) {
+	const t = useTranslations('common');
 	return (
 		<Dialog>
 			<Avatar
@@ -57,7 +59,7 @@ export function AvatarModal({
 			</Avatar>
 
 			<DialogContent className='max-w-md w-[90vw] aspect-square border-none bg-transparent p-0 shadow-none rounded-none ring-0 sm:rounded-none'>
-				<DialogTitle className='sr-only'>Avatar Preview</DialogTitle>
+				<DialogTitle className='sr-only'>{t('avatar_preview')}</DialogTitle>
 				<div className='relative w-full h-full'>
 					<Image
 						src={img.src ?? 'placeholder.png'}

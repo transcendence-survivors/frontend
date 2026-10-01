@@ -185,7 +185,7 @@ export const createRoomSlice: StateCreator<SocketState & RoomSlice, [], [], Room
 							callback: (m) => {
 								if (
 									m.type === 'TEXT' &&
-									m.sender.id === data.targetUserId
+									m.sender?.id === data.targetUserId
 								) {
 									return {
 										...m,
@@ -311,7 +311,10 @@ export const useRoomMemberIds = (): string[] => {
 			if (room.type === ChatRoomType.GROUP) {
 				return room.memberIds;
 			}
-			return [room.otherMember.id];
+			if (room?.otherMember?.id) {
+				return [room.otherMember.id];
+			}
+			return [];
 		}),
 	);
 };

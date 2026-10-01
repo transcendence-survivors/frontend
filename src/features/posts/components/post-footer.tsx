@@ -16,7 +16,7 @@ import { useAddRepost, useDeleteRepost } from '@/features/reposts/hook/useRepost
 import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { Post } from '../types/post';
-import CreatePost from './create-post';
+import CreatePost from './CreatePost';
 import { SharePostDialog } from '@/features/chat/components/share/SharePostDialog';
 
 interface PostFooterProps {

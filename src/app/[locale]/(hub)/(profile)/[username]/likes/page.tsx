@@ -1,5 +1,4 @@
 import { urlDecode } from '@/libs/urls';
-import { notFound } from 'next/navigation';
 import UserLikes from '@/features/posts/components/user-likes';
 
 interface LikesPageProps {
@@ -8,10 +7,11 @@ interface LikesPageProps {
 
 export default async function LikesPage({ params }: LikesPageProps) {
 	const { username } = await params;
-	if (!urlDecode(username).startsWith('@')) {
-		notFound();
-	}
 	const decodedUsername = urlDecode(username).substring(1);
 
-	return <UserLikes username={decodedUsername} />;
+	return (
+		<main className='flex-1'>
+			<UserLikes username={decodedUsername} />;
+		</main>
+	);
 }

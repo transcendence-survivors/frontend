@@ -1,5 +1,4 @@
 import { urlDecode } from '@/libs/urls';
-import { notFound } from 'next/navigation';
 import UserPosts from '@/features/posts/components/user-posts';
 
 interface PostsPageProps {
@@ -8,10 +7,11 @@ interface PostsPageProps {
 
 export default async function PostsPage({ params }: PostsPageProps) {
 	const { username } = await params;
-	if (!urlDecode(username).startsWith('@')) {
-		notFound();
-	}
 	const decodedUsername = urlDecode(username).substring(1);
 
-	return <UserPosts username={decodedUsername} />;
+	return (
+		<main className='flex-1'>
+			<UserPosts username={decodedUsername} />;
+		</main>
+	);
 }

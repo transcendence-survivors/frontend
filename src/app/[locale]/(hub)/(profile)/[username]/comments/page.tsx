@@ -13,5 +13,9 @@ export default async function CommentsPage({ params }: CommentsPageProps) {
 	}
 	const decodedUsername = urlDecode(username).substring(1);
 
-	return <UserComments username={decodedUsername} />;
+	return (
+		<main className='flex-1'>
+			<UserComments username={decodedUsername} />
+		</main>
+	);
 }

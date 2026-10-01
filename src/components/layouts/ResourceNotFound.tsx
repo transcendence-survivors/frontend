@@ -3,11 +3,19 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, Compass, FileX2, Home, MessageSquareOff, UserX } from 'lucide-react';
+import {
+	ArrowLeft,
+	Compass,
+	FileX2,
+	Gamepad2,
+	Home,
+	MessageSquareOff,
+	UserX,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface ResourceNotFoundProps {
-	namespace: 'user' | 'chat' | 'post' | 'main';
+export interface ResourceNotFoundProps {
+	namespace: 'user' | 'chat' | 'post' | 'main' | 'game';
 	backUrl?: string;
 }
 
@@ -15,6 +23,7 @@ const icons = {
 	user: <UserX className='size-4' />,
 	chat: <MessageSquareOff className='size-4' />,
 	post: <FileX2 className='size-4' />,
+	game: <Gamepad2 className='size-4' />,
 	main: <Compass className='size-4' />,
 } as const satisfies Record<ResourceNotFoundProps['namespace'], React.ReactNode>;
 

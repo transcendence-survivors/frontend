@@ -25,13 +25,13 @@ export default async function ProfileLayout({ params, children }: RootLayoutProp
 	const cleanUsername = decodedUsername.substring(1);
 
 	return (
-		<main className='flex-1 h-main flex flex-col'>
+		<div className='flex-1 h-main flex flex-col'>
 			<RelationshipProvider username={cleanUsername}>
 				<Suspense fallback={fallback}>
 					<ProfileHeaderServer username={cleanUsername} />
 				</Suspense>
 				{children}
 			</RelationshipProvider>
-		</main>
+		</div>
 	);
 }

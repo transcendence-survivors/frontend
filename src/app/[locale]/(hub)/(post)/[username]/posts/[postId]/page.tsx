@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { getPostById } from '@/features/posts/api/posts';
-import CreatePost from '@/features/posts/components/create-post';
+import CreatePost from '@/features/posts/components/CreatePost';
 import PostDetail from '@/features/posts/components/post-detail';
 import PostDetailHeader from '@/features/posts/components/post-page-header';
 import Posts from '@/features/posts/components/posts';

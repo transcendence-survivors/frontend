@@ -1,5 +1,5 @@
 import Kicker from '@/components/ui/kicker';
-import CreatePost from '@/features/posts/components/create-post';
+import CreatePost from '@/features/posts/components/CreatePost';
 import Posts from '@/features/posts/components/posts';
 import PresenceCounter from '@/features/presence/components/PresenceCounter';
 import { getTranslations } from 'next-intl/server';

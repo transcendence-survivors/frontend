@@ -842,6 +842,11 @@
 				"title": "Post unavailable",
 				"description": "This publication has been removed by its author or is no longer accessible."
 			},
+			"game": {
+				"badge": "Match Not Found",
+				"title": "Game history unavailable",
+				"description": "This match record could not be found, was removed, or the session has expired."
+			},
 			"common": {
 				"go_back": "Go Back",
 				"back_home": "Back to Home"

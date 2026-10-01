@@ -24,5 +24,7 @@ export default async function GameUserSummaryServer({
 		);
 	}
 
+	console.log('response.data', response.data);
+
 	return <GameUserSummary summary={response.data} />;
 }

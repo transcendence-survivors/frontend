@@ -27,7 +27,7 @@ const kickerSizeStyles: Record<NonNullable<StatMetricCardProps['size']>, string>
 	base: 'text-xs',
 };
 
-export const StatMetric = ({
+const StatMetric = ({
 	label,
 	value,
 	variant = 'default',
@@ -58,3 +58,5 @@ export const StatMetric = ({
 		</div>
 	);
 };
+
+export default StatMetric;

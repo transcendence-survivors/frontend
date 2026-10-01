@@ -1,18 +1,19 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { GamePlayerAttributes } from './GamePlayerAttributes';
+import GamePlayerAttributes from './GamePlayerAttributes';
 import { GamePlayerStatsDetails } from '../../types/game';
 import Kicker from '@/components/ui/kicker';
 import { AvatarProfile } from '@/features/user/components/Avatar/AvatarProfile';
 import { UserIdentityLink } from '@/features/user/components/Identity/UserIdentity';
 import GameWeapon from '../GameWeapon';
+import GameTome from '../GameTome';
 
 interface Props {
 	player: GamePlayerStatsDetails;
 }
 
-export const GamePlayerCard = ({ player }: Props) => {
+const GamePlayerCard = ({ player }: Props) => {
 	const t = useTranslations('game');
 
 	return (
@@ -80,7 +81,29 @@ export const GamePlayerCard = ({ player }: Props) => {
 						</ul>
 					)}
 				</article>
+
+				<article className='space-y-2.5'>
+					<Kicker className='text-xs font-bold'>
+						<h3>{t('tomesUsed')}</h3>
+					</Kicker>
+
+					{player?.tomes?.length === 0 ? (
+						<p className='text-xs text-muted-foreground italic'>
+							{t('noTomes')}
+						</p>
+					) : (
+						<ul className='grid grid-cols-1 gap-2'>
+							{player?.tomes.map((tome) => (
+								<li key={tome.id}>
+									<GameTome key={tome.id} mode='single' tome={tome} />
+								</li>
+							))}
+						</ul>
+					)}
+				</article>
 			</CardContent>
 		</Card>
 	);
 };
+
+export default GamePlayerCard;

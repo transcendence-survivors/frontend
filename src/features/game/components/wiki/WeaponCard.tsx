@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -18,35 +20,39 @@ export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps
 	type MessageKey = Parameters<typeof t.has>[0];
 
 	return (
-		<Card className='h-full flex flex-col bg-card text-card-foreground border-border'>
-			<CardHeader className='flex flex-row items-center gap-4 pb-2'>
-				<div className='p-2 rounded-lg bg-muted border border-border'>
+		<Card className='h-full flex flex-col bg-card/60 hover:bg-accent/40 border-border shadow-sm rounded-xl transition-all duration-200'>
+			<CardHeader className='flex flex-row items-center gap-3.5 pb-2'>
+				<div className='p-2.5 rounded-xl bg-muted/50 border border-border shrink-0'>
 					<GameIcon name={id} size={40} className='stroke-primary' />
 				</div>
-				<div>
-					<CardTitle className='text-xl font-bold text-primary'>
+				<div className='min-w-0 flex-1 space-y-1'>
+					<CardTitle className='text-xl font-bold text-foreground truncate'>
 						{t(`${key}.name`)}
 					</CardTitle>
 					<Badge
 						variant='outline'
-						className='mt-1 border-primary/30 text-primary uppercase text-[10px] tracking-wider'>
+						className='border-primary/30 text-primary uppercase text-[10px] font-semibold tracking-wider px-2 py-0.5'>
 						{t(`${key}.type`)}
 					</Badge>
 				</div>
 			</CardHeader>
 
 			<CardContent className='space-y-4 flex-1 flex flex-col justify-between pt-2'>
-				<p className='text-sm text-muted-foreground'>{t(`${key}.description`)}</p>
+				<p className='text-sm text-muted-foreground leading-relaxed'>
+					{t(`${key}.description`)}
+				</p>
 
-				<div className='space-y-2 bg-muted/40 p-3 rounded-md border border-border'>
-					<span className='text-xs font-semibold uppercase text-muted-foreground block'>
+				<div className='space-y-1.5 bg-muted/40 p-3 rounded-xl border border-border'>
+					<span className='text-[10px] font-semibold uppercase tracking-wider text-muted-foreground block'>
 						{t('labels.behavior')}
 					</span>
-					<p className='text-xs text-foreground/90'>{t(`${key}.behavior`)}</p>
+					<p className='text-xs text-foreground/90 leading-normal'>
+						{t(`${key}.behavior`)}
+					</p>
 				</div>
 
 				<div className='space-y-2'>
-					<span className='text-xs font-semibold uppercase text-muted-foreground block'>
+					<span className='text-[10px] font-semibold uppercase tracking-wider text-muted-foreground block'>
 						{t('labels.affinities')}
 					</span>
 					<TooltipProvider delayDuration={150}>
@@ -60,7 +66,7 @@ export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps
 								const badgeContent = (
 									<Badge
 										variant='secondary'
-										className='text-xs transition-colors hover:bg-secondary/80'>
+										className='text-xs font-medium transition-colors hover:bg-secondary/80 px-2 py-0.5'>
 										{t(`stats.${item.stat}`)}
 										{item.affinity !== undefined && (
 											<span
@@ -82,7 +88,7 @@ export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps
 										</TooltipTrigger>
 										<TooltipContent
 											side='top'
-											className='max-w-xs text-xs bg-popover text-popover-foreground border-border'>
+											className='max-w-xs text-xs bg-popover text-popover-foreground border-border shadow-md'>
 											<p>{effectText}</p>
 										</TooltipContent>
 									</Tooltip>
@@ -96,21 +102,21 @@ export const WeaponCard = ({ id, recommendedTomes, affectedBy }: WeaponCardProps
 					</TooltipProvider>
 				</div>
 
-				<div className='space-y-2 pt-2 border-t border-border'>
-					<span className='text-xs font-semibold uppercase text-primary block'>
+				<div className='space-y-2 pt-3 border-t border-border'>
+					<span className='text-[10px] font-semibold uppercase tracking-wider text-primary block'>
 						{t('labels.bestTomes')}
 					</span>
-					<div className='flex items-center gap-2 flex-wrap'>
+					<div className='flex items-center gap-1.5 flex-wrap'>
 						{recommendedTomes.map((tomeId) => (
 							<div
 								key={tomeId}
-								className='flex items-center gap-1.5 bg-muted px-2 py-1 rounded border border-border'>
+								className='flex items-center gap-1.5 bg-muted/60 px-2.5 py-1 rounded-lg border border-border'>
 								<GameIcon
 									name={tomeId}
 									size={18}
-									className='stroke-primary'
+									className='stroke-primary shrink-0'
 								/>
-								<span className='text-xs capitalize text-foreground'>
+								<span className='text-xs font-medium capitalize text-foreground'>
 									{t(`tomes.${tomeId}.name`)}
 								</span>
 							</div>

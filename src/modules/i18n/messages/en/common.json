@@ -1088,7 +1088,7 @@
 			},
 			"blood": {
 				"name": "Blood Tome",
-				"description": "Heals the player from a percentage of damage dealt across all weapons."
+				"description": "Heals the player from a percentage of damage dealt across all weapT key=ons."
 			},
 			"range": {
 				"name": "Tome of Range",
@@ -1129,6 +1129,8 @@
 		"playerBuild": "Attributes & Scaling",
 		"weaponsUsed": "Equipped Weapons",
 		"noWeapons": "No weapons equipped during this run.",
+		"tomesUsed": "Equipped Tomes",
+		"noTomes": "No tomes equipped during this run.",
 		"fetch_error": "Failed to load game history.",
 		"no_games": "No games found.",
 		"no_user_games": "No games found for this player.",
@@ -1179,6 +1181,8 @@
 			"highestKills": "Most Kills",
 			"weaponsUsed": "Weapons Mastery",
 			"noWeapons": "No weapon stats available for this player.",
+			"tomesUsed": "Tomes Mastery",
+			"noTomes": "No tome stats available for this player.",
 			"labels": {
 				"timesUsed": "Times Used",
 				"highestLevel": "Max Level",

@@ -1,15 +1,15 @@
 import { useTranslations } from 'next-intl';
-import { GamePlayerCard } from './GamePlayerCard';
+import GamePlayerCard from './GamePlayerCard';
 import { GameStatsDetails } from '../../types/game';
 import { formatDuration } from '../../utils/duration';
 import Kicker from '@/components/ui/kicker';
-import { StatMetric } from '../StatMetric';
+import StatMetric from '../StatMetric';
 
 interface GameCardProps {
 	game: GameStatsDetails;
 }
 
-export const GameStats = ({ game }: GameCardProps) => {
+const GameStats = ({ game }: GameCardProps) => {
 	const t = useTranslations('game');
 
 	return (
@@ -41,3 +41,5 @@ export const GameStats = ({ game }: GameCardProps) => {
 		</>
 	);
 };
+
+export default GameStats;

@@ -1,10 +1,16 @@
 import { BaseUser } from '@/features/user/type';
-import { GameWeaponKind } from './summary';
+import { GameTomeKind, GameWeaponKind } from './summary';
 import { CursorParams, CursorResponse } from '@/libs/api';
 
 export interface GamePlayerWeaponStats {
 	id: string;
 	kind: GameWeaponKind;
+	level: number;
+}
+
+export interface GamePlayerTomeSummary {
+	id: string;
+	kind: GameTomeKind;
 	level: number;
 }
 
@@ -24,6 +30,7 @@ export interface GamePlayerStatsDetails {
 	quantity: number;
 	penetration: number;
 	weapons: GamePlayerWeaponStats[];
+	tomes: GamePlayerTomeSummary[];
 	user: BaseUser | null;
 }
 

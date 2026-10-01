@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useQueryState } from 'nuqs';
 import { useTranslations } from 'next-intl';
 import { Flame, Timer, Swords, Gamepad2 } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -47,7 +46,7 @@ export const GameLeaderboardTabs = ({
 
 	return (
 		<Tabs
-			value={orderBy ?? 'highest-kills-desc'}
+			value={orderBy}
 			onValueChange={(val) => setOrderBy(val as LeaderboardOrderBy)}
 			className='w-full'>
 			<TabsList className='grid grid-cols-2 sm:grid-cols-4 w-full p-1 bg-muted/40 rounded-xl border border-border h-auto! p-0 gap-1'>

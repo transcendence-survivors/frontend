@@ -10,7 +10,7 @@ import { AvatarProfile } from '@/features/user/components/Avatar/AvatarProfile';
 import UserDisplayUsername from '@/features/user/components/Identity/UserDisplayUsername';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { cn } from '@/libs/utils';
-import { StatMetric } from '../StatMetric';
+import StatMetric from '../StatMetric';
 import GameRankBadge from './GameRankBadge';
 
 interface Props {

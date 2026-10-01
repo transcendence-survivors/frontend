@@ -7,7 +7,7 @@ interface Props {
 	playerStats: GamePlayerStatsDetails;
 }
 
-export const GamePlayerAttributes = ({ playerStats }: Props) => {
+const GamePlayerAttributes = ({ playerStats }: Props) => {
 	const t = useTranslations('game.labels');
 
 	return (
@@ -41,3 +41,5 @@ export const GamePlayerAttributes = ({ playerStats }: Props) => {
 		</ul>
 	);
 };
+
+export default GamePlayerAttributes;

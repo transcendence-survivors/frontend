@@ -1,18 +1,13 @@
-'use client';
-
 import { useTranslations } from 'next-intl';
-
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { GameIcon } from '../GameIcons';
-import { MAP_WEAPON_KIND_TO_ICON } from '../../types/icons';
 import DisplayDate from '@/components/ui/date';
 import { formatDuration } from '../../utils/duration';
-import { StatMetric } from '../StatMetric';
+import StatMetric from '../StatMetric';
 import Kicker from '@/components/ui/kicker';
 import PlayButton from '../PlayButton';
 import { UserGameSummary } from '../../types/summary';
 import GameWeapon from '../GameWeapon';
+import GameTome from '../GameTome';
 
 interface Props {
 	summary: UserGameSummary;
@@ -20,7 +15,6 @@ interface Props {
 
 const GameUserSummary = ({ summary }: Props) => {
 	const t = useTranslations('game.summary');
-	const tWiki = useTranslations('wiki');
 
 	return (
 		<>
@@ -97,6 +91,28 @@ const GameUserSummary = ({ summary }: Props) => {
 							{summary.weaponSummaries.map((weapon) => (
 								<li key={weapon.kind}>
 									<GameWeapon mode='summary' weapon={weapon} />
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
+
+				<div className='space-y-3'>
+					<Kicker>
+						<h3 className='text-xs font-bold text-muted-foreground uppercase tracking-wider'>
+							{t('tomesUsed')}
+						</h3>
+					</Kicker>
+
+					{summary.tomeSummaries.length === 0 ? (
+						<p className='text-sm text-muted-foreground italic'>
+							{t('noTomes')}
+						</p>
+					) : (
+						<ul className='space-y-2'>
+							{summary.tomeSummaries.map((tome) => (
+								<li key={tome.kind}>
+									<GameTome mode='summary' tome={tome} />
 								</li>
 							))}
 						</ul>

@@ -1,13 +1,10 @@
 import { notFound } from 'next/navigation';
 import { getGame } from '@/features/game/api/game';
-import { GameStats } from '@/features/game/components/details/GameCard';
+import GameStats from '@/features/game/components/details/GameStats';
 import { isApiError } from '@/libs/api';
 import Kicker from '@/components/ui/kicker';
-import { Button } from '@/components/ui/button';
-import I18nLink from '@/modules/i18n/components/I18nLink';
 import { getTranslations } from 'next-intl/server';
 import DisplayDate from '@/components/ui/date';
-import { Play } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import PlayButton from '@/features/game/components/PlayButton';
 

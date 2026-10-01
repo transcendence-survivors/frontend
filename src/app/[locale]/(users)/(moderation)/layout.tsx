@@ -10,7 +10,7 @@ export default async function FriendsLayout({ children }: { children: React.Reac
 
 	return (
 		<main>
-			<div className='friend-sticky-if-tall flex flex-col'>
+			<div className='friend-sticky-if-tall flex flex-col '>
 				<header className='px-10 py-8 flex-1 border-b border-border flex items-center justify-between'>
 					<div className='space-y-2'>
 						<h1 className='text-3xl font-extrabold'>{t('title')}</h1>
@@ -29,7 +29,7 @@ export default async function FriendsLayout({ children }: { children: React.Reac
 					</div>
 				</div>
 			</div>
-			<div className='px-10 pb-8'>{children}</div>
+			<div className='px-10 pb-8 relative z-0'>{children}</div>
 			<GoTop />
 		</main>
 	);

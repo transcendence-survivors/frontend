@@ -784,6 +784,7 @@
 			"imageVideoOnly": "Only image and video files are allowed",
 			"select": "Please select an option",
 			"mustAcceptTerms": "You must accept the terms and conditions",
+			"username_invalid": "Username can only contain letters, numbers and underscores",
 			"password_match": "Passwords must match",
 			"password_uppercase": "Password must contain at least one uppercase letter",
 			"password_lowercase": "Password must contain at least one lowercase letter",
@@ -858,6 +859,18 @@
 		"avatar_preview": "Avatar preview"
 	},
 	"wiki": {
+		"nav": {
+			"overview": "Overview",
+			"arsenal": "Arsenal & Tomes",
+			"bestiary": "Bestiary"
+		},
+		"hub": {
+			"title": "Survivors Compendium",
+			"subtitle": "Explore core game mechanics, weapon scalings, tome synergies, and monster threat intelligence.",
+			"arsenalHighlights": "Weapons, Tomes, Synergies & Combat Formulas",
+			"bestiaryHighlights": "Horde Types, Boss AI Patterns & Elite Modifiers"
+		},
+
 		"title": "Arsenal & Tome Compendium",
 		"subtitle": "Comprehensive guide to combat mechanics, stats scaling, weapons, and optimal tome synergies.",
 		"tabs": {
@@ -1109,6 +1122,119 @@
 			"fortune": {
 				"name": "Tome of Fortune",
 				"description": "Increases luck stat to boost the drop rates of higher-rarity upgrades."
+			}
+		},
+		"bestiary": {
+			"title": "Bestiary & Horde Threat Manual",
+			"subtitle": "Complete reference for monster behaviors, elite scaling mechanics, spawn timing, and boss attack patterns.",
+			"notes": {
+				"scaling": "Every base value is multiplied by the run's difficulty stage, which scales continuously with survival time.",
+				"elites": "Elites are promoted standard monsters: 2.35x HP, 1.3x Damage, and 2.5x XP reward. Bosses can never be elites.",
+				"bosses": "Bosses spawn starting at 2 minutes, then every 2 minutes after, with +30% HP per additional player in the session.",
+				"knockback": "Knockback resistance ranges from 0 (fully pushed) to 1 (immovable)."
+			},
+			"tabs": {
+				"horde": "Standard Horde ({count})",
+				"bosses": "Bosses ({count})"
+			},
+			"labels": {
+				"canBeElite": "Can Be Elite",
+				"attackBehavior": "Attack Behavior ({ai})",
+				"stats": {
+					"hp": "HP",
+					"damage": "Damage",
+					"speed": "Speed",
+					"knockback": "Knockback",
+					"xp": "XP Reward",
+					"spawns": "Spawns"
+				},
+				"secPlus": "{seconds}s+"
+			},
+			"monsters": {
+				"grunt": {
+					"name": "Hound",
+					"role": "Chaser",
+					"description": "The plain pursuer of the horde, and the most common thing you will meet.",
+					"behavior": "Runs straight at the nearest player and bites on contact once its cooldown is up."
+				},
+				"skitter": {
+					"name": "Skitter",
+					"role": "Swarm",
+					"description": "A small, very fast blob that is only dangerous in numbers.",
+					"behavior": "Swarms toward the nearest player and bites on contact; it moves slightly faster than the rest of the pack."
+				},
+				"kraklet": {
+					"name": "Kraklet",
+					"role": "Tank",
+					"description": "A slow, heavily built monster that soaks damage and barely flinches when hit.",
+					"behavior": "Walks to the nearest player and strikes on contact; knockback moves it far less than other monsters."
+				},
+				"ravager": {
+					"name": "Ravager",
+					"role": "Charger",
+					"description": "A hunter that closes the gap in sudden bursts of speed.",
+					"behavior": "Chases the nearest player, then charges in a straight line at more than twice its speed; the charge hits far harder than a normal contact."
+				},
+				"venomweb": {
+					"name": "Venomweb",
+					"role": "Ranged",
+					"description": "A ranged creature that keeps its distance and spits bursts from afar.",
+					"behavior": "Holds around its preferred range, backs away when a player gets too close, and fires area bursts on a cooldown."
+				},
+				"bomber": {
+					"name": "Bombardier",
+					"role": "Bomber",
+					"description": "A fragile runner that closes in to set off a wide, heavy blast.",
+					"behavior": "Runs at a player and triggers a large area burst that hits far harder than its contact damage."
+				},
+				"splitter": {
+					"name": "Splitter",
+					"role": "Swarm",
+					"description": "A bulky blob that does not die cleanly: it bursts into two smaller ones.",
+					"behavior": "Chases the nearest player and strikes on contact; killing it spawns two Skitters where it fell."
+				},
+				"necromancer": {
+					"name": "Gravecaller",
+					"role": "Summoner",
+					"description": "A slow caster that hangs back and keeps feeding the horde.",
+					"behavior": "Keeps its distance and summons two Skitters on a cooldown instead of fighting directly."
+				},
+				"wisp": {
+					"name": "Wisp",
+					"role": "Ranged",
+					"description": "A small, very fast harasser that is hard to pin down.",
+					"behavior": "Darts around a short preferred range and fires quick, small bursts; it retreats as soon as a player closes in."
+				},
+				"brute": {
+					"name": "Brute",
+					"role": "Tank",
+					"description": "The heaviest ordinary monster: very slow, very tough, and the hardest hitter of them.",
+					"behavior": "Advances slowly and strikes on contact with a longer reach; knockback barely moves it."
+				},
+				"arakhnos": {
+					"name": "Arakhnos",
+					"role": "Boss",
+					"description": "A boss that fights surrounded by a swarm it keeps replacing.",
+					"behavior": "Pursues and strikes on contact, and summons four Skitters on a cooldown to keep the pressure up."
+				},
+				"gorvath": {
+					"name": "Gorvath",
+					"role": "Boss",
+					"description": "A massive, slow boss that punishes anyone standing next to it.",
+					"behavior": "Closes in and strikes on contact, then slams the ground over a wide radius, harder than its normal blow."
+				},
+				"khimaera": {
+					"name": "Khimaera",
+					"role": "Boss",
+					"description": "The most mobile boss: it fights at mid range instead of in your face.",
+					"behavior": "Holds a mid range, backs off when crowded, and fires heavy area bursts on a cooldown."
+				},
+				"abyssor": {
+					"name": "Abyssor",
+					"role": "Boss",
+					"description": "The toughest boss, and the only one that calls ranged support.",
+					"behavior": "Advances slowly and strikes on contact, while summoning three Venomwebs on a cooldown."
+				}
 			}
 		}
 	},

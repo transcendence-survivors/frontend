@@ -1,19 +1,29 @@
+import DisplayDate from '@/components/ui/date';
+
 export interface RecapFieldPayload {
 	label: string;
-	asPassword?: boolean;
+	as: 'text' | 'password' | 'date';
 	value: unknown;
 }
 
 interface RecapFieldProps
 	extends RecapFieldPayload, React.HTMLAttributes<HTMLDivElement> {}
 
-const RecapField = ({ label, value, asPassword = false, ...props }: RecapFieldProps) => {
+const RecapField = ({ label, value, as = 'text', ...props }: RecapFieldProps) => {
 	const displayValue = () => {
 		if (typeof value === 'boolean') {
 			return value ? '✓' : '✗';
 		}
-		if (asPassword) {
+		if (as === 'password') {
 			return '•'.repeat(String(value).length);
+		}
+		if (as === 'date' && value instanceof Date) {
+			return (
+				<DisplayDate
+					date={value}
+					formatOptions={{ year: 'numeric', month: 'numeric', day: 'numeric' }}
+				/>
+			);
 		}
 		return String(value);
 	};

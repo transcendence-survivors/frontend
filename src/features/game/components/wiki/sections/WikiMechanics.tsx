@@ -1,11 +1,10 @@
-import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ShieldCheck, Cpu, SlidersHorizontal, Calculator } from 'lucide-react';
 import { STAT_KEYS } from '@/features/game/data/stats';
 
-export const WikiMechanics: React.FC = () => {
+export const WikiMechanics = () => {
 	const t = useTranslations('wiki');
 
 	type MessageKey = Parameters<typeof t>[0];
@@ -46,6 +45,7 @@ export const WikiMechanics: React.FC = () => {
 							{t('combatRules.tomeLimitTitle')}
 						</span>
 						<p className='text-muted-foreground leading-relaxed'>
+							age
 							{t('combatRules.tomeLimitDesc')}
 						</p>
 					</div>

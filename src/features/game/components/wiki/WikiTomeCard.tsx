@@ -1,13 +1,10 @@
-'use client';
-
-import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import GameIcon from '@/features/game/components/GameIcons';
 import { TomeCardProps } from '../../types/wiki';
 
-export const TomeCard = ({
+const WikiTomeCard = ({
 	id,
 	target,
 	baseStat,
@@ -18,7 +15,7 @@ export const TomeCard = ({
 	const key = `tomes.${id}` as const;
 
 	return (
-		<Card className='h-full flex flex-col bg-card/60 hover:bg-accent/40 border-border shadow-sm rounded-xl transition-all duration-200'>
+		<Card className='h-full flex flex-col bg-card/60 hover:bg-muted border-border shadow-sm rounded-xl transition-all duration-200'>
 			<CardHeader className='flex flex-row items-center gap-3.5 pb-2'>
 				<div className='p-2.5 rounded-xl bg-muted/50 border border-border shrink-0'>
 					<GameIcon name={id} size={40} className='stroke-primary' />
@@ -88,3 +85,5 @@ export const TomeCard = ({
 		</Card>
 	);
 };
+
+export default WikiTomeCard;

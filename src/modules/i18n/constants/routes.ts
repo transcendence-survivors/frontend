@@ -46,6 +46,22 @@ const APP_ROUTES = defineRouteMap({
 		che: '/wiki',
 		it: '/wiki',
 	},
+	wikiArsenal: {
+		en: '/wiki/arsenal',
+		de: '/wiki/arsenal',
+		fr: '/wiki/arsenal',
+		es: '/wiki/arsenal',
+		che: '/wiki/arsenal',
+		it: '/wiki/arsenal',
+	},
+	wikiBestiary: {
+		en: '/wiki/bestiary',
+		fr: '/wiki/bestiaire',
+		de: '/wiki/bestiary',
+		es: '/wiki/bestiario',
+		che: '/wiki/bestiary',
+		it: '/wiki/bestiario',
+	},
 	legal: {
 		en: '/legal-notice',
 		de: '/impressum',

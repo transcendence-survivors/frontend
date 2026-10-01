@@ -176,10 +176,12 @@ export const useMultiStepForm = <T extends FieldValues>(
 		return steps.map((s) => ({
 			title: s.title,
 			fields: s.fields.map((field) => {
+				const isPasswordField =
+					field.component === 'input' && field.variant === 'password';
+				const isDateField = field.component === 'date';
 				return {
 					label: String(field.label.text),
-					asPassword:
-						field.component === 'input' && field.variant === 'password',
+					as: isPasswordField ? 'password' : isDateField ? 'date' : 'text',
 					value: getValue(field),
 				};
 			}),

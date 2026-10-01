@@ -21,6 +21,7 @@ export const FORM_ERRORS = {
 	uppercase: `${PREFIX_KEY}.uppercase`,
 
 	mustAcceptTerms: `${PREFIX_KEY}.mustAcceptTerms`,
+	username_invalid: `${PREFIX_KEY}.username_invalid`,
 	passwordsMustMatch: `${PREFIX_KEY}.password_match`,
 	password_uppercase: `${PREFIX_KEY}.password_uppercase`,
 	password_lowercase: `${PREFIX_KEY}.password_lowercase`,

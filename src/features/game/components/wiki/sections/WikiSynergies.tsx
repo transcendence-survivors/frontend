@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Zap, ShieldAlert, Crosshair } from 'lucide-react';
@@ -9,7 +8,7 @@ const synergies = [
 	{ key: 'bowHaste', Icon: ShieldAlert },
 ] as const;
 
-export const WikiSynergies: React.FC = () => {
+export const WikiSynergies = () => {
 	const t = useTranslations('wiki');
 
 	return (

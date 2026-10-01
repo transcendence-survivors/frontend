@@ -13,26 +13,30 @@ interface LandingNavProps extends React.HTMLAttributes<HTMLUListElement> {
 	isDrawer?: boolean;
 }
 
-export const navItems = [
+export const links = [
 	{ key: 'home', labelKey: 'home' },
 	{ key: 'lore', labelKey: 'lore' },
 	{ key: 'wiki', labelKey: 'wiki' },
 	{ key: 'support', labelKey: 'support' },
 ] as const satisfies NavLink<AppMessages['nav']>[];
 
-export type KeyNavItem = (typeof navItems)[number]['key'];
+export type KeyNavItem = (typeof links)[number]['key'];
 
 export default function LandingNav({ isDrawer, className, ...props }: LandingNavProps) {
 	const t = useTranslations('nav');
 	const path = usePathname();
 
 	const activeKey = useMemo(() => {
-		if (path === '/') return 'home';
-		const matchedItem = navItems
-			.filter((item) => item.key !== 'home')
-			.find((item) => path.startsWith(getBasePath(item.key)));
-		console.log('activeKey:', matchedItem ? matchedItem.key : 'home');
-		return matchedItem ? matchedItem.key : null;
+		const bestMatch = links
+			.filter((link) => path.startsWith(getBasePath(link.key)))
+			.reduce<(typeof links)[number] | null>((longest, link) => {
+				if (!longest) return link;
+				return getBasePath(link.key).length > getBasePath(longest.key).length
+					? link
+					: longest;
+			}, null);
+
+		return bestMatch ? bestMatch.key : null;
 	}, [path]);
 
 	const { Tag, tagProps } = useMemo(() => {
@@ -44,7 +48,7 @@ export default function LandingNav({ isDrawer, className, ...props }: LandingNav
 
 	return (
 		<ul className={cn('flex flex-col gap-1 px-4', className)} {...props}>
-			{navItems.map(({ key, labelKey }) => {
+			{links.map(({ key, labelKey }) => {
 				const isActive = activeKey === key;
 
 				return (

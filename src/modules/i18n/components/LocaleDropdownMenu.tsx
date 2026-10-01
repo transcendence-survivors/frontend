@@ -50,7 +50,6 @@ const LocaleDropdownMenu = ({
 				sideOffset={4}
 				className={showLabel ? 'w-56' : 'w-16 min-w-0'}>
 				<DropdownMenuGroup>
-					<DropdownMenuLabel>Langue</DropdownMenuLabel>
 					<DropdownMenuRadioGroup
 						value={currentLocale}
 						onValueChange={onValueChange}>

@@ -5,20 +5,26 @@ import { z } from 'zod';
 
 const userEmailSchema = z
 	.email({ message: FORM_ERRORS.email })
+	.trim()
+	.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) })
 	.lowercase({ message: FORM_ERRORS.lowercase });
 
 const userNameSchema = z
 	.string({ message: FORM_ERRORS.string })
+	.trim()
 	.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
-	.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) });
+	.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) })
+	.regex(/^[a-zA-Z0-9_]+$/, { message: FORM_ERRORS.username_invalid });
 
 const userFirstNameSchema = z
 	.string({ message: FORM_ERRORS.string })
+	.trim()
 	.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
 	.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) });
 
 const userLastNameSchema = z
 	.string({ message: FORM_ERRORS.string })
+	.trim()
 	.min(2, { message: i18nError(FORM_ERRORS.minLength, { min: 2 }) })
 	.max(50, { message: i18nError(FORM_ERRORS.maxLength, { max: 50 }) });
 
@@ -34,11 +40,13 @@ const userLocaleSchema = z.enum(['EN', 'FR', 'DE'], { message: FORM_ERRORS.enum 
 
 const userDisplayNameSchema = z
 	.string({ message: FORM_ERRORS.string })
+	.trim()
 	.min(1, { message: i18nError(FORM_ERRORS.minLength, { min: 1 }) })
 	.max(25, { message: i18nError(FORM_ERRORS.maxLength, { max: 25 }) });
 
 const userBioSchema = z
 	.string({ message: FORM_ERRORS.string })
+	.trim()
 	.max(255, { message: i18nError(FORM_ERRORS.maxLength, { max: 255 }) });
 
 const userPasswordSchema = z

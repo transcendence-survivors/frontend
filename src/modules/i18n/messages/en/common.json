@@ -245,6 +245,7 @@
 		"just_connected_displayname": "{displayName} just connected"
 	},
 	"chat": {
+		"open_dm_failed": "Failed to open direct message. Please try again later.",
 		"share": {
 			"title": "Share Post",
 			"description": "Select one or multiple chat rooms to share this post with.",

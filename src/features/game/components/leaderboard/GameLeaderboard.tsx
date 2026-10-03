@@ -8,9 +8,16 @@ import { Spinner } from '@/components/ui/spinner';
 import { Error } from '@/components/ui/error';
 import { LoadingList } from '@/components/ui/loading-list';
 import { GameLeaderboardTabs } from './GameLeaderboardTabs';
-import { LeaderboardOrderBy } from '../../types/leaderboard';
+import { LeaderboardOrderBy, LeaderboardPreview } from '../../types/leaderboard';
 import { useLeaderboard } from '../../hooks/useLeaderboard';
 import { GameLeaderboardCard, GameLeaderboardCardSkeleton } from './GameLeaderboardCard';
+
+const valuePerOrderBy: Record<LeaderboardOrderBy, keyof LeaderboardPreview> = {
+	'highest-kills-desc': 'highestKills',
+	'highest-survival-desc': 'highestSurvivalTime',
+	'total-kills-desc': 'totalKills',
+	'total-games-desc': 'totalGamesPlayed',
+};
 
 const GameLeaderboard = () => {
 	const [orderBy, setOrderBy] = useQueryState<LeaderboardOrderBy>('orderBy', {
@@ -35,7 +42,28 @@ const GameLeaderboard = () => {
 	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	const leaderboardItems = data?.pages.flatMap((page) => page.data) ?? [];
-
+	const valueKey = valuePerOrderBy[orderBy];
+	const groupPerRank = leaderboardItems.reduce(
+		(acc, item, index, array) => {
+			let currentRank = index + 1;
+			if (index > 0) {
+				const prevItem = array[index - 1];
+				if (item[valueKey] === prevItem[valueKey]) {
+					currentRank = acc.lastRank;
+				}
+			}
+			acc.lastRank = currentRank;
+			if (!acc.ranks[currentRank]) {
+				acc.ranks[currentRank] = [];
+			}
+			acc.ranks[currentRank].push(item);
+			return acc;
+		},
+		{
+			lastRank: 1,
+			ranks: {} as Record<number, typeof leaderboardItems>,
+		},
+	).ranks;
 	return (
 		<div className='flex flex-col gap-4'>
 			<GameLeaderboardTabs orderBy={orderBy} setOrderBy={setOrderBy} />
@@ -51,11 +79,20 @@ const GameLeaderboard = () => {
 				<Error className='text-muted-foreground'>{t('no_leaderboard')}</Error>
 			) : (
 				<ul className='flex flex-col gap-2.5'>
-					{leaderboardItems.map((item, index) => (
-						<li key={item.id}>
-							<GameLeaderboardCard item={item} rank={index + 1} />
-						</li>
-					))}
+					{Object.entries(groupPerRank).map(([rankStr, items]) => {
+						const rank = Number(rankStr);
+						return (
+							<li key={rank} className='flex flex-col gap-2'>
+								{items.map((item) => (
+									<GameLeaderboardCard
+										key={item.id}
+										item={item}
+										rank={rank}
+									/>
+								))}
+							</li>
+						);
+					})}
 				</ul>
 			)}
 

@@ -12,7 +12,6 @@ const buildUrl = (path: string) =>
 
 const baseFetch = (path: string, init: RequestInit) => {
 	const url = buildUrl(path);
-	console.log('baseFetch url:', url, 'init:', init);
 	return fetch(url, {
 		...init,
 		headers: { ...init.headers },

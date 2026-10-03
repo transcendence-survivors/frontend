@@ -47,9 +47,8 @@ export const ProfileHeaderActions = ({
 	}
 
 	const status = relationship?.status ?? RelationshipStatus.NONE;
-	console.log('ProfileHeaderActions status:', status);
-
 	const user = { id, displayName, username };
+
 	return (
 		<div className={cn('ml-auto flex items-center gap-x-2', className)} {...props}>
 			<ChatDMButton targetUserId={id} />

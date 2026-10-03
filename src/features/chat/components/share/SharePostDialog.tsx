@@ -72,12 +72,6 @@ export function SharePostDialog({ children, post }: SharePostDialogProps) {
 		if (formState.selectedRoomIds.length === 0 || isPending) return;
 
 		try {
-			console.log(
-				'Sharing post with rooms:',
-				formState.selectedRoomIds,
-				'and comment:',
-				formState.comment,
-			);
 			await sharePost({
 				roomIds: formState.selectedRoomIds,
 				comment: formState.comment.trim() || undefined,

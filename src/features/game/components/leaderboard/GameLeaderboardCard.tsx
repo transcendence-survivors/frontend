@@ -20,7 +20,6 @@ interface Props {
 
 export const GameLeaderboardCard = memo(({ item, rank }: Props) => {
 	const t = useTranslations('game');
-	console.log(item);
 	const displayName = item.user?.displayName || t('playerFallback', { index: rank });
 
 	const username = item.user?.username;
@@ -29,10 +28,10 @@ export const GameLeaderboardCard = memo(({ item, rank }: Props) => {
 		<Card
 			className={cn(
 				'p-4 bg-card/60 border-border shadow-sm transition-all duration-200 rounded-xl grid grid-cols-12 items-center gap-4',
-				username && 'hover:bg-accent/40 group-hover/card:border-ring/50',
-				rank === 1 && 'border-chart-1/30 bg-chart-1/[0.02]',
-				rank === 2 && 'border-chart-2/30 bg-chart-2/[0.02]',
-				rank === 3 && 'border-chart-3/30 bg-chart-3/[0.02]',
+				username && 'hover:bg-card group-hover/card:border-ring/50',
+				rank === 1 && 'border-chart-2/30 bg-chart-1/10',
+				rank === 2 && 'border-chart-2/30 bg-chart-2/10',
+				rank === 3 && 'border-chart-3/30 bg-chart-3/10',
 			)}>
 			<div className='col-span-12  lg:col-span-4 flex items-center gap-3.5 min-w-0'>
 				<GameRankBadge rank={rank} />
@@ -106,7 +105,12 @@ export const GameLeaderboardCard = memo(({ item, rank }: Props) => {
 		<I18nLink
 			href='userName'
 			hrefParams={{ username: `@${username}` }}
-			className='block group/card outline-none rounded-xl'>
+			className={cn(
+				'block group/card outline-none rounded-xl focus-visible:ring-2 transition-all focus-visible:ring-card-foreground/30',
+				rank === 1 && 'focus-visible:ring-chart-1/50 ',
+				rank === 2 && 'focus-visible:ring-chart-2/50',
+				rank === 3 && 'focus-visible:ring-chart-3/50',
+			)}>
 			{cardContent}
 		</I18nLink>
 	);

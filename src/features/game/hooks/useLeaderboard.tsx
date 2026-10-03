@@ -13,7 +13,6 @@ export type UseLeaderboardParams = Omit<GetLeaderboardParams, 'cursor' | 'limit'
 
 export const useLeaderboard = ({ orderBy }: UseLeaderboardParams = {}) => {
 	const currentOrderBy = orderBy ?? initialLeaderboardParam.orderBy;
-	console.log('useLeaderboard called with orderBy:', currentOrderBy);
 	return useInfiniteQuery({
 		queryKey: ['game-leaderboard', { orderBy: currentOrderBy }],
 		initialPageParam: {

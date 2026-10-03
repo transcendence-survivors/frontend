@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { uploadAttachments } from '@/libs/api/helpers/attachments';
 import { EditMessagePayload, useMessageActions } from '../../stores/messageSlice';
+import { useTranslations } from 'next-intl';
 
 interface SendMessageInput {
 	roomId: string;
@@ -14,6 +15,7 @@ interface SendMessageInput {
 
 export const useSendMessage = () => {
 	const { sendMessage } = useMessageActions();
+	const t = useTranslations('chat.messages.actions');
 
 	return useMutation({
 		mutationFn: async ({
@@ -31,33 +33,35 @@ export const useSendMessage = () => {
 			});
 		},
 		onError: () => {
-			toast.error('Failed to send message');
+			toast.error(t('send_failed'));
 		},
 	});
 };
 
 export const useEditMessage = () => {
 	const { editMessage } = useMessageActions();
+	const t = useTranslations('chat.messages.actions');
 
 	return useMutation({
 		mutationFn: async (payload: EditMessagePayload) => {
 			return editMessage(payload);
 		},
 		onError: () => {
-			toast.error('Failed to edit message');
+			toast.error(t('edit_failed'));
 		},
 	});
 };
 
 export const useSoftDeleteMessage = () => {
 	const { softDeleteMessage } = useMessageActions();
+	const t = useTranslations('chat.messages.actions');
 
 	return useMutation({
 		mutationFn: async (messageId: string) => {
 			return softDeleteMessage(messageId);
 		},
 		onError: () => {
-			toast.error('Failed to delete message');
+			toast.error(t('delete_failed'));
 		},
 	});
 };

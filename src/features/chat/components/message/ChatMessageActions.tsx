@@ -7,7 +7,7 @@ import { ChatMessageBubbleContent } from './bubble/ChatMessageBubbleContent';
 import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 import { canManageMember, ChatMemberPermissionEnum } from '../../utils/role';
 import { useRoomRole, useRoomType } from '../../stores/roomSlice';
-import { SharedPostCard } from '@/features/posts/components/SharedPostCard';
+import { SharedPostCard } from '@/features/posts/components/card/SharedPostCard';
 
 interface ChatMessageActionsProps {
 	message: TextChatMessage | PostChatMessage;

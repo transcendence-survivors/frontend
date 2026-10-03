@@ -1,8 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useUserLikes } from '../hook/useUserLikes';
-import PostList from './post-list';
+import { useUserLikes } from '../../hook/useUserLikes';
+import PostList from '../PostList';
 
 interface UserLikesProps {
 	username: string;

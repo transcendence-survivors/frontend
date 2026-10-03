@@ -293,15 +293,6 @@ const APP_ROUTES = defineRouteMap({
 		che: '/einstellungen/gefahrzone',
 		it: '/impostazioni/zona-di-pericolo',
 	},
-
-	postId: {
-		en: '/posts/:id',
-		de: '/beitraege/:id',
-		fr: '/articles/:id',
-		es: '/articulos/:id',
-		che: '/beitraege/:id',
-		it: '/articoli/:id',
-	},
 } as const);
 
 type RouteMap = typeof APP_ROUTES;

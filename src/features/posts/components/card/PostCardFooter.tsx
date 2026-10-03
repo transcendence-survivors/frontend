@@ -15,15 +15,16 @@ import LikeButton from '@/features/likes/components/LikeButton';
 import { useAddRepost, useDeleteRepost } from '@/features/reposts/hook/useReposts';
 import { cn } from '@/libs/utils';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { Post } from '../types/post';
-import CreatePost from './CreatePost';
+import { Post } from '../../types/post';
+import PostForm from '../form/PostForm';
 import { SharePostDialog } from '@/features/chat/components/share/SharePostDialog';
+import { toast } from 'sonner';
 
-interface PostFooterProps {
+interface PostCardFooterProps {
 	post: Post;
 }
 
-export default function PostFooter({ post }: PostFooterProps) {
+export default function PostCardFooter({ post }: PostCardFooterProps) {
 	const t = useTranslations('posts.actions');
 	const [quoteOpen, setQuoteOpen] = useState(false);
 	const addRepost = useAddRepost();
@@ -40,6 +41,11 @@ export default function PostFooter({ post }: PostFooterProps) {
 	const handleCopyLink = () => {
 		const postLink = `${window.location.origin}/@${post.author.username}/posts/${post.id}`;
 		navigator.clipboard.writeText(postLink);
+	};
+
+	const commentSuccess = () => {
+		toast.success(t('post_success'));
+		setQuoteOpen(false);
 	};
 
 	return (
@@ -69,10 +75,15 @@ export default function PostFooter({ post }: PostFooterProps) {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
-					<DropdownMenuItem onClick={handleRepostClick}>
+					<DropdownMenuItem
+						onClick={handleRepostClick}
+						disabled={isMutating}
+						className={'cursor-pointer'}>
 						{post.isReposted ? t('undo_repost') : t('repost')}
 					</DropdownMenuItem>
-					<DropdownMenuItem onClick={() => setQuoteOpen(true)}>
+					<DropdownMenuItem
+						onClick={() => setQuoteOpen(true)}
+						className={'cursor-pointer'}>
 						{t('quote')}
 					</DropdownMenuItem>
 				</DropdownMenuContent>
@@ -100,13 +111,17 @@ export default function PostFooter({ post }: PostFooterProps) {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align='end' className='w-[160px]'>
 						<SharePostDialog post={post}>
-							<DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+							<DropdownMenuItem
+								onSelect={(e) => e.preventDefault()}
+								className={'cursor-pointer'}>
 								<MessageCircle className='size-4 mr-2' />
 								{t('chat')}
 							</DropdownMenuItem>
 						</SharePostDialog>
 
-						<DropdownMenuItem onClick={handleCopyLink}>
+						<DropdownMenuItem
+							onClick={handleCopyLink}
+							className={'cursor-pointer'}>
 							<Copy className='size-4 mr-2' />
 							{t('copy_link')}
 						</DropdownMenuItem>
@@ -116,10 +131,7 @@ export default function PostFooter({ post }: PostFooterProps) {
 
 			<Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
 				<DialogContent>
-					<CreatePost
-						quotedPostId={post.id}
-						onSuccess={() => setQuoteOpen(false)}
-					/>
+					<PostForm quotedPostId={post.id} onSuccess={commentSuccess} />
 				</DialogContent>
 			</Dialog>
 		</div>

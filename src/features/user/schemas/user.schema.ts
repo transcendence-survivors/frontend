@@ -52,7 +52,7 @@ const userBioSchema = z
 const userPasswordSchema = z
 	.string({ message: FORM_ERRORS.string })
 	.min(8, { message: i18nError(FORM_ERRORS.minLength, { min: 8 }) })
-	.max(60, { message: i18nError(FORM_ERRORS.maxLength, { max: 60 }) })
+	.max(72, { message: i18nError(FORM_ERRORS.maxLength, { max: 72 }) })
 	.regex(/[A-Z]/, { message: FORM_ERRORS.password_uppercase })
 	.regex(/[a-z]/, { message: FORM_ERRORS.password_lowercase })
 	.regex(/[0-9]/, { message: FORM_ERRORS.password_number })

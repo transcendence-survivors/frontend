@@ -2,8 +2,8 @@ import { Paperclip, Smile } from 'lucide-react';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { MAX_FILES_COUNT } from '../../../schemas/message.schema';
 import { useTranslations } from 'next-intl';
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 interface ChatMessageFormControlsProps {
 	fileInputRef: React.RefObject<HTMLInputElement | null>;
@@ -32,7 +32,9 @@ export const ChatMessageFormControls = ({
 				type='button'
 				variant='ghost'
 				size='icon'
-				disabled={attachmentsCount >= MAX_FILES_COUNT || isEditing}
+				disabled={
+					attachmentsCount >= bucketsConfig.chat.maxFilesCount || isEditing
+				}
 				aria-label={t('attach_images_videos')}
 				onClick={() => fileInputRef.current?.click()}
 				className='text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50'>
@@ -43,7 +45,7 @@ export const ChatMessageFormControls = ({
 				ref={fileInputRef}
 				type='file'
 				multiple
-				accept='image/*,video/*'
+				accept={bucketsConfig.chat.mimes.join(',')}
 				tabIndex={-1}
 				className='sr-only'
 				aria-label={t('attach_images_videos')}

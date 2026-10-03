@@ -1,7 +1,7 @@
 'use client';
 
 import { useQueryState } from 'nuqs';
-import Posts from './posts';
+import Posts from './Posts';
 
 export default function PostSearch() {
 	const [search] = useQueryState('search', { defaultValue: '' });

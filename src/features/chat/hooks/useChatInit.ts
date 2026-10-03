@@ -5,10 +5,12 @@ import { useMessageActions } from '../stores/messageSlice';
 import { useTypingActions } from '../stores/typingSlice';
 import { useRoomActions } from '../stores/roomSlice';
 import { useChatNotificationActions } from '../stores/chatNotificationSlice';
+import { useTranslations } from 'next-intl';
 
 export function useChatInit() {
 	const queryClient = useQueryClient();
 	const { socket, isConnected } = useSocketState();
+	const chatT = useTranslations('chat');
 
 	const messageActions = useMessageActions();
 	const typingActions = useTypingActions();
@@ -21,7 +23,7 @@ export function useChatInit() {
 		messageActions.initMessageListeners(queryClient);
 		typingActions.initTypingListeners();
 		roomActions.initRoomListeners(queryClient);
-		notifActions.initNotificationListeners(queryClient);
+		notifActions.initNotificationListeners(queryClient, chatT);
 
 		return () => {
 			messageActions.destroyMessageListeners();
@@ -37,5 +39,6 @@ export function useChatInit() {
 		typingActions,
 		roomActions,
 		notifActions,
+		chatT,
 	]);
 }

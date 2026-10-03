@@ -1,6 +1,6 @@
 import { urlDecode } from '@/libs/urls';
 import { notFound } from 'next/navigation';
-import UserComments from '@/features/posts/components/user-comments';
+import UserComments from '@/features/posts/components/user/UserComments';
 
 interface CommentsPageProps {
 	params: Promise<{ username: string }>;

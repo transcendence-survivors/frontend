@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import {
 	ArrowLeft,

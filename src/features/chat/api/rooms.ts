@@ -51,8 +51,8 @@ export const getChatRoom = async (id: string, cookie: string) => {
 		console.log('----------------------------------------------------------------');
 		return {
 			status: 'error',
-			message: 'Failed to fetch chat room',
-			code: 500,
+			message: 'not found',
+			code: 404,
 		} satisfies ApiError;
 	}
 };
@@ -95,7 +95,7 @@ export const patchChatRoom = async (
 	if (removeAvatar) {
 		payload.avatarUrl = null;
 	} else if (file) {
-		const [uploadedUrl] = await uploadAttachments([file], 'chat');
+		const [uploadedUrl] = await uploadAttachments([file], 'avatar');
 		payload.avatarUrl = uploadedUrl;
 	}
 

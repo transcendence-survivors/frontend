@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-interface PostContentProps {
+interface PostCardContentProps {
 	content?: string;
 	isDetailView?: boolean;
 }
 
 const MAX_LENGTH = 280;
 
-export default function PostContent({ content, isDetailView }: PostContentProps) {
+export default function PostCardContent({ content, isDetailView }: PostCardContentProps) {
 	const t = useTranslations('posts.card');
 	const [expanded, setExpanded] = useState(false);
 

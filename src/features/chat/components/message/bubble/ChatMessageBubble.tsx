@@ -11,7 +11,7 @@ import { ChatMessageBubbleDeleted } from './ChatMessageBubbleDeleted';
 import { ChatMessageBubbleContent } from './ChatMessageBubbleContent';
 import DisplayDate from '@/components/ui/date';
 import { useUser } from '@/features/auth/stores/session';
-import { SharedPostCard } from '@/features/posts/components/SharedPostCard';
+import { SharedPostCard } from '@/features/posts/components/card/SharedPostCard';
 
 interface ChatMessageBubbleProps {
 	message: TextChatMessage | PostChatMessage;

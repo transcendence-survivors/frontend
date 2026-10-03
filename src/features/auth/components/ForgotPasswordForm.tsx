@@ -10,7 +10,6 @@ import {
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import useForgotPassword from '../hooks/useForgotPassword';
 import useTranslatedForm from '@/modules/forms/hooks/useTranslatedForm';
-import { ApiException } from '@/libs/api/';
 
 const ForgotPasswordForm = () => {
 	const { t, form, translatedFields } = useTranslatedForm<ForgotPasswordFormValues>({
@@ -26,12 +25,7 @@ const ForgotPasswordForm = () => {
 	async function onSubmit(data: ForgotPasswordFormValues) {
 		try {
 			await mutateAsync(data);
-		} catch (err: unknown) {
-			if (err instanceof ApiException && err.statusCode === 404) {
-				return form.setError('email', {
-					message: FORM_ERRORS.invalid_email,
-				});
-			}
+		} catch {
 			form.setError('root', { message: FORM_ERRORS.internal_server_error });
 		}
 	}
@@ -49,7 +43,7 @@ const ForgotPasswordForm = () => {
 				}}
 				footer={
 					isSuccess ? (
-						<small className='text-success text-center text-sm'>
+						<small className='text-success text-xs text-center'>
 							{t('success')}
 						</small>
 					) : null

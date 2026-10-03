@@ -8,7 +8,7 @@ import { useRelationshipStatus } from '../hooks/useRelationshipStatus';
 import { RelationshipStatus } from '../types';
 import { BlockDelete } from '../block/components/BlockDelete';
 import { Unban } from '@/components/icons/unban';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 import { BaseUser } from '@/features/user/type';
 

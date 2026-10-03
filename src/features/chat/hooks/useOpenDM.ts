@@ -1,4 +1,6 @@
-import { useRouter } from 'next/navigation';
+'use client';
+
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { getOrCreateDirectRoom } from '../api/rooms';
 import { ROUTES } from '@/modules/i18n/constants/routes';

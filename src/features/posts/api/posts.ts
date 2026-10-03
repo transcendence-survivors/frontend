@@ -23,6 +23,7 @@ export async function fetchPosts(
 	params: FetchPostParams,
 ) {
 	const urlParams = buildUrlParams(params);
+	if (!parentPostId && params.feed) urlParams.append('feed', params.feed);
 	const path = parentPostId
 		? `${POST_ENDPOINTS.getReplies(parentPostId)}`
 		: POST_ENDPOINTS.getPosts;

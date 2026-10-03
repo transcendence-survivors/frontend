@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { type PostFeed } from '../api/posts';
 import { usePosts } from '../hook/usePosts';
-import PostList from './post-list';
+import PostList from './PostList';
 
 interface PostsProps {
 	parentPostId?: string;

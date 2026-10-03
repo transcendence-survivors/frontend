@@ -19,6 +19,7 @@ import {
 	profileSettingsSchema,
 } from '../../schemas/profileSettings.schema';
 import { PatchUserSettingsParams, UserSettings } from '../../type';
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 type ProfileCoverSectionProps = {
 	displayCoverUrl: string | null;
@@ -85,7 +86,7 @@ const ProfileCoverSection = ({
 					ref={coverInputRef}
 					type='file'
 					tabIndex={-1}
-					accept='image/*'
+					accept={bucketsConfig.avatar.mimes.join(',')}
 					className='sr-only'
 					disabled={isSubmitting}
 					onChange={onCoverChange}
@@ -144,7 +145,7 @@ const ProfileAvatarSection = ({
 					ref={avatarInputRef}
 					type='file'
 					tabIndex={-1}
-					accept='image/*'
+					accept={bucketsConfig.avatar.mimes.join(',')}
 					className='sr-only'
 					aria-label={t('change_avatar')}
 					disabled={isSubmitting}

@@ -3,11 +3,11 @@
 import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { MediaModal } from '@/components/ui/media-modal';
-import PostContent from './post-content';
-import { PostAuthorHeader } from './PostAuthorHeader';
+import PostCardContent from './PostCardContent';
+import { PostCardAuthorHeader } from './PostCardAuthorHeader';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { AvatarProfileLink } from '@/features/user/components/Avatar/AvatarProfile';
-import { Post } from '../types/post';
+import { Post } from '../../types/post';
 
 export interface SharedPostCardProps {
 	post: Pick<Post, 'id' | 'content' | 'imageUrl' | 'author' | 'createdAt'> | null;
@@ -58,13 +58,13 @@ export function SharedPostCard({ post, className }: SharedPostCardProps) {
 				}}
 			/>
 			<div className='flex min-w-0 flex-col gap-1'>
-				<PostAuthorHeader
+				<PostCardAuthorHeader
 					author={post.author}
 					createdAt={post.createdAt}
 					className='text-xs'
 				/>
 				{post.content && (
-					<PostContent content={post.content} isDetailView={false} />
+					<PostCardContent content={post.content} isDetailView={false} />
 				)}
 				{post.imageUrl && (
 					<div className='relative z-10 mt-1'>

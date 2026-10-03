@@ -10,7 +10,11 @@ const hierarchy = {
 const roleRoutes = {
 	feed: ['USER'],
 	search: ['USER'],
+
 	game: ['USER'],
+	gameDetails: ['USER'],
+	gamePlay: ['USER'],
+	gameLeaderboard: ['USER'],
 
 	friends: ['USER'],
 	blocked: ['USER'],
@@ -20,7 +24,13 @@ const roleRoutes = {
 	chatId: ['USER'],
 
 	settings: ['USER'],
+	settingsProfile: ['USER'],
+	settingsSecurity: ['USER'],
+	settingsDangerZone: ['USER'],
+	settingsAccount: ['USER'],
+
 	userName: ['USER'],
+	userNameGamesHistory: ['USER'],
 	userNamePosts: ['USER'],
 	userNamePostsId: ['USER'],
 	userNameComments: ['USER'],

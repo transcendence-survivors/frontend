@@ -1,5 +1,5 @@
 import { urlDecode } from '@/libs/urls';
-import UserPosts from '@/features/posts/components/user-posts';
+import UserPosts from '@/features/posts/components/user/UserPosts';
 
 interface PostsPageProps {
 	params: Promise<{ username: string }>;
@@ -11,7 +11,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
 
 	return (
 		<main className='flex-1'>
-			<UserPosts username={decodedUsername} />;
+			<UserPosts username={decodedUsername} />
 		</main>
 	);
 }

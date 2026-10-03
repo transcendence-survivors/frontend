@@ -11,7 +11,7 @@ export default function SiteFooter() {
 				flex flex-col sm:flex-row gap-2 justify-between items-center text-center'
 			}>
 			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
-				LIGHT-KEEPERS © XLVII — VAMPIRE-SURVIVOR 3D
+				LIGHT-KEEPERS © 2026
 			</span>
 			<I18nLink
 				href='legal'
@@ -21,9 +21,6 @@ export default function SiteFooter() {
 				}>
 				{t('legal')}
 			</I18nLink>
-			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
-				NEXT.JS
-			</span>
 		</div>
 	);
 }

@@ -7,7 +7,7 @@ export default async function ChatRooms() {
 	const t = await getTranslations('chat.rooms.page');
 
 	return (
-		<main className='sr-only sm:not-sr-only sm:h-screen sm:p-4 flex flex-col items-center justify-center'>
+		<main className='sr-only sm:not-sr-only sm:h-dvh sm:p-4 flex flex-col items-center justify-center'>
 			<Card className='max-w-md w-full p-6'>
 				<section className='space-y-2'>
 					<h1 className='text-3xl font-bold'>{t('title')}</h1>

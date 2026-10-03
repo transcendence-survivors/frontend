@@ -5,19 +5,22 @@ import {
 	userBioSchema,
 	userDisplayNameSchema,
 } from '@/features/user/schemas/user.schema';
-
-const MAX_FILE_SIZE = 50 * 1024 * 1024;
-const ACCEPTED_MEDIA_TYPES = ['image/'];
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 const imageFileSchema = z
 	.custom<File>((val) => val instanceof File, {
 		message: FORM_ERRORS.imageOnly,
 	})
-	.refine((file) => ACCEPTED_MEDIA_TYPES.some((type) => file.type.startsWith(type)), {
-		message: FORM_ERRORS.imageOnly,
-	})
-	.refine((file) => file.size <= MAX_FILE_SIZE, {
-		message: i18nError(FORM_ERRORS.fileSizeMB, { maxSize: 50 }),
+	.refine(
+		(file) => bucketsConfig.avatar.mimes.some((type) => file.type.startsWith(type)),
+		{
+			message: FORM_ERRORS.imageOnly,
+		},
+	)
+	.refine((file) => file.size <= bucketsConfig.avatar.maxSize, {
+		message: i18nError(FORM_ERRORS.fileSizeMB, {
+			maxSize: bucketsConfig.avatar.maxSizeMB,
+		}),
 	});
 
 export const profileSettingsSchema = z

@@ -3,7 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { logoutRequest } from '../api/logout.api';
-import { useRouter } from '@i18n/utils/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useSessionActions } from '../stores/session';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 

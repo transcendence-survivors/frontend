@@ -3,7 +3,6 @@
 import { MoreHorizontal, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import DisplayDate from '@/components/ui/date';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,26 +10,26 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useUser } from '@/features/auth/stores/session';
-import I18nLink from '@/modules/i18n/components/I18nLink';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 import { useRouter } from '@/modules/i18n/utils/navigation';
-import { useDeletePost } from '../hook/useDeletePost';
-import { Post } from '../types/post';
-import { PostAuthorHeader } from './PostAuthorHeader';
+import { useDeletePost } from '../../hook/useDeletePost';
+import { Post } from '../../types/post';
+import { PostCardAuthorHeader } from './PostCardAuthorHeader';
+import { ActionConfirmDialog } from '@/components/ui/action-confirm-dialog';
 
-interface PostHeaderProps {
+interface PostCardHeaderProps {
 	post: Post;
 	isDetailView?: boolean;
 }
 
-export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
+export default function PostCardHeader({ post, isDetailView }: PostCardHeaderProps) {
 	const t = useTranslations('posts.actions');
 	const user = useUser();
 	const deletePost = useDeletePost();
 	const router = useRouter();
 	const isOwner = user?.id === post.author.id;
 
-	function handleDelete() {
+	const handleDelete = () => {
 		deletePost.mutate(post, {
 			onSuccess: () => {
 				if (!isDetailView) return;
@@ -46,11 +45,11 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 				}
 			},
 		});
-	}
+	};
 
 	return (
 		<div className='flex items-center gap-1 text-sm'>
-			<PostAuthorHeader author={post.author} createdAt={post.createdAt} />
+			<PostCardAuthorHeader author={post.author} createdAt={post.createdAt} />
 
 			{isOwner && (
 				<DropdownMenu>
@@ -63,10 +62,22 @@ export default function PostHeader({ post, isDetailView }: PostHeaderProps) {
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align='end'>
-						<DropdownMenuItem variant='destructive' onClick={handleDelete}>
-							<Trash2 />
-							{t('delete')}
-						</DropdownMenuItem>
+						<ActionConfirmDialog
+							title={t('delete_title')}
+							description={t('delete_description')}
+							confirmText={t('delete')}
+							isPending={deletePost.isPending}
+							isDestructive
+							onConfirm={() => handleDelete()}
+							trigger={
+								<DropdownMenuItem
+									variant='destructive'
+									onSelect={(e) => e.preventDefault()}>
+									<Trash2 />
+									{t('delete')}
+								</DropdownMenuItem>
+							}
+						/>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			)}

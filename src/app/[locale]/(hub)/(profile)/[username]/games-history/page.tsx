@@ -1,10 +1,3 @@
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
 import Kicker from '@/components/ui/kicker';
 import GameHistory from '@/features/game/components/history/GameHistory';
 import GameHistoryFilters from '@/features/game/components/history/GameHistoryFilters';

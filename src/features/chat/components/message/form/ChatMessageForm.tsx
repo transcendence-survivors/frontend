@@ -26,6 +26,7 @@ import { ChatMessageFormControls } from './ChatMessageFormControls';
 import { useTranslations } from 'next-intl';
 import { FieldError } from '@/components/ui/field';
 import { translateError } from '@/modules/forms/utils/translate/errors';
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 interface ChatMessageFormProps extends React.HTMLAttributes<HTMLFormElement> {
 	roomId: string;
@@ -83,7 +84,7 @@ export const ChatMessageForm = ({
 			attachments,
 			setValue,
 			fieldName: 'attachments',
-			maxFiles: 5,
+			maxFiles: bucketsConfig.chat.maxFilesCount,
 		});
 
 	useEffect(() => {

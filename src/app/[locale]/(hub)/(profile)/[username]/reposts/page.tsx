@@ -1,4 +1,4 @@
-import UserReposts from '@/features/posts/components/user-reposts';
+import UserReposts from '@/features/posts/components/user/UserReposts';
 import { urlDecode } from '@/libs/urls';
 
 interface RepostsPageProps {

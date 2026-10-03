@@ -1,10 +1,7 @@
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { i18nError } from '@/modules/forms/utils/translate/errors';
 import z from 'zod';
-
-export const ACCEPTED_MEDIA_TYPES = ['image/', 'video/'];
-export const MAX_FILE_SIZE = 50 * 1024 * 1024;
-export const MAX_FILES_COUNT = 5;
 
 export const chatMessageSchema = z
 	.object({
@@ -22,18 +19,25 @@ export const chatMessageSchema = z
 			.refine(
 				(files) =>
 					files.every((file) =>
-						ACCEPTED_MEDIA_TYPES.some((type) => file.type.startsWith(type)),
+						bucketsConfig.chat.mimes.some((type) =>
+							file.type.startsWith(type),
+						),
 					),
 				{ message: FORM_ERRORS.imageVideoOnly },
 			)
-			.max(MAX_FILES_COUNT, {
+			.max(bucketsConfig.chat.maxFilesCount, {
 				message: i18nError(FORM_ERRORS.maxFilesCount, {
-					maxCount: MAX_FILES_COUNT,
+					maxCount: bucketsConfig.chat.maxFilesCount,
 				}),
 			})
-			.refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), {
-				message: i18nError(FORM_ERRORS.fileSizeMB, { maxSize: 10 }),
-			})
+			.refine(
+				(files) => files.every((file) => file.size <= bucketsConfig.chat.maxSize),
+				{
+					message: i18nError(FORM_ERRORS.fileSizeMB, {
+						maxSize: bucketsConfig.chat.maxSizeMB,
+					}),
+				},
+			)
 			.optional(),
 	})
 	.refine(

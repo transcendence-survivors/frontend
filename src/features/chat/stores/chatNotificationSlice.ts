@@ -11,6 +11,9 @@ import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { toast } from 'sonner';
 import { PresenceStatus } from '@/features/presence/types/status';
 import { PresenceSlice } from '@/features/presence/stores/presenceSlice';
+import { useTranslations } from 'next-intl';
+
+type ChatTFunction = ReturnType<typeof useTranslations<'chat'>>;
 
 export interface ChatNotificationSliceState {
 	totalUnreadCount: number;
@@ -29,7 +32,7 @@ export interface ChatNotificationSliceActions {
 
 	clearNotificationState: () => void;
 
-	initNotificationListeners: (queryClient: QueryClient) => void;
+	initNotificationListeners: (queryClient: QueryClient, t: ChatTFunction) => void;
 	destroyNotificationListeners: () => void;
 }
 
@@ -186,13 +189,13 @@ export const createChatNotificationSlice: StateCreator<
 				});
 			},
 
-			initNotificationListeners(queryClient) {
+			initNotificationListeners(queryClient, t) {
 				const socket = get().socket;
 				if (!socket) return;
 
 				get().chatNotificationActions.destroyNotificationListeners();
 
-				onMessageRead = (data: ChatNotificationReadPayload) => {
+				onMessageRead = (data) => {
 					set((state) => {
 						const currentRoomUnread =
 							state.unreadCountsByRoom[data.roomId] ?? 0;
@@ -210,11 +213,11 @@ export const createChatNotificationSlice: StateCreator<
 					invalidateUnreadCount(queryClient);
 				};
 
-				onNewMessage = (data: ChatNotificationNewPayload) => {
+				onNewMessage = (data) => {
 					const activeRoomId = get().currentRoomId;
 					if (activeRoomId !== data.roomId) {
 						if (get().status === PresenceStatus.ONLINE) {
-							toast.info('You have a new chat message.');
+							toast.info(t('messages.actions.received_new_message'));
 						}
 						get().chatNotificationActions.incrementRoomUnread(data.roomId);
 						invalidateUnreadCount(queryClient);

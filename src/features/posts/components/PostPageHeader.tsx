@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useTranslations } from 'next-intl';
 
-export default function PostDetailHeader() {
+export default function PostPageHeader() {
 	const t = useTranslations('posts.detail');
 	const router = useRouter();
 

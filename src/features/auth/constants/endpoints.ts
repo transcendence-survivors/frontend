@@ -13,7 +13,7 @@ const AUTH_ENDPOINTS = {
 	refresh: `${AUTH_START_PATH}/refresh`,
 
 	changePassword: `${AUTH_START_PATH}/change-password`,
-	deleteAccount: `${AUTH_START_PATH}/account`,
+	deleteAccount: `${AUTH_START_PATH}/delete-account`,
 
 	checkEmail: `${USER_START_PATH}/check-email`,
 	checkUsername: `${USER_START_PATH}/check-username`,

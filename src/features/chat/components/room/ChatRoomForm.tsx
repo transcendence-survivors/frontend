@@ -24,6 +24,7 @@ import { FieldError } from '@/components/ui/field';
 import { translateError } from '@/modules/forms/utils/translate/errors';
 import { useChatRoomEdit } from '../../hooks/room/useChatRoomActions';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 interface EditGroupDetailsDialogProps {
 	roomId: string;
@@ -165,7 +166,7 @@ export const ChatRoomEditForm = ({
 											ref={fileInputRef}
 											type='file'
 											tabIndex={-1}
-											accept='image/*'
+											accept={bucketsConfig.avatar.mimes.join(',')}
 											className='sr-only'
 											aria-label={t('change_avatar_hint')}
 											disabled={isSubmitting}

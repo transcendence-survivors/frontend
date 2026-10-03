@@ -4,11 +4,11 @@ import { MediaModal } from '@/components/ui/media-modal';
 import { AvatarProfile } from '@/features/user/components/Avatar/AvatarProfile';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 import { cn } from '@/libs/utils';
-import { Post } from '../types/post';
-import PostHeader from './post-header';
-import PostContent from './post-content';
-import PostFooter from './post-footer';
-import QuotedPost from './quoted-post';
+import { Post } from '../../types/post';
+import PostCardHeader from './PostCardHeader';
+import PostCardContent from './PostCardContent';
+import PostCardFooter from './PostCardFooter';
+import QuotedPostCard from './QuotedPostCard';
 
 interface PostCardProps {
 	post: Post;
@@ -59,7 +59,7 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 			</I18nLink>
 
 			<div className='flex min-w-0 flex-col gap-1'>
-				<PostHeader post={shownPost} isDetailView={isDetailView} />
+				<PostCardHeader post={shownPost} isDetailView={isDetailView} />
 
 				{shownPost.parent && shownPost.parentPostId && (
 					<p className='text-sm text-muted-foreground'>
@@ -76,7 +76,10 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 					</p>
 				)}
 
-				<PostContent content={shownPost.content} isDetailView={isDetailView} />
+				<PostCardContent
+					content={shownPost.content}
+					isDetailView={isDetailView}
+				/>
 
 				{shownPost.imageUrl && (
 					<MediaModal
@@ -88,9 +91,9 @@ export default function PostCard({ post, isDetailView }: PostCardProps) {
 					/>
 				)}
 
-				{shownPost.quotedPost && <QuotedPost post={shownPost.quotedPost} />}
+				{shownPost.quotedPost && <QuotedPostCard post={shownPost.quotedPost} />}
 
-				<PostFooter post={shownPost} />
+				<PostCardFooter post={shownPost} />
 			</div>
 		</article>
 	);

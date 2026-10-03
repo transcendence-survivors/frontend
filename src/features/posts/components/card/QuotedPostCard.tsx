@@ -2,13 +2,13 @@ import { useTranslations } from 'next-intl';
 import DisplayDate from '@/components/ui/date';
 import { AvatarProfile } from '@/features/user/components/Avatar/AvatarProfile';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { Post } from '../types/post';
+import { Post } from '../../types/post';
 
 interface QuotedPostProps {
 	post: Post;
 }
 
-export default function QuotedPost({ post }: QuotedPostProps) {
+export default function QuotedPostCard({ post }: QuotedPostProps) {
 	const t = useTranslations('posts.card');
 
 	return (

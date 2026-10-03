@@ -2,6 +2,7 @@ import { DeepKeys, NestedMessageKeysHelper } from '@/libs/types';
 import { useTranslations } from 'next-intl';
 
 type RootTFunction = ReturnType<typeof useTranslations>;
+
 type LooseTFunction = (
 	key: string,
 	values?: Record<string, string | number | Date>,

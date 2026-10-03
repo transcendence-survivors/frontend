@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/libs/utils';
 import { fetchPosts } from '../api/posts';
-import PostCard from './post-card';
+import PostCard from './card/PostCard';
 
 type PostsPage = Awaited<ReturnType<typeof fetchPosts>>;
 

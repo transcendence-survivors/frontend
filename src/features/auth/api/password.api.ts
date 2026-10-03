@@ -23,7 +23,7 @@ export const forgotPassword = async (body: ForgotPasswordRequestBody) => {
 	const res = await api.post<void>(AUTH_ENDPOINTS.forgotPassword, body, {
 		no_retry: true,
 	});
-	if (isApiError(res)) {
+	if (isApiError(res) && res.code !== 404) {
 		throw new ApiException(res.code, res.message);
 	}
 	return res;

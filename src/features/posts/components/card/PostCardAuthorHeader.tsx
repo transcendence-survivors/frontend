@@ -1,10 +1,7 @@
-'use client';
-
-import * as React from 'react';
 import DisplayDate from '@/components/ui/date';
 import I18nLink from '@/modules/i18n/components/I18nLink';
 
-export interface PostAuthorHeaderProps {
+export interface PostCardAuthorHeaderProps {
 	author: {
 		username: string;
 		displayName: string;
@@ -13,11 +10,11 @@ export interface PostAuthorHeaderProps {
 	className?: string;
 }
 
-export function PostAuthorHeader({
+export function PostCardAuthorHeader({
 	author,
 	createdAt,
 	className,
-}: PostAuthorHeaderProps) {
+}: PostCardAuthorHeaderProps) {
 	const authorHref = { username: `@${author.username}` };
 
 	return (

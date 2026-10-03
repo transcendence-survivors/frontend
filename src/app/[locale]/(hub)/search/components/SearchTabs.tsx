@@ -3,7 +3,7 @@
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import PostSearch from '@/features/posts/components/post-search';
+import PostSearch from '@/features/posts/components/PostSearch';
 import { UserSearch } from '@/features/user/components/UserSearch';
 
 const tabs = [

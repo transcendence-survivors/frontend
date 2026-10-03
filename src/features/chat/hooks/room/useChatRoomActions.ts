@@ -10,7 +10,7 @@ import {
 	deleteRoom,
 	patchChatRoom,
 } from '../../api/rooms';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { ROUTES } from '@/modules/i18n/constants/routes';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 

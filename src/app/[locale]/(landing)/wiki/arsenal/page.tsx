@@ -24,7 +24,7 @@ export default function Page() {
 	const t = useTranslations('wiki');
 
 	return (
-		<main className='min-h-screen bg-background text-foreground pt-14 px-8'>
+		<main className='min-h-dvh bg-background text-foreground pt-14 px-8'>
 			<div className='max-w-5xl mx-auto space-y-8'>
 				<header className='space-y-4 border-b border-border pb-6 flex flex-col lg:flex-row lg:items-end justify-between gap-4'>
 					<div className='space-y-2 lg:max-w-[60%]'>

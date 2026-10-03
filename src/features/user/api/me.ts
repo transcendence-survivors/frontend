@@ -21,7 +21,7 @@ export const patchSettings = async (data: PatchUserSettingsParams) => {
 		if (avatarFile === null) {
 			avatarUrl = null;
 		} else if (avatarFile) {
-			const [url] = await uploadAttachments([avatarFile], 'user');
+			const [url] = await uploadAttachments([avatarFile], 'avatar');
 			avatarUrl = url;
 		}
 	};
@@ -30,7 +30,7 @@ export const patchSettings = async (data: PatchUserSettingsParams) => {
 		if (coverFile === null) {
 			coverImageUrl = null;
 		} else if (coverFile) {
-			const [url] = await uploadAttachments([coverFile], 'user');
+			const [url] = await uploadAttachments([coverFile], 'avatar');
 			coverImageUrl = url;
 		}
 	};

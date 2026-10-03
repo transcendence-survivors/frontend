@@ -1,22 +1,23 @@
 import { z } from 'zod';
 import { FORM_ERRORS } from '@/modules/forms/constants/error';
 import { i18nError } from '@/modules/forms/utils/translate/errors';
-
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
-const ACCEPTED_MEDIA_TYPES = ['image/'];
+import { bucketsConfig } from '@/libs/api/helpers/attachments';
 
 export const postImageFileSchema = z
 	.custom<File>((val) => val instanceof File, {
 		message: FORM_ERRORS.imageOnly,
 	})
-	.refine((file) => ACCEPTED_MEDIA_TYPES.some((type) => file.type.startsWith(type)), {
-		message: FORM_ERRORS.imageOnly,
-	})
-	.refine((file) => file.size <= MAX_FILE_SIZE, {
-		message: i18nError(FORM_ERRORS.fileSizeMB, { maxSize: 50 }),
+	.refine(
+		(file) => bucketsConfig.post.mimes.some((type) => file.type.startsWith(type)),
+		{ message: FORM_ERRORS.imageOnly },
+	)
+	.refine((file) => file.size <= bucketsConfig.post.maxSize, {
+		message: i18nError(FORM_ERRORS.fileSizeMB, {
+			maxSize: bucketsConfig.post.maxSizeMB,
+		}),
 	});
 
-export const createPostSchema = z
+export const postFormSchema = z
 	.object({
 		content: z.string().max(280).optional(),
 		file: postImageFileSchema.optional(),
@@ -33,4 +34,4 @@ export const createPostSchema = z
 		},
 	);
 
-export type CreatePostFormValues = z.infer<typeof createPostSchema>;
+export type PostFormValues = z.infer<typeof postFormSchema>;

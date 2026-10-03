@@ -1,5 +1,5 @@
 import { urlDecode } from '@/libs/urls';
-import UserLikes from '@/features/posts/components/user-likes';
+import UserLikes from '@/features/posts/components/user/UserLikes';
 
 interface LikesPageProps {
 	params: Promise<{ username: string }>;
@@ -11,7 +11,7 @@ export default async function LikesPage({ params }: LikesPageProps) {
 
 	return (
 		<main className='flex-1'>
-			<UserLikes username={decodedUsername} />;
+			<UserLikes username={decodedUsername} />
 		</main>
 	);
 }

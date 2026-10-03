@@ -7,7 +7,7 @@ import { ImageIcon, Smile } from 'lucide-react';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 import { useTranslations } from 'next-intl';
 
-interface CreatePostControlsProps {
+interface PostFormControlsProps {
 	fileInputRef: React.RefObject<HTMLInputElement | null>;
 	isEmojiOpen: boolean;
 	setIsEmojiOpen: (open: boolean) => void;
@@ -15,13 +15,13 @@ interface CreatePostControlsProps {
 	isDisabled?: boolean;
 }
 
-export const CreatePostControls = ({
+export const PostFormControls = ({
 	fileInputRef,
 	isEmojiOpen,
 	setIsEmojiOpen,
 	onEmojiSelect,
 	isDisabled = false,
-}: CreatePostControlsProps) => {
+}: PostFormControlsProps) => {
 	const t = useTranslations('posts.create');
 
 	return (

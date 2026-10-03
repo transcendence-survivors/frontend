@@ -11,7 +11,7 @@ import { updateInfiniteQueries } from '@/libs/api/helpers/infiniteQuery';
 import { ChatMember, ChatMemberRole, GetChatMembersResponse } from '../../types/member';
 import { UseChatMembersParams } from './useChatMembers';
 import { ROUTES } from '@/modules/i18n/constants/routes';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { useInvalidateQueries } from '@/hooks/useInvalidateQueries';
 
 export type MemberAction = 'kick' | 'promote' | 'demote' | 'transfer' | 'leave';

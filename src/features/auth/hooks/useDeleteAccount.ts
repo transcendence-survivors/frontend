@@ -1,5 +1,7 @@
+'use client';
+
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/modules/i18n/utils/navigation';
 import { toast } from 'sonner';
 import { deleteAccount } from '../api/password.api';
 import { ROUTES } from '@/modules/i18n/constants/routes';

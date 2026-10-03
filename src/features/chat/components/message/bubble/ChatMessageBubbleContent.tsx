@@ -1,4 +1,6 @@
-import { HTMLAttributes, memo } from 'react';
+'use client';
+
+import { HTMLAttributes, memo, useEffect } from 'react';
 import { cn } from '@/libs/utils';
 import { PostChatMessage, TextChatMessage } from '../../../types/message';
 import { ChatMessageReplyPreview } from '../ChatMessageReplyPreview';

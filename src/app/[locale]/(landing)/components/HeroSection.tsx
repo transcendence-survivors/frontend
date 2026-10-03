@@ -1,5 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
+import I18nLink from '@/modules/i18n/components/I18nLink';
+import { Link } from '@/modules/i18n/utils/navigation';
 
 export default function HeroSection() {
 	const t = useTranslations('landing.hero');
@@ -17,22 +19,27 @@ export default function HeroSection() {
 					{t('description')}
 				</p>
 				<div className='flex flex-col sm:flex-row gap-4 justify-center'>
-					<Button size='lg' className='w-full sm:w-auto'>
-						{t('play')}
+					<Button size='lg' className='w-full sm:w-auto' asChild>
+						<I18nLink href='gamePlay'>{t('play')}</I18nLink>
 					</Button>
-					<Button size='lg' variant='outline' className='w-full sm:w-auto'>
-						{t('trailer')}
+					<Button
+						size='lg'
+						variant='outline'
+						className='w-full sm:w-auto'
+						asChild>
+						<a href='#trailer'>{t('trailer')}</a>
 					</Button>
 				</div>
 			</div>
-			<div className='video-container mb-20 sm:mb-40 mt-12 sm:mt-16'>
+			<div className='mb-20 sm:mb-40 mt-12 sm:mt-20'>
 				<video
+					id='trailer'
 					autoPlay
 					loop
 					muted
 					playsInline
 					controls
-					className='w-full h-auto rounded-2xl border border-border'>
+					className='w-full h-auto rounded-2xl border border-border scroll-mt-50'>
 					<source src='/Trailer_Zelda.mp4' type='video/mp4' />
 					{t('video_fallback')}
 				</video>

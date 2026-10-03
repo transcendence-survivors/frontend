@@ -24,7 +24,9 @@ export const ChatMessageReplyPreview = ({
 			<span className='truncate max-w-[180px]'>
 				{t.rich('replying_to', {
 					replyToId: () => (
-						<a href={`#${replyToId}`} className='font-mono text-[10px]'>
+						<a
+							href={`#message-${replyToId}`}
+							className='font-mono text-[10px]'>
 							#{replyToId.slice(-4)}
 						</a>
 					),

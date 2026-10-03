@@ -7,6 +7,7 @@ RUN pnpm config set store-dir /pnpm/store
 
 COPY pnpm-workspace.yaml package.json ./
 COPY apps/network/client/package.json ./apps/network/client/package.json
+COPY apps/network/server/package.json ./apps/network/server/package.json
 COPY apps/game/ui/package.json ./apps/game/ui/package.json
 COPY apps/game/shared-package/package.json ./apps/game/shared-package/package.json
 

@@ -36,7 +36,6 @@ COPY apps/game/ui ./apps/game/ui
 COPY apps/game/shared-package ./apps/game/shared-package
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 
-# Build arguments for Next.js static generation & env validation
 ARG NEXT_PUBLIC_API_URL
 ARG NEXT_PUBLIC_SOCKET_URL
 ARG NEXT_PUBLIC_GAME_SOCKET_URL

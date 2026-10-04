@@ -40,15 +40,7 @@ export const getChatRoom = async (id: string, cookie: string) => {
 				},
 			},
 		);
-	} catch (error) {
-		// !TODO: fix when 401 Unauthorized
-		console.log('----------------------------------------------------------------');
-		console.log('----------------------------------------------------------------');
-		console.log('----------------------------------------------------------------');
-		console.log('Error fetching chat rooms:', error);
-		console.log('----------------------------------------------------------------');
-		console.log('----------------------------------------------------------------');
-		console.log('----------------------------------------------------------------');
+	} catch {
 		return {
 			status: 'error',
 			message: 'not found',

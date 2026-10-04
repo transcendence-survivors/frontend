@@ -17,8 +17,6 @@ export default function LikeButton({ postId, likeCount, isLiked }: likeButtonPro
 	const addLike = useAddLike();
 	const deleteLike = useDeleteLike();
 
-	// verrou synchrone : isPending (react-query) ne se met à jour qu'au
-	// prochain render, trop tard pour bloquer un double-clic très rapide
 	const isPendingRef = useRef(false);
 	const isMutating = addLike.isPending || deleteLike.isPending;
 

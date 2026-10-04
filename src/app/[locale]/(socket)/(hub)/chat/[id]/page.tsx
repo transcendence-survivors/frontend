@@ -35,7 +35,6 @@ interface ChatRoomProps {
 async function ChatRoom({ cookieString, roomId }: ChatRoomProps) {
 	const res = await getChatRoom(roomId, cookieString);
 	if (isApiError(res)) {
-		console.error('Error fetching chat room:', res);
 		notFound();
 	}
 	const { currentUserRole: role, ...room } = res.data;

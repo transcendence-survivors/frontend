@@ -52,6 +52,8 @@ export const accountSettingsFields = [
 					{ value: 'EN', label: 'personal.localeOptions.en' },
 					{ value: 'FR', label: 'personal.localeOptions.fr' },
 					{ value: 'DE', label: 'personal.localeOptions.de' },
+					{ value: 'ES', label: 'personal.localeOptions.es' },
+					{ value: 'IT', label: 'personal.localeOptions.it' },
 				],
 			},
 		],

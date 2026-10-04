@@ -8,6 +8,7 @@ import { useSessionActions } from '../stores/session';
 import { signUp } from '../api/signUp.api';
 import { signInUsernameEmail } from '../api/signIn.api';
 import { stripLocale } from '@/modules/i18n/utils/resolve';
+import { useSearchParams } from 'next/navigation';
 
 const authActionFns = {
 	signUp: signUp,
@@ -21,12 +22,17 @@ interface UseAuthActionParams<TAction extends AuthAction> {
 	successMessage: string;
 }
 
+const isSafeRelativeUrl = (url: string) => {
+	return url.startsWith('/') && !url.startsWith('//');
+};
+
 const useAuthAction = <TAction extends AuthAction>({
 	action,
 	successMessage,
 }: UseAuthActionParams<TAction>) => {
 	const { setUser } = useSessionActions();
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	const mutationFn = authActionFns[action] as (
 		variables: Parameters<(typeof authActionFns)[TAction]>[0],
@@ -45,13 +51,17 @@ const useAuthAction = <TAction extends AuthAction>({
 				id: res.data.id,
 			});
 
-			const url = new URLSearchParams(window.location.search);
-			const callbackUrl = url.get(CALLBACK_KEY);
-			router.replace(
-				callbackUrl
-					? stripLocale(callbackUrl)
-					: ROUTES.userName({ username: `@${res.data.username}` }),
-			);
+			const rawCallbackUrl = searchParams.get(CALLBACK_KEY);
+			if (rawCallbackUrl && isSafeRelativeUrl(rawCallbackUrl)) {
+				const targetPath = stripLocale(rawCallbackUrl);
+
+				if (isSafeRelativeUrl(targetPath)) {
+					router.replace(targetPath);
+					return;
+				}
+			}
+			const defaultRoute = ROUTES.userName({ username: `@${res.data.username}` });
+			router.replace(defaultRoute);
 		},
 	});
 };

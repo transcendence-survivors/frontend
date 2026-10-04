@@ -36,7 +36,9 @@ const userGenderSchema = z.enum(['MALE', 'FEMALE', 'OTHER', 'PREFER_NOT_TO_SAY']
 	message: FORM_ERRORS.enum,
 });
 
-const userLocaleSchema = z.enum(['EN', 'FR', 'DE'], { message: FORM_ERRORS.enum });
+const userLocaleSchema = z.enum(['EN', 'FR', 'DE', 'ES', 'IT'], {
+	message: FORM_ERRORS.enum,
+});
 
 const userDisplayNameSchema = z
 	.string({ message: FORM_ERRORS.string })

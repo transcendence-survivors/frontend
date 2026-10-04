@@ -161,6 +161,14 @@ const signUpSteps = [
 								value: 'DE',
 								label: 'personal.localeOptions.de',
 							},
+							{
+								value: 'ES',
+								label: 'personal.localeOptions.es',
+							},
+							{
+								value: 'IT',
+								label: 'personal.localeOptions.it',
+							},
 						],
 					},
 				],

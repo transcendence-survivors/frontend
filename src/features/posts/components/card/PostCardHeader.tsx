@@ -72,7 +72,8 @@ export default function PostCardHeader({ post, isDetailView }: PostCardHeaderPro
 							trigger={
 								<DropdownMenuItem
 									variant='destructive'
-									onSelect={(e) => e.preventDefault()}>
+									onSelect={(e) => e.preventDefault()}
+									className='cursor-pointer'>
 									<Trash2 />
 									{t('delete')}
 								</DropdownMenuItem>

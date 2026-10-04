@@ -686,7 +686,9 @@
 					"label": "Email Preference",
 					"en": "English",
 					"fr": "French",
-					"de": "German"
+					"de": "German",
+					"es": "Spanish",
+					"it": "Italian"
 				}
 			},
 			"profile": {

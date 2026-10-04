@@ -13,7 +13,7 @@ import { ChatMessageGroup } from './ChatMessageGroup';
 import { ChatMessageBubbleSkeleton } from './bubble/ChatMessageBubble';
 import { PostChatMessage, TextChatMessage } from '../../types/message';
 import { useUser } from '@/features/auth/stores/session';
-import { Button } from '@/components/ui/button';
+import { useMessageActions } from '../../stores/messageSlice';
 
 interface ChatMessagesProps {
 	roomId: string;
@@ -34,17 +34,20 @@ const ChatMessages = ({
 	const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useChatMessages({ roomId });
 
+	const { registerFetchNextPage } = useMessageActions();
+	useEffect(() => {
+		registerFetchNextPage(fetchNextPage);
+		return () => registerFetchNextPage(null);
+	}, [fetchNextPage, registerFetchNextPage]);
+
 	const { messages, messagePerDay } = useGroupedMessages(data?.pages);
 	const lastMessage = messages.length - 1 >= 0 ? messages[messages.length - 1] : null;
-	const { containerRef, isInitialLoad, snapshotScroll, scrollToMessage } =
-		useChatScroll({
-			messageCount: messages.length,
-			lastMessageSenderId:
-				(lastMessage?.type === 'TEXT' && lastMessage?.sender?.id) || undefined,
-			currentUserId: user?.id,
-			fetchNextPage,
-			hasNextPage,
-		});
+	const { containerRef, isInitialLoad, snapshotScroll } = useChatScroll({
+		messageCount: messages.length,
+		lastMessageSenderId:
+			(lastMessage?.type === 'TEXT' && lastMessage?.sender?.id) || undefined,
+		currentUserId: user?.id,
+	});
 
 	const { ref: topIntersectionRef, inView } = useInView({
 		threshold: 0,
@@ -113,14 +116,6 @@ const ChatMessages = ({
 					/>
 				))}
 			</div>
-			<Button
-				onClick={() => scrollToMessage('f4dd4b04-a0e6-4855-bdef-9958edb6717c')}>
-				Scroll to message 1
-			</Button>
-			<Button
-				onClick={() => scrollToMessage('a128c896-4efd-47bc-979a-698f55c21593')}>
-				Scroll to message 1
-			</Button>
 		</div>
 	);
 };

@@ -492,3 +492,42 @@
 		top: var(--header-height);
 	}
 }
+
+@keyframes message-highlight-pulse {
+	0% {
+		background-color: hsl(var(--primary) / 0.35) !important;
+	}
+	100% {
+		background-color: transparent !important;
+	}
+}
+
+@keyframes message-highlight-overlay {
+	30% {
+		opacity: 0.35;
+	}
+	80% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+[id^='message-'] {
+	position: relative;
+}
+
+[id^='message-']::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: var(--primary);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+[id^='message-'][data-active='true']::before {
+	animation: message-highlight-overlay 7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

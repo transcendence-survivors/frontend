@@ -17,21 +17,13 @@ import { cn } from '@/libs/utils';
 interface ChatMessageBubbleProps {
 	message: TextChatMessage | PostChatMessage;
 	prevUserId?: string;
-	isHighlighted?: boolean;
 	onEdit: (message: TextChatMessage | PostChatMessage) => void;
 	onReply: (message: TextChatMessage | PostChatMessage) => void;
 	onDelete: (messageId: string) => void;
 }
 
 const ChatMessageBubble = memo(
-	({
-		message,
-		prevUserId,
-		isHighlighted,
-		onEdit,
-		onDelete,
-		onReply,
-	}: ChatMessageBubbleProps) => {
+	({ message, prevUserId, onEdit, onDelete, onReply }: ChatMessageBubbleProps) => {
 		const user = useUser();
 		const isMe = user?.id === message.sender?.id;
 		const showAvatar =
@@ -42,8 +34,6 @@ const ChatMessageBubble = memo(
 				id={`message-${message.id}`}
 				className={cn(
 					'group flex items-center gap-2 px-4 py-2 hover:bg-muted focus-within:bg-muted',
-					isHighlighted &&
-						'bg-primary/20 hover:bg-primary/30 focus-within:bg-primary/30',
 					isMe ? 'flex-row-reverse' : 'flex-row',
 				)}>
 				{showAvatar && <AvatarProfileTooltip user={message.sender} size='sm' />}

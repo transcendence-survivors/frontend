@@ -1,4 +1,10 @@
-import { InfiniteData, QueryClient, QueryKey } from '@tanstack/react-query';
+import {
+	FetchNextPageOptions,
+	InfiniteData,
+	InfiniteQueryObserverResult,
+	QueryClient,
+	QueryKey,
+} from '@tanstack/react-query';
 import { CursorResponse } from './types';
 
 type UpdateInfiniteQueryOptions<T> =
@@ -36,3 +42,7 @@ export const updateInfiniteQueries = <T>(
 		},
 	);
 };
+
+export type FetchNextPageFn<TData = unknown, TError = Error> = (
+	options?: FetchNextPageOptions,
+) => Promise<InfiniteQueryObserverResult<InfiniteData<TData>, TError>>;

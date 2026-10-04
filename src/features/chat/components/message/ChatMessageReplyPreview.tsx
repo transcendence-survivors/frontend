@@ -1,5 +1,9 @@
 import { Reply } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useMessageActions } from '../../stores/messageSlice';
+import { Button } from '@/components/ui/button';
+import { useCurrentRoomId } from '../../stores/chatNotificationSlice';
+import { MouseEvent } from 'react';
 
 interface ChatMessageReplyPreviewProps {
 	replyToId: string;
@@ -11,6 +15,14 @@ export const ChatMessageReplyPreview = ({
 	isMe,
 }: ChatMessageReplyPreviewProps) => {
 	const t = useTranslations('chat.messages.preview');
+	const { jumpToMessage } = useMessageActions();
+	const roomId = useCurrentRoomId();
+
+	const handleClick = (e: MouseEvent) => {
+		e.preventDefault();
+		if (!roomId) return;
+		jumpToMessage(replyToId, roomId);
+	};
 
 	return (
 		<div
@@ -24,14 +36,15 @@ export const ChatMessageReplyPreview = ({
 			<span className='truncate max-w-[180px]'>
 				{t.rich('replying_to', {
 					replyToId: () => (
-						<a
-							href={`#message-${replyToId}`}
-							className='font-mono text-[10px]'>
+						<Button
+							variant='link'
+							size='sm'
+							onClick={handleClick}
+							className='p-0 h-auto'>
 							#{replyToId.slice(-4)}
-						</a>
+						</Button>
 					),
 				})}
-				<span className='font-mono text-[10px]'>#{replyToId.slice(-4)}</span>
 			</span>
 		</div>
 	);

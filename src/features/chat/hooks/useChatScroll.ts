@@ -1,9 +1,4 @@
-import {
-	FetchNextPageOptions,
-	InfiniteData,
-	InfiniteQueryObserverResult,
-} from '@tanstack/react-query';
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 
 interface UseChatScrollOptions {
 	messageCount: number;
@@ -14,14 +9,10 @@ interface ScrollSnapshot {
 	scrollTop: number;
 }
 
-interface UseChatScrollOptions<TData = unknown, TError = unknown> {
+interface UseChatScrollOptions {
 	messageCount: number;
 	lastMessageSenderId?: string;
 	currentUserId?: string | null;
-	hasNextPage?: boolean;
-	fetchNextPage?: (
-		options?: FetchNextPageOptions,
-	) => Promise<InfiniteQueryObserverResult<InfiniteData<TData>, TError>>;
 }
 
 interface ScrollSnapshot {
@@ -35,13 +26,10 @@ export const useChatScroll = ({
 	messageCount,
 	lastMessageSenderId,
 	currentUserId,
-	hasNextPage,
-	fetchNextPage,
 }: UseChatScrollOptions) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const isInitialLoad = useRef<boolean>(true);
 	const pendingSnapshotRef = useRef<ScrollSnapshot | null>(null);
-	const [highlightedMessageId, setHighlightedMessageId] = useState<string | null>(null);
 
 	const snapshotScroll = useCallback(() => {
 		const container = containerRef.current;
@@ -52,52 +40,6 @@ export const useChatScroll = ({
 			scrollTop: container.scrollTop,
 		};
 	}, []);
-
-	const scrollToMessage = useCallback(
-		async (messageId: string): Promise<boolean> => {
-			const targetId = `message-${messageId}`;
-
-			const findAndScroll = (): HTMLElement | null => {
-				const el = document.getElementById(targetId);
-
-				if (el) {
-					el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					setHighlightedMessageId(messageId);
-					setTimeout(() => {
-						setHighlightedMessageId((current) =>
-							current === messageId ? null : current,
-						);
-					}, 2500);
-				}
-				return el;
-			};
-
-			// 1. Tente de trouver le message s'il est déjà affiché dans le DOM
-			if (findAndScroll()) {
-				return true;
-			}
-
-			// 2. Sinon, fetch page par page
-			let canFetch = hasNextPage;
-
-			while (canFetch && fetchNextPage) {
-				snapshotScroll();
-
-				const result = await fetchNextPage();
-
-				await new Promise((resolve) => setTimeout(resolve, 50));
-
-				if (findAndScroll()) {
-					return true;
-				}
-
-				canFetch = Boolean(result.hasNextPage);
-			}
-
-			return false;
-		},
-		[hasNextPage, fetchNextPage, snapshotScroll],
-	);
 
 	useLayoutEffect(() => {
 		const container = containerRef.current;
@@ -139,5 +81,5 @@ export const useChatScroll = ({
 		}
 	}, [messageCount, lastMessageSenderId, currentUserId]);
 
-	return { containerRef, isInitialLoad, snapshotScroll, scrollToMessage };
+	return { containerRef, isInitialLoad, snapshotScroll };
 };

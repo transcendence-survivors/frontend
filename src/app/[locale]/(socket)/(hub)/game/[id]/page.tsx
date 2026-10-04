@@ -22,13 +22,14 @@ export default async function GameDetailsPage({ params }: Props) {
 	if (isApiError(res)) notFound();
 
 	const game = res.data;
+	console.log('GameDetailsPage res:', game); // Log the response for debugging
 	return (
 		<main className='h-main flex flex-col'>
 			<header className='px-10 py-8 border-b border-border'>
 				<section className='flex items-center justify-between mx-auto'>
 					<div className='space-y-2'>
 						<h1 className='text-3xl font-bold tracking-tight text-foreground'>
-							{t('global.title')}
+							{t('gameIdTitle', { gameId: game.id })}
 						</h1>
 						<div className='flex items-center gap-4'>
 							<Kicker className='text-xs'>

@@ -50,7 +50,7 @@ export const STAT_ATTRIBUTES = [
 		key: 'lifesteal',
 		labelKey: 'lifesteal',
 		icon: 'blood',
-		format: (v) => `${(v * 100).toFixed(0)}%`,
+		format: (v) => `${v.toFixed(2)}%`,
 	},
 	{
 		key: 'range',

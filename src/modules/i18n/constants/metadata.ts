@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import { Locale } from './locales';
 
 const SITE_NAME = 'Light Keepers';
-const SITE_URL = 'https://example.com'; // TODO
+const SITE_URL = 'https://example.com';
+const IMAGE_URL = `${SITE_URL}/images/lightkeepers.png`;
 
 export const METADATA = {
 	fr: {
@@ -34,8 +35,8 @@ export const METADATA = {
 			type: 'website',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-fr.jpg`,
-					secureUrl: `${SITE_URL}/static/og-image-fr.jpg`,
+					url: IMAGE_URL,
+					secureUrl: IMAGE_URL,
 					width: 1200,
 					height: 630,
 					alt: 'Aperçu de Light Keepers',
@@ -52,7 +53,7 @@ export const METADATA = {
 			creator: '@lightkeepers',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-fr.jpg`,
+					url: IMAGE_URL,
 					alt: 'Aperçu de Light Keepers',
 					width: 1200,
 					height: 630,
@@ -88,8 +89,8 @@ export const METADATA = {
 			type: 'website',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-en.jpg`,
-					secureUrl: `${SITE_URL}/static/og-image-en.jpg`,
+					url: IMAGE_URL,
+					secureUrl: IMAGE_URL,
 					width: 1200,
 					height: 630,
 					alt: 'Preview of Light Keepers',
@@ -106,7 +107,7 @@ export const METADATA = {
 			creator: '@lightkeepers',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-en.jpg`,
+					url: IMAGE_URL,
 					alt: 'Preview of Light Keepers',
 					width: 1200,
 					height: 630,
@@ -141,8 +142,8 @@ export const METADATA = {
 			type: 'website',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-de.jpg`,
-					secureUrl: `${SITE_URL}/static/og-image-de.jpg`,
+					url: IMAGE_URL,
+					secureUrl: IMAGE_URL,
 					width: 1200,
 					height: 630,
 					alt: 'Vorschau von Light Keepers',
@@ -159,7 +160,7 @@ export const METADATA = {
 			creator: '@lightkeepers',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-de.jpg`,
+					url: IMAGE_URL,
 					alt: 'Vorschau von Light Keepers',
 					width: 1200,
 					height: 630,
@@ -194,8 +195,8 @@ export const METADATA = {
 			type: 'website',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-de.jpg`,
-					secureUrl: `${SITE_URL}/static/og-image-de.jpg`,
+					url: IMAGE_URL,
+					secureUrl: IMAGE_URL,
 					width: 1200,
 					height: 630,
 					alt: 'Vorschau von Light Keepers',
@@ -212,7 +213,7 @@ export const METADATA = {
 			creator: '@lightkeepers',
 			images: [
 				{
-					url: `${SITE_URL}/static/og-image-de.jpg`,
+					url: IMAGE_URL,
 					alt: 'Vorschau von Light Keepers',
 					width: 1200,
 					height: 630,

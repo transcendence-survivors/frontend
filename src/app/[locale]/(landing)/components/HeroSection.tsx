@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import I18nLink from '@/modules/i18n/components/I18nLink';
-import { Link } from '@/modules/i18n/utils/navigation';
 
 export default function HeroSection() {
 	const t = useTranslations('landing.hero');
@@ -40,7 +39,7 @@ export default function HeroSection() {
 					playsInline
 					controls
 					className='w-full h-auto rounded-2xl border border-border scroll-mt-50'>
-					<source src='/Trailer_Zelda.mp4' type='video/mp4' />
+					<source src='/videos/trailer.mp4' type='video/mp4' />
 					{t('video_fallback')}
 				</video>
 			</div>

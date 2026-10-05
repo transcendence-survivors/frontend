@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Locale } from './locales';
 
 const SITE_NAME = 'Light Keepers';
-const SITE_URL = 'https://example.com'; // Replace with your actual domain
+const SITE_URL = 'https://example.com'; // TODO
 
 export const METADATA = {
 	fr: {

@@ -22,7 +22,6 @@ export default async function GameDetailsPage({ params }: Props) {
 	if (isApiError(res)) notFound();
 
 	const game = res.data;
-	console.log('GameDetailsPage res:', game); // Log the response for debugging
 	return (
 		<main className='h-main flex flex-col'>
 			<header className='px-10 py-8 border-b border-border'>

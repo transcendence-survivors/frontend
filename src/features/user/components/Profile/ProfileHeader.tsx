@@ -21,7 +21,7 @@ const ProfileHeader = ({
 			<section>
 				<Banner
 					img={{
-						src: coverImageUrl ?? 'https://lorem.com',
+						src: coverImageUrl ?? 'placeholder.png',
 						alt: username,
 					}}
 				/>

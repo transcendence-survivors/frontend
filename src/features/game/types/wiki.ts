@@ -45,7 +45,6 @@ export type MonsterAiKind =
 	'chaser' | 'swarm' | 'tank' | 'charger' | 'ranged' | 'bomber' | 'summoner' | 'boss';
 
 export const MAP_MONSTER_ID_TO_IMAGE: Record<MonsterId, string> = {
-	// Normal Monsters
 	grunt: '/images/monsters/normal/dog.png',
 	skitter: '/images/monsters/normal/green-blob.png',
 	kraklet: '/images/monsters/normal/cactoro.png',
@@ -57,7 +56,6 @@ export const MAP_MONSTER_ID_TO_IMAGE: Record<MonsterId, string> = {
 	wisp: '/images/monsters/normal/ghost.png',
 	brute: '/images/monsters/normal/orc.png',
 
-	// Bosses
 	arakhnos: '/images/monsters/boss/orc-skull.png',
 	gorvath: '/images/monsters/boss/yeti.png',
 	khimaera: '/images/monsters/boss/demon.png',

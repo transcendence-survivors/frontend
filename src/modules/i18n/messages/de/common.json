@@ -1,8 +1,8 @@
 {
 	"nav": {
 		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Rangliste",
+		"game_history": "Spielverlauf",
+		"game_leaderboard": "Rangliste",
 		"profile": "Profil",
 		"settings": "Einstellungen",
 		"logout": "Abmelden",
@@ -26,6 +26,7 @@
 			"posts": "Beiträge",
 			"comments": "Kommentare",
 			"stats": "Statistiken",
+			"gamesHistory": "Spielverlauf",
 			"likes": "Likes",
 			"reposts": "Geteilt"
 		},
@@ -34,6 +35,8 @@
 			"friends": "Freunde",
 			"blocked": "Blockierte Nutzer"
 		},
+		"game": "Game",
+		"leaderboard": "Rangliste",
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
 		"profile_stats": "Stats",
@@ -57,6 +60,8 @@
 	"settings": {
 		"title": "Einstellungen",
 		"error_loading": "Kontoeinstellungen konnten nicht geladen werden. Bitte versuche es später erneut.",
+		"success": "Einstellungen erfolgreich aktualisiert.",
+		"error": "Einstellungen konnten nicht aktualisiert werden. Bitte versuche es später erneut.",
 		"page": {
 			"title": "Einstellungen",
 			"description": "Verwalte alle deine Einstellungen, indem du links im Menü eine Kategorie auswählst."
@@ -252,6 +257,7 @@
 		"just_connected_displayname": "{displayName} ist gerade online gekommen"
 	},
 	"chat": {
+		"open_dm_failed": "Direktnachricht konnte nicht geöffnet werden. Bitte versuche es später erneut.",
 		"share": {
 			"title": "Beitrag teilen",
 			"description": "Wähle einen oder mehrere Chaträume aus, in denen du diesen Beitrag teilen möchtest.",
@@ -336,6 +342,10 @@
 				"replying_to": "Antwort auf: <replyToId>#1s41</replyToId>"
 			},
 			"actions": {
+				"send_failed": "Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.",
+				"edit_failed": "Nachricht konnte nicht bearbeitet werden. Bitte versuche es erneut.",
+				"delete_failed": "Nachricht konnte nicht gelöscht werden. Bitte versuche es erneut.",
+				"received_new_message": "Du hast eine neue Chatnachricht.",
 				"reply": "Antworten",
 				"edit": "Bearbeiten",
 				"delete": "Löschen",
@@ -461,8 +471,12 @@
 			"like": "Gefällt mir",
 			"unlike": "Gefällt mir nicht mehr",
 			"delete": "Löschen",
+			"delete_title": "Beitrag löschen",
+			"delete_description": "Möchtest du diesen Beitrag wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
 			"chat": "Im Chat teilen",
-			"copy_link": "Link kopieren"
+			"copy_link": "Link kopieren",
+			"comment_success": "Dein Kommentar wurde erfolgreich veröffentlicht.",
+			"post_success": "Dein Beitrag wurde erfolgreich veröffentlicht."
 		},
 		"detail": {
 			"back": "Beitrag"
@@ -684,7 +698,9 @@
 					"label": "E-Mail-Präferenz",
 					"en": "Englisch",
 					"fr": "Französisch",
-					"de": "Deutsch"
+					"de": "Deutsch",
+					"es": "Spanisch",
+					"it": "Italienisch"
 				}
 			},
 			"profile": {
@@ -793,6 +809,7 @@
 			"imageVideoOnly": "Nur Bild- und Videodateien sind erlaubt",
 			"select": "Bitte wähle eine Option aus",
 			"mustAcceptTerms": "Du musst die Allgemeinen Geschäftsbedingungen akzeptieren",
+			"username_invalid": "Der Benutzername darf nur Buchstaben, Zahlen und Unterstriche enthalten",
 			"password_match": "Die Passwörter müssen übereinstimmen",
 			"password_uppercase": "Das Passwort muss mindestens einen Großbuchstaben enthalten",
 			"password_lowercase": "Das Passwort muss mindestens einen Kleinbuchstaben enthalten",
@@ -850,6 +867,11 @@
 				"title": "Beitrag nicht verfügbar",
 				"description": "Dieser Beitrag wurde von seinem Autor entfernt oder ist nicht mehr zugänglich."
 			},
+			"game": {
+				"badge": "Partie nicht gefunden",
+				"title": "Spielverlauf nicht verfügbar",
+				"description": "Diese Partie wurde nicht gefunden, wurde entfernt oder die Sitzung ist abgelaufen."
+			},
 			"common": {
 				"go_back": "Zurück",
 				"back_home": "Zur Startseite"
@@ -867,6 +889,17 @@
 		"avatar_preview": "Avatar-Vorschau"
 	},
 	"wiki": {
+		"nav": {
+			"overview": "Übersicht",
+			"arsenal": "Arsenal & Folianten",
+			"bestiary": "Bestiarium"
+		},
+		"hub": {
+			"title": "Survivors-Kompendium",
+			"subtitle": "Entdecke die zentralen Spielmechaniken, Waffenskalierungen, Folianten-Synergien und Informationen über Monsterbedrohungen.",
+			"arsenalHighlights": "Waffen, Folianten, Synergien & Kampfformeln",
+			"bestiaryHighlights": "Hordentypen, Boss-KI-Muster & Elite-Modifikatoren"
+		},
 		"title": "Kompendium der Waffen & Folianten",
 		"subtitle": "Umfassender Leitfaden zu Kampfmechaniken, Wertskalierung, Waffen und optimalen Folianten-Synergien.",
 		"tabs": {
@@ -1119,6 +1152,196 @@
 				"name": "Foliant des Glücks",
 				"description": "Erhöht den Glückswert, um die Chance auf seltenere Upgrades zu steigern."
 			}
+		},
+		"bestiary": {
+			"title": "Bestiarium & Handbuch der Hordenbedrohungen",
+			"subtitle": "Vollständige Referenz zu Monsterverhalten, Elite-Skalierung, Spawn-Zeitpunkten und Boss-Angriffsmustern.",
+			"notes": {
+				"scaling": "Jeder Basiswert wird mit der Schwierigkeitsstufe des Runs multipliziert, die mit der Überlebenszeit kontinuierlich steigt.",
+				"elites": "Elites sind beförderte Standardmonster: 2,35x LP, 1,3x Schaden und 2,5x EP-Belohnung. Bosse können niemals Elites sein.",
+				"bosses": "Bosse erscheinen ab 2 Minuten und danach alle 2 Minuten, mit +30 % LP pro zusätzlichem Spieler in der Sitzung.",
+				"knockback": "Der Rückstoßwiderstand reicht von 0 (wird voll zurückgestoßen) bis 1 (unbeweglich)."
+			},
+			"tabs": {
+				"horde": "Standardhorde ({count})",
+				"bosses": "Bosse ({count})"
+			},
+			"labels": {
+				"canBeElite": "Kann Elite sein",
+				"attackBehavior": "Angriffsverhalten ({ai})",
+				"stats": {
+					"hp": "LP",
+					"damage": "Schaden",
+					"speed": "Tempo",
+					"knockback": "Rückstoß",
+					"xp": "EP-Belohnung",
+					"spawns": "Erscheint"
+				},
+				"secPlus": "{seconds}s+"
+			},
+			"monsters": {
+				"grunt": {
+					"name": "Hound",
+					"role": "Verfolger",
+					"description": "Der einfache Verfolger der Horde und das, was dir am häufigsten begegnet.",
+					"behavior": "Läuft direkt auf den nächsten Spieler zu und beißt bei Kontakt, sobald seine Abklingzeit vorbei ist."
+				},
+				"skitter": {
+					"name": "Skitter",
+					"role": "Schwarm",
+					"description": "Ein kleines, sehr schnelles Wesen, das nur in großer Zahl gefährlich ist.",
+					"behavior": "Schwärmt auf den nächsten Spieler zu und beißt bei Kontakt; es ist etwas schneller als der Rest des Rudels."
+				},
+				"kraklet": {
+					"name": "Kraklet",
+					"role": "Tank",
+					"description": "Ein langsames, massiges Monster, das Schaden einsteckt und bei Treffern kaum zuckt.",
+					"behavior": "Geht auf den nächsten Spieler zu und schlägt bei Kontakt zu; Rückstoß bewegt es deutlich weniger als andere Monster."
+				},
+				"ravager": {
+					"name": "Ravager",
+					"role": "Stürmer",
+					"description": "Ein Jäger, der den Abstand mit plötzlichen Geschwindigkeitsschüben überbrückt.",
+					"behavior": "Verfolgt den nächsten Spieler und stürmt dann mit mehr als doppelter Geschwindigkeit geradeaus; der Ansturm trifft weit härter als ein normaler Kontakt."
+				},
+				"venomweb": {
+					"name": "Venomweb",
+					"role": "Fernkampf",
+					"description": "Ein Fernkampfwesen, das Abstand hält und aus der Ferne Salven spuckt.",
+					"behavior": "Hält sich auf seiner bevorzugten Distanz, weicht zurück, wenn ein Spieler zu nahe kommt, und feuert flächige Salven nach Abklingzeit."
+				},
+				"bomber": {
+					"name": "Bombardier",
+					"role": "Bomber",
+					"description": "Ein zerbrechlicher Läufer, der sich nähert, um eine weite, heftige Explosion auszulösen.",
+					"behavior": "Rennt auf einen Spieler zu und löst eine große Flächenexplosion aus, die weit härter trifft als sein Kontaktschaden."
+				},
+				"splitter": {
+					"name": "Splitter",
+					"role": "Schwarm",
+					"description": "Ein massiges Wesen, das nicht einfach stirbt: Es platzt in zwei kleinere auf.",
+					"behavior": "Verfolgt den nächsten Spieler und schlägt bei Kontakt zu; wird es getötet, erscheinen zwei Skitter an seiner Stelle."
+				},
+				"necromancer": {
+					"name": "Gravecaller",
+					"role": "Beschwörer",
+					"description": "Ein langsamer Zauberwirker, der sich zurückhält und die Horde ständig verstärkt.",
+					"behavior": "Hält Abstand und beschwört nach Abklingzeit zwei Skitter, statt direkt zu kämpfen."
+				},
+				"wisp": {
+					"name": "Wisp",
+					"role": "Fernkampf",
+					"description": "Ein kleiner, sehr schneller Störenfried, der schwer zu fassen ist.",
+					"behavior": "Flitzt um eine kurze bevorzugte Distanz und feuert schnelle, kleine Salven; es zieht sich zurück, sobald ein Spieler näher kommt."
+				},
+				"brute": {
+					"name": "Brute",
+					"role": "Tank",
+					"description": "Das schwerste gewöhnliche Monster: sehr langsam, sehr zäh und der härteste Schläger von allen.",
+					"behavior": "Rückt langsam vor und schlägt bei Kontakt mit größerer Reichweite zu; Rückstoß bewegt es kaum."
+				},
+				"arakhnos": {
+					"name": "Arakhnos",
+					"role": "Boss",
+					"description": "Ein Boss, der umgeben von einem Schwarm kämpft, den er ständig erneuert.",
+					"behavior": "Verfolgt und schlägt bei Kontakt zu und beschwört nach Abklingzeit vier Skitter, um den Druck hochzuhalten."
+				},
+				"gorvath": {
+					"name": "Gorvath",
+					"role": "Boss",
+					"description": "Ein riesiger, langsamer Boss, der jeden bestraft, der neben ihm steht.",
+					"behavior": "Nähert sich und schlägt bei Kontakt zu, dann stampft er in einem großen Radius auf den Boden, härter als sein normaler Schlag."
+				},
+				"khimaera": {
+					"name": "Khimaera",
+					"role": "Boss",
+					"description": "Der beweglichste Boss: Er kämpft auf mittlere Distanz statt direkt vor dir.",
+					"behavior": "Hält mittlere Distanz, weicht zurück, wenn es eng wird, und feuert nach Abklingzeit schwere Flächensalven."
+				},
+				"abyssor": {
+					"name": "Abyssor",
+					"role": "Boss",
+					"description": "Der zäheste Boss und der einzige, der Fernkampfunterstützung ruft.",
+					"behavior": "Rückt langsam vor und schlägt bei Kontakt zu, während er nach Abklingzeit drei Venomwebs beschwört."
+				}
+			}
+		}
+	},
+	"game": {
+		"title": "Spielverlauf",
+		"play": "Spielen",
+		"recent_matches_label": "Alle Partien",
+		"subtitle_username": "Alle Spielleistungen von @{username}",
+		"global": {
+			"title": "Globaler Spielverlauf",
+			"subtitle": "Entdecke die Runs der Spieler."
+		},
+		"playerStatsTitle": "Spielerleistung",
+		"player": "Spieler",
+		"playerCount": "{count, plural, =1 {1 Spieler} other {# Spieler}}",
+		"playerFallback": "Spieler #{index}",
+		"playerBuild": "Attribute & Skalierung",
+		"weaponsUsed": "Ausgerüstete Waffen",
+		"noWeapons": "In diesem Run wurden keine Waffen ausgerüstet.",
+		"tomesUsed": "Ausgerüstete Folianten",
+		"noTomes": "In diesem Run wurden keine Folianten ausgerüstet.",
+		"fetch_error": "Spielverlauf konnte nicht geladen werden.",
+		"no_games": "Keine Partien gefunden.",
+		"no_user_games": "Für diesen Spieler wurden keine Partien gefunden.",
+		"no_more_games": "Keine weiteren Partien zum Laden.",
+		"gameIdTitle": "Partie #{gameId}",
+		"leaderboard": {
+			"title": "Rangliste",
+			"subtitle": "Top-Spieler nach Überlebenszeit, Kills oder Anzahl gespielter Partien.",
+			"no_leaderboard": "Keine Einträge in der Rangliste gefunden.",
+			"no_more_leaderboard": "Keine weiteren Ranglisteneinträge zum Laden.",
+			"fetch_error": "Ranglistendaten konnten nicht geladen werden."
+		},
+		"sort": {
+			"label": "Partien sortieren",
+			"created_desc": "Neueste zuerst",
+			"created_asc": "Älteste zuerst",
+			"survival_desc": "Längste Dauer",
+			"survival_asc": "Kürzeste Dauer",
+			"kills_desc": "Meiste Kills",
+			"kills_asc": "Wenigste Kills"
+		},
+		"labels": {
+			"level": "Stufe {level}",
+			"survivalTime": "Spieldauer",
+			"matchKills": "Kills der gesamten Partie",
+			"playerKills": "Kills",
+			"health": "Max. LP",
+			"damage": "Schaden",
+			"attackSpeed": "Angriffstempo",
+			"moveSpeed": "Bewegungstempo",
+			"armor": "Rüstung",
+			"luck": "Glück",
+			"lifesteal": "Lebensraub",
+			"range": "Reichweite",
+			"size": "Flächengröße",
+			"duration": "Dauer",
+			"quantity": "Anzahl",
+			"penetration": "Durchschlag"
+		},
+		"summary": {
+			"title": "Spielerstatistiken im Überblick",
+			"lastPlayed": "Zuletzt gespielt",
+			"gamesPlayed": "Gespielte Partien",
+			"totalKills": "Kills insgesamt",
+			"totalSurvivalTime": "Gesamte Überlebenszeit",
+			"highestSurvivalTime": "Längstes Überleben",
+			"highestKills": "Meiste Kills",
+			"weaponsUsed": "Waffenmeisterschaft",
+			"noWeapons": "Für diesen Spieler sind keine Waffenstatistiken verfügbar.",
+			"tomesUsed": "Folianten-Meisterschaft",
+			"noTomes": "Für diesen Spieler sind keine Folianten-Statistiken verfügbar.",
+			"labels": {
+				"timesUsed": "Verwendet",
+				"highestLevel": "Max. Stufe",
+				"levelFormat": "Stufe {level}"
+			},
+			"fetch_error": "Spielübersicht konnte nicht geladen werden."
 		}
 	},
 	"userSummary": {

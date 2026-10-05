@@ -1,8 +1,8 @@
 {
 	"nav": {
 		"home": "Home",
-		"game": "Game",
-		"leaderboard": "Rangliste",
+		"game_history": "Game-Verlauf",
+		"game_leaderboard": "Rangliste",
 		"profile": "Profil",
 		"settings": "Iistellige",
 		"logout": "Uslogge",
@@ -26,6 +26,7 @@
 			"posts": "Poschts",
 			"comments": "Kommentär",
 			"stats": "Stats",
+			"gamesHistory": "Game-Verlauf",
 			"likes": "Likes",
 			"reposts": "Gteilti"
 		},
@@ -34,6 +35,8 @@
 			"friends": "Fründe",
 			"blocked": "Blockierti Träger"
 		},
+		"game": "Game",
+		"leaderboard": "Rangliste",
 		"profile_posts": "Posts",
 		"profile_comments": "Comments",
 		"profile_stats": "Stats",
@@ -57,6 +60,8 @@
 	"settings": {
 		"title": "Iistellige",
 		"error_loading": "D Konto-Iistellige hend nöd chöne glade werde. Bitte versuech s spöter nomal.",
+		"success": "Iistellige erfolgriich aktualisiert.",
+		"error": "D Iistellige hend nöd chönne aktualisiert wärde. Bitte probier's spöter nomal.",
 		"page": {
 			"title": "Iistellige",
 			"description": "Verwalt all dini Iistellige, indem du links im Menü e Kategorie uswählsch."
@@ -252,6 +257,7 @@
 		"just_connected_displayname": "{displayName} isch grad online cho"
 	},
 	"chat": {
+		"open_dm_failed": "D Direktnachricht het nöd chönne geöffnet wärde. Bitte probier's spöter nomal.",
 		"share": {
 			"title": "Poscht teile",
 			"description": "Wähl eine oder mehreri Chaträim us, zum dä Poscht teile.",
@@ -336,6 +342,10 @@
 				"replying_to": "Antwort uf: <replyToId>#1s41</replyToId>"
 			},
 			"actions": {
+				"send_failed": "D Nachricht het nöd chönne gschickt wärde. Bitte probier's nomal.",
+				"edit_failed": "D Nachricht het nöd chönne bearbeitet wärde. Bitte probier's nomal.",
+				"delete_failed": "D Nachricht het nöd chönne glöscht wärde. Bitte probier's nomal.",
+				"received_new_message": "Du hesch e neui Chat-Nachricht.",
 				"reply": "Antworte",
 				"edit": "Bearbeite",
 				"delete": "Lösche",
@@ -461,8 +471,12 @@
 			"like": "Gfallt mer",
 			"unlike": "Gfallt mer nüm",
 			"delete": "Lösche",
+			"delete_title": "Poscht lösche",
+			"delete_description": "Wotsch dä Poscht würkli lösche? Das chasch nüm rückgängig mache.",
 			"chat": "Im Chat teile",
-			"copy_link": "Link kopiere"
+			"copy_link": "Link kopiere",
+			"comment_success": "Din Kommentar isch erfolgriich veröffentlicht worde.",
+			"post_success": "Din Poscht isch erfolgriich veröffentlicht worde."
 		},
 		"detail": {
 			"back": "Poscht"
@@ -684,7 +698,9 @@
 					"label": "E-Mail-Vorliebe",
 					"en": "Englisch",
 					"fr": "Französisch",
-					"de": "Dütsch"
+					"de": "Dütsch",
+					"es": "Spanisch",
+					"it": "Italienisch"
 				}
 			},
 			"profile": {
@@ -793,6 +809,7 @@
 			"imageVideoOnly": "Nur Bild- und Videodateie sind erlaubt",
 			"select": "Bitte wähl e Option us",
 			"mustAcceptTerms": "Du muesch d Gschäftsbedingige akzeptiere",
+			"username_invalid": "De Benutzername darf nur Buechstabe, Zahle und Unterstrich enthalte",
 			"password_match": "D Passwörter müend übereistimme",
 			"password_uppercase": "S Passwort muess mindestens ein Grossbuechstabe ha",
 			"password_lowercase": "S Passwort muess mindestens ein Chliibuechstabe ha",
@@ -850,6 +867,11 @@
 				"title": "Poscht nöd verfüegbar",
 				"description": "Dä Biitrag isch vom Autor ewäggnoh worde oder isch nüm erreichbar."
 			},
+			"game": {
+				"badge": "Match nöd gfunde",
+				"title": "Game-Verlauf nöd verfüegbar",
+				"description": "Dä Match isch nöd gfunde worde, isch glöscht worde oder d Sitzig isch abgloffe."
+			},
 			"common": {
 				"go_back": "Zrugg",
 				"back_home": "Zrugg zur Startsiite"
@@ -867,6 +889,17 @@
 		"avatar_preview": "Avatar-Vorschau"
 	},
 	"wiki": {
+		"nav": {
+			"overview": "Übersicht",
+			"arsenal": "Arsenal & Tomes",
+			"bestiary": "Bestiarium"
+		},
+		"hub": {
+			"title": "Survivors-Kompendium",
+			"subtitle": "Entdeck d Spielmechanik, d Waffe-Skalierig, d Tome-Synergie und alles über d Monster-Bedrohige.",
+			"arsenalHighlights": "Waffe, Tomes, Synergie & Kampfformle",
+			"bestiaryHighlights": "Horde-Type, Boss-KI-Muster & Elite-Modifikatore"
+		},
 		"title": "Arsenal- & Tome-Kompendium",
 		"subtitle": "Umfassende Guide zu Kampfmechanik, Stat-Skalierig, Waffe und optimale Tome-Synergie.",
 		"tabs": {
@@ -1119,6 +1152,196 @@
 				"name": "Tome of Fortune",
 				"description": "Erhöht de Glücks-Stat, damit seltneri Upgrades öfter chömed."
 			}
+		},
+		"bestiary": {
+			"title": "Bestiarium & Handbuech vo de Horde-Bedrohige",
+			"subtitle": "Kompletti Referenz zu Monster-Verhalte, Elite-Skalierig, Spawn-Timing und Boss-Angriffsmuster.",
+			"notes": {
+				"scaling": "Jede Basiswert wird mit de Schwierigkeitsstufe vom Run multipliziert, wo mit de Überläbensziit laufend stiigt.",
+				"elites": "Elites sind beförderti Standard-Monster: 2,35x HP, 1,3x Schade und 2,5x XP-Belohnig. Bosse chönd nie Elites sii.",
+				"bosses": "Bosse tauched ab 2 Minute uf und denn alli 2 Minute, mit +30% HP pro zuesätzliche Spieler i de Sitzig.",
+				"knockback": "De Rückstoss-Widerstand gaht vo 0 (voll zruggstosse) bis 1 (unbewegli)."
+			},
+			"tabs": {
+				"horde": "Standard-Horde ({count})",
+				"bosses": "Bosse ({count})"
+			},
+			"labels": {
+				"canBeElite": "Cha Elite sii",
+				"attackBehavior": "Angriffsverhalte ({ai})",
+				"stats": {
+					"hp": "HP",
+					"damage": "Schade",
+					"speed": "Tempo",
+					"knockback": "Rückstoss",
+					"xp": "XP-Belohnig",
+					"spawns": "Spawnt"
+				},
+				"secPlus": "{seconds}s+"
+			},
+			"monsters": {
+				"grunt": {
+					"name": "Hound",
+					"role": "Verfolger",
+					"description": "De eifachi Verfolger vo de Horde, und das, wo du am hüüfigschte aatriffsch.",
+					"behavior": "Rennt diräkt uf de nöchscht Spieler zue und biisst bi Kontakt, sobald sin Cooldown vorbii isch."
+				},
+				"skitter": {
+					"name": "Skitter",
+					"role": "Schwarm",
+					"description": "Es chliises, sehr schnells Wäse, wo nur i de Mängi gföhrlich isch.",
+					"behavior": "Schwärmt uf de nöchscht Spieler zue und biisst bi Kontakt; es isch echli schneller als de Rest vom Rudel."
+				},
+				"kraklet": {
+					"name": "Kraklet",
+					"role": "Tank",
+					"description": "Es langsams, massigs Monster, wo Schade iisteckt und bi Treffer chuum zuckt.",
+					"behavior": "Lauft zum nöchschte Spieler und schlaht bi Kontakt zue; Rückstoss bewegt's vill weniger als anderi Monster."
+				},
+				"ravager": {
+					"name": "Ravager",
+					"role": "Stürmer",
+					"description": "En Jäger, wo de Abstand mit plötzliche Tempo-Schüb überbrückt.",
+					"behavior": "Verfolgt de nöchscht Spieler und stürmt denn grad us mit meh als doppeltem Tempo; de Aasturm trifft vill härter als en normale Kontakt."
+				},
+				"venomweb": {
+					"name": "Venomweb",
+					"role": "Fernkampf",
+					"description": "Es Fernkampf-Wäse, wo Abstand haltet und vo wiitem Salve spuckt.",
+					"behavior": "Haltet sich uf sinere bevorzugte Distanz, weicht zrugg, wenn en Spieler z nöch chunnt, und schüüsst Flächesalve nach em Cooldown."
+				},
+				"bomber": {
+					"name": "Bombardier",
+					"role": "Bomber",
+					"description": "En fragile Renner, wo nöch anechunnt, zum e grossi, heftigi Explosion uuslöse.",
+					"behavior": "Rennt uf en Spieler zue und löst e grossi Flächeexplosion uus, wo vill härter trifft als sin Kontaktschade."
+				},
+				"splitter": {
+					"name": "Splitter",
+					"role": "Schwarm",
+					"description": "Es massigs Wäse, wo nöd eifach stirbt: es platzt i zwei chliineri uf.",
+					"behavior": "Verfolgt de nöchscht Spieler und schlaht bi Kontakt zue; wenn's stirbt, tauched zwei Skitters a sinere Stell uf."
+				},
+				"necromancer": {
+					"name": "Gravecaller",
+					"role": "Beschwörer",
+					"description": "En langsame Zauberer, wo sich im Hintergrund haltet und d Horde immer wieder uffüllt.",
+					"behavior": "Haltet Abstand und beschwört nach em Cooldown zwei Skitters, statt diräkt z kämpfe."
+				},
+				"wisp": {
+					"name": "Wisp",
+					"role": "Fernkampf",
+					"description": "En chliine, sehr schnelle Störefried, wo schwer z verwütsche isch.",
+					"behavior": "Flitzt um e churzi bevorzugti Distanz und schüüsst schnelli, chliini Salve; es zieht sich zrugg, sobald en Spieler nöch chunnt."
+				},
+				"brute": {
+					"name": "Brute",
+					"role": "Tank",
+					"description": "S schwerschte normale Monster: sehr langsam, sehr zäch und s'härtischte vo allne bim Zueschlah.",
+					"behavior": "Chunnt langsam vorwärts und schlaht bi Kontakt mit grösserer Riichwiti zue; Rückstoss bewegt's chuum."
+				},
+				"arakhnos": {
+					"name": "Arakhnos",
+					"role": "Boss",
+					"description": "En Boss, wo umgeh vo emne Schwarm kämpft, wo-n-er immer wieder ersetzt.",
+					"behavior": "Verfolgt und schlaht bi Kontakt zue, und beschwört nach em Cooldown vier Skitters, zum de Druck hochhalte."
+				},
+				"gorvath": {
+					"name": "Gorvath",
+					"role": "Boss",
+					"description": "En riesige, langsame Boss, wo jede bestraft, wo näbed ihm staht.",
+					"behavior": "Chunnt nöch und schlaht bi Kontakt zue, denn haut er i emne grosse Radius uf de Bode, härter als sin normale Schlag."
+				},
+				"khimaera": {
+					"name": "Khimaera",
+					"role": "Boss",
+					"description": "De beweglichscht Boss: er kämpft uf mittleri Distanz statt diräkt vor dir.",
+					"behavior": "Haltet mittleri Distanz, weicht zrugg, wenn's z äng wird, und schüüsst nach em Cooldown schweri Flächesalve."
+				},
+				"abyssor": {
+					"name": "Abyssor",
+					"role": "Boss",
+					"description": "De zächscht Boss, und de einzig, wo Fernkampf-Unterstützig rüeft.",
+					"behavior": "Chunnt langsam vorwärts und schlaht bi Kontakt zue, während er nach em Cooldown drei Venomwebs beschwört."
+				}
+			}
+		}
+	},
+	"game": {
+		"title": "Game-Verlauf",
+		"play": "Game starte",
+		"recent_matches_label": "Alli Games",
+		"subtitle_username": "Alli Game-Leistige vo @{username}",
+		"global": {
+			"title": "Globale Game-Verlauf",
+			"subtitle": "Entdeck d Runs vo de Spieler."
+		},
+		"playerStatsTitle": "Spieler-Leistig",
+		"player": "Spieler",
+		"playerCount": "{count, plural, =1 {1 Spieler} other {# Spieler}}",
+		"playerFallback": "Spieler #{index}",
+		"playerBuild": "Attribut & Skalierig",
+		"weaponsUsed": "Usgrüschteti Waffe",
+		"noWeapons": "I dem Run sind kei Waffe usgrüschtet gsi.",
+		"tomesUsed": "Usgrüschteti Tomes",
+		"noTomes": "I dem Run sind kei Tomes usgrüschtet gsi.",
+		"fetch_error": "De Game-Verlauf het nöd chönne glade wärde.",
+		"no_games": "Kei Games gfunde.",
+		"no_user_games": "Für dä Spieler sind kei Games gfunde worde.",
+		"no_more_games": "Kei witeri Games zum Lade.",
+		"gameIdTitle": "Game #{gameId}",
+		"leaderboard": {
+			"title": "Rangliste",
+			"subtitle": "Top-Spieler nach Überläbensziit, Kills oder Aazahl gspielti Games.",
+			"no_leaderboard": "Kei Iiträg i de Rangliste gfunde.",
+			"no_more_leaderboard": "Kei witeri Ranglischte-Iiträg zum Lade.",
+			"fetch_error": "D Ranglischte-Date hend nöd chönne glade wärde."
+		},
+		"sort": {
+			"label": "Games sortiere",
+			"created_desc": "Neuschti zerscht",
+			"created_asc": "Ältischti zerscht",
+			"survival_desc": "Längschti Dauer",
+			"survival_asc": "Churzschti Dauer",
+			"kills_desc": "Meischti Kills",
+			"kills_asc": "Wenigschti Kills"
+		},
+		"labels": {
+			"level": "Lvl {level}",
+			"survivalTime": "Game-Dauer",
+			"matchKills": "Kills vom ganze Game",
+			"playerKills": "Kills",
+			"health": "Max. HP",
+			"damage": "Schade",
+			"attackSpeed": "Angriffstempo",
+			"moveSpeed": "Laufgschwindigkeit",
+			"armor": "Rüschtig",
+			"luck": "Glück",
+			"lifesteal": "Läbesraub",
+			"range": "Riichwiti",
+			"size": "Flächegrössi",
+			"duration": "Dauer",
+			"quantity": "Aazahl",
+			"penetration": "Durchschlag"
+		},
+		"summary": {
+			"title": "Spieler-Stats Übersicht",
+			"lastPlayed": "Zletscht gspielt",
+			"gamesPlayed": "Gspielti Games",
+			"totalKills": "Kills total",
+			"totalSurvivalTime": "Überläbensziit total",
+			"highestSurvivalTime": "Längschts Überläbe",
+			"highestKills": "Meischti Kills",
+			"weaponsUsed": "Waffe-Meisterschaft",
+			"noWeapons": "Für dä Spieler sind kei Waffe-Stats verfüegbar.",
+			"tomesUsed": "Tome-Meisterschaft",
+			"noTomes": "Für dä Spieler sind kei Tome-Stats verfüegbar.",
+			"labels": {
+				"timesUsed": "Mal bruucht",
+				"highestLevel": "Max. Level",
+				"levelFormat": "Lvl {level}"
+			},
+			"fetch_error": "D Spielübersicht het nid chönne glade wärde."
 		}
 	},
 	"userSummary": {

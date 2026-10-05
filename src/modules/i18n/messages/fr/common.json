@@ -1,8 +1,8 @@
 {
 	"nav": {
 		"home": "Accueil",
-		"game": "Jeu",
-		"leaderboard": "Classement",
+		"game_history": "Historique des parties",
+		"game_leaderboard": "Classement",
 		"profile": "Profil",
 		"settings": "Paramètres",
 		"logout": "Déconnexion",
@@ -26,6 +26,7 @@
 			"posts": "Publications",
 			"comments": "Commentaires",
 			"stats": "Statistiques",
+			"gamesHistory": "Historique des parties",
 			"likes": "J'aime",
 			"reposts": "Republications"
 		},
@@ -34,6 +35,8 @@
 			"friends": "Amis",
 			"blocked": "Utilisateurs bloqués"
 		},
+		"game": "Jeu",
+		"leaderboard": "Classement",
 		"profile_posts": "Publications",
 		"profile_comments": "Commentaires",
 		"profile_stats": "Statistiques",
@@ -55,6 +58,8 @@
 	"settings": {
 		"title": "Paramètres",
 		"error_loading": "Échec du chargement des paramètres du compte. Veuillez réessayer plus tard.",
+		"success": "Paramètres mis à jour avec succès.",
+		"error": "Impossible de mettre à jour les paramètres. Veuillez réessayer plus tard.",
 		"page": {
 			"title": "Paramètres",
 			"description": "Gérez tous vos paramètres en sélectionnant une catégorie dans le menu de gauche."
@@ -250,6 +255,7 @@
 		"just_connected_displayname": "{displayName} vient de se connecter"
 	},
 	"chat": {
+		"open_dm_failed": "Impossible d'ouvrir le message privé. Veuillez réessayer plus tard.",
 		"share": {
 			"title": "Partager la publication",
 			"description": "Sélectionnez un ou plusieurs salons avec lesquels partager cette publication.",
@@ -334,6 +340,10 @@
 				"replying_to": "En réponse à : <replyToId>#1s41</replyToId>"
 			},
 			"actions": {
+				"send_failed": "Impossible d'envoyer le message. Veuillez réessayer.",
+				"edit_failed": "Impossible de modifier le message. Veuillez réessayer.",
+				"delete_failed": "Impossible de supprimer le message. Veuillez réessayer.",
+				"received_new_message": "Vous avez reçu un nouveau message.",
 				"reply": "Répondre",
 				"edit": "Modifier",
 				"delete": "Supprimer",
@@ -459,8 +469,12 @@
 			"like": "J'aime",
 			"unlike": "Je n'aime plus",
 			"delete": "Supprimer",
+			"delete_title": "Supprimer la publication",
+			"delete_description": "Voulez-vous vraiment supprimer cette publication ? Cette action est irréversible.",
 			"chat": "Partager dans une discussion",
-			"copy_link": "Copier le lien"
+			"copy_link": "Copier le lien",
+			"comment_success": "Votre commentaire a bien été publié.",
+			"post_success": "Votre publication a bien été publiée."
 		},
 		"detail": {
 			"back": "Post"
@@ -682,7 +696,9 @@
 					"label": "Préférences de langue",
 					"en": "Anglais",
 					"fr": "Français",
-					"de": "Allemand"
+					"de": "Allemand",
+					"es": "Espagnol",
+					"it": "Italien"
 				}
 			},
 			"profile": {
@@ -791,6 +807,7 @@
 			"imageVideoOnly": "Seules les images et les vidéos sont autorisées",
 			"select": "Veuillez sélectionner une option",
 			"mustAcceptTerms": "Vous devez accepter les conditions générales",
+			"username_invalid": "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et des underscores",
 			"password_match": "Les mots de passe doivent correspondre",
 			"password_uppercase": "Le mot de passe doit contenir au moins une majuscule",
 			"password_lowercase": "Le mot de passe doit contenir au moins une minuscule",
@@ -848,6 +865,11 @@
 				"title": "Publication indisponible",
 				"description": "Cette publication a été supprimée par son auteur ou n'est plus accessible."
 			},
+			"game": {
+				"badge": "Partie introuvable",
+				"title": "Historique de partie indisponible",
+				"description": "Cette partie est introuvable, a été supprimée ou la session a expiré."
+			},
 			"common": {
 				"go_back": "Retour",
 				"back_home": "Retour à l'accueil"
@@ -865,6 +887,17 @@
 		"avatar_preview": "Aperçu de l'avatar"
 	},
 	"wiki": {
+		"nav": {
+			"overview": "Vue d'ensemble",
+			"arsenal": "Arsenal & tomes",
+			"bestiary": "Bestiaire"
+		},
+		"hub": {
+			"title": "Compendium des survivants",
+			"subtitle": "Découvrez les mécaniques de jeu, la progression des armes, les synergies de tomes et les informations sur les menaces des monstres.",
+			"arsenalHighlights": "Armes, tomes, synergies & formules de combat",
+			"bestiaryHighlights": "Types de hordes, IA des boss & modificateurs d'élite"
+		},
 		"title": "Compendium des armes et des tomes",
 		"subtitle": "Guide complet des mécaniques de combat, de la progression des statistiques, des armes et des synergies de tomes optimales.",
 		"tabs": {
@@ -1117,6 +1150,196 @@
 				"name": "Tome de fortune",
 				"description": "Augmente la statistique de chance pour améliorer les taux d'apparition des améliorations de plus grande rareté."
 			}
+		},
+		"bestiary": {
+			"title": "Bestiaire & manuel des menaces de la horde",
+			"subtitle": "Référence complète sur le comportement des monstres, la progression des élites, le timing d'apparition et les attaques des boss.",
+			"notes": {
+				"scaling": "Chaque valeur de base est multipliée par le palier de difficulté de la partie, qui augmente en continu avec le temps de survie.",
+				"elites": "Les élites sont des monstres standards promus : 2,35x PV, 1,3x dégâts et 2,5x récompense d'XP. Les boss ne peuvent jamais être des élites.",
+				"bosses": "Les boss apparaissent à partir de 2 minutes, puis toutes les 2 minutes, avec +30 % de PV par joueur supplémentaire dans la session.",
+				"knockback": "La résistance au recul va de 0 (entièrement repoussé) à 1 (inébranlable)."
+			},
+			"tabs": {
+				"horde": "Horde standard ({count})",
+				"bosses": "Boss ({count})"
+			},
+			"labels": {
+				"canBeElite": "Peut être élite",
+				"attackBehavior": "Comportement d'attaque ({ai})",
+				"stats": {
+					"hp": "PV",
+					"damage": "Dégâts",
+					"speed": "Vitesse",
+					"knockback": "Recul",
+					"xp": "Récompense d'XP",
+					"spawns": "Apparition"
+				},
+				"secPlus": "{seconds}s+"
+			},
+			"monsters": {
+				"grunt": {
+					"name": "Hound",
+					"role": "Poursuivant",
+					"description": "Le poursuivant de base de la horde, et l'ennemi que vous croiserez le plus souvent.",
+					"behavior": "Fonce droit sur le joueur le plus proche et mord au contact dès que son temps de recharge est écoulé."
+				},
+				"skitter": {
+					"name": "Skitter",
+					"role": "Essaim",
+					"description": "Une petite créature très rapide, dangereuse uniquement en nombre.",
+					"behavior": "Fond en essaim sur le joueur le plus proche et mord au contact ; il se déplace un peu plus vite que le reste de la meute."
+				},
+				"kraklet": {
+					"name": "Kraklet",
+					"role": "Tank",
+					"description": "Un monstre lent et massif qui encaisse les dégâts et bronche à peine quand on le frappe.",
+					"behavior": "Marche vers le joueur le plus proche et frappe au contact ; le recul le déplace beaucoup moins que les autres monstres."
+				},
+				"ravager": {
+					"name": "Ravager",
+					"role": "Chargeur",
+					"description": "Un chasseur qui réduit la distance par de soudaines accélérations.",
+					"behavior": "Poursuit le joueur le plus proche, puis charge en ligne droite à plus de deux fois sa vitesse ; la charge frappe bien plus fort qu'un contact normal."
+				},
+				"venomweb": {
+					"name": "Venomweb",
+					"role": "Distance",
+					"description": "Une créature à distance qui garde ses distances et crache des salves de loin.",
+					"behavior": "Se maintient à sa portée préférée, recule quand un joueur s'approche trop et tire des salves de zone selon son temps de recharge."
+				},
+				"bomber": {
+					"name": "Bombardier",
+					"role": "Kamikaze",
+					"description": "Un coureur fragile qui s'approche pour déclencher une explosion large et puissante.",
+					"behavior": "Court vers un joueur et déclenche une large explosion de zone qui frappe bien plus fort que ses dégâts de contact."
+				},
+				"splitter": {
+					"name": "Splitter",
+					"role": "Essaim",
+					"description": "Une créature massive qui ne meurt pas proprement : elle éclate en deux plus petites.",
+					"behavior": "Poursuit le joueur le plus proche et frappe au contact ; le tuer fait apparaître deux Skitters à l'endroit où il tombe."
+				},
+				"necromancer": {
+					"name": "Gravecaller",
+					"role": "Invocateur",
+					"description": "Un lanceur de sorts lent qui reste en retrait et alimente sans cesse la horde.",
+					"behavior": "Garde ses distances et invoque deux Skitters selon son temps de recharge au lieu de combattre directement."
+				},
+				"wisp": {
+					"name": "Wisp",
+					"role": "Distance",
+					"description": "Un petit harceleur très rapide, difficile à coincer.",
+					"behavior": "Virevolte autour d'une courte portée préférée et tire de petites salves rapides ; il recule dès qu'un joueur s'approche."
+				},
+				"brute": {
+					"name": "Brute",
+					"role": "Tank",
+					"description": "Le plus lourd des monstres ordinaires : très lent, très résistant, et celui qui frappe le plus fort.",
+					"behavior": "Avance lentement et frappe au contact avec une plus grande allonge ; le recul le déplace à peine."
+				},
+				"arakhnos": {
+					"name": "Arakhnos",
+					"role": "Boss",
+					"description": "Un boss qui combat entouré d'un essaim qu'il renouvelle sans cesse.",
+					"behavior": "Poursuit et frappe au contact, et invoque quatre Skitters selon son temps de recharge pour maintenir la pression."
+				},
+				"gorvath": {
+					"name": "Gorvath",
+					"role": "Boss",
+					"description": "Un boss massif et lent qui punit quiconque reste à côté de lui.",
+					"behavior": "S'approche et frappe au contact, puis martèle le sol sur un large rayon, plus fort que son coup normal."
+				},
+				"khimaera": {
+					"name": "Khimaera",
+					"role": "Boss",
+					"description": "Le boss le plus mobile : il combat à moyenne portée plutôt qu'au corps à corps.",
+					"behavior": "Se maintient à moyenne portée, recule quand on le serre de près et tire de puissantes salves de zone selon son temps de recharge."
+				},
+				"abyssor": {
+					"name": "Abyssor",
+					"role": "Boss",
+					"description": "Le boss le plus coriace, et le seul à appeler du soutien à distance.",
+					"behavior": "Avance lentement et frappe au contact, tout en invoquant trois Venomwebs selon son temps de recharge."
+				}
+			}
+		}
+	},
+	"game": {
+		"title": "Historique des parties",
+		"play": "Jouer",
+		"recent_matches_label": "Toutes les parties",
+		"subtitle_username": "Toutes les performances de jeu de @{username}",
+		"global": {
+			"title": "Historique global des parties",
+			"subtitle": "Explorez les parties des joueurs."
+		},
+		"playerStatsTitle": "Performances des joueurs",
+		"player": "Joueur",
+		"playerCount": "{count, plural, =1 {1 joueur} other {# joueurs}}",
+		"playerFallback": "Joueur n°{index}",
+		"playerBuild": "Attributs & progression",
+		"weaponsUsed": "Armes équipées",
+		"noWeapons": "Aucune arme équipée pendant cette partie.",
+		"tomesUsed": "Tomes équipés",
+		"noTomes": "Aucun tome équipé pendant cette partie.",
+		"fetch_error": "Impossible de charger l'historique des parties.",
+		"no_games": "Aucune partie trouvée.",
+		"no_user_games": "Aucune partie trouvée pour ce joueur.",
+		"no_more_games": "Plus aucune partie à charger.",
+		"gameIdTitle": "Partie n°{gameId}",
+		"leaderboard": {
+			"title": "Classement",
+			"subtitle": "Meilleurs joueurs par temps de survie, éliminations ou nombre de parties jouées.",
+			"no_leaderboard": "Aucune entrée dans le classement.",
+			"no_more_leaderboard": "Plus aucune entrée du classement à charger.",
+			"fetch_error": "Impossible de charger le classement."
+		},
+		"sort": {
+			"label": "Trier les parties",
+			"created_desc": "Plus récentes d'abord",
+			"created_asc": "Plus anciennes d'abord",
+			"survival_desc": "Durée la plus longue",
+			"survival_asc": "Durée la plus courte",
+			"kills_desc": "Le plus d'éliminations",
+			"kills_asc": "Le moins d'éliminations"
+		},
+		"labels": {
+			"level": "Niv. {level}",
+			"survivalTime": "Durée de la partie",
+			"matchKills": "Éliminations totales de la partie",
+			"playerKills": "Éliminations",
+			"health": "PV max",
+			"damage": "Dégâts",
+			"attackSpeed": "Vitesse d'attaque",
+			"moveSpeed": "Vitesse de déplacement",
+			"armor": "Armure",
+			"luck": "Chance",
+			"lifesteal": "Vol de vie",
+			"range": "Portée",
+			"size": "Taille de zone",
+			"duration": "Durée",
+			"quantity": "Quantité",
+			"penetration": "Pénétration"
+		},
+		"summary": {
+			"title": "Aperçu des statistiques du joueur",
+			"lastPlayed": "Dernière partie",
+			"gamesPlayed": "Parties jouées",
+			"totalKills": "Éliminations totales",
+			"totalSurvivalTime": "Temps de survie total",
+			"highestSurvivalTime": "Meilleure survie",
+			"highestKills": "Record d'éliminations",
+			"weaponsUsed": "Maîtrise des armes",
+			"noWeapons": "Aucune statistique d'arme disponible pour ce joueur.",
+			"tomesUsed": "Maîtrise des tomes",
+			"noTomes": "Aucune statistique de tome disponible pour ce joueur.",
+			"labels": {
+				"timesUsed": "Utilisations",
+				"highestLevel": "Niveau max",
+				"levelFormat": "Niv. {level}"
+			},
+			"fetch_error": "Impossible de charger le résumé de jeu."
 		}
 	},
 	"userSummary": {

@@ -6,7 +6,6 @@ const IMAGE_MIMES = [
 	'image/webp',
 	'image/avif',
 	'image/gif',
-	'image/svg+xml',
 	'image/bmp',
 	'image/x-icon',
 	'image/vnd.microsoft.icon',

@@ -52,7 +52,7 @@ const AvatarDropdown = ({}) => {
 						avatar={{
 							img: {
 								src: user.avatarUrl ?? '',
-								alt: `${user.displayName}'s avatar`,
+								alt: user.displayName,
 							},
 							badgeState: status.status,
 						}}

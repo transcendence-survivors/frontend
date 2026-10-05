@@ -28,7 +28,7 @@ const HubFooter = ({ className, ...props }: HubFooterProps) => {
 				<LocaleDropdownMenu className='flex-1' />
 				<ThemeDropdownMenu />
 			</div>
-			<div className='border-t border-sidebar-border py-5 max-w-full w-full'>
+			<div className='border-t border-sidebar-border pt-5 pb-2 max-w-full w-full'>
 				<AvatarDropdown />
 			</div>
 			<nav className='flex flex-wrap justify-center gap-x-3 gap-y-1'>
@@ -36,7 +36,7 @@ const HubFooter = ({ className, ...props }: HubFooterProps) => {
 					<I18nLink
 						key={key}
 						href={key}
-						className='font-mono text-[10px] uppercase text-muted-foreground hover:text-foreground'>
+						className='font-mono text-[9px] uppercase text-muted-foreground hover:text-foreground'>
 						{t(key)}
 					</I18nLink>
 				))}

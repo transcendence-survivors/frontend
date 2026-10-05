@@ -13,14 +13,19 @@ export default function SiteFooter() {
 			<span className={'font-mono text-xs ' + 'text-muted-foreground'}>
 				LIGHT-KEEPERS © 2026
 			</span>
-			<I18nLink
-				href='legal'
-				className={
-					'font-mono text-xs uppercase ' +
-					'text-muted-foreground hover:text-foreground'
-				}>
-				{t('legal')}
-			</I18nLink>
+			<nav className='flex gap-4'>
+				{(['privacy', 'terms'] as const).map((key) => (
+					<I18nLink
+						key={key}
+						href={key}
+						className={
+							'font-mono text-xs uppercase ' +
+							'text-muted-foreground hover:text-foreground'
+						}>
+						{t(key)}
+					</I18nLink>
+				))}
+			</nav>
 		</div>
 	);
 }

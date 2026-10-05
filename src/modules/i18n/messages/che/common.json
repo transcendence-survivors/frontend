@@ -10,7 +10,6 @@
 		"wiki": "Wiki",
 		"privacy": "Dateschutz",
 		"terms": "Nutzigsbedingige",
-		"legal": "Impressum",
 		"lore": "Lore",
 		"support": "Hilf",
 		"enter_hub": "Zum Hub →",
@@ -605,10 +604,61 @@
 			}
 		}
 	},
-	"legal": {
-		"kicker": "Rächtlichi Informatione",
-		"title": "Impressum",
-		"updated": "Zletscht aktualisiert: 29. September 2026",
+	"privacy": {
+		"kicker": "Dini Date",
+		"title": "Dateschutz",
+		"updated": "Zletscht aktualisiert: 5. Oktober 2026",
+		"sections": {
+			"controller": {
+				"title": "Verantwortlichi Stell",
+				"body": "Dini persönliche Date wärded vom Light-Keepers-Team verarbeitet, de Gruppe vo Studierende vo de 42 Lyon, wo das gmeinnützige Lehrprojekt entwicklet und betriibt. Die Erklärig zeigt, was mir sammled, werum, und weli Kontrolle du drüber bhaltisch."
+			},
+			"collected": {
+				"title": "Weli Date mir sammled",
+				"body": "Kontodate: E-Mail-Adrässe, Benutzername, Vor- und Nachname, Geburtsdatum, Gschlächt und entweder es ghashts Passwort oder d Kennig vom Google-, GitHub- oder 42-Konto, mit dem du dich aamäldsch. Profildate, wo du sälber dezuefüegsch: Aazeigename, Bio, Avatar, Titelbild, Standort, Websiite, bevorzugti Sprach und Präsenzstatus. Aktivitätsdate: Poschts, Antworte, Zitat, gteilti Poschts, Likes, Fründschafte, blockierti Nutzer, Chaträum und Nachrichte und d Statistike vo dine Games. Technischi Date: d IP-Adrässe und d Browserinformatione vo jeder aagmäldete Sitzig und de Ziitpunkt vo dinere letschte Aktivität."
+			},
+			"usage": {
+				"title": "Wie mir sie bruuched",
+				"body": "Dini Date wärded nur für de Betriib vom Dienst bruucht: zum dis Konto erstelle und schütze, dis Profil und dini Inhält andere Spieler zeige, Chatnachrichte zuestelle, Game-Statistike und Ranglischte erfasse und Konto-E-Mails schicke (Willkomme, Passwort zruggsetze, Passwortänderig, Kontolöschig). Sitzigsdate dienet em Schutz vo dim Konto und zum Missbruuch iischränke. Mir verchaufed dini Date nie, zeiged kei Wärbig und erstelled kei Profil."
+			},
+			"legalBasis": {
+				"title": "Rächtsgrundlag",
+				"body": "Gmäss de Dateschutz-Grundverordnig (DSGVO) verarbeited mir dini Date, will sie nötig sind, zum de Dienst aabüte, für dä du dich registriert hesch, und – bi Sicherheitsdate wie Sitzige und Rate-Begränzig – uf Grundlag vo eusem berechtigte Interässe, d Plattform und ihri Nutzer z schütze."
+			},
+			"sharing": {
+				"title": "Wer dini Date gseh cha",
+				"body": "Din Benutzername, Aazeigename, dini Profilinformatione, öffentliche Poschts und Game-Statistike sind für anderi Nutzer sichtbar. Chatnachrichte gsehnd nur d Mitglieder vom Ruum, i dem sie gschickt worde sind. Dini E-Mail-Adrässe, din Name, dis Geburtsdatum und dini Sitzigsdate wärded andere Nutzer nie zeigt. Mir gänd dini Date nöd a Dritti wiiter, usser a de Aamäldeaabieter, wo du wählsch (Google, GitHub oder 42), und a d Infrastruktur zum Dateie speichere und E-Mails schicke – nur zum de Dienst aabüte."
+			},
+			"retention": {
+				"title": "Speicherdauer",
+				"body": "Dini Date wärded gspeicheret, so lang dis Konto existiert. Wenn du dis Konto i de Iistellige löschsch, wärded dis Konto und alli zuegehörige Date (Profil, Poschts, Likes, Fründschafte, Nachrichte und Statistike) definitiv glöscht. Sitzige laufed automatisch ab, und Links zum s Passwort zruggsetze sind nur 15 Minute gültig."
+			},
+			"security": {
+				"title": "Sicherheit",
+				"body": "Passwörter, Sitzigstoken und Token zum s Passwort zruggsetze wärded ghasht gspeicheret, nie im Klartext. De Zuegriff uf de Dienst brucht e Aamäldig, und sensibli Aktione hend e Rate-Begränzig. Kei System isch perfekt sicher, aber mir träffed vernünftigi Massnahme zum dini Date schütze."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "D Websiite bruucht nur technisch nötigi Cookies: Authentifizierigs-Token, damit du aagmäldet bliibsch, und d Speicherig vo de gwählte Sprach. Dis Aazeigedesign wird im lokale Speicher vo dim Browser gspicheret. Es wärded kei Wärbe- oder Analyse-Cookies gsetzt."
+			},
+			"rights": {
+				"title": "Dini Rächt",
+				"body": "Du hesch s Rächt uf Uskunft, Berichtigung, Löschig und Übertragbarkeit vo dine Date und s Rächt, de Verarbeitig z widerspräche oder sie iischränke z lah. Di meischte Informatione chasch diräkt i dine Iistellige ändere und dis Konto jederziit lösche. Für alli andere Aafrage mäld dich bim Team. Du chasch au e Beschwerde bi dinere Dateschutzbehörde iireiche (i Frankriich bi de CNIL)."
+			},
+			"minors": {
+				"title": "Mindestalter",
+				"body": "Du muesch mindestens 13 Jahr alt sii, zum es Konto erstelle. Mir sammled nöd wüssentlich Date vo Chind under dem Alter."
+			},
+			"contact": {
+				"title": "Kontakt",
+				"body": "Bi Frage zur Websiite oder zu dine Date bsuech s <support>Hilf-Center</support> oder kontaktier s Team über sini <github>GitHub-Organisation</github>."
+			}
+		}
+	},
+	"terms": {
+		"kicker": "Spielregle",
+		"title": "Nutzigsbedingige",
+		"updated": "Zletscht aktualisiert: 5. Oktober 2026",
 		"sections": {
 			"editor": {
 				"title": "Herusgeber",
@@ -622,21 +672,45 @@
 				"title": "Hosting",
 				"body": "D Websiite wird vom Projektteam sälber ghostet. D Aawändig, iri Datebank und de Dateispeicher laufed i Docker-Container, wo d Teammitglieder sälber verwaltet."
 			},
+			"acceptance": {
+				"title": "Aanahm vo de Bedingige",
+				"body": "Wenn du es Konto erstellsch oder Light Keepers bruuchsch, akzeptiersch du die Bedingige und eusi Dateschutzerklärig. Wenn du nöd iiverstande bisch, bruuch de Dienst bitte nöd."
+			},
+			"account": {
+				"title": "Dis Konto",
+				"body": "Du muesch mindestens 13 Jahr alt sii, zum es Konto erstelle. Du verpflichtisch dich, korrekti Aagabe z mache und dini Zuegangsdate vertraulich z bhalte, und du bisch für alli Aktivitäte uf dim Konto verantwortlich. Mäld dich sofort bim Team, wenn du en unbefugte Zuegriff vermuetisch."
+			},
+			"conduct": {
+				"title": "Erlaubti Nutzig",
+				"body": "Du verpflichtisch dich, anderi Nutzer nöd z belästige, z bedrohe oder dich als sie uszgäh; kei illegale, hasserfüllte, gwalttätige, sexuell explizite oder diskriminierendi Inhält z poschte; kei Spam und kei Wärbig z verbreite; und nöd z cheate, kei Bugs usznütze und nöd z probiere, s Game, d Server oder d Konte vo andere Spieler z störe. Du chasch Nutzer blockiere, mit dene du nüm wotsch interagiere."
+			},
+			"content": {
+				"title": "Dini Inhält",
+				"body": "Du bliibsch Eigetümer vo de Poschts, Nachrichte und Bilder, wo du veröffentlichsch, und du treisch die volli Verantwortig dafür. Mit de Veröffentlichung erlaubsch du Light Keepers, sie z speichere und andere Nutzer z zeige – nur für de Betriib vom Dienst. S Team cha Inhält lösche, wo gäg die Bedingige verstossed."
+			},
 			"property": {
 				"title": "Urheberrächt",
 				"body": "Täxt, Grafike, Logos, d Spielwält und de Quellcode vo dere Websiite ghöred em Team Transcendence Survivors, wänn nüt anders aagäh isch. Jedi Vervielfältigung, au nur teilwiis, isch ohni vorherigi Erlaubnis verbote. S Spiel basiert uf de Engine Babylon.js und uf Open-Source-Bibliotheke, wo gmäss irne jewiilige Lizänze bruucht wärded. Inhält, wo Nutzer veröffentlichet, ghöred wiiterhin irne Urheber, wo di volli Verantwortig defür träged."
 			},
-			"data": {
-				"title": "Dateschutz",
-				"body": "Bi de Registrierig erfassed mir dini E-Mail-Adrässe, din Benutzername, din Vor- und Nachname, dis Geburtsdatum und d Profilaagabe, wo du machsch (Aazeigename, Bio, Gschlächt …). Die Date bruuched mir nur für de Betrieb vom Dienst: Si wärded nie verchauft oder für kommerzielli Zwäck bruucht. Gmäss de Dateschutz-Grundverordnig (DSGVO) häsch s Rächt uf Uskunft, Berichtigung, Widerspruch und Löschig vo dine Date. Mäld di defür bim Team."
+			"availability": {
+				"title": "Verfüegbarkeit vom Dienst",
+				"body": "Light Keepers isch es gratis Studierendeprojekt und wird „wie's isch“ aabote. Mir gäbed eus Müeh, dass es lauft, aber mir garantiered kei Verfüegbarkeit ohni Unterbruch oder Fehler. Funktione, Game-Balance und Statistike chönd sich ändere, und de Dienst cha jederziit igstellt wärde."
 			},
-			"cookies": {
-				"title": "Cookies",
-				"body": "D Websiite bruucht nur technisch nötigi Cookies: Authentifizierigs-Token, damit du aagmäldet bliibsch, und d Speicherig vo de gwählte Sprach. Dis Aazeigedesign wird im lokale Speicher vo dim Browser gspicheret. Es wärded kei Wärbe- oder Analyse-Cookies gsetzt."
+			"liability": {
+				"title": "Haftigsbeschränkig",
+				"body": "Soweit's s Gsetz erlaubt, haftet s Light-Keepers-Team nöd für Dateverluscht, Dienstunterbrüch oder Schäde, wo us de Nutzig vo de Websiite entstönd, und au nöd für Inhält, wo Nutzer veröffentlicht hend."
+			},
+			"termination": {
+				"title": "Sperrig und Kündigung",
+				"body": "Du chasch jederziit ufhöre, de Dienst z bruuche, und dis Konto i de Iistellige lösche. S Team cha Konte, wo gäg die Bedingige verstossed, sperre oder lösche – bi schwere Verstöss ohni Vorwarnig."
+			},
+			"changes": {
+				"title": "Änderige und aawendbars Rächt",
+				"body": "Die Bedingige chönd aktualisiert wärde; s Datum obe uf dere Siite zeigt di aktuell Version, und wenn du de Dienst wiiter bruuchsch, akzeptiersch du sie. Die Bedingige understeht em französische Rächt."
 			},
 			"contact": {
 				"title": "Kontakt",
-				"body": "Bi Frage zur Websiite oder zu dine Date bsuech s <support>Hilf-Center</support> oder kontaktier s Team über sini <github>GitHub-Organisation</github>."
+				"body": "Bi Frage zu dene Bedingige bsuech s <support>Hilf-Center</support> oder kontaktier s Team über sini <github>GitHub-Organisation</github>."
 			}
 		}
 	},

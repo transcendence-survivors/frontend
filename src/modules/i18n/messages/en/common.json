@@ -10,7 +10,6 @@
 		"wiki": "Wiki",
 		"privacy": "Privacy Policy",
 		"terms": "Terms of Service",
-		"legal": "Legal Notice",
 		"lore": "Lore",
 		"support": "Support",
 		"enter_hub": "Enter Hub →",
@@ -593,10 +592,61 @@
 			}
 		}
 	},
-	"legal": {
-		"kicker": "Legal information",
-		"title": "Legal Notice",
-		"updated": "Last updated: September 29, 2026",
+	"privacy": {
+		"kicker": "Your data",
+		"title": "Privacy Policy",
+		"updated": "Last updated: October 5, 2026",
+		"sections": {
+			"controller": {
+				"title": "Data controller",
+				"body": "Your personal data is processed by the Light Keepers team, the group of 42 Lyon students who build and run this non-profit educational project. This policy explains what we collect, why, and what control you keep over it."
+			},
+			"collected": {
+				"title": "Data we collect",
+				"body": "Account data: email address, username, first and last name, date of birth, gender, and either a hashed password or the identifier of the Google, GitHub or 42 account you sign in with. Profile data you choose to add: display name, bio, avatar, cover image, location, website, preferred language and presence status. Activity data: posts, replies, quotes, reposts, likes, friendships, blocked users, chat rooms and messages, and the statistics of the games you play. Technical data: the IP address and browser information linked to each signed-in session, and the time of your last activity."
+			},
+			"usage": {
+				"title": "How we use it",
+				"body": "Your data is used only to run the service: creating and securing your account, showing your profile and content to other players, delivering chat messages, recording game statistics and leaderboards, and sending account emails (welcome, password reset, password change, account deletion). Session data is used to keep your account secure and to limit abuse. We never sell your data, show advertising, or use it for profiling."
+			},
+			"legalBasis": {
+				"title": "Legal basis",
+				"body": "Under the General Data Protection Regulation (GDPR), we process your data because it is necessary to provide the service you signed up for, and, for security data such as sessions and rate limiting, on the basis of our legitimate interest in protecting the platform and its users."
+			},
+			"sharing": {
+				"title": "Who can see your data",
+				"body": "Your username, display name, profile information, public posts and game statistics are visible to other users. Chat messages are only visible to the members of the room they are sent in. Your email address, name, date of birth and session data are never shown to other users. We do not share your data with third parties, except the sign-in provider you choose (Google, GitHub or 42) and the infrastructure used to store files and send emails, solely to provide the service."
+			},
+			"retention": {
+				"title": "Data retention",
+				"body": "Your data is kept for as long as your account exists. When you delete your account from your settings, your account and all associated data (profile, posts, likes, friendships, messages and statistics) are permanently removed. Sessions expire automatically and password reset links are only valid for 15 minutes."
+			},
+			"security": {
+				"title": "Security",
+				"body": "Passwords, session tokens and password reset tokens are stored hashed, never in plain text. Access to the service requires authentication and sensitive actions are rate-limited. No system is perfectly secure, but we take reasonable measures to protect your data."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "The site only uses technical cookies that are essential to its operation: authentication tokens to keep you signed in, and remembering your chosen language. Your display theme is kept in your browser's local storage. No advertising or analytics cookies are set."
+			},
+			"rights": {
+				"title": "Your rights",
+				"body": "You have the right to access, rectify, erase and port your data, and to object to or restrict its processing. You can update most of your information directly from your settings and delete your account at any time. For any other request, contact the team. You can also file a complaint with your data protection authority (in France, the CNIL)."
+			},
+			"minors": {
+				"title": "Minimum age",
+				"body": "You must be at least 13 years old to create an account. We do not knowingly collect data from children under this age."
+			},
+			"contact": {
+				"title": "Contact",
+				"body": "For any question about the site or your data, visit the <support>help center</support> or reach the team through its <github>GitHub organization</github>."
+			}
+		}
+	},
+	"terms": {
+		"kicker": "Rules of the game",
+		"title": "Terms of Service",
+		"updated": "Last updated: October 5, 2026",
 		"sections": {
 			"editor": {
 				"title": "Site publisher",
@@ -610,21 +660,45 @@
 				"title": "Hosting",
 				"body": "The site is self-hosted by the project team. The application, its database and file storage run in Docker containers managed by its members."
 			},
+			"acceptance": {
+				"title": "Acceptance of the terms",
+				"body": "By creating an account or using Light Keepers, you agree to these terms and to our privacy policy. If you do not agree with them, please do not use the service."
+			},
+			"account": {
+				"title": "Your account",
+				"body": "You must be at least 13 years old to create an account. You agree to provide accurate information, to keep your credentials confidential, and you are responsible for all activity on your account. Tell the team immediately if you suspect unauthorized access."
+			},
+			"conduct": {
+				"title": "Acceptable use",
+				"body": "You agree not to harass, threaten or impersonate other users; not to post illegal, hateful, violent, sexually explicit or discriminatory content; not to spam or advertise; and not to cheat, exploit bugs or try to disrupt the game, the servers or other players' accounts. You can block users you no longer want to interact with."
+			},
+			"content": {
+				"title": "Your content",
+				"body": "You keep ownership of the posts, messages and images you publish, and you remain fully responsible for them. By publishing them, you allow Light Keepers to store and display them to other users for the sole purpose of running the service. The team may remove any content that breaks these terms."
+			},
 			"property": {
 				"title": "Intellectual property",
 				"body": "The texts, visuals, logos, game universe and source code of this site belong to the Light Keepers team unless stated otherwise. Any reproduction, even partial, without prior permission is prohibited. The game runs on the Babylon.js engine and on open-source libraries, used in accordance with their respective licenses. Content posted by users remains the property of its authors, who bear full responsibility for it."
 			},
-			"data": {
-				"title": "Personal data",
-				"body": "When you sign up, we collect your email address, username, first and last name, date of birth, and the profile information you choose to provide (display name, bio, gender…). This data is used solely to operate the service: it is never sold or used for commercial purposes. In accordance with the General Data Protection Regulation (GDPR), you have the right to access, rectify, object to and erase your data, which you can exercise by contacting the team."
+			"availability": {
+				"title": "Availability of the service",
+				"body": "Light Keepers is a student project provided free of charge and \"as is\". We do our best to keep it running, but we do not guarantee that it will be available without interruption or error. Features, game balance and statistics may change, and the service may be stopped at any time."
 			},
-			"cookies": {
-				"title": "Cookies",
-				"body": "The site only uses technical cookies that are essential to its operation: authentication tokens to keep you signed in, and remembering your chosen language. Your display theme is kept in your browser's local storage. No advertising or analytics cookies are set."
+			"liability": {
+				"title": "Limitation of liability",
+				"body": "To the extent permitted by law, the Light Keepers team cannot be held liable for any loss of data, interruption of service, or damage resulting from the use of the site, nor for content published by users."
+			},
+			"termination": {
+				"title": "Suspension and termination",
+				"body": "You can stop using the service and delete your account at any time from your settings. The team may suspend or delete an account that breaks these terms, without prior notice in serious cases."
+			},
+			"changes": {
+				"title": "Changes and applicable law",
+				"body": "These terms may be updated; the date at the top of this page shows the latest version, and continuing to use the service means you accept it. These terms are governed by French law."
 			},
 			"contact": {
 				"title": "Contact",
-				"body": "For any question about the site or your data, visit the <support>help center</support> or reach the team through its <github>GitHub organization</github>."
+				"body": "For any question about these terms, visit the <support>help center</support> or reach the team through its <github>GitHub organization</github>."
 			}
 		}
 	},

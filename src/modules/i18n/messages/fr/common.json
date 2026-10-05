@@ -10,7 +10,6 @@
 		"wiki": "Wiki",
 		"privacy": "Politique de confidentialité",
 		"terms": "Conditions d'utilisation",
-		"legal": "Mentions légales",
 		"lore": "Univers",
 		"support": "Aide",
 		"enter_hub": "Entrer dans le Hub →",
@@ -603,10 +602,61 @@
 			}
 		}
 	},
-	"legal": {
-		"kicker": "Informations légales",
-		"title": "Mentions légales",
-		"updated": "Dernière mise à jour : 29 septembre 2026",
+	"privacy": {
+		"kicker": "Vos données",
+		"title": "Politique de confidentialité",
+		"updated": "Dernière mise à jour : 5 octobre 2026",
+		"sections": {
+			"controller": {
+				"title": "Responsable du traitement",
+				"body": "Vos données personnelles sont traitées par l'équipe Light Keepers, le groupe d'étudiants de 42 Lyon qui développe et fait fonctionner ce projet pédagogique à but non lucratif. Cette politique explique ce que nous collectons, pourquoi, et le contrôle que vous gardez dessus."
+			},
+			"collected": {
+				"title": "Données collectées",
+				"body": "Données de compte : adresse e-mail, nom d'utilisateur, prénom et nom, date de naissance, genre, ainsi qu'un mot de passe haché ou l'identifiant du compte Google, GitHub ou 42 avec lequel vous vous connectez. Données de profil que vous choisissez d'ajouter : nom affiché, bio, avatar, image de couverture, localisation, site web, langue préférée et statut de présence. Données d'activité : publications, réponses, citations, reposts, mentions J'aime, amitiés, utilisateurs bloqués, salons et messages de chat, et statistiques de vos parties. Données techniques : l'adresse IP et les informations du navigateur liées à chaque session connectée, ainsi que l'heure de votre dernière activité."
+			},
+			"usage": {
+				"title": "Utilisation des données",
+				"body": "Vos données servent uniquement à faire fonctionner le service : créer et sécuriser votre compte, afficher votre profil et vos contenus aux autres joueurs, acheminer les messages de chat, enregistrer les statistiques de jeu et les classements, et envoyer les e-mails liés à votre compte (bienvenue, réinitialisation et changement de mot de passe, suppression du compte). Les données de session servent à sécuriser votre compte et à limiter les abus. Nous ne vendons jamais vos données, n'affichons aucune publicité et ne faisons aucun profilage."
+			},
+			"legalBasis": {
+				"title": "Base légale",
+				"body": "Conformément au Règlement général sur la protection des données (RGPD), nous traitons vos données parce qu'elles sont nécessaires pour fournir le service auquel vous vous êtes inscrit, et, pour les données de sécurité comme les sessions et la limitation de débit, sur la base de notre intérêt légitime à protéger la plateforme et ses utilisateurs."
+			},
+			"sharing": {
+				"title": "Qui peut voir vos données",
+				"body": "Votre nom d'utilisateur, votre nom affiché, les informations de votre profil, vos publications publiques et vos statistiques de jeu sont visibles par les autres utilisateurs. Les messages de chat ne sont visibles que par les membres du salon dans lequel ils sont envoyés. Votre adresse e-mail, votre nom, votre date de naissance et vos données de session ne sont jamais montrés aux autres utilisateurs. Nous ne partageons pas vos données avec des tiers, à l'exception du fournisseur de connexion que vous choisissez (Google, GitHub ou 42) et de l'infrastructure utilisée pour stocker les fichiers et envoyer les e-mails, uniquement pour fournir le service."
+			},
+			"retention": {
+				"title": "Durée de conservation",
+				"body": "Vos données sont conservées tant que votre compte existe. Lorsque vous supprimez votre compte depuis vos paramètres, votre compte et toutes les données associées (profil, publications, mentions J'aime, amitiés, messages et statistiques) sont définitivement effacés. Les sessions expirent automatiquement et les liens de réinitialisation de mot de passe ne sont valables que 15 minutes."
+			},
+			"security": {
+				"title": "Sécurité",
+				"body": "Les mots de passe, les jetons de session et les jetons de réinitialisation de mot de passe sont stockés sous forme hachée, jamais en clair. L'accès au service nécessite une authentification et les actions sensibles sont soumises à une limitation de débit. Aucun système n'est parfaitement sûr, mais nous prenons des mesures raisonnables pour protéger vos données."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "Le site n'utilise que des cookies techniques, indispensables à son fonctionnement : jetons d'authentification pour maintenir votre session et mémorisation de la langue choisie. Votre thème d'affichage est conservé dans le stockage local de votre navigateur. Aucun cookie publicitaire ni de mesure d'audience n'est déposé."
+			},
+			"rights": {
+				"title": "Vos droits",
+				"body": "Vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données, ainsi que d'un droit d'opposition et de limitation de leur traitement. Vous pouvez modifier la plupart de vos informations directement depuis vos paramètres et supprimer votre compte à tout moment. Pour toute autre demande, contactez l'équipe. Vous pouvez également introduire une réclamation auprès de votre autorité de protection des données (en France, la CNIL)."
+			},
+			"minors": {
+				"title": "Âge minimum",
+				"body": "Vous devez avoir au moins 13 ans pour créer un compte. Nous ne collectons pas sciemment de données concernant des enfants n'ayant pas atteint cet âge."
+			},
+			"contact": {
+				"title": "Contact",
+				"body": "Pour toute question concernant le site ou vos données, consultez le <support>centre d'aide</support> ou contactez l'équipe via son <github>organisation GitHub</github>."
+			}
+		}
+	},
+	"terms": {
+		"kicker": "Règles du jeu",
+		"title": "Conditions d'utilisation",
+		"updated": "Dernière mise à jour : 5 octobre 2026",
 		"sections": {
 			"editor": {
 				"title": "Éditeur du site",
@@ -620,21 +670,45 @@
 				"title": "Hébergement",
 				"body": "Le site est auto-hébergé par l'équipe du projet. L'application, sa base de données et le stockage des fichiers fonctionnent dans des conteneurs Docker administrés par ses membres."
 			},
+			"acceptance": {
+				"title": "Acceptation des conditions",
+				"body": "En créant un compte ou en utilisant Light Keepers, vous acceptez les présentes conditions ainsi que notre politique de confidentialité. Si vous ne les acceptez pas, merci de ne pas utiliser le service."
+			},
+			"account": {
+				"title": "Votre compte",
+				"body": "Vous devez avoir au moins 13 ans pour créer un compte. Vous vous engagez à fournir des informations exactes et à garder vos identifiants confidentiels, et vous êtes responsable de toute activité sur votre compte. Prévenez immédiatement l'équipe si vous soupçonnez un accès non autorisé."
+			},
+			"conduct": {
+				"title": "Utilisation acceptable",
+				"body": "Vous vous engagez à ne pas harceler, menacer ou usurper l'identité d'autres utilisateurs ; à ne pas publier de contenu illégal, haineux, violent, sexuellement explicite ou discriminatoire ; à ne pas faire de spam ni de publicité ; et à ne pas tricher, exploiter des bugs ou tenter de perturber le jeu, les serveurs ou les comptes des autres joueurs. Vous pouvez bloquer les utilisateurs avec lesquels vous ne souhaitez plus interagir."
+			},
+			"content": {
+				"title": "Vos contenus",
+				"body": "Vous restez propriétaire des publications, messages et images que vous publiez, et vous en êtes entièrement responsable. En les publiant, vous autorisez Light Keepers à les stocker et à les afficher aux autres utilisateurs dans le seul but de faire fonctionner le service. L'équipe peut supprimer tout contenu qui enfreint ces conditions."
+			},
 			"property": {
 				"title": "Propriété intellectuelle",
 				"body": "Les textes, visuels, logos, l'univers du jeu et le code source du site appartiennent à l'équipe Transcendence Survivors, sauf mention contraire. Toute reproduction, même partielle, sans autorisation préalable est interdite. Le jeu repose sur le moteur Babylon.js et sur des bibliothèques open source, utilisés dans le respect de leurs licences respectives. Les contenus publiés par les utilisateurs restent la propriété de leurs auteurs, qui en assument l'entière responsabilité."
 			},
-			"data": {
-				"title": "Données personnelles",
-				"body": "Lors de l'inscription, nous collectons votre adresse e-mail, votre nom d'utilisateur, vos nom et prénom, votre date de naissance ainsi que les informations de profil que vous choisissez de renseigner (nom d'affichage, biographie, genre…). Ces données servent uniquement au fonctionnement du service : elles ne sont jamais revendues ni utilisées à des fins commerciales. Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données, que vous pouvez exercer en contactant l'équipe."
+			"availability": {
+				"title": "Disponibilité du service",
+				"body": "Light Keepers est un projet étudiant fourni gratuitement et « en l'état ». Nous faisons de notre mieux pour qu'il reste accessible, mais nous ne garantissons pas qu'il fonctionnera sans interruption ni erreur. Les fonctionnalités, l'équilibrage du jeu et les statistiques peuvent évoluer, et le service peut être arrêté à tout moment."
 			},
-			"cookies": {
-				"title": "Cookies",
-				"body": "Le site n'utilise que des cookies techniques, indispensables à son fonctionnement : jetons d'authentification pour maintenir votre session et mémorisation de la langue choisie. Votre thème d'affichage est conservé dans le stockage local de votre navigateur. Aucun cookie publicitaire ni de mesure d'audience n'est déposé."
+			"liability": {
+				"title": "Limitation de responsabilité",
+				"body": "Dans les limites autorisées par la loi, l'équipe Light Keepers ne peut être tenue responsable d'une perte de données, d'une interruption de service ou d'un dommage résultant de l'utilisation du site, ni des contenus publiés par les utilisateurs."
+			},
+			"termination": {
+				"title": "Suspension et résiliation",
+				"body": "Vous pouvez cesser d'utiliser le service et supprimer votre compte à tout moment depuis vos paramètres. L'équipe peut suspendre ou supprimer un compte qui enfreint ces conditions, sans préavis en cas de manquement grave."
+			},
+			"changes": {
+				"title": "Modifications et droit applicable",
+				"body": "Ces conditions peuvent être mises à jour ; la date en haut de cette page indique la dernière version, et continuer à utiliser le service vaut acceptation de celle-ci. Ces conditions sont régies par le droit français."
 			},
 			"contact": {
 				"title": "Contact",
-				"body": "Pour toute question concernant le site ou vos données, consultez le <support>centre d'aide</support> ou contactez l'équipe via son <github>organisation GitHub</github>."
+				"body": "Pour toute question concernant ces conditions, consultez le <support>centre d'aide</support> ou contactez l'équipe via son <github>organisation GitHub</github>."
 			}
 		}
 	},

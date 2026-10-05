@@ -10,7 +10,6 @@
 		"wiki": "Wiki",
 		"privacy": "Política de privacidad",
 		"terms": "Condiciones del servicio",
-		"legal": "Aviso legal",
 		"lore": "Universo",
 		"support": "Ayuda",
 		"enter_hub": "Entrar en el Hub →",
@@ -605,10 +604,61 @@
 			}
 		}
 	},
-	"legal": {
-		"kicker": "Información legal",
-		"title": "Aviso legal",
-		"updated": "Última actualización: 29 de septiembre de 2026",
+	"privacy": {
+		"kicker": "Tus datos",
+		"title": "Política de privacidad",
+		"updated": "Última actualización: 5 de octubre de 2026",
+		"sections": {
+			"controller": {
+				"title": "Responsable del tratamiento",
+				"body": "Tus datos personales son tratados por el equipo de Light Keepers, el grupo de estudiantes de 42 Lyon que desarrolla y gestiona este proyecto educativo sin ánimo de lucro. Esta política explica qué recopilamos, por qué y qué control mantienes sobre ello."
+			},
+			"collected": {
+				"title": "Datos que recopilamos",
+				"body": "Datos de la cuenta: dirección de correo electrónico, nombre de usuario, nombre y apellidos, fecha de nacimiento, género y una contraseña cifrada mediante hash o el identificador de la cuenta de Google, GitHub o 42 con la que inicias sesión. Datos de perfil que decides añadir: nombre visible, biografía, avatar, imagen de portada, ubicación, sitio web, idioma preferido y estado de presencia. Datos de actividad: publicaciones, respuestas, citas, republicaciones, me gusta, amistades, usuarios bloqueados, salas y mensajes de chat, y las estadísticas de tus partidas. Datos técnicos: la dirección IP y la información del navegador vinculadas a cada sesión iniciada, y la hora de tu última actividad."
+			},
+			"usage": {
+				"title": "Cómo los usamos",
+				"body": "Tus datos se utilizan únicamente para hacer funcionar el servicio: crear y proteger tu cuenta, mostrar tu perfil y tu contenido a otros jugadores, entregar los mensajes de chat, registrar las estadísticas de juego y las clasificaciones, y enviar los correos de tu cuenta (bienvenida, restablecimiento y cambio de contraseña, eliminación de la cuenta). Los datos de sesión se usan para proteger tu cuenta y limitar los abusos. Nunca vendemos tus datos, no mostramos publicidad ni elaboramos perfiles."
+			},
+			"legalBasis": {
+				"title": "Base jurídica",
+				"body": "De acuerdo con el Reglamento General de Protección de Datos (RGPD), tratamos tus datos porque son necesarios para prestar el servicio en el que te has registrado y, en el caso de los datos de seguridad como las sesiones y la limitación de solicitudes, sobre la base de nuestro interés legítimo en proteger la plataforma y a sus usuarios."
+			},
+			"sharing": {
+				"title": "Quién puede ver tus datos",
+				"body": "Tu nombre de usuario, tu nombre visible, la información de tu perfil, tus publicaciones públicas y tus estadísticas de juego son visibles para otros usuarios. Los mensajes de chat solo son visibles para los miembros de la sala en la que se envían. Tu correo electrónico, tu nombre, tu fecha de nacimiento y tus datos de sesión nunca se muestran a otros usuarios. No compartimos tus datos con terceros, salvo con el proveedor de inicio de sesión que elijas (Google, GitHub o 42) y la infraestructura utilizada para almacenar archivos y enviar correos, únicamente para prestar el servicio."
+			},
+			"retention": {
+				"title": "Conservación de los datos",
+				"body": "Tus datos se conservan mientras exista tu cuenta. Cuando eliminas tu cuenta desde los ajustes, tu cuenta y todos los datos asociados (perfil, publicaciones, me gusta, amistades, mensajes y estadísticas) se eliminan de forma permanente. Las sesiones caducan automáticamente y los enlaces para restablecer la contraseña solo son válidos durante 15 minutos."
+			},
+			"security": {
+				"title": "Seguridad",
+				"body": "Las contraseñas, los tokens de sesión y los tokens de restablecimiento de contraseña se almacenan cifrados mediante hash, nunca en texto plano. El acceso al servicio requiere autenticación y las acciones sensibles tienen un límite de solicitudes. Ningún sistema es totalmente seguro, pero tomamos medidas razonables para proteger tus datos."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"body": "El sitio solo utiliza cookies técnicas, imprescindibles para su funcionamiento: tokens de autenticación para mantener tu sesión y el recuerdo del idioma elegido. Tu tema de visualización se guarda en el almacenamiento local de tu navegador. No se instalan cookies publicitarias ni de medición de audiencia."
+			},
+			"rights": {
+				"title": "Tus derechos",
+				"body": "Tienes derecho a acceder, rectificar, suprimir y portar tus datos, así como a oponerte a su tratamiento o solicitar su limitación. Puedes actualizar la mayor parte de tu información directamente desde tus ajustes y eliminar tu cuenta en cualquier momento. Para cualquier otra solicitud, contacta con el equipo. También puedes presentar una reclamación ante tu autoridad de protección de datos (en Francia, la CNIL)."
+			},
+			"minors": {
+				"title": "Edad mínima",
+				"body": "Debes tener al menos 13 años para crear una cuenta. No recopilamos a sabiendas datos de menores de esa edad."
+			},
+			"contact": {
+				"title": "Contacto",
+				"body": "Para cualquier pregunta sobre el sitio o tus datos, visita el <support>centro de ayuda</support> o contacta con el equipo a través de su <github>organización de GitHub</github>."
+			}
+		}
+	},
+	"terms": {
+		"kicker": "Reglas del juego",
+		"title": "Condiciones del servicio",
+		"updated": "Última actualización: 5 de octubre de 2026",
 		"sections": {
 			"editor": {
 				"title": "Editor del sitio",
@@ -622,21 +672,45 @@
 				"title": "Alojamiento",
 				"body": "El sitio está autoalojado por el equipo del proyecto. La aplicación, su base de datos y el almacenamiento de archivos funcionan en contenedores Docker administrados por sus miembros."
 			},
+			"acceptance": {
+				"title": "Aceptación de las condiciones",
+				"body": "Al crear una cuenta o utilizar Light Keepers, aceptas estas condiciones y nuestra política de privacidad. Si no estás de acuerdo con ellas, no utilices el servicio."
+			},
+			"account": {
+				"title": "Tu cuenta",
+				"body": "Debes tener al menos 13 años para crear una cuenta. Te comprometes a proporcionar información veraz y a mantener la confidencialidad de tus credenciales, y eres responsable de toda la actividad de tu cuenta. Avisa inmediatamente al equipo si sospechas de un acceso no autorizado."
+			},
+			"conduct": {
+				"title": "Uso aceptable",
+				"body": "Te comprometes a no acosar, amenazar ni suplantar a otros usuarios; a no publicar contenido ilegal, de odio, violento, sexualmente explícito o discriminatorio; a no hacer spam ni publicidad; y a no hacer trampas, aprovechar errores ni intentar perturbar el juego, los servidores o las cuentas de otros jugadores. Puedes bloquear a los usuarios con los que ya no quieras interactuar."
+			},
+			"content": {
+				"title": "Tu contenido",
+				"body": "Conservas la propiedad de las publicaciones, mensajes e imágenes que publicas, y eres plenamente responsable de ellos. Al publicarlos, autorizas a Light Keepers a almacenarlos y mostrarlos a otros usuarios con el único fin de hacer funcionar el servicio. El equipo puede eliminar cualquier contenido que infrinja estas condiciones."
+			},
 			"property": {
 				"title": "Propiedad intelectual",
 				"body": "Los textos, imágenes, logotipos, el universo del juego y el código fuente de este sitio pertenecen al equipo Transcendence Survivors, salvo indicación contraria. Queda prohibida cualquier reproducción, total o parcial, sin autorización previa. El juego se basa en el motor Babylon.js y en bibliotecas de código abierto, utilizadas conforme a sus respectivas licencias. Los contenidos publicados por los usuarios siguen siendo propiedad de sus autores, que asumen toda la responsabilidad sobre ellos."
 			},
-			"data": {
-				"title": "Datos personales",
-				"body": "Al registrarte, recopilamos tu dirección de correo electrónico, tu nombre de usuario, tu nombre y apellidos, tu fecha de nacimiento y la información de perfil que decidas indicar (nombre visible, biografía, género…). Estos datos se utilizan únicamente para el funcionamiento del servicio: nunca se venden ni se utilizan con fines comerciales. De acuerdo con el Reglamento General de Protección de Datos (RGPD), tienes derecho a acceder, rectificar, oponerte y suprimir tus datos, y puedes ejercerlo contactando con el equipo."
+			"availability": {
+				"title": "Disponibilidad del servicio",
+				"body": "Light Keepers es un proyecto estudiantil gratuito que se ofrece «tal cual». Hacemos todo lo posible por mantenerlo en funcionamiento, pero no garantizamos que esté disponible sin interrupciones ni errores. Las funciones, el equilibrio del juego y las estadísticas pueden cambiar, y el servicio puede detenerse en cualquier momento."
 			},
-			"cookies": {
-				"title": "Cookies",
-				"body": "El sitio solo utiliza cookies técnicas, imprescindibles para su funcionamiento: tokens de autenticación para mantener tu sesión y el recuerdo del idioma elegido. Tu tema de visualización se guarda en el almacenamiento local de tu navegador. No se instalan cookies publicitarias ni de medición de audiencia."
+			"liability": {
+				"title": "Limitación de responsabilidad",
+				"body": "En la medida en que lo permita la ley, el equipo de Light Keepers no se hace responsable de la pérdida de datos, las interrupciones del servicio ni los daños derivados del uso del sitio, ni del contenido publicado por los usuarios."
+			},
+			"termination": {
+				"title": "Suspensión y cancelación",
+				"body": "Puedes dejar de usar el servicio y eliminar tu cuenta en cualquier momento desde tus ajustes. El equipo puede suspender o eliminar una cuenta que infrinja estas condiciones, sin previo aviso en caso de infracción grave."
+			},
+			"changes": {
+				"title": "Cambios y legislación aplicable",
+				"body": "Estas condiciones pueden actualizarse; la fecha que aparece al principio de esta página indica la versión más reciente, y seguir usando el servicio implica aceptarla. Estas condiciones se rigen por la legislación francesa."
 			},
 			"contact": {
 				"title": "Contacto",
-				"body": "Para cualquier pregunta sobre el sitio o tus datos, visita el <support>centro de ayuda</support> o contacta con el equipo a través de su <github>organización de GitHub</github>."
+				"body": "Para cualquier pregunta sobre estas condiciones, visita el <support>centro de ayuda</support> o contacta con el equipo a través de su <github>organización de GitHub</github>."
 			}
 		}
 	},

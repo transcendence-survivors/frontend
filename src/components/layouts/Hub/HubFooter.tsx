@@ -31,6 +31,16 @@ const HubFooter = ({ className, ...props }: HubFooterProps) => {
 			<div className='border-t border-sidebar-border py-5 max-w-full w-full'>
 				<AvatarDropdown />
 			</div>
+			<nav className='flex flex-wrap justify-center gap-x-3 gap-y-1'>
+				{(['privacy', 'terms'] as const).map((key) => (
+					<I18nLink
+						key={key}
+						href={key}
+						className='font-mono text-[10px] uppercase text-muted-foreground hover:text-foreground'>
+						{t(key)}
+					</I18nLink>
+				))}
+			</nav>
 		</footer>
 	);
 };

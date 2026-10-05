@@ -62,13 +62,21 @@ const APP_ROUTES = defineRouteMap({
 		che: '/wiki/bestiary',
 		it: '/wiki/bestiario',
 	},
-	legal: {
-		en: '/legal-notice',
-		de: '/impressum',
-		fr: '/mentions-legales',
-		es: '/aviso-legal',
-		che: '/impressum',
-		it: '/note-legali',
+	privacy: {
+		en: '/privacy-policy',
+		de: '/datenschutz',
+		fr: '/politique-de-confidentialite',
+		es: '/politica-de-privacidad',
+		che: '/datenschutz',
+		it: '/informativa-privacy',
+	},
+	terms: {
+		en: '/terms-of-service',
+		de: '/nutzungsbedingungen',
+		fr: '/conditions-d-utilisation',
+		es: '/condiciones-del-servicio',
+		che: '/nutzigsbedingige',
+		it: '/termini-di-servizio',
 	},
 
 	register: {

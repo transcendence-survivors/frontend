@@ -13,12 +13,10 @@ type BaseLinkProps = Omit<LinkProps, 'href'> & {
 };
 
 export type I18nLinkProps =
-	| {
-			[K in keyof StaticRoutes]: BaseLinkProps & {
-				href: K;
-				hrefParams?: never;
-			};
-	  }[keyof StaticRoutes]
+	| (BaseLinkProps & {
+			href: keyof StaticRoutes;
+			hrefParams?: never;
+	  })
 	| {
 			[K in keyof ParamRoutes]: BaseLinkProps & {
 				href: K;

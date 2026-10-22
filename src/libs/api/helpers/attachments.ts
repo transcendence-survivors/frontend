@@ -52,8 +52,8 @@ export const bucketsConfig: Record<Bucket, BucketConfig> = {
 	},
 	chat: {
 		url: 'chat-presign',
-		maxSize: 50 * 1024 * 1024,
-		maxSizeMB: 50,
+		maxSize: 100 * 1024 * 1024,
+		maxSizeMB: 100,
 		mimes: [...IMAGE_MIMES, ...VIDEO_MIMES],
 		maxFilesCount: 5,
 	},
